@@ -80,9 +80,9 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
                     className="gap-4"
                   >
                     {[
-                      { id: "talent", label: "Hire Talent", desc: "Embed elite, pre-vetted AI engineers into your existing team." },
-                      { id: "project", label: "Build a Project", desc: "We scope, build, and ship your AI product from scratch." },
-                      { id: "rescue", label: "Rescue an App", desc: "Audit, fix, and maintain a failing or half-finished AI app." }
+                      { id: "talent", label: "Managed AI Builder", desc: "Embed a vetted Tier-1 AI builder into your team — milestone-gated and fully managed." },
+                      { id: "project", label: "Outcome-Based AI Project", desc: "We scope, build, and ship your AI product — fixed price, fixed timeline." },
+                      { id: "rescue", label: "AI Reliability & App Rescue", desc: "Audit, fix, and stabilise a failing, hallucinating, or half-finished AI app." }
                     ].map((option) => (
                       <Label
                         key={option.id}
