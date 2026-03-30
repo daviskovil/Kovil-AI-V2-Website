@@ -208,35 +208,47 @@ export default function HomePage() {
       </section>
 
       {/* Logos & Big Stats */}
-      <section className="border-y border-border bg-muted/20">
-        <div className="max-w-7xl mx-auto px-6 py-10">
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+      <section className="py-16 bg-background">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Label */}
+          <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground/50 mb-10">
+            Built and trusted by teams from
+          </p>
+
+          {/* Logos — no boxes, greyscale, subtle */}
+          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 mb-16">
             {[
-              { name: "smartfren.", style: "font-sans font-bold text-lg tracking-tight text-gray-800" },
-              { name: "laVie", style: "font-sans font-semibold text-lg text-gray-800", icon: "▲" },
-              { name: "closeup", style: "font-sans font-light text-lg tracking-wide text-gray-800" },
-              { name: "blibli", style: "font-sans font-bold text-lg text-gray-800", icon: "🛍" },
-              { name: "Unilever", style: "font-sans font-semibold text-lg tracking-wide text-gray-800" },
+              { name: "smartfren.", style: "font-sans font-bold text-xl tracking-tight" },
+              { name: "▲ laVie", style: "font-sans font-semibold text-xl" },
+              { name: "closeup", style: "font-sans font-light text-xl tracking-widest" },
+              { name: "blibli", style: "font-sans font-bold text-xl" },
+              { name: "Unilever", style: "font-sans font-semibold text-xl tracking-wide" },
             ].map((brand) => (
-              <div key={brand.name} className="flex items-center justify-center gap-1.5 bg-white border border-gray-100 rounded-xl px-8 py-5 shadow-sm min-w-[160px]">
-                {brand.icon && <span className="text-sm">{brand.icon}</span>}
-                <span className={brand.style}>{brand.name}</span>
-              </div>
+              <span
+                key={brand.name}
+                className={`${brand.style} text-muted-foreground/40 hover:text-muted-foreground/60 transition-colors duration-300`}
+              >
+                {brand.name}
+              </span>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-border">
-            <div className="pt-6 md:pt-0">
-              <div className="text-4xl md:text-5xl font-display font-bold">150+</div>
-              <div className="text-muted-foreground mt-2 font-medium">Successful AI Deployments</div>
+          {/* Divider */}
+          <div className="border-t border-border/40 mb-16" />
+
+          {/* Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+            <div>
+              <div className="text-5xl md:text-6xl font-display font-bold text-foreground">150+</div>
+              <div className="text-sm text-muted-foreground/60 mt-3 tracking-wide uppercase font-medium">Successful AI Deployments</div>
             </div>
-            <div className="pt-6 md:pt-0">
-              <div className="text-4xl md:text-5xl font-display font-bold">50+</div>
-              <div className="text-muted-foreground mt-2 font-medium">Happy Enterprise Customers</div>
+            <div className="md:border-x border-border/40">
+              <div className="text-5xl md:text-6xl font-display font-bold text-foreground">50+</div>
+              <div className="text-sm text-muted-foreground/60 mt-3 tracking-wide uppercase font-medium">Happy Enterprise Customers</div>
             </div>
-            <div className="pt-6 md:pt-0">
-              <div className="text-4xl md:text-5xl font-display font-bold">98%</div>
-              <div className="text-muted-foreground mt-2 font-medium">Trial-to-hire rate</div>
+            <div>
+              <div className="text-5xl md:text-6xl font-display font-bold text-foreground">98%</div>
+              <div className="text-sm text-muted-foreground/60 mt-3 tracking-wide uppercase font-medium">Trial-to-hire rate</div>
             </div>
           </div>
         </div>
