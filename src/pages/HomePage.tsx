@@ -210,11 +210,19 @@ export default function HomePage() {
       {/* Logos & Big Stats */}
       <section className="border-y border-border bg-muted/20">
         <div className="max-w-7xl mx-auto px-6 py-10">
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale mb-12">
-            <div className="flex items-center gap-2 font-display font-bold text-xl"><div className="h-6 w-6 bg-foreground rounded-full" /> Stripe</div>
-            <div className="flex items-center gap-2 font-display font-bold text-xl"><div className="h-6 w-6 bg-foreground rounded-sm" /> Netflix</div>
-            <div className="flex items-center gap-2 font-display font-bold text-xl"><div className="h-6 w-6 bg-foreground rounded-tl-lg rounded-br-lg" /> Airbnb</div>
-            <div className="flex items-center gap-2 font-display font-bold text-xl"><div className="h-6 w-6 border-2 border-foreground rounded-full" /> Square</div>
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {[
+              { name: "smartfren.", style: "font-sans font-bold text-lg tracking-tight text-gray-800" },
+              { name: "laVie", style: "font-sans font-semibold text-lg text-gray-800", icon: "▲" },
+              { name: "closeup", style: "font-sans font-light text-lg tracking-wide text-gray-800" },
+              { name: "blibli", style: "font-sans font-bold text-lg text-gray-800", icon: "🛍" },
+              { name: "Unilever", style: "font-sans font-semibold text-lg tracking-wide text-gray-800" },
+            ].map((brand) => (
+              <div key={brand.name} className="flex items-center justify-center gap-1.5 bg-white border border-gray-100 rounded-xl px-8 py-5 shadow-sm min-w-[160px]">
+                {brand.icon && <span className="text-sm">{brand.icon}</span>}
+                <span className={brand.style}>{brand.name}</span>
+              </div>
+            ))}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-border">
