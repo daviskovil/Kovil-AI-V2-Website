@@ -458,27 +458,83 @@ export default function HomePage() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {[
-            { title: "Experts Who Have Done What You Need", desc: "Every engineer brings experience from top tech companies, with proven playbooks that eliminate guesswork. No experiments, just expertise." },
-            { title: "Matched to Your Stack & Scale", desc: "Not only is your engineer a pro, they have experience helping companies exactly like yours. We match on stack, industry, and specific challenges." },
-            { title: "Available Now, Satisfaction Guaranteed", desc: "Most matches are made within 48 hours. If you approve, they start within a week. Try them for two weeks, keep going, or replace them no questions asked." }
-          ].map((prop, i) => (
-            <div key={i} className="bg-background border border-border rounded-3xl p-8 shadow-sm">
-              <div className="h-48 bg-muted/50 rounded-xl mb-8 border border-border/50 flex items-center justify-center overflow-hidden relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-background to-muted" />
-                <div className="relative z-10 w-3/4 h-3/4 bg-background rounded-lg shadow-sm border border-border flex flex-col p-4 gap-2">
-                  <div className="h-2 w-1/3 bg-muted rounded" />
-                  <div className="h-2 w-full bg-muted rounded" />
-                  <div className="h-2 w-2/3 bg-muted rounded" />
-                  <div className="mt-auto h-8 w-full bg-accent/10 rounded flex items-center justify-center">
-                    <div className="h-1.5 w-12 bg-accent/40 rounded" />
+          {/* Card 1 — Expert Profile */}
+          <div className="bg-background border border-border rounded-3xl p-8 shadow-sm">
+            <div className="h-52 bg-[#0f0f0f] rounded-xl mb-8 border border-white/10 flex items-center justify-center overflow-hidden relative p-4">
+              <div className="w-full max-w-[220px] bg-[#1a1a1a] rounded-lg border border-white/10 p-4 font-mono text-xs">
+                <div className="text-[#666] mb-3 text-[10px]">expert_profile.ts</div>
+                {[
+                  { label: "Machine Learning", pct: "98%", w: "w-[98%]", color: "bg-accent" },
+                  { label: "System Design",    pct: "95%", w: "w-[95%]", color: "bg-purple-500" },
+                  { label: "React / Node",     pct: "92%", w: "w-[92%]", color: "bg-blue-500" },
+                ].map(skill => (
+                  <div key={skill.label} className="mb-2.5">
+                    <div className="flex justify-between text-[10px] mb-1">
+                      <span className="text-white/70">{skill.label}</span>
+                      <span className="text-white/50">{skill.pct}</span>
+                    </div>
+                    <div className="h-1 bg-white/10 rounded-full">
+                      <div className={`h-1 ${skill.color} rounded-full ${skill.w}`} />
+                    </div>
                   </div>
+                ))}
+                <div className="mt-3 inline-flex items-center gap-1.5 bg-accent/20 text-accent text-[10px] font-bold px-2 py-1 rounded-full">
+                  <span>✦</span> Ex-FAANG
                 </div>
               </div>
-              <h3 className="text-2xl font-display font-bold mb-4">{prop.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{prop.desc}</p>
             </div>
-          ))}
+            <h3 className="text-2xl font-display font-bold mb-4">Experts Who Have Done What You Need</h3>
+            <p className="text-muted-foreground leading-relaxed">Every engineer brings experience from top tech companies, with proven playbooks that eliminate guesswork. No experiments, just expertise.</p>
+          </div>
+
+          {/* Card 2 — Stack Match */}
+          <div className="bg-background border border-border rounded-3xl p-8 shadow-sm">
+            <div className="h-52 bg-[#0f0f0f] rounded-xl mb-8 border border-white/10 flex items-center justify-center overflow-hidden relative">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,79,0,0.18)_0%,transparent_65%)]" />
+              <div className="relative z-10 flex flex-col items-center gap-3">
+                <div className="w-14 h-14 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-accent/60 flex items-center justify-center">
+                    <div className="w-4 h-4 rounded-full bg-accent" />
+                  </div>
+                </div>
+                <div className="flex gap-2 flex-wrap justify-center max-w-[180px]">
+                  {["React", "Python", "AWS", "LangChain", "GPT-4"].map(tag => (
+                    <span key={tag} className="text-[10px] font-bold text-white/70 border border-white/20 px-2 py-0.5 rounded">{tag}</span>
+                  ))}
+                </div>
+                <div className="text-[10px] text-accent font-bold tracking-widest">98% STACK MATCH</div>
+              </div>
+            </div>
+            <h3 className="text-2xl font-display font-bold mb-4">Matched to Your Stack & Scale</h3>
+            <p className="text-muted-foreground leading-relaxed">Not only is your engineer a pro, they have experience helping companies exactly like yours. We match on stack, industry, and specific challenges.</p>
+          </div>
+
+          {/* Card 3 — Timeline */}
+          <div className="bg-background border border-border rounded-3xl p-8 shadow-sm">
+            <div className="h-52 bg-[#0f0f0f] rounded-xl mb-8 border border-white/10 flex items-center justify-center overflow-hidden relative p-4">
+              <div className="flex flex-col gap-3 w-full max-w-[200px]">
+                {[
+                  { label: "Match Found",     sub: "4th",   done: true,  color: "bg-accent" },
+                  { label: "Trial Started",   sub: "Day 7", done: true,  color: "bg-purple-500" },
+                  { label: "Feature Shipped", sub: "Day 14",done: true,  color: "bg-green-500" },
+                ].map((step, idx) => (
+                  <div key={idx} className="flex items-center gap-3 bg-[#1a1a1a] rounded-lg px-3 py-2 border border-white/10">
+                    <div className={`w-4 h-4 rounded-full ${step.color} flex items-center justify-center shrink-0`}>
+                      <svg viewBox="0 0 10 10" className="w-2.5 h-2.5 text-white fill-none stroke-white stroke-2">
+                        <polyline points="2,5 4,7 8,3" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-[11px] font-bold text-white">{step.label}</div>
+                    </div>
+                    <div className="text-[10px] text-white/40">{step.sub}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <h3 className="text-2xl font-display font-bold mb-4">Available Now, Satisfaction Guaranteed</h3>
+            <p className="text-muted-foreground leading-relaxed">Most matches are made within 48 hours. If you approve, they start within a week. Try them for two weeks, keep going, or replace them no questions asked.</p>
+          </div>
         </div>
       </section>
 
