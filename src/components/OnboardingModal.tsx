@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight, CheckCircle2, CalendarDays } from "lucide-react"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
@@ -125,11 +125,27 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
                     value={formData.details}
                     onChange={(e) => setFormData({ ...formData, details: e.target.value })}
                   />
-                  <div className="pt-4 flex justify-between">
-                    <Button variant="ghost" onClick={handleBack}>Back</Button>
-                    <Button onClick={handleNext} disabled={!formData.details.trim()} className="group">
-                      Continue <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Button>
+                  <div className="pt-2 space-y-3">
+                    <div className="flex items-center gap-3">
+                      <span className="flex-1 h-px bg-border" />
+                      <span className="text-xs text-muted-foreground">or</span>
+                      <span className="flex-1 h-px bg-border" />
+                    </div>
+                    <a
+                      href="https://calendly.com/kovil-ai/talent"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full border border-accent text-accent rounded-xl py-3 text-sm font-semibold hover:bg-accent/5 transition-colors"
+                    >
+                      <CalendarDays className="h-4 w-4" />
+                      Book a Call Instead
+                    </a>
+                    <div className="flex justify-between pt-1">
+                      <Button variant="ghost" onClick={handleBack}>Back</Button>
+                      <Button onClick={handleNext} disabled={!formData.details.trim()} className="group">
+                        Continue <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </div>
                   </div>
                 </motion.div>
               )}
