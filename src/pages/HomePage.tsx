@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "motion/react"
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2, Check, X, ChevronDown, Rocket, LifeBuoy, Activity, Landmark, HeartPulse, BarChart3, ShieldAlert, LucideIcon } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { OnboardingModal } from "../components/OnboardingModal"
@@ -618,20 +619,22 @@ export default function HomePage() {
       {/* Final CTA */}
       <section className="py-32 bg-accent/5 text-center px-6">
         <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight mb-6">
-          Join Kovil AI Today
+          Join Kovil AI
         </h2>
         <p className="text-xl text-muted-foreground mb-10">
-          We'll match you with a perfect expert.
+          Scale your business with elite AI builders — or join our network and work on cutting-edge AI projects.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <OnboardingModal>
-            <Button variant="accent" size="lg" className="rounded-full px-8 h-14 text-lg">
-              Hire AI Engineers <ArrowRight className="ml-2 h-5 w-5" />
+            <Button variant="accent" size="lg" className="rounded-full px-8 h-14 text-lg cursor-pointer">
+              Start My AI Build <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </OnboardingModal>
-          <Button variant="outline" size="lg" className="rounded-full px-8 h-14 text-lg bg-background">
-            Apply as a Freelancer
-          </Button>
+          <Link to="/apply">
+            <Button variant="outline" size="lg" className="rounded-full px-8 h-14 text-lg bg-background cursor-pointer">
+              Apply as AI Builder
+            </Button>
+          </Link>
         </div>
       </section>
     </main>
