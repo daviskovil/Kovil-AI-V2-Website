@@ -126,6 +126,12 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
                     onChange={(e) => setFormData({ ...formData, details: e.target.value })}
                   />
                   <div className="pt-2 space-y-3">
+                    <div className="flex justify-between pt-1">
+                      <Button variant="ghost" onClick={handleBack}>Back</Button>
+                      <Button onClick={handleNext} disabled={!formData.details.trim()} className="group">
+                        Continue <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </div>
                     <div className="flex items-center gap-3">
                       <span className="flex-1 h-px bg-border" />
                       <span className="text-xs text-muted-foreground">or</span>
@@ -140,12 +146,6 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
                       <CalendarDays className="h-4 w-4" />
                       Book a Call Instead
                     </a>
-                    <div className="flex justify-between pt-1">
-                      <Button variant="ghost" onClick={handleBack}>Back</Button>
-                      <Button onClick={handleNext} disabled={!formData.details.trim()} className="group">
-                        Continue <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Button>
-                    </div>
                   </div>
                 </motion.div>
               )}

@@ -14,6 +14,7 @@ import HowItWorksPage from "./pages/HowItWorksPage"
 import ManagedAIBuilderPage from "./pages/engage/ManagedAIBuilderPage"
 import OutcomeProjectPage from "./pages/engage/OutcomeProjectPage"
 import AppRescuePage from "./pages/engage/AppRescuePage"
+import ApplyPage from "./pages/ApplyPage"
 
 const engageLinks = [
   {
@@ -130,7 +131,7 @@ function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <a href="#" className="hidden sm:block text-sm font-medium hover:text-accent transition-colors">Apply as Talent</a>
+          <Link to="/apply" className="hidden sm:block text-sm font-medium hover:text-accent transition-colors cursor-pointer">Apply as AI Builder</Link>
           <OnboardingModal>
             <Button variant="accent" className="rounded-full font-semibold">
               Start My AI Build
@@ -169,7 +170,7 @@ function Footer() {
           <h4 className="font-bold mb-4">Company</h4>
           <ul className="space-y-3 text-sm text-muted/60">
             <li><Link to="/how-it-works" className="hover:text-accent transition-colors">How It Works</Link></li>
-            <li><a href="#" className="hover:text-accent transition-colors">For Talent</a></li>
+            <li><Link to="/apply" className="hover:text-accent transition-colors">Apply as AI Builder</Link></li>
             <li><Link to="/blog" className="hover:text-accent transition-colors">Blog</Link></li>
             <li><Link to="/case-studies" className="hover:text-accent transition-colors">Case Studies</Link></li>
           </ul>
@@ -209,6 +210,7 @@ export default function App() {
         <Route path="/engage/managed-ai-builder" element={<div className="pt-20"><ManagedAIBuilderPage /></div>} />
         <Route path="/engage/outcome-based-project" element={<div className="pt-20"><OutcomeProjectPage /></div>} />
         <Route path="/engage/app-rescue" element={<div className="pt-20"><AppRescuePage /></div>} />
+        <Route path="/apply" element={<ApplyPage />} />
       </Routes>
 
       <Footer />
