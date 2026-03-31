@@ -8,6 +8,16 @@ import { Button } from "../../components/ui/button"
 import { OnboardingModal } from "../../components/OnboardingModal"
 import { SEOHead } from "../../components/SEOHead"
 
+const BREADCRUMB_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",                       "item": "https://kovil.ai/" },
+    { "@type": "ListItem", "position": 2, "name": "Engage",                     "item": "https://kovil.ai/engage/managed-ai-builder" },
+    { "@type": "ListItem", "position": 3, "name": "AI App Rescue & Reliability","item": "https://kovil.ai/engage/app-rescue" }
+  ]
+}
+
 const PAGE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -80,7 +90,7 @@ export default function AppRescuePage() {
       title="AI App Rescue & Reliability — Fix Your Failing AI App"
       description="Hallucinating RAG, crashing AI app, or a half-finished vibe build? Our SWAT team audits, fixes, and stabilises it with a 99.9% uptime SLA. Free diagnostic audit."
       canonical="/engage/app-rescue"
-      schema={PAGE_SCHEMA}
+      schema={[PAGE_SCHEMA, BREADCRUMB_SCHEMA]}
     />
     <div className="min-h-screen bg-background text-foreground">
 

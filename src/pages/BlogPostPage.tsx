@@ -20,6 +20,16 @@ export default function BlogPostPage() {
 
   const isoDate = toIso(post.date)
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://kovil.ai/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog",  "item": "https://kovil.ai/blog" },
+      { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://kovil.ai/blog/${post.slug}` }
+    ]
+  }
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -60,7 +70,7 @@ export default function BlogPostPage() {
         author: post.author,
         section: post.category,
       }}
-      schema={articleSchema}
+      schema={[articleSchema, breadcrumbSchema]}
     />
     <div className="min-h-screen bg-background text-foreground">
       {/* Back link */}

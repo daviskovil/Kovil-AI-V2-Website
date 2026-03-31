@@ -9,6 +9,16 @@ export default function CaseStudyPage() {
 
   if (!cs) return <Navigate to="/case-studies" replace />
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home",          "item": "https://kovil.ai/" },
+      { "@type": "ListItem", "position": 2, "name": "Case Studies",  "item": "https://kovil.ai/case-studies" },
+      { "@type": "ListItem", "position": 3, "name": cs.headline,     "item": `https://kovil.ai/case-studies/${cs.slug}` }
+    ]
+  }
+
   const caseStudySchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -40,7 +50,7 @@ export default function CaseStudyPage() {
       description={cs.excerpt}
       canonical={`/case-studies/${cs.slug}`}
       ogType="article"
-      schema={caseStudySchema}
+      schema={[caseStudySchema, breadcrumbSchema]}
     />
     <div className="min-h-screen bg-background text-foreground">
       {/* Back link */}

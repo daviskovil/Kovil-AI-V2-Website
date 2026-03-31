@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { Routes, Route, Link, useLocation } from "react-router-dom"
-import { Sparkles, ChevronDown, Users, Rocket, Shield } from "lucide-react"
+import { ChevronDown, Users, Rocket, Shield } from "lucide-react"
 
 import { Button } from "./components/ui/button"
 import { OnboardingModal } from "./components/OnboardingModal"
@@ -151,7 +151,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12">
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-2 mb-6">
-            <Sparkles className="h-6 w-6 text-accent" />
+            <img src="/kovil-logo-symbol-orange.png" alt="Kovil AI" className="h-7 w-auto" />
             <span className="font-display font-bold text-2xl tracking-tight">Kovil AI</span>
           </div>
           <p className="text-sm text-muted/60 mb-6">

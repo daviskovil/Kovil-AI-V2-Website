@@ -8,6 +8,16 @@ import { Button } from "../../components/ui/button"
 import { OnboardingModal } from "../../components/OnboardingModal"
 import { SEOHead } from "../../components/SEOHead"
 
+const BREADCRUMB_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",                      "item": "https://kovil.ai/" },
+    { "@type": "ListItem", "position": 2, "name": "Engage",                    "item": "https://kovil.ai/engage/managed-ai-builder" },
+    { "@type": "ListItem", "position": 3, "name": "Fixed-Price AI Project",    "item": "https://kovil.ai/engage/outcome-based-project" }
+  ]
+}
+
 const PAGE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -83,7 +93,7 @@ export default function OutcomeProjectPage() {
       title="Fixed-Price AI Project — Scoped, Built & Shipped"
       description="Get a fixed-price AI project proposal in 48 hours. Milestone-gated builds, dedicated squad, full codebase handoff, and 100% IP assigned to you. No lock-in."
       canonical="/engage/outcome-based-project"
-      schema={PAGE_SCHEMA}
+      schema={[PAGE_SCHEMA, BREADCRUMB_SCHEMA]}
     />
     <div className="min-h-screen bg-background text-foreground">
 

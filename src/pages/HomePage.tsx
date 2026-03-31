@@ -23,6 +23,26 @@ const HOME_SCHEMA = [
     "@type": "WebSite",
     "name": "Kovil AI",
     "url": "https://kovil.ai"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Kovil AI",
+    "url": "https://kovil.ai",
+    "email": "info@kovil.ai",
+    "description": "Kovil AI embeds vetted Tier-1 AI engineers into your team. Fixed-price AI projects, managed delivery, and AI app rescue.",
+    "logo": "https://kovil.ai/kovil-logo-symbol.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "734 Franklin Ave",
+      "addressLocality": "Garden City",
+      "addressRegion": "NY",
+      "postalCode": "11530",
+      "addressCountry": "US"
+    },
+    "areaServed": "Worldwide",
+    "priceRange": "$$",
+    "sameAs": ["https://www.linkedin.com/company/kovil-ai/"]
   }
 ]
 

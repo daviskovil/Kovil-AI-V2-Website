@@ -6,6 +6,15 @@ import { OnboardingModal } from "../components/OnboardingModal"
 import { SEOHead } from "../components/SEOHead"
 
 // FAQPage schema — uses questions from all 3 tabs
+const BREADCRUMB_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",         "item": "https://kovil.ai/" },
+    { "@type": "ListItem", "position": 2, "name": "How It Works", "item": "https://kovil.ai/how-it-works" }
+  ]
+}
+
 const FAQ_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -278,7 +287,7 @@ export default function HowItWorksPage() {
       title="How It Works — Managed AI Engineers, Fixed-Price Projects & App Rescue"
       description="Three engagement models: embed a managed AI engineer, deliver a fixed-price AI project, or rescue a failing AI app. See how each works, step by step."
       canonical="/how-it-works"
-      schema={FAQ_SCHEMA}
+      schema={[FAQ_SCHEMA, BREADCRUMB_SCHEMA]}
     />
     <div className="min-h-screen bg-background text-foreground">
 
