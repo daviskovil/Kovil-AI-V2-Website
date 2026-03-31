@@ -1,4 +1,15 @@
 {
+  "redirects": [
+    { "source": "/services",                  "destination": "/how-it-works",                    "permanent": true },
+    { "source": "/services/ai-sprint",         "destination": "/engage/outcome-based-project",    "permanent": true },
+    { "source": "/services/ai-integration",    "destination": "/engage/managed-ai-builder",       "permanent": true },
+    { "source": "/services/maintenance",       "destination": "/engage/app-rescue",               "permanent": true },
+    { "source": "/contact",                    "destination": "/",                                "permanent": true },
+    { "source": "/pricing",                    "destination": "/how-it-works",                    "permanent": true },
+    { "source": "/hire",                       "destination": "/engage/managed-ai-builder",       "permanent": true },
+    { "source": "/apply-as-builder",           "destination": "/apply",                           "permanent": true },
+    { "source": "/talent",                     "destination": "/apply",                           "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
@@ -14,10 +25,10 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        { "key": "X-Content-Type-Options",  "value": "nosniff" },
+        { "key": "X-Frame-Options",          "value": "DENY" },
+        { "key": "X-XSS-Protection",         "value": "1; mode=block" },
+        { "key": "Referrer-Policy",          "value": "strict-origin-when-cross-origin" }
       ]
     }
   ]
