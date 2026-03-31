@@ -46,16 +46,24 @@ const projectTypes = [
   { label: "Data Extraction & Automation", desc: "AI-powered pipelines that pull, classify, and act on unstructured data — PDFs, emails, forms, and more." },
 ]
 
-const faqs = [
-  { q: "How is the fixed price calculated?", a: "During scoping we estimate engineering complexity, sprint count, and team size. The final number is fixed — if we underestimate effort, that's our risk, not yours." },
-  { q: "What if scope needs to change mid-project?", a: "Scope changes are handled as formal change requests. We re-scope, re-price transparently, and you decide whether to proceed before we build." },
-  { q: "Who will be on the build squad?", a: "A dedicated AI engineer matched to your domain, a project lead who owns communication and milestones, and a QA reviewer for each deliverable." },
-  { q: "How long does a typical project take?", a: "Most projects range from 4–12 weeks depending on scope. We agree the timeline during scoping and build it into the milestone plan." },
-  { q: "Can I see progress before the final handoff?", a: "Yes — every milestone produces a working demo or testable output you review and approve before we continue." },
+const timeline = [
+  { day: "Day 1–2", title: "Submit Your Idea", desc: "Share your concept in plain language — no spec required. Our team reviews it and schedules a scoping call within 24 hours." },
+  { day: "Day 3–5", title: "Fixed-Price Proposal Delivered", desc: "You receive a written scope document: clear deliverables, milestone plan, timeline, and a flat price. No ambiguity, no hidden fees." },
+  { day: "Week 1", title: "Squad Assigned & Work Begins", desc: "You approve the proposal, milestone plan is locked, and your dedicated build squad kicks off Sprint 1 immediately." },
+  { day: "Weeks 1–N", title: "Gated Milestone Delivery", desc: "Each milestone produces a working, testable output. You review and approve before we proceed — full control at every stage." },
+  { day: "Final Week", title: "Deploy, Document & Hand Off", desc: "We deploy to your infrastructure, write full technical documentation, and transfer 100% of the codebase and IP to you." },
+]
+
+const comparison = [
+  { label: "Fixed price guarantee", kovil: "✓ Always",        inhouse: "✗ Scope creep",   agency: "Rarely",       freelancer: "Rarely" },
+  { label: "Time to proposal",      kovil: "48 hours",         inhouse: "Weeks",            agency: "1–2 weeks",    freelancer: "Varies" },
+  { label: "Milestone gates",       kovil: "✓ Every phase",    inhouse: "✗",                agency: "Partial",      freelancer: "✗" },
+  { label: "Dedicated squad",       kovil: "✓ Matched team",   inhouse: "If you hire",      agency: "Often shared", freelancer: "Solo" },
+  { label: "Timeline guarantee",    kovil: "✓ Contractual",    inhouse: "✗",                agency: "Rarely",       freelancer: "✗" },
+  { label: "IP ownership",          kovil: "100% yours",       inhouse: "100% yours",       agency: "Often shared", freelancer: "Varies" },
 ]
 
 export default function OutcomeProjectPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -185,27 +193,57 @@ export default function OutcomeProjectPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="max-w-3xl mx-auto px-6 py-20">
-        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">FAQ</p>
-        <h2 className="font-display font-bold text-3xl mb-10">Common questions.</h2>
-        <div className="space-y-3">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border border-border rounded-xl overflow-hidden">
-              <button
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left font-semibold hover:bg-muted/30 transition-colors"
-              >
-                {faq.q}
-                <ChevronDown className={`h-4 w-4 text-muted-foreground shrink-0 transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
-              </button>
-              {openFaq === i && (
-                <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed border-t border-border pt-4">
-                  {faq.a}
+      {/* What to Expect Timeline */}
+      <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">What to Expect</p>
+        <h2 className="font-display font-bold text-3xl mb-12">From idea to shipped product — step by step.</h2>
+        <div className="relative">
+          <div className="absolute left-[72px] top-0 bottom-0 w-px bg-border hidden md:block" />
+          <div className="space-y-6">
+            {timeline.map((item, i) => (
+              <div key={i} className="flex gap-6 items-start">
+                <div className="shrink-0 w-[136px] flex flex-col items-end gap-1 pt-1 hidden md:flex">
+                  <span className="text-xs font-bold tracking-widest uppercase text-accent bg-accent/10 px-2.5 py-1 rounded-full">{item.day}</span>
                 </div>
-              )}
-            </div>
-          ))}
+                <div className="shrink-0 h-3 w-3 rounded-full bg-accent mt-2 hidden md:block ring-4 ring-background z-10" />
+                <div className="flex-1 bg-muted/20 border border-border rounded-xl p-5 hover:border-accent/30 transition-colors">
+                  <span className="text-xs font-bold tracking-widest uppercase text-accent mb-1 block md:hidden">{item.day}</span>
+                  <h3 className="font-display font-bold text-base mb-1">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Kovil vs Alternatives */}
+      <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Why Kovil</p>
+        <h2 className="font-display font-bold text-3xl mb-12">How we compare to your other build options.</h2>
+        <div className="overflow-x-auto rounded-2xl border border-border">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border bg-muted/30">
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground w-40"></th>
+                <th className="text-left py-4 px-6 font-bold text-accent">Kovil AI</th>
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground">In-House Build</th>
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground">Big Agency</th>
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground">Freelancer</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {comparison.map((row) => (
+                <tr key={row.label} className="hover:bg-muted/20 transition-colors">
+                  <td className="py-4 px-6 text-muted-foreground font-medium">{row.label}</td>
+                  <td className="py-4 px-6 font-semibold text-foreground">{row.kovil}</td>
+                  <td className="py-4 px-6 text-muted-foreground">{row.inhouse}</td>
+                  <td className="py-4 px-6 text-muted-foreground">{row.agency}</td>
+                  <td className="py-4 px-6 text-muted-foreground">{row.freelancer}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 

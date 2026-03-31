@@ -16,21 +16,21 @@ const steps = [
   },
   {
     number: "02", timeline: "Days 2–3",
-    title: "Meet Your Builder",
-    description: "We surface a curated shortlist of Tier-1 AI builders matched to your domain. You meet, align on sprint goals, and sign off on a milestone plan.",
+    title: "Meet Your Engineer",
+    description: "We surface a curated shortlist of Tier-1 AI engineers matched to your domain. You meet, align on sprint goals, and sign off on a milestone plan.",
     bullets: ["Curated match — not a marketplace", "Live intro call included", "Milestone plan agreed upfront"],
   },
   {
     number: "03", timeline: "Week 1 onwards",
     title: "Sprint & Deliver",
-    description: "Your builder works in focused sprints. A Shadow Lead audits every milestone output. You get working, production-ready AI — not decks, not promises.",
-    bullets: ["Weekly milestone check-ins", "Shadow Lead quality audit", "Two-week risk-free trial"],
+    description: "Your engineer works in focused sprints. A Engagement Manager audits every milestone output. You get working, production-ready AI — not decks, not promises.",
+    bullets: ["Weekly milestone check-ins", "Engagement Manager quality audit", "Two-week risk-free trial"],
   },
 ]
 
 const included = [
   { icon: ShieldCheck, title: "Tier-1 Vetted Builder", desc: "Every builder passes a rigorous 5-stage technical vetting — coding, system design, AI depth, and live delivery simulation." },
-  { icon: Repeat2, title: "Shadow Lead Oversight", desc: "A senior Kovil AI lead audits every milestone before it reaches you. No surprises, no silent drift." },
+  { icon: Repeat2, title: "Engagement Manager Oversight", desc: "A senior Kovil AI lead audits every milestone before it reaches you. No surprises, no silent drift." },
   { icon: Zap, title: "Sprint-Based Delivery", desc: "Work happens in structured weekly sprints with clear deliverables. Not open-ended hours billed to a ticket queue." },
   { icon: Globe2, title: "Timezone Matched", desc: "We match your builder to overlap with your core working hours — real-time collaboration, not async delays." },
   { icon: BarChart3, title: "Progress Dashboard", desc: "View sprint goals, completed work, and upcoming milestones in one place. Full visibility at all times." },
@@ -38,21 +38,29 @@ const included = [
 ]
 
 const forWho = [
-  { label: "Growing Startups", desc: "Need AI velocity without building a full in-house team. Get a builder embedded immediately." },
+  { label: "Growing Startups", desc: "Need AI velocity without building a full in-house team. Get an engineer embedded immediately." },
   { label: "Enterprises Augmenting Teams", desc: "Your team has direction but needs specialist AI execution. We slot in without friction." },
   { label: "CTOs & Heads of Engineering", desc: "Want reliable AI delivery without managing freelancers, agencies, or offshore vendors." },
 ]
 
-const faqs = [
-  { q: "How long does it take to match a builder?", a: "Typically 24–48 hours. We maintain an active bench of vetted builders across AI domains and timezones, so matching is fast." },
-  { q: "What if the builder isn't a fit after we start?", a: "You're covered by a two-week risk-free trial. If the match isn't right, we rematch at no extra cost — no questions asked." },
-  { q: "Can I scale up to multiple builders?", a: "Yes. Once the first builder is embedded and productive, we can add a second or third based on sprint capacity and roadmap needs." },
-  { q: "Who owns the code and IP?", a: "You do — 100%. All work product, code, and AI models built during the engagement are fully assigned to your company." },
-  { q: "Do I need to manage the builder day-to-day?", a: "Minimal management needed. Your builder is self-directed within each sprint. The Shadow Lead handles quality. You review outputs at milestones." },
+const timeline = [
+  { day: "Day 1", title: "Submit Your Brief", desc: "Fill a 5-minute intake form. A Delivery Lead calls you within 24 hours to scope requirements, preferred stack, and timeline." },
+  { day: "Day 2–3", title: "Meet Your Shortlist", desc: "We surface 2–3 hand-picked engineers matched to your domain. You review profiles, join intro calls, and choose your fit." },
+  { day: "Day 3–4", title: "Milestone Plan Locked", desc: "You and your engineer agree a sprint plan — clear deliverables, timelines, and success criteria — before any work begins." },
+  { day: "Week 1+", title: "Sprint & Deliver", desc: "Your engineer works in focused sprints. Your Engagement Manager audits every output. You review at each milestone checkpoint." },
+  { day: "Ongoing", title: "Scale or Wind Down", desc: "Add engineers, extend sprints, or wind down — no lock-in. You stay because it's working, not because you're contracted." },
+]
+
+const comparison = [
+  { label: "Time to start",      kovil: "24–48 hours",     inhouse: "2–3 months",   agency: "2–4 weeks",    freelancer: "1–2 weeks" },
+  { label: "Technical vetting",  kovil: "5-stage process", inhouse: "You do it",    agency: "Varies",       freelancer: "You do it" },
+  { label: "Managed delivery",   kovil: "✓ Always",        inhouse: "✗",            agency: "Partial",      freelancer: "✗" },
+  { label: "Risk-free trial",    kovil: "✓ 2 weeks",       inhouse: "✗",            agency: "✗",            freelancer: "Rarely" },
+  { label: "IP ownership",       kovil: "100% yours",      inhouse: "100% yours",   agency: "Often shared", freelancer: "Varies" },
+  { label: "Cost",               kovil: "$$",              inhouse: "$$$$",         agency: "$$$",          freelancer: "$" },
 ]
 
 export default function ManagedAIBuilderPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -60,18 +68,18 @@ export default function ManagedAIBuilderPage() {
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-20">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-4">Managed AI Builder</p>
+          <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-4">Managed AI Engineer</p>
           <h1 className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-[1.05] text-balance mb-6">
             Ship AI Features Faster —<br />
             <span className="text-accent">Fully Managed Delivery.</span>
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-            Embed a vetted Tier-1 AI builder into your team. Every sprint is milestone-gated, Shadow Lead audited, and built to production standard.
+            Embed a vetted Tier-1 AI engineer into your team. Every sprint is milestone-gated, Engagement Manager audited, and built to production standard.
           </p>
           <div className="flex flex-wrap gap-4">
             <OnboardingModal defaultGoal="talent">
               <Button variant="accent" className="rounded-full font-semibold px-8 text-base h-12">
-                Hire an AI Builder <ArrowRight className="ml-2 h-4 w-4" />
+                Hire an AI Engineer <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </OnboardingModal>
             <p className="self-center text-sm text-muted-foreground">Two-week risk-free trial. No lock-in.</p>
@@ -82,7 +90,7 @@ export default function ManagedAIBuilderPage() {
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-border">
           {[
             { stat: "< 48h", label: "Time to match" },
-            { stat: "Top 1%", label: "Builder tier" },
+            { stat: "Top 1%", label: "Engineer tier" },
             { stat: "100%", label: "IP ownership" },
             { stat: "2 weeks", label: "Risk-free trial" },
           ].map((s) => (
@@ -123,7 +131,7 @@ export default function ManagedAIBuilderPage() {
       {/* How It Works */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">How It Works</p>
-        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">From brief to builder in 48 hours.</h2>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">From brief to engineer in 48 hours.</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {steps.map((step, i) => (
             <motion.div
@@ -184,27 +192,61 @@ export default function ManagedAIBuilderPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="max-w-3xl mx-auto px-6 py-20">
-        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">FAQ</p>
-        <h2 className="font-display font-bold text-3xl mb-10">Common questions.</h2>
-        <div className="space-y-3">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border border-border rounded-xl overflow-hidden">
-              <button
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left font-semibold hover:bg-muted/30 transition-colors"
-              >
-                {faq.q}
-                <ChevronDown className={`h-4 w-4 text-muted-foreground shrink-0 transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
-              </button>
-              {openFaq === i && (
-                <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed border-t border-border pt-4">
-                  {faq.a}
+      {/* What to Expect Timeline */}
+      <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">What to Expect</p>
+        <h2 className="font-display font-bold text-3xl mb-12">From brief to engineer in 48 hours.</h2>
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-[72px] top-0 bottom-0 w-px bg-border hidden md:block" />
+          <div className="space-y-6">
+            {timeline.map((item, i) => (
+              <div key={i} className="flex gap-6 items-start">
+                {/* Day badge */}
+                <div className="shrink-0 w-[136px] flex flex-col items-end gap-1 pt-1 hidden md:flex">
+                  <span className="text-xs font-bold tracking-widest uppercase text-accent bg-accent/10 px-2.5 py-1 rounded-full">{item.day}</span>
                 </div>
-              )}
-            </div>
-          ))}
+                {/* Dot */}
+                <div className="shrink-0 h-3 w-3 rounded-full bg-accent mt-2 hidden md:block ring-4 ring-background z-10" />
+                {/* Content */}
+                <div className="flex-1 bg-muted/20 border border-border rounded-xl p-5 hover:border-accent/30 transition-colors">
+                  <span className="text-xs font-bold tracking-widest uppercase text-accent mb-1 block md:hidden">{item.day}</span>
+                  <h3 className="font-display font-bold text-base mb-1">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Kovil vs Alternatives */}
+      <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Why Kovil</p>
+        <h2 className="font-display font-bold text-3xl mb-12">How we stack up against your other options.</h2>
+        <div className="overflow-x-auto rounded-2xl border border-border">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border bg-muted/30">
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground w-40"></th>
+                <th className="text-left py-4 px-6 font-bold text-accent">Kovil AI</th>
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground">In-House Hire</th>
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground">Big Agency</th>
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground">Freelancer</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {comparison.map((row) => (
+                <tr key={row.label} className="hover:bg-muted/20 transition-colors">
+                  <td className="py-4 px-6 text-muted-foreground font-medium">{row.label}</td>
+                  <td className="py-4 px-6 font-semibold text-foreground">{row.kovil}</td>
+                  <td className="py-4 px-6 text-muted-foreground">{row.inhouse}</td>
+                  <td className="py-4 px-6 text-muted-foreground">{row.agency}</td>
+                  <td className="py-4 px-6 text-muted-foreground">{row.freelancer}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -212,12 +254,12 @@ export default function ManagedAIBuilderPage() {
       <section className="max-w-7xl mx-auto px-6 pb-24">
         <div className="rounded-2xl bg-foreground text-background p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <h2 className="font-display font-bold text-3xl md:text-4xl mb-3">Ready to hire your AI builder?</h2>
+            <h2 className="font-display font-bold text-3xl md:text-4xl mb-3">Ready to hire your AI engineer?</h2>
             <p className="text-background/60 text-base">Tell us what you need. We'll match you in 48 hours.</p>
           </div>
           <OnboardingModal defaultGoal="talent">
             <Button className="bg-accent text-white hover:bg-accent/90 rounded-full font-semibold px-10 h-12 text-base whitespace-nowrap shrink-0">
-              Hire an AI Builder <ArrowRight className="ml-2 h-4 w-4" />
+              Hire an AI Engineer <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </OnboardingModal>
         </div>

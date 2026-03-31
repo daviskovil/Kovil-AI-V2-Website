@@ -43,16 +43,24 @@ const forWho = [
   { label: "CTOs Managing Legacy AI Debt", desc: "Technical debt has accumulated across your AI stack. You need a structured audit and a clear path to stability." },
 ]
 
-const faqs = [
-  { q: "Do I have to commit to a retainer after the audit?", a: "No. The audit is a standalone engagement. You receive the diagnostic report and decide independently whether to proceed with fixes." },
-  { q: "How quickly can you start the audit?", a: "In most cases we can begin within 24–48 hours of engagement. We maintain an on-call SWAT team for urgent rescue situations." },
-  { q: "What access do you need for the audit?", a: "Read access to your codebase (GitHub/GitLab), production logs, and a brief call with your lead engineer. We sign an NDA before access is granted." },
-  { q: "Can you fix apps built with tools like Cursor or Lovable?", a: "Yes. We regularly rescue vibe-coded or AI-generated apps. The audit identifies structural issues and we rebuild or refactor the unstable parts." },
-  { q: "What does the 99.9% uptime SLA cover?", a: "It applies to the maintenance retainer tier and covers the AI application layer we have control over. SLA terms are defined in the engagement agreement." },
+const timeline = [
+  { day: "Day 1", title: "Intake Call & NDA Signed", desc: "We hop on a call, understand your situation, sign an NDA, and get read access to your codebase and production logs. Urgent cases can start same day." },
+  { day: "Days 1–3", title: "Full Diagnostic Audit", desc: "Our SWAT team audits your codebase, AI architecture, RAG pipeline, and production metrics. Every bug, bottleneck, and risk is mapped and prioritised." },
+  { day: "Day 3–4", title: "Diagnostic Report Delivered", desc: "You receive a prioritised fix list with severity ratings, root cause analysis, and a recommended remediation plan. No commitment required to proceed." },
+  { day: "Weeks 1–2", title: "Fix & Stabilise", desc: "We resolve P1 bugs, hallucinations, performance regressions, and structural issues — peer-reviewed and regression-tested before every deploy." },
+  { day: "Month 1+", title: "Ongoing Maintenance (Optional)", desc: "Stay on a reliability retainer — proactive monitoring, patching, and a 99.9% uptime SLA with a named engineer on your account." },
+]
+
+const comparison = [
+  { label: "Free audit first",       kovil: "✓ Always",          existing: "Rarely",          freelancer: "✗",           inhouse: "✗" },
+  { label: "AI-specialist SWAT",     kovil: "✓ Dedicated team",  existing: "Generic devs",    freelancer: "Varies",      inhouse: "Depends" },
+  { label: "Starts within",          kovil: "24–48 hours",        existing: "Weeks",           freelancer: "Varies",      inhouse: "Weeks" },
+  { label: "SLA guarantee",          kovil: "99.9% uptime",       existing: "Rarely",          freelancer: "✗",           inhouse: "Internal only" },
+  { label: "Vibe-coded app rescue",  kovil: "✓ Speciality",       existing: "Maybe",           freelancer: "Risky",       inhouse: "Slow" },
+  { label: "No long-term lock-in",   kovil: "✓ Audit only first", existing: "Often contracts", freelancer: "✓",           inhouse: "N/A" },
 ]
 
 export default function AppRescuePage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -184,27 +192,57 @@ export default function AppRescuePage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="max-w-3xl mx-auto px-6 py-20">
-        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">FAQ</p>
-        <h2 className="font-display font-bold text-3xl mb-10">Common questions.</h2>
-        <div className="space-y-3">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border border-border rounded-xl overflow-hidden">
-              <button
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left font-semibold hover:bg-muted/30 transition-colors"
-              >
-                {faq.q}
-                <ChevronDown className={`h-4 w-4 text-muted-foreground shrink-0 transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
-              </button>
-              {openFaq === i && (
-                <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed border-t border-border pt-4">
-                  {faq.a}
+      {/* What to Expect Timeline */}
+      <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">What to Expect</p>
+        <h2 className="font-display font-bold text-3xl mb-12">From distress call to stable app — here's how it unfolds.</h2>
+        <div className="relative">
+          <div className="absolute left-[72px] top-0 bottom-0 w-px bg-border hidden md:block" />
+          <div className="space-y-6">
+            {timeline.map((item, i) => (
+              <div key={i} className="flex gap-6 items-start">
+                <div className="shrink-0 w-[136px] flex flex-col items-end gap-1 pt-1 hidden md:flex">
+                  <span className="text-xs font-bold tracking-widest uppercase text-accent bg-accent/10 px-2.5 py-1 rounded-full">{item.day}</span>
                 </div>
-              )}
-            </div>
-          ))}
+                <div className="shrink-0 h-3 w-3 rounded-full bg-accent mt-2 hidden md:block ring-4 ring-background z-10" />
+                <div className="flex-1 bg-muted/20 border border-border rounded-xl p-5 hover:border-accent/30 transition-colors">
+                  <span className="text-xs font-bold tracking-widest uppercase text-accent mb-1 block md:hidden">{item.day}</span>
+                  <h3 className="font-display font-bold text-base mb-1">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Kovil vs Alternatives */}
+      <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Why Kovil</p>
+        <h2 className="font-display font-bold text-3xl mb-12">Why teams choose us over their existing options.</h2>
+        <div className="overflow-x-auto rounded-2xl border border-border">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border bg-muted/30">
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground w-40"></th>
+                <th className="text-left py-4 px-6 font-bold text-accent">Kovil AI</th>
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground">Existing Agency</th>
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground">Freelancer</th>
+                <th className="text-left py-4 px-6 font-semibold text-muted-foreground">In-House</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {comparison.map((row) => (
+                <tr key={row.label} className="hover:bg-muted/20 transition-colors">
+                  <td className="py-4 px-6 text-muted-foreground font-medium">{row.label}</td>
+                  <td className="py-4 px-6 font-semibold text-foreground">{row.kovil}</td>
+                  <td className="py-4 px-6 text-muted-foreground">{row.existing}</td>
+                  <td className="py-4 px-6 text-muted-foreground">{row.freelancer}</td>
+                  <td className="py-4 px-6 text-muted-foreground">{row.inhouse}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 

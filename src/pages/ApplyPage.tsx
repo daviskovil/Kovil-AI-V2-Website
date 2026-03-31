@@ -46,7 +46,7 @@ const STEPS = [
 ]
 
 const ROLES = [
-  "AI Agent Builder", "LLM Engineer", "ML Engineer",
+  "AI Agent Engineer", "LLM Engineer", "ML Engineer",
   "LLM Ops / MLOps Engineer", "AI Product Manager",
   "Data Engineer", "Voice AI Engineer", "Full-Stack AI Developer", "Other",
 ]
@@ -231,7 +231,7 @@ export default function ApplyPage() {
           </div>
           <h1 className="font-display font-bold text-3xl">Application Received</h1>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Thank you for applying to the Kovil AI Builder Network. Our team will
+            Thank you for applying to the Kovil AI Engineer Network. Our team will
             review your profile and reach out if there's a strong match for an
             upcoming engagement.
           </p>
@@ -253,9 +253,9 @@ export default function ApplyPage() {
         {/* Header */}
         <div className="mb-10">
           <p className="text-xs font-bold tracking-widest text-accent uppercase mb-2">Join the Network</p>
-          <h1 className="font-display font-bold text-4xl mb-3">Apply as an AI Builder</h1>
+          <h1 className="font-display font-bold text-4xl mb-3">Apply as an AI Engineer</h1>
           <p className="text-muted-foreground text-lg">
-            Join our vetted network of elite AI builders. When a project matches your profile,
+            Join our vetted network of elite AI engineers. When a project matches your profile,
             we'll reach out with an opportunity.
           </p>
         </div>

@@ -1,14 +1,15 @@
 import { motion, AnimatePresence } from "motion/react"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2, Check, X, ChevronDown, Rocket, LifeBuoy, Activity, Landmark, HeartPulse, BarChart3, ShieldAlert, LucideIcon } from "lucide-react"
+import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2, Check, X, ChevronDown, Rocket, LifeBuoy, Activity, Landmark, HeartPulse, BarChart3, ShieldAlert, LucideIcon, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { OnboardingModal } from "../components/OnboardingModal"
+import { caseStudies } from "../data/case-studies"
 
 const builderCards: { id: string; name: string; role: string; tags: string[]; result: string; resultSub: string; domainIcon: LucideIcon }[] = [
   {
     id: "DR",
-    name: "AI BUILDER: DAVID R.",
+    name: "AI ENGINEER: DAVID R.",
     role: "MANAGED FINTECH AUTOMATOR",
     tags: ["GPT-4O VISION", "PYTHON", "EXTRACTOR"],
     result: "RESULT: AUTO-LOAN VERIFICATION",
@@ -17,7 +18,7 @@ const builderCards: { id: string; name: string; role: string; tags: string[]; re
   },
   {
     id: "EM",
-    name: "AI BUILDER: ELENA M.",
+    name: "AI ENGINEER: ELENA M.",
     role: "MANAGED PATIENT AUTOMATOR",
     tags: ["VOICE AI", "N8N", "TWILIO"],
     result: "RESULT: AUTOMATED PATIENT INTAKE",
@@ -26,7 +27,7 @@ const builderCards: { id: string; name: string; role: string; tags: string[]; re
   },
   {
     id: "RS",
-    name: "AI BUILDER: RAFAEL S.",
+    name: "AI ENGINEER: RAFAEL S.",
     role: "MANAGED AI PERFORMANCE ARCHITECT",
     tags: ["AWS AUTO-SCALE", "REDIS", "NODE.JS"],
     result: "RESULT: 55% LOAD REDUCTION",
@@ -35,7 +36,7 @@ const builderCards: { id: string; name: string; role: string; tags: string[]; re
   },
   {
     id: "TH",
-    name: "AI BUILDER: TOMAS H.",
+    name: "AI ENGINEER: TOMAS H.",
     role: "MANAGED AI RELIABILITY ARCHITECT",
     tags: ["LEGACY SYNC", "UPTIME OPS", "P1 TRIAGE"],
     result: "RESULT: 23 → 4 MONTHLY P1 BUGS",
@@ -49,14 +50,15 @@ function HeroCards() {
   useEffect(() => {
     const interval = setInterval(() => {
       setPairIndex(prev => (prev + 1) % 2)
-    }, 8000)
+    }, 24000)
     return () => clearInterval(interval)
   }, [])
   const topCard = builderCards[pairIndex * 2]
   const bottomCard = builderCards[pairIndex * 2 + 1]
   return (
-    <div className="relative h-[480px] hidden lg:block">
+    <div className="relative h-[580px] hidden lg:block">
       <div className="absolute inset-0 bg-accent/5 rounded-full blur-3xl" />
+      {/* Top card — top-right */}
       <AnimatePresence mode="wait">
         <motion.div
           key={`top-${pairIndex}`}
@@ -74,6 +76,7 @@ function HeroCards() {
           </motion.div>
         </motion.div>
       </AnimatePresence>
+      {/* Bottom card — positioned well below top card, offset left */}
       <AnimatePresence mode="wait">
         <motion.div
           key={`bottom-${pairIndex}`}
@@ -81,7 +84,7 @@ function HeroCards() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="absolute bottom-16 left-0 z-10"
+          className="absolute top-[300px] left-0 z-10"
         >
           <motion.div
             animate={{ y: [0, 6, 0] }}
@@ -144,6 +147,125 @@ function BuilderCard({ card }: { card: (typeof builderCards)[0] }) {
   )
 }
 
+function CaseStudyCarousel() {
+  const [current, setCurrent] = useState(0)
+  const perPage = 3
+  const total = caseStudies.length
+  const maxIndex = Math.ceil(total / perPage) - 1
+
+  const prev = () => setCurrent(i => Math.max(0, i - 1))
+  const next = () => setCurrent(i => Math.min(maxIndex, i + 1))
+
+  const visible = caseStudies.slice(current * perPage, current * perPage + perPage)
+
+  return (
+    <section className="py-24 border-t border-border">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="flex items-end justify-between mb-12">
+          <div>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-3">Case Studies</p>
+            <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight">
+              Real Results. <span className="text-accent">Real AI Deployments.</span>
+            </h2>
+          </div>
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              onClick={prev}
+              disabled={current === 0}
+              className="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:border-accent hover:text-accent transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <span className="text-sm text-muted-foreground">{current + 1} / {maxIndex + 1}</span>
+            <button
+              onClick={next}
+              disabled={current === maxIndex}
+              className="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:border-accent hover:text-accent transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Cards */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -30 }}
+            transition={{ duration: 0.3 }}
+            className="grid md:grid-cols-3 gap-6"
+          >
+            {visible.map((cs) => (
+              <Link
+                key={cs.slug}
+                to={`/case-studies/${cs.slug}`}
+                className="group flex flex-col bg-background border border-border rounded-2xl p-6 hover:border-accent/50 hover:shadow-lg transition-all duration-300"
+              >
+                {/* Industry tag */}
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-semibold tracking-widest uppercase text-accent bg-accent/10 px-3 py-1 rounded-full">
+                    {cs.industry}
+                  </span>
+                  <span className="text-xs text-muted-foreground">{cs.timeline}</span>
+                </div>
+
+                {/* Headline */}
+                <h3 className="font-display font-bold text-lg leading-snug mb-3 group-hover:text-accent transition-colors line-clamp-2">
+                  {cs.headline}
+                </h3>
+
+                {/* Excerpt */}
+                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-6 flex-1">
+                  {cs.excerpt}
+                </p>
+
+                {/* Metrics row */}
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  {cs.metrics.slice(0, 2).map((m) => (
+                    <div key={m.label} className="bg-muted/40 rounded-xl p-3">
+                      <div className="font-display font-bold text-xl text-foreground">{m.value}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{m.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <div className="flex items-center gap-2 text-sm font-semibold text-accent">
+                  Read Case Study
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Mobile nav */}
+        <div className="flex md:hidden items-center justify-center gap-4 mt-8">
+          <button onClick={prev} disabled={current === 0} className="h-10 w-10 rounded-full border border-border flex items-center justify-center disabled:opacity-30 cursor-pointer">
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <span className="text-sm text-muted-foreground">{current + 1} / {maxIndex + 1}</span>
+          <button onClick={next} disabled={current === maxIndex} className="h-10 w-10 rounded-full border border-border flex items-center justify-center disabled:opacity-30 cursor-pointer">
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+
+        {/* View all */}
+        <div className="text-center mt-12">
+          <Link to="/case-studies">
+            <Button variant="outline" className="rounded-full px-8 cursor-pointer">
+              View All Case Studies <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function HomePage() {
   return (
     <main className="pt-20">
@@ -157,7 +279,7 @@ export default function HomePage() {
               transition={{ duration: 0.5 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-balance leading-[1.05]"
             >
-              Ship AI Agents, <br/><span className="text-accent">Deployed by Elite AI Builders</span>
+              Ship AI Agents, <br/><span className="text-accent">Deployed by Elite AI Engineers</span>
             </motion.h1>
 
             <motion.p
@@ -166,7 +288,7 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mt-6 text-xl text-muted-foreground max-w-lg leading-relaxed"
             >
-              Managed AI implementation with zero delivery risk. Access elite builders for fixed-price sprints or scalable team augmentation.
+              Managed AI implementation with zero delivery risk. Access elite engineers for fixed-price sprints or scalable team augmentation.
             </motion.p>
 
             <motion.ul
@@ -176,7 +298,7 @@ export default function HomePage() {
               className="mt-8 space-y-3"
             >
               {[
-                "Vetted Tier-1 AI Builders",
+                "Vetted Tier-1 AI Engineers",
                 "Milestone Gated Sprints",
                 "Active Managed Delivery"
               ].map((item, i) => (
@@ -195,7 +317,7 @@ export default function HomePage() {
             >
               <OnboardingModal>
                 <Button variant="accent" size="lg" className="text-lg h-14 px-8 rounded-full shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all">
-                  Start My AI Build <ArrowRight className="ml-2 h-5 w-5" />
+                  Book a Discovery Call <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </OnboardingModal>
               <span className="text-sm text-muted-foreground font-medium px-4">Only pay if you hire. Two-week trial.</span>
@@ -210,6 +332,10 @@ export default function HomePage() {
       {/* Logos & Big Stats */}
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-6">
+
+          {/* Divider ABOVE logos */}
+          <div className="border-t border-border mb-12" />
+
           {/* Label */}
           <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground/50 mb-10">
             Built and trusted by teams from
@@ -233,16 +359,13 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Divider */}
-          <div className="border-t border-border/40 mb-16" />
-
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
             <div>
               <div className="text-5xl md:text-6xl font-display font-bold text-foreground">150+</div>
               <div className="text-sm text-muted-foreground/60 mt-3 tracking-wide uppercase font-medium">Successful AI Deployments</div>
             </div>
-            <div className="md:border-x border-border/40">
+            <div className="md:border-x border-border/70">
               <div className="text-5xl md:text-6xl font-display font-bold text-foreground">50+</div>
               <div className="text-sm text-muted-foreground/60 mt-3 tracking-wide uppercase font-medium">Happy Enterprise Customers</div>
             </div>
@@ -271,7 +394,7 @@ export default function HomePage() {
             <div className="h-12 w-12 bg-accent/10 text-accent rounded-xl flex items-center justify-center mb-6">
               <Users className="h-6 w-6" />
             </div>
-            <h3 className="text-2xl font-display font-bold mb-3">Managed AI Builder</h3>
+            <h3 className="text-2xl font-display font-bold mb-3">Managed AI Engineer</h3>
             <p className="text-muted-foreground mb-6">
               Seamlessly integrate top 1% AI engineers into your existing team. Scale up or down as needed.
             </p>
@@ -291,7 +414,7 @@ export default function HomePage() {
             </ul>
             <div className="mt-auto pt-6">
               <OnboardingModal defaultGoal="talent">
-                <Button variant="outline" className="w-full rounded-full">Hire AI Builder</Button>
+                <Button variant="outline" className="w-full rounded-full">Hire AI Engineer</Button>
               </OnboardingModal>
             </div>
           </div>
@@ -562,7 +685,7 @@ export default function HomePage() {
                 10x Velocity with Full Stack Human + AI Engineering
               </h2>
               <p className="text-xl text-muted/80 leading-relaxed mb-8">
-                You shouldn't have to manage developers to get AI built. Every builder you hire through Kovil AI is pair-locked with a Shadow Lead who audits every commit.
+                You shouldn't have to manage developers to get AI built. Every engineer you hire through Kovil AI is pair-locked with an Engagement Manager who audits every commit.
               </p>
               <Button variant="accent" size="lg" className="rounded-full px-8">
                 Learn More <ArrowRight className="ml-2 h-4 w-4" />
@@ -639,28 +762,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Roles Grid */}
-      <section id="roles" className="py-24 max-w-5xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight mb-4">
-          AI Specialists <span className="text-accent">Ready to Hire</span>
-        </h2>
-        <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Understanding what each AI specialization does can be tricky. We're here to help.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          {[
-            "AI Agent Builder", "LLM Ops Engineer", "RAG Specialist",
-            "Prompt Engineer", "AI Workflow Architect", "Vector Database Expert",
-            "AI Automation Lead", "Fine-tuning Specialist", "AI Product Manager",
-            "Computer Vision Engineer", "NLP Data Scientist"
-          ].map((role, i) => (
-            <div key={i} className="flex items-center justify-between gap-4 px-6 py-4 rounded-full bg-accent/10 text-accent hover:bg-accent hover:text-white font-semibold transition-all cursor-pointer group border border-accent/20 hover:border-accent">
-              <span>{role}</span>
-              <ArrowRight className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Case Studies Carousel */}
+      <CaseStudyCarousel />
 
       {/* FAQ */}
       <section className="py-24 bg-muted/30 border-t border-border">
@@ -684,7 +787,7 @@ export default function HomePage() {
                   <ChevronDown className="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180" />
                 </summary>
                 <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
-                  We match you with pre-vetted AI specialists based on your specific tech stack, industry, and project goals. Our Shadow Lead ensures the output meets enterprise standards from day one.
+                  We match you with pre-vetted AI specialists based on your specific tech stack, industry, and project goals. Our Engagement Manager ensures the output meets enterprise standards from day one.
                 </div>
               </details>
             ))}
@@ -698,7 +801,7 @@ export default function HomePage() {
           Join Kovil AI
         </h2>
         <p className="text-xl text-muted-foreground mb-10">
-          Scale your business with elite AI builders — or join our network and work on cutting-edge AI projects.
+          Scale your business with elite AI engineers — or join our network and work on cutting-edge AI projects.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <OnboardingModal>
@@ -708,7 +811,7 @@ export default function HomePage() {
           </OnboardingModal>
           <Link to="/apply">
             <Button variant="outline" size="lg" className="rounded-full px-8 h-14 text-lg bg-background cursor-pointer">
-              Apply as AI Builder
+              Apply as AI Engineer
             </Button>
           </Link>
         </div>

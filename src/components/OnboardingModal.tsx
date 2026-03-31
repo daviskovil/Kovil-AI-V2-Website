@@ -80,7 +80,7 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
                     className="gap-4"
                   >
                     {[
-                      { id: "talent", label: "Managed AI Builder", desc: "Embed a vetted Tier-1 AI builder into your team — milestone-gated and fully managed." },
+                      { id: "talent", label: "Managed AI Engineer", desc: "Embed a vetted Tier-1 AI engineer into your team — milestone-gated and fully managed." },
                       { id: "project", label: "Outcome-Based AI Project", desc: "We scope, build, and ship your AI product — fixed price, fixed timeline." },
                       { id: "rescue", label: "AI Reliability & App Rescue", desc: "Audit, fix, and stabilise a failing, hallucinating, or half-finished AI app." }
                     ].map((option) => (
@@ -194,7 +194,7 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
                   <div className="space-y-2">
                     <h2 className="text-2xl sm:text-3xl font-display font-semibold">Request Received</h2>
                     <p className="text-muted-foreground max-w-sm mx-auto">
-                      Our Shadow Lead will review your requirements and reach out shortly to discuss the next steps.
+                      Our Engagement Manager will review your requirements and reach out shortly to discuss the next steps.
                     </p>
                   </div>
                   <Button variant="outline" onClick={() => setIsOpen(false)} className="mt-4">

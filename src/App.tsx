@@ -20,8 +20,8 @@ const engageLinks = [
   {
     to: "/engage/managed-ai-builder",
     icon: Users,
-    label: "Managed AI Builder",
-    desc: "Embed a vetted builder — milestone-gated delivery.",
+    label: "Managed AI Engineer",
+    desc: "Embed a vetted engineer — milestone-gated delivery.",
   },
   {
     to: "/engage/outcome-based-project",
@@ -131,7 +131,7 @@ function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Link to="/apply" className="hidden sm:block text-sm font-medium hover:text-accent transition-colors cursor-pointer">Apply as AI Builder</Link>
+          <Link to="/apply" className="hidden sm:block text-sm font-medium hover:text-accent transition-colors cursor-pointer">Apply as AI Engineer</Link>
           <OnboardingModal>
             <Button variant="accent" className="rounded-full font-semibold">
               Start My AI Build
@@ -160,7 +160,7 @@ function Footer() {
         <div>
           <h4 className="font-bold mb-4">Engage</h4>
           <ul className="space-y-3 text-sm text-muted/60">
-            <li><Link to="/engage/managed-ai-builder" className="hover:text-accent transition-colors">Managed AI Builder</Link></li>
+            <li><Link to="/engage/managed-ai-builder" className="hover:text-accent transition-colors">Managed AI Engineer</Link></li>
             <li><Link to="/engage/outcome-based-project" className="hover:text-accent transition-colors">Outcome-Based AI Project</Link></li>
             <li><Link to="/engage/app-rescue" className="hover:text-accent transition-colors">AI Reliability & App Rescue</Link></li>
           </ul>
@@ -170,7 +170,7 @@ function Footer() {
           <h4 className="font-bold mb-4">Company</h4>
           <ul className="space-y-3 text-sm text-muted/60">
             <li><Link to="/how-it-works" className="hover:text-accent transition-colors">How It Works</Link></li>
-            <li><Link to="/apply" className="hover:text-accent transition-colors">Apply as AI Builder</Link></li>
+            <li><Link to="/apply" className="hover:text-accent transition-colors">Apply as AI Engineer</Link></li>
             <li><Link to="/blog" className="hover:text-accent transition-colors">Blog</Link></li>
             <li><Link to="/case-studies" className="hover:text-accent transition-colors">Case Studies</Link></li>
           </ul>

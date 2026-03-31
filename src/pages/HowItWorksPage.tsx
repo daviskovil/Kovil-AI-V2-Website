@@ -1,15 +1,15 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Users, Rocket, Shield, CheckCircle2, ArrowRight, Clock } from "lucide-react"
+import { Users, Rocket, Shield, CheckCircle2, ArrowRight, Clock, ChevronDown } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { OnboardingModal } from "../components/OnboardingModal"
 
 const tabs = [
   {
     id: "managed-builder",
-    label: "Managed AI Builder",
+    label: "Managed AI Engineer",
     icon: Users,
-    tagline: "Hire a vetted AI builder embedded into your team — fully managed, milestone-gated.",
+    tagline: "Hire a vetted AI engineer embedded into your team — fully managed, milestone-gated.",
     color: "text-accent",
     steps: [
       {
@@ -27,9 +27,9 @@ const tabs = [
       {
         number: "02",
         timeline: "Days 2 – 3",
-        title: "Meet Your Builder",
+        title: "Meet Your Engineer",
         description:
-          "We surface a shortlist of vetted Tier-1 AI builders matched to your domain. You meet, align on sprint goals, and sign off on a milestone plan before any work begins.",
+          "We surface a shortlist of vetted Tier-1 AI engineers matched to your domain. You meet, align on sprint goals, and sign off on a milestone plan before any work begins.",
         bullets: [
           "Curated shortlist — not a marketplace",
           "Live intro call included",
@@ -41,15 +41,27 @@ const tabs = [
         timeline: "Week 1 onwards",
         title: "Sprint & Deliver",
         description:
-          "Your builder works in focused sprints. A Shadow Lead audits every milestone output. You get working, production-ready AI — not decks, not promises.",
+          "Your engineer works in focused sprints. A Engagement Manager audits every milestone output. You get working, production-ready AI — not decks, not promises.",
         bullets: [
           "Weekly milestone check-ins",
-          "Shadow Lead quality audit",
+          "Engagement Manager quality audit",
           "Two-week risk-free trial",
         ],
       },
     ],
-    cta: "Hire an AI Builder",
+    cta: "Hire an AI Engineer",
+    faqs: [
+      { q: "How quickly can I get an engineer started?", a: "Typically within 24–48 hours of your intake brief. We maintain an active bench of vetted engineers across AI domains and timezones, so matching is fast — no lengthy recruiting process." },
+      { q: "What if the engineer isn't a good fit?", a: "You're covered by a two-week risk-free trial. If the match doesn't feel right for any reason, we rematch you with another engineer at no extra cost — no questions asked." },
+      { q: "How does milestone-gating work?", a: "Each sprint ends with a defined deliverable that you review and sign off before the next sprint begins. No work proceeds without your approval, giving you full control over direction and quality." },
+      { q: "Do I need to manage the engineer day-to-day?", a: "Minimal management needed. Your engineer is self-directed within each sprint. Your Engagement Manager handles quality auditing and escalations — you only review outputs at milestones." },
+      { q: "What tech stacks do your engineers cover?", a: "Our bench covers LLMs, RAG pipelines, vector databases, agent frameworks (LangChain, CrewAI, AutoGen), voice AI, MLOps, full-stack AI integration (Next.js, FastAPI, Node), and more." },
+      { q: "Can I hire more than one engineer?", a: "Yes. Once your first engineer is embedded and productive, we can add a second or third based on sprint capacity and roadmap needs — scaling your team without scaling your overhead." },
+      { q: "Is there a minimum engagement period?", a: "No hard minimum. We recommend at least 4 weeks to see meaningful output, but you can pause or wind down after the two-week trial if it's not the right fit." },
+      { q: "How does billing work?", a: "Engineers are billed on a weekly rate, invoiced weekly or bi-weekly depending on your preference. No long-term contracts — you stay because it's working, not because you're locked in." },
+      { q: "What is the Engagement Manager's role?", a: "Your Engagement Manager is a senior Kovil AI lead who audits every milestone output before it reaches you, flags issues early, and ensures delivery stays aligned with your goals." },
+      { q: "Can I convert the engineer to a full-time hire?", a: "Yes, with a placement fee. If you find someone you love working with and want to bring them in-house, we can facilitate the transition — just let your Engagement Manager know." },
+    ],
   },
   {
     id: "outcome-project",
@@ -96,6 +108,18 @@ const tabs = [
       },
     ],
     cta: "Build an AI Project",
+    faqs: [
+      { q: "How is the fixed price calculated?", a: "We scope the project in detail before quoting — reviewing your requirements, tech complexity, integration points, and timeline. The fixed price covers all labour and delivery. No surprises after you sign." },
+      { q: "What if the scope changes mid-project?", a: "Minor clarifications are absorbed within scope. Meaningful scope changes trigger a formal change request with a revised quote and timeline — agreed before any additional work starts." },
+      { q: "Who owns the code and IP?", a: "You do, 100%. Upon final payment, full intellectual property transfers to you — source code, documentation, assets, everything. We retain no rights or access after handoff." },
+      { q: "How many rounds of revisions are included?", a: "Two revision rounds per milestone are included in every project. Additional revisions beyond that are scoped and quoted separately to keep delivery on track." },
+      { q: "What if you miss the deadline?", a: "We guarantee the timeline outlined in your scope document. If we miss it due to factors on our side, we continue working at no additional cost until the agreed deliverables are complete." },
+      { q: "Can I see progress before the final delivery?", a: "Yes — you get access to a real-time progress dashboard and are involved at every milestone gate. You review and approve each phase before we proceed to the next." },
+      { q: "Do you provide post-launch support?", a: "We offer an optional post-launch support and maintenance retainer. This covers bug fixes, performance monitoring, and minor enhancements for an agreed monthly fee." },
+      { q: "What tech stack will you use?", a: "We recommend the best stack for your project's requirements, but we're flexible. If you have an existing stack or preferences, we align to them. All choices are documented in the scope agreement." },
+      { q: "How do the milestone approval gates work?", a: "At each milestone, we present the deliverable, walk you through what was built, and request sign-off. If anything needs adjustment, we address it before moving forward — no surprises at launch." },
+      { q: "Do you handle deployment and DevOps?", a: "Yes. Deployment to your infrastructure is included in the final milestone. We set up CI/CD pipelines, environment configs, and hand over full operational documentation." },
+    ],
   },
   {
     id: "app-rescue",
@@ -142,8 +166,88 @@ const tabs = [
       },
     ],
     cta: "Get Rescued",
+    faqs: [
+      { q: "What does the free audit include?", a: "A full review of your codebase, AI architecture, production logs, and performance metrics. You receive a prioritised diagnostic report covering every bug, bottleneck, hallucination risk, and structural issue — no commitment needed to proceed." },
+      { q: "How long does the audit take?", a: "Most audits are completed within 1–3 business days depending on codebase size and complexity. We'll give you an accurate estimate after your initial intake call." },
+      { q: "What types of issues can you fix?", a: "LLM hallucinations, RAG retrieval failures, latency and performance degradation, critical P1 bugs, broken integrations, insecure prompt handling, infrastructure instability, and poorly structured AI pipelines." },
+      { q: "Can you fix apps built by other agencies or freelancers?", a: "Yes — this is one of the most common scenarios we handle. We've rescued apps built by offshore teams, vibe-coded MVPs, and agency projects that were abandoned mid-build." },
+      { q: "What's the SLA guarantee?", a: "Our maintenance retainer includes a 99.9% uptime SLA with a named engineer on your account. Response times for P1 (critical) issues are under 2 hours." },
+      { q: "How do you fix hallucination issues in RAG systems?", a: "We audit your retrieval pipeline, chunking strategy, embedding model, and prompt structure. Fixes typically involve improving context relevance, adding re-ranking layers, and tightening system prompt guardrails." },
+      { q: "What does the ongoing maintenance retainer cost?", a: "Retainer pricing depends on the complexity of your system and the SLA tier required. We quote after the audit when we have a full picture of your infrastructure and support needs." },
+      { q: "Do you need full access to our codebase?", a: "For the audit, yes — we need read access to your repos and production environment logs. All access is governed by an NDA and security agreement signed before work begins." },
+      { q: "Can you work alongside our existing engineering team?", a: "Absolutely. We often operate as a specialist layer alongside in-house teams — handling AI reliability while your team focuses on product features. We document everything for a clean handoff." },
+      { q: "What if the app is beyond repair?", a: "We'll tell you honestly in the audit report. If a rebuild is more cost-effective than fixing, we'll say so and can scope an Outcome-Based rebuild project — giving you a clean, production-grade replacement." },
+    ],
   },
 ]
+
+function FAQAccordion({ faqs }: { faqs: { q: string; a: string }[] }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const half = Math.ceil(faqs.length / 2)
+  const left = faqs.slice(0, half)
+  const right = faqs.slice(half)
+
+  const Item = ({ faq, index, ...rest }: { faq: { q: string; a: string }; index: number; [key: string]: unknown }) => {
+    void rest
+    const isOpen = openIndex === index
+    return (
+      <div
+        className={`border rounded-xl transition-all duration-200 ${isOpen ? "border-accent/40 bg-accent/[0.03]" : "border-border hover:border-border/80"}`}
+      >
+        <button
+          onClick={() => setOpenIndex(isOpen ? null : index)}
+          className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left cursor-pointer"
+        >
+          <span className={`text-sm font-semibold leading-snug ${isOpen ? "text-accent" : "text-foreground"}`}>
+            {faq.q}
+          </span>
+          <ChevronDown className={`h-4 w-4 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180 text-accent" : "text-muted-foreground"}`} />
+        </button>
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="overflow-hidden"
+            >
+              <p className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    )
+  }
+
+  return (
+    <div className="mt-16">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-8">
+        <div className="h-px flex-1 bg-border" />
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground">Frequently Asked Questions</span>
+          <span className="text-xs font-bold bg-accent/10 text-accent px-2 py-0.5 rounded-full">{faqs.length}</span>
+        </div>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+
+      {/* 2-column grid */}
+      <div className="grid md:grid-cols-2 gap-3">
+        <div className="space-y-3">
+          {left.map((faq, i) => (
+            <Item key={i} faq={faq} index={i} />
+          ))}
+        </div>
+        <div className="space-y-3">
+          {right.map((faq, i) => (
+            <Item key={i + half} faq={faq} index={i + half} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function HowItWorksPage() {
   const [activeTab, setActiveTab] = useState(0)
@@ -289,6 +393,10 @@ export default function HowItWorksPage() {
               </Button>
             </OnboardingModal>
           </div>
+
+          {/* FAQs */}
+          <FAQAccordion faqs={active.faqs} />
+
         </motion.section>
       </AnimatePresence>
 
@@ -305,7 +413,7 @@ export default function HowItWorksPage() {
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-4 pr-6 font-semibold text-muted-foreground w-40">Feature</th>
-                <th className="text-left py-4 px-4 font-semibold text-foreground">Managed AI Builder</th>
+                <th className="text-left py-4 px-4 font-semibold text-foreground">Managed AI Engineer</th>
                 <th className="text-left py-4 px-4 font-semibold text-foreground">Outcome-Based Project</th>
                 <th className="text-left py-4 px-4 font-semibold text-foreground">App Rescue</th>
               </tr>
@@ -315,7 +423,7 @@ export default function HowItWorksPage() {
                 ["Best for", "Ongoing AI features & scale", "New product or MVP build", "Broken or underperforming apps"],
                 ["Pricing", "Weekly rate", "Fixed price", "Audit + retainer"],
                 ["Timeline", "Flexible, rolling", "Scoped upfront", "Emergency start"],
-                ["Team setup", "1 embedded builder", "Dedicated squad", "SWAT audit team"],
+                ["Team setup", "1 embedded engineer", "Dedicated squad", "SWAT audit team"],
                 ["Risk-free trial", "✓ 2-week trial", "✓ Milestone gates", "✓ Free audit first"],
                 ["Managed delivery", "✓", "✓", "✓"],
               ].map(([feature, col1, col2, col3]) => (
