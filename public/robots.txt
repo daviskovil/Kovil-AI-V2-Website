@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Prevent indexing of utility / non-content paths
+Disallow: /api/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://kovil.ai/sitemap.xml

@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from "react-router-dom"
 import { ArrowLeft, Quote } from "lucide-react"
 import { getCaseStudy } from "../data/case-studies"
+import { SEOHead } from "../components/SEOHead"
 
 export default function CaseStudyPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -8,7 +9,39 @@ export default function CaseStudyPage() {
 
   if (!cs) return <Navigate to="/case-studies" replace />
 
+  const caseStudySchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": cs.headline,
+    "description": cs.excerpt,
+    "url": `https://kovil.ai/case-studies/${cs.slug}`,
+    "author": {
+      "@type": "Organization",
+      "name": "Kovil AI",
+      "url": "https://kovil.ai"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Kovil AI",
+      "url": "https://kovil.ai",
+      "logo": { "@type": "ImageObject", "url": "https://kovil.ai/kovil-logo-symbol.png" }
+    },
+    "about": {
+      "@type": "Service",
+      "name": cs.service,
+      "provider": { "@type": "Organization", "name": "Kovil AI" }
+    }
+  }
+
   return (
+    <>
+    <SEOHead
+      title={cs.headline}
+      description={cs.excerpt}
+      canonical={`/case-studies/${cs.slug}`}
+      ogType="article"
+      schema={caseStudySchema}
+    />
     <div className="min-h-screen bg-background text-foreground">
       {/* Back link */}
       <div className="max-w-4xl mx-auto px-6 pt-10 pb-4">
@@ -91,7 +124,19 @@ export default function CaseStudyPage() {
           className="prose-content"
           dangerouslySetInnerHTML={{ __html: cs.body }}
         />
+
+        {/* Internal CTA */}
+        <div className="mt-16 pt-10 border-t border-border">
+          <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2">Start Your Project</p>
+          <p className="text-lg font-display font-bold mb-4">See the engagement model that fits your situation.</p>
+          <div className="flex flex-wrap gap-4">
+            <Link to="/engage/managed-ai-builder" className="text-sm font-medium text-accent hover:underline">Managed AI Engineer →</Link>
+            <Link to="/engage/outcome-based-project" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">Fixed-Price Project →</Link>
+            <Link to="/engage/app-rescue" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">AI App Rescue →</Link>
+          </div>
+        </div>
       </div>
     </div>
+    </>
   )
 }

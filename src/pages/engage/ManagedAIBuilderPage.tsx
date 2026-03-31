@@ -6,6 +6,18 @@ import {
 } from "lucide-react"
 import { Button } from "../../components/ui/button"
 import { OnboardingModal } from "../../components/OnboardingModal"
+import { SEOHead } from "../../components/SEOHead"
+
+const PAGE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Managed AI Engineer",
+  "provider": { "@type": "Organization", "name": "Kovil AI", "url": "https://kovil.ai" },
+  "description": "Embed a vetted Tier-1 AI engineer into your team in under 48 hours. Sprint-based delivery, Engagement Manager oversight, 2-week risk-free trial. No lock-in.",
+  "url": "https://kovil.ai/engage/managed-ai-builder",
+  "serviceType": "AI Engineering",
+  "areaServed": "Worldwide"
+}
 
 const steps = [
   {
@@ -63,6 +75,13 @@ const comparison = [
 export default function ManagedAIBuilderPage() {
 
   return (
+    <>
+    <SEOHead
+      title="Hire a Managed AI Engineer — Embedded, Vetted & Sprint-Delivered"
+      description="Embed a vetted Tier-1 AI engineer into your team in under 48 hours. Sprint-based delivery, Engagement Manager oversight, 2-week risk-free trial. 100% IP yours."
+      canonical="/engage/managed-ai-builder"
+      schema={PAGE_SCHEMA}
+    />
     <div className="min-h-screen bg-background text-foreground">
 
       {/* Hero */}
@@ -265,5 +284,6 @@ export default function ManagedAIBuilderPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { ArrowRight } from "lucide-react"
 import { caseStudies } from "../data/case-studies"
+import { SEOHead } from "../components/SEOHead"
 
 const serviceColors: Record<string, string> = {
   "AI Sprint": "bg-accent/10 text-accent",
@@ -10,6 +11,12 @@ const serviceColors: Record<string, string> = {
 
 export default function CaseStudiesPage() {
   return (
+    <>
+    <SEOHead
+      title="AI Engineering Case Studies — Real Work, Real Results"
+      description="How Kovil AI engineers delivered measurable outcomes across FinTech, HealthTech, Logistics, SaaS, and more. Explore our project case studies."
+      canonical="/case-studies"
+    />
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-12">
@@ -84,5 +91,6 @@ export default function CaseStudiesPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }

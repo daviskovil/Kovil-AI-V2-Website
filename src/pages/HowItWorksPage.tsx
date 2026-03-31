@@ -3,6 +3,23 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Users, Rocket, Shield, CheckCircle2, ArrowRight, Clock, ChevronDown } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { OnboardingModal } from "../components/OnboardingModal"
+import { SEOHead } from "../components/SEOHead"
+
+// FAQPage schema — uses questions from all 3 tabs
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How quickly can I get an AI engineer started?", "acceptedAnswer": { "@type": "Answer", "text": "Typically within 24–48 hours of your intake brief. We maintain an active bench of vetted engineers across AI domains and timezones, so matching is fast — no lengthy recruiting process." } },
+    { "@type": "Question", "name": "What if the engineer isn't a good fit?", "acceptedAnswer": { "@type": "Answer", "text": "You're covered by a two-week risk-free trial. If the match doesn't feel right for any reason, we rematch you with another engineer at no extra cost — no questions asked." } },
+    { "@type": "Question", "name": "How does milestone-gating work?", "acceptedAnswer": { "@type": "Answer", "text": "Each sprint ends with a defined deliverable that you review and sign off before the next sprint begins. No work proceeds without your approval, giving you full control over direction and quality." } },
+    { "@type": "Question", "name": "What is included in a fixed-price AI project?", "acceptedAnswer": { "@type": "Answer", "text": "A fixed-scope document with clear deliverables, a realistic timeline, and a flat price. We build in gated milestones and hand off the full codebase with IP fully assigned to you." } },
+    { "@type": "Question", "name": "Do you offer a free audit for failing AI apps?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our AI App Rescue engagement starts with a free diagnostic audit — a full review of your codebase, AI architecture, RAG pipeline, and production logs. No commitment to proceed required." } },
+    { "@type": "Question", "name": "What types of AI products do you build?", "acceptedAnswer": { "@type": "Answer", "text": "We build AI agent pipelines, RAG knowledge bases, voice AI, conversational apps, AI-augmented SaaS features, LLM evaluation pipelines, and data extraction automation — across all major AI stacks." } },
+    { "@type": "Question", "name": "Who owns the IP for work built by Kovil AI?", "acceptedAnswer": { "@type": "Answer", "text": "100% of the IP is assigned to you upon final payment. All code, models, prompts, and work product built during the engagement are yours — no lock-in, no Kovil AI dependency." } },
+    { "@type": "Question", "name": "What is the Engagement Manager's role?", "acceptedAnswer": { "@type": "Answer", "text": "Your Engagement Manager is a senior Kovil AI lead who audits every milestone output before it reaches you, flags issues early, and ensures delivery stays aligned with your goals." } }
+  ]
+}
 
 const tabs = [
   {
@@ -256,6 +273,13 @@ export default function HowItWorksPage() {
   const ActiveIcon = active.icon
 
   return (
+    <>
+    <SEOHead
+      title="How It Works — Managed AI Engineers, Fixed-Price Projects & App Rescue"
+      description="Three engagement models: embed a managed AI engineer, deliver a fixed-price AI project, or rescue a failing AI app. See how each works, step by step."
+      canonical="/how-it-works"
+      schema={FAQ_SCHEMA}
+    />
     <div className="min-h-screen bg-background text-foreground">
 
       {/* Page Header */}
@@ -439,5 +463,6 @@ export default function HowItWorksPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

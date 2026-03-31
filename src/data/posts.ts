@@ -187,7 +187,7 @@ export const posts: Post[] = [
     date: "Mar 15, 2026",
     readTime: "8 min read",
     author: "Kovil AI Team",
-    featured: true,
+    featured: false,
     body: `
 <p>Every few years, a technology shift arrives that separates companies that adapt from those that fall behind. In 2026, that shift is AI integration — and the gap between businesses that have embedded AI into their operations and those that haven't is widening faster than most executives realize.</p>
 

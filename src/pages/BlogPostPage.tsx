@@ -1,6 +1,16 @@
 import { useParams, Link, Navigate } from "react-router-dom"
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react"
 import { getPost } from "../data/posts"
+import { SEOHead } from "../components/SEOHead"
+
+// Convert "Mar 30, 2026" → "2026-03-30T00:00:00Z"
+function toIso(dateStr: string): string {
+  try {
+    return new Date(dateStr).toISOString()
+  } catch {
+    return ""
+  }
+}
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -8,7 +18,50 @@ export default function BlogPostPage() {
 
   if (!post) return <Navigate to="/blog" replace />
 
+  const isoDate = toIso(post.date)
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "url": `https://kovil.ai/blog/${post.slug}`,
+    "datePublished": isoDate,
+    "dateModified": isoDate,
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Kovil AI",
+      "url": "https://kovil.ai",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://kovil.ai/kovil-logo-symbol.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://kovil.ai/blog/${post.slug}`
+    }
+  }
+
   return (
+    <>
+    <SEOHead
+      title={post.title}
+      description={post.excerpt}
+      canonical={`/blog/${post.slug}`}
+      ogType="article"
+      article={{
+        publishedTime: isoDate,
+        modifiedTime: isoDate,
+        author: post.author,
+        section: post.category,
+      }}
+      schema={articleSchema}
+    />
     <div className="min-h-screen bg-background text-foreground">
       {/* Back link */}
       <div className="max-w-3xl mx-auto px-6 pt-10 pb-4">
@@ -42,7 +95,18 @@ export default function BlogPostPage() {
           className="prose-content"
           dangerouslySetInnerHTML={{ __html: post.body }}
         />
+
+        {/* Internal CTA */}
+        <div className="mt-16 pt-10 border-t border-border">
+          <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2">Ready to Build?</p>
+          <p className="text-lg font-display font-bold mb-4">See how Kovil AI engineers deliver production-grade AI.</p>
+          <div className="flex flex-wrap gap-4">
+            <Link to="/case-studies" className="text-sm font-medium text-accent hover:underline">View Case Studies →</Link>
+            <Link to="/how-it-works" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">How It Works →</Link>
+          </div>
+        </div>
       </article>
     </div>
+    </>
   )
 }

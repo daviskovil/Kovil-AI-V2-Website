@@ -1,12 +1,29 @@
 import { Link } from "react-router-dom"
 import { ArrowRight, Clock, Tag } from "lucide-react"
 import { posts } from "../data/posts"
+import { SEOHead } from "../components/SEOHead"
+
+const BLOG_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Kovil AI Blog",
+  "url": "https://kovil.ai/blog",
+  "description": "Expert guides on AI engineering, LLM deployment, RAG pipelines, and AI automation. Written by Kovil AI engineers.",
+  "publisher": { "@type": "Organization", "name": "Kovil AI", "url": "https://kovil.ai" }
+}
 
 export default function BlogPage() {
   const featured = posts.find((p) => p.featured)
   const rest = posts.filter((p) => !p.featured)
 
   return (
+    <>
+    <SEOHead
+      title="AI Engineering Blog — Insights, Guides & Trends"
+      description="Expert guides on AI engineering, LLM deployment, RAG pipelines, and AI automation. Written by Kovil AI engineers building production AI products."
+      canonical="/blog"
+      schema={BLOG_SCHEMA}
+    />
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-12">
@@ -84,5 +101,6 @@ export default function BlogPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }

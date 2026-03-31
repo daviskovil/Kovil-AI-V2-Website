@@ -6,6 +6,18 @@ import {
 } from "lucide-react"
 import { Button } from "../../components/ui/button"
 import { OnboardingModal } from "../../components/OnboardingModal"
+import { SEOHead } from "../../components/SEOHead"
+
+const PAGE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI App Rescue & Reliability",
+  "provider": { "@type": "Organization", "name": "Kovil AI", "url": "https://kovil.ai" },
+  "description": "Failing AI app, hallucinating RAG, or a half-finished vibe build? Our SWAT team audits, fixes, and stabilises it with a 99.9% uptime SLA. Free diagnostic audit.",
+  "url": "https://kovil.ai/engage/app-rescue",
+  "serviceType": "AI Engineering",
+  "areaServed": "Worldwide"
+}
 
 const steps = [
   {
@@ -63,6 +75,13 @@ const comparison = [
 export default function AppRescuePage() {
 
   return (
+    <>
+    <SEOHead
+      title="AI App Rescue & Reliability — Fix Your Failing AI App"
+      description="Hallucinating RAG, crashing AI app, or a half-finished vibe build? Our SWAT team audits, fixes, and stabilises it with a 99.9% uptime SLA. Free diagnostic audit."
+      canonical="/engage/app-rescue"
+      schema={PAGE_SCHEMA}
+    />
     <div className="min-h-screen bg-background text-foreground">
 
       {/* Hero */}
@@ -261,5 +280,6 @@ export default function AppRescuePage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

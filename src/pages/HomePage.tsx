@@ -5,6 +5,26 @@ import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2
 import { Button } from "../components/ui/button"
 import { OnboardingModal } from "../components/OnboardingModal"
 import { caseStudies } from "../data/case-studies"
+import { SEOHead } from "../components/SEOHead"
+
+const HOME_SCHEMA = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Kovil AI",
+    "url": "https://kovil.ai",
+    "logo": "https://kovil.ai/kovil-logo-symbol.png",
+    "description": "Kovil AI embeds vetted Tier-1 AI engineers into your team. Fixed-price AI projects, managed delivery, and AI app rescue.",
+    "sameAs": ["https://www.linkedin.com/company/kovil-ai/"],
+    "contactPoint": { "@type": "ContactPoint", "email": "info@kovil.ai", "contactType": "customer support" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Kovil AI",
+    "url": "https://kovil.ai"
+  }
+]
 
 const builderCards: { id: string; name: string; role: string; tags: string[]; result: string; resultSub: string; domainIcon: LucideIcon }[] = [
   {
@@ -268,6 +288,13 @@ function CaseStudyCarousel() {
 
 export default function HomePage() {
   return (
+    <>
+    <SEOHead
+      title="Kovil AI — Elite AI Engineers On Demand"
+      description="Kovil AI embeds vetted Tier-1 AI engineers into your team. Fixed-price AI projects, managed delivery, and AI app rescue. Free audit or matched in 48 hours."
+      canonical="/"
+      schema={HOME_SCHEMA}
+    />
     <main className="pt-20">
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 pt-6 pb-16 lg:pt-10 lg:pb-24 overflow-hidden">
@@ -817,5 +844,6 @@ export default function HomePage() {
         </div>
       </section>
     </main>
+    </>
   )
 }

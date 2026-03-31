@@ -15,6 +15,8 @@ import ManagedAIBuilderPage from "./pages/engage/ManagedAIBuilderPage"
 import OutcomeProjectPage from "./pages/engage/OutcomeProjectPage"
 import AppRescuePage from "./pages/engage/AppRescuePage"
 import ApplyPage from "./pages/ApplyPage"
+import TermsPage from "./pages/TermsPage"
+import PrivacyPage from "./pages/PrivacyPage"
 
 const engageLinks = [
   {
@@ -194,8 +196,8 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 text-sm text-muted/40 flex flex-col md:flex-row justify-between items-center gap-4">
         <p>© {new Date().getFullYear()} Kovil AI LLC. All rights reserved.</p>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-white transition-colors cursor-pointer">Terms</a>
-          <a href="#" className="hover:text-white transition-colors cursor-pointer">Privacy</a>
+          <Link to="/terms" className="hover:text-white transition-colors cursor-pointer">Terms</Link>
+          <Link to="/privacy" className="hover:text-white transition-colors cursor-pointer">Privacy</Link>
         </div>
       </div>
     </footer>
@@ -218,6 +220,8 @@ export default function App() {
         <Route path="/engage/outcome-based-project" element={<div className="pt-20"><OutcomeProjectPage /></div>} />
         <Route path="/engage/app-rescue" element={<div className="pt-20"><AppRescuePage /></div>} />
         <Route path="/apply" element={<ApplyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
       </Routes>
 
       <Footer />
