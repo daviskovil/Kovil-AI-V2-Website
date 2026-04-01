@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { Routes, Route, Link, useLocation } from "react-router-dom"
+import ReactGA from "react-ga4"
 import { ChevronDown, Users, Rocket, Shield } from "lucide-react"
 
 import { Button } from "./components/ui/button"
@@ -204,9 +205,20 @@ function Footer() {
   )
 }
 
+ReactGA.initialize("G-J2TXKBR1L0")
+
+function PageTracker() {
+  const location = useLocation()
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: location.pathname + location.search })
+  }, [location])
+  return null
+}
+
 export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-white">
+      <PageTracker />
       <Navbar />
 
       <Routes>
