@@ -140,7 +140,7 @@ export default function CaseStudyPage() {
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2">Start Your Project</p>
           <p className="text-lg font-display font-bold mb-4">See the engagement model that fits your situation.</p>
           <div className="flex flex-wrap gap-4">
-            <Link to="/engage/managed-ai-builder" className="text-sm font-medium text-accent hover:underline">Managed AI Engineer →</Link>
+            <Link to="/engage/managed-ai-engineer" className="text-sm font-medium text-accent hover:underline">Managed AI Engineer →</Link>
             <Link to="/engage/outcome-based-project" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">Fixed-Price Project →</Link>
             <Link to="/engage/app-rescue" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">AI App Rescue →</Link>
           </div>

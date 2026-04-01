@@ -13,7 +13,7 @@ const BREADCRUMB_SCHEMA = {
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home",                       "item": "https://kovil.ai/" },
-    { "@type": "ListItem", "position": 2, "name": "Engage",                     "item": "https://kovil.ai/engage/managed-ai-builder" },
+    { "@type": "ListItem", "position": 2, "name": "Engage",                     "item": "https://kovil.ai/engage/managed-ai-engineer" },
     { "@type": "ListItem", "position": 3, "name": "AI App Rescue & Reliability","item": "https://kovil.ai/engage/app-rescue" }
   ]
 }

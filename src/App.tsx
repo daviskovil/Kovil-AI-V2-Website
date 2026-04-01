@@ -11,7 +11,7 @@ import BlogPostPage from "./pages/BlogPostPage"
 import CaseStudiesPage from "./pages/CaseStudiesPage"
 import CaseStudyPage from "./pages/CaseStudyPage"
 import HowItWorksPage from "./pages/HowItWorksPage"
-import ManagedAIBuilderPage from "./pages/engage/ManagedAIBuilderPage"
+import ManagedAIEngineerPage from "./pages/engage/ManagedAIEngineerPage"
 import OutcomeProjectPage from "./pages/engage/OutcomeProjectPage"
 import AppRescuePage from "./pages/engage/AppRescuePage"
 import ApplyPage from "./pages/ApplyPage"
@@ -20,7 +20,7 @@ import PrivacyPage from "./pages/PrivacyPage"
 
 const engageLinks = [
   {
-    to: "/engage/managed-ai-builder",
+    to: "/engage/managed-ai-engineer",
     icon: Users,
     label: "Managed AI Engineer",
     desc: "Embed a vetted engineer — milestone-gated delivery.",
@@ -162,7 +162,7 @@ function Footer() {
         <div>
           <h4 className="font-bold mb-4">Engage</h4>
           <ul className="space-y-3 text-sm text-muted/60">
-            <li><Link to="/engage/managed-ai-builder" className="hover:text-accent transition-colors">Managed AI Engineer</Link></li>
+            <li><Link to="/engage/managed-ai-engineer" className="hover:text-accent transition-colors">Managed AI Engineer</Link></li>
             <li><Link to="/engage/outcome-based-project" className="hover:text-accent transition-colors">Outcome-Based AI Project</Link></li>
             <li><Link to="/engage/app-rescue" className="hover:text-accent transition-colors">AI Reliability & App Rescue</Link></li>
           </ul>
@@ -216,7 +216,7 @@ export default function App() {
         <Route path="/case-studies" element={<div className="pt-20"><CaseStudiesPage /></div>} />
         <Route path="/case-studies/:slug" element={<div className="pt-20"><CaseStudyPage /></div>} />
         <Route path="/how-it-works" element={<div className="pt-20"><HowItWorksPage /></div>} />
-        <Route path="/engage/managed-ai-builder" element={<div className="pt-20"><ManagedAIBuilderPage /></div>} />
+        <Route path="/engage/managed-ai-engineer" element={<div className="pt-20"><ManagedAIEngineerPage /></div>} />
         <Route path="/engage/outcome-based-project" element={<div className="pt-20"><OutcomeProjectPage /></div>} />
         <Route path="/engage/app-rescue" element={<div className="pt-20"><AppRescuePage /></div>} />
         <Route path="/apply" element={<ApplyPage />} />

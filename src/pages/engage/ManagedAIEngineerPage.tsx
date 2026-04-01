@@ -13,8 +13,8 @@ const BREADCRUMB_SCHEMA = {
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home",                 "item": "https://kovil.ai/" },
-    { "@type": "ListItem", "position": 2, "name": "Engage",               "item": "https://kovil.ai/engage/managed-ai-builder" },
-    { "@type": "ListItem", "position": 3, "name": "Managed AI Engineer",  "item": "https://kovil.ai/engage/managed-ai-builder" }
+    { "@type": "ListItem", "position": 2, "name": "Engage",               "item": "https://kovil.ai/engage/managed-ai-engineer" },
+    { "@type": "ListItem", "position": 3, "name": "Managed AI Engineer",  "item": "https://kovil.ai/engage/managed-ai-engineer" }
   ]
 }
 
@@ -24,7 +24,7 @@ const PAGE_SCHEMA = {
   "name": "Managed AI Engineer",
   "provider": { "@type": "Organization", "name": "Kovil AI", "url": "https://kovil.ai" },
   "description": "Embed a vetted Tier-1 AI engineer into your team in under 48 hours. Sprint-based delivery, Engagement Manager oversight, 2-week risk-free trial. No lock-in.",
-  "url": "https://kovil.ai/engage/managed-ai-builder",
+  "url": "https://kovil.ai/engage/managed-ai-engineer",
   "serviceType": "AI Engineering",
   "areaServed": "Worldwide"
 }
@@ -82,14 +82,14 @@ const comparison = [
   { label: "Cost",               kovil: "$$",              inhouse: "$$$$",         agency: "$$$",          freelancer: "$" },
 ]
 
-export default function ManagedAIBuilderPage() {
+export default function ManagedAIEngineerPage() {
 
   return (
     <>
     <SEOHead
       title="Hire a Managed AI Engineer — Embedded, Vetted & Sprint-Delivered"
       description="Embed a vetted Tier-1 AI engineer into your team in under 48 hours. Sprint-based delivery, Engagement Manager oversight, 2-week risk-free trial. 100% IP yours."
-      canonical="/engage/managed-ai-builder"
+      canonical="/engage/managed-ai-engineer"
       schema={[PAGE_SCHEMA, BREADCRUMB_SCHEMA]}
     />
     <div className="min-h-screen bg-background text-foreground">
