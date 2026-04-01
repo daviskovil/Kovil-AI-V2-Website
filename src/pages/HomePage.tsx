@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "motion/react"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2, Check, X, ChevronDown, Rocket, LifeBuoy, Activity, Landmark, HeartPulse, BarChart3, ShieldAlert, LucideIcon, ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2, Check, X, Rocket, LifeBuoy, Activity, Landmark, HeartPulse, BarChart3, ShieldAlert, LucideIcon, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { OnboardingModal } from "../components/OnboardingModal"
 import { caseStudies } from "../data/case-studies"
@@ -811,36 +811,6 @@ export default function HomePage() {
 
       {/* Case Studies Carousel */}
       <CaseStudyCarousel />
-
-      {/* FAQ */}
-      <section className="py-24 bg-muted/30 border-t border-border">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight mb-4">
-              Engineers You Need, <span className="text-accent">Whenever You Need</span>
-            </h2>
-          </div>
-          <div className="space-y-4">
-            {[
-              "How is the process tailored to my needs?",
-              "How do I know I'm getting top talent?",
-              "How much does this actually cost?",
-              "What if my needs change?",
-              "What if my engineer isn't a good fit?"
-            ].map((q, i) => (
-              <details key={i} className="group bg-background border border-border rounded-2xl [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between p-6 font-display font-bold text-lg cursor-pointer list-none">
-                  {q}
-                  <ChevronDown className="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180" />
-                </summary>
-                <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
-                  We match you with pre-vetted AI specialists based on your specific tech stack, industry, and project goals. Our Engagement Manager ensures the output meets enterprise standards from day one.
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Final CTA */}
       <section className="py-32 bg-accent/5 text-center px-6">
