@@ -362,11 +362,11 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="mt-10 flex flex-col items-start gap-3"
             >
-              <OnboardingModal>
+              <a href="https://calendly.com/kovil-ai/discovery" target="_blank" rel="noopener noreferrer">
                 <Button variant="accent" size="lg" className="text-lg h-14 px-8 rounded-full shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all">
                   Book a Discovery Call <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </OnboardingModal>
+              </a>
               <span className="text-sm text-muted-foreground font-medium px-4">Only pay if you hire. Two-week trial.</span>
             </motion.div>
           </div>
