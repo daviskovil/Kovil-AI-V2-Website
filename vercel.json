@@ -19,7 +19,13 @@
     { "source": "/careers",                     "destination": "/apply",                        "permanent": true },
     { "source": "/work",                        "destination": "/case-studies",                 "permanent": true },
     { "source": "/portfolio",                   "destination": "/case-studies",                 "permanent": true },
-    { "source": "/resources",                   "destination": "/blog",                         "permanent": true }
+    { "source": "/resources",                              "destination": "/blog",          "permanent": true },
+    { "source": "/how-it-works-hire-dedicated-developers", "destination": "/how-it-works",  "permanent": true },
+    { "source": "/how-it-works-hire-dedicated-developers/","destination": "/how-it-works",  "permanent": true },
+    { "source": "/hire-dedicated-developers",              "destination": "/engage/managed-ai-engineer", "permanent": true },
+    { "source": "/hire-dedicated-developers/",             "destination": "/engage/managed-ai-engineer", "permanent": true },
+    { "source": "/faq",                                    "destination": "/frequently-asked-questions", "permanent": true },
+    { "source": "/faqs",                                   "destination": "/frequently-asked-questions", "permanent": true }
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
