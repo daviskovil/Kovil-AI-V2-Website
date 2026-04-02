@@ -1,13 +1,16 @@
-import { useParams, Link, Navigate } from "react-router-dom"
+'use client'
+
+import { useParams } from "next/navigation"
+import Link from "next/link"
 import { ArrowLeft, Quote } from "lucide-react"
 import { getCaseStudy } from "../data/case-studies"
-import { SEOHead } from "../components/SEOHead"
 
 export default function CaseStudyPage() {
-  const { slug } = useParams<{ slug: string }>()
+  const params = useParams()
+  const slug = params && typeof params.slug === 'string' ? params.slug : undefined
   const cs = slug ? getCaseStudy(slug) : undefined
 
-  if (!cs) return <Navigate to="/case-studies" replace />
+  if (!cs) return null
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -45,18 +48,10 @@ export default function CaseStudyPage() {
 
   return (
     <>
-    <SEOHead
-      title={cs.headline}
-      description={cs.excerpt}
-      canonical={`/case-studies/${cs.slug}`}
-      ogType="article"
-      schema={[caseStudySchema, breadcrumbSchema]}
-    />
     <div className="min-h-screen bg-background text-foreground">
       {/* Back link */}
       <div className="max-w-4xl mx-auto px-6 pt-10 pb-4">
-        <Link
-          to="/case-studies"
+        <Link href="/case-studies"
           className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
         >
           <ArrowLeft className="h-4 w-4" /> Back to Case Studies
@@ -140,9 +135,9 @@ export default function CaseStudyPage() {
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2">Start Your Project</p>
           <p className="text-lg font-display font-bold mb-4">See the engagement model that fits your situation.</p>
           <div className="flex flex-wrap gap-4">
-            <Link to="/engage/managed-ai-engineer" className="text-sm font-medium text-accent hover:underline">Managed AI Engineer →</Link>
-            <Link to="/engage/outcome-based-project" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">Fixed-Price Project →</Link>
-            <Link to="/engage/app-rescue" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">AI App Rescue →</Link>
+            <Link href="/engage/managed-ai-engineer" className="text-sm font-medium text-accent hover:underline">Managed AI Engineer →</Link>
+            <Link href="/engage/outcome-based-project" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">Fixed-Price Project →</Link>
+            <Link href="/engage/app-rescue" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">AI App Rescue →</Link>
           </div>
         </div>
       </div>

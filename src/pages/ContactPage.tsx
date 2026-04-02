@@ -1,5 +1,6 @@
+'use client'
+
 import { useState } from "react"
-import { Helmet } from "react-helmet-async"
 import { motion } from "motion/react"
 import { Mail, Linkedin, Calendar, Send, CheckCircle, ArrowRight } from "lucide-react"
 import { Button } from "../components/ui/button"
@@ -48,11 +49,6 @@ export default function ContactPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Contact Kovil AI — Talk to Our Team</title>
-        <meta name="description" content="Get in touch with Kovil AI. Book a discovery call, send us a message, or connect on LinkedIn. We respond within one business day." />
-        <link rel="canonical" href="https://kovil.ai/contact" />
-      </Helmet>
 
       <div className="pt-20 min-h-screen bg-background">
 

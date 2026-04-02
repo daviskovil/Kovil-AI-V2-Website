@@ -27,9 +27,6 @@
     { "source": "/faq",                                    "destination": "/frequently-asked-questions", "permanent": true },
     { "source": "/faqs",                                   "destination": "/frequently-asked-questions", "permanent": true }
   ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
   "headers": [
     {
       "source": "/sitemap.xml",

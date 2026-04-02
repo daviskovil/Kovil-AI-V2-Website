@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react"
 import { motion } from "framer-motion"
 import {
@@ -6,7 +8,6 @@ import {
 } from "lucide-react"
 import { Button } from "../../components/ui/button"
 import { OnboardingModal } from "../../components/OnboardingModal"
-import { SEOHead } from "../../components/SEOHead"
 
 const BREADCRUMB_SCHEMA = {
   "@context": "https://schema.org",
@@ -101,12 +102,6 @@ export default function OutcomeProjectPage() {
 
   return (
     <>
-    <SEOHead
-      title="Fixed-Price AI Project — Scoped, Built & Shipped"
-      description="Get a fixed-price AI project proposal in 48 hours. Milestone-gated builds, dedicated squad, full codebase handoff, and 100% IP assigned to you. No lock-in."
-      canonical="/engage/outcome-based-project"
-      schema={[PAGE_SCHEMA, BREADCRUMB_SCHEMA, HOWTO_SCHEMA]}
-    />
     <div className="min-h-screen bg-background text-foreground">
 
       {/* Hero */}

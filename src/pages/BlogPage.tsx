@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom"
+'use client'
+
+import Link from "next/link"
 import { ArrowRight, Clock, Tag } from "lucide-react"
 import { posts } from "../data/posts"
-import { SEOHead } from "../components/SEOHead"
 
 const BLOG_SCHEMA = {
   "@context": "https://schema.org",
@@ -27,12 +28,6 @@ export default function BlogPage() {
 
   return (
     <>
-    <SEOHead
-      title="AI Engineering Blog — Insights, Guides & Trends"
-      description="Expert guides on AI engineering, LLM deployment, RAG pipelines, and AI automation. Written by Kovil AI engineers building production AI products."
-      canonical="/blog"
-      schema={[BLOG_SCHEMA, BREADCRUMB_SCHEMA]}
-    />
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-12">
@@ -53,8 +48,7 @@ export default function BlogPage() {
       <div className="max-w-7xl mx-auto px-6 pb-24">
         {/* Featured post */}
         {featured && (
-          <Link
-            to={`/blog/${featured.slug}`}
+          <Link href={`/blog/${featured.slug}`}
             className="group block mb-16 rounded-2xl border border-border bg-muted/30 hover:border-accent/40 hover:bg-muted/50 transition-all overflow-hidden relative"
           >
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-accent/30 group-hover:bg-accent transition-colors" />
@@ -86,9 +80,8 @@ export default function BlogPage() {
         {/* Rest of posts */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {rest.map((post) => (
-            <Link
-              key={post.slug}
-              to={`/blog/${post.slug}`}
+            <Link key={post.slug}
+              href={`/blog/${post.slug}`}
               className="group flex flex-col rounded-2xl border border-border hover:border-accent/40 bg-muted/20 hover:bg-muted/40 transition-all p-6 relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-accent/20 group-hover:bg-accent/60 transition-colors" />

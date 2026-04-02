@@ -1,8 +1,9 @@
-import { Helmet } from "react-helmet-async"
+'use client'
+
 import { motion } from "motion/react"
 import { ArrowRight, Zap, Shield, Users, Target, CheckCircle } from "lucide-react"
 import { Button } from "../components/ui/button"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 
 const values = [
   {
@@ -45,21 +46,6 @@ const stats = [
 export default function AboutPage() {
   return (
     <>
-      <Helmet>
-        <title>About Kovil AI — Managed AI Engineering, Zero Delivery Risk</title>
-        <meta name="description" content="Kovil AI is a managed AI engineering company based in New York. We embed vetted AI engineers into your team and own the delivery. Learn how we work and why we're different." />
-        <link rel="canonical" href="https://kovil.ai/about" />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Kovil AI",
-          "url": "https://kovil.ai",
-          "logo": "https://kovil.ai/kovil-logo-dark.png",
-          "description": "Managed AI engineering company. We embed vetted AI engineers into your team with milestone-gated delivery and zero risk.",
-          "address": { "@type": "PostalAddress", "addressLocality": "Garden City", "addressRegion": "NY", "addressCountry": "US" },
-          "sameAs": ["https://www.linkedin.com/company/kovil-ai/"]
-        })}</script>
-      </Helmet>
 
       <div className="pt-20 min-h-screen bg-background">
 
@@ -81,7 +67,7 @@ export default function AboutPage() {
                     Book a Discovery Call <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </a>
-                <Link to="/case-studies">
+                <Link href="/case-studies">
                   <Button variant="outline" size="lg" className="rounded-full px-8">
                     View Case Studies
                   </Button>
@@ -300,7 +286,7 @@ export default function AboutPage() {
                   Book a Discovery Call <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </a>
-              <Link to="/contact">
+              <Link href="/contact">
                 <Button variant="outline" size="lg" className="rounded-full px-8 border-white/20 text-background hover:bg-white/10">
                   Send us a message
                 </Button>

@@ -1,9 +1,10 @@
+'use client'
+
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Users, Rocket, Shield, CheckCircle2, ArrowRight, Clock, ChevronDown } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { OnboardingModal } from "../components/OnboardingModal"
-import { SEOHead } from "../components/SEOHead"
 
 // FAQPage schema — uses questions from all 3 tabs
 const BREADCRUMB_SCHEMA = {
@@ -283,12 +284,6 @@ export default function HowItWorksPage() {
 
   return (
     <>
-    <SEOHead
-      title="How It Works — Managed AI Engineers, Fixed-Price Projects & App Rescue"
-      description="Three engagement models: embed a managed AI engineer, deliver a fixed-price AI project, or rescue a failing AI app. See how each works, step by step."
-      canonical="/how-it-works"
-      schema={[FAQ_SCHEMA, BREADCRUMB_SCHEMA]}
-    />
     <div className="min-h-screen bg-background text-foreground">
 
       {/* Page Header */}

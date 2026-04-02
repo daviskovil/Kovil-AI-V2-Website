@@ -1,14 +1,9 @@
-import { SEOHead } from "../components/SEOHead"
+'use client'
+
 
 export default function TermsPage() {
   return (
     <>
-    <SEOHead
-      title="Terms of Service"
-      description="Kovil AI Terms of Service — the terms and conditions governing use of our website, services, and AI engineering engagements."
-      canonical="/terms"
-      noindex={false}
-    />
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-3xl mx-auto px-6 pt-16 pb-24">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Legal</p>

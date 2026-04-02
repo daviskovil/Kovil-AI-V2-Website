@@ -1,11 +1,12 @@
+'use client'
+
 import { motion, AnimatePresence } from "motion/react"
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2, Check, X, Rocket, LifeBuoy, Activity, Landmark, HeartPulse, BarChart3, ShieldAlert, LucideIcon, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { OnboardingModal } from "../components/OnboardingModal"
 import { caseStudies } from "../data/case-studies"
-import { SEOHead } from "../components/SEOHead"
 import { openCalendly } from "../lib/calendly"
 
 const HOME_SCHEMA = [
@@ -240,9 +241,8 @@ function CaseStudyCarousel() {
             className="grid md:grid-cols-3 gap-6"
           >
             {visible.map((cs) => (
-              <Link
-                key={cs.slug}
-                to={`/case-studies/${cs.slug}`}
+              <Link key={cs.slug}
+                href={`/case-studies/${cs.slug}`}
                 className="group flex flex-col bg-background border border-border rounded-2xl p-6 hover:border-accent/50 hover:shadow-lg transition-all duration-300"
               >
                 {/* Industry tag */}
@@ -296,7 +296,7 @@ function CaseStudyCarousel() {
 
         {/* View all */}
         <div className="text-center mt-12">
-          <Link to="/case-studies">
+          <Link href="/case-studies">
             <Button variant="outline" className="rounded-full px-8 cursor-pointer">
               View All Case Studies <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -310,12 +310,6 @@ function CaseStudyCarousel() {
 export default function HomePage() {
   return (
     <>
-    <SEOHead
-      title="Kovil AI — Elite AI Engineers On Demand"
-      description="Kovil AI embeds vetted Tier-1 AI engineers into your team. Fixed-price AI projects, managed delivery, and AI app rescue. Free audit or matched in 48 hours."
-      canonical="/"
-      schema={HOME_SCHEMA}
-    />
     <main className="pt-20">
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 pt-6 pb-16 lg:pt-10 lg:pb-24 overflow-hidden">
@@ -830,7 +824,7 @@ export default function HomePage() {
               Start My AI Build <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </OnboardingModal>
-          <Link to="/apply">
+          <Link href="/apply">
             <Button variant="outline" size="lg" className="rounded-full px-8 h-14 text-lg bg-background cursor-pointer">
               Apply as AI Engineer
             </Button>

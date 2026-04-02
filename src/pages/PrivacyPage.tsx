@@ -1,14 +1,9 @@
-import { SEOHead } from "../components/SEOHead"
+'use client'
+
 
 export default function PrivacyPage() {
   return (
     <>
-    <SEOHead
-      title="Privacy Policy"
-      description="Kovil AI Privacy Policy — how we collect, use, and protect your personal information when you use our website and services."
-      canonical="/privacy"
-      noindex={false}
-    />
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-3xl mx-auto px-6 pt-16 pb-24">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Legal</p>

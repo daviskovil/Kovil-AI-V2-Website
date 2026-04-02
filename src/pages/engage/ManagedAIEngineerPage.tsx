@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react"
 import { motion } from "framer-motion"
 import {
@@ -6,7 +8,6 @@ import {
 } from "lucide-react"
 import { Button } from "../../components/ui/button"
 import { OnboardingModal } from "../../components/OnboardingModal"
-import { SEOHead } from "../../components/SEOHead"
 
 const BREADCRUMB_SCHEMA = {
   "@context": "https://schema.org",
@@ -98,12 +99,6 @@ export default function ManagedAIEngineerPage() {
 
   return (
     <>
-    <SEOHead
-      title="Hire a Managed AI Engineer — Embedded, Vetted & Sprint-Delivered"
-      description="Embed a vetted Tier-1 AI engineer into your team in under 48 hours. Sprint-based delivery, Engagement Manager oversight, 2-week risk-free trial. 100% IP yours."
-      canonical="/engage/managed-ai-engineer"
-      schema={[PAGE_SCHEMA, BREADCRUMB_SCHEMA, HOWTO_SCHEMA]}
-    />
     <div className="min-h-screen bg-background text-foreground">
 
       {/* Hero */}

@@ -810,9 +810,9 @@ export const caseStudyListItems = caseStudies.map((cs) => ({
   industry: cs.clientType,
   service: cs.service,
   badge:
-    cs.service === "AI Sprint"
+    cs.service === "Outcome-Based AI Project"
       ? "bg-sky-100 text-sky-700"
-      : cs.service === "AI Integration"
+      : cs.service === "Managed AI Engineer"
       ? "bg-purple-100 text-purple-700"
       : "bg-emerald-100 text-emerald-700",
   challenge: cs.excerpt.split(".")[0] + ".",

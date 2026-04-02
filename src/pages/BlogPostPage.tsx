@@ -1,7 +1,9 @@
-import { useParams, Link, Navigate } from "react-router-dom"
+'use client'
+
+import { useParams } from "next/navigation"
+import Link from "next/link"
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react"
 import { getPost } from "../data/posts"
-import { SEOHead } from "../components/SEOHead"
 
 // Convert "Mar 30, 2026" → "2026-03-30T00:00:00Z"
 function toIso(dateStr: string): string {
@@ -13,10 +15,11 @@ function toIso(dateStr: string): string {
 }
 
 export default function BlogPostPage() {
-  const { slug } = useParams<{ slug: string }>()
+  const params = useParams()
+  const slug = params && typeof params.slug === 'string' ? params.slug : undefined
   const post = slug ? getPost(slug) : undefined
 
-  if (!post) return <Navigate to="/blog" replace />
+  if (!post) return null
 
   const isoDate = toIso(post.date)
 
@@ -61,24 +64,10 @@ export default function BlogPostPage() {
 
   return (
     <>
-    <SEOHead
-      title={post.title}
-      description={post.excerpt}
-      canonical={`/blog/${post.slug}`}
-      ogType="article"
-      article={{
-        publishedTime: isoDate,
-        modifiedTime: isoDate,
-        author: post.author,
-        section: post.category,
-      }}
-      schema={[articleSchema, breadcrumbSchema]}
-    />
     <div className="min-h-screen bg-background text-foreground">
       {/* Back link */}
       <div className="max-w-3xl mx-auto px-6 pt-10 pb-4">
-        <Link
-          to="/blog"
+        <Link href="/blog"
           className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
         >
           <ArrowLeft className="h-4 w-4" /> Back to Blog
@@ -113,8 +102,8 @@ export default function BlogPostPage() {
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2">Ready to Build?</p>
           <p className="text-lg font-display font-bold mb-4">See how Kovil AI engineers deliver production-grade AI.</p>
           <div className="flex flex-wrap gap-4">
-            <Link to="/case-studies" className="text-sm font-medium text-accent hover:underline">View Case Studies →</Link>
-            <Link to="/how-it-works" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">How It Works →</Link>
+            <Link href="/case-studies" className="text-sm font-medium text-accent hover:underline">View Case Studies →</Link>
+            <Link href="/how-it-works" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">How It Works →</Link>
           </div>
         </div>
       </article>

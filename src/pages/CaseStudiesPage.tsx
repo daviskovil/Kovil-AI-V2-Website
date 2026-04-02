@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom"
+'use client'
+
+import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { caseStudies } from "../data/case-studies"
-import { SEOHead } from "../components/SEOHead"
 
 const serviceColors: Record<string, string> = {
   "Outcome-Based AI Project": "bg-accent/10 text-accent",
@@ -21,12 +22,6 @@ const BREADCRUMB_SCHEMA = {
 export default function CaseStudiesPage() {
   return (
     <>
-    <SEOHead
-      title="AI Engineering Case Studies — Real Work, Real Results"
-      description="How Kovil AI engineers delivered measurable outcomes across FinTech, HealthTech, Logistics, SaaS, and more. Explore our project case studies."
-      canonical="/case-studies"
-      schema={BREADCRUMB_SCHEMA}
-    />
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-12">
@@ -48,9 +43,8 @@ export default function CaseStudiesPage() {
       <div className="max-w-7xl mx-auto px-6 pb-24">
         <div className="grid md:grid-cols-2 gap-6">
           {caseStudies.map((cs) => (
-            <Link
-              key={cs.slug}
-              to={`/case-studies/${cs.slug}`}
+            <Link key={cs.slug}
+              href={`/case-studies/${cs.slug}`}
               className="group flex flex-col rounded-2xl border border-border hover:border-accent/40 bg-muted/20 hover:bg-muted/40 transition-all p-7 relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-accent/20 group-hover:bg-accent/60 transition-colors" />

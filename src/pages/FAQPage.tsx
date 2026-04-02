@@ -1,5 +1,6 @@
+'use client'
+
 import { useState, useRef } from "react"
-import { Helmet } from "react-helmet-async"
 import { motion, AnimatePresence } from "motion/react"
 import { ChevronDown, Send, Sparkles, ArrowRight } from "lucide-react"
 import { Button } from "../components/ui/button"
@@ -176,12 +177,6 @@ export default function FAQPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Frequently Asked Questions — Kovil AI</title>
-        <meta name="description" content="Got questions about hiring AI engineers, fixed-price AI projects, or rescuing a failing AI app? Find answers to every question about Kovil AI's engagement models, process, and pricing." />
-        <link rel="canonical" href="https://kovil.ai/frequently-asked-questions" />
-        <script type="application/ld+json">{JSON.stringify(FAQ_PAGE_SCHEMA)}</script>
-      </Helmet>
 
       <div className="pt-20 min-h-screen bg-background">
 

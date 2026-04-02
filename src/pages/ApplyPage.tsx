@@ -1,12 +1,13 @@
+'use client'
+
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import {
   ArrowRight, CheckCircle2, Upload, X, AlertCircle,
   User, Briefcase, Code2, FileText
 } from "lucide-react"
 import { Button } from "../components/ui/button"
-import { SEOHead } from "../components/SEOHead"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface FormData {
@@ -222,12 +223,6 @@ export default function ApplyPage() {
   if (submitted) {
     return (
       <>
-      <SEOHead
-        title="Apply as an AI Engineer — Join the Kovil AI Builder Network"
-        description="Join the Kovil AI network of elite AI engineers. 5-stage vetting. Work on real AI products with great teams. Apply now — rolling admissions."
-        canonical="/apply"
-        noindex={true}
-      />
       <main className="min-h-screen bg-background flex items-center justify-center px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -246,7 +241,7 @@ export default function ApplyPage() {
           <p className="text-sm text-muted-foreground">
             Keep an eye on <strong>{form.email}</strong> — we'll be in touch within 5–7 business days.
           </p>
-          <Link to="/">
+          <Link href="/">
             <Button variant="accent" className="mt-4">Back to Home</Button>
           </Link>
         </motion.div>
@@ -257,11 +252,6 @@ export default function ApplyPage() {
 
   return (
     <>
-    <SEOHead
-      title="Apply as an AI Engineer — Join the Kovil AI Builder Network"
-      description="Join the Kovil AI network of elite AI engineers. 5-stage vetting. Work on real AI products with great teams. Apply now — rolling admissions."
-      canonical="/apply"
-    />
     <main className="min-h-screen bg-background pt-28 pb-20 px-6">
       <div className="max-w-2xl mx-auto">
 
