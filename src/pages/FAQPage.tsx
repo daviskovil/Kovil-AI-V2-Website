@@ -49,6 +49,20 @@ const FAQ_DB = [
   { q: "Do you work with startups or only enterprises?", a: "Both. We work with funded startups, scale-ups, and enterprise product teams. Our flexible engagement models are designed to fit different team sizes and budgets.", tags: ["startup", "enterprise", "company size", "who", "small"] },
 ]
 
+// ── FAQ Page Schema (Item 2) ──────────────────────────────────────────────────
+const FAQ_PAGE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": FAQ_DB.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+}
+
 // ── Simple keyword matcher ────────────────────────────────────────────────────
 function matchFAQ(query: string) {
   const q = query.toLowerCase()
@@ -166,6 +180,7 @@ export default function FAQPage() {
         <title>Frequently Asked Questions — Kovil AI</title>
         <meta name="description" content="Got questions about hiring AI engineers, fixed-price AI projects, or rescuing a failing AI app? Find answers to every question about Kovil AI's engagement models, process, and pricing." />
         <link rel="canonical" href="https://kovil.ai/frequently-asked-questions" />
+        <script type="application/ld+json">{JSON.stringify(FAQ_PAGE_SCHEMA)}</script>
       </Helmet>
 
       <div className="pt-20 min-h-screen bg-background">

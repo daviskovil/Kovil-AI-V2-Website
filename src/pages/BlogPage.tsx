@@ -12,6 +12,15 @@ const BLOG_SCHEMA = {
   "publisher": { "@type": "Organization", "name": "Kovil AI", "url": "https://kovil.ai" }
 }
 
+const BREADCRUMB_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kovil.ai/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kovil.ai/blog" }
+  ]
+}
+
 export default function BlogPage() {
   const featured = posts.find((p) => p.featured)
   const rest = posts.filter((p) => !p.featured)
@@ -22,7 +31,7 @@ export default function BlogPage() {
       title="AI Engineering Blog — Insights, Guides & Trends"
       description="Expert guides on AI engineering, LLM deployment, RAG pipelines, and AI automation. Written by Kovil AI engineers building production AI products."
       canonical="/blog"
-      schema={BLOG_SCHEMA}
+      schema={[BLOG_SCHEMA, BREADCRUMB_SCHEMA]}
     />
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}

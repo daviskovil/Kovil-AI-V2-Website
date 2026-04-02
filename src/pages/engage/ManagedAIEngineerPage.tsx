@@ -29,6 +29,18 @@ const PAGE_SCHEMA = {
   "areaServed": "Worldwide"
 }
 
+const HOWTO_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Hire a Managed AI Engineer with Kovil AI",
+  "description": "Embed a vetted AI engineer into your team in under 48 hours with milestone-gated delivery and Engagement Manager oversight.",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Brief Your Needs", "text": "Fill a 5-minute intake form. A Delivery Lead contacts you within 24 hours to scope your requirements, preferred stack, and timeline.", "url": "https://kovil.ai/engage/managed-ai-engineer" },
+    { "@type": "HowToStep", "position": 2, "name": "Meet Your Engineer", "text": "We surface a curated shortlist of Tier-1 AI engineers matched to your domain. You meet, align on sprint goals, and sign off on a milestone plan.", "url": "https://kovil.ai/engage/managed-ai-engineer" },
+    { "@type": "HowToStep", "position": 3, "name": "Sprint & Deliver", "text": "Your engineer works in focused sprints. An Engagement Manager audits every milestone output. You get working, production-ready AI — not decks, not promises.", "url": "https://kovil.ai/engage/managed-ai-engineer" }
+  ]
+}
+
 const steps = [
   {
     number: "01", timeline: "Day 1",
@@ -90,7 +102,7 @@ export default function ManagedAIEngineerPage() {
       title="Hire a Managed AI Engineer — Embedded, Vetted & Sprint-Delivered"
       description="Embed a vetted Tier-1 AI engineer into your team in under 48 hours. Sprint-based delivery, Engagement Manager oversight, 2-week risk-free trial. 100% IP yours."
       canonical="/engage/managed-ai-engineer"
-      schema={[PAGE_SCHEMA, BREADCRUMB_SCHEMA]}
+      schema={[PAGE_SCHEMA, BREADCRUMB_SCHEMA, HOWTO_SCHEMA]}
     />
     <div className="min-h-screen bg-background text-foreground">
 
@@ -135,7 +147,7 @@ export default function ManagedAIEngineerPage() {
       <section className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Who It's For</p>
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Built for teams that need AI done right.</h2>
+          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Who Is the Managed AI Engineer Model Built For?</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {forWho.map((w, i) => (
               <motion.div
@@ -160,7 +172,7 @@ export default function ManagedAIEngineerPage() {
       {/* How It Works */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">How It Works</p>
-        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">From brief to engineer in 48 hours.</h2>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">How Does the Managed AI Engineer Process Work?</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {steps.map((step, i) => (
             <motion.div
@@ -196,7 +208,7 @@ export default function ManagedAIEngineerPage() {
       <section className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">What's Included</p>
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Everything managed. Nothing left to chance.</h2>
+          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">What's Included in a Managed AI Engineer Engagement?</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {included.map((item, i) => {
               const Icon = item.icon
@@ -224,7 +236,7 @@ export default function ManagedAIEngineerPage() {
       {/* What to Expect Timeline */}
       <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">What to Expect</p>
-        <h2 className="font-display font-bold text-3xl mb-12">From brief to engineer in 48 hours.</h2>
+        <h2 className="font-display font-bold text-3xl mb-12">What Should You Expect When Hiring a Managed AI Engineer?</h2>
         <div className="relative">
           {/* Vertical line */}
           <div className="absolute left-[72px] top-0 bottom-0 w-px bg-border hidden md:block" />
@@ -252,7 +264,7 @@ export default function ManagedAIEngineerPage() {
       {/* Why Kovil vs Alternatives */}
       <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Why Kovil</p>
-        <h2 className="font-display font-bold text-3xl mb-12">How we stack up against your other options.</h2>
+        <h2 className="font-display font-bold text-3xl mb-12">How Does Kovil AI Compare to In-House Hiring and Agencies?</h2>
         <div className="overflow-x-auto rounded-2xl border border-border">
           <table className="w-full text-sm">
             <thead>

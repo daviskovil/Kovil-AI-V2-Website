@@ -29,6 +29,18 @@ const PAGE_SCHEMA = {
   "areaServed": "Worldwide"
 }
 
+const HOWTO_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How Kovil AI Rescues a Failing AI App",
+  "description": "Audit, fix, and stabilise your failing AI application with Kovil AI's dedicated SWAT team and a 99.9% uptime SLA.",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Deep Audit", "text": "Our SWAT team audits your full codebase, AI architecture, RAG pipeline, and production logs. You receive a prioritised diagnostic report — every bug, bottleneck, and risk mapped.", "url": "https://kovil.ai/engage/app-rescue" },
+    { "@type": "HowToStep", "position": 2, "name": "Fix & Stabilise", "text": "We resolve hallucinations, performance regressions, and critical P1 bugs systematically. Every fix is peer-reviewed and regression-tested before it goes near production.", "url": "https://kovil.ai/engage/app-rescue" },
+    { "@type": "HowToStep", "position": 3, "name": "Ongoing Maintenance", "text": "We stay on as your reliability partner — proactive monitoring, patching, and continuous optimisation with a named engineer and 99.9% uptime SLA guarantee.", "url": "https://kovil.ai/engage/app-rescue" }
+  ]
+}
+
 const steps = [
   {
     number: "01", timeline: "Days 1–3",
@@ -90,7 +102,7 @@ export default function AppRescuePage() {
       title="AI App Rescue & Reliability — Fix Your Failing AI App"
       description="Hallucinating RAG, crashing AI app, or a half-finished vibe build? Our SWAT team audits, fixes, and stabilises it with a 99.9% uptime SLA. Free diagnostic audit."
       canonical="/engage/app-rescue"
-      schema={[PAGE_SCHEMA, BREADCRUMB_SCHEMA]}
+      schema={[PAGE_SCHEMA, BREADCRUMB_SCHEMA, HOWTO_SCHEMA]}
     />
     <div className="min-h-screen bg-background text-foreground">
 
@@ -135,7 +147,7 @@ export default function AppRescuePage() {
       <section className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Who It's For</p>
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">If your AI app is struggling, we're the call you make.</h2>
+          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Who Is AI Reliability & App Rescue Built For?</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {forWho.map((w, i) => (
               <motion.div
@@ -160,7 +172,7 @@ export default function AppRescuePage() {
       {/* How It Works */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">How It Works</p>
-        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Audit. Fix. Maintain. In that order.</h2>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">How Does the AI App Rescue Process Work?</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {steps.map((step, i) => (
             <motion.div
@@ -196,7 +208,7 @@ export default function AppRescuePage() {
       <section className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">What We Fix</p>
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Every layer of your AI app, covered.</h2>
+          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">What Does Kovil AI Fix in a Rescue Engagement?</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {whatWeFix.map((item, i) => {
               const Icon = item.icon
@@ -224,7 +236,7 @@ export default function AppRescuePage() {
       {/* What to Expect Timeline */}
       <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">What to Expect</p>
-        <h2 className="font-display font-bold text-3xl mb-12">From distress call to stable app — here's how it unfolds.</h2>
+        <h2 className="font-display font-bold text-3xl mb-12">What Should You Expect from an AI App Rescue?</h2>
         <div className="relative">
           <div className="absolute left-[72px] top-0 bottom-0 w-px bg-border hidden md:block" />
           <div className="space-y-6">
@@ -248,7 +260,7 @@ export default function AppRescuePage() {
       {/* Why Kovil vs Alternatives */}
       <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Why Kovil</p>
-        <h2 className="font-display font-bold text-3xl mb-12">Why teams choose us over their existing options.</h2>
+        <h2 className="font-display font-bold text-3xl mb-12">Why Choose Kovil AI for AI App Rescue?</h2>
         <div className="overflow-x-auto rounded-2xl border border-border">
           <table className="w-full text-sm">
             <thead>

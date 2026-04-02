@@ -9,6 +9,15 @@ const serviceColors: Record<string, string> = {
   "Maintenance": "bg-green-50 text-green-700",
 }
 
+const BREADCRUMB_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kovil.ai/" },
+    { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://kovil.ai/case-studies" }
+  ]
+}
+
 export default function CaseStudiesPage() {
   return (
     <>
@@ -16,6 +25,7 @@ export default function CaseStudiesPage() {
       title="AI Engineering Case Studies — Real Work, Real Results"
       description="How Kovil AI engineers delivered measurable outcomes across FinTech, HealthTech, Logistics, SaaS, and more. Explore our project case studies."
       canonical="/case-studies"
+      schema={BREADCRUMB_SCHEMA}
     />
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}

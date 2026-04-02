@@ -29,6 +29,18 @@ const PAGE_SCHEMA = {
   "areaServed": "Worldwide"
 }
 
+const HOWTO_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Get a Fixed-Price AI Project Built with Kovil AI",
+  "description": "Get a fixed-price AI project proposal in 48 hours, built in gated milestones, with full IP ownership and codebase handoff.",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Scope & Estimate", "text": "Share your idea in plain language. Our team produces a fixed-scope document with clear deliverables, a realistic timeline, and a flat price. No ambiguity, no hidden fees.", "url": "https://kovil.ai/engage/outcome-based-project" },
+    { "@type": "HowToStep", "position": 2, "name": "Build in Gated Milestones", "text": "A dedicated squad builds your AI product in gated milestones. You review and approve each phase before we proceed — full visibility, zero surprises.", "url": "https://kovil.ai/engage/outcome-based-project" },
+    { "@type": "HowToStep", "position": 3, "name": "Ship & Handoff", "text": "We deploy to your infrastructure, write full documentation, and hand off the complete codebase with IP fully assigned to you.", "url": "https://kovil.ai/engage/outcome-based-project" }
+  ]
+}
+
 const steps = [
   {
     number: "01", timeline: "Days 1–2",
@@ -93,7 +105,7 @@ export default function OutcomeProjectPage() {
       title="Fixed-Price AI Project — Scoped, Built & Shipped"
       description="Get a fixed-price AI project proposal in 48 hours. Milestone-gated builds, dedicated squad, full codebase handoff, and 100% IP assigned to you. No lock-in."
       canonical="/engage/outcome-based-project"
-      schema={[PAGE_SCHEMA, BREADCRUMB_SCHEMA]}
+      schema={[PAGE_SCHEMA, BREADCRUMB_SCHEMA, HOWTO_SCHEMA]}
     />
     <div className="min-h-screen bg-background text-foreground">
 
@@ -138,7 +150,7 @@ export default function OutcomeProjectPage() {
       <section className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">What We Build</p>
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">AI products across every layer of the stack.</h2>
+          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">What Types of AI Products Does Kovil AI Build?</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projectTypes.map((pt, i) => (
               <motion.div
@@ -161,7 +173,7 @@ export default function OutcomeProjectPage() {
       {/* How It Works */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">How It Works</p>
-        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Scope. Build. Ship. In that order.</h2>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">How Does a Fixed-Price AI Project Work?</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {steps.map((step, i) => (
             <motion.div
@@ -197,7 +209,7 @@ export default function OutcomeProjectPage() {
       <section className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">What's Included</p>
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Everything from scope to ship — in one engagement.</h2>
+          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">What's Included in an Outcome-Based AI Project?</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {included.map((item, i) => {
               const Icon = item.icon
@@ -225,7 +237,7 @@ export default function OutcomeProjectPage() {
       {/* What to Expect Timeline */}
       <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">What to Expect</p>
-        <h2 className="font-display font-bold text-3xl mb-12">From idea to shipped product — step by step.</h2>
+        <h2 className="font-display font-bold text-3xl mb-12">What Should You Expect from an Outcome-Based AI Project?</h2>
         <div className="relative">
           <div className="absolute left-[72px] top-0 bottom-0 w-px bg-border hidden md:block" />
           <div className="space-y-6">
@@ -249,7 +261,7 @@ export default function OutcomeProjectPage() {
       {/* Why Kovil vs Alternatives */}
       <section className="max-w-7xl mx-auto px-6 py-20 border-t border-border">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Why Kovil</p>
-        <h2 className="font-display font-bold text-3xl mb-12">How we compare to your other build options.</h2>
+        <h2 className="font-display font-bold text-3xl mb-12">How Does Kovil AI Compare to Other Options for Building AI?</h2>
         <div className="overflow-x-auto rounded-2xl border border-border">
           <table className="w-full text-sm">
             <thead>

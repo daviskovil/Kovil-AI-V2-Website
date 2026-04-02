@@ -39,8 +39,10 @@ export default function BlogPostPage() {
     "datePublished": isoDate,
     "dateModified": isoDate,
     "author": {
-      "@type": "Person",
-      "name": post.author
+      "@type": "Organization",
+      "name": "Kovil AI",
+      "url": "https://kovil.ai",
+      "sameAs": ["https://www.linkedin.com/company/kovil-ai/"]
     },
     "publisher": {
       "@type": "Organization",
