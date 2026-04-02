@@ -97,6 +97,35 @@ export default function BlogPostPage() {
           dangerouslySetInnerHTML={{ __html: post.body }}
         />
 
+        {/* FAQ Section */}
+        {post.faqs && post.faqs.length > 0 && (
+          <>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": post.faqs.map(f => ({
+                  "@type": "Question",
+                  "name": f.q,
+                  "acceptedAnswer": { "@type": "Answer", "text": f.a }
+                }))
+              })}}
+            />
+            <div className="mt-16 pt-10 border-t border-border">
+              <h2 className="font-display font-bold text-2xl mb-8">Frequently Asked Questions</h2>
+              <div className="space-y-6">
+                {post.faqs.map((faq, i) => (
+                  <div key={i} className="border border-border rounded-xl p-6">
+                    <h3 className="font-semibold text-base mb-3">{faq.q}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{faq.a}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
         {/* Internal CTA */}
         <div className="mt-16 pt-10 border-t border-border">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2">Ready to Build?</p>

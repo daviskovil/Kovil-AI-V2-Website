@@ -8,6 +8,7 @@ export interface Post {
   author: string;
   featured: boolean;
   body: string;
+  faqs?: { q: string; a: string }[];
 }
 
 export const posts: Post[] = [
@@ -1073,6 +1074,28 @@ export const posts: Post[] = [
     readTime: "11 min read",
     author: "Kovil AI Team",
     featured: false,
+    faqs: [
+      {
+        q: "What percentage of AI projects fail?",
+        a: "According to Gartner, approximately 85% of AI projects fail to deliver on their intended business outcomes. McKinsey estimates the failure rate at around 80%. The consistent finding across research is that the majority of AI initiatives either underperform, get shut down, or never reach real users."
+      },
+      {
+        q: "Why do most AI projects fail in production?",
+        a: "Most AI projects fail in production because they are built and tested in controlled demo environments that don't reflect real-world conditions. Key reasons include: production data being far messier than development data, no automated evaluation framework to catch regressions, missing error handling for LLM API failures, and teams that lack experience shipping AI in production rather than just building demos."
+      },
+      {
+        q: "What is the most common AI production failure mode?",
+        a: "The most common AI production failure modes are hallucination without guardrails (the model outputs wrong information confidently with no validation layer), RAG retrieval quality degrading over time as the knowledge base grows, and cost overruns when token usage wasn't properly modelled at scale."
+      },
+      {
+        q: "How do you prevent AI project failure?",
+        a: "To prevent AI project failure: build automated evaluation pipelines before shipping, design explicit error handling and fallback paths for every external dependency, monitor latency and output quality in production from day one, and staff the project with engineers who have previously shipped AI systems in production — not just built demos."
+      },
+      {
+        q: "When should a company bring in outside AI engineering expertise?",
+        a: "Bring in outside AI engineering expertise when your AI demo works but the production version gives inconsistent outputs, when your LLM API bill is unexpectedly high, when users have stopped trusting the AI output and are working around it manually, or when the team that originally built the AI feature has moved on and no one knows how to maintain it."
+      },
+    ],
     body: `
 <img src="/blog-why-ai-projects-fail.jpg" alt="Why 80% of AI Projects Fail in Production" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
 

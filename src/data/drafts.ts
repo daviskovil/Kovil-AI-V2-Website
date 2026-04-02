@@ -15,6 +15,24 @@ export const drafts = [
     readTime: "9 min read",
     author: "Kovil AI Team",
     featured: false,
+    faqs: [
+      {
+        q: "What is the difference between an AI agent and an AI chatbot?",
+        a: "An AI chatbot responds to user input by generating text — it answers questions, provides information, and holds conversations. An AI agent takes autonomous action to complete multi-step tasks using tools like web search, database queries, and API calls. Chatbots respond; agents act."
+      },
+      {
+        q: "Which is better for my business — an AI agent or a chatbot?",
+        a: "It depends on the job. If you need to answer questions at scale — customer support, FAQ automation, sales qualification — a chatbot is the right tool. If you need to automate a multi-step workflow that currently requires human action at each step, an AI agent is the right tool. Many businesses end up needing both."
+      },
+      {
+        q: "How much does it cost to build an AI agent?",
+        a: "A production-grade AI agent for a business workflow typically takes four to twelve weeks to build properly, depending on the number of tools and integrations required. An AI chatbot grounded in your documentation can usually be built in two to four weeks. Agents have higher ongoing inference costs because each task requires multiple LLM calls."
+      },
+      {
+        q: "What can AI agents do that chatbots cannot?",
+        a: "AI agents can take independent action in the world — they can search the web, query databases, call APIs, send emails, book calendar appointments, and execute code. A chatbot can tell you how to do something; an agent can do it for you."
+      },
+    ],
     body: `
 <img src="/blog-ai-agents-vs-chatbots.jpg" alt="AI Agents vs AI Chatbots: What's the Difference?" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
 
@@ -102,6 +120,28 @@ export const drafts = [
     readTime: "10 min read",
     author: "Kovil AI Team",
     featured: false,
+    faqs: [
+      {
+        q: "What is the difference between RAG and fine-tuning?",
+        a: "RAG (Retrieval-Augmented Generation) gives a language model access to an external knowledge base at inference time — the model retrieves relevant documents and uses them to answer the question. Fine-tuning retrains the model's weights on your specific data, changing how the model fundamentally behaves. RAG changes what the model knows; fine-tuning changes how the model acts."
+      },
+      {
+        q: "When should I use RAG instead of fine-tuning?",
+        a: "Use RAG when you have proprietary documents or data the model hasn't seen, when your knowledge base changes frequently, when you need citations and source transparency, or when you want faster time to deployment. RAG is the right choice for the majority of enterprise AI use cases in 2026."
+      },
+      {
+        q: "When should I use fine-tuning instead of RAG?",
+        a: "Use fine-tuning when you need consistent output format or style that prompt engineering alone can't reliably enforce, when you have a large stable dataset of high-quality labelled examples, when you're doing classification or structured extraction tasks, or when inference latency is critical and a smaller fine-tuned model would respond faster than RAG with a large model."
+      },
+      {
+        q: "Is RAG cheaper than fine-tuning?",
+        a: "RAG typically has lower upfront costs — no training compute required. Fine-tuning has higher upfront training costs but can have lower ongoing inference costs if a fine-tuned smaller model replaces a larger model with a long context window. For most business use cases, RAG reaches production-quality faster and at lower total cost."
+      },
+      {
+        q: "Can you use both RAG and fine-tuning together?",
+        a: "Yes — many production systems combine both. A fine-tuned model handles consistent output format and domain vocabulary, while RAG provides real-time access to current facts and proprietary documents. This combined approach is more complex and costly, but appropriate for enterprise applications where both behavioural precision and knowledge breadth matter."
+      },
+    ],
     body: `
 <img src="/blog-rag-vs-fine-tuning.png" alt="RAG vs Fine-Tuning: Which Should Your Company Choose?" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
 
