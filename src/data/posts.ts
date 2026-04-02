@@ -1064,6 +1064,102 @@ export const posts: Post[] = [
 <p>If you're building a chatbot for a customer-facing use case or a high-stakes internal application, the investment in doing it properly — clean knowledge base, careful prompt engineering, thorough testing, robust monitoring — is the difference between a tool that becomes a competitive advantage and one that becomes a support liability. If you need a <a href="/engage/managed-ai-engineer">vetted AI engineer</a> to build it right, that's what we do.</p>
     `,
   },
+  {
+    slug: "why-ai-projects-fail",
+    title: "Why 80% of AI Projects Fail in Production (And What the Surviving 20% Do Differently)",
+    excerpt: "Most AI projects work beautifully in demos and die quietly in production. Here's an honest breakdown of why that happens — and what separates the teams that ship reliable AI from the ones that don't.",
+    category: "AI Engineering",
+    date: "Apr 2, 2026",
+    readTime: "11 min read",
+    author: "Kovil AI Team",
+    featured: false,
+    body: `
+<p>According to Gartner, through 2025 roughly 85% of AI projects will fail to deliver on their intended business outcomes. McKinsey puts the failure rate closer to 80%. The exact number varies by study, but the direction is consistent: most AI initiatives that reach production either underperform, get quietly shut down, or never make it to real users at all.</p>
+
+<p>This isn't a technology problem. The models are good enough. The frameworks are mature. The compute is accessible. The failure almost always happens in the gap between a working demo and a reliable production system — and that gap is wider and more treacherous than most teams expect.</p>
+
+<h2>What Does It Mean for an AI Project to "Fail"?</h2>
+
+<p>AI project failure looks different from traditional software failure. A conventional app either works or it doesn't — the bug is usually deterministic and reproducible. AI failure is messier. It shows up in ways that are easy to miss until real damage is done.</p>
+
+<p>The most common failure modes are not crashes. They are:</p>
+
+<ul>
+<li><strong>Accuracy degradation over time</strong> — the model was accurate at launch but drifts as real-world data diverges from training data.</li>
+<li><strong>Adoption failure</strong> — the system works technically but users don't trust it, don't use it, or work around it.</li>
+<li><strong>Cost explosion</strong> — the AI works but the API bill is 10x what was budgeted because token usage wasn't modelled at scale.</li>
+<li><strong>Inconsistent outputs</strong> — the model gives different answers to the same question, destroying user confidence.</li>
+<li><strong>Silent hallucination</strong> — the model confidently outputs wrong information with no guardrails to catch it before it reaches the user.</li>
+</ul>
+
+<p>None of these look like a system crash. All of them will kill an AI product.</p>
+
+<h2>Why Do Most AI Projects Work in Demos but Break in Production?</h2>
+
+<p>The demo environment is designed for success. You control the inputs, the data is clean, the edge cases are absent, and the person evaluating it is primed to be impressed. Production is designed for chaos. Real users ask unexpected questions, provide malformed inputs, and push the system in directions you never anticipated.</p>
+
+<h3>Production data is nothing like development data</h3>
+<p>Teams build and test their AI on curated, representative examples. Real users bring inconsistent spelling, multiple languages, ambiguous intent, and occasionally malicious inputs. A RAG system that performs well on clean internal documentation will struggle when users ask questions that span multiple documents, use abbreviations not in the corpus, or ask things the documentation simply doesn't cover.</p>
+
+<h3>No evaluation framework exists</h3>
+<p>Software teams have unit tests, integration tests, and CI/CD pipelines. Most AI teams have manual spot-checking. There is no automated system to catch when a prompt change degrades output quality, when retrieval accuracy drops, or when the model starts hallucinating in a specific category of query. Without evals, regressions are invisible until a user complains.</p>
+
+<h3>Latency is an afterthought</h3>
+<p>A response in 8 seconds feels acceptable when you're a developer impressed by the output quality. It feels broken when you're a customer service agent handling 50 simultaneous conversations. AI inference latency is rarely stress-tested properly until it becomes a support ticket.</p>
+
+<h3>Error handling is missing</h3>
+<p>What happens when the LLM API returns a rate limit error? What happens when the vector database returns zero results? What happens when the model returns a response that fails your output schema? Most demo implementations surface an uncaught exception. Production systems need graceful fallbacks for every one of these cases.</p>
+
+<h2>What Are the Most Common AI Production Failure Modes?</h2>
+
+<p>Based on production deployments across fintech, SaaS, and healthcare, the failure modes that appear most consistently are:</p>
+
+<h3>1. Hallucination without guardrails</h3>
+<p>The model fabricates information confidently and there is no validation layer to catch it before it reaches the user. This is especially damaging in legal, medical, or financial domains where a wrong answer carries real consequences.</p>
+
+<h3>2. RAG retrieval quality degrading over time</h3>
+<p>The knowledge base grows or changes, embeddings become stale, and chunk sizes that worked at launch stop working when the document count triples. Retrieval-augmented systems require ongoing maintenance — they are not set-and-forget infrastructure.</p>
+
+<h3>3. Context window overflow</h3>
+<p>As conversation history grows or retrieved documents increase in number, the context window fills up. Teams that don't implement context management hit token limits mid-conversation, causing truncation or errors that confuse users and erode trust.</p>
+
+<h3>4. Cost overruns at scale</h3>
+<p>A system that calls a large model for every request, with a large context window and no caching strategy, can accumulate a five-figure monthly API bill when traffic increases 10x. Teams that don't model inference costs during development encounter an unpleasant surprise during their first high-traffic period.</p>
+
+<h3>5. Prompt injection vulnerabilities</h3>
+<p>Malicious users discover they can manipulate system behaviour by crafting specific inputs designed to override the system prompt. Customer-facing AI systems without injection guards are a security liability, not just a reliability concern.</p>
+
+<h2>What Do the Successful 20% Do Differently?</h2>
+
+<p>The AI projects that succeed in production share a set of practices that are visible before launch:</p>
+
+<p><strong>They treat AI like a product, not a prototype.</strong> The moment a demo works, they shift to asking: what does monitoring look like? How do we handle edge cases? What is the rollback plan? What does version control for prompts look like?</p>
+
+<p><strong>They build evaluation pipelines before they ship.</strong> Before any change reaches production — a prompt edit, a new retrieval strategy, a model upgrade — it runs through an automated eval suite that scores output quality against labelled test cases. Regressions get caught before users see them.</p>
+
+<p><strong>They design for failure.</strong> Every external dependency has a timeout, a retry strategy, and a graceful degradation path. The system works in a degraded mode rather than failing completely when an upstream service has an outage.</p>
+
+<p><strong>They monitor in production.</strong> Latency per request, token usage per session, retrieval hit rate, user satisfaction signals — all tracked and alertable. When something starts drifting, the team knows before the user does.</p>
+
+<p><strong>They staff with engineers who have shipped AI before.</strong> The gap between an engineer who has built AI demos and one who has shipped reliable AI systems in production is significant. Production AI requires experience with evals, prompt versioning, RAG architecture, cost optimisation, and LLM-specific failure modes that don't appear in most engineering curricula.</p>
+
+<h2>When Should You Bring in Outside AI Engineering Expertise?</h2>
+
+<p>There are clear signals that a production AI problem is beyond the current team's experience:</p>
+
+<ul>
+<li>Your AI demo works reliably but the production version gives inconsistent outputs.</li>
+<li>Your LLM API bill is higher than expected and you're not sure why.</li>
+<li>Users have stopped trusting the AI output and are manually working around it.</li>
+<li>Your RAG system was accurate at launch but quality has degraded over the past few months.</li>
+<li>The team that built the AI feature has moved on, and no one knows how to maintain or improve it.</li>
+</ul>
+
+<p>These are not signs of a bad team. They are signs of a specialisation gap. Production AI reliability is a specific discipline, and most product engineering teams are not staffed for it.</p>
+
+<p>Kovil AI's <a href="/engage/app-rescue">AI Reliability &amp; App Rescue</a> service is built for exactly this situation. Our engineers audit your current system, identify the failure modes, and fix them — with clear milestones so you know what you're getting before we start. If your AI app is underperforming in production, <a href="/contact">get in touch</a> and we'll diagnose what's wrong within 48 hours.</p>
+    `,
+  },
 ];
 
 export function getPost(slug: string): Post | undefined {
