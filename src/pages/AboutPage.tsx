@@ -226,6 +226,64 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Founders */}
+        <section className="max-w-5xl mx-auto px-6 py-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <p className="text-sm font-mono text-accent tracking-widest uppercase mb-4">The Team</p>
+            <h2 className="font-display text-4xl font-bold text-foreground">Meet the founders</h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                name: "Davis Rajan",
+                role: "Co-Founder",
+                photo: "/team-davis.jpg",
+                bio: "20+ years across IT services, enterprise technology, and global operations. Davis drives Kovil AI's growth strategy, go-to-market execution, and outcome-based delivery model — moving clients from traditional development cycles to AI-accelerated results.",
+                highlights: ["GTM & Enterprise Sales", "AI-Led Delivery Models", "Global Ops & Offshore Delivery", "20+ Years IT Leadership"],
+              },
+              {
+                name: "Sahdev Thakur",
+                role: "Co-Founder",
+                photo: "/team-sahdev.jpg",
+                bio: "Deep expertise in talent acquisition, offshore delivery, and engineering operations. Sahdev built Kovil AI's talent engine — the system that matches, vets, and deploys the right AI engineer to the right team in under 48 hours.",
+                highlights: ["Talent Acquisition", "Offshore Delivery Systems", "Execution & Operations", "Global Client Delivery"],
+              },
+            ].map((person, i) => (
+              <motion.div
+                key={person.name}
+                initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-card border border-border rounded-2xl p-8 hover:border-accent/30 transition-colors"
+              >
+                <div className="flex items-center gap-5 mb-6">
+                  <img
+                    src={person.photo}
+                    alt={person.name}
+                    className="h-16 w-16 rounded-full object-cover object-top border-2 border-border shrink-0"
+                  />
+                  <div>
+                    <h3 className="font-display font-bold text-xl text-foreground leading-tight">{person.name}</h3>
+                    <p className="text-sm text-accent font-semibold mt-0.5">{person.role}, Kovil AI</p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-6">{person.bio}</p>
+                <div className="flex flex-wrap gap-2">
+                  {person.highlights.map((h) => (
+                    <span key={h} className="text-xs px-3 py-1 rounded-full bg-muted text-muted-foreground border border-border">
+                      {h}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="max-w-4xl mx-auto px-6 pb-24">
           <motion.div
