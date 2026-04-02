@@ -2,6 +2,7 @@ import * as React from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ArrowRight, CheckCircle2, CalendarDays } from "lucide-react"
+import { openCalendly } from "../lib/calendly"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
@@ -137,15 +138,13 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
                       <span className="text-xs text-muted-foreground">or</span>
                       <span className="flex-1 h-px bg-border" />
                     </div>
-                    <a
-                      href="https://calendly.com/kovil-ai/talent"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={openCalendly}
                       className="flex items-center justify-center gap-2 w-full border border-accent text-accent rounded-xl py-3 text-sm font-semibold hover:bg-accent/5 transition-colors"
                     >
                       <CalendarDays className="h-4 w-4" />
                       Book a Call Instead
-                    </a>
+                    </button>
                   </div>
                 </motion.div>
               )}

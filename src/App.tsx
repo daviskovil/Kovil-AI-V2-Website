@@ -18,6 +18,9 @@ import AppRescuePage from "./pages/engage/AppRescuePage"
 import ApplyPage from "./pages/ApplyPage"
 import TermsPage from "./pages/TermsPage"
 import PrivacyPage from "./pages/PrivacyPage"
+import ContactPage from "./pages/ContactPage"
+import FAQPage from "./pages/FAQPage"
+import AboutPage from "./pages/AboutPage"
 
 const engageLinks = [
   {
@@ -172,10 +175,13 @@ function Footer() {
         <div>
           <h4 className="font-bold mb-4">Company</h4>
           <ul className="space-y-3 text-sm text-muted/60">
+            <li><Link to="/about" className="hover:text-accent transition-colors">About</Link></li>
             <li><Link to="/how-it-works" className="hover:text-accent transition-colors">How It Works</Link></li>
             <li><Link to="/apply" className="hover:text-accent transition-colors">Apply as AI Engineer</Link></li>
             <li><Link to="/blog" className="hover:text-accent transition-colors">Blog</Link></li>
             <li><Link to="/case-studies" className="hover:text-accent transition-colors">Case Studies</Link></li>
+            <li><Link to="/frequently-asked-questions" className="hover:text-accent transition-colors">FAQs</Link></li>
+            <li><Link to="/contact" className="hover:text-accent transition-colors">Contact</Link></li>
           </ul>
         </div>
 
@@ -207,6 +213,12 @@ function Footer() {
 
 ReactGA.initialize("G-J2TXKBR1L0")
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
+
 function PageTracker() {
   const location = useLocation()
   useEffect(() => {
@@ -218,6 +230,7 @@ function PageTracker() {
 export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-white">
+      <ScrollToTop />
       <PageTracker />
       <Navbar />
 
@@ -234,6 +247,9 @@ export default function App() {
         <Route path="/apply" element={<ApplyPage />} />
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/contact" element={<div className="pt-20"><ContactPage /></div>} />
+        <Route path="/frequently-asked-questions" element={<div className="pt-20"><FAQPage /></div>} />
+        <Route path="/about" element={<div className="pt-20"><AboutPage /></div>} />
       </Routes>
 
       <Footer />

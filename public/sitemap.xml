@@ -9,6 +9,12 @@
     <lastmod>2026-03-31</lastmod>
   </url>
   <url>
+    <loc>https://kovil.ai/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-02</lastmod>
+  </url>
+  <url>
     <loc>https://kovil.ai/how-it-works</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -49,12 +55,24 @@
     <lastmod>2026-03-31</lastmod>
   </url>
 
-  <!-- ── Apply ───────────────────────────────────────────── -->
+  <!-- ── Apply / Contact / FAQ ──────────────────────────── -->
   <url>
     <loc>https://kovil.ai/apply</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <lastmod>2026-03-31</lastmod>
+  </url>
+  <url>
+    <loc>https://kovil.ai/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-04-02</lastmod>
+  </url>
+  <url>
+    <loc>https://kovil.ai/frequently-asked-questions</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-04-02</lastmod>
   </url>
 
   <!-- ── Blog Posts ──────────────────────────────────────── -->
