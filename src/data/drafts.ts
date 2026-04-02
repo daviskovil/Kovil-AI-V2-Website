@@ -16,6 +16,8 @@ export const drafts = [
     author: "Kovil AI Team",
     featured: false,
     body: `
+<img src="/blog-ai-agents-vs-chatbots.jpg" alt="AI Agents vs AI Chatbots: What's the Difference?" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+
 <p>The terms "AI agent" and "AI chatbot" are used interchangeably in most business conversations, product pitches, and vendor decks. They are not the same thing. Confusing them leads to buying the wrong solution, scoping the wrong project, and setting the wrong expectations — all of which are expensive mistakes.</p>
 
 <p>Here is a plain-English breakdown of what each one is, how they differ, and which your business is more likely to need.</p>
@@ -101,6 +103,8 @@ export const drafts = [
     author: "Kovil AI Team",
     featured: false,
     body: `
+<img src="/blog-rag-vs-fine-tuning.png" alt="RAG vs Fine-Tuning: Which Should Your Company Choose?" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+
 <p>One of the most common questions teams face when building with large language models is whether to use retrieval-augmented generation (RAG) or fine-tuning to adapt the model to their specific domain. Both approaches improve model usefulness for a specific context. They do it in fundamentally different ways, suit different problems, and carry very different cost and maintenance profiles.</p>
 
 <p>Getting this decision wrong early in a project is expensive. Here is a clear breakdown of both approaches and a practical framework for choosing between them.</p>

@@ -1074,6 +1074,8 @@ export const posts: Post[] = [
     author: "Kovil AI Team",
     featured: false,
     body: `
+<img src="/blog-why-ai-projects-fail.jpg" alt="Why 80% of AI Projects Fail in Production" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+
 <p>According to Gartner, through 2025 roughly 85% of AI projects will fail to deliver on their intended business outcomes. McKinsey puts the failure rate closer to 80%. The exact number varies by study, but the direction is consistent: most AI initiatives that reach production either underperform, get quietly shut down, or never make it to real users at all.</p>
 
 <p>This isn't a technology problem. The models are good enough. The frameworks are mature. The compute is accessible. The failure almost always happens in the gap between a working demo and a reliable production system — and that gap is wider and more treacherous than most teams expect.</p>
