@@ -1,4 +1,4 @@
-export type ServiceType = "AI Sprint" | "AI Integration" | "Maintenance";
+export type ServiceType = "Outcome-Based AI Project" | "Managed AI Engineer" | "AI Reliability & App Rescue";
 
 export interface Metric {
   value: string;
@@ -37,7 +37,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "AI-Powered Loan Package Verification Replaces Manual PDF Sorting and Spreadsheet Checklists",
     excerpt:
       "Lenders selling loans on the secondary mortgage market were drowning in manual PDF sorting, spreadsheet-based checklists, and email-driven exception tracking. Kovil AI built the mortgage document platform — a two-phase AI platform that classifies loan documents automatically and verifies complete packages against takeout partner requirements.",
-    service: "AI Sprint",
+    service: "Outcome-Based AI Project",
     industry: "Mortgage / FinTech",
     clientType: "Mortgage Secondary Market Platform",
     timeline: "V1 build sprint",
@@ -119,7 +119,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "End-to-End AI Automation Transforms Deal Processing for a Digital Lending Platform",
     excerpt:
       "A rapidly growing digital lending platform was held back by manual underwriting workflows, fragile API integrations, and slow deal processing cycles. Kovil AI embedded an AI-first engineering team that redesigned automation end-to-end — delivering faster deal turnaround, reduced manual effort, and a scalable automation foundation.",
-    service: "AI Integration",
+    service: "Managed AI Engineer",
     industry: "FinTech / LendingTech",
     clientType: "Digital Lending Platform",
     timeline: "Ongoing engagement",
@@ -196,7 +196,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "A PCI-Compliant Payment Dashboard Launched 40% Under Budget",
     excerpt:
       "A Series A FinTech startup needed a production-ready payment dashboard in 3 weeks. Kovil AI delivered in 18 days — PCI-compliant, fully tested, and 40% under the original budget.",
-    service: "AI Sprint",
+    service: "Outcome-Based AI Project",
     industry: "FinTech",
     clientType: "Series A Startup",
     timeline: "18 days",
@@ -269,7 +269,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "80% of Manual Approval Workflows Eliminated in 6 Weeks",
     excerpt:
       "A mid-market SaaS company was losing 15+ hours per week to manual approval chains. Kovil AI built an n8n-powered automation layer that handles 80% of workflows automatically — saving $120K annually.",
-    service: "AI Integration",
+    service: "Managed AI Engineer",
     industry: "SaaS / B2B",
     clientType: "Mid-Market (200 employees)",
     timeline: "6 weeks",
@@ -335,7 +335,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Legacy Codebase Stabilized: From 23 Monthly Bugs to Near Zero",
     excerpt:
       "A 500K-user e-commerce platform was hemorrhaging trust due to frequent production bugs in a legacy codebase. Kovil AI's maintenance retainer cut bug tickets by 60% and restored 99.9% uptime.",
-    service: "Maintenance",
+    service: "AI Reliability & App Rescue",
     industry: "E-Commerce",
     clientType: "Scale-up (500K users)",
     timeline: "Ongoing retainer (first results in 30 days)",
@@ -401,7 +401,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "AI Cuts Patient Intake From 18 Minutes to 2 Minutes",
     excerpt:
       "A Series B HealthTech company's patient intake process required manual data entry across 3 disconnected systems. Kovil AI built an AI-powered integration that reduced manual entry by 95% and cut intake time from 18 to 2 minutes.",
-    service: "AI Integration",
+    service: "Managed AI Engineer",
     industry: "HealthTech",
     clientType: "Series B Startup",
     timeline: "8 weeks",
@@ -468,7 +468,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Route Optimization MVP Built in 21 Days, Seed Round Closed in 60",
     excerpt:
       "A pre-seed logistics startup needed a working MVP to pitch investors. Kovil AI built their route optimization tool in 21 days. They closed a $2M seed round 60 days later.",
-    service: "AI Sprint",
+    service: "Outcome-Based AI Project",
     industry: "Logistics",
     clientType: "Pre-Seed Startup",
     timeline: "21 days",
@@ -535,7 +535,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Three Production Apps Stabilized in 5 Days After Entire Dev Team Left",
     excerpt:
       "A LegalTech company's entire engineering team left within a month, leaving 3 production apps unmaintained. Kovil AI completed full codebase onboarding in 5 days and has maintained zero downtime since.",
-    service: "Maintenance",
+    service: "AI Reliability & App Rescue",
     industry: "LegalTech",
     clientType: "SMB (50 employees)",
     timeline: "Ongoing retainer (onboarded in 5 days)",
@@ -601,7 +601,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "AI Customer Service Handles 70% of Queries, CSAT Up 22%",
     excerpt:
       "A 200-store retail chain was drowning in 500+ daily support tickets on the same 40 questions. Kovil AI built a GPT-powered chatbot that handles 70% of queries automatically — and actually improved customer satisfaction.",
-    service: "AI Integration",
+    service: "Managed AI Engineer",
     industry: "Retail",
     clientType: "Enterprise (200+ stores)",
     timeline: "5 weeks",
@@ -668,7 +668,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Property Valuation Dashboard with 3rd-Party API Integrations, 98% Accuracy",
     excerpt:
       "A seed-stage PropTech startup needed a property valuation dashboard with integrations to multiple real estate data APIs — in 3 weeks. Kovil AI delivered with 98% data accuracy and a UI that landed their first enterprise client.",
-    service: "AI Sprint",
+    service: "Outcome-Based AI Project",
     industry: "PropTech",
     clientType: "Seed-Stage Startup",
     timeline: "3 weeks",
@@ -733,7 +733,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Growing User Base No Longer Breaking the Platform",
     excerpt:
       "A B2C EdTech platform's growing user base was exposing serious performance bottlenecks and causing intermittent crashes. Kovil AI's maintenance retainer cut page load times by 55% and reduced crash rates to near zero.",
-    service: "Maintenance",
+    service: "AI Reliability & App Rescue",
     industry: "EdTech",
     clientType: "B2C Scale-up",
     timeline: "Ongoing retainer (results in 45 days)",

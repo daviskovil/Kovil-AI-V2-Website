@@ -4,9 +4,9 @@ import { caseStudies } from "../data/case-studies"
 import { SEOHead } from "../components/SEOHead"
 
 const serviceColors: Record<string, string> = {
-  "AI Sprint": "bg-accent/10 text-accent",
-  "AI Integration": "bg-blue-50 text-blue-700",
-  "Maintenance": "bg-green-50 text-green-700",
+  "Outcome-Based AI Project": "bg-accent/10 text-accent",
+  "Managed AI Engineer": "bg-blue-50 text-blue-700",
+  "AI Reliability & App Rescue": "bg-green-50 text-green-700",
 }
 
 const BREADCRUMB_SCHEMA = {
@@ -56,9 +56,14 @@ export default function CaseStudiesPage() {
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-accent/20 group-hover:bg-accent/60 transition-colors" />
               {/* Top row */}
               <div className="flex items-start justify-between gap-4 mb-4">
-                <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${serviceColors[cs.service] ?? "bg-muted text-muted-foreground"}`}>
-                  {cs.service}
-                </span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${serviceColors[cs.service] ?? "bg-muted text-muted-foreground"}`}>
+                    {cs.service}
+                  </span>
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-muted text-muted-foreground">
+                    {cs.industry}
+                  </span>
+                </div>
                 <span className="text-xs text-muted-foreground shrink-0">{cs.published}</span>
               </div>
 
