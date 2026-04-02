@@ -23,8 +23,9 @@ const BREADCRUMB_SCHEMA = {
 }
 
 export default function BlogPage() {
-  const featured = posts.find((p) => p.featured)
-  const rest = posts.filter((p) => !p.featured)
+  const sorted = [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const featured = sorted.find((p) => p.featured)
+  const rest = sorted.filter((p) => !p.featured)
 
   return (
     <>
