@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react"
-import { Routes, Route, Link, useLocation } from "react-router-dom"
+import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom"
 import ReactGA from "react-ga4"
 import { ChevronDown, Users, Rocket, Shield } from "lucide-react"
 
@@ -250,6 +250,7 @@ export default function App() {
         <Route path="/contact" element={<div className="pt-20"><ContactPage /></div>} />
         <Route path="/frequently-asked-questions" element={<div className="pt-20"><FAQPage /></div>} />
         <Route path="/about" element={<div className="pt-20"><AboutPage /></div>} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
       <Footer />
