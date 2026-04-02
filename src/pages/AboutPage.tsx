@@ -242,14 +242,14 @@ export default function AboutPage() {
               {
                 name: "Davis Rajan",
                 role: "Co-Founder",
-                photo: "/team-davis.jpg",
+                photo: "/team-davis.webp",
                 bio: "20+ years across IT services, enterprise technology, and global operations. Davis drives Kovil AI's growth strategy, go-to-market execution, and outcome-based delivery model — moving clients from traditional development cycles to AI-accelerated results.",
                 highlights: ["GTM & Enterprise Sales", "AI-Led Delivery Models", "Global Ops & Offshore Delivery", "20+ Years IT Leadership"],
               },
               {
                 name: "Sahdev Thakur",
                 role: "Co-Founder",
-                photo: "/team-sahdev.jpg",
+                photo: "/team-sahdev.webp",
                 bio: "Deep expertise in talent acquisition, offshore delivery, and engineering operations. Sahdev built Kovil AI's talent engine — the system that matches, vets, and deploys the right AI engineer to the right team in under 48 hours.",
                 highlights: ["Talent Acquisition", "Offshore Delivery Systems", "Execution & Operations", "Global Client Delivery"],
               },
@@ -265,6 +265,7 @@ export default function AboutPage() {
                     src={person.photo}
                     alt={person.name}
                     className="h-16 w-16 rounded-full object-cover object-top border-2 border-border shrink-0"
+                    loading="lazy"
                   />
                   <div>
                     <h3 className="font-display font-bold text-xl text-foreground leading-tight">{person.name}</h3>

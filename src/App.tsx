@@ -108,7 +108,7 @@ function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/kovil-logo-symbol.png" alt="Kovil AI" className="h-8 w-8 rounded-sm object-cover" />
+          <img src="/kovil-logo-symbol.webp" alt="Kovil AI" className="h-8 w-8 rounded-sm object-cover" />
           <span className="font-display font-bold text-xl tracking-tight">Kovil AI</span>
         </Link>
 
@@ -155,7 +155,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12">
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-2 mb-6">
-            <img src="/kovil-logo-symbol-orange.png" alt="Kovil AI" className="h-7 w-auto" />
+            <img src="/kovil-logo-symbol-orange.webp" alt="Kovil AI" className="h-7 w-auto" loading="lazy" />
             <span className="font-display font-bold text-2xl tracking-tight">Kovil AI</span>
           </div>
           <p className="text-sm text-muted/60 mb-6">

@@ -171,7 +171,7 @@ export const posts: Post[] = [
 
 <p>At Kovil AI, we work exclusively with businesses that want to implement AI seriously — not dabble in it. For New York City ad and marketing agencies, that typically means a phased program that begins with the highest-leverage workflow automations (usually reporting and brief generation), demonstrates measurable ROI within the first 60 days, and then expands to cover the full operational surface of the agency over time.</p>
 
-<p>Our AI builders are not generalists. They are specialists who have built agency-specific automation systems — connected to the platforms, APIs, and workflows that matter to ad and marketing agencies in NYC and beyond. Engagements are milestone-gated and fixed-price, meaning you know exactly what you're getting and when, without the open-ended retainer model that too many AI consultancies rely on.</p>
+<p>Our AI builders are not generalists. They are specialists who have built agency-specific automation systems — connected to the platforms, APIs, and workflows that matter to ad and marketing agencies in NYC and beyond. <a href="/engage/outcome-based-project">Engagements are milestone-gated and fixed-price</a>, meaning you know exactly what you're getting and when, without the open-ended retainer model that too many AI consultancies rely on.</p>
 
 <p>If you're running an agency in New York City and you're ready to have a serious conversation about where AI automation fits in your operational model, we'd like to talk. No pitch deck. No sales pressure. Just a direct conversation about what's possible and what it would take to get there.</p>
 
@@ -295,7 +295,7 @@ export const posts: Post[] = [
 
 <h2>When to Bring In an Integration Partner</h2>
 
-<p>Most companies benefit from working with an experienced AI integration partner for at least their first major project. Building reliable, production-grade AI integrations requires a combination of skills — prompt engineering, API development, workflow design, security review, and change management — that most internal teams haven't developed yet.</p>
+<p>Most companies benefit from working with an experienced <a href="/engage/managed-ai-engineer">AI integration partner</a> for at least their first major project. Building reliable, production-grade AI integrations requires a combination of skills — prompt engineering, API development, workflow design, security review, and change management — that most internal teams haven't developed yet.</p>
 
 <p>The right partner brings a library of proven integration patterns, accelerates the build significantly, and helps you avoid the expensive mistakes that slow down first-time projects. Critically, they should also transfer knowledge to your team so that you can maintain and extend the system without ongoing dependency.</p>
 
@@ -458,7 +458,7 @@ export const posts: Post[] = [
 
 <p>The teams that can't ship in four weeks usually have one of three problems: scope is too broad, developers aren't using AI tools, or decision cycles are too slow. All three are fixable — but they need to be fixed before the sprint starts, not during it.</p>
 
-<p>If you're staring down a product that needs to exist in weeks rather than months, the answer isn't to hire more people or accept a longer timeline. The answer is to get very clear on exactly what you're building, find a team that moves fast with AI tooling, and protect the scope like your timeline depends on it — because it does.</p>
+<p>If you're staring down a product that needs to exist in weeks rather than months, the answer isn't to hire more people or accept a longer timeline. The answer is to get very clear on exactly what you're building, find a <a href="/engage/outcome-based-project">team that moves fast with AI tooling</a>, and protect the scope like your timeline depends on it — because it does.</p>
     `,
   },
 
@@ -595,7 +595,7 @@ export const posts: Post[] = [
 
 <p>The codebase running your business is not a static asset. It's a living system in a constantly changing environment — changing dependencies, changing APIs, changing security threats, changing user loads. Treating it as something that doesn't need ongoing attention is the equivalent of never servicing a car engine and being surprised when it fails.</p>
 
-<p>The question isn't whether your unmaintained codebase will cause problems. It's when, and how much it will cost when it does. Proactive maintenance isn't a nice-to-have. It's the difference between a crisis that disrupts your business and a minor issue resolved before your users notice it.</p>
+<p>The question isn't whether your unmaintained codebase will cause problems. It's when, and how much it will cost when it does. Proactive maintenance isn't a nice-to-have. It's the difference between a crisis that disrupts your business and a minor issue resolved before your users notice it. If your codebase is already showing signs of neglect, <a href="/engage/app-rescue">AI Reliability & App Rescue</a> is built for exactly this situation.</p>
     `,
   },
 
@@ -752,7 +752,7 @@ export const posts: Post[] = [
 
 <p>What's clear is that all three platforms can deliver significant operational leverage when applied to the right problems by people who know them well. The mistake to avoid is choosing a platform based on name recognition or a free trial — choose based on a clear-eyed assessment of your requirements and the long-term cost of ownership.</p>
 
-<p>If you're unsure which platform is right for your use case, or if you need to move quickly from decision to deployed automation, working with a team that has production experience across all three can save significant time and prevent costly rework.</p>
+<p>If you're unsure which platform is right for your use case, or if you need to move quickly from decision to deployed automation, working with a <a href="/engage/managed-ai-engineer">team that has production experience</a> across all three can save significant time and prevent costly rework.</p>
     `,
   },
 
@@ -885,7 +885,7 @@ export const posts: Post[] = [
 
 <p>There's no such thing as a cheap MVP. There are MVPs that cost less upfront and much more in total — through slow timelines, rework, technical debt, and opportunity cost. And there are MVPs that cost more upfront and far less in total — through fast delivery, clean code, and a codebase that's a foundation rather than a liability.</p>
 
-<p>The question to ask isn't "how do I build the cheapest MVP?" The question is "how do I get the best outcome per dollar invested?" Those two questions have very different answers.</p>
+<p>The question to ask isn't "how do I build the cheapest MVP?" The question is "how do I get the best outcome per dollar invested?" Those two questions have very different answers. See how Kovil AI prices a <a href="/engage/outcome-based-project">fixed-price AI project</a> — scoped, built, and shipped with no surprises.</p>
     `,
   },
 
@@ -1061,7 +1061,7 @@ export const posts: Post[] = [
 
 <p>The companies that do it poorly get a system that confidently gives wrong answers — and discover, expensively, that a bad chatbot is worse than no chatbot at all.</p>
 
-<p>If you're building a chatbot for a customer-facing use case or a high-stakes internal application, the investment in doing it properly — clean knowledge base, careful prompt engineering, thorough testing, robust monitoring — is the difference between a tool that becomes a competitive advantage and one that becomes a support liability.</p>
+<p>If you're building a chatbot for a customer-facing use case or a high-stakes internal application, the investment in doing it properly — clean knowledge base, careful prompt engineering, thorough testing, robust monitoring — is the difference between a tool that becomes a competitive advantage and one that becomes a support liability. If you need a <a href="/engage/managed-ai-engineer">vetted AI engineer</a> to build it right, that's what we do.</p>
     `,
   },
 ];
