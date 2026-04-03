@@ -22,6 +22,7 @@ export const posts: Post[] = [
     readTime: "14 min read",
     author: "Kovil AI Team",
     featured: true,
+    heroImage: "/blog-ai-automation-nyc-ad-marketing-agencies.jpg",
     body: `
 <p>If you're running an ad agency or marketing agency in New York City right now, you're operating in one of the most competitive, talent-expensive, and client-demanding markets in the world. Overhead is brutal. Turnover is high. Clients expect faster turnarounds, lower fees, and measurable ROI on every dollar spent. And yet, most of the operational work that keeps your agency alive — campaign reporting, creative briefing, media planning, client updates, new business outreach — is still largely manual.</p>
 
