@@ -1,0 +1,20 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/icon.png/route": "/icon.png",
+  "/onlines/[...path]/page": "/onlines/[...path]",
+  "/about/page": "/about",
+  "/blog/page": "/blog",
+  "/apply/page": "/apply",
+  "/case-studies/page": "/case-studies",
+  "/contact/page": "/contact",
+  "/engage/app-rescue/page": "/engage/app-rescue",
+  "/case-studies/[slug]/page": "/case-studies/[slug]",
+  "/blog/[slug]/page": "/blog/[slug]",
+  "/engage/managed-ai-engineer/page": "/engage/managed-ai-engineer",
+  "/engage/outcome-based-project/page": "/engage/outcome-based-project",
+  "/frequently-asked-questions/page": "/frequently-asked-questions",
+  "/how-it-works/page": "/how-it-works",
+  "/page": "/",
+  "/terms/page": "/terms",
+  "/privacy/page": "/privacy"
+}

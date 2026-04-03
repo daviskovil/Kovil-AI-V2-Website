@@ -1,0 +1,20 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/icon.png/route": "app/icon.png/route.js",
+  "/onlines/[...path]/page": "app/onlines/[...path]/page.js",
+  "/about/page": "app/about/page.js",
+  "/blog/page": "app/blog/page.js",
+  "/apply/page": "app/apply/page.js",
+  "/case-studies/page": "app/case-studies/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/engage/app-rescue/page": "app/engage/app-rescue/page.js",
+  "/case-studies/[slug]/page": "app/case-studies/[slug]/page.js",
+  "/blog/[slug]/page": "app/blog/[slug]/page.js",
+  "/engage/managed-ai-engineer/page": "app/engage/managed-ai-engineer/page.js",
+  "/engage/outcome-based-project/page": "app/engage/outcome-based-project/page.js",
+  "/frequently-asked-questions/page": "app/frequently-asked-questions/page.js",
+  "/how-it-works/page": "app/how-it-works/page.js",
+  "/page": "app/page.js",
+  "/terms/page": "app/terms/page.js",
+  "/privacy/page": "app/privacy/page.js"
+}
