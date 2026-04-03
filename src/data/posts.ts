@@ -8,6 +8,7 @@ export interface Post {
   author: string;
   featured: boolean;
   body: string;
+  heroImage?: string;
   faqs?: { q: string; a: string }[];
 }
 
@@ -473,6 +474,7 @@ export const posts: Post[] = [
     readTime: "7 min read",
     author: "Kovil AI Team",
     featured: false,
+    heroImage: "/blog-software-maintenance-time-bomb.jpg",
     body: `
 <p>There's a moment that happens in most growing companies. The product shipped. Users are on board. Revenue is coming in. The founding team, exhausted from the build, turns their attention to sales, marketing, and fundraising. The codebase — the engine under the hood of the business — gets quietly moved to the back burner.</p>
 

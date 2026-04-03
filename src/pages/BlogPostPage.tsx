@@ -91,6 +91,17 @@ export default function BlogPostPage() {
           </div>
         </header>
 
+        {/* Hero image */}
+        {post.heroImage && (
+          <div className="mb-10 rounded-2xl overflow-hidden">
+            <img
+              src={post.heroImage}
+              alt={post.title}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        )}
+
         {/* Article body */}
         <div
           className="prose-content"
