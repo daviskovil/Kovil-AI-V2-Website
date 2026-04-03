@@ -17,7 +17,11 @@ const HOME_SCHEMA = [
     "url": "https://kovil.ai",
     "logo": "https://kovil.ai/kovil-logo-symbol.png",
     "description": "Kovil AI embeds vetted Tier-1 AI engineers into your team. Fixed-price AI projects, managed delivery, and AI app rescue.",
-    "sameAs": ["https://www.linkedin.com/company/kovil-ai/"],
+    "sameAs": [
+      "https://www.linkedin.com/company/kovil-ai/",
+      "https://clutch.co/profile/kovil-ai",
+      "https://www.crunchbase.com/organization/kovil-ai"
+    ],
     "contactPoint": { "@type": "ContactPoint", "email": "info@kovil.ai", "contactType": "customer support" }
   },
   {
@@ -44,9 +48,73 @@ const HOME_SCHEMA = [
     },
     "areaServed": "Worldwide",
     "priceRange": "$$",
-    "sameAs": ["https://www.linkedin.com/company/kovil-ai/"]
+    "sameAs": [
+      "https://www.linkedin.com/company/kovil-ai/",
+      "https://clutch.co/profile/kovil-ai",
+      "https://www.crunchbase.com/organization/kovil-ai"
+    ]
   }
 ]
+
+const HOWTO_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Hire an AI Engineer with Kovil AI in 14 Days",
+  "description": "Kovil AI matches you with a vetted Tier-1 AI engineer in 48 hours, starts a two-week trial, and ships your first feature within 14 days.",
+  "totalTime": "P14D",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Describe Your Needs",
+      "text": "Complete a brief intake form. Talk with a Hiring Specialist to define your AI project requirements, stack, and timeline."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Meet Your Expert",
+      "text": "Get matched with a vetted Tier-1 AI engineer in 24–48 hours. Meet your engineer and start a zero-commitment two-week trial."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Watch Results Roll In",
+      "text": "Your first feature ships within 14 days. Scale up or down as needed — keep your engineer or replace them, no questions asked."
+    }
+  ]
+}
+
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Kovil AI?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Kovil AI is a managed AI engineering firm that embeds vetted Tier-1 AI engineers into your team. We offer fixed-price AI project delivery, scalable team augmentation, and AI app rescue — all milestone-gated with zero delivery risk." }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can Kovil AI match me with an AI engineer?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most matches are made within 24–48 hours. Your engineer can start within a week, and your first feature typically ships within 14 days of kick-off." }
+    },
+    {
+      "@type": "Question",
+      "name": "What if the AI engineer isn't the right fit?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Kovil AI offers free rematching with no questions asked. You only pay if you decide to hire after the two-week trial period — zero commitment, zero termination fees." }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of AI projects does Kovil AI build?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Our engineers build AI agents, LLM-powered chatbots, RAG pipelines, workflow automations, and custom AI integrations across fintech, healthcare, e-commerce, logistics, and more." }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Kovil AI ensure delivery quality?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Every engineer is paired with an Engagement Manager who audits every commit. Projects are milestone-gated — you approve each phase before the next begins, ensuring zero delivery surprises." }
+    }
+  ]
+}
 
 const builderCards: { id: string; name: string; role: string; tags: string[]; result: string; resultSub: string; domainIcon: LucideIcon }[] = [
   {
@@ -310,6 +378,9 @@ function CaseStudyCarousel() {
 export default function HomePage() {
   return (
     <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_SCHEMA) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(HOWTO_SCHEMA) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
     <main className="pt-20">
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 pt-6 pb-16 lg:pt-10 lg:pb-24 overflow-hidden">
@@ -809,6 +880,28 @@ export default function HomePage() {
 
       {/* Case Studies Carousel */}
       <CaseStudyCarousel />
+
+      {/* FAQ Section */}
+      <section className="py-24 max-w-4xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-3">FAQ</p>
+          <h2 className="text-3xl md:text-4xl font-display font-bold tracking-tight">Frequently Asked Questions</h2>
+        </div>
+        <div className="space-y-4">
+          {[
+            { q: "What is Kovil AI?", a: "Kovil AI is a managed AI engineering firm that embeds vetted Tier-1 AI engineers into your team. We offer fixed-price AI project delivery, scalable team augmentation, and AI app rescue — all milestone-gated with zero delivery risk." },
+            { q: "How quickly can Kovil AI match me with an AI engineer?", a: "Most matches are made within 24–48 hours. Your engineer can start within a week, and your first feature typically ships within 14 days of kick-off." },
+            { q: "What if the AI engineer isn't the right fit?", a: "Kovil AI offers free rematching with no questions asked. You only pay if you decide to hire after the two-week trial period — zero commitment, zero termination fees." },
+            { q: "What types of AI projects does Kovil AI build?", a: "Our engineers build AI agents, LLM-powered chatbots, RAG pipelines, workflow automations, and custom AI integrations across fintech, healthcare, e-commerce, logistics, and more." },
+            { q: "How does Kovil AI ensure delivery quality?", a: "Every engineer is paired with an Engagement Manager who audits every commit. Projects are milestone-gated — you approve each phase before the next begins, ensuring zero delivery surprises." },
+          ].map((faq, i) => (
+            <div key={i} className="border border-border rounded-xl p-6">
+              <h3 className="font-semibold text-base mb-3">{faq.q}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Final CTA */}
       <section className="py-32 bg-accent/5 text-center px-6">
