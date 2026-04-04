@@ -190,13 +190,77 @@ export default function ApplyPage() {
   const handleNext = () => { if (validate(step)) setStep((s) => s + 1) }
   const handleBack = () => { setErrors({}); setStep((s) => s - 1) }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!validate(4)) return
-    // Bot protection checks
     if (form._honeypot) return // Honeypot triggered
     const elapsed = (Date.now() - formLoadTime.current) / 1000
     if (elapsed < 5) return // Too fast — likely a bot
-    // Here you would POST form data to your backend / CRM
+
+    const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
+    const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+    const applicationData = {
+      name: form.fullName,
+      email: form.email,
+      roles: [form.primaryRole],
+      linkedin_url: form.linkedin,
+      portfolio_url: form.github,
+      skills: [...form.specializations, ...form.languages, ...form.aiTools],
+      status: 'new',
+      notes: [
+        `Location: ${form.location} (${form.timezone})`,
+        `Experience: ${form.yearsExperience}`,
+        `Availability: ${form.availability}`,
+        `Rate: ${form.rateRange || 'Not specified'}`,
+        `Engagement: ${form.engagementType.join(', ')}`,
+        `How they heard: ${form.hearAboutUs}`,
+        form.impactProject ? `Impact project: ${form.impactProject}` : '',
+      ].filter(Boolean).join('\n'),
+    }
+
+    try {
+      // 1. Save to Supabase applications table
+      await fetch(`${SUPABASE_URL}/rest/v1/applications`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify(applicationData),
+      })
+
+      // 2. Send notification email (fire-and-forget)
+      fetch(`${SUPABASE_URL}/functions/v1/notify-application`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: form.fullName,
+          email: form.email,
+          phone: form.phone,
+          linkedin: form.linkedin,
+          github: form.github,
+          location: form.location,
+          timezone: form.timezone,
+          primaryRole: form.primaryRole,
+          yearsExperience: form.yearsExperience,
+          specializations: form.specializations,
+          languages: form.languages,
+          aiTools: form.aiTools,
+          impactProject: form.impactProject,
+          availability: form.availability,
+          engagementType: form.engagementType,
+          rateRange: form.rateRange,
+        }),
+      }).catch(err => console.error('Email notification error:', err))
+    } catch (err) {
+      console.error('Application submission error:', err)
+    }
+
     setSubmitted(true)
   }
 

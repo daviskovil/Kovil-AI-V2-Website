@@ -14,13 +14,50 @@ export default function ContactPage() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      setSubmitted(true)
-    }, 1200)
+
+    const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
+    const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+    const leadData = {
+      name: form.name,
+      company: form.company,
+      email: form.email,
+      engagement_type: form.role,
+      project_description: form.message,
+      source: 'contact_form',
+    }
+
+    try {
+      // 1. Save to Supabase leads table
+      await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify(leadData),
+      })
+
+      // 2. Send notification email (fire-and-forget)
+      fetch(`${SUPABASE_URL}/functions/v1/notify-lead`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(leadData),
+      }).catch(err => console.error('Email notification error:', err))
+    } catch (err) {
+      console.error('Contact form submission error:', err)
+    }
+
+    setLoading(false)
+    setSubmitted(true)
   }
 
   const contactMethods = [

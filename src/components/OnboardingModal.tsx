@@ -38,27 +38,43 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
       rescue: 'app_rescue',
     }
 
+    const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
+    const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+    const leadData = {
+      email: formData.email,
+      engagement_type: engagementMap[formData.goal] ?? formData.goal,
+      project_description: formData.details,
+      source: 'website',
+    }
+
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/leads`, {
+      // 1. Save lead to Supabase
+      await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
         method: 'POST',
         headers: {
-          'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
           'Content-Type': 'application/json',
           'Prefer': 'return=minimal',
         },
-        body: JSON.stringify({
-          email: formData.email,
-          engagement_type: engagementMap[formData.goal] ?? formData.goal,
-          project_description: formData.details,
-          source: 'website',
-        }),
+        body: JSON.stringify(leadData),
       })
+
+      // 2. Send notification email (fire-and-forget — don't block UX)
+      fetch(`${SUPABASE_URL}/functions/v1/notify-lead`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(leadData),
+      }).catch(err => console.error('Email notification error:', err))
     } catch (err) {
       console.error('Lead submission error:', err)
     }
 
-    handleNext() // Move to success step
+    handleNext() // Move to success step regardless
   }
 
   const resetForm = () => {
