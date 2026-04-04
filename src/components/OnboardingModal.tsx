@@ -29,9 +29,35 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
   const handleNext = () => setStep((s) => s + 1)
   const handleBack = () => setStep((s) => s - 1)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here we would typically send the data to a backend
+
+    const engagementMap: Record<string, string> = {
+      talent: 'managed_ai_builder',
+      project: 'outcome_project',
+      rescue: 'app_rescue',
+    }
+
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/leads`, {
+        method: 'POST',
+        headers: {
+          'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          engagement_type: engagementMap[formData.goal] ?? formData.goal,
+          project_description: formData.details,
+          source: 'website',
+        }),
+      })
+    } catch (err) {
+      console.error('Lead submission error:', err)
+    }
+
     handleNext() // Move to success step
   }
 
