@@ -116,6 +116,7 @@ export const posts: Post[] = [
 <li><strong>Foundation model selection:</strong> GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, Llama 3, or a specialised model? The right choice depends on performance benchmarks for your specific task type, cost per token at your expected query volume, latency requirements, and data privacy constraints.</li>
 <li><strong>Architecture:</strong> Simple prompt engineering, RAG pipeline, fine-tuning, or a multi-agent system? Each has different complexity, cost, and maintenance profiles.</li>
 <li><strong>Tool and integration design:</strong> For agentic systems, every tool the agent can call must be explicitly defined, tested, and bounded to prevent unintended actions.</li>
+<li><strong>Workflow automation layer:</strong> Many AI systems require an automation backbone. If you are choosing between n8n, Power Automate, Zapier, or Make, see our <a href="/blog/n8n-vs-zapier-vs-power-automate">2026 automation tool comparison</a> for a direct head-to-head breakdown.</li>
 </ul>
 
 <p><strong>Common failure at this phase:</strong> Over-engineering. Teams reach for complex multi-agent architectures or custom model training when a well-structured RAG pipeline with a strong foundation model would have solved the problem in a fraction of the time and cost.</p>
@@ -436,7 +437,7 @@ export const posts: Post[] = [
 <h2>The Four Core Types of AI Integration</h2>
 
 <h3>1. Workflow Automation</h3>
-<p>Workflow automation uses AI to eliminate repetitive, rule-based tasks from your team's day. <a href="https://n8n.io" target="_blank" rel="noopener">n8n</a>, <a href="https://zapier.com" target="_blank" rel="noopener">Zapier</a>, <a href="https://powerautomate.microsoft.com" target="_blank" rel="noopener">Power Automate</a>, and Workato let you build automated pipelines that respond to triggers — a new form submission, an incoming email, a status change in your CRM — and carry out multi-step actions automatically.</p>
+<p>Workflow automation uses AI to eliminate repetitive, rule-based tasks from your team's day. <a href="https://n8n.io" target="_blank" rel="noopener">n8n</a>, <a href="https://zapier.com" target="_blank" rel="noopener">Zapier</a>, <a href="https://powerautomate.microsoft.com" target="_blank" rel="noopener">Power Automate</a>, and Make let you build automated pipelines that respond to triggers — a new form submission, an incoming email, a status change in your CRM — and carry out multi-step actions automatically. Not sure which platform is right for your stack? See our <a href="/blog/n8n-vs-zapier-vs-power-automate">Power Automate vs n8n vs Zapier vs Make comparison</a> for an honest breakdown.</p>
 
 <p>A typical example: every time a lead fills out your contact form, an AI workflow enriches the record with company data, scores the lead based on fit criteria, assigns it to the right sales rep, drafts a personalised outreach email, and logs everything in your CRM — all without human involvement.</p>
 
@@ -524,6 +525,8 @@ export const posts: Post[] = [
 <p><strong>Step 4: Build with production in mind from day one.</strong> AI integrations that work in demos but fail in production are common and costly. Invest in proper testing, error handling, monitoring, and fallback logic from the start.</p>
 
 <p><strong>Step 5: Measure, iterate, and expand.</strong> Track the impact rigorously. What got faster? What got cheaper? What errors disappeared? Use those numbers to build the case for the next integration.</p>
+
+<p>For a deeper look at how to structure each phase of your AI project from scoping through production monitoring, see our guide to the <a href="/blog/ai-development-lifecycle">AI development lifecycle</a> — it covers every stage and the most common failure modes at each one.</p>
 
 <h2>When to Bring In an Integration Partner</h2>
 
@@ -1016,6 +1019,68 @@ export const posts: Post[] = [
 <h3>Best for</h3>
 <p>Companies already on Microsoft 365 who want to maximise their existing investment. Enterprises with strong IT governance requirements. Use cases heavily involving Microsoft products (SharePoint, Teams, Dynamics, Excel). Automation of legacy desktop applications requiring RPA capabilities.</p>
 
+<h2>Power Automate vs n8n: Head-to-Head Comparison</h2>
+
+<p>Of all the tool matchups in this guide, Power Automate vs n8n is the one that causes the most confusion — because they look similar on the surface (both handle complex workflows, both have enterprise clients) but are built for fundamentally different situations. Here is the honest, direct comparison.</p>
+
+<div style="overflow-x:auto;margin:1.5rem 0;">
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+  <thead>
+    <tr style="background:#f8f9fa;">
+      <th style="padding:12px 16px;text-align:left;border:1px solid #e2e8f0;font-weight:700;">Factor</th>
+      <th style="padding:12px 16px;text-align:left;border:1px solid #e2e8f0;font-weight:700;background:#fff8f1;color:#ea580c;">n8n</th>
+      <th style="padding:12px 16px;text-align:left;border:1px solid #e2e8f0;font-weight:700;">Power Automate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;font-weight:600;">Best for</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;">Technical teams needing complex, custom logic</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;">Microsoft 365 shops (Teams, SharePoint, Dynamics)</td>
+    </tr>
+    <tr style="background:#fafafa;">
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;font-weight:600;">Cost model</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;">Free if self-hosted — infrastructure costs only (~$10–50/mo)</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;">Included in M365 plans — premium connectors extra</td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;font-weight:600;">Setup complexity</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;">Medium — needs a developer; self-hosting requires DevOps</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;">Medium-high — complex licensing; steep learning curve</td>
+    </tr>
+    <tr style="background:#fafafa;">
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;font-weight:600;">Data control</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;color:#16a34a;font-weight:600;">✓ Full control — self-host for data residency requirements</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;">Enterprise governance, but data flows through Microsoft cloud</td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;font-weight:600;">Custom logic / code</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;color:#16a34a;font-weight:600;">✓ Native JS and Python code nodes</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;">Limited — expressions and basic conditions only</td>
+    </tr>
+    <tr style="background:#fafafa;">
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;font-weight:600;">Non-Microsoft integrations</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;color:#16a34a;font-weight:600;">✓ 400+ native + extensible via HTTP</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;">Weaker — connectors less robust outside Microsoft ecosystem</td>
+    </tr>
+    <tr>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;font-weight:600;">RPA (desktop automation)</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;">✗ Not supported</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;color:#16a34a;font-weight:600;">✓ Power Automate Desktop — strong RPA capabilities</td>
+    </tr>
+    <tr style="background:#fafafa;">
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;font-weight:600;">Scale economics</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;color:#16a34a;font-weight:600;">✓ No per-task pricing — costs flat as volume grows</td>
+      <td style="padding:11px 16px;border:1px solid #e2e8f0;">Premium flow costs escalate — $100/flow/mo for advanced</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>The verdict:</strong> Choose n8n if you have a developer on the team, need custom code in workflows, or run high task volumes where per-flow pricing would hurt. Choose Power Automate if you're already deep in the Microsoft 365 ecosystem — it integrates better with SharePoint, Teams, and Dynamics than any other tool, and you're likely already paying for it.</p>
+
+<p>If your company has <em>both</em> heavy Microsoft usage and complex custom automation needs, the winning architecture is often Power Automate for Microsoft-specific triggers and n8n for everything else.</p>
+
 <h2>Head-to-Head: Key Decision Factors</h2>
 
 <h3>Ease of use</h3>
@@ -1053,7 +1118,7 @@ export const posts: Post[] = [
 
 <p>What's clear is that all three platforms can deliver significant operational leverage when applied to the right problems by people who know them well. The mistake to avoid is choosing a platform based on name recognition or a free trial — choose based on a clear-eyed assessment of your requirements and the long-term cost of ownership.</p>
 
-<p>If you're unsure which platform is right for your use case, or if you need to move quickly from decision to deployed automation, working with a <a href="/engage/managed-ai-engineer">team that has production experience</a> across all three can save significant time and prevent costly rework.</p>
+<p>If you're unsure which platform is right for your use case, or if you need to move quickly from decision to deployed automation, working with a <a href="/engage/managed-ai-engineer">managed AI engineer</a> who has production experience across all three platforms can save significant time and prevent costly rework.</p>
     `,
   },
 

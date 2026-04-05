@@ -73,9 +73,9 @@ const included = [
 ]
 
 const forWho = [
-  { label: "Growing Startups", desc: "Need AI velocity without building a full in-house team. Get an engineer embedded immediately." },
-  { label: "Enterprises Augmenting Teams", desc: "Your team has direction but needs specialist AI execution. We slot in without friction." },
-  { label: "CTOs & Heads of Engineering", desc: "Want reliable AI delivery without managing freelancers, agencies, or offshore vendors." },
+  { label: "Startups Hiring AI Engineers", desc: "Building AI features fast without the cost and delay of a full in-house AI hire. Get a vetted Tier-1 engineer embedded in 48 hours — not 3 months." },
+  { label: "Enterprises Augmenting Teams", desc: "Your team has direction but needs specialist AI execution. We slot in without friction, Engagement Manager included." },
+  { label: "CTOs & Heads of Engineering", desc: "Want reliable AI delivery without managing freelancers, agencies, or offshore vendors. One point of contact. Sprint-gated outcomes." },
 ]
 
 const timeline = [
