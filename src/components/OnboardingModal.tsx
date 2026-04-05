@@ -24,13 +24,41 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
     goal: defaultGoal,
     details: "",
     email: "",
+    firstName: "",
+    lastName: "",
+    countryCode: "+1",
+    phone: "",
   })
+  const [emailError, setEmailError] = useState("")
+
+  const BLOCKED_DOMAINS = [
+    'gmail.com','googlemail.com','hotmail.com','hotmail.co.uk','hotmail.fr',
+    'outlook.com','outlook.in','outlook.co.uk','live.com','msn.com',
+    'yahoo.com','yahoo.co.uk','yahoo.in','yahoo.fr','yahoo.de',
+    'icloud.com','me.com','mac.com','aol.com','protonmail.com',
+    'proton.me','zoho.com','yandex.com','yandex.ru','mail.com',
+    'inbox.com','gmx.com','gmx.net','rediffmail.com','tutanota.com',
+  ]
+
+  const validateCorporateEmail = (email: string): string => {
+    if (!email.includes('@')) return ''
+    const domain = email.split('@')[1]?.toLowerCase()
+    if (!domain) return ''
+    if (BLOCKED_DOMAINS.includes(domain)) {
+      return 'Please use your corporate email address — personal emails are not accepted.'
+    }
+    return ''
+  }
 
   const handleNext = () => setStep((s) => s + 1)
   const handleBack = () => setStep((s) => s - 1)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Validate corporate email before submitting
+    const emailErr = validateCorporateEmail(formData.email)
+    if (emailErr) { setEmailError(emailErr); return }
 
     const engagementMap: Record<string, string> = {
       talent: 'managed_ai_builder',
@@ -41,11 +69,16 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
     const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
     const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
+    const fullName = [formData.firstName, formData.lastName].filter(Boolean).join(' ')
+    const phoneWithCode = formData.phone ? `${formData.countryCode} ${formData.phone}` : ''
+
     const leadData = {
+      name: fullName,
       email: formData.email,
       engagement_type: engagementMap[formData.goal] ?? formData.goal,
       project_description: formData.details,
       source: 'website',
+      notes: phoneWithCode ? `Phone: ${phoneWithCode}` : undefined,
     }
 
     try {
@@ -79,7 +112,8 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
 
   const resetForm = () => {
     setStep(1)
-    setFormData({ goal: defaultGoal, details: "", email: "" })
+    setFormData({ goal: defaultGoal, details: "", email: "", firstName: "", lastName: "", countryCode: "+1", phone: "" })
+    setEmailError("")
   }
 
   return (
@@ -205,18 +239,95 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
                     <h2 className="text-2xl sm:text-3xl font-display font-semibold">Where should we reach you?</h2>
                     <p className="text-muted-foreground">We'll get back to you within 24 hours.</p>
                   </div>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <Input
-                      type="email"
-                      placeholder="name@company.com"
-                      className="h-14 text-lg rounded-xl"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                    />
-                    <div className="pt-4 flex justify-between">
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* First Name + Last Name */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1.5">
+                        <Label className="text-sm font-medium">
+                          First Name <span className="text-accent">*</span>
+                        </Label>
+                        <Input
+                          type="text"
+                          placeholder="Jane"
+                          className="h-11 rounded-xl"
+                          value={formData.firstName}
+                          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-1.5">
+                        <Label className="text-sm font-medium text-muted-foreground">
+                          Last Name <span className="text-xs">(optional)</span>
+                        </Label>
+                        <Input
+                          type="text"
+                          placeholder="Smith"
+                          className="h-11 rounded-xl"
+                          value={formData.lastName}
+                          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Corporate Email */}
+                    <div className="space-y-1.5">
+                      <Label className="text-sm font-medium">
+                        Corporate Email <span className="text-accent">*</span>
+                      </Label>
+                      <Input
+                        type="email"
+                        placeholder="jane@company.com"
+                        className={`h-11 rounded-xl ${emailError ? 'border-red-400 focus-visible:ring-red-400' : ''}`}
+                        value={formData.email}
+                        onChange={(e) => {
+                          setFormData({ ...formData, email: e.target.value })
+                          if (emailError) setEmailError(validateCorporateEmail(e.target.value))
+                        }}
+                        required
+                      />
+                      {emailError && (
+                        <p className="text-xs text-red-500 mt-1">{emailError}</p>
+                      )}
+                    </div>
+
+                    {/* Phone (optional) */}
+                    <div className="space-y-1.5">
+                      <Label className="text-sm font-medium text-muted-foreground">
+                        Phone <span className="text-xs">(optional)</span>
+                      </Label>
+                      <div className="flex gap-2">
+                        <select
+                          value={formData.countryCode}
+                          onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
+                          className="h-11 w-28 rounded-xl border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-0 shrink-0"
+                        >
+                          {[
+                            ["+1","🇺🇸 +1"],["+44","🇬🇧 +44"],["+91","🇮🇳 +91"],
+                            ["+61","🇦🇺 +61"],["+971","🇦🇪 +971"],["+65","🇸🇬 +65"],
+                            ["+49","🇩🇪 +49"],["+33","🇫🇷 +33"],["+81","🇯🇵 +81"],
+                            ["+86","🇨🇳 +86"],["+55","🇧🇷 +55"],["+27","🇿🇦 +27"],
+                            ["+234","🇳🇬 +234"],["+254","🇰🇪 +254"],
+                          ].map(([val, label]) => (
+                            <option key={val} value={val}>{label}</option>
+                          ))}
+                        </select>
+                        <Input
+                          type="tel"
+                          placeholder="Phone number"
+                          className="h-11 rounded-xl flex-1"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex justify-between">
                       <Button type="button" variant="ghost" onClick={handleBack}>Back</Button>
-                      <Button type="submit" disabled={!formData.email.includes("@")} className="bg-accent text-accent-foreground hover:bg-accent/90">
+                      <Button
+                        type="submit"
+                        disabled={!formData.email.includes("@") || !formData.firstName.trim()}
+                        className="bg-accent text-accent-foreground hover:bg-accent/90"
+                      >
                         Submit Request
                       </Button>
                     </div>
