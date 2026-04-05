@@ -244,6 +244,24 @@ export default function ApplyPage() {
     const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
     const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
+    // Upload resume to Supabase Storage
+    let resume_url: string | null = null
+    if (form.resume) {
+      const ext = form.resume.name.split('.').pop()
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
+      const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/resumes/${fileName}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': form.resume.type,
+        },
+        body: form.resume,
+      })
+      if (uploadRes.ok) {
+        resume_url = `${SUPABASE_URL}/storage/v1/object/resumes/${fileName}`
+      }
+    }
+
     // Build full skills list including "other" text
     const allSkills = [
       ...form.specializations,
@@ -274,6 +292,7 @@ export default function ApplyPage() {
       ],
       languages: [...form.languages, ...(form.languageOther ? [`Other: ${form.languageOther}`] : [])],
       referral_source: form.hearAboutUs,
+      resume_url,
       status: 'new',
       notes: [
         `Location: ${form.location}`,
