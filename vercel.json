@@ -31,7 +31,26 @@
     { "source": "/what-is-the-ai-development-lifecycle",   "destination": "/blog/what-is-ai-integration", "permanent": true },
     { "source": "/what-is-the-ai-development-lifecycle/",  "destination": "/blog/what-is-ai-integration", "permanent": true },
     { "source": "/top-ai-platforms",                       "destination": "/",                            "permanent": true },
-    { "source": "/top-ai-platforms/",                      "destination": "/",                            "permanent": true }
+    { "source": "/top-ai-platforms/",                      "destination": "/",                            "permanent": true },
+
+    { "source": "/llm-engineers",                          "destination": "/engage/managed-ai-engineer",  "permanent": true },
+    { "source": "/llm-engineers/",                         "destination": "/engage/managed-ai-engineer",  "permanent": true },
+    { "source": "/hire-machine-learning-engineer-offshore-at-low-cost", "destination": "/engage/managed-ai-engineer", "permanent": true },
+    { "source": "/hire-machine-learning-engineer-offshore-at-low-cost/","destination": "/engage/managed-ai-engineer", "permanent": true },
+    { "source": "/ai-product-manager",                     "destination": "/engage/managed-ai-engineer",  "permanent": true },
+    { "source": "/ai-product-manager/",                    "destination": "/engage/managed-ai-engineer",  "permanent": true },
+    { "source": "/adobe-experience-manager-aem-developer", "destination": "/engage/managed-ai-engineer",  "permanent": true },
+    { "source": "/adobe-experience-manager-aem-developer/","destination": "/engage/managed-ai-engineer",  "permanent": true },
+    { "source": "/8-essential-tools-for-managing-remote-full-stack-development-teams",  "destination": "/blog", "permanent": true },
+    { "source": "/8-essential-tools-for-managing-remote-full-stack-development-teams/", "destination": "/blog", "permanent": true },
+    { "source": "/accessing-a-vast-talent-pool-why-india-is-the-hub-for-full-stack-developers",  "destination": "/blog", "permanent": true },
+    { "source": "/accessing-a-vast-talent-pool-why-india-is-the-hub-for-full-stack-developers/", "destination": "/blog", "permanent": true },
+    { "source": "/web",                                    "destination": "/",                            "permanent": true },
+    { "source": "/web/",                                   "destination": "/",                            "permanent": true },
+    { "source": "/codifyer-ai",                            "destination": "/",                            "permanent": true },
+    { "source": "/codifyer-ai/",                           "destination": "/",                            "permanent": true },
+    { "source": "/category/blog/:path*",                   "destination": "/blog",                        "permanent": true },
+    { "source": "/category/:path*",                        "destination": "/blog",                        "permanent": true }
   ],
   "headers": [
     {
