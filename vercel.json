@@ -28,8 +28,8 @@
     { "source": "/faqs",                                   "destination": "/frequently-asked-questions", "permanent": true },
     { "source": "/power-automate-vs-zapier-vs-n8n-vs-make-which-workflow-automation-tool-should-your-team-master-2025", "destination": "/blog/n8n-vs-zapier-vs-power-automate", "permanent": true },
     { "source": "/power-automate-vs-zapier-vs-n8n-vs-make-which-workflow-automation-tool-should-your-team-master-2025/", "destination": "/blog/n8n-vs-zapier-vs-power-automate", "permanent": true },
-    { "source": "/what-is-the-ai-development-lifecycle",   "destination": "/blog/what-is-ai-integration", "permanent": true },
-    { "source": "/what-is-the-ai-development-lifecycle/",  "destination": "/blog/what-is-ai-integration", "permanent": true },
+    { "source": "/what-is-the-ai-development-lifecycle",   "destination": "/blog/ai-development-lifecycle", "permanent": true },
+    { "source": "/what-is-the-ai-development-lifecycle/",  "destination": "/blog/ai-development-lifecycle", "permanent": true },
     { "source": "/top-ai-platforms",                       "destination": "/",                            "permanent": true },
     { "source": "/top-ai-platforms/",                      "destination": "/",                            "permanent": true },
 
