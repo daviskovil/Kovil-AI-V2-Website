@@ -258,7 +258,7 @@ export default function ApplyPage() {
         body: form.resume,
       })
       if (uploadRes.ok) {
-        resume_url = `${SUPABASE_URL}/storage/v1/object/resumes/${fileName}`
+        resume_url = `${SUPABASE_URL}/storage/v1/object/public/resumes/${fileName}`
       }
     }
 
