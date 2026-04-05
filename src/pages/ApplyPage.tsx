@@ -257,20 +257,28 @@ export default function ApplyPage() {
     ]
 
     const applicationData = {
-      name: form.fullName,
+      full_name: form.fullName,
       email: form.email,
-      roles: [form.primaryRole === 'Other' && form.primaryRoleOther ? form.primaryRoleOther : form.primaryRole],
+      phone: form.phone || null,
+      role: form.primaryRole === 'Other' && form.primaryRoleOther ? form.primaryRoleOther : form.primaryRole,
       linkedin_url: form.linkedin,
-      portfolio_url: form.github,
-      skills: allSkills,
+      portfolio_url: form.github || null,
+      timezone: form.timezone,
+      availability: form.availability.join(', '),
+      specializations: [...form.specializations, ...(form.specializationOther ? [`Other: ${form.specializationOther}`] : [])],
+      tech_stack: [
+        ...form.aiTools,
+        ...(form.aiToolOther ? [`Other: ${form.aiToolOther}`] : []),
+        ...form.cloudPlatforms,
+        ...(form.cloudOther ? [`Other: ${form.cloudOther}`] : []),
+      ],
+      languages: [...form.languages, ...(form.languageOther ? [`Other: ${form.languageOther}`] : [])],
+      referral_source: form.hearAboutUs,
       status: 'new',
       notes: [
-        `Location: ${form.location} (${form.timezone})`,
-        `Phone: ${form.phone || 'Not provided'}`,
+        `Location: ${form.location}`,
         `Experience: ${form.yearsExperience}`,
-        `Availability: ${form.availability.join(', ')}`,
         `Industries: ${[...form.industries, ...(form.industryOther ? [`Other: ${form.industryOther}`] : [])].join(', ') || 'Not specified'}`,
-        `How they heard: ${form.hearAboutUs}`,
         form.impactProject ? `Impact project: ${form.impactProject}` : '',
       ].filter(Boolean).join('\n'),
     }
