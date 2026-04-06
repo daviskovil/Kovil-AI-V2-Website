@@ -48,8 +48,6 @@ export const posts: Post[] = [
       },
     ],
     body: `
-<img src="/AI-Development-Lifecycle.png" alt="The AI Development Lifecycle: A Complete Guide" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
-
 <p>More than 80% of AI projects never reach production. That number has barely moved despite massive improvements in the underlying technology. The models are better. The tooling is better. The compute is cheaper. And yet most AI projects still fail.</p>
 
 <p>The reason is almost never the technology. It is the process. Teams skip phases, rush past critical checkpoints, and discover fatal problems too late — after weeks or months of work. Understanding the AI development lifecycle is the single most important thing a business leader can do before committing to an AI project.</p>
