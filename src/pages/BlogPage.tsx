@@ -1,7 +1,8 @@
 'use client'
 
+import { useState, useMemo } from "react"
 import Link from "next/link"
-import { ArrowRight, Clock, Tag } from "lucide-react"
+import { Clock, Search, ArrowRight } from "lucide-react"
 import { posts } from "../data/posts"
 
 const BLOG_SCHEMA = {
@@ -22,88 +23,227 @@ const BREADCRUMB_SCHEMA = {
   ]
 }
 
+// Category color accents for placeholder cards
+const CATEGORY_COLORS: Record<string, string> = {
+  "AI Engineering":   "from-orange-950/60 to-orange-900/30",
+  "AI Automation":    "from-amber-950/60 to-amber-900/30",
+  "Product":          "from-zinc-800/60 to-zinc-700/30",
+  "Software":         "from-slate-800/60 to-slate-700/30",
+}
+
+function categoryGradient(cat: string) {
+  return CATEGORY_COLORS[cat] ?? "from-zinc-800/60 to-zinc-700/30"
+}
+
 export default function BlogPage() {
-  const sorted = [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  const featured = sorted.find((p) => p.featured)
-  const rest = sorted.filter((p) => !p.featured)
+  const [query, setQuery]               = useState("")
+  const [activeCategory, setActiveCategory] = useState<string | null>(null)
+
+  const sorted = useMemo(
+    () => [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
+    []
+  )
+
+  // Category counts
+  const categories = useMemo(() => {
+    const map: Record<string, number> = {}
+    posts.forEach((p) => { map[p.category] = (map[p.category] || 0) + 1 })
+    return Object.entries(map).sort((a, b) => b[1] - a[1])
+  }, [])
+
+  // Unique topic tags
+  const tags = useMemo(() => Array.from(new Set(posts.map((p) => p.category))), [])
+
+  // Filtered list
+  const filtered = useMemo(() => {
+    let result = sorted
+    if (activeCategory) result = result.filter((p) => p.category === activeCategory)
+    if (query.trim()) {
+      const q = query.toLowerCase()
+      result = result.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.excerpt.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
+      )
+    }
+    return result
+  }, [sorted, activeCategory, query])
+
+  function toggleCategory(cat: string) {
+    setActiveCategory((prev) => (prev === cat ? null : cat))
+  }
 
   return (
     <>
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <section className="max-w-7xl mx-auto px-6 pt-16 pb-12">
-        <div className="max-w-2xl">
-          <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Blog</p>
-          <h1 className="font-display font-bold text-5xl lg:text-6xl tracking-tight text-balance leading-[1.05] mb-4">
-            Insights on AI Engineering
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Practical guides, case breakdowns, and opinions on building with AI.
-          </p>
-        </div>
-        <div className="mt-10 h-px bg-border relative">
-          <div className="absolute left-0 top-0 h-px w-24 bg-accent" />
-        </div>
-      </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BLOG_SCHEMA) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_SCHEMA) }} />
 
-      <div className="max-w-7xl mx-auto px-6 pb-24">
-        {/* Featured post */}
-        {featured && (
-          <Link href={`/blog/${featured.slug}`}
-            className="group block mb-16 rounded-2xl border border-border bg-muted/30 hover:border-accent/40 hover:bg-muted/50 transition-all overflow-hidden relative"
-          >
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-accent/30 group-hover:bg-accent transition-colors" />
-            <div className="p-8 lg:p-12">
-              <div className="flex items-center gap-3 mb-5">
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent uppercase tracking-widest">
-                  <Tag className="h-3 w-3" /> Featured
-                </span>
-                <span className="text-muted-foreground text-sm">·</span>
-                <span className="text-sm text-muted-foreground">{featured.category}</span>
+      <div className="min-h-screen bg-background text-foreground">
+
+        {/* ── Page header ── */}
+        <section className="bg-muted/30 border-b border-border">
+          <div className="max-w-7xl mx-auto px-6 py-12">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h1 className="font-display font-bold text-4xl lg:text-5xl tracking-tight mb-2">Blog</h1>
+                <p className="text-muted-foreground text-lg">
+                  Practical guides on AI engineering, deployment, and automation.
+                </p>
               </div>
-              <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight text-balance leading-tight mb-4 group-hover:text-accent transition-colors">
-                {featured.title}
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mb-6">
-                {featured.excerpt}
-              </p>
-              <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                <span className="flex items-center gap-1.5"><Clock className="h-4 w-4" />{featured.readTime}</span>
-                <span>{featured.date}</span>
-                <span className="flex items-center gap-1 font-medium text-accent group-hover:gap-2 transition-all">
-                  Read article <ArrowRight className="h-4 w-4" />
-                </span>
-              </div>
+              {/* Breadcrumb */}
+              <nav className="hidden md:flex items-center gap-2 text-sm text-muted-foreground mt-1 shrink-0">
+                <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+                <span>›</span>
+                <span className="text-foreground font-medium">Blog</span>
+              </nav>
             </div>
-          </Link>
-        )}
+          </div>
+        </section>
 
-        {/* Rest of posts */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {rest.map((post) => (
-            <Link key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="group flex flex-col rounded-2xl border border-border hover:border-accent/40 bg-muted/20 hover:bg-muted/40 transition-all p-6 relative overflow-hidden"
-            >
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-accent/20 group-hover:bg-accent/60 transition-colors" />
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-xs font-semibold text-accent uppercase tracking-widest">{post.category}</span>
+        {/* ── Main content + sidebar ── */}
+        <div className="max-w-7xl mx-auto px-6 py-12 pb-24">
+          <div className="flex flex-col lg:flex-row gap-10 items-start">
+
+            {/* ── Posts grid ── */}
+            <main className="flex-1 min-w-0">
+              {filtered.length === 0 ? (
+                <div className="py-16 text-center text-muted-foreground">
+                  <p className="text-lg font-medium mb-1">No articles found</p>
+                  <p className="text-sm">Try a different search term or category.</p>
+                </div>
+              ) : (
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {filtered.map((post) => (
+                    <Link
+                      key={post.slug}
+                      href={`/blog/${post.slug}`}
+                      className="group flex flex-col border border-border rounded-2xl overflow-hidden hover:border-accent/50 hover:shadow-md transition-all bg-background"
+                    >
+                      {/* Thumbnail */}
+                      {post.heroImage ? (
+                        <div className="aspect-[16/9] overflow-hidden bg-muted shrink-0">
+                          <img
+                            src={post.heroImage}
+                            alt={post.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      ) : (
+                        <div className={`aspect-[16/9] shrink-0 bg-gradient-to-br ${categoryGradient(post.category)} flex items-center justify-center`}>
+                          <span className="text-xs font-semibold text-accent/80 uppercase tracking-widest px-4 text-center">
+                            {post.category}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Card body */}
+                      <div className="p-6 flex flex-col flex-1">
+                        <span className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">
+                          {post.category}
+                        </span>
+                        <h2 className="font-display font-bold text-lg leading-snug mb-3 group-hover:text-accent transition-colors line-clamp-2 flex-1">
+                          {post.title}
+                        </h2>
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-5 line-clamp-2">
+                          {post.excerpt}
+                        </p>
+                        <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/60">
+                          <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                            <Clock className="h-3 w-3" />
+                            {post.readTime}
+                          </span>
+                          <span className="text-xs font-semibold text-accent uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Read article <ArrowRight className="h-3 w-3" />
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </main>
+
+            {/* ── Sidebar ── */}
+            <aside className="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-8 space-y-5">
+
+              {/* Search */}
+              <div className="border border-border rounded-2xl p-5">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                  <input
+                    type="text"
+                    placeholder="Search articles..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2.5 text-sm bg-muted/40 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30 placeholder:text-muted-foreground transition-shadow"
+                  />
+                </div>
               </div>
-              <h3 className="font-display font-bold text-xl tracking-tight leading-snug mb-3 group-hover:text-accent transition-colors flex-1">
-                {post.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5 line-clamp-3">
-                {post.excerpt}
-              </p>
-              <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto pt-4 border-t border-border">
-                <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{post.readTime}</span>
-                <span>{post.date}</span>
+
+              {/* Categories */}
+              <div className="border border-border rounded-2xl p-5">
+                <h3 className="font-display font-semibold text-base mb-4">Categories</h3>
+                <ul className="space-y-1">
+                  <li>
+                    <button
+                      onClick={() => setActiveCategory(null)}
+                      className={`w-full flex items-center justify-between text-sm py-1.5 px-2 rounded-lg transition-colors ${
+                        !activeCategory
+                          ? "text-accent font-semibold bg-accent/5"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      }`}
+                    >
+                      <span>All Articles</span>
+                      <span className="text-xs bg-muted px-2 py-0.5 rounded-full tabular-nums">
+                        {posts.length}
+                      </span>
+                    </button>
+                  </li>
+                  {categories.map(([cat, count]) => (
+                    <li key={cat}>
+                      <button
+                        onClick={() => toggleCategory(cat)}
+                        className={`w-full flex items-center justify-between text-sm py-1.5 px-2 rounded-lg transition-colors ${
+                          activeCategory === cat
+                            ? "text-accent font-semibold bg-accent/5"
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        }`}
+                      >
+                        <span>{cat}</span>
+                        <span className="text-xs bg-muted px-2 py-0.5 rounded-full tabular-nums">
+                          {count}
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </Link>
-          ))}
+
+              {/* Topics (tag cloud) */}
+              <div className="border border-border rounded-2xl p-5">
+                <h3 className="font-display font-semibold text-base mb-4">Topics</h3>
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => toggleCategory(tag)}
+                      className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                        activeCategory === tag
+                          ? "bg-accent text-white border-accent"
+                          : "border-border text-muted-foreground hover:border-accent/50 hover:text-foreground"
+                      }`}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+            </aside>
+          </div>
         </div>
       </div>
-    </div>
     </>
   )
 }

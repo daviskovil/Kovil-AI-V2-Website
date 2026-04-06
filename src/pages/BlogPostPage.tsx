@@ -48,22 +48,39 @@ function injectHeadingIds(html: string): string {
 // ─── TOC Component ───────────────────────────────────────────────────────────
 
 function TocList({ headings }: { headings: Heading[] }) {
+  // Number only H2s
+  let h2Counter = 0
+  const items = headings.map((h) => {
+    if (h.level === 2) { h2Counter++; return { ...h, num: h2Counter } }
+    return { ...h, num: null }
+  })
+
   return (
-    <ul className="space-y-1">
-      {headings.map((h) => (
-        <li key={h.id} style={{ paddingLeft: h.level === 3 ? "0.85rem" : "0" }}>
+    <ol className="space-y-1.5">
+      {items.map((h) => (
+        <li
+          key={h.id}
+          className={h.level === 3 ? "pl-4" : ""}
+        >
           <a
             href={`#${h.id}`}
             className={[
-              "block text-sm leading-snug transition-colors hover:text-foreground",
-              h.level === 2 ? "text-muted-foreground" : "text-muted-foreground/70",
+              "flex items-baseline gap-1.5 text-sm leading-snug transition-colors hover:text-accent",
+              h.level === 2 ? "text-foreground/80" : "text-muted-foreground",
             ].join(" ")}
           >
-            {h.text}
+            {h.level === 2 ? (
+              <span className="shrink-0 tabular-nums text-muted-foreground text-xs w-4">
+                {h.num}.
+              </span>
+            ) : (
+              <span className="shrink-0 text-muted-foreground/60 text-xs">○</span>
+            )}
+            <span>{h.text}</span>
           </a>
         </li>
       ))}
-    </ul>
+    </ol>
   )
 }
 
@@ -135,7 +152,7 @@ export default function BlogPostPage() {
 
         {/* Content wrapper — single col on mobile, sidebar layout on xl */}
         <div className="max-w-6xl mx-auto px-6 pb-24">
-          <div className={showToc ? "xl:flex xl:gap-16 xl:items-start" : ""}>
+          <div className={showToc ? "xl:flex xl:gap-16" : ""}>
 
             {/* ── Article ── */}
             <article className="min-w-0 flex-1 max-w-3xl">
@@ -176,7 +193,9 @@ export default function BlogPostPage() {
                   </button>
                   {tocOpen && (
                     <div className="px-5 pb-5 border-t border-border pt-4">
-                      <TocList headings={headings} />
+                      <div className="border-l-2 border-border pl-4">
+                        <TocList headings={headings} />
+                      </div>
                     </div>
                   )}
                 </div>
@@ -214,10 +233,14 @@ export default function BlogPostPage() {
 
             {/* ── Desktop TOC sidebar — sticky, xl only ── */}
             {showToc && (
-              <aside className="hidden xl:block w-56 shrink-0 pt-2">
-                <div className="sticky top-8 border border-border rounded-xl p-5">
-                  <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-4">On this page</p>
-                  <TocList headings={headings} />
+              <aside className="hidden xl:block w-52 shrink-0 pt-2">
+                <div className="sticky top-8">
+                  <p className="text-[11px] font-bold text-foreground uppercase tracking-widest mb-3">
+                    Contents
+                  </p>
+                  <div className="border-l-2 border-border pl-4">
+                    <TocList headings={headings} />
+                  </div>
                 </div>
               </aside>
             )}
