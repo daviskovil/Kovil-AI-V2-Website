@@ -24,7 +24,7 @@ export const posts: Post[] = [
     readTime: "12 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-ai-development-lifecycle.jpg",
+    heroImage: "/AI-Development-Lifecycle.png",
     faqs: [
       {
         q: "What is the AI development lifecycle?",
@@ -48,7 +48,7 @@ export const posts: Post[] = [
       },
     ],
     body: `
-<img src="/blog-ai-development-lifecycle.jpg" alt="The AI Development Lifecycle: A Complete Guide" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+<img src="/AI-Development-Lifecycle.png" alt="The AI Development Lifecycle: A Complete Guide" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
 
 <p>More than 80% of AI projects never reach production. That number has barely moved despite massive improvements in the underlying technology. The models are better. The tooling is better. The compute is cheaper. And yet most AI projects still fail.</p>
 
