@@ -26,5 +26,26 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params
   const post = getPost(slug)
   if (!post) notFound()
-  return <div className="pt-20"><BlogPostPage /></div>
+
+  const faqSchema = post.faqs && post.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  } : null
+
+  return (
+    <>
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      <div className="pt-20"><BlogPostPage /></div>
+    </>
+  )
 }

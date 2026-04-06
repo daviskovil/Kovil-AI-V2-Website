@@ -460,6 +460,12 @@ export const posts: Post[] = [
 
 <p>These integrations can reduce manual data entry by 80-95%, eliminate human error in document processing, and dramatically reduce the cost of operations that currently require large teams of people doing repetitive review tasks.</p>
 
+<h2>How AI Integration Fits Into the Broader AI Development Lifecycle</h2>
+
+<p>AI integration is one phase of a longer journey. Once you have identified a business process to automate or augment, you're entering what practitioners call the <a href="/blog/ai-development-lifecycle">AI development lifecycle</a> — the structured sequence of phases from problem definition through to production deployment and ongoing monitoring.</p>
+
+<p>Understanding the full lifecycle matters because the most common integration failures aren't technical — they happen when teams skip critical phases: rushing past data validation, skipping evaluation, or treating deployment as the finish line rather than the start of a monitoring discipline. If you're planning your first AI integration, reading about <a href="/blog/ai-development-lifecycle">what the AI development lifecycle looks like end-to-end</a> will help you set realistic timelines and avoid the pitfalls that derail most projects.</p>
+
 <h2>Why Now? The 2026 AI Integration Imperative</h2>
 
 <p>The conversation about AI integration has been building for years, but 2026 marks a genuine inflection point for several reasons.</p>
@@ -1018,6 +1024,33 @@ export const posts: Post[] = [
 
 <h3>Best for</h3>
 <p>Companies already on Microsoft 365 who want to maximise their existing investment. Enterprises with strong IT governance requirements. Use cases heavily involving Microsoft products (SharePoint, Teams, Dynamics, Excel). Automation of legacy desktop applications requiring RPA capabilities.</p>
+
+<h2>Make (Integromat): The Visual Builder's Choice</h2>
+
+<h3>What it is</h3>
+<p><a href="https://www.make.com" target="_blank" rel="noopener">Make</a> (formerly Integromat) is a visual automation platform that sits between Zapier's simplicity and n8n's power. Its scenario-based builder uses a drag-and-drop canvas that makes complex, multi-path workflows much easier to visualize and build than Zapier's linear model — without requiring the developer expertise that n8n demands.</p>
+
+<h3>Strengths</h3>
+<p><strong>Visual clarity.</strong> Make's canvas-based interface is the most visually intuitive of the four platforms for complex workflows. Multiple branches, conditional paths, and loops are easy to see and follow at a glance.</p>
+
+<p><strong>Strong data transformation.</strong> Make handles JSON transformation, array manipulation, and complex data mapping significantly better than Zapier — without requiring you to write code like in n8n.</p>
+
+<p><strong>Competitive pricing.</strong> Make's pricing is based on operations (individual steps within a scenario) rather than per-task like Zapier, which makes it meaningfully cheaper for multi-step workflows at moderate volumes.</p>
+
+<p><strong>1,000+ integrations.</strong> Make's connector library is between Zapier's 6,000 and n8n's 400, covering all mainstream SaaS tools with solid, regularly-maintained connectors.</p>
+
+<h3>Weaknesses</h3>
+<p><strong>No self-hosting.</strong> Like Zapier, Make is fully cloud-hosted — your data flows through Make's servers. No data residency control for regulated industries.</p>
+
+<p><strong>Steeper curve than Zapier.</strong> Make is more powerful than Zapier, but that power comes with more complexity. Non-technical users may find it harder to get started than Zapier.</p>
+
+<p><strong>Slower execution.</strong> Make scenarios can execute more slowly than equivalent n8n workflows, which matters for latency-sensitive, user-facing automations.</p>
+
+<h3>Pricing</h3>
+<p>Free tier: 1,000 operations/month. Core: $10.59/month for 10,000 operations. Pro: $18.82/month for 10,000 operations with advanced features. Teams and Enterprise pricing available.</p>
+
+<h3>Best for</h3>
+<p>Teams that want more power than Zapier without the developer overhead of n8n. Businesses with moderate automation complexity — multiple branches, data transformations, conditional logic — that need a visual builder. Budget-conscious teams replacing Zapier at moderate volume.</p>
 
 <h2>Power Automate vs n8n: Head-to-Head Comparison</h2>
 
