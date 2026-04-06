@@ -1,141 +1,230 @@
 'use client'
 
+import { useState } from "react"
 import { useParams } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, Clock, Calendar, User } from "lucide-react"
+import { ArrowLeft, Clock, Calendar, User, ChevronDown } from "lucide-react"
 import { getPost } from "../data/posts"
 
-// Convert "Mar 30, 2026" → "2026-03-30T00:00:00Z"
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
 function toIso(dateStr: string): string {
-  try {
-    return new Date(dateStr).toISOString()
-  } catch {
-    return ""
-  }
+  try { return new Date(dateStr).toISOString() } catch { return "" }
 }
+
+function toSlug(text: string): string {
+  return text
+    .replace(/<[^>]+>/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .trim()
+}
+
+interface Heading { level: number; text: string; id: string }
+
+function parseHeadings(html: string): Heading[] {
+  const regex = /<h([23])[^>]*>([\s\S]*?)<\/h[23]>/gi
+  const results: Heading[] = []
+  let match
+  while ((match = regex.exec(html)) !== null) {
+    const text = match[2].replace(/<[^>]+>/g, "").trim()
+    if (text) results.push({ level: parseInt(match[1]), text, id: toSlug(text) })
+  }
+  return results
+}
+
+function injectHeadingIds(html: string): string {
+  return html.replace(/<h([23])([^>]*)>([\s\S]*?)<\/h[23]>/gi, (_, level, attrs, content) => {
+    const text = content.replace(/<[^>]+>/g, "").trim()
+    const id = toSlug(text)
+    // Don't double-inject if already has an id
+    if (attrs.includes("id=")) return `<h${level}${attrs}>${content}</h${level}>`
+    return `<h${level}${attrs} id="${id}">${content}</h${level}>`
+  })
+}
+
+// ─── TOC Component ───────────────────────────────────────────────────────────
+
+function TocList({ headings }: { headings: Heading[] }) {
+  return (
+    <ul className="space-y-1">
+      {headings.map((h) => (
+        <li key={h.id} style={{ paddingLeft: h.level === 3 ? "0.85rem" : "0" }}>
+          <a
+            href={`#${h.id}`}
+            className={[
+              "block text-sm leading-snug transition-colors hover:text-foreground",
+              h.level === 2 ? "text-muted-foreground" : "text-muted-foreground/70",
+            ].join(" ")}
+          >
+            {h.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+// ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function BlogPostPage() {
   const params = useParams()
-  const slug = params && typeof params.slug === 'string' ? params.slug : undefined
+  const slug = params && typeof params.slug === "string" ? params.slug : undefined
   const post = slug ? getPost(slug) : undefined
+  const [tocOpen, setTocOpen] = useState(false)
 
   if (!post) return null
 
   const isoDate = toIso(post.date)
+  const headings = parseHeadings(post.body)
+  const bodyWithIds = injectHeadingIds(post.body)
+  const showToc = headings.length >= 3
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://kovil.ai/" },
-      { "@type": "ListItem", "position": 2, "name": "Blog",  "item": "https://kovil.ai/blog" },
-      { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://kovil.ai/blog/${post.slug}` }
-    ]
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home",  item: "https://kovil.ai/" },
+      { "@type": "ListItem", position: 2, name: "Blog",  item: "https://kovil.ai/blog" },
+      { "@type": "ListItem", position: 3, name: post.title, item: `https://kovil.ai/blog/${post.slug}` },
+    ],
   }
 
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": post.title,
-    "description": post.excerpt,
-    "url": `https://kovil.ai/blog/${post.slug}`,
-    "datePublished": isoDate,
-    "dateModified": isoDate,
-    "author": {
+    headline: post.title,
+    description: post.excerpt,
+    url: `https://kovil.ai/blog/${post.slug}`,
+    datePublished: isoDate,
+    dateModified: isoDate,
+    author: {
       "@type": "Organization",
-      "name": "Kovil AI",
-      "url": "https://kovil.ai",
-      "sameAs": ["https://www.linkedin.com/company/kovil-ai/"]
+      name: "Kovil AI",
+      url: "https://kovil.ai",
+      sameAs: ["https://www.linkedin.com/company/kovil-ai/"],
     },
-    "publisher": {
+    publisher: {
       "@type": "Organization",
-      "name": "Kovil AI",
-      "url": "https://kovil.ai",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kovil.ai/kovil-logo-symbol.png"
-      }
+      name: "Kovil AI",
+      url: "https://kovil.ai",
+      logo: { "@type": "ImageObject", url: "https://kovil.ai/kovil-logo-symbol.png" },
     },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://kovil.ai/blog/${post.slug}`
-    }
+    mainEntityOfPage: { "@type": "WebPage", "@id": `https://kovil.ai/blog/${post.slug}` },
   }
 
   return (
     <>
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Back link */}
-      <div className="max-w-3xl mx-auto px-6 pt-10 pb-4">
-        <Link href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to Blog
-        </Link>
-      </div>
+      {/* JSON-LD */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
 
-      {/* Article header */}
-      <article className="max-w-3xl mx-auto px-6 pb-24">
-        <header className="mb-10">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="text-xs font-semibold text-accent uppercase tracking-widest">{post.category}</span>
-          </div>
-          <h1 className="font-display font-bold text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1] mb-6">
-            {post.title}
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed mb-8">{post.excerpt}</p>
-          <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground pb-8 border-b border-border">
-            <span className="flex items-center gap-1.5"><User className="h-4 w-4" />{post.author}</span>
-            <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4" />{post.date}</span>
-            <span className="flex items-center gap-1.5"><Clock className="h-4 w-4" />{post.readTime}</span>
-          </div>
-        </header>
+      <div className="min-h-screen bg-background text-foreground">
 
-        {/* Hero image */}
-        {post.heroImage && (
-          <div className="mb-10 rounded-2xl overflow-hidden">
-            <img
-              src={post.heroImage}
-              alt={post.title}
-              className="w-full h-auto object-cover"
-            />
-          </div>
-        )}
+        {/* Back link */}
+        <div className="max-w-6xl mx-auto px-6 pt-10 pb-4">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" /> Back to Blog
+          </Link>
+        </div>
 
-        {/* Article body */}
-        <div
-          className="prose-content"
-          dangerouslySetInnerHTML={{ __html: post.body }}
-        />
+        {/* Content wrapper — single col on mobile, sidebar layout on xl */}
+        <div className="max-w-6xl mx-auto px-6 pb-24">
+          <div className={showToc ? "xl:flex xl:gap-16 xl:items-start" : ""}>
 
-        {/* FAQ Section — schema injected in server component page.tsx */}
-        {post.faqs && post.faqs.length > 0 && (
-          <>
-            <div className="mt-16 pt-10 border-t border-border">
-              <h2 className="font-display font-bold text-2xl mb-8">Frequently Asked Questions</h2>
-              <div className="space-y-6">
-                {post.faqs.map((faq, i) => (
-                  <div key={i} className="border border-border rounded-xl p-6">
-                    <h3 className="font-semibold text-base mb-3">{faq.q}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{faq.a}</p>
+            {/* ── Article ── */}
+            <article className="min-w-0 flex-1 max-w-3xl">
+
+              {/* Header */}
+              <header className="mb-10">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="text-xs font-semibold text-accent uppercase tracking-widest">{post.category}</span>
+                </div>
+                <h1 className="font-display font-bold text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1] mb-6">
+                  {post.title}
+                </h1>
+                <p className="text-xl text-muted-foreground leading-relaxed mb-8">{post.excerpt}</p>
+                <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground pb-8 border-b border-border">
+                  <span className="flex items-center gap-1.5"><User className="h-4 w-4" />{post.author}</span>
+                  <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4" />{post.date}</span>
+                  <span className="flex items-center gap-1.5"><Clock className="h-4 w-4" />{post.readTime}</span>
+                </div>
+              </header>
+
+              {/* Hero image */}
+              {post.heroImage && (
+                <div className="mb-10 rounded-2xl overflow-hidden">
+                  <img src={post.heroImage} alt={post.title} className="w-full h-auto object-cover" />
+                </div>
+              )}
+
+              {/* Mobile TOC — collapsible card, hidden on xl */}
+              {showToc && (
+                <div className="xl:hidden mb-8 border border-border rounded-xl overflow-hidden">
+                  <button
+                    onClick={() => setTocOpen(!tocOpen)}
+                    className="w-full flex items-center justify-between px-5 py-4 text-sm font-semibold hover:bg-muted/40 transition-colors"
+                    aria-expanded={tocOpen}
+                  >
+                    <span>Table of Contents</span>
+                    <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${tocOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  {tocOpen && (
+                    <div className="px-5 pb-5 border-t border-border pt-4">
+                      <TocList headings={headings} />
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Body */}
+              <div className="prose-content" dangerouslySetInnerHTML={{ __html: bodyWithIds }} />
+
+              {/* FAQ Section */}
+              {post.faqs && post.faqs.length > 0 && (
+                <div className="mt-16 pt-10 border-t border-border">
+                  <h2 className="font-display font-bold text-2xl mb-8">Frequently Asked Questions</h2>
+                  <div className="space-y-6">
+                    {post.faqs.map((faq, i) => (
+                      <div key={i} className="border border-border rounded-xl p-6">
+                        <h3 className="font-semibold text-base mb-3">{faq.q}</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">{faq.a}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
-          </>
-        )}
+                </div>
+              )}
 
-        {/* Internal CTA */}
-        <div className="mt-16 pt-10 border-t border-border">
-          <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2">Ready to Build?</p>
-          <p className="text-lg font-display font-bold mb-4">See how Kovil AI engineers deliver production-grade AI.</p>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/case-studies" className="text-sm font-medium text-accent hover:underline">View Case Studies →</Link>
-            <Link href="/how-it-works" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">How It Works →</Link>
+              {/* Internal CTA */}
+              <div className="mt-16 pt-10 border-t border-border">
+                <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2">Ready to Build?</p>
+                <p className="text-lg font-display font-bold mb-4">See how Kovil AI engineers deliver production-grade AI.</p>
+                <div className="flex flex-wrap gap-4">
+                  <Link href="/case-studies" className="text-sm font-medium text-accent hover:underline">View Case Studies →</Link>
+                  <Link href="/how-it-works" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">How It Works →</Link>
+                </div>
+              </div>
+
+            </article>
+
+            {/* ── Desktop TOC sidebar — sticky, xl only ── */}
+            {showToc && (
+              <aside className="hidden xl:block w-56 shrink-0 pt-2">
+                <div className="sticky top-8 border border-border rounded-xl p-5">
+                  <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-4">On this page</p>
+                  <TocList headings={headings} />
+                </div>
+              </aside>
+            )}
+
           </div>
         </div>
-      </article>
-    </div>
+      </div>
     </>
   )
 }
