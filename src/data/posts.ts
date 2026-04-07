@@ -10,6 +10,7 @@ export interface Post {
   body: string;
   heroImage?: string;
   faqs?: { q: string; a: string }[];
+  localBusiness?: boolean; // inject LocalBusiness schema for geo-targeted posts
 }
 
 export const posts: Post[] = [
@@ -310,6 +311,7 @@ export const posts: Post[] = [
     readTime: "14 min read",
     author: "Kovil AI Team",
     featured: true,
+    localBusiness: true,
     heroImage: "/blog-ai-automation-nyc-ad-marketing-agencies.jpg",
     faqs: [
       {

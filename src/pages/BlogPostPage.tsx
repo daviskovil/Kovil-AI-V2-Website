@@ -132,11 +132,46 @@ export default function BlogPostPage() {
     mainEntityOfPage: { "@type": "WebPage", "@id": `https://kovil.ai/blog/${post.slug}` },
   }
 
+  const localBusinessSchema = post.localBusiness ? {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Kovil AI",
+    description: "AI automation and engineering services for New York City ad and marketing agencies",
+    url: "https://kovil.ai",
+    logo: "https://kovil.ai/kovil-logo-symbol.png",
+    image: "https://kovil.ai/og-image.png",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "New York",
+      addressRegion: "NY",
+      addressCountry: "US",
+    },
+    areaServed: [
+      { "@type": "City", name: "New York City" },
+      { "@type": "State", name: "New York" },
+    ],
+    serviceType: ["AI Automation", "AI Engineering", "Marketing Technology Automation"],
+    knowsAbout: [
+      "AI automation for marketing agencies",
+      "campaign reporting automation",
+      "NYC ad agency AI",
+      "creative brief automation",
+      "AI workflow automation",
+    ],
+    sameAs: [
+      "https://www.linkedin.com/company/kovil-ai/",
+      "https://clutch.co/profile/kovil-ai",
+    ],
+  } : null
+
   return (
     <>
       {/* JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      {localBusinessSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+      )}
 
       <div className="min-h-screen bg-background text-foreground">
 
