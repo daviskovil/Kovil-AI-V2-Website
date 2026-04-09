@@ -4,14 +4,13 @@ import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Clock, Zap, BarChart3, Users } from 'lucide-react'
 import { Button } from '../components/ui/button'
 import { OnboardingModal } from '../components/OnboardingModal'
-import { useState } from 'react'
 
 const SCHEMA = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "AI Readiness Assessment",
-  "description": "Free AI readiness assessment for businesses. Find out where you stand on AI automation readiness and get a personalised action plan.",
-  "url": "https://kovil.ai/ai-readiness",
+  "name": "AI Readiness Assessment for Ad & Marketing Agencies",
+  "description": "Free AI readiness assessment for ad and marketing agencies. Find out where you stand on AI automation readiness and get a personalised action plan.",
+  "url": "https://kovil.ai/ai-readiness-ad-marketing-agencies",
   "provider": { "@type": "Organization", "name": "Kovil AI", "url": "https://kovil.ai" }
 }
 
@@ -20,27 +19,25 @@ const BREADCRUMB_SCHEMA = {
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kovil.ai/" },
-    { "@type": "ListItem", "position": 2, "name": "AI Readiness Assessment", "item": "https://kovil.ai/ai-readiness" }
+    { "@type": "ListItem", "position": 2, "name": "AI Readiness Assessment", "item": "https://kovil.ai/ai-readiness-ad-marketing-agencies" }
   ]
 }
 
 const benefits = [
-  { icon: Clock,      label: '3 minutes',       sub: 'to complete' },
-  { icon: Zap,        label: 'Instant results',  sub: 'no email required' },
-  { icon: BarChart3,  label: 'Scored across',    sub: '4 readiness dimensions' },
-  { icon: Users,      label: 'Built for',        sub: 'founders & ops leaders' },
+  { icon: Clock,     label: '3 minutes',      sub: 'to complete' },
+  { icon: Zap,       label: 'Instant results', sub: 'no email required' },
+  { icon: BarChart3, label: 'Scored across',   sub: '4 readiness dimensions' },
+  { icon: Users,     label: 'Built for',       sub: 'agency founders & ops leaders' },
 ]
 
 const whatYouGet = [
   'Your AI readiness score across automation, data, team, and tooling dimensions',
-  'The highest-leverage automation opportunities specific to your business type',
+  'The highest-leverage automation opportunities specific to your agency type',
   'A prioritised action plan — what to do first, second, and what to skip',
-  'Honest context on what AI can and can\'t realistically deliver for your situation',
+  'Honest context on what AI can and cannot realistically deliver for your situation',
 ]
 
 export default function AIReadinessPage() {
-  const [modalOpen, setModalOpen] = useState(false)
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }} />
@@ -52,13 +49,13 @@ export default function AIReadinessPage() {
         <section className="max-w-4xl mx-auto px-6 pt-16 pb-10 text-center">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
             <span className="inline-flex items-center gap-2 text-[11px] font-bold text-orange-500 uppercase tracking-widest mb-4">
-              Free Assessment
+              Free Assessment · Ad &amp; Marketing Agencies
             </span>
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight leading-[1.1] mb-5">
-              Is Your Business<br className="hidden sm:block" /> Ready for AI?
+              Is Your Agency<br className="hidden sm:block" /> Ready for AI?
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Most companies know AI matters. Very few know where to start, what to automate first, or whether their data and team are actually ready. This assessment tells you exactly where you stand — in 3 minutes.
+              Most agencies know AI matters. Very few know where to start, what to automate first, or whether their data and team are actually ready. This assessment tells you exactly where you stand — in 3 minutes.
             </p>
           </motion.div>
 
@@ -85,7 +82,7 @@ export default function AIReadinessPage() {
           >
             <iframe
               src="https://claude.site/public/artifacts/77ad247b-906b-4118-98e0-0f36e688289f/embed"
-              title="Kovil AI — AI Readiness Assessment"
+              title="Kovil AI — AI Readiness Assessment for Ad & Marketing Agencies"
               width="100%"
               height="680"
               frameBorder="0"
@@ -122,23 +119,22 @@ export default function AIReadinessPage() {
                 Want an expert to review your results?
               </h2>
               <p className="text-background/70 mb-8 leading-relaxed">
-                Book a free 20-minute call with a Kovil AI engineer. We'll look at your assessment results, identify the highest-ROI automation for your business, and tell you exactly what it would take to build it.
+                Book a free 20-minute call with a Kovil AI engineer. We'll look at your assessment results, identify the highest-ROI automation for your agency, and tell you exactly what it would take to build it.
               </p>
-              <Button
-                onClick={() => setModalOpen(true)}
-                size="lg"
-                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 rounded-xl"
-              >
-                Book a Free Strategy Call <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <OnboardingModal defaultGoal="automation">
+                <Button
+                  size="lg"
+                  className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 rounded-xl"
+                >
+                  Book a Free Strategy Call <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </OnboardingModal>
               <p className="text-background/40 text-xs mt-4">No pitch. No pressure. Just a direct conversation about what's possible.</p>
             </motion.div>
           </div>
         </section>
 
       </main>
-
-      <OnboardingModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   )
 }
