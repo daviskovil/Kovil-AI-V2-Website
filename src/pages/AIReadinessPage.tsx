@@ -286,7 +286,7 @@ function DimensionBar({ label, value }: { label: string; value: number }) {
 
 const HERO_PILLS = [
   { icon: Clock,     label: '3 minutes',      sub: 'to complete' },
-  { icon: Zap,       label: 'Instant results', sub: 'no email required' },
+  { icon: Zap,       label: 'Instant results', sub: 'no sales call required' },
   { icon: BarChart3, label: 'Scored across',   sub: '4 readiness dimensions' },
   { icon: Users,     label: 'Built for',       sub: 'agency founders & ops leaders' },
 ]
@@ -363,9 +363,56 @@ export default function AIReadinessPage() {
   }
 
   function handleGenerate() {
-    setResult(calculateResults(data))
+    const computed = calculateResults(data)
+    setResult(computed)
     setStep('results')
     setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50)
+
+    // ── Lead capture (fire-and-forget, never blocks results) ──────────────
+    if (!data.email) return
+    const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    if (!SUPABASE_URL || !SUPABASE_KEY) return
+
+    const leadData = {
+      name: [data.contactName, data.agencyName].filter(Boolean).join(' — ') || 'Unknown',
+      email: data.email,
+      engagement_type: 'AI Readiness Assessment',
+      project_description: [
+        `Agency: ${data.agencyName || '—'}`,
+        `Score: ${computed.score} / 100 — ${computed.tier}`,
+        `Team size: ${data.teamSize || '—'}`,
+        `Specialisation: ${data.specialization.join(', ') || '—'}`,
+        `Location: ${data.borough.join(', ') || '—'}`,
+        `AI maturity: ${data.aiMaturity || '—'}`,
+        `Team openness: ${data.openness || '—'}`,
+        `Monthly budget: ${data.budget || '—'}`,
+        `Pain points: ${data.painPoints.join(', ') || '—'}`,
+        `Top opportunity: ${computed.topOpportunities[0]?.title || '—'}`,
+      ].join('\n'),
+      source: 'ai-readiness-assessment',
+      notes: `Dimensions — Automation: ${computed.dimensionScores.automation} | Data: ${computed.dimensionScores.data} | Team: ${computed.dimensionScores.team} | Tooling: ${computed.dimensionScores.tooling}`,
+    }
+
+    const headers = {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json',
+    }
+
+    // Save to leads table
+    fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+      method: 'POST',
+      headers: { ...headers, 'Prefer': 'return=minimal' },
+      body: JSON.stringify(leadData),
+    }).catch(err => console.error('Assessment lead save error:', err))
+
+    // Email notification to Davis
+    fetch(`${SUPABASE_URL}/functions/v1/notify-lead`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(leadData),
+    }).catch(err => console.error('Assessment email notify error:', err))
   }
 
   const stepTitles: Record<number, string> = {
@@ -676,7 +723,7 @@ export default function AIReadinessPage() {
                   {step === 1 && (
                     <div className="space-y-5">
                       <div className="grid sm:grid-cols-2 gap-4">
-                        {([['agencyName', 'Agency name'], ['contactName', 'Your name'], ['email', 'Work email']] as [keyof FormData, string][]).map(([field, label]) => (
+                        {([['agencyName', 'Agency name'], ['contactName', 'Your name'], ['email', 'Work email *']] as [keyof FormData, string][]).map(([field, label]) => (
                           <div key={field} className={field === 'email' ? 'sm:col-span-2' : ''}>
                             <label className="block text-xs font-semibold text-muted-foreground mb-1.5">{label}</label>
                             <input
