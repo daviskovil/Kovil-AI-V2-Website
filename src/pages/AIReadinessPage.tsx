@@ -1,43 +1,334 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ArrowRight, CheckCircle2, Clock, Zap, BarChart3, Users } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  ArrowRight, ArrowLeft, CheckCircle2, Clock, Zap, BarChart3, Users,
+  AlertTriangle, TrendingUp, Wrench,
+} from 'lucide-react'
 import { Button } from '../components/ui/button'
 import { OnboardingModal } from '../components/OnboardingModal'
 
+// ── JSON-LD ──────────────────────────────────────────────────────────────────
+
 const SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "AI Readiness Assessment for Ad & Marketing Agencies",
-  "description": "Free AI readiness assessment for ad and marketing agencies. Find out where you stand on AI automation readiness and get a personalised action plan.",
-  "url": "https://kovil.ai/ai-readiness-ad-marketing-agencies",
-  "provider": { "@type": "Organization", "name": "Kovil AI", "url": "https://kovil.ai" }
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'AI Readiness Assessment for Ad & Marketing Agencies',
+  description:
+    'Free AI readiness assessment for ad and marketing agencies. Find out where you stand on AI automation readiness and get a personalised action plan.',
+  url: 'https://kovil.ai/ai-readiness-ad-marketing-agencies',
+  provider: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },
 }
 
 const BREADCRUMB_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kovil.ai/" },
-    { "@type": "ListItem", "position": 2, "name": "AI Readiness Assessment", "item": "https://kovil.ai/ai-readiness-ad-marketing-agencies" }
-  ]
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kovil.ai/' },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'AI Readiness Assessment',
+      item: 'https://kovil.ai/ai-readiness-ad-marketing-agencies',
+    },
+  ],
 }
 
-const benefits = [
+// ── Types ────────────────────────────────────────────────────────────────────
+
+type Step = 1 | 2 | 3 | 4 | 'results'
+
+interface FormData {
+  agencyName: string
+  contactName: string
+  email: string
+  teamSize: string
+  specialization: string
+  borough: string
+  painPoints: string[]
+  tools: string[]
+  aiMaturity: string
+  toolsUsed: string
+  openness: string
+  budget: string
+}
+
+interface Opportunity {
+  title: string
+  impact: string
+  timeline: string
+  description: string
+}
+
+interface RiskFlag {
+  text: string
+  severity: 'high' | 'medium' | 'low'
+}
+
+interface AssessmentResult {
+  score: number
+  tier: string
+  tierColor: string
+  summary: string
+  dimensionScores: { automation: number; data: number; team: number; tooling: number }
+  topOpportunities: Opportunity[]
+  recommendedTools: string[]
+  riskFlags: RiskFlag[]
+}
+
+// ── Constants ────────────────────────────────────────────────────────────────
+
+const INITIAL_DATA: FormData = {
+  agencyName: '', contactName: '', email: '',
+  teamSize: '', specialization: '', borough: '',
+  painPoints: [], tools: [],
+  aiMaturity: '', toolsUsed: '', openness: '', budget: '',
+}
+
+const TEAM_SIZES = ['1–10', '11–50', '51–200', '200+']
+const SPECIALIZATIONS = [
+  'Performance/Paid Media', 'Creative & Branding', 'Social Media',
+  'SEO/Content', 'Influencer Marketing', 'Full-Service', 'PR & Comms', 'Other',
+]
+const BOROUGHS = ['Manhattan', 'Brooklyn', 'Queens', 'The Bronx', 'Staten Island', 'Remote/Hybrid']
+const PAIN_POINTS = [
+  'Manual reporting & analytics', 'Slow creative production',
+  'Repetitive client communication', 'Campaign performance monitoring',
+  'Content ideation & briefs', 'Proposal & pitch deck creation',
+  'Ad copy generation at scale', 'Data aggregation',
+  'Budget pacing', 'Talent/resource allocation',
+]
+const TOOL_CATEGORIES = [
+  { name: 'Ad Platforms', tools: ['Google Ads', 'Meta Ads', 'TikTok Ads', 'LinkedIn Ads', 'The Trade Desk', 'DV360'] },
+  { name: 'Project Management', tools: ['Asana', 'Monday.com', 'Notion', 'Jira', 'ClickUp', 'Basecamp'] },
+  { name: 'Analytics', tools: ['Google Analytics 4', 'Looker Studio', 'Tableau', 'Power BI', 'Triple Whale', 'Northbeam'] },
+  { name: 'Creative', tools: ['Canva', 'Adobe Creative Cloud', 'Figma', 'Midjourney', 'Runway', 'DALL-E'] },
+  { name: 'CRM / Comms', tools: ['Salesforce', 'HubSpot', 'Slack', 'Microsoft Teams', 'Zapier', 'Make'] },
+]
+const AI_MATURITY_OPTIONS = ['None', 'Experimenting', 'Partial Adoption', 'Integrated', 'AI-First']
+const OPENNESS_OPTIONS = ['Skeptical', 'Curious', 'Ready', 'Urgent']
+const BUDGET_OPTIONS = ['Under $5K', '$5K–$15K', '$15K–$50K', '$50K+']
+
+// ── Scoring ───────────────────────────────────────────────────────────────────
+
+const OPPORTUNITY_MAP: Record<string, Opportunity> = {
+  'Manual reporting & analytics': {
+    title: 'Automated Reporting Dashboard',
+    impact: 'High', timeline: '2–4 weeks',
+    description: 'Connect ad platforms and analytics into a single automated dashboard. Eliminate 5–10 hours/week of manual data pulls.',
+  },
+  'Slow creative production': {
+    title: 'AI-Assisted Creative Production',
+    impact: 'High', timeline: '4–6 weeks',
+    description: 'Integrate AI image and copy generation into your creative workflow. Reduce brief-to-asset time by 40–60%.',
+  },
+  'Repetitive client communication': {
+    title: 'Client Communication Automation',
+    impact: 'Medium', timeline: '2–3 weeks',
+    description: 'Automate recurring status updates, performance summaries, and meeting prep using LLM-powered templates.',
+  },
+  'Campaign performance monitoring': {
+    title: 'AI Campaign Monitoring & Alerts',
+    impact: 'High', timeline: '1–2 weeks',
+    description: 'Intelligent alerting that flags budget pacing issues and performance drops before they become problems.',
+  },
+  'Content ideation & briefs': {
+    title: 'AI Content Brief Generator',
+    impact: 'Medium', timeline: '1–2 weeks',
+    description: "A prompt-based brief generator trained on your agency's tone. Cut brief creation time from hours to minutes.",
+  },
+  'Proposal & pitch deck creation': {
+    title: 'Proposal Automation',
+    impact: 'Medium', timeline: '3–4 weeks',
+    description: 'Auto-populate proposals using CRM data and AI-generated strategy sections. Win more pitches with less effort.',
+  },
+  'Ad copy generation at scale': {
+    title: 'AI Ad Copy at Scale',
+    impact: 'High', timeline: '1–3 weeks',
+    description: 'LLM-powered copy generation for A/B test variants. Generate 50+ variants per campaign in the time it takes to write 5.',
+  },
+  'Data aggregation': {
+    title: 'Data Pipeline Automation',
+    impact: 'High', timeline: '3–5 weeks',
+    description: 'Automated ETL pipelines connecting ad platforms, CRM, and analytics. One source of truth, always current.',
+  },
+  'Budget pacing': {
+    title: 'Automated Budget Pacing',
+    impact: 'Medium', timeline: '2–3 weeks',
+    description: 'Automated budget pacing alerts and reallocation recommendations across client portfolios. Reduce waste and manual oversight.',
+  },
+  'Talent/resource allocation': {
+    title: 'Resource Allocation Optimisation',
+    impact: 'Medium', timeline: '4–6 weeks',
+    description: 'Forecast capacity, flag overloading, and optimise team assignment based on project type and workload.',
+  },
+}
+
+const TOOL_RECS: Record<string, string[]> = {
+  'Performance/Paid Media': ['n8n (automation)', 'Claude API (copy gen)', 'Looker Studio (reporting)'],
+  'Creative & Branding': ['Midjourney (imagery)', 'Claude API (briefs)', 'Runway (video)'],
+  'Social Media': ['n8n (scheduling)', 'Claude API (copy)', 'Buffer (distribution)'],
+  'SEO/Content': ['Claude API (content)', 'Ahrefs (research)', 'n8n (publishing workflows)'],
+  'Influencer Marketing': ['n8n (outreach automation)', 'Claude API (briefs)', 'HubSpot (CRM)'],
+  'Full-Service': ['n8n (orchestration)', 'Claude API (multi-use)', 'Zapier (integrations)'],
+  'PR & Comms': ['Claude API (drafting)', 'n8n (monitoring)', 'Zapier (distribution)'],
+  'Other': ['n8n (workflow automation)', 'Claude API (AI tasks)', 'Zapier (integrations)'],
+}
+
+function calculateResults(data: FormData): AssessmentResult {
+  const maturityScore = ({ None: 5, Experimenting: 15, 'Partial Adoption': 25, Integrated: 35, 'AI-First': 40 } as Record<string, number>)[data.aiMaturity] ?? 5
+  const opennessScore = ({ Skeptical: 5, Curious: 10, Ready: 16, Urgent: 20 } as Record<string, number>)[data.openness] ?? 5
+  const budgetScore = ({ 'Under $5K': 5, '$5K–$15K': 10, '$15K–$50K': 16, '$50K+': 20 } as Record<string, number>)[data.budget] ?? 5
+  const toolCount = data.tools.length
+  const toolsScore = toolCount >= 10 ? 10 : toolCount >= 6 ? 7 : toolCount >= 3 ? 5 : 2
+  const teamScore = ({ '1–10': 5, '11–50': 7, '51–200': 9, '200+': 10 } as Record<string, number>)[data.teamSize] ?? 5
+
+  const score = Math.min(100, maturityScore + opennessScore + budgetScore + toolsScore + teamScore)
+
+  let tier: string, tierColor: string, summary: string
+  const name = data.agencyName || 'Your agency'
+  if (score >= 76) {
+    tier = 'Advanced Adopter'; tierColor = 'text-green-500'
+    summary = `${name} is well ahead of the curve. You have the infrastructure, budget, and team readiness to implement high-impact AI automation across multiple workflows simultaneously.`
+  } else if (score >= 56) {
+    tier = 'AI-Ready'; tierColor = 'text-orange-500'
+    summary = `${name} has a solid foundation. A few targeted automations — starting with your top pain points — could deliver measurable ROI within 60 days.`
+  } else if (score >= 36) {
+    tier = 'Building Momentum'; tierColor = 'text-yellow-500'
+    summary = `${name} is moving in the right direction. Focus on 1–2 high-leverage quick wins to build internal confidence before scaling.`
+  } else {
+    tier = 'Early Stage'; tierColor = 'text-blue-500'
+    summary = `${name} is at the start of the AI journey. The biggest gains are available right now from basic workflow automation — no complex AI required yet.`
+  }
+
+  const hasAnalytics = data.tools.some(t =>
+    ['Google Analytics 4', 'Looker Studio', 'Tableau', 'Power BI', 'Triple Whale', 'Northbeam'].includes(t)
+  )
+
+  const dimensionScores = {
+    automation: Math.min(100, Math.round((data.painPoints.length / 10) * 50 + (maturityScore / 40) * 50)),
+    data: Math.min(100, Math.round((toolCount / 15) * 60 + (hasAnalytics ? 30 : 0) + 10)),
+    team: Math.min(100, Math.round((opennessScore / 20) * 60 + (maturityScore / 40) * 40)),
+    tooling: Math.min(100, Math.round((budgetScore / 20) * 50 + (toolsScore / 10) * 30 + (data.toolsUsed.length > 5 ? 20 : 5))),
+  }
+
+  const selected = data.painPoints.filter(p => OPPORTUNITY_MAP[p]).map(p => OPPORTUNITY_MAP[p])
+  const defaults = [OPPORTUNITY_MAP['Manual reporting & analytics'], OPPORTUNITY_MAP['Ad copy generation at scale'], OPPORTUNITY_MAP['Campaign performance monitoring']]
+  const topOpportunities = [...selected, ...defaults].filter((v, i, a) => a.indexOf(v) === i).slice(0, 3)
+
+  const recommendedTools = TOOL_RECS[data.specialization] ?? TOOL_RECS['Other']
+
+  const riskFlags: RiskFlag[] = []
+  if (data.openness === 'Skeptical') riskFlags.push({ text: 'Team skepticism will slow adoption — change management is as important as the technology', severity: 'high' })
+  if (data.budget === 'Under $5K') riskFlags.push({ text: 'Limited budget restricts scope — focus on one high-ROI automation before expanding', severity: 'medium' })
+  if (data.aiMaturity === 'None' && data.painPoints.length > 5) riskFlags.push({ text: 'High pain count with no AI adoption yet — significant quick-win potential being left on the table', severity: 'medium' })
+  if (toolCount < 3) riskFlags.push({ text: 'Limited tooling infrastructure may slow automation implementation', severity: 'low' })
+
+  return { score, tier, tierColor, summary, dimensionScores, topOpportunities, recommendedTools, riskFlags }
+}
+
+// ── Sub-components ────────────────────────────────────────────────────────────
+
+function SelectChip({ label, selected, onClick }: { label: string; selected: boolean; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition-all ${
+        selected
+          ? 'bg-orange-500 border-orange-500 text-white'
+          : 'bg-background border-border text-muted-foreground hover:border-orange-400 hover:text-foreground'
+      }`}
+    >
+      {label}
+    </button>
+  )
+}
+
+function RadioCard({ label, selected, onClick }: { label: string; selected: boolean; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`px-4 py-2.5 rounded-xl border text-sm font-medium text-left transition-all ${
+        selected
+          ? 'bg-orange-500/10 border-orange-500 text-foreground'
+          : 'bg-background border-border text-muted-foreground hover:border-orange-400 hover:text-foreground'
+      }`}
+    >
+      {selected && <span className="mr-1.5 text-orange-500">✓</span>}
+      {label}
+    </button>
+  )
+}
+
+function DimensionBar({ label, value }: { label: string; value: number }) {
+  return (
+    <div>
+      <div className="flex justify-between text-xs mb-1">
+        <span className="text-muted-foreground font-medium capitalize">{label}</span>
+        <span className="text-foreground font-semibold">{value}</span>
+      </div>
+      <div className="h-2 bg-muted rounded-full overflow-hidden">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: `${value}%` }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="h-full bg-orange-500 rounded-full"
+        />
+      </div>
+    </div>
+  )
+}
+
+// ── Hero static bits ──────────────────────────────────────────────────────────
+
+const HERO_PILLS = [
   { icon: Clock,     label: '3 minutes',      sub: 'to complete' },
   { icon: Zap,       label: 'Instant results', sub: 'no email required' },
   { icon: BarChart3, label: 'Scored across',   sub: '4 readiness dimensions' },
   { icon: Users,     label: 'Built for',       sub: 'agency founders & ops leaders' },
 ]
 
-const whatYouGet = [
+const WHAT_YOU_GET = [
   'Your AI readiness score across automation, data, team, and tooling dimensions',
   'The highest-leverage automation opportunities specific to your agency type',
   'A prioritised action plan — what to do first, second, and what to skip',
   'Honest context on what AI can and cannot realistically deliver for your situation',
 ]
 
+// ── Main component ────────────────────────────────────────────────────────────
+
 export default function AIReadinessPage() {
+  const [step, setStep] = useState<Step>(1)
+  const [data, setData] = useState<FormData>(INITIAL_DATA)
+  const [result, setResult] = useState<AssessmentResult | null>(null)
+
+  function toggle(field: 'painPoints' | 'tools', value: string) {
+    setData(prev => ({
+      ...prev,
+      [field]: prev[field].includes(value) ? prev[field].filter(v => v !== value) : [...prev[field], value],
+    }))
+  }
+
+  function set(field: keyof FormData, value: string) {
+    setData(prev => ({ ...prev, [field]: value }))
+  }
+
+  function handleGenerate() {
+    setResult(calculateResults(data))
+    setStep('results')
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50)
+  }
+
+  const stepTitles: Record<number, string> = {
+    1: 'Agency Profile',
+    2: 'Workflow Pain Points',
+    3: 'Current Tools',
+    4: 'AI Maturity',
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }} />
@@ -45,7 +336,7 @@ export default function AIReadinessPage() {
 
       <main className="min-h-screen bg-background">
 
-        {/* ── Hero ─────────────────────────────────────────────────────── */}
+        {/* ── Hero ──────────────────────────────────────────────────────────── */}
         <section className="max-w-4xl mx-auto px-6 pt-16 pb-10 text-center">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
             <span className="inline-flex items-center gap-2 text-[11px] font-bold text-orange-500 uppercase tracking-widest mb-4">
@@ -59,12 +350,11 @@ export default function AIReadinessPage() {
             </p>
           </motion.div>
 
-          {/* Stat pills */}
           <motion.div
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.1 }}
             className="flex flex-wrap justify-center gap-4 mt-8"
           >
-            {benefits.map(({ icon: Icon, label, sub }) => (
+            {HERO_PILLS.map(({ icon: Icon, label, sub }) => (
               <div key={label} className="flex items-center gap-2.5 bg-muted/60 border border-border rounded-full px-4 py-2">
                 <Icon className="h-4 w-4 text-orange-500 shrink-0" />
                 <span className="text-sm font-semibold text-foreground">{label}</span>
@@ -74,44 +364,293 @@ export default function AIReadinessPage() {
           </motion.div>
         </section>
 
-        {/* ── Embed ────────────────────────────────────────────────────── */}
-        <section className="max-w-4xl mx-auto px-6 pb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-            className="rounded-2xl border border-border overflow-hidden shadow-sm bg-card"
-          >
-            <iframe
-              src="https://claude.site/public/artifacts/77ad247b-906b-4118-98e0-0f36e688289f/embed"
-              title="Kovil AI — AI Readiness Assessment for Ad & Marketing Agencies"
-              width="100%"
-              height="680"
-              frameBorder="0"
-              allow="clipboard-write"
-              allowFullScreen
-              className="block w-full"
-            />
-          </motion.div>
+        {/* ── Assessment ────────────────────────────────────────────────────── */}
+        <section className="max-w-3xl mx-auto px-6 pb-12">
+          <AnimatePresence mode="wait">
+
+            {/* ── Results ─────────────────────────────────────────────────── */}
+            {step === 'results' && result && (
+              <motion.div
+                key="results"
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.45 }}
+                className="space-y-6"
+              >
+                {/* Score card */}
+                <div className="rounded-2xl border border-border bg-card p-8 text-center">
+                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Your AI Readiness Score</p>
+                  <div className="text-7xl font-bold text-foreground mb-2">{result.score}</div>
+                  <div className={`text-lg font-semibold mb-4 ${result.tierColor}`}>{result.tier}</div>
+                  <p className="text-sm text-muted-foreground leading-relaxed max-w-xl mx-auto">{result.summary}</p>
+                </div>
+
+                {/* Dimension scores */}
+                <div className="rounded-2xl border border-border bg-card p-6">
+                  <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-5">Readiness by Dimension</h2>
+                  <div className="space-y-4">
+                    {Object.entries(result.dimensionScores).map(([key, val]) => (
+                      <DimensionBar key={key} label={key} value={val} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Top opportunities */}
+                <div className="rounded-2xl border border-border bg-card p-6">
+                  <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground mb-5">
+                    <TrendingUp className="h-4 w-4 text-orange-500" /> Top 3 Automation Opportunities
+                  </h2>
+                  <div className="space-y-4">
+                    {result.topOpportunities.map((opp, i) => (
+                      <div key={i} className="flex gap-4 p-4 rounded-xl bg-muted/40 border border-border">
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white text-xs font-bold">{i + 1}</div>
+                        <div>
+                          <div className="flex flex-wrap items-center gap-2 mb-1">
+                            <span className="text-sm font-semibold text-foreground">{opp.title}</span>
+                            <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${opp.impact === 'High' ? 'bg-orange-500/15 text-orange-500' : 'bg-muted text-muted-foreground'}`}>{opp.impact} impact</span>
+                            <span className="text-[10px] text-muted-foreground">{opp.timeline}</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{opp.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Recommended tools + risk flags */}
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="rounded-2xl border border-border bg-card p-6">
+                    <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">
+                      <Wrench className="h-4 w-4 text-orange-500" /> Recommended Tools
+                    </h2>
+                    <ul className="space-y-2">
+                      {result.recommendedTools.map((t) => (
+                        <li key={t} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <CheckCircle2 className="h-4 w-4 text-orange-500 shrink-0 mt-0.5" /> {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {result.riskFlags.length > 0 && (
+                    <div className="rounded-2xl border border-border bg-card p-6">
+                      <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">
+                        <AlertTriangle className="h-4 w-4 text-orange-500" /> Risk Flags
+                      </h2>
+                      <ul className="space-y-3">
+                        {result.riskFlags.map((f, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <span className={`mt-0.5 h-2 w-2 rounded-full shrink-0 ${f.severity === 'high' ? 'bg-red-500' : f.severity === 'medium' ? 'bg-yellow-500' : 'bg-blue-400'}`} />
+                            <span className="text-xs text-muted-foreground leading-relaxed">{f.text}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                <div className="text-center pt-2">
+                  <button
+                    type="button"
+                    onClick={() => { setStep(1); setData(INITIAL_DATA); setResult(null) }}
+                    className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
+                  >
+                    Retake assessment
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
+            {/* ── Form steps ──────────────────────────────────────────────── */}
+            {step !== 'results' && (
+              <motion.div
+                key={step}
+                initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="rounded-2xl border border-border bg-card shadow-sm overflow-hidden"
+              >
+                {/* Progress bar */}
+                <div className="h-1 bg-muted">
+                  <div
+                    className="h-full bg-orange-500 transition-all duration-500"
+                    style={{ width: `${(step as number / 4) * 100}%` }}
+                  />
+                </div>
+
+                <div className="p-6 sm:p-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-0.5">Step {step} of 4</p>
+                      <h2 className="text-xl font-bold text-foreground">{stepTitles[step as number]}</h2>
+                    </div>
+                  </div>
+
+                  {/* ── Step 1 ── */}
+                  {step === 1 && (
+                    <div className="space-y-5">
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        {([['agencyName', 'Agency name'], ['contactName', 'Your name'], ['email', 'Work email']] as [keyof FormData, string][]).map(([field, label]) => (
+                          <div key={field} className={field === 'email' ? 'sm:col-span-2' : ''}>
+                            <label className="block text-xs font-semibold text-muted-foreground mb-1.5">{label}</label>
+                            <input
+                              type={field === 'email' ? 'email' : 'text'}
+                              value={data[field] as string}
+                              onChange={e => set(field, e.target.value)}
+                              placeholder={label}
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 transition"
+                            />
+                          </div>
+                        ))}
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Team size</label>
+                        <div className="flex flex-wrap gap-2">
+                          {TEAM_SIZES.map(s => <RadioCard key={s} label={s} selected={data.teamSize === s} onClick={() => set('teamSize', s)} />)}
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Agency specialisation</label>
+                        <div className="flex flex-wrap gap-2">
+                          {SPECIALIZATIONS.map(s => <RadioCard key={s} label={s} selected={data.specialization === s} onClick={() => set('specialization', s)} />)}
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Location</label>
+                        <div className="flex flex-wrap gap-2">
+                          {BOROUGHS.map(b => <RadioCard key={b} label={b} selected={data.borough === b} onClick={() => set('borough', b)} />)}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ── Step 2 ── */}
+                  {step === 2 && (
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-4">Select all that apply — where does your team spend the most time on manual work?</p>
+                      <div className="flex flex-wrap gap-2">
+                        {PAIN_POINTS.map(p => (
+                          <SelectChip key={p} label={p} selected={data.painPoints.includes(p)} onClick={() => toggle('painPoints', p)} />
+                        ))}
+                      </div>
+                      {data.painPoints.length > 0 && (
+                        <p className="text-xs text-orange-500 mt-3 font-medium">{data.painPoints.length} selected</p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* ── Step 3 ── */}
+                  {step === 3 && (
+                    <div className="space-y-5">
+                      <p className="text-sm text-muted-foreground">Select all tools your team currently uses.</p>
+                      {TOOL_CATEGORIES.map(cat => (
+                        <div key={cat.name}>
+                          <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">{cat.name}</p>
+                          <div className="flex flex-wrap gap-2">
+                            {cat.tools.map(t => (
+                              <SelectChip key={t} label={t} selected={data.tools.includes(t)} onClick={() => toggle('tools', t)} />
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                      {data.tools.length > 0 && (
+                        <p className="text-xs text-orange-500 font-medium">{data.tools.length} tools selected</p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* ── Step 4 ── */}
+                  {step === 4 && (
+                    <div className="space-y-6">
+                      <div>
+                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Current AI usage</label>
+                        <div className="flex flex-wrap gap-2">
+                          {AI_MATURITY_OPTIONS.map(o => <RadioCard key={o} label={o} selected={data.aiMaturity === o} onClick={() => set('aiMaturity', o)} />)}
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-muted-foreground mb-1.5">AI tools already in use <span className="font-normal">(optional)</span></label>
+                        <input
+                          type="text"
+                          value={data.toolsUsed}
+                          onChange={e => set('toolsUsed', e.target.value)}
+                          placeholder="e.g. ChatGPT, Jasper, Perplexity…"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 transition"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Team openness to AI</label>
+                        <div className="flex flex-wrap gap-2">
+                          {OPENNESS_OPTIONS.map(o => <RadioCard key={o} label={o} selected={data.openness === o} onClick={() => set('openness', o)} />)}
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Monthly AI/automation budget</label>
+                        <div className="flex flex-wrap gap-2">
+                          {BUDGET_OPTIONS.map(b => <RadioCard key={b} label={b} selected={data.budget === b} onClick={() => set('budget', b)} />)}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ── Nav buttons ── */}
+                  <div className="flex items-center justify-between mt-8 pt-6 border-t border-border">
+                    {(step as number) > 1 ? (
+                      <Button variant="ghost" size="sm" onClick={() => setStep(((step as number) - 1) as Step)}>
+                        <ArrowLeft className="mr-1.5 h-4 w-4" /> Back
+                      </Button>
+                    ) : <div />}
+
+                    {(step as number) < 4 ? (
+                      <Button
+                        size="sm"
+                        className="bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl"
+                        onClick={() => setStep(((step as number) + 1) as Step)}
+                      >
+                        Next <ArrowRight className="ml-1.5 h-4 w-4" />
+                      </Button>
+                    ) : (
+                      <Button
+                        size="sm"
+                        className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 rounded-xl"
+                        onClick={handleGenerate}
+                        disabled={!data.aiMaturity || !data.openness || !data.budget}
+                      >
+                        Generate My Report <ArrowRight className="ml-1.5 h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </section>
 
-        {/* ── What you get ─────────────────────────────────────────────── */}
-        <section className="max-w-3xl mx-auto px-6 pb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.2 }}
-            className="bg-muted/40 border border-border rounded-2xl p-8"
-          >
-            <h2 className="text-xl font-bold text-foreground mb-5">What you get from this assessment</h2>
-            <ul className="space-y-3.5">
-              {whatYouGet.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </section>
+        {/* ── What you get (hidden after results) ───────────────────────────── */}
+        {step !== 'results' && (
+          <section className="max-w-3xl mx-auto px-6 pb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.2 }}
+              className="bg-muted/40 border border-border rounded-2xl p-8"
+            >
+              <h2 className="text-xl font-bold text-foreground mb-5">What you get from this assessment</h2>
+              <ul className="space-y-3.5">
+                {WHAT_YOU_GET.map(item => (
+                  <li key={item} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
+                    <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </section>
+        )}
 
-        {/* ── CTA ──────────────────────────────────────────────────────── */}
+        {/* ── CTA ───────────────────────────────────────────────────────────── */}
         <section className="bg-foreground text-background py-16 px-6">
           <div className="max-w-2xl mx-auto text-center">
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.25 }}>
@@ -129,7 +668,7 @@ export default function AIReadinessPage() {
                   Book a Free Strategy Call <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </OnboardingModal>
-              <p className="text-background/40 text-xs mt-4">No pitch. No pressure. Just a direct conversation about what's possible.</p>
+              <p className="text-background/40 text-xs mt-4">No pitch. No pressure. Just a direct conversation about what&apos;s possible.</p>
             </motion.div>
           </div>
         </section>
