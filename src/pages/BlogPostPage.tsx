@@ -269,7 +269,7 @@ export default function BlogPostPage() {
             {/* ── Desktop TOC sidebar — sticky, xl only ── */}
             {showToc && (
               <aside className="hidden xl:block w-52 shrink-0 pt-2">
-                <div className="sticky top-8 max-h-[calc(100vh-5rem)] flex flex-col">
+                <div className="sticky top-24 max-h-[calc(100vh-7rem)] flex flex-col">
                   <p className="text-[11px] font-bold text-foreground uppercase tracking-widest mb-3 shrink-0">
                     Contents
                   </p>
