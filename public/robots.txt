@@ -25,13 +25,31 @@ Disallow: /compare/
 Disallow: /wp-admin/
 Disallow: /wp-content/
 Disallow: /wp-includes/
+Disallow: /wp-json/
+Disallow: /xmlrpc.php
 Disallow: /feed/
 Disallow: /author/
 Disallow: /page/
+Disallow: /deals/
+Disallow: /offer/
+Disallow: /offers/
+Disallow: /coupon/
+Disallow: /coupons/
+Disallow: /promo/
+Disallow: /review/
+Disallow: /reviews/
+Disallow: /rating/
+Disallow: /collections/
+Disallow: /vendor/
 Disallow: /?s=
 Disallow: /?p=
 Disallow: /?cat=
 Disallow: /?tag=
+Disallow: /?attachment_id=
+Disallow: /?m=
+Disallow: /?paged=
+Disallow: /?ref=
+Disallow: /?aff=
 
 # ── Block utility paths ───────────────────────────────────────────────────────
 Disallow: /api/
