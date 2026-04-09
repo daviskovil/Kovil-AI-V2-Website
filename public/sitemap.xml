@@ -55,6 +55,14 @@
     <lastmod>2026-03-31</lastmod>
   </url>
 
+  <!-- ── Tools / Assessments ───────────────────────────── -->
+  <url>
+    <loc>https://kovil.ai/ai-readiness</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-04-09</lastmod>
+  </url>
+
   <!-- ── Apply / Contact / FAQ ──────────────────────────── -->
   <url>
     <loc>https://kovil.ai/apply</loc>
