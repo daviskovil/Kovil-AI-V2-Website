@@ -1686,8 +1686,6 @@ export const posts: Post[] = [
       },
     ],
     body: `
-<img src="/blog-why-ai-projects-fail.jpg" alt="AI production failure: why 80% of AI projects fail before reaching real users" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
-
 <p>According to Gartner's AI research, roughly 85% of AI projects fail to deliver on their intended business outcomes through 2025. McKinsey Global Institute puts the failure rate closer to 80%. The exact number varies by study, but the direction is consistent: most AI initiatives that reach production either underperform, get quietly shut down, or never make it to real users at all.</p>
 
 <p>AI project failure is defined as any AI initiative that does not achieve its intended business outcome — whether that means never reaching production, underperforming once deployed, or being abandoned after launch due to poor reliability, runaway costs, or low user adoption. Unlike traditional software bugs, AI failure is often gradual and invisible until significant damage has already been done.</p>
