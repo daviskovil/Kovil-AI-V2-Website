@@ -1,15 +1,15 @@
-// DRAFT BLOG POSTS — DO NOT IMPORT
+// DRAFT BLOG POSTS, DO NOT IMPORT
 // Add each post to posts.ts on its scheduled publish date
 //
 // Blog 2 → PUBLISHED Mon Apr 6, 2026 ✅
 // Blog 3 → publish Thu Apr 9, 2026
 
 export const drafts = [
-  // ─── BLOG 2 — Publish Mon Apr 6, 2026 ─────────────────────────────────────
+  // ─── BLOG 2, Publish Mon Apr 6, 2026 ─────────────────────────────────────
   {
     slug: "ai-agents-vs-chatbots",
     title: "AI Agents vs AI Chatbots: What's the Difference and Which Does Your Business Need?",
-    excerpt: "Both involve AI and conversation, but AI agents and chatbots are fundamentally different tools built for different jobs. Here's how to tell them apart — and how to decide which one your business actually needs.",
+    excerpt: "Both involve AI and conversation, but AI agents and chatbots are fundamentally different tools built for different jobs. Here's how to tell them apart, and how to decide which one your business actually needs.",
     category: "AI Engineering",
     date: "Apr 6, 2026",
     readTime: "9 min read",
@@ -18,11 +18,11 @@ export const drafts = [
     faqs: [
       {
         q: "What is the difference between an AI agent and an AI chatbot?",
-        a: "An AI chatbot responds to user input by generating text — it answers questions, provides information, and holds conversations. An AI agent takes autonomous action to complete multi-step tasks using tools like web search, database queries, and API calls. Chatbots respond; agents act."
+        a: "An AI chatbot responds to user input by generating text, it answers questions, provides information, and holds conversations. An AI agent takes autonomous action to complete multi-step tasks using tools like web search, database queries, and API calls. Chatbots respond; agents act."
       },
       {
-        q: "Which is better for my business — an AI agent or a chatbot?",
-        a: "It depends on the job. If you need to answer questions at scale — customer support, FAQ automation, sales qualification — a chatbot is the right tool. If you need to automate a multi-step workflow that currently requires human action at each step, an AI agent is the right tool. Many businesses end up needing both."
+        q: "Which is better for my business, an AI agent or a chatbot?",
+        a: "It depends on the job. If you need to answer questions at scale, customer support, FAQ automation, sales qualification, a chatbot is the right tool. If you need to automate a multi-step workflow that currently requires human action at each step, an AI agent is the right tool. Many businesses end up needing both."
       },
       {
         q: "How much does it cost to build an AI agent?",
@@ -30,13 +30,13 @@ export const drafts = [
       },
       {
         q: "What can AI agents do that chatbots cannot?",
-        a: "AI agents can take independent action in the world — they can search the web, query databases, call APIs, send emails, book calendar appointments, and execute code. A chatbot can tell you how to do something; an agent can do it for you."
+        a: "AI agents can take independent action in the world, they can search the web, query databases, call APIs, send emails, book calendar appointments, and execute code. A chatbot can tell you how to do something; an agent can do it for you."
       },
     ],
     body: `
 <img src="/blog-ai-agents-vs-chatbots.jpg" alt="AI Agents vs AI Chatbots: What's the Difference?" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
 
-<p>The terms "AI agent" and "AI chatbot" are used interchangeably in most business conversations, product pitches, and vendor decks. They are not the same thing. Confusing them leads to buying the wrong solution, scoping the wrong project, and setting the wrong expectations — all of which are expensive mistakes.</p>
+<p>The terms "AI agent" and "AI chatbot" are used interchangeably in most business conversations, product pitches, and vendor decks. They are not the same thing. Confusing them leads to buying the wrong solution, scoping the wrong project, and setting the wrong expectations, all of which are expensive mistakes.</p>
 
 <p>Here is a plain-English breakdown of what each one is, how they differ, and which your business is more likely to need.</p>
 
@@ -44,7 +44,7 @@ export const drafts = [
 
 <p>An AI chatbot is a conversational interface that uses a language model to respond to user input. The user says something; the chatbot replies. That is the core loop.</p>
 
-<p>Modern AI chatbots — built on GPT-4o, Claude, Gemini, or similar models — are significantly more capable than the rule-based bots of five years ago. They understand natural language, handle follow-up questions, maintain context within a conversation, and can be grounded in your specific knowledge base through retrieval-augmented generation (RAG).</p>
+<p>Modern AI chatbots, built on GPT-4o, Claude, Gemini, or similar models, are significantly more capable than the rule-based bots of five years ago. They understand natural language, handle follow-up questions, maintain context within a conversation, and can be grounded in your specific knowledge base through retrieval-augmented generation (RAG).</p>
 
 <p>What chatbots do not do is take independent action in the world. They respond. They inform. They answer. The user is always the one who decides what to do with that information.</p>
 
@@ -52,9 +52,9 @@ export const drafts = [
 
 <h2>What Is an AI Agent?</h2>
 
-<p>An AI agent is a system that uses a language model not just to respond, but to plan and execute multi-step tasks autonomously. An agent is given a goal and a set of tools — the ability to search the web, query a database, send an email, call an API, write and run code — and it figures out the sequence of actions needed to achieve that goal.</p>
+<p>An AI agent is a system that uses a language model not just to respond, but to plan and execute multi-step tasks autonomously. An agent is given a goal and a set of tools, the ability to search the web, query a database, send an email, call an API, write and run code, and it figures out the sequence of actions needed to achieve that goal.</p>
 
-<p>The defining characteristic of an agent is action. It doesn't just tell you what to do; it does things. It can research a topic, draft a response, check your calendar, book a meeting, and send a confirmation email — all as part of a single prompted instruction from the user.</p>
+<p>The defining characteristic of an agent is action. It doesn't just tell you what to do; it does things. It can research a topic, draft a response, check your calendar, book a meeting, and send a confirmation email, all as part of a single prompted instruction from the user.</p>
 
 <p>Agent frameworks like LangChain, LlamaIndex, and AutoGen, combined with OpenAI's function calling and Anthropic's tool use, have made agentic systems significantly easier to build reliably in the past 18 months.</p>
 
@@ -68,7 +68,7 @@ export const drafts = [
 <li><strong>Chatbots use the LLM to generate text. Agents use the LLM to make decisions about what to do next.</strong></li>
 </ul>
 
-<p>A chatbot answers the question "What are our return policy terms?" An agent, given the instruction "Process this return request," would look up the order, verify eligibility, initiate the refund, update the CRM, and email the customer a confirmation — without a human in the loop.</p>
+<p>A chatbot answers the question "What are our return policy terms?" An agent, given the instruction "Process this return request," would look up the order, verify eligibility, initiate the refund, update the CRM, and email the customer a confirmation, without a human in the loop.</p>
 
 <p>This is not a small difference. It is a fundamental architectural difference that changes what the system can do, how complex it is to build, what it costs to run, and what the failure modes look like.</p>
 
@@ -78,7 +78,7 @@ export const drafts = [
 
 <h3>Choose a chatbot if:</h3>
 <ul>
-<li>You need to answer questions — from customers, employees, or prospects — at scale and without human intervention.</li>
+<li>You need to answer questions, from customers, employees, or prospects, at scale and without human intervention.</li>
 <li>The interaction is mostly one-directional: user asks, system answers.</li>
 <li>You want to reduce inbound support volume or improve response time on common queries.</li>
 <li>Speed of deployment and simplicity of maintenance matter more than autonomous capability.</li>
@@ -92,7 +92,7 @@ export const drafts = [
 <li>You are comfortable with the higher complexity, cost, and testing requirements that agentic systems carry.</li>
 </ul>
 
-<p>Many businesses end up needing both — a chatbot as the front-end conversational interface, and agents handling the back-end workflows that the chatbot triggers. A customer service chatbot that can answer questions is useful. A customer service chatbot that can also trigger a return, escalate a ticket, check inventory, and schedule a callback — because it is backed by agents — is transformative.</p>
+<p>Many businesses end up needing both, a chatbot as the front-end conversational interface, and agents handling the back-end workflows that the chatbot triggers. A customer service chatbot that can answer questions is useful. A customer service chatbot that can also trigger a return, escalate a ticket, check inventory, and schedule a callback, because it is backed by agents, is transformative.</p>
 
 <h2>How Much Do AI Agents Cost to Build Compared to Chatbots?</h2>
 
@@ -106,15 +106,15 @@ export const drafts = [
 
 <p>Start by mapping the specific job you want AI to do. Is the job primarily communicating information to people? That is a chatbot problem. Is the job completing a multi-step process that currently requires human judgment and action at each step? That is an agent problem.</p>
 
-<p>If you are not sure which applies to your use case, or if you have a workflow that combines both, <a href="/contact">talk to us</a>. We scope AI projects in 48 hours and tell you exactly what to build, how long it will take, and what it will cost — before you commit to anything. Our <a href="/engage/outcome-based-project">Outcome-Based AI Project</a> engagement is designed for exactly this kind of scoped build, whether it ends up being a chatbot, an agent, or a combination of both.</p>
+<p>If you are not sure which applies to your use case, or if you have a workflow that combines both, <a href="/contact">talk to us</a>. We scope AI projects in 48 hours and tell you exactly what to build, how long it will take, and what it will cost, before you commit to anything. Our <a href="/engage/outcome-based-project">Outcome-Based AI Project</a> engagement is designed for exactly this kind of scoped build, whether it ends up being a chatbot, an agent, or a combination of both.</p>
     `,
   },
 
-  // ─── BLOG 3 — Publish Thu Apr 9, 2026 ─────────────────────────────────────
+  // ─── BLOG 3, Publish Thu Apr 9, 2026 ─────────────────────────────────────
   {
     slug: "rag-vs-fine-tuning",
     title: "RAG vs Fine-Tuning: Which Should Your Company Choose in 2026?",
-    excerpt: "RAG and fine-tuning are both ways to make an LLM more useful for your specific use case — but they solve different problems. Here's how to decide which approach is right for what you're building.",
+    excerpt: "RAG and fine-tuning are both ways to make an LLM more useful for your specific use case, but they solve different problems. Here's how to decide which approach is right for what you're building.",
     category: "AI Engineering",
     date: "Apr 9, 2026",
     readTime: "10 min read",
@@ -123,7 +123,7 @@ export const drafts = [
     faqs: [
       {
         q: "What is the difference between RAG and fine-tuning?",
-        a: "RAG (Retrieval-Augmented Generation) gives a language model access to an external knowledge base at inference time — the model retrieves relevant documents and uses them to answer the question. Fine-tuning retrains the model's weights on your specific data, changing how the model fundamentally behaves. RAG changes what the model knows; fine-tuning changes how the model acts."
+        a: "RAG (Retrieval-Augmented Generation) gives a language model access to an external knowledge base at inference time, the model retrieves relevant documents and uses them to answer the question. Fine-tuning retrains the model's weights on your specific data, changing how the model fundamentally behaves. RAG changes what the model knows; fine-tuning changes how the model acts."
       },
       {
         q: "When should I use RAG instead of fine-tuning?",
@@ -135,11 +135,11 @@ export const drafts = [
       },
       {
         q: "Is RAG cheaper than fine-tuning?",
-        a: "RAG typically has lower upfront costs — no training compute required. Fine-tuning has higher upfront training costs but can have lower ongoing inference costs if a fine-tuned smaller model replaces a larger model with a long context window. For most business use cases, RAG reaches production-quality faster and at lower total cost."
+        a: "RAG typically has lower upfront costs, no training compute required. Fine-tuning has higher upfront training costs but can have lower ongoing inference costs if a fine-tuned smaller model replaces a larger model with a long context window. For most business use cases, RAG reaches production-quality faster and at lower total cost."
       },
       {
         q: "Can you use both RAG and fine-tuning together?",
-        a: "Yes — many production systems combine both. A fine-tuned model handles consistent output format and domain vocabulary, while RAG provides real-time access to current facts and proprietary documents. This combined approach is more complex and costly, but appropriate for enterprise applications where both behavioural precision and knowledge breadth matter."
+        a: "Yes, many production systems combine both. A fine-tuned model handles consistent output format and domain vocabulary, while RAG provides real-time access to current facts and proprietary documents. This combined approach is more complex and costly, but appropriate for enterprise applications where both behavioural precision and knowledge breadth matter."
       },
     ],
     body: `
@@ -151,7 +151,7 @@ export const drafts = [
 
 <h2>What Is RAG (Retrieval-Augmented Generation)?</h2>
 
-<p>Retrieval-augmented generation is a technique that gives a language model access to an external knowledge base at inference time. When a user asks a question, the system first retrieves the most relevant documents or passages from the knowledge base — using semantic search via vector embeddings — and then passes those retrieved documents to the LLM along with the query. The model generates its answer based on both the original question and the retrieved context.</p>
+<p>Retrieval-augmented generation is a technique that gives a language model access to an external knowledge base at inference time. When a user asks a question, the system first retrieves the most relevant documents or passages from the knowledge base, using semantic search via vector embeddings, and then passes those retrieved documents to the LLM along with the query. The model generates its answer based on both the original question and the retrieved context.</p>
 
 <p>The model itself is not changed. Its weights are identical to the base model. What changes is what the model sees before it generates a response. RAG essentially extends the model's knowledge on a per-query basis without touching the model's parameters.</p>
 
@@ -159,7 +159,7 @@ export const drafts = [
 
 <h2>What Is LLM Fine-Tuning?</h2>
 
-<p>Fine-tuning is the process of continuing to train a pre-trained language model on a new, domain-specific dataset. The model's weights are updated based on your training examples. After fine-tuning, the model has literally learned new patterns — it behaves differently at a fundamental level, not just because of what you put in the prompt.</p>
+<p>Fine-tuning is the process of continuing to train a pre-trained language model on a new, domain-specific dataset. The model's weights are updated based on your training examples. After fine-tuning, the model has literally learned new patterns, it behaves differently at a fundamental level, not just because of what you put in the prompt.</p>
 
 <p>Fine-tuning is appropriate when you want to change how the model writes, what vocabulary or terminology it defaults to, what format it produces output in, or how it approaches a specific class of task. It is a training-time intervention, not an inference-time one.</p>
 
@@ -172,8 +172,8 @@ export const drafts = [
 <ul>
 <li><strong>RAG changes what the model knows (at inference time).</strong> Fine-tuning changes how the model behaves (at a fundamental level).</li>
 <li><strong>RAG is for facts, knowledge, and proprietary information.</strong> Fine-tuning is for style, format, domain terminology, and task-specific behaviour.</li>
-<li><strong>RAG is dynamic</strong> — update the knowledge base and the model immediately has access to new information. <strong>Fine-tuning is static</strong> — if your facts change, you need to retrain.</li>
-<li><strong>RAG is transparent</strong> — you can inspect exactly what documents the model retrieved. Fine-tuning is opaque — the knowledge is baked into weights you cannot directly read.</li>
+<li><strong>RAG is dynamic</strong>, update the knowledge base and the model immediately has access to new information. <strong>Fine-tuning is static</strong>, if your facts change, you need to retrain.</li>
+<li><strong>RAG is transparent</strong>, you can inspect exactly what documents the model retrieved. Fine-tuning is opaque, the knowledge is baked into weights you cannot directly read.</li>
 </ul>
 
 <h2>When Should You Choose RAG?</h2>
@@ -184,26 +184,26 @@ export const drafts = [
 <p>Your internal documentation, product manuals, legal agreements, customer histories, and support tickets are not in any LLM's training data. RAG makes this information available to the model without exposing it in the training process. This is the single most common enterprise AI use case in 2026.</p>
 
 <h3>Your knowledge base changes frequently</h3>
-<p>If the information you need the model to use is updated weekly or monthly — pricing, policies, product specs, regulatory guidance — RAG lets you update the knowledge base without touching the model. Fine-tuning that knowledge in would require retraining every time it changes.</p>
+<p>If the information you need the model to use is updated weekly or monthly, pricing, policies, product specs, regulatory guidance, RAG lets you update the knowledge base without touching the model. Fine-tuning that knowledge in would require retraining every time it changes.</p>
 
 <h3>You need citations and source transparency</h3>
 <p>RAG systems can show users exactly which document a response came from. This is essential in legal, compliance, medical, and financial contexts where users need to verify the source of an assertion.</p>
 
 <h3>You want faster time to deployment</h3>
-<p>A production RAG pipeline can be built in two to six weeks. A fine-tuning project requires dataset curation, training runs, evaluation, and iteration — often adding months to the timeline.</p>
+<p>A production RAG pipeline can be built in two to six weeks. A fine-tuning project requires dataset curation, training runs, evaluation, and iteration, often adding months to the timeline.</p>
 
 <h2>When Should You Choose Fine-Tuning?</h2>
 
 <p>Fine-tuning is appropriate in a smaller set of well-defined scenarios. Choose fine-tuning when:</p>
 
 <h3>You need consistent output format or style</h3>
-<p>If your application needs the model to always output valid JSON in a specific schema, always respond in a specific brand voice, or always structure clinical notes in a particular format — and prompt engineering alone is not reliable enough — fine-tuning can bake that behaviour in at the model level.</p>
+<p>If your application needs the model to always output valid JSON in a specific schema, always respond in a specific brand voice, or always structure clinical notes in a particular format, and prompt engineering alone is not reliable enough, fine-tuning can bake that behaviour in at the model level.</p>
 
 <h3>You have a large, stable, high-quality dataset</h3>
 <p>Fine-tuning rewards scale and quality of training data. If you have thousands of high-quality labelled examples that are unlikely to change, fine-tuning can produce a model that is measurably better than RAG for your specific task.</p>
 
 <h3>You are doing classification or structured extraction</h3>
-<p>For tasks like document classification, named entity recognition, or structured data extraction — where you need fast, consistent, format-specific outputs — a fine-tuned smaller model often outperforms RAG with a larger model, at a fraction of the inference cost.</p>
+<p>For tasks like document classification, named entity recognition, or structured data extraction, where you need fast, consistent, format-specific outputs, a fine-tuned smaller model often outperforms RAG with a larger model, at a fraction of the inference cost.</p>
 
 <h3>Latency is critical</h3>
 <p>RAG adds latency because it must retrieve documents before the model can generate a response. For applications where response time under one second is essential, a fine-tuned model that has knowledge baked in can respond faster than a RAG pipeline.</p>
@@ -220,17 +220,17 @@ export const drafts = [
 
 <h2>Can You Use Both?</h2>
 
-<p>Yes — and many production systems do. A common architecture is a fine-tuned model (trained for the right output format and domain vocabulary) combined with RAG (for real-time access to current facts and proprietary documents). The fine-tuning handles the "how the model behaves" and the RAG handles the "what the model knows."</p>
+<p>Yes, and many production systems do. A common architecture is a fine-tuned model (trained for the right output format and domain vocabulary) combined with RAG (for real-time access to current facts and proprietary documents). The fine-tuning handles the "how the model behaves" and the RAG handles the "what the model knows."</p>
 
 <p>This combined approach is more complex and more expensive to build. It is appropriate for enterprise applications where both behavioural precision and knowledge breadth matter, and where the scale justifies the investment.</p>
 
 <h2>Where Should You Start?</h2>
 
-<p>If you are building something new, start with RAG. It is faster, cheaper, easier to update, and sufficient for the vast majority of enterprise AI use cases. Add fine-tuning later — once you have production data showing that a specific behavioural gap exists that fine-tuning would close.</p>
+<p>If you are building something new, start with RAG. It is faster, cheaper, easier to update, and sufficient for the vast majority of enterprise AI use cases. Add fine-tuning later, once you have production data showing that a specific behavioural gap exists that fine-tuning would close.</p>
 
-<p>If you already have a system running and are seeing consistent output format issues, hallucination in specific domains despite good retrieval, or latency problems at scale — those are signals that fine-tuning may be worth exploring.</p>
+<p>If you already have a system running and are seeing consistent output format issues, hallucination in specific domains despite good retrieval, or latency problems at scale, those are signals that fine-tuning may be worth exploring.</p>
 
-<p>Kovil AI's <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement gives you a vetted AI engineer who has built both RAG pipelines and fine-tuning workflows in production. They can assess your specific use case, recommend the right architecture, and build it — scoped, milestone-gated, and risk-free for the first two weeks. <a href="/contact">Get in touch</a> to start the conversation.</p>
+<p>Kovil AI's <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement gives you a vetted AI engineer who has built both RAG pipelines and fine-tuning workflows in production. They can assess your specific use case, recommend the right architecture, and build it, scoped, milestone-gated, and risk-free for the first two weeks. <a href="/contact">Get in touch</a> to start the conversation.</p>
     `,
   },
 ];
