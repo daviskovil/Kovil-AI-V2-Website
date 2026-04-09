@@ -867,9 +867,9 @@ export const posts: Post[] = [
 
   {
     slug: "build-mvp-4-weeks",
-    title: "How to Build an MVP in 4 Weeks Without Cutting Corners",
+    title: "How to Build an MVP in 4 Weeks (2026 Playbook)",
     excerpt:
-      "Speed and quality aren't mutually exclusive. Here's the exact framework Kovil uses to ship production-ready MVPs in under 30 days.",
+      "Speed and quality aren't mutually exclusive. Here's the exact week-by-week framework Kovil uses to ship production-ready MVPs in under 30 days, without cutting corners.",
     category: "AI Sprints",
     date: "Mar 13, 2026",
     readTime: "9 min read",
@@ -929,54 +929,84 @@ export const posts: Post[] = [
 
 <p><strong>Poor kickoff process.</strong> The first week is the most important week of any project. Teams that spend it setting up repositories, agreeing on architecture, and resolving ambiguous requirements are weeks behind before they've written a line of code.</p>
 
-<h2>The 4-Week Framework</h2>
+<h2>The 4-Week Framework: Week-by-Week</h2>
 
-<h3>Week 0 (Pre-Sprint): Scope Lock</h3>
-
-<p>The most important work happens before the sprint starts. In a two-hour scoping session, we answer six questions definitively:</p>
+<p>This is the exact sequence we follow on every <a href="/engage/outcome-based-project">Outcome-Based Project sprint</a>. Each week has a defined deliverable — not a vague milestone, a specific output you can point to.</p>
 
 <ol>
-<li><strong>What is the one thing the MVP must do?</strong> Not five things. One.</li>
-<li><strong>Who is the exact user, and what does success look like for them?</strong></li>
-<li><strong>What does "done" look like?</strong> Where does it deploy, what does it integrate with, what are the acceptance criteria?</li>
-<li><strong>What is explicitly out of scope?</strong> Writing down what you're NOT building is as important as documenting what you are.</li>
-<li><strong>What are the technical constraints?</strong> Existing systems to integrate with, security requirements, data residency needs.</li>
-<li><strong>What decisions need the client's input, and how fast can they respond?</strong> If decisions take 48+ hours, the timeline extends.</li>
+<li id="step-week-0">
+  <h3>Week 0 (Pre-Sprint): Scope Lock</h3>
+  <p>The most important work happens before the sprint starts. In a two-hour scoping session, we answer six questions definitively: What is the one thing the MVP must do? Who is the exact user and what does success look like for them? What does "done" look like technically? What is explicitly out of scope? What are the technical constraints? How fast can the client respond to decisions? If decisions take 48+ hours, the timeline extends.</p>
+  <p>The output of Week 0 is a scope document that everyone signs off on. When someone says "can we add X?", the answer is always "that's a post-MVP feature", not a negotiation.</p>
+</li>
+<li id="step-week-1">
+  <h3>Week 1: Architecture and Core Build</h3>
+  <p>Day 1-2 is all about setup: repository, CI/CD pipeline, deployment environment, database schema, component library, design system. These two days feel slow but they're the foundation everything else stands on. Skipping any of this creates painful rework in Week 3.</p>
+  <p>Day 3-5 is the core build: the most critical user flows, the backbone of the data model, and the primary API integrations. By end of Week 1, there should be a working skeleton — something you can demo that does the main thing, even if it looks rough.</p>
+  <p>AI tools do their most important work here. Boilerplate, schema generation, API client code, test fixtures — these are generated and validated in minutes rather than hours. A senior developer with AI tooling produces the equivalent of 2-3 developers worth of code per day.</p>
+</li>
+<li id="step-week-2">
+  <h3>Week 2: Feature Completeness</h3>
+  <p>Week 2 fills in every remaining feature from the scope document. By end of this week, every screen should exist, every primary flow should work end-to-end, and every critical integration should be connected, even if not fully polished.</p>
+  <p>This is when the first meaningful client demo happens — a working walkthrough of the actual product, not a mockup. The goal is to surface any significant misunderstandings before they're baked into a finished product. Clients who see weekly demos arrive at launch with minor refinements, not major redirects.</p>
+</li>
+<li id="step-week-3">
+  <h3>Week 3: Polish and Edge Cases</h3>
+  <p>Week 3 is where the product goes from "functional" to "good." Error states. Loading states. Mobile responsiveness. Accessibility basics. Form validation. Empty state handling. Security review. Performance check.</p>
+  <p>This week also handles the edge cases that always surface when real data hits a real system. By end of Week 3, the product should be something you'd be comfortable showing to real users — not perfect, but solid, reliable, and clearly usable.</p>
+</li>
+<li id="step-week-4">
+  <h3>Week 4: QA, Hardening, and Launch</h3>
+  <p>Week 4 is a full QA cycle, final bug fixes, and launch preparation: cross-browser testing, performance testing, security hardening, production deployment, monitoring setup, error tracking, and documentation. The sprint closes with a handover document covering architecture, deployment process, environment variables, known limitations, and recommended next features.</p>
+</li>
 </ol>
 
-<p>The output of Week 0 is a scope document that everyone signs off on. This document governs every scope discussion that arises during the sprint. When someone says "can we add X?", the answer is always "that's a post-MVP feature", not a negotiation.</p>
+<h2>Week-by-Week Timeline at a Glance</h2>
 
-<h3>Week 1: Architecture and Core Build</h3>
-
-<p>Day 1-2 is all about setup. Repository, CI/CD pipeline, deployment environment, environment variables, database schema, component library, and design system. These two days feel slow but they're the foundation everything else stands on. Skipping any of this creates painful rework in week 3.</p>
-
-<p>Day 3-5 is the core build: the most critical user flows, the backbone of the data model, and the primary API integrations. By end of week 1, there should be a working skeleton, something you can show that does the main thing, even if it looks rough.</p>
-
-<p>AI tools do their most important work here. Boilerplate, schema generation, API client code, test fixtures, these can be generated and validated in minutes rather than hours with the right tooling. A senior developer with AI tooling can produce the equivalent of 2-3 developers worth of code per day in structured, well-tested environments.</p>
-
-<h3>Week 2: Feature Completeness</h3>
-
-<p>Week 2 fills in the remaining features from the scope document. By the end of this week, every screen should exist, every primary flow should work end-to-end, and every critical integration should be connected, even if not fully polished.</p>
-
-<p>This is when the first meaningful client demo happens. Not a polished presentation, a working walkthrough of the actual product. The goal is to identify any significant misunderstandings in the scope before they're baked into a finished product.</p>
-
-<p>The demo cadence matters enormously here. Clients who see their product for the first time at launch often have significant feedback. Clients who've seen it progress every week arrive at launch with minor refinements, not major redirects.</p>
-
-<h3>Week 3: Polish and Edge Cases</h3>
-
-<p>Week 3 is where the product goes from "functional" to "good." Error states. Loading states. Mobile responsiveness. Accessibility basics. Form validation. Empty state handling. Security review. Performance check.</p>
-
-<p>This week also handles the edge cases that always surface when real data hits a real system. These aren't bugs in the traditional sense, they're refinements that come from testing with realistic inputs.</p>
-
-<p>By end of week 3, the product should be something you'd be comfortable showing to real users. Not perfect, that's not the goal, but solid, reliable, and clearly usable.</p>
-
-<h3>Week 4: QA, Hardening, and Launch</h3>
-
-<p>Week 4 is a full QA cycle, final bug fixes, and launch preparation. This includes: cross-browser testing, performance testing, security hardening, deployment to production infrastructure, monitoring setup, error tracking, and documentation.</p>
-
-<p>Deployment to production is not the last step, it's the milestone around which final testing is structured. You want to find issues in staging, not production. The last 2-3 days are reserved for live monitoring and rapid response to any issues that emerge.</p>
-
-<p>The sprint closes with a handover document: architecture overview, deployment process, environment variables, known limitations, and recommended next features. This document is what makes it possible for any competent developer to continue the work.</p>
+<div style="overflow-x:auto;margin:1.5rem 0;">
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+  <thead>
+    <tr style="background:#fff7ed;border-bottom:2px solid #fed7aa;">
+      <th style="padding:0.75rem 1rem;text-align:left;font-weight:700;color:#9a3412;white-space:nowrap;">Week</th>
+      <th style="padding:0.75rem 1rem;text-align:left;font-weight:700;color:#9a3412;">Focus</th>
+      <th style="padding:0.75rem 1rem;text-align:left;font-weight:700;color:#9a3412;">Key Deliverable</th>
+      <th style="padding:0.75rem 1rem;text-align:left;font-weight:700;color:#9a3412;">Risk if Skipped</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #f3f4f6;">
+      <td style="padding:0.75rem 1rem;font-weight:600;white-space:nowrap;">Week 0</td>
+      <td style="padding:0.75rem 1rem;">Scope lock</td>
+      <td style="padding:0.75rem 1rem;">Signed scope document</td>
+      <td style="padding:0.75rem 1rem;color:#dc2626;">Scope creep derails sprint</td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+      <td style="padding:0.75rem 1rem;font-weight:600;white-space:nowrap;">Week 1</td>
+      <td style="padding:0.75rem 1rem;">Architecture + core build</td>
+      <td style="padding:0.75rem 1rem;">Working skeleton, primary flows</td>
+      <td style="padding:0.75rem 1rem;color:#dc2626;">Foundation gaps cause Week 3 rework</td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;">
+      <td style="padding:0.75rem 1rem;font-weight:600;white-space:nowrap;">Week 2</td>
+      <td style="padding:0.75rem 1rem;">Feature completeness</td>
+      <td style="padding:0.75rem 1rem;">All screens + integrations connected</td>
+      <td style="padding:0.75rem 1rem;color:#dc2626;">No time to course-correct before launch</td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+      <td style="padding:0.75rem 1rem;font-weight:600;white-space:nowrap;">Week 3</td>
+      <td style="padding:0.75rem 1rem;">Polish + edge cases</td>
+      <td style="padding:0.75rem 1rem;">User-ready product, security reviewed</td>
+      <td style="padding:0.75rem 1rem;color:#dc2626;">Rough UX erodes early user trust</td>
+    </tr>
+    <tr>
+      <td style="padding:0.75rem 1rem;font-weight:600;white-space:nowrap;">Week 4</td>
+      <td style="padding:0.75rem 1rem;">QA + launch</td>
+      <td style="padding:0.75rem 1rem;">Production deployment + handover doc</td>
+      <td style="padding:0.75rem 1rem;color:#dc2626;">Launch bugs with no monitoring in place</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <h2>The Role of AI-Augmented Development</h2>
 
@@ -1021,6 +1051,27 @@ export const posts: Post[] = [
 
 <p><strong>"We should add social login."</strong> Email + password authentication works fine for an MVP. Add Google/GitHub OAuth after you have users who are complaining about the sign-in flow.</p>
 
+<h2>Real Example: AI Workflow MVP, 26 Days to Launch</h2>
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;padding:1rem 1.25rem;border-radius:0 0.5rem 0.5rem 0;margin:1.25rem 0;">
+  <p style="margin:0 0 0.25rem;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9a3412;">Kovil Case Study</p>
+  <p style="margin:0;color:#7c2d12;font-size:0.9rem;line-height:1.6;">A marketing operations team needed an AI-powered campaign reporting tool that pulled data from Google Ads, Meta, and HubSpot, summarised performance with GPT-4o, and emailed branded weekly digests to account managers, eliminating 12 hours of manual reporting per week.</p>
+</div>
+
+<p><strong>Scope lock (Week 0):</strong> The single core hypothesis was simple: would account managers actually use an AI-generated report instead of building their own? Everything else, custom branding controls, multi-client dashboards, Slack integration, was pushed to v2.</p>
+
+<p><strong>Week 1:</strong> API connections to Google Ads, Meta Ads, and HubSpot were live by Day 4. The GPT-4o summarisation pipeline was generating draft reports by Day 5, with a basic React frontend to review them.</p>
+
+<p><strong>Week 2:</strong> The email delivery system was integrated, report templates were refined based on feedback from two account managers who tested live drafts, and the scheduling logic was wired up.</p>
+
+<p><strong>Week 3:</strong> Edge cases (campaigns with zero spend, accounts with missing data, API rate limits) were handled. Email rendering was tested across clients. Error alerting was added so the team knew immediately if a report failed to generate.</p>
+
+<p><strong>Week 4:</strong> Full QA, production deployment to Vercel + Railway, monitoring through Sentry, and handover documentation. The tool went live on Day 26.</p>
+
+<p><strong>Outcome:</strong> The team reclaimed 12 hours per week immediately. Within 60 days, they had expanded the tool to cover all 22 client accounts. The App Rescue engagement that followed, when they needed the reporting engine extended to support custom KPI tracking, took 3 weeks because the foundation was clean and documented. See our <a href="/engage/app-rescue">App Rescue service</a> for how we help teams extend and rescue existing products.</p>
+
+<p>You can see more outcomes like this in our <a href="/case-studies">case studies</a>.</p>
+
 <h2>After the MVP: The Next 30 Days</h2>
 
 <p>A well-executed MVP doesn't end at launch, it begins there. The 30 days after shipping are where most of the real product learning happens.</p>
@@ -1036,6 +1087,15 @@ export const posts: Post[] = [
 <p>The teams that can't ship in four weeks usually have one of three problems: scope is too broad, developers aren't using AI tools, or decision cycles are too slow. All three are fixable, but they need to be fixed before the sprint starts, not during it.</p>
 
 <p>If you're staring down a product that needs to exist in weeks rather than months, the answer isn't to hire more people or accept a longer timeline. The answer is to get very clear on exactly what you're building, find a <a href="/engage/outcome-based-project">team that moves fast with AI tooling</a>, and protect the scope like your timeline depends on it, because it does.</p>
+
+<div style="margin-top:2rem;padding:1.25rem 1.5rem;background:#f8f8f8;border-radius:0.75rem;">
+  <p style="margin:0 0 0.75rem;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#6b7280;">Related Articles</p>
+  <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
+    <li><a href="/blog/real-cost-building-mvp-2026" style="color:#ea580c;font-weight:500;text-decoration:none;">→ The Real Cost of Building an MVP in 2026</a></li>
+    <li><a href="/blog/why-ai-projects-fail" style="color:#ea580c;font-weight:500;text-decoration:none;">→ Why AI Projects Fail (And How to Make Sure Yours Doesn't)</a></li>
+    <li><a href="/blog/ai-development-lifecycle" style="color:#ea580c;font-weight:500;text-decoration:none;">→ The AI Development Lifecycle: A Complete Guide</a></li>
+  </ul>
+</div>
     `,
   },
 
