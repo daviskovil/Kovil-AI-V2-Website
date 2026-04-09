@@ -44,8 +44,8 @@ interface FormData {
   contactName: string
   email: string
   teamSize: string
-  specialization: string
-  borough: string
+  specialization: string[]
+  borough: string[]
   painPoints: string[]
   tools: string[]
   aiMaturity: string
@@ -81,7 +81,7 @@ interface AssessmentResult {
 
 const INITIAL_DATA: FormData = {
   agencyName: '', contactName: '', email: '',
-  teamSize: '', specialization: '', borough: '',
+  teamSize: '', specialization: [], borough: [],
   painPoints: [], tools: [],
   aiMaturity: '', toolsUsed: '', openness: '', budget: '',
 }
@@ -217,7 +217,7 @@ function calculateResults(data: FormData): AssessmentResult {
   const defaults = [OPPORTUNITY_MAP['Manual reporting & analytics'], OPPORTUNITY_MAP['Ad copy generation at scale'], OPPORTUNITY_MAP['Campaign performance monitoring']]
   const topOpportunities = [...selected, ...defaults].filter((v, i, a) => a.indexOf(v) === i).slice(0, 3)
 
-  const recommendedTools = TOOL_RECS[data.specialization] ?? TOOL_RECS['Other']
+  const recommendedTools = TOOL_RECS[data.specialization[0]] ?? TOOL_RECS['Other']
 
   const riskFlags: RiskFlag[] = []
   if (data.openness === 'Skeptical') riskFlags.push({ text: 'Team skepticism will slow adoption — change management is as important as the technology', severity: 'high' })
@@ -309,10 +309,12 @@ export default function AIReadinessPage() {
     window.print()
   }
 
-  function toggle(field: 'painPoints' | 'tools', value: string) {
+  function toggle(field: 'painPoints' | 'tools' | 'specialization' | 'borough', value: string) {
     setData(prev => ({
       ...prev,
-      [field]: prev[field].includes(value) ? prev[field].filter(v => v !== value) : [...prev[field], value],
+      [field]: (prev[field] as string[]).includes(value)
+        ? (prev[field] as string[]).filter(v => v !== value)
+        : [...(prev[field] as string[]), value],
     }))
   }
 
@@ -654,17 +656,31 @@ export default function AIReadinessPage() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Agency specialisation</label>
+                        <label className="block text-xs font-semibold text-muted-foreground mb-2">
+                          Agency specialisation <span className="font-normal text-muted-foreground/60">— select all that apply</span>
+                        </label>
                         <div className="flex flex-wrap gap-2">
-                          {SPECIALIZATIONS.map(s => <RadioCard key={s} label={s} selected={data.specialization === s} onClick={() => set('specialization', s)} />)}
+                          {SPECIALIZATIONS.map(s => (
+                            <SelectChip key={s} label={s} selected={data.specialization.includes(s)} onClick={() => toggle('specialization', s)} />
+                          ))}
                         </div>
+                        {data.specialization.length > 0 && (
+                          <p className="text-xs text-orange-500 mt-2 font-medium">{data.specialization.length} selected</p>
+                        )}
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Location</label>
+                        <label className="block text-xs font-semibold text-muted-foreground mb-2">
+                          Location <span className="font-normal text-muted-foreground/60">— select all that apply</span>
+                        </label>
                         <div className="flex flex-wrap gap-2">
-                          {BOROUGHS.map(b => <RadioCard key={b} label={b} selected={data.borough === b} onClick={() => set('borough', b)} />)}
+                          {BOROUGHS.map(b => (
+                            <SelectChip key={b} label={b} selected={data.borough.includes(b)} onClick={() => toggle('borough', b)} />
+                          ))}
                         </div>
+                        {data.borough.length > 0 && (
+                          <p className="text-xs text-orange-500 mt-2 font-medium">{data.borough.length} selected</p>
+                        )}
                       </div>
                     </div>
                   )}
