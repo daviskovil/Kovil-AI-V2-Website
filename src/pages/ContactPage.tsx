@@ -21,11 +21,21 @@ export default function ContactPage() {
     const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
     const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
+    // Map form values → DB constraint values
+    const engagementMap: Record<string, string> = {
+      'hire-engineer':   'managed_ai_builder',
+      'outcome-project': 'outcome_project',
+      'app-rescue':      'app_rescue',
+      'apply':           'general_inquiry',
+      'other':           'general_inquiry',
+      'General Inquiry': 'general_inquiry',
+    }
+
     const leadData = {
       name: form.name,
       company: form.company,
       email: form.email,
-      engagement_type: form.role,
+      engagement_type: engagementMap[form.role] ?? 'general_inquiry',
       project_description: form.message,
       source: 'contact_form',
     }
