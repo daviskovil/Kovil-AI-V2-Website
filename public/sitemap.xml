@@ -77,6 +77,12 @@
 
   <!-- ── Blog Posts ──────────────────────────────────────── -->
   <url>
+    <loc>https://kovil.ai/blog/rag-vs-fine-tuning</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-09</lastmod>
+  </url>
+  <url>
     <loc>https://kovil.ai/blog/why-ai-projects-fail</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

@@ -2,7 +2,7 @@
 // Add each post to posts.ts on its scheduled publish date
 //
 // Blog 2 → PUBLISHED Mon Apr 6, 2026 ✅
-// Blog 3 → publish Thu Apr 9, 2026
+// Blog 3 → PUBLISHED Thu Apr 9, 2026 ✅
 
 export const drafts = [
   // ─── BLOG 2, Publish Mon Apr 6, 2026 ─────────────────────────────────────
