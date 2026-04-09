@@ -233,7 +233,7 @@ export const posts: Post[] = [
 
 <p>These phases are not waterfall — real projects move between them iteratively. But each phase has its own set of decisions, artifacts, and failure modes. Skipping any of them introduces risk that compounds downstream.</p>
 
-<h2>Phase 1: Problem Definition and Scoping</h2>
+<h2 id="phase-1-problem-definition">Phase 1: Problem Definition and Scoping</h2>
 
 <p>This is the most important phase of the AI development lifecycle, and the one most frequently shortchanged.</p>
 
@@ -249,9 +249,14 @@ export const posts: Post[] = [
 
 <p>Teams that skip or rush this phase typically discover three weeks into development that they are solving the wrong problem, that their success metric cannot be measured, or that the data they assumed existed does not actually exist in usable form.</p>
 
-<p><strong>Common failure at this phase:</strong> Defining the problem as "build us a chatbot" or "add AI to our dashboard" without specifying what the chatbot should do, what data it should use, or what good performance looks like.</p>
+<p><strong>Common failure at this phase:</strong> Defining the problem as "build us a chatbot" or "add AI to our dashboard" without specifying what the chatbot should do, what data it should use, or what good performance looks like. For a detailed breakdown of what happens when this phase is skipped, see <a href="/blog/why-ai-projects-fail">why 80% of AI projects fail in production</a>.</p>
 
-<h2>Phase 2: Data Collection and Preparation</h2>
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:0.875rem;">
+<p style="font-weight:600;color:#166534;margin-bottom:0.25rem;">Fintech example</p>
+<p style="color:#374151;margin:0;">A lending platform scoping an AI document reviewer defines success as: "Extract 12 specific data fields from mortgage applications with ≥98% accuracy, flagging low-confidence extractions for human review." That is a solvable problem. "Use AI to speed up document processing" is not.</p>
+</div>
+
+<h2 id="phase-2-data-preparation">Phase 2: Data Collection and Preparation</h2>
 
 <p>Most AI systems are only as good as the data they are built on. This phase covers sourcing, cleaning, transforming, and validating the data that the system will be trained on or grounded in.</p>
 
@@ -268,7 +273,12 @@ export const posts: Post[] = [
 
 <p><strong>Common failure at this phase:</strong> Training/production distribution mismatch — the model performs well on historical data used for development but encounters very different inputs in production. This is the most common reason why a model that looks good in testing disappoints in the real world.</p>
 
-<h2>Phase 3: Model Selection and Development</h2>
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:0.875rem;">
+<p style="font-weight:600;color:#166534;margin-bottom:0.25rem;">Healthcare example</p>
+<p style="color:#374151;margin:0;">A hospital building an AI clinical note summariser discovers that 30% of notes are dictated (inconsistent formatting, filler words, abbreviations) vs typed. The RAG pipeline built on typed notes alone fails badly on dictated input. Data prep must account for both sources before model development starts.</p>
+</div>
+
+<h2 id="phase-3-model-selection">Phase 3: Model Selection and Development</h2>
 
 <p>This phase involves choosing the right AI approach for the problem and building the core system. In 2026, this choice is usually not about training a model from scratch — it is about selecting the right foundation model and architecture for the task.</p>
 
@@ -283,7 +293,12 @@ export const posts: Post[] = [
 
 <p><strong>Common failure at this phase:</strong> Over-engineering. Teams reach for complex multi-agent architectures or custom model training when a well-structured RAG pipeline with a strong foundation model would have solved the problem in a fraction of the time and cost.</p>
 
-<h2>Phase 4: Evaluation and Testing</h2>
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:0.875rem;">
+<p style="font-weight:600;color:#166534;margin-bottom:0.25rem;">SaaS example</p>
+<p style="color:#374151;margin:0;">A SaaS company building an AI support agent evaluates GPT-4o vs Claude 3.5 Sonnet on 500 real support tickets. Claude scores 4% higher on accuracy but costs 20% more per query at their volume. They choose Claude for tier-1 complex queries and GPT-4o mini for simple FAQs — a hybrid routing strategy that cuts inference cost by 35%.</p>
+</div>
+
+<h2 id="phase-4-evaluation-testing">Phase 4: Evaluation and Testing</h2>
 
 <p>This is the phase that separates teams who ship reliable AI from teams who ship demos. Evaluation means systematically measuring the system's performance — not just whether it works on the examples you thought of, but how it handles the full range of real-world inputs it will encounter.</p>
 
@@ -299,7 +314,12 @@ export const posts: Post[] = [
 
 <p><strong>Common failure at this phase:</strong> Evaluating only on clean, well-formed examples that look like your development data. Production inputs are messier, more varied, and less cooperative than anything you imagined while building the system.</p>
 
-<h2>Phase 5: Deployment</h2>
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:0.875rem;">
+<p style="font-weight:600;color:#166534;margin-bottom:0.25rem;">E-commerce example</p>
+<p style="color:#374151;margin:0;">An e-commerce platform testing an AI returns processor evaluates 1,000 clean return requests and hits 96% accuracy. Adversarial testing then reveals the system can be gamed by users who describe ineligible items using eligible item vocabulary. A validation layer is added before launch — catching a fraud vector the team never anticipated.</p>
+</div>
+
+<h2 id="phase-5-deployment">Phase 5: Deployment</h2>
 
 <p>Deployment is the transition from a working system in a controlled environment to a live system serving real users. In AI projects, deployment has unique considerations beyond standard software deployment.</p>
 
@@ -314,7 +334,12 @@ export const posts: Post[] = [
 
 <p><strong>Common failure at this phase:</strong> Treating AI deployment the same as software deployment. A software system that works correctly keeps working correctly unless you change it. An AI system's performance can degrade over time without any code changes — because the world changes and the model's training distribution no longer matches reality.</p>
 
-<h2>Phase 6: Monitoring and Iteration</h2>
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:0.875rem;">
+<p style="font-weight:600;color:#166534;margin-bottom:0.25rem;">Insurance example</p>
+<p style="color:#374151;margin:0;">An insurance firm deploys an AI claims triage system in shadow mode for three weeks — running it in parallel with human reviewers without acting on its outputs. Discrepancies are reviewed daily. Shadow mode reveals two systematic failure patterns before go-live, each of which would have caused compliance issues if caught post-deployment.</p>
+</div>
+
+<h2 id="phase-6-monitoring-iteration">Phase 6: Monitoring and Iteration</h2>
 
 <p>The AI development lifecycle does not end at deployment. Production AI systems require ongoing monitoring to detect performance degradation, capture edge cases for future training, and adapt to changing business requirements.</p>
 
@@ -330,6 +355,11 @@ export const posts: Post[] = [
 <p>Monitoring data feeds back into the next iteration of the lifecycle — new edge cases become evaluation test cases, persistent failure modes inform fine-tuning or RAG improvements, and shifting requirements trigger new scoping cycles.</p>
 
 <p><strong>Common failure at this phase:</strong> Treating deployment as the finish line. Teams that do not invest in monitoring often only discover that their AI system has degraded when a user or client reports a problem — by which point the damage is done.</p>
+
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:0.875rem;">
+<p style="font-weight:600;color:#166534;margin-bottom:0.25rem;">Legal tech example</p>
+<p style="color:#374151;margin:0;">A legal research platform monitors its AI contract analyser monthly and detects a 7% accuracy drop six months post-launch. Root cause: a new contract template format from a major vendor is now common in the wild, and the system was never trained on it. Monthly output sampling catches this before any client notices — triggering a targeted fine-tuning cycle.</p>
+</div>
 
 <h2>How the AI Lifecycle Differs from Traditional Software Development</h2>
 
@@ -351,6 +381,43 @@ export const posts: Post[] = [
 
 <p>These differences have real implications for project timelines, team composition, success metrics, and how you structure contracts with AI vendors and service providers.</p>
 
+<h2>Tools Used at Each Phase of the AI Development Lifecycle</h2>
+
+<table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+<thead>
+<tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Phase</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Common Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">1. Problem Definition</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Notion, Confluence, Miro (for scoping docs and system diagrams)</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">2. Data Preparation</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Python (pandas, spaCy), LlamaIndex, Unstructured.io, Label Studio</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">3. Model Selection & Dev</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">OpenAI GPT-4o, Anthropic Claude 3.5, LangChain, LlamaIndex, Pinecone, Weaviate</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">4. Evaluation & Testing</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">LangSmith, Braintrust, Ragas, custom eval suites in Python</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">5. Deployment</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Vercel, AWS Lambda, Docker, n8n / Make (workflow orchestration)</td>
+</tr>
+<tr>
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">6. Monitoring & Iteration</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">LangSmith, Datadog, Grafana, PostHog, custom logging pipelines</td>
+</tr>
+</tbody>
+</table>
+
 <h2>Running an AI Project That Actually Ships</h2>
 
 <p>The teams that consistently ship AI in production share a few characteristics. They invest disproportionately in problem definition before writing any code. They treat data readiness as a prerequisite, not an assumption. They build evaluation infrastructure early and use it continuously. And they treat deployment as the beginning of a monitoring discipline, not the end of the project.</p>
@@ -358,6 +425,15 @@ export const posts: Post[] = [
 <p>Kovil AI's <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement is structured around this lifecycle. Our AI engineers have run this process across dozens of production deployments — in fintech, healthcare, SaaS, and professional services — and they bring a tested methodology to every project, not just technical skills.</p>
 
 <p>If you are scoping an AI project and want a frank assessment of where the risk sits and what the realistic timeline looks like, <a href="/contact">get in touch</a>. We will tell you exactly what we see — including if we think the project is not ready to start yet.</p>
+
+<div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:1.5rem 2rem;margin:2rem 0;">
+<p style="font-size:0.75rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1rem;">Related Articles</p>
+<ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+<li><a href="/blog/why-ai-projects-fail" style="color:#ea580c;font-weight:500;text-decoration:none;">→ Why 80% of AI Projects Fail in Production (2026 Guide)</a></li>
+<li><a href="/blog/ai-agents-vs-chatbots" style="color:#ea580c;font-weight:500;text-decoration:none;">→ AI Agents vs AI Chatbots: What's the Difference?</a></li>
+<li><a href="/blog/n8n-vs-zapier-vs-power-automate" style="color:#ea580c;font-weight:500;text-decoration:none;">→ n8n vs Zapier vs Power Automate (2026)</a></li>
+</ul>
+</div>
     `,
   },
 
