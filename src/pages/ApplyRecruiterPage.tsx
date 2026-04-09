@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "motion/react"
+import Image from "next/image"
 import Link from "next/link"
 import {
   CheckCircle2, Upload, X, AlertCircle,
@@ -370,6 +371,18 @@ export default function ApplyRecruiterPage() {
   return (
     <main className="min-h-screen bg-background pt-28 pb-20 px-6">
       <div className="max-w-2xl mx-auto">
+
+        {/* Banner */}
+        <div className="mb-10 rounded-2xl overflow-hidden">
+          <Image
+            src="/banners/it-recruiter-banner.png"
+            alt="Apply as an IT Recruiter — Kovil AI"
+            width={1200}
+            height={400}
+            className="w-full object-cover"
+            priority
+          />
+        </div>
 
         {/* Header */}
         <div className="mb-10">
