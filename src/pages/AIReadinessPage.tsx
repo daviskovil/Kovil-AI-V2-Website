@@ -346,7 +346,7 @@ export default function AIReadinessPage() {
           /* Hide everything except the report */
           body * { visibility: hidden; }
           .kovil-print-report, .kovil-print-report * { visibility: visible; }
-          .kovil-print-report { position: fixed; inset: 0; padding: 32px 40px; background: #fff; color: #111; font-family: system-ui, sans-serif; }
+          .kovil-print-report { display: block !important; position: fixed; inset: 0; padding: 32px 40px; background: #fff; color: #111; font-family: system-ui, sans-serif; }
 
           /* Print header */
           .kovil-print-header { display: flex !important; justify-content: space-between; align-items: center; border-bottom: 2px solid #f97316; padding-bottom: 12px; margin-bottom: 24px; }
