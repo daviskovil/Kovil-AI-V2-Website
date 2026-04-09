@@ -1,7 +1,39 @@
 User-agent: *
 Allow: /
 
-# Prevent indexing of utility / non-content paths
+# ── Block all spam/affiliate legacy URL patterns ──────────────────────────────
+# These are from the old affiliate/shopping site previously on this domain.
+# Disallowing stops Googlebot crawling them, speeding up de-indexing.
+Disallow: /onlines/
+Disallow: /blogs/
+Disallow: /category/
+Disallow: /product/
+Disallow: /products/
+Disallow: /shop/
+Disallow: /store/
+Disallow: /tag/
+Disallow: /tags/
+Disallow: /brand/
+Disallow: /brands/
+Disallow: /search/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /account/
+Disallow: /my-account/
+Disallow: /wishlist/
+Disallow: /compare/
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /feed/
+Disallow: /author/
+Disallow: /page/
+Disallow: /?s=
+Disallow: /?p=
+Disallow: /?cat=
+Disallow: /?tag=
+
+# ── Block utility paths ───────────────────────────────────────────────────────
 Disallow: /api/
 Disallow: /*.json$
 

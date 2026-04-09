@@ -5,7 +5,6 @@
     { "source": "/services/ai-integration",          "destination": "/engage/managed-ai-engineer",   "permanent": true },
     { "source": "/services/maintenance",             "destination": "/engage/app-rescue",            "permanent": true },
     { "source": "/blogs",                            "destination": "/blog",                         "permanent": true },
-    { "source": "/blogs/:path*",                     "destination": "/blog",                         "permanent": true },
     { "source": "/about-us-hire-developers-in-india", "destination": "/about",                        "permanent": true },
     { "source": "/about-us-hire-developers-in-india/","destination": "/about",                        "permanent": true },
     { "source": "/team",                             "destination": "/",                             "permanent": true },
@@ -49,8 +48,7 @@
     { "source": "/web/",                                   "destination": "/",                            "permanent": true },
     { "source": "/codifyer-ai",                            "destination": "/",                            "permanent": true },
     { "source": "/codifyer-ai/",                           "destination": "/",                            "permanent": true },
-    { "source": "/category/blog/:path*",                   "destination": "/blog",                        "permanent": true },
-    { "source": "/category/:path*",                        "destination": "/blog",                        "permanent": true }
+    { "source": "/category/blog/:path*",                   "destination": "/blog",                        "permanent": true }
   ],
   "headers": [
     {
