@@ -304,9 +304,49 @@ export default function AIReadinessPage() {
   const [step, setStep] = useState<Step>(1)
   const [data, setData] = useState<FormData>(INITIAL_DATA)
   const [result, setResult] = useState<AssessmentResult | null>(null)
+  const [downloading, setDownloading] = useState(false)
 
-  function handleDownloadPDF() {
-    window.print()
+  async function handleDownloadPDF() {
+    const reportEl = document.querySelector<HTMLElement>('.kovil-print-report')
+    if (!reportEl || !result) return
+    setDownloading(true)
+    try {
+      const [{ default: html2canvas }, { default: jsPDF }] = await Promise.all([
+        import('html2canvas'),
+        import('jspdf'),
+      ])
+      // Temporarily render off-screen so html2canvas can capture it
+      const prev = { display: reportEl.style.display, position: reportEl.style.position, left: reportEl.style.left, top: reportEl.style.top, width: reportEl.style.width }
+      reportEl.style.display = 'block'
+      reportEl.style.position = 'absolute'
+      reportEl.style.left = '-9999px'
+      reportEl.style.top = '0'
+      reportEl.style.width = '794px'
+      await new Promise(r => setTimeout(r, 50)) // let browser paint
+      const canvas = await html2canvas(reportEl, { scale: 2, useCORS: true, backgroundColor: '#ffffff' })
+      // Restore
+      Object.assign(reportEl.style, prev)
+      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
+      const pdfW = pdf.internal.pageSize.getWidth()
+      const pdfH = (canvas.height * pdfW) / canvas.width
+      const imgData = canvas.toDataURL('image/jpeg', 0.92)
+      // Handle multi-page if content is taller than A4
+      const pageH = pdf.internal.pageSize.getHeight()
+      if (pdfH <= pageH) {
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfW, pdfH)
+      } else {
+        let yOffset = 0
+        while (yOffset < pdfH) {
+          pdf.addImage(imgData, 'JPEG', 0, -yOffset, pdfW, pdfH)
+          yOffset += pageH
+          if (yOffset < pdfH) pdf.addPage()
+        }
+      }
+      const filename = `kovil-ai-readiness-${(data.agencyName || 'report').toLowerCase().replace(/\s+/g, '-')}.pdf`
+      pdf.save(filename)
+    } finally {
+      setDownloading(false)
+    }
   }
 
   function toggle(field: 'painPoints' | 'tools' | 'specialization' | 'borough', value: string) {
@@ -507,8 +547,10 @@ export default function AIReadinessPage() {
                     variant="outline"
                     size="sm"
                     className="rounded-xl border-border gap-2"
+                    disabled={downloading}
                   >
-                    <Download className="h-4 w-4" /> Download PDF Report
+                    <Download className={`h-4 w-4 ${downloading ? 'animate-bounce' : ''}`} />
+                    {downloading ? 'Generating PDF…' : 'Download PDF Report'}
                   </Button>
                   <button
                     type="button"
