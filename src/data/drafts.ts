@@ -143,7 +143,7 @@ export const drafts = [
       },
     ],
     body: `
-<img src="/blog-rag-vs-fine-tuning.png" alt="RAG vs Fine-Tuning: Which Should Your Company Choose?" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+<img src="/blog-rag-vs-fine-tuning.jpg" alt="RAG vs Fine-Tuning: Which Should Your Company Choose?" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
 
 <p>One of the most common questions teams face when building with large language models is whether to use retrieval-augmented generation (RAG) or fine-tuning to adapt the model to their specific domain. Both approaches improve model usefulness for a specific context. They do it in fundamentally different ways, suit different problems, and carry very different cost and maintenance profiles.</p>
 
