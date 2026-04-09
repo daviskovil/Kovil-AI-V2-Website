@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight, ArrowLeft, CheckCircle2, Clock, Zap, BarChart3, Users,
-  AlertTriangle, TrendingUp, Wrench,
+  AlertTriangle, TrendingUp, Wrench, Download,
 } from 'lucide-react'
 import { Button } from '../components/ui/button'
 import { OnboardingModal } from '../components/OnboardingModal'
@@ -305,6 +305,10 @@ export default function AIReadinessPage() {
   const [data, setData] = useState<FormData>(INITIAL_DATA)
   const [result, setResult] = useState<AssessmentResult | null>(null)
 
+  function handleDownloadPDF() {
+    window.print()
+  }
+
   function toggle(field: 'painPoints' | 'tools', value: string) {
     setData(prev => ({
       ...prev,
@@ -333,6 +337,52 @@ export default function AIReadinessPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_SCHEMA) }} />
+
+      {/* ── Print styles ─────────────────────────────────────────────────── */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media print {
+          /* Hide everything except the report */
+          body * { visibility: hidden; }
+          .kovil-print-report, .kovil-print-report * { visibility: visible; }
+          .kovil-print-report { position: fixed; inset: 0; padding: 32px 40px; background: #fff; color: #111; font-family: system-ui, sans-serif; }
+
+          /* Print header */
+          .kovil-print-header { display: flex !important; justify-content: space-between; align-items: center; border-bottom: 2px solid #f97316; padding-bottom: 12px; margin-bottom: 24px; }
+
+          /* Cards */
+          .kovil-print-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px 20px; margin-bottom: 16px; break-inside: avoid; }
+          .kovil-print-card h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; margin-bottom: 12px; }
+
+          /* Score */
+          .kovil-print-score { font-size: 64px; font-weight: 800; color: #111; line-height: 1; }
+          .kovil-print-tier { font-size: 18px; font-weight: 600; color: #f97316; margin-top: 4px; margin-bottom: 8px; }
+
+          /* Dimension bars */
+          .kovil-print-bar-track { height: 8px; background: #f3f4f6; border-radius: 4px; overflow: hidden; margin-top: 4px; }
+          .kovil-print-bar-fill { height: 8px; background: #f97316; border-radius: 4px; }
+
+          /* Opportunity cards */
+          .kovil-print-opp { display: flex; gap: 12px; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; break-inside: avoid; }
+          .kovil-print-badge { height: 24px; width: 24px; border-radius: 50%; background: #f97316; color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+          .kovil-print-impact { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; background: #fff7ed; color: #f97316; margin-left: 6px; }
+
+          /* Two-col grid */
+          .kovil-print-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+          /* Risk dot */
+          .kovil-print-dot-high  { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ef4444; margin-right: 6px; flex-shrink: 0; }
+          .kovil-print-dot-medium{ display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #eab308; margin-right: 6px; flex-shrink: 0; }
+          .kovil-print-dot-low   { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #60a5fa; margin-right: 6px; flex-shrink: 0; }
+
+          /* Footer */
+          .kovil-print-footer { margin-top: 24px; border-top: 1px solid #e5e7eb; padding-top: 10px; font-size: 11px; color: #9ca3af; display: flex; justify-content: space-between; }
+
+          /* Hide screen-only elements */
+          .no-print { display: none !important; }
+
+          @page { margin: 0; size: A4 portrait; }
+        }
+      ` }} />
 
       <main className="min-h-screen bg-background">
 
@@ -448,7 +498,16 @@ export default function AIReadinessPage() {
                   )}
                 </div>
 
-                <div className="text-center pt-2">
+                {/* Actions */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 no-print">
+                  <Button
+                    onClick={handleDownloadPDF}
+                    variant="outline"
+                    size="sm"
+                    className="rounded-xl border-border gap-2"
+                  >
+                    <Download className="h-4 w-4" /> Download PDF Report
+                  </Button>
                   <button
                     type="button"
                     onClick={() => { setStep(1); setData(INITIAL_DATA); setResult(null) }}
@@ -456,6 +515,91 @@ export default function AIReadinessPage() {
                   >
                     Retake assessment
                   </button>
+                </div>
+
+                {/* ── Print-only report ──────────────────────────────────── */}
+                <div className="kovil-print-report hidden">
+                  {/* Header */}
+                  <div className="kovil-print-header">
+                    <div>
+                      <div style={{ fontWeight: 800, fontSize: 20, color: '#111' }}>Kovil AI</div>
+                      <div style={{ fontSize: 12, color: '#6b7280' }}>AI Readiness Report — Ad &amp; Marketing Agencies</div>
+                    </div>
+                    <div style={{ textAlign: 'right', fontSize: 12, color: '#6b7280' }}>
+                      <div>{data.agencyName || 'Agency'}</div>
+                      <div>{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                    </div>
+                  </div>
+
+                  {/* Score */}
+                  <div className="kovil-print-card" style={{ textAlign: 'center', marginBottom: 16 }}>
+                    <div className="kovil-print-score">{result.score}</div>
+                    <div className="kovil-print-tier">{result.tier}</div>
+                    <div style={{ fontSize: 13, color: '#374151', maxWidth: 480, margin: '0 auto', lineHeight: 1.5 }}>{result.summary}</div>
+                  </div>
+
+                  {/* Dimensions */}
+                  <div className="kovil-print-card">
+                    <h3>Readiness by Dimension</h3>
+                    {Object.entries(result.dimensionScores).map(([key, val]) => (
+                      <div key={key} style={{ marginBottom: 10 }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, marginBottom: 3 }}>
+                          <span style={{ color: '#374151', fontWeight: 500, textTransform: 'capitalize' }}>{key}</span>
+                          <span style={{ fontWeight: 700 }}>{val}</span>
+                        </div>
+                        <div className="kovil-print-bar-track">
+                          <div className="kovil-print-bar-fill" style={{ width: `${val}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Opportunities */}
+                  <div className="kovil-print-card">
+                    <h3>Top 3 Automation Opportunities</h3>
+                    {result.topOpportunities.map((opp, i) => (
+                      <div key={i} className="kovil-print-opp">
+                        <div className="kovil-print-badge">{i + 1}</div>
+                        <div>
+                          <div style={{ fontWeight: 600, fontSize: 13 }}>
+                            {opp.title}
+                            <span className="kovil-print-impact">{opp.impact}</span>
+                            <span style={{ fontSize: 11, color: '#6b7280', marginLeft: 6 }}>{opp.timeline}</span>
+                          </div>
+                          <div style={{ fontSize: 12, color: '#6b7280', marginTop: 3, lineHeight: 1.5 }}>{opp.description}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Tools + Risks */}
+                  <div className="kovil-print-grid">
+                    <div className="kovil-print-card">
+                      <h3>Recommended Tools</h3>
+                      {result.recommendedTools.map(t => (
+                        <div key={t} style={{ display: 'flex', alignItems: 'flex-start', gap: 6, marginBottom: 6, fontSize: 12, color: '#374151' }}>
+                          <span style={{ color: '#f97316', flexShrink: 0 }}>✓</span> {t}
+                        </div>
+                      ))}
+                    </div>
+                    {result.riskFlags.length > 0 && (
+                      <div className="kovil-print-card">
+                        <h3>Risk Flags</h3>
+                        {result.riskFlags.map((f, i) => (
+                          <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 6, marginBottom: 8, fontSize: 12, color: '#374151' }}>
+                            <span className={`kovil-print-dot-${f.severity}`} style={{ marginTop: 4 }} />
+                            <span style={{ lineHeight: 1.4 }}>{f.text}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Footer */}
+                  <div className="kovil-print-footer">
+                    <span>Generated by Kovil AI · kovil.ai</span>
+                    <span>Book a free strategy call → kovil.ai/apply</span>
+                  </div>
                 </div>
               </motion.div>
             )}
