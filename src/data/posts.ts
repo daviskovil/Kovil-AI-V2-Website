@@ -1101,9 +1101,9 @@ export const posts: Post[] = [
 
   {
     slug: "software-maintenance-time-bomb",
-    title: "Why Unmaintained Code Is a Ticking Time Bomb",
+    title: "The Hidden Cost of Unmaintained Software (2026 Guide)",
     excerpt:
-      "Ignoring your codebase after launch is the most expensive mistake a growing company can make. Here's the data, and what to do about it.",
+      "Ignoring your codebase after launch is the most expensive mistake a growing company can make. Here's the data, the warning signs, and what to do about it.",
     category: "Maintenance",
     date: "Mar 11, 2026",
     readTime: "7 min read",
@@ -1139,7 +1139,7 @@ export const posts: Post[] = [
 
 <p>A payment flow breaks. A key integration stops working after a third-party API update. A security vulnerability is found. A performance issue under new load causes timeouts. A developer leaves, and nobody else understands the part of the system they built.</p>
 
-<p>The codebase was always a ticking time bomb. You just couldn't hear it from the sales floor.</p>
+<p>The codebase was always accumulating risk. You just couldn't see it from the sales floor.</p>
 
 <h2>The Hidden Cost of Deferred Maintenance</h2>
 
@@ -1147,7 +1147,7 @@ export const posts: Post[] = [
 
 <p>The numbers are significant. <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/tech-debt-reclaiming-tech-equity" target="_blank" rel="noopener">Research from McKinsey</a> found that for the average large company, 20-40% of technology investments are consumed by technical debt annually. For smaller companies, the ratio is often worse, because the codebase is less structured, documentation is sparse, and there are fewer developers who understand the full system.</p>
 
-<p>But the real cost of an unmaintained codebase isn't just developer time, it's business impact:</p>
+<p>But the real cost of an unmaintained codebase isn't just developer time, it's business impact. These same patterns compound the risks we cover in our post on <a href="/blog/why-ai-projects-fail">why AI projects fail in production</a> — the codebase problems that kill new AI features are usually maintenance problems that were ignored months earlier.</p>
 
 <ul>
 <li><strong>Downtime costs money.</strong> For e-commerce companies, every hour of downtime is lost revenue. For SaaS businesses, outages trigger SLA breaches, support escalations, and churn.</li>
@@ -1195,7 +1195,7 @@ export const posts: Post[] = [
 
 <p><strong>Stage 3 (24+ months): Crisis mode.</strong> A major incident occurs. Either a security breach, a catastrophic bug, or a critical dependency failure forces emergency action. The cost of remediation is 5-10x what proactive maintenance would have been.</p>
 
-<p>The cruel irony is that the period of apparent stability in Stage 1 creates a false sense of security. The codebase isn't fine, it's just not visibly broken yet.</p>
+<p>The cruel irony is that the period of apparent stability in Stage 1 creates a false sense of security. The codebase isn't fine, it's just not visibly broken yet. If you're in Stage 3, the right move is an <a href="/engage/app-rescue">App Rescue engagement</a> — a structured stabilisation sprint before the next feature build begins. If you're still in Stage 2, a <a href="/engage/managed-ai-engineer">Managed AI Engineer retainer</a> keeps you from ever reaching Stage 3.</p>
 
 <h2>What Good Maintenance Actually Looks Like</h2>
 
@@ -1243,9 +1243,67 @@ export const posts: Post[] = [
 
 <p>Any one of these is a yellow flag. More than two is a red one.</p>
 
+<h2>The Real Numbers: What Software Neglect Actually Costs</h2>
+
+<p>The business case for proactive maintenance becomes clearer when you put concrete numbers against it:</p>
+
+<ul>
+<li><strong>Technical debt consumes 20-40% of IT budgets</strong> annually at the average large company, according to McKinsey — budget that produces zero new capability, it just services existing mess.</li>
+<li><strong>The average cost of a data breach in 2026 is $4.88 million</strong> (IBM Cost of a Data Breach Report, 2024), most of which is attributable to vulnerabilities that existed in the codebase for months or years before exploitation.</li>
+<li><strong>Emergency incident response costs 5-10x more than prevention.</strong> A critical bug that takes a two-engineer week to fix reactively would typically have taken a half-day to prevent with proactive monitoring.</li>
+<li><strong>Developer velocity declines 30-40% in neglected codebases</strong> — meaning new features that should take two weeks take three, compounding across every sprint for the life of the product.</li>
+<li><strong>Dependency upgrade projects balloon in neglected stacks.</strong> A single security patch that should take hours can require weeks of refactoring when dependencies haven't been touched in 18 months.</li>
+</ul>
+
+<h2>Before and After: Proactive vs. Reactive Maintenance</h2>
+
+<div style="overflow-x:auto;margin:1.5rem 0;">
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+  <thead>
+    <tr style="background:#fff7ed;border-bottom:2px solid #fed7aa;">
+      <th style="padding:0.75rem 1rem;text-align:left;font-weight:700;color:#9a3412;">Scenario</th>
+      <th style="padding:0.75rem 1rem;text-align:left;font-weight:700;color:#9a3412;">Reactive (No Maintenance)</th>
+      <th style="padding:0.75rem 1rem;text-align:left;font-weight:700;color:#9a3412;">Proactive (Retainer)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #f3f4f6;">
+      <td style="padding:0.75rem 1rem;font-weight:600;">Security vulnerability found</td>
+      <td style="padding:0.75rem 1rem;color:#dc2626;">2-6 weeks to patch (dependency chain); potential breach exposure</td>
+      <td style="padding:0.75rem 1rem;color:#16a34a;">Patched within hours; already on current dependencies</td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+      <td style="padding:0.75rem 1rem;font-weight:600;">Third-party API deprecated</td>
+      <td style="padding:0.75rem 1rem;color:#dc2626;">Integration breaks in production; emergency dev sprint required</td>
+      <td style="padding:0.75rem 1rem;color:#16a34a;">Migration planned ahead of deprecation date</td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;">
+      <td style="padding:0.75rem 1rem;font-weight:600;">Performance degrades under new load</td>
+      <td style="padding:0.75rem 1rem;color:#dc2626;">Users notice first; root cause investigation under pressure</td>
+      <td style="padding:0.75rem 1rem;color:#16a34a;">Caught in monitoring before user impact</td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+      <td style="padding:0.75rem 1rem;font-weight:600;">Key developer leaves</td>
+      <td style="padding:0.75rem 1rem;color:#dc2626;">Knowledge gap; system partially understood by no one</td>
+      <td style="padding:0.75rem 1rem;color:#16a34a;">Documentation current; multiple engineers familiar with system</td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;">
+      <td style="padding:0.75rem 1rem;font-weight:600;">New feature request</td>
+      <td style="padding:0.75rem 1rem;color:#dc2626;">Delayed by technical debt; 2x estimated dev time</td>
+      <td style="padding:0.75rem 1rem;color:#16a34a;">Clean foundation; delivered on schedule</td>
+    </tr>
+    <tr>
+      <td style="padding:0.75rem 1rem;font-weight:600;">Annual cost</td>
+      <td style="padding:0.75rem 1rem;color:#dc2626;">Unpredictable; $50K–$500K+ in incident costs</td>
+      <td style="padding:0.75rem 1rem;color:#16a34a;">Predictable retainer; fraction of incident cost</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 <h2>The ROI of Proactive Maintenance</h2>
 
-<p>The business case for proactive maintenance is straightforward. The question isn't whether you'll pay to deal with your codebase, it's whether you'll pay on your terms or in a crisis.</p>
+<p>The question isn't whether you'll pay to deal with your codebase, it's whether you'll pay on your terms or in a crisis.</p>
 
 <p>A maintenance retainer typically costs a fraction of what a single major incident costs to remediate. When we've helped companies recover from production crises, breaches, complete service failures, catastrophic bugs, the emergency remediation cost almost always exceeds a full year of proactive maintenance that would have prevented the crisis entirely.</p>
 
@@ -1256,6 +1314,15 @@ export const posts: Post[] = [
 <p>The codebase running your business is not a static asset. It's a living system in a constantly changing environment, changing dependencies, changing APIs, changing security threats, changing user loads. Treating it as something that doesn't need ongoing attention is the equivalent of never servicing a car engine and being surprised when it fails.</p>
 
 <p>The question isn't whether your unmaintained codebase will cause problems. It's when, and how much it will cost when it does. Proactive maintenance isn't a nice-to-have. It's the difference between a crisis that disrupts your business and a minor issue resolved before your users notice it. If your codebase is already showing signs of neglect, <a href="/engage/app-rescue">AI Reliability & App Rescue</a> is built for exactly this situation.</p>
+
+<div style="margin-top:2rem;padding:1.25rem 1.5rem;background:#f8f8f8;border-radius:0.75rem;">
+  <p style="margin:0 0 0.75rem;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#6b7280;">Related Articles</p>
+  <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
+    <li><a href="/blog/why-ai-projects-fail" style="color:#ea580c;font-weight:500;text-decoration:none;">→ Why AI Projects Fail (And How to Make Sure Yours Doesn't)</a></li>
+    <li><a href="/blog/build-mvp-4-weeks" style="color:#ea580c;font-weight:500;text-decoration:none;">→ How to Build an MVP in 4 Weeks (2026 Playbook)</a></li>
+    <li><a href="/blog/real-cost-building-mvp-2026" style="color:#ea580c;font-weight:500;text-decoration:none;">→ The Real Cost of Building an MVP in 2026</a></li>
+  </ul>
+</div>
     `,
   },
 
