@@ -1651,7 +1651,7 @@ export const posts: Post[] = [
   },
   {
     slug: "why-ai-projects-fail",
-    title: "Why 80% of AI Projects Fail in Production (And What the Surviving 20% Do Differently)",
+    title: "Why 80% of AI Projects Fail in Production (2026 Guide)",
     excerpt: "Most AI projects work in demos but fail in production. Here's why — and what separates teams that ship reliable AI from those that don't.",
     category: "AI Engineering",
     date: "Apr 2, 2026",
@@ -1660,6 +1660,10 @@ export const posts: Post[] = [
     featured: false,
     heroImage: "/blog-why-ai-projects-fail.jpg",
     faqs: [
+      {
+        q: "What is AI project failure?",
+        a: "AI project failure is any AI initiative that does not achieve its intended business outcome — whether that means never reaching production, underperforming once deployed, or being abandoned after launch due to poor reliability, runaway costs, or low user adoption. Unlike traditional software bugs, AI failure is often gradual and invisible until significant damage has been done."
+      },
       {
         q: "What percentage of AI projects fail?",
         a: "According to Gartner, approximately 85% of AI projects fail to deliver on their intended business outcomes. McKinsey estimates the failure rate at around 80%. The consistent finding across research is that the majority of AI initiatives either underperform, get shut down, or never reach real users."
@@ -1682,13 +1686,15 @@ export const posts: Post[] = [
       },
     ],
     body: `
-<img src="/blog-why-ai-projects-fail.jpg" alt="Why 80% of AI Projects Fail in Production" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+<img src="/blog-why-ai-projects-fail.jpg" alt="AI production failure: why 80% of AI projects fail before reaching real users" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
 
-<p>According to Gartner, through 2025 roughly 85% of AI projects will fail to deliver on their intended business outcomes. McKinsey puts the failure rate closer to 80%. The exact number varies by study, but the direction is consistent: most AI initiatives that reach production either underperform, get quietly shut down, or never make it to real users at all.</p>
+<p>According to Gartner's AI research, roughly 85% of AI projects fail to deliver on their intended business outcomes through 2025. McKinsey Global Institute puts the failure rate closer to 80%. The exact number varies by study, but the direction is consistent: most AI initiatives that reach production either underperform, get quietly shut down, or never make it to real users at all.</p>
+
+<p>AI project failure is defined as any AI initiative that does not achieve its intended business outcome — whether that means never reaching production, underperforming once deployed, or being abandoned after launch due to poor reliability, runaway costs, or low user adoption. Unlike traditional software bugs, AI failure is often gradual and invisible until significant damage has already been done.</p>
 
 <p>This isn't a technology problem. The models are good enough. The frameworks are mature. The compute is accessible. The failure almost always happens in the gap between a working demo and a reliable production system — and that gap is wider and more treacherous than most teams expect.</p>
 
-<h2>What Does It Mean for an AI Project to "Fail"?</h2>
+<h2>What Does AI Project Failure Actually Look Like?</h2>
 
 <p>AI project failure looks different from traditional software failure. A conventional app either works or it doesn't — the bug is usually deterministic and reproducible. AI failure is messier. It shows up in ways that are easy to miss until real damage is done.</p>
 
@@ -1739,6 +1745,43 @@ export const posts: Post[] = [
 <h3>5. Prompt injection vulnerabilities</h3>
 <p>Malicious users discover they can manipulate system behaviour by crafting specific inputs designed to override the system prompt. Customer-facing AI systems without injection guards are a security liability, not just a reliability concern.</p>
 
+<table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+<thead>
+<tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Failure Mode</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Root Cause</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Hallucination without guardrails</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">No output validation layer</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Add schema validation + human review for high-stakes outputs</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">RAG retrieval degrading over time</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Stale embeddings, poor chunking strategy</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Schedule re-embedding pipeline, tune chunk size per doc type</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Context window overflow</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">No conversation or context management</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Implement sliding window or conversation summarisation</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Cost overruns at scale</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">No token budgeting or caching strategy</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Add token counting, caching layer, model routing for simple queries</td>
+</tr>
+<tr>
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Prompt injection vulnerability</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">No input sanitisation or output enforcement</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Add input guards, output schema enforcement, adversarial testing</td>
+</tr>
+</tbody>
+</table>
+
 <h2>What Do the Successful 20% Do Differently?</h2>
 
 <p>The AI projects that succeed in production share a set of practices that are visible before launch:</p>
@@ -1751,7 +1794,7 @@ export const posts: Post[] = [
 
 <p><strong>They monitor in production.</strong> Latency per request, token usage per session, retrieval hit rate, user satisfaction signals — all tracked and alertable. When something starts drifting, the team knows before the user does.</p>
 
-<p><strong>They staff with engineers who have shipped AI before.</strong> The gap between an engineer who has built AI demos and one who has shipped reliable AI systems in production is significant. Production AI requires experience with evals, prompt versioning, RAG architecture, cost optimisation, and LLM-specific failure modes that don't appear in most engineering curricula.</p>
+<p><strong>They staff with engineers who have shipped AI before.</strong> The gap between an engineer who has built AI demos and one who has shipped reliable AI systems in production is significant. Production AI requires experience with evals, prompt versioning, RAG architecture, cost optimisation, and LLM-specific failure modes that don't appear in most engineering curricula. If your team lacks this depth, a <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> embedded in your team can fill that gap without the cost of a full-time senior hire. For scoped delivery, an <a href="/engage/outcome-based-project">Outcome-Based AI Project</a> gives you a fixed deliverable with clear success criteria.</p>
 
 <h2>When Should You Bring in Outside AI Engineering Expertise?</h2>
 
