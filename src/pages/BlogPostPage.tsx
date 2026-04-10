@@ -254,13 +254,34 @@ export default function BlogPostPage() {
                 </div>
               )}
 
-              {/* Internal CTA */}
-              <div className="mt-16 pt-10 border-t border-border">
-                <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2">Ready to Build?</p>
-                <p className="text-lg font-display font-bold mb-4">See how Kovil AI engineers deliver production-grade AI.</p>
-                <div className="flex flex-wrap gap-4">
-                  <Link href="/case-studies" className="text-sm font-medium text-accent hover:underline">View Case Studies →</Link>
-                  <Link href="/how-it-works" className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors">How It Works →</Link>
+              {/* ── Inline CTA Banner ── */}
+              <div className="mt-14 rounded-2xl overflow-hidden border border-border">
+                <div className="bg-[#111827] px-8 py-10 relative">
+                  {/* Subtle grid texture */}
+                  <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
+                  <div className="relative">
+                    <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">Kovil AI · Workflow Automation</p>
+                    <h3 className="font-display font-bold text-white text-2xl lg:text-3xl leading-tight mb-4 text-balance">
+                      Looking to automate workflows<br className="hidden sm:block" /> inside your business?
+                    </h3>
+                    <p className="text-white/60 text-sm leading-relaxed mb-7 max-w-lg">
+                      We help businesses replace hours of manual, repetitive work with AI-powered automations — whether that's connecting your tools with n8n, Make, or building something fully custom. Let's figure out what's possible for your team.
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white text-sm font-semibold px-6 py-3 rounded-lg transition-colors"
+                      >
+                        Talk to Us →
+                      </Link>
+                      <Link
+                        href="/case-studies"
+                        className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white text-sm font-semibold px-6 py-3 rounded-lg transition-colors"
+                      >
+                        See Our Work
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
 
