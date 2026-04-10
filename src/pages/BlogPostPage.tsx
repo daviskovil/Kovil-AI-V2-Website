@@ -6,6 +6,135 @@ import Link from "next/link"
 import { ArrowLeft, Clock, Calendar, User, ChevronDown } from "lucide-react"
 import { getPost } from "../data/posts"
 
+// ─── CTA Config ──────────────────────────────────────────────────────────────
+
+type CtaConfig = {
+  label: string
+  headline: string
+  body: string
+  primary: { text: string; href: string }
+  secondary: { text: string; href: string }
+}
+
+const CTA_MAP: Record<string, CtaConfig> = {
+  'n8n-vs-zapier-vs-power-automate': {
+    label: 'Kovil AI · Workflow Automation',
+    headline: 'Looking to automate workflows inside your business?',
+    body: 'We help businesses replace hours of manual, repetitive work with AI-powered automations — whether that\'s connecting your tools with n8n, Make, or building something fully custom. Let\'s figure out what\'s possible for your team.',
+    primary: { text: 'Talk to Us →', href: '/contact' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },
+  'rag-vs-fine-tuning': {
+    label: 'Kovil AI · AI Engineering',
+    headline: 'Building a custom AI model for your business?',
+    body: 'RAG or fine-tuning — our engineers have implemented both in production. We help you choose the right approach for your use case and build it without the guesswork.',
+    primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+    secondary: { text: 'See AI Case Studies', href: '/case-studies' },
+  },
+  'ai-agents-vs-chatbots': {
+    label: 'Kovil AI · AI Engineering',
+    headline: 'Ready to deploy an AI agent or chatbot for your business?',
+    body: 'We build production-grade AI agents and chatbots — not demos. From scoping to deployment, our engineers handle the full build and make sure it works in the real world.',
+    primary: { text: 'Start a Conversation →', href: '/contact' },
+    secondary: { text: 'View Case Studies', href: '/case-studies' },
+  },
+  'ai-development-lifecycle': {
+    label: 'Kovil AI · AI Engineering',
+    headline: 'Need an experienced team to guide your AI project?',
+    body: 'We\'ve taken AI projects from whiteboard to production across every stage of the lifecycle. Whether you\'re planning, mid-build, or stuck — we can step in.',
+    primary: { text: 'Talk to Us →', href: '/contact' },
+    secondary: { text: 'How We Work', href: '/how-it-works' },
+  },
+  'ai-automation-nyc-ad-marketing-agencies': {
+    label: 'Kovil AI · NYC Agency Automation',
+    headline: 'Running an ad or marketing agency in New York?',
+    body: 'We specialize in AI automation for NYC agencies — campaign reporting, brief generation, client dashboards. Let\'s replace your most time-consuming manual workflows.',
+    primary: { text: 'Book a Discovery Call →', href: '/contact' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },
+  'what-is-ai-integration': {
+    label: 'Kovil AI · AI Integration',
+    headline: 'Ready to integrate AI into your existing business stack?',
+    body: 'We connect AI models, APIs, and your existing tools into workflows that actually work. No rip-and-replace — just targeted integrations that save real time.',
+    primary: { text: 'Talk to Us →', href: '/contact' },
+    secondary: { text: 'How It Works', href: '/how-it-works' },
+  },
+  'build-mvp-4-weeks': {
+    label: 'Kovil AI · 4-Week MVP Sprint',
+    headline: 'Got a product idea? We\'ll build your MVP in 4 weeks.',
+    body: 'Fixed scope, fixed timeline, fixed price. Our engineers have shipped MVPs across fintech, healthtech, logistics, and SaaS. Let\'s scope yours.',
+    primary: { text: 'Scope My MVP →', href: '/engage/outcome-based-project' },
+    secondary: { text: 'See MVP Case Studies', href: '/case-studies' },
+  },
+  'real-cost-building-mvp-2026': {
+    label: 'Kovil AI · Fixed-Cost MVP Build',
+    headline: 'Want to know exactly what your MVP will cost?',
+    body: 'No hourly billing surprises. We scope your MVP upfront and deliver at a fixed price — typically in 4 weeks. Get a clear number before you commit.',
+    primary: { text: 'Get a Fixed-Cost Quote →', href: '/engage/outcome-based-project' },
+    secondary: { text: 'See What We\'ve Built', href: '/case-studies' },
+  },
+  'software-maintenance-time-bomb': {
+    label: 'Kovil AI · App Rescue',
+    headline: 'Is your software becoming a liability?',
+    body: 'Outdated dependencies, missing tests, mounting tech debt — we\'ve seen it all. Our App Rescue service gets your codebase back to a stable, maintainable state before it becomes a crisis.',
+    primary: { text: 'Get an App Rescue Assessment →', href: '/engage/app-rescue' },
+    secondary: { text: 'How It Works', href: '/how-it-works' },
+  },
+  'llm-chatbot-for-business': {
+    label: 'Kovil AI · AI Chatbot Build',
+    headline: 'Want to build an AI chatbot for your business?',
+    body: 'We build LLM-powered chatbots that are actually useful — connected to your data, trained on your docs, and deployed in your stack. Not a generic off-the-shelf wrapper.',
+    primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },
+  'why-ai-projects-fail': {
+    label: 'Kovil AI · AI Engineering',
+    headline: "Don't let your AI project become another statistic.",
+    body: "The failure points are predictable — and avoidable. Our engineers have rescued AI projects from broken proof-of-concept and taken them to production. We know what it takes.",
+    primary: { text: 'Talk to Our Team →', href: '/contact' },
+    secondary: { text: 'How We Work', href: '/how-it-works' },
+  },
+}
+
+const DEFAULT_CTA: CtaConfig = {
+  label: 'Kovil AI',
+  headline: 'Looking to bring AI into your business?',
+  body: "Whether you need a custom AI build, workflow automation, or a fast MVP — our engineers have done it across industries. Let's talk about what you're trying to solve.",
+  primary: { text: 'Talk to Us →', href: '/contact' },
+  secondary: { text: 'See Our Work', href: '/case-studies' },
+}
+
+function BlogCta({ cta }: { cta: CtaConfig }) {
+  return (
+    <div className="mt-14 rounded-2xl overflow-hidden border border-border">
+      <div className="bg-[#111827] px-8 py-10 relative">
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
+        <div className="relative">
+          <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">{cta.label}</p>
+          <h3 className="font-display font-bold text-white text-2xl lg:text-3xl leading-tight mb-4 text-balance">
+            {cta.headline}
+          </h3>
+          <p className="text-white/60 text-sm leading-relaxed mb-7 max-w-lg">{cta.body}</p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href={cta.primary.href}
+              className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white text-sm font-semibold px-6 py-3 rounded-lg transition-colors"
+            >
+              {cta.primary.text}
+            </Link>
+            <Link
+              href={cta.secondary.href}
+              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white text-sm font-semibold px-6 py-3 rounded-lg transition-colors"
+            >
+              {cta.secondary.text}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function toIso(dateStr: string): string {
@@ -94,6 +223,7 @@ export default function BlogPostPage() {
 
   if (!post) return null
 
+  const cta = CTA_MAP[post.slug] ?? DEFAULT_CTA
   const isoDate = toIso(post.date)
   const headings = parseHeadings(post.body)
   const bodyWithIds = injectHeadingIds(post.body)
@@ -255,35 +385,7 @@ export default function BlogPostPage() {
               )}
 
               {/* ── Inline CTA Banner ── */}
-              <div className="mt-14 rounded-2xl overflow-hidden border border-border">
-                <div className="bg-[#111827] px-8 py-10 relative">
-                  {/* Subtle grid texture */}
-                  <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
-                  <div className="relative">
-                    <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">Kovil AI · Workflow Automation</p>
-                    <h3 className="font-display font-bold text-white text-2xl lg:text-3xl leading-tight mb-4 text-balance">
-                      Looking to automate workflows<br className="hidden sm:block" /> inside your business?
-                    </h3>
-                    <p className="text-white/60 text-sm leading-relaxed mb-7 max-w-lg">
-                      We help businesses replace hours of manual, repetitive work with AI-powered automations — whether that's connecting your tools with n8n, Make, or building something fully custom. Let's figure out what's possible for your team.
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white text-sm font-semibold px-6 py-3 rounded-lg transition-colors"
-                      >
-                        Talk to Us →
-                      </Link>
-                      <Link
-                        href="/case-studies"
-                        className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white text-sm font-semibold px-6 py-3 rounded-lg transition-colors"
-                      >
-                        See Our Work
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <BlogCta cta={cta} />
 
             </article>
 
