@@ -12,6 +12,7 @@ type CtaConfig = {
   label: string
   headline: string
   body: string
+  teaser: string  // short one-liner for the mid-article strip
   primary: { text: string; href: string }
   secondary: { text: string; href: string }
 }
@@ -19,6 +20,7 @@ type CtaConfig = {
 const CTA_MAP: Record<string, CtaConfig> = {
   'n8n-vs-zapier-vs-power-automate': {
     label: 'Kovil AI · Workflow Automation',
+    teaser: 'Need help choosing and implementing the right automation tool for your business?',
     headline: 'Looking to automate workflows inside your business?',
     body: 'We help businesses replace hours of manual, repetitive work with AI-powered automations — whether that\'s connecting your tools with n8n, Make, or building something fully custom. Let\'s figure out what\'s possible for your team.',
     primary: { text: 'Talk to Us →', href: '/contact' },
@@ -26,6 +28,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
   'rag-vs-fine-tuning': {
     label: 'Kovil AI · AI Engineering',
+    teaser: 'Not sure whether RAG or fine-tuning is right for your use case? Our engineers can help.',
     headline: 'Building a custom AI model for your business?',
     body: 'RAG or fine-tuning — our engineers have implemented both in production. We help you choose the right approach for your use case and build it without the guesswork.',
     primary: { text: 'Talk to Our Engineers →', href: '/contact' },
@@ -33,6 +36,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
   'ai-agents-vs-chatbots': {
     label: 'Kovil AI · AI Engineering',
+    teaser: 'We build production-grade AI agents and chatbots — not demos. From scoping to deployment.',
     headline: 'Ready to deploy an AI agent or chatbot for your business?',
     body: 'We build production-grade AI agents and chatbots — not demos. From scoping to deployment, our engineers handle the full build and make sure it works in the real world.',
     primary: { text: 'Start a Conversation →', href: '/contact' },
@@ -40,6 +44,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
   'ai-development-lifecycle': {
     label: 'Kovil AI · AI Engineering',
+    teaser: 'Our engineers guide AI projects from planning to production — step in at any stage.',
     headline: 'Need an experienced team to guide your AI project?',
     body: 'We\'ve taken AI projects from whiteboard to production across every stage of the lifecycle. Whether you\'re planning, mid-build, or stuck — we can step in.',
     primary: { text: 'Talk to Us →', href: '/contact' },
@@ -47,6 +52,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
   'ai-automation-nyc-ad-marketing-agencies': {
     label: 'Kovil AI · NYC Agency Automation',
+    teaser: 'We specialize in AI automation for New York ad and marketing agencies.',
     headline: 'Running an ad or marketing agency in New York?',
     body: 'We specialize in AI automation for NYC agencies — campaign reporting, brief generation, client dashboards. Let\'s replace your most time-consuming manual workflows.',
     primary: { text: 'Book a Discovery Call →', href: '/contact' },
@@ -54,6 +60,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
   'what-is-ai-integration': {
     label: 'Kovil AI · AI Integration',
+    teaser: 'We connect AI to your existing business stack — no rip-and-replace, just targeted integrations.',
     headline: 'Ready to integrate AI into your existing business stack?',
     body: 'We connect AI models, APIs, and your existing tools into workflows that actually work. No rip-and-replace — just targeted integrations that save real time.',
     primary: { text: 'Talk to Us →', href: '/contact' },
@@ -61,6 +68,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
   'build-mvp-4-weeks': {
     label: 'Kovil AI · 4-Week MVP Sprint',
+    teaser: 'We build production MVPs in 4 weeks — fixed scope, fixed timeline, fixed price.',
     headline: 'Got a product idea? We\'ll build your MVP in 4 weeks.',
     body: 'Fixed scope, fixed timeline, fixed price. Our engineers have shipped MVPs across fintech, healthtech, logistics, and SaaS. Let\'s scope yours.',
     primary: { text: 'Scope My MVP →', href: '/engage/outcome-based-project' },
@@ -68,6 +76,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
   'real-cost-building-mvp-2026': {
     label: 'Kovil AI · Fixed-Cost MVP Build',
+    teaser: 'We scope and price your MVP upfront — no hourly billing surprises.',
     headline: 'Want to know exactly what your MVP will cost?',
     body: 'No hourly billing surprises. We scope your MVP upfront and deliver at a fixed price — typically in 4 weeks. Get a clear number before you commit.',
     primary: { text: 'Get a Fixed-Cost Quote →', href: '/engage/outcome-based-project' },
@@ -75,6 +84,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
   'software-maintenance-time-bomb': {
     label: 'Kovil AI · App Rescue',
+    teaser: 'Struggling with tech debt or an unmaintained codebase? Our App Rescue service can help.',
     headline: 'Is your software becoming a liability?',
     body: 'Outdated dependencies, missing tests, mounting tech debt — we\'ve seen it all. Our App Rescue service gets your codebase back to a stable, maintainable state before it becomes a crisis.',
     primary: { text: 'Get an App Rescue Assessment →', href: '/engage/app-rescue' },
@@ -82,6 +92,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
   'llm-chatbot-for-business': {
     label: 'Kovil AI · AI Chatbot Build',
+    teaser: 'We build LLM chatbots connected to your data and deployed in your stack — not generic wrappers.',
     headline: 'Want to build an AI chatbot for your business?',
     body: 'We build LLM-powered chatbots that are actually useful — connected to your data, trained on your docs, and deployed in your stack. Not a generic off-the-shelf wrapper.',
     primary: { text: 'Talk to Our Engineers →', href: '/contact' },
@@ -89,6 +100,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
   'why-ai-projects-fail': {
     label: 'Kovil AI · AI Engineering',
+    teaser: 'Our engineers have rescued AI projects from broken proof-of-concept and taken them to production.',
     headline: "Don't let your AI project become another statistic.",
     body: "The failure points are predictable — and avoidable. Our engineers have rescued AI projects from broken proof-of-concept and taken them to production. We know what it takes.",
     primary: { text: 'Talk to Our Team →', href: '/contact' },
@@ -98,10 +110,41 @@ const CTA_MAP: Record<string, CtaConfig> = {
 
 const DEFAULT_CTA: CtaConfig = {
   label: 'Kovil AI',
+  teaser: 'We build AI-powered software for businesses — from automations to full product builds.',
   headline: 'Looking to bring AI into your business?',
   body: "Whether you need a custom AI build, workflow automation, or a fast MVP — our engineers have done it across industries. Let's talk about what you're trying to solve.",
   primary: { text: 'Talk to Us →', href: '/contact' },
   secondary: { text: 'See Our Work', href: '/case-studies' },
+}
+
+// Split HTML after the Nth closing </p> tag
+function splitAfterParagraph(html: string, afterN = 2): [string, string] {
+  let count = 0
+  let idx = 0
+  while (count < afterN) {
+    const next = html.indexOf('</p>', idx)
+    if (next === -1) break
+    count++
+    idx = next + 4
+  }
+  return [html.slice(0, idx), html.slice(idx)]
+}
+
+function MidBlogCta({ cta }: { cta: CtaConfig }) {
+  return (
+    <div className="my-10 flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl border border-accent/25 bg-accent/5 px-5 py-4">
+      <div className="flex items-start gap-3 flex-1 min-w-0">
+        <span className="mt-0.5 shrink-0 h-2 w-2 rounded-full bg-accent" />
+        <p className="text-sm text-foreground/80 leading-relaxed">{cta.teaser}</p>
+      </div>
+      <Link
+        href={cta.primary.href}
+        className="shrink-0 text-sm font-semibold text-accent hover:text-accent/80 transition-colors whitespace-nowrap"
+      >
+        {cta.primary.text}
+      </Link>
+    </div>
+  )
 }
 
 function BlogCta({ cta }: { cta: CtaConfig }) {
@@ -227,6 +270,7 @@ export default function BlogPostPage() {
   const isoDate = toIso(post.date)
   const headings = parseHeadings(post.body)
   const bodyWithIds = injectHeadingIds(post.body)
+  const [bodyTop, bodyBottom] = splitAfterParagraph(bodyWithIds, 2)
   const showToc = headings.length >= 3
 
   const breadcrumbSchema = {
@@ -366,8 +410,10 @@ export default function BlogPostPage() {
                 </div>
               )}
 
-              {/* Body */}
-              <div className="prose-content" dangerouslySetInnerHTML={{ __html: bodyWithIds }} />
+              {/* Body — split to inject mid-article CTA after 2nd paragraph */}
+              <div className="prose-content" dangerouslySetInnerHTML={{ __html: bodyTop }} />
+              <MidBlogCta cta={cta} />
+              <div className="prose-content" dangerouslySetInnerHTML={{ __html: bodyBottom }} />
 
               {/* FAQ Section */}
               {post.faqs && post.faqs.length > 0 && (
