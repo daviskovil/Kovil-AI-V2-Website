@@ -5,6 +5,7 @@ import { useParams } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, Clock, Calendar, User, ChevronDown } from "lucide-react"
 import { getPost } from "../data/posts"
+import { OnboardingModal } from "../components/OnboardingModal"
 
 // ─── CTA Config ──────────────────────────────────────────────────────────────
 
@@ -12,7 +13,8 @@ type CtaConfig = {
   label: string
   headline: string
   body: string
-  teaser: string  // short one-liner for the mid-article strip
+  teaser: string
+  defaultGoal: string  // pre-selects the modal radio: "talent" | "project" | "rescue"
   primary: { text: string; href: string }
   secondary: { text: string; href: string }
 }
@@ -23,6 +25,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     teaser: 'Need help choosing and implementing the right automation tool for your business?',
     headline: 'Looking to automate workflows inside your business?',
     body: 'We help businesses replace hours of manual, repetitive work with AI-powered automations — whether that\'s connecting your tools with n8n, Make, or building something fully custom. Let\'s figure out what\'s possible for your team.',
+    defaultGoal: 'project',
     primary: { text: 'Talk to Us →', href: '/contact' },
     secondary: { text: 'See Our Work', href: '/case-studies' },
   },
@@ -31,6 +34,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     teaser: 'Not sure whether RAG or fine-tuning is right for your use case? Our engineers can help.',
     headline: 'Building a custom AI model for your business?',
     body: 'RAG or fine-tuning — our engineers have implemented both in production. We help you choose the right approach for your use case and build it without the guesswork.',
+    defaultGoal: 'project',
     primary: { text: 'Talk to Our Engineers →', href: '/contact' },
     secondary: { text: 'See AI Case Studies', href: '/case-studies' },
   },
@@ -39,6 +43,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     teaser: 'We build production-grade AI agents and chatbots — not demos. From scoping to deployment.',
     headline: 'Ready to deploy an AI agent or chatbot for your business?',
     body: 'We build production-grade AI agents and chatbots — not demos. From scoping to deployment, our engineers handle the full build and make sure it works in the real world.',
+    defaultGoal: 'project',
     primary: { text: 'Start a Conversation →', href: '/contact' },
     secondary: { text: 'View Case Studies', href: '/case-studies' },
   },
@@ -47,6 +52,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     teaser: 'Our engineers guide AI projects from planning to production — step in at any stage.',
     headline: 'Need an experienced team to guide your AI project?',
     body: 'We\'ve taken AI projects from whiteboard to production across every stage of the lifecycle. Whether you\'re planning, mid-build, or stuck — we can step in.',
+    defaultGoal: 'talent',
     primary: { text: 'Talk to Us →', href: '/contact' },
     secondary: { text: 'How We Work', href: '/how-it-works' },
   },
@@ -55,6 +61,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     teaser: 'We specialize in AI automation for New York ad and marketing agencies.',
     headline: 'Running an ad or marketing agency in New York?',
     body: 'We specialize in AI automation for NYC agencies — campaign reporting, brief generation, client dashboards. Let\'s replace your most time-consuming manual workflows.',
+    defaultGoal: 'project',
     primary: { text: 'Book a Discovery Call →', href: '/contact' },
     secondary: { text: 'See Our Work', href: '/case-studies' },
   },
@@ -63,6 +70,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     teaser: 'We connect AI to your existing business stack — no rip-and-replace, just targeted integrations.',
     headline: 'Ready to integrate AI into your existing business stack?',
     body: 'We connect AI models, APIs, and your existing tools into workflows that actually work. No rip-and-replace — just targeted integrations that save real time.',
+    defaultGoal: 'project',
     primary: { text: 'Talk to Us →', href: '/contact' },
     secondary: { text: 'How It Works', href: '/how-it-works' },
   },
@@ -71,6 +79,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     teaser: 'We build production MVPs in 4 weeks — fixed scope, fixed timeline, fixed price.',
     headline: 'Got a product idea? We\'ll build your MVP in 4 weeks.',
     body: 'Fixed scope, fixed timeline, fixed price. Our engineers have shipped MVPs across fintech, healthtech, logistics, and SaaS. Let\'s scope yours.',
+    defaultGoal: 'project',
     primary: { text: 'Scope My MVP →', href: '/engage/outcome-based-project' },
     secondary: { text: 'See MVP Case Studies', href: '/case-studies' },
   },
@@ -79,6 +88,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     teaser: 'We scope and price your MVP upfront — no hourly billing surprises.',
     headline: 'Want to know exactly what your MVP will cost?',
     body: 'No hourly billing surprises. We scope your MVP upfront and deliver at a fixed price — typically in 4 weeks. Get a clear number before you commit.',
+    defaultGoal: 'project',
     primary: { text: 'Get a Fixed-Cost Quote →', href: '/engage/outcome-based-project' },
     secondary: { text: 'See What We\'ve Built', href: '/case-studies' },
   },
@@ -87,6 +97,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     teaser: 'Struggling with tech debt or an unmaintained codebase? Our App Rescue service can help.',
     headline: 'Is your software becoming a liability?',
     body: 'Outdated dependencies, missing tests, mounting tech debt — we\'ve seen it all. Our App Rescue service gets your codebase back to a stable, maintainable state before it becomes a crisis.',
+    defaultGoal: 'rescue',
     primary: { text: 'Get an App Rescue Assessment →', href: '/engage/app-rescue' },
     secondary: { text: 'How It Works', href: '/how-it-works' },
   },
@@ -95,6 +106,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     teaser: 'We build LLM chatbots connected to your data and deployed in your stack — not generic wrappers.',
     headline: 'Want to build an AI chatbot for your business?',
     body: 'We build LLM-powered chatbots that are actually useful — connected to your data, trained on your docs, and deployed in your stack. Not a generic off-the-shelf wrapper.',
+    defaultGoal: 'project',
     primary: { text: 'Talk to Our Engineers →', href: '/contact' },
     secondary: { text: 'See Our Work', href: '/case-studies' },
   },
@@ -103,6 +115,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     teaser: 'Our engineers have rescued AI projects from broken proof-of-concept and taken them to production.',
     headline: "Don't let your AI project become another statistic.",
     body: "The failure points are predictable — and avoidable. Our engineers have rescued AI projects from broken proof-of-concept and taken them to production. We know what it takes.",
+    defaultGoal: 'rescue',
     primary: { text: 'Talk to Our Team →', href: '/contact' },
     secondary: { text: 'How We Work', href: '/how-it-works' },
   },
@@ -113,6 +126,7 @@ const DEFAULT_CTA: CtaConfig = {
   teaser: 'We build AI-powered software for businesses — from automations to full product builds.',
   headline: 'Looking to bring AI into your business?',
   body: "Whether you need a custom AI build, workflow automation, or a fast MVP — our engineers have done it across industries. Let's talk about what you're trying to solve.",
+  defaultGoal: '',
   primary: { text: 'Talk to Us →', href: '/contact' },
   secondary: { text: 'See Our Work', href: '/case-studies' },
 }
@@ -130,28 +144,14 @@ function splitAfterParagraph(html: string, afterN = 2): [string, string] {
   return [html.slice(0, idx), html.slice(idx)]
 }
 
-function MidBlogCta({ cta }: { cta: CtaConfig }) {
-  return (
-    <div className="my-10 flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl border border-accent/25 bg-accent/5 px-5 py-4">
-      <div className="flex items-start gap-3 flex-1 min-w-0">
-        <span className="mt-0.5 shrink-0 h-2 w-2 rounded-full bg-accent" />
-        <p className="text-sm text-foreground/80 leading-relaxed">{cta.teaser}</p>
-      </div>
-      <Link
-        href={cta.primary.href}
-        className="shrink-0 text-sm font-semibold text-accent hover:text-accent/80 transition-colors whitespace-nowrap"
-      >
-        {cta.primary.text}
-      </Link>
-    </div>
-  )
-}
+
+const GRID_BG = { backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '32px 32px' }
 
 function BlogCta({ cta }: { cta: CtaConfig }) {
   return (
     <div className="mt-14 rounded-2xl overflow-hidden border border-border">
       <div className="bg-[#111827] px-8 py-10 relative">
-        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
+        <div className="absolute inset-0 opacity-[0.04]" style={GRID_BG} />
         <div className="relative">
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">{cta.label}</p>
           <h3 className="font-display font-bold text-white text-2xl lg:text-3xl leading-tight mb-4 text-balance">
@@ -159,12 +159,11 @@ function BlogCta({ cta }: { cta: CtaConfig }) {
           </h3>
           <p className="text-white/60 text-sm leading-relaxed mb-7 max-w-lg">{cta.body}</p>
           <div className="flex flex-wrap gap-3">
-            <Link
-              href={cta.primary.href}
-              className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white text-sm font-semibold px-6 py-3 rounded-lg transition-colors"
-            >
-              {cta.primary.text}
-            </Link>
+            <OnboardingModal defaultGoal={cta.defaultGoal}>
+              <button className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white text-sm font-semibold px-6 py-3 rounded-lg transition-colors">
+                {cta.primary.text}
+              </button>
+            </OnboardingModal>
             <Link
               href={cta.secondary.href}
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white text-sm font-semibold px-6 py-3 rounded-lg transition-colors"
@@ -173,6 +172,25 @@ function BlogCta({ cta }: { cta: CtaConfig }) {
             </Link>
           </div>
         </div>
+      </div>
+    </div>
+  )
+}
+
+function MidBlogCta({ cta }: { cta: CtaConfig }) {
+  return (
+    <div className="my-10 rounded-xl overflow-hidden border border-border">
+      <div className="bg-[#111827] px-6 py-5 relative flex flex-col sm:flex-row sm:items-center gap-4">
+        <div className="absolute inset-0 opacity-[0.04]" style={GRID_BG} />
+        <div className="relative flex-1 min-w-0">
+          <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1">{cta.label}</p>
+          <p className="text-white text-sm font-medium leading-snug">{cta.teaser}</p>
+        </div>
+        <OnboardingModal defaultGoal={cta.defaultGoal}>
+          <button className="relative shrink-0 text-sm font-semibold bg-accent hover:bg-accent/90 text-white px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap">
+            {cta.primary.text}
+          </button>
+        </OnboardingModal>
       </div>
     </div>
   )
