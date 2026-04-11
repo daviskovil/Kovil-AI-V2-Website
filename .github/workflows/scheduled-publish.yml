@@ -1,0 +1,105 @@
+name: Scheduled Blog Publish
+
+# Runs at 13:30 UTC (7:00 PM IST) on each scheduled publish date
+# Mon Apr 14 → Blog 4: gpt-4o-vs-claude-vs-gemini
+# Thu Apr 17 → Blog 5: how-much-does-an-ai-project-cost
+# Mon Apr 21 → Blog 6: what-is-a-vector-database
+#
+# To add future posts: add a new job block with the correct cron and slug.
+
+on:
+  schedule:
+    - cron: '30 13 14 4 *'   # Mon Apr 14, 2026 — 7 PM IST
+    - cron: '30 13 17 4 *'   # Thu Apr 17, 2026 — 7 PM IST
+    - cron: '30 13 21 4 *'   # Mon Apr 21, 2026 — 7 PM IST
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Blog post slug to publish manually (e.g. gpt-4o-vs-claude-vs-gemini)'
+        required: true
+        type: string
+
+jobs:
+  # ── Blog 4: Mon Apr 14 ───────────────────────────────────────────────────
+  publish-blog-4:
+    name: 'Publish: gpt-4o-vs-claude-vs-gemini'
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && contains(github.event.schedule, '14 4'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PUBLISH_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish post
+        run: node scripts/publish-draft.mjs gpt-4o-vs-claude-vs-gemini
+
+      - name: Commit and push
+        run: |
+          git config user.email "davis@kovil.ai"
+          git config user.name "Kovil Publish Bot"
+          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
+          git commit -m "publish: gpt-4o-vs-claude-vs-gemini blog post"
+          git push
+
+  # ── Blog 5: Thu Apr 17 ───────────────────────────────────────────────────
+  publish-blog-5:
+    name: 'Publish: how-much-does-an-ai-project-cost'
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && contains(github.event.schedule, '17 4'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PUBLISH_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish post
+        run: node scripts/publish-draft.mjs how-much-does-an-ai-project-cost
+
+      - name: Commit and push
+        run: |
+          git config user.email "davis@kovil.ai"
+          git config user.name "Kovil Publish Bot"
+          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
+          git commit -m "publish: how-much-does-an-ai-project-cost blog post"
+          git push
+
+  # ── Blog 6: Mon Apr 21 ───────────────────────────────────────────────────
+  publish-blog-6:
+    name: 'Publish: what-is-a-vector-database'
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && contains(github.event.schedule, '21 4'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PUBLISH_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish post
+        run: node scripts/publish-draft.mjs what-is-a-vector-database
+
+      - name: Commit and push
+        run: |
+          git config user.email "davis@kovil.ai"
+          git config user.name "Kovil Publish Bot"
+          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
+          git commit -m "publish: what-is-a-vector-database blog post"
+          git push
