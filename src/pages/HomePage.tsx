@@ -803,8 +803,8 @@ export default function HomePage() {
               <p className="text-xl text-muted/80 leading-relaxed mb-8">
                 You shouldn't have to manage developers to get AI built. Every engineer you hire through Kovil AI is pair-locked with an Engagement Manager who audits every commit.
               </p>
-              <Button variant="accent" size="lg" className="rounded-full px-8">
-                Learn More <ArrowRight className="ml-2 h-4 w-4" />
+              <Button variant="accent" size="lg" className="rounded-full px-8" asChild>
+                <a href="/how-it-works">Learn More <ArrowRight className="ml-2 h-4 w-4" /></a>
               </Button>
             </div>
             <div className="relative aspect-square md:aspect-[4/3] bg-background/5 rounded-3xl border border-white/10 p-8 flex items-center justify-center overflow-hidden">
