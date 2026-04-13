@@ -97,6 +97,13 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
           <Link
+            href="/"
+            className={`hover:text-foreground transition-colors ${pathname === "/" ? "text-foreground font-semibold" : ""}`}
+          >
+            Home
+          </Link>
+
+          <Link
             href="/how-it-works"
             className={`hover:text-foreground transition-colors ${pathname === "/how-it-works" ? "text-foreground font-semibold" : ""}`}
           >
