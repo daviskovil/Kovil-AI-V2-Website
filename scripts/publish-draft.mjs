@@ -162,6 +162,72 @@ const CTA_CONFIGS = {
     primary: { text: 'Talk to Our Engineers →', href: '/contact' },
     secondary: { text: 'See Our Work', href: '/case-studies' },
   },`,
+
+  'how-to-write-an-ai-project-brief': `
+  'how-to-write-an-ai-project-brief': {
+    label: 'Kovil AI · Fixed-Cost AI Builds',
+    teaser: 'We scope AI projects in 48 hours and give you a fixed price before any work begins.',
+    headline: 'Ready to scope your AI project?',
+    body: "Hand us your brief — or let us help you write one. We'll scope your AI project in 48 hours with a fixed price, clear deliverables, and a team that has shipped AI products across fintech, retail, and SaaS.",
+    defaultGoal: 'project',
+    primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
+    secondary: { text: "See What We've Built", href: '/case-studies' },
+  },`,
+
+  'how-to-measure-ai-roi': `
+  'how-to-measure-ai-roi': {
+    label: 'Kovil AI · Fixed-Cost AI Builds',
+    teaser: 'We scope AI projects with a fixed price — so you know the ROI before you commit.',
+    headline: 'Want to know if your AI project will pay off before you build it?',
+    body: "We scope AI projects in 48 hours with a fixed price and clear ROI projection. No surprises mid-build — and no commitment until the numbers make sense for your business.",
+    defaultGoal: 'project',
+    primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
+    secondary: { text: "See What We've Built", href: '/case-studies' },
+  },`,
+
+  'openai-vs-anthropic-vs-google-for-business': `
+  'openai-vs-anthropic-vs-google-for-business': {
+    label: 'Kovil AI · Vendor-Neutral AI Engineering',
+    teaser: 'We build on OpenAI, Anthropic, and Google — and recommend the right one for your use case.',
+    headline: 'Not sure which AI platform your business should build on?',
+    body: "Our engineers work across OpenAI, Anthropic, and Google Gemini in production. We'll recommend the right platform for your use case — and build on it with a fixed price and clear deliverables.",
+    defaultGoal: 'project',
+    primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },`,
+
+  'how-to-reduce-llm-api-costs': `
+  'how-to-reduce-llm-api-costs': {
+    label: 'Kovil AI · AI Engineering',
+    teaser: 'We design AI architectures that are accurate and cost-efficient from the start.',
+    headline: 'Are your LLM API costs higher than they should be?',
+    body: "We audit and optimise AI system architectures for cost efficiency — model routing, caching, prompt compression, and right-sizing. Or we build cost-efficient systems from scratch with a fixed price.",
+    defaultGoal: 'project',
+    primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },`,
+
+  'ai-use-cases-for-ecommerce': `
+  'ai-use-cases-for-ecommerce': {
+    label: 'Kovil AI · AI for E-Commerce',
+    teaser: 'We have built AI automation systems for e-commerce businesses — from chatbots to product generation.',
+    headline: 'Ready to automate your e-commerce operations with AI?',
+    body: "We have built AI-powered support chatbots, product description generators, returns automation systems, and personalisation engines for e-commerce businesses. Fixed price, clear deliverables, 4–8 week delivery.",
+    defaultGoal: 'project',
+    primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },`,
+
+  'prompt-engineering-for-business-teams': `
+  'prompt-engineering-for-business-teams': {
+    label: 'Kovil AI · AI Engineering',
+    teaser: 'We build AI systems your team can actually use — and train them on how to use them.',
+    headline: 'Want AI that works for your team, not just in demos?',
+    body: "We build production AI systems and help your team use them effectively — with clear handover documentation and working sessions included in every engagement.",
+    defaultGoal: 'project',
+    primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },`,
 };
 
 const ctaConfig = CTA_CONFIGS[slug];

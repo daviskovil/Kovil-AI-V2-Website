@@ -6,11 +6,23 @@
 // Blog 4 → Publish Mon Apr 14, 2026 (gpt-4o-vs-claude-vs-gemini)
 // Blog 5 → Publish Thu Apr 17, 2026 (how-much-does-an-ai-project-cost)
 // Blog 6 → Publish Mon Apr 21, 2026 (what-is-a-vector-database)
+// Blog 7 → Publish Mon Apr 28, 2026 (how-to-write-an-ai-project-brief)
+// Blog 8 → Publish Thu May 1, 2026  (how-to-measure-ai-roi)
+// Blog 9 → Publish Mon May 5, 2026  (openai-vs-anthropic-vs-google-for-business)
+// Blog 10 → Publish Thu May 8, 2026 (how-to-reduce-llm-api-costs)
+// Blog 11 → Publish Mon May 12, 2026 (ai-use-cases-for-ecommerce)
+// Blog 12 → Publish Thu May 15, 2026 (prompt-engineering-for-business-teams)
 //
 // Hero images needed (generate before publish):
 //   /blog-gpt4o-vs-claude-vs-gemini.jpg
 //   /blog-how-much-does-an-ai-project-cost.jpg
 //   /blog-what-is-a-vector-database.jpg
+//   /blog-how-to-write-an-ai-project-brief.jpg
+//   /blog-how-to-measure-ai-roi.jpg
+//   /blog-openai-vs-anthropic-vs-google-for-business.jpg
+//   /blog-how-to-reduce-llm-api-costs.jpg
+//   /blog-ai-use-cases-for-ecommerce.jpg
+//   /blog-prompt-engineering-for-business-teams.jpg
 //
 // Before publishing each post:
 //   1. Move entry from drafts.ts → posts.ts
@@ -260,8 +272,8 @@ export const drafts = [
   // },
   {
     slug: "gpt-4o-vs-claude-vs-gemini",
-    title: "GPT-4o vs Claude vs Gemini: Which Wins for Business? (2026)",
-    excerpt: "Claude leads on reasoning and coding, GPT-4o on ecosystem, Gemini on cost and multimodal. Here's the full 2026 breakdown — with a clear verdict for each business use case.",
+    title: "GPT-4o vs Claude vs Gemini: Which Should You Build On? (2026)",
+    excerpt: "Claude leads on reasoning, GPT-4o on ecosystem, Gemini on cost. Here's which AI model your business should actually build on in 2026 — with pricing, accuracy, and vendor stability compared.",
     category: "AI Engineering",
     date: "Apr 14, 2026",
     readTime: "10 min read",
@@ -435,7 +447,7 @@ export const drafts = [
   {
     slug: "how-much-does-an-ai-project-cost",
     title: "How Much Does an AI Project Cost in 2026? (Full Breakdown)",
-    excerpt: "AI chatbots from $15k, RAG systems from $30k, AI agents from $40k. Here's the full 2026 cost breakdown — with what drives the price up and how to get an accurate quote.",
+    excerpt: "AI chatbots from $15k, RAG systems from $30k, AI agents from $40k. Here's the full 2026 cost breakdown — what drives the price, how to avoid surprise overruns, and how to get a fixed scope before you commit.",
     category: "AI Engineering",
     date: "Apr 17, 2026",
     readTime: "9 min read",
@@ -595,8 +607,8 @@ export const drafts = [
   // },
   {
     slug: "what-is-a-vector-database",
-    title: "What Is a Vector Database? A Business Guide (2026)",
-    excerpt: "Vector databases power AI search, RAG systems, and semantic recommendations — but most explanations assume you know what a vector is. Here's the plain-English version, with a clear guide to which database to use.",
+    title: "What Is a Vector Database? (And Does Your Business Need One?)",
+    excerpt: "Vector databases are the infrastructure that makes AI search and RAG systems work. Here's the plain-English explanation — and a clear answer to whether your business actually needs one, with a guide to Pinecone, Weaviate, and pgvector.",
     category: "AI Engineering",
     date: "Apr 21, 2026",
     readTime: "8 min read",
@@ -731,6 +743,875 @@ export const drafts = [
 <p>Matching your chunk size, embedding model, and retrieval strategy to your specific content type — technical documentation, customer support history, legal contracts, product catalogue — is where production RAG systems win or lose on accuracy.</p>
 
 <p>If you are building a RAG system, AI-powered search, or any application that needs to retrieve relevant information from a large document corpus, our <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement includes vector database design as part of the architecture scope. Our engineers have built retrieval pipelines across Pinecone, Qdrant, and pgvector in production. <a href="/contact">Get in touch</a> and we will scope the right approach for your use case.</p>
+    `,
+  },
+
+  // ─── BLOG 7, Publish Mon Apr 28, 2026 ────────────────────────────────────
+  // CTA_MAP entry (copy to BlogPostPage.tsx when publishing):
+  // 'how-to-write-an-ai-project-brief': {
+  //   label: 'Kovil AI · Fixed-Cost AI Builds',
+  //   teaser: 'We scope AI projects in 48 hours and give you a fixed price before any work begins.',
+  //   headline: 'Ready to scope your AI project?',
+  //   body: 'Hand us your brief — or let us help you write one. We\'ll scope your AI project in 48 hours with a fixed price, clear deliverables, and a team that has shipped AI products across fintech, retail, and SaaS.',
+  //   defaultGoal: 'project',
+  //   primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
+  //   secondary: { text: 'See What We\'ve Built', href: '/case-studies' },
+  // },
+  {
+    slug: "how-to-write-an-ai-project-brief",
+    title: "How to Write an AI Project Brief (Before You Hire)",
+    excerpt: "The brief you hand an AI development team determines the price, timeline, and outcome of your project. Here's exactly what to include — the 8 sections that let any team scope your AI project accurately in 48 hours.",
+    category: "AI Engineering",
+    date: "Apr 28, 2026",
+    readTime: "8 min read",
+    author: "Kovil AI Team",
+    featured: false,
+    heroImage: "/blog-how-to-write-an-ai-project-brief.jpg",
+    faqs: [
+      {
+        q: "What should an AI project brief include?",
+        a: "An AI project brief should include: the business problem you are solving, the specific outcome you want to measure, the data you have available, the systems it needs to integrate with, your non-negotiable constraints (compliance, latency, budget), your timeline, and who the end user is. Eight sections covers most AI projects comprehensively. The brief does not need to specify the technical solution — that is the engineering team's job."
+      },
+      {
+        q: "How do you scope an AI project without a technical background?",
+        a: "Focus on the problem, not the solution. Describe what your team currently does manually, how often, how long it takes, and what a good outcome looks like. List every system that would need to connect to the AI. Document the data you have. A good engineering team can translate a clear business problem into a technical scope — what slows them down is vague or missing requirements, not your lack of ML knowledge."
+      },
+      {
+        q: "What is the difference between an AI brief and a regular software brief?",
+        a: "An AI project brief requires two extra sections that software briefs usually skip: data documentation and success metric definition. AI systems are only as good as the data they learn from or retrieve, so you must describe what data exists and its quality. And because AI outputs are probabilistic, you need to define upfront what 'good enough' accuracy means for your use case — otherwise there is no objective way to know when the project is complete."
+      },
+      {
+        q: "How long does it take to scope an AI project?",
+        a: "With a well-written brief, a structured scoping process takes 24–48 hours. Without a brief, scoping turns into a series of clarifying calls that stretch over weeks and often still produce inaccurate estimates. The brief is the most time-efficient investment you can make before hiring an AI development team."
+      },
+      {
+        q: "What happens if you start an AI project without a clear brief?",
+        a: "Without a clear brief, AI projects routinely run 2–4x over initial cost estimates and miss their original timeline by months. The most common failure modes are: the model is accurate on test data but fails on real data that was never documented, the integration with an existing system takes three times longer than expected because the system's constraints were unknown, and the success metric was never defined so there is no agreement on when the project is done."
+      },
+    ],
+    body: `
+<img src="/blog-how-to-write-an-ai-project-brief.jpg" alt="How to Write an AI Project Brief" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+
+<p>Most AI projects fail not because of bad engineering, but because of a bad brief. The engineering team builds what they were told to build. The business expected something different. Neither side is wrong — they were just working from an incomplete shared understanding of the problem.</p>
+
+<p>A project brief solves this before it becomes expensive. Here is exactly what to include, section by section, so that any competent AI development team can scope your project accurately in 48 hours.</p>
+
+<h2>Why AI Briefs Are Different from Software Briefs</h2>
+
+<p>A regular software brief describes features and user flows. An AI brief needs to answer two additional questions that software briefs never ask: what data exists, and what does success look like in measurable terms?</p>
+
+<p>AI systems are data-dependent. An AI that answers customer questions needs your actual support documentation, not a vague reference to "our knowledge base." An AI that classifies inbound leads needs labelled examples of what a good lead looks like. Without data documentation, engineers spend the first weeks of a project discovering constraints that should have been known before the contract was signed.</p>
+
+<p>AI systems also produce probabilistic outputs — they are right most of the time, not all of the time. Without a defined accuracy threshold, there is no objective way to agree on when the project is complete. "The AI makes mistakes" is not an actionable bug report; "the AI misclassifies more than 5% of support tickets" is.</p>
+
+<h2>The 8 Sections Every AI Project Brief Needs</h2>
+
+<h3>1. The Business Problem</h3>
+<p>One paragraph. Describe what is happening today — what your team does manually, how often, how long it takes, and what goes wrong when it fails. Avoid describing the AI solution. Describe the problem.</p>
+<p><em>Example: Our support team handles 800 inbound tickets per week. 60% of them are variations of the same 20 questions. Each ticket takes an average of 8 minutes to resolve. We want to automate resolution of the common-question tier so agents can focus on complex issues.</em></p>
+
+<h3>2. The Desired Outcome</h3>
+<p>What does success look like in measurable terms? Specify the metric, the target value, and the timeframe. This becomes the acceptance criterion for the project.</p>
+<p><em>Example: Automatically resolve 55% of inbound support tickets with a customer satisfaction rating of 4.0/5.0 or above, within 6 months of deployment.</em></p>
+
+<h3>3. The End User</h3>
+<p>Who interacts with the AI output? Customers, internal staff, or another system? What is their technical literacy? What device or interface will they use it through? End user characteristics affect model choice, output format, latency requirements, and UX design.</p>
+
+<h3>4. Data Inventory</h3>
+<p>This is the section most briefs skip and most projects suffer for. List every data source the AI will use:</p>
+<ul>
+<li>What data exists? (support transcripts, product documentation, CRM records, structured database tables)</li>
+<li>How much of it is there? (number of documents, rows, word count)</li>
+<li>How current and clean is it? (last updated, known gaps or errors)</li>
+<li>Is it labelled? (for classification tasks: do you have ground-truth examples?)</li>
+<li>Where does it live? (internal database, Google Drive, Zendesk, Confluence)</li>
+</ul>
+<p>You do not need to provide the data itself at briefing stage — you need to describe what exists so the engineering team can assess whether it is sufficient.</p>
+
+<h3>5. System Integrations</h3>
+<p>List every external system the AI needs to read from or write to. For each, note whether an API exists, whether credentials are available, and any known restrictions (rate limits, compliance requirements, read-only access).</p>
+<p><em>Common integrations: Zendesk, Salesforce, HubSpot, Slack, Google Workspace, Shopify, custom internal databases, internal REST APIs.</em></p>
+<p>Integration complexity is one of the biggest drivers of project cost and timeline. Documenting this upfront prevents mid-project surprises.</p>
+
+<h3>6. Constraints</h3>
+<p>Non-negotiable requirements that bound the solution. List anything the AI must or must not do:</p>
+<ul>
+<li><strong>Compliance:</strong> HIPAA, GDPR, SOC 2, industry-specific regulations</li>
+<li><strong>Data residency:</strong> must data stay within a specific geography?</li>
+<li><strong>Latency:</strong> does the AI need to respond in under 2 seconds for a real-time user experience?</li>
+<li><strong>Model restrictions:</strong> are there company policies about which AI providers can be used?</li>
+<li><strong>Budget ceiling:</strong> maximum ongoing API cost per month</li>
+</ul>
+
+<h3>7. Timeline and Milestones</h3>
+<p>When do you need this live? Are there external dependencies (a product launch, a board presentation, a compliance deadline) that create hard stops? List any known milestones, not just the final delivery date.</p>
+
+<h3>8. Budget Range</h3>
+<p>Providing a budget range — even a broad one — dramatically improves scoping accuracy. Without it, an engineering team will produce a proposal calibrated to their assumptions about your budget, which may be completely wrong. A $30k budget and a $200k budget produce very different solutions to the same problem, and both can be valid depending on business context.</p>
+
+<h2>What Not to Include in Your Brief</h2>
+
+<p>Do not specify the technical solution. Saying "we want to use GPT-4 with LangChain hosted on AWS" when you have not evaluated the alternatives — or when your use case might be better served by a fine-tuned smaller model — constrains the engineering team unnecessarily and often results in a more expensive, less accurate system.</p>
+
+<p>The brief should describe what the AI needs to achieve, not how it should be built. The how is the engineering team's expertise.</p>
+
+<h2>A One-Page Brief Template</h2>
+
+<table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+<thead>
+<tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Section</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">What to Write</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Business problem</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">What happens today, how often, and what goes wrong</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Desired outcome</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Measurable success metric + target value</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">End user</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Who uses the output, in what context</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Data inventory</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">What exists, where it lives, how much, how clean</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">System integrations</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Every system the AI reads from or writes to</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Constraints</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Compliance, latency, provider, budget ceiling</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Timeline</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Hard deadlines and known milestones</td>
+</tr>
+<tr style="background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Budget range</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Even a rough range improves scoping accuracy</td>
+</tr>
+</tbody>
+</table>
+
+<p>If you have a brief — or a business problem you are ready to scope — our <a href="/engage/outcome-based-project">Outcome-Based AI Project</a> process uses exactly this structure to produce a fixed price and clear deliverables within 48 hours. You can also <a href="/contact">reach out directly</a> and we will help you build the brief together as part of the scoping conversation.</p>
+    `,
+  },
+
+  // ─── BLOG 8, Publish Thu May 1, 2026 ─────────────────────────────────────
+  // CTA_MAP entry (copy to BlogPostPage.tsx when publishing):
+  // 'how-to-measure-ai-roi': {
+  //   label: 'Kovil AI · Fixed-Cost AI Builds',
+  //   teaser: 'We scope AI projects with a fixed price — so you know the ROI before you commit.',
+  //   headline: 'Want to know if your AI project will pay off before you build it?',
+  //   body: 'We scope AI projects in 48 hours with a fixed price and clear ROI projection. No surprises mid-build — and no commitment until the numbers make sense for your business.',
+  //   defaultGoal: 'project',
+  //   primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
+  //   secondary: { text: 'See What We\'ve Built', href: '/case-studies' },
+  // },
+  {
+    slug: "how-to-measure-ai-roi",
+    title: "How to Measure AI ROI Before You Start Building",
+    excerpt: "Most businesses measure AI ROI after they've already spent the money. Here's how to calculate it before you commit — a practical framework for projecting cost savings, revenue impact, and payback period for any AI project.",
+    category: "AI Engineering",
+    date: "May 1, 2026",
+    readTime: "9 min read",
+    author: "Kovil AI Team",
+    featured: false,
+    heroImage: "/blog-how-to-measure-ai-roi.jpg",
+    faqs: [
+      {
+        q: "How do you calculate ROI for an AI project?",
+        a: "AI ROI = (Annual value generated − Annual total cost) ÷ Total build cost × 100. Annual value includes cost savings from automation (hours saved × hourly rate), revenue uplift from improved conversion or retention, and risk reduction value. Annual total cost includes API inference costs, hosting, and ongoing maintenance. Total build cost is the one-time development investment. A payback period under 18 months is generally a strong signal to proceed."
+      },
+      {
+        q: "What is a realistic ROI timeline for AI projects?",
+        a: "Most business AI projects reach ROI breakeven within 6 to 18 months of deployment, depending on build cost and the scale of the process being automated. Customer support automation projects — typically $25k–$60k to build — often break even within 4–8 months when replacing or reducing a full-time support role. More complex AI products with higher build costs take 12–24 months. Projects that automate a process affecting fewer than 5 hours per week per employee rarely justify the build cost."
+      },
+      {
+        q: "What costs should be included in an AI ROI calculation?",
+        a: "Build cost: engineering fees for design, development, and testing. Infrastructure: cloud hosting, vector database, API gateway. Inference: monthly LLM API costs based on estimated token volume. Maintenance: ongoing bug fixes, prompt updates, retraining — typically 15–25% of build cost annually. Integration: time to connect with existing systems. Also factor in transition costs: staff time for rollout, training, and the period where both the old and new processes run in parallel."
+      },
+      {
+        q: "What metrics should I track to measure AI performance after launch?",
+        a: "Track the metric you defined before building. For automation: tasks completed per day, error rate, time saved per task. For customer-facing AI: resolution rate (tickets closed without human escalation), customer satisfaction score (CSAT), response time. For AI-assisted sales: conversion rate change, deal velocity, average contract value. For internal tools: adoption rate (are employees actually using it), time saved per user per week. Pick one primary metric and track it weekly from day one."
+      },
+      {
+        q: "Is AI ROI always measurable?",
+        a: "It depends on the use case. Automation and efficiency plays are highly measurable — you can directly compare time spent before and after. Revenue impact from AI-assisted sales or recommendations is measurable through A/B testing or cohort comparison. Risk reduction — such as compliance monitoring or fraud detection — is harder to quantify until an incident is prevented. If your primary value case is risk reduction, frame the ROI as the expected cost of incidents prevented, using historical incident frequency and cost data."
+      },
+    ],
+    body: `
+<img src="/blog-how-to-measure-ai-roi.jpg" alt="How to Measure AI ROI Before You Start Building" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+
+<p>The standard advice is to pilot an AI project, measure the results, and then decide whether to scale. The problem is that by the time you have results, you have already spent the money. A $60,000 pilot that delivers no measurable value is a poor way to learn that the ROI case was never there.</p>
+
+<p>A better approach is to build the ROI case before the project starts — not with certainty, but with enough rigour to make an informed go/no-go decision. Here is the framework we use to do that in 48 hours.</p>
+
+<h2>The Three Types of AI Value</h2>
+
+<p>Before running any numbers, identify which type of value your AI project primarily generates. This determines how you measure it.</p>
+
+<p><strong>Cost reduction.</strong> The AI automates a task that people currently do manually, reducing headcount, overtime, or contractor spend. This is the most directly measurable type of AI value. Calculate the hours per week currently spent on the task, multiply by the fully-loaded hourly cost (salary plus benefits plus management overhead), and that is the addressable saving.</p>
+
+<p><strong>Revenue uplift.</strong> The AI improves a revenue-generating process — faster lead response, better product recommendations, higher-converting copy, reduced churn through proactive intervention. This is measurable but requires a baseline and a control group. Define the conversion rate or revenue metric you expect to improve, and track it from day one against a control cohort.</p>
+
+<p><strong>Risk reduction.</strong> The AI reduces the probability or cost of a bad outcome — a compliance breach, a fraud loss, a missed maintenance event. Harder to measure until something goes wrong. Quantify it by multiplying the historical frequency of the incident by the average cost per incident.</p>
+
+<p>Most AI projects generate primarily one type of value with secondary contributions from the others. Identifying the primary type determines where to focus your ROI calculation.</p>
+
+<h2>The Pre-Build ROI Formula</h2>
+
+<p>The formula is simple. The discipline is in filling it in honestly.</p>
+
+<table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+<thead>
+<tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Input</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">How to Estimate It</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Annual value generated</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Hours saved × hourly rate, OR revenue uplift from conversion improvement, OR risk reduction value</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Annual running cost</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">LLM API costs + hosting + maintenance (typically 15–25% of build cost)</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">One-time build cost</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Engineering fees for design, development, testing, and integration</td>
+</tr>
+<tr style="background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Payback period</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Build cost ÷ (Annual value − Annual running cost)</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>ROI % = (Annual net value ÷ Build cost) × 100</strong></p>
+<p><strong>Payback period = Build cost ÷ Annual net value</strong></p>
+
+<h2>A Worked Example: Customer Support Automation</h2>
+
+<p>A B2B SaaS company handles 600 support tickets per week. 65% are common questions that could be automated. Each ticket takes an average of 10 minutes. The support team costs $45/hour fully loaded.</p>
+
+<ul>
+<li><strong>Automatable tickets per year:</strong> 600 × 0.65 × 52 = 20,280</li>
+<li><strong>Hours currently spent on these tickets:</strong> 20,280 × (10/60) = 3,380 hours/year</li>
+<li><strong>Annual labour cost:</strong> 3,380 × $45 = $152,100</li>
+<li><strong>Assumed automation rate:</strong> 70% (a realistic target; 30% escalate to human agents)</li>
+<li><strong>Annual value generated:</strong> $152,100 × 0.70 = $106,470</li>
+</ul>
+
+<ul>
+<li><strong>Build cost (chatbot + RAG + integration):</strong> $45,000</li>
+<li><strong>Annual running cost (API + hosting + maintenance):</strong> $12,000</li>
+<li><strong>Annual net value:</strong> $106,470 − $12,000 = $94,470</li>
+<li><strong>Payback period:</strong> $45,000 ÷ $94,470 = 5.7 months</li>
+<li><strong>Year-1 ROI:</strong> ($94,470 − $45,000) ÷ $45,000 × 100 = 110%</li>
+</ul>
+
+<p>A 110% year-1 ROI with a 6-month payback is a strong go signal. The same framework applied to a process that saves 5 hours per week — roughly $12,000/year at the same hourly rate — against a $45,000 build cost produces a 3.7-year payback and a negative year-1 ROI. That is a no-go without a compelling secondary value case.</p>
+
+<h2>Red Flags in AI ROI Projections</h2>
+
+<p><strong>The value assumes 100% automation.</strong> Real automation rates for business AI range from 50–85% depending on task complexity. Model your base case at 60% and your optimistic case at 80%. A projection that assumes everything gets automated is optimistic and usually wrong.</p>
+
+<p><strong>The cost model ignores inference at scale.</strong> LLM API costs are negligible at low volume and meaningful at high volume. A customer-facing chatbot handling 50,000 conversations per month at $0.002 per conversation is $100/month. At $0.05 per conversation (GPT-4o on longer conversations), it is $2,500/month. Model the cost at your actual projected conversation volume, not at your test volume.</p>
+
+<p><strong>The value case depends on behaviour change.</strong> "Our sales reps will close more deals if they get AI-generated briefs before each call." This may be true, but behaviour change is harder to achieve and slower to manifest than automation. If your ROI depends primarily on people working differently, add 6–12 months to your payback estimate and plan a structured adoption programme.</p>
+
+<p><strong>Maintenance is not in the budget.</strong> AI systems degrade. Prompts need tuning, data goes stale, model APIs change their pricing and behaviour. Budget 15–25% of the build cost annually for ongoing maintenance. Projects that budget zero for maintenance reliably become liabilities within 12–18 months.</p>
+
+<h2>When the ROI Case Does Not Work</h2>
+
+<p>Not every AI project makes financial sense, and that is not a failure. If the payback period exceeds 24 months and there is no strategic value case beyond cost savings, the capital is probably better deployed elsewhere. Common situations where AI ROI fails to pencil out:</p>
+
+<ul>
+<li>The process being automated is low-volume and already fast</li>
+<li>The data required does not exist or would cost more to create than the automation saves</li>
+<li>Regulatory constraints require human review of every output, eliminating the time savings</li>
+<li>The task requires judgement that current models cannot reliably replicate</li>
+</ul>
+
+<p>A clear ROI framework identifies these situations before the project starts, not after the build cost has been spent.</p>
+
+<p>If you have a business process you are evaluating for AI automation, our <a href="/engage/outcome-based-project">Outcome-Based AI Project</a> scoping process includes an ROI projection as part of the proposal. You will know the expected payback period before any work begins. <a href="/contact">Reach out</a> and we will run the numbers with you.</p>
+    `,
+  },
+
+  // ─── BLOG 9, Publish Mon May 5, 2026 ─────────────────────────────────────
+  // CTA_MAP entry (copy to BlogPostPage.tsx when publishing):
+  // 'openai-vs-anthropic-vs-google-for-business': {
+  //   label: 'Kovil AI · Vendor-Neutral AI Engineering',
+  //   teaser: 'We build on OpenAI, Anthropic, and Google — and recommend the right one for your use case.',
+  //   headline: 'Not sure which AI platform your business should build on?',
+  //   body: 'Our engineers work across OpenAI, Anthropic, and Google Gemini in production. We\'ll recommend the right platform for your use case — and build on it with a fixed price and clear deliverables.',
+  //   defaultGoal: 'project',
+  //   primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+  //   secondary: { text: 'See Our Work', href: '/case-studies' },
+  // },
+  {
+    slug: "openai-vs-anthropic-vs-google-for-business",
+    title: "OpenAI vs Anthropic vs Google: Which to Build On?",
+    excerpt: "GPT, Claude, and Gemini aren't just models — they're platforms, ecosystems, and long-term vendor bets. Here's how to choose which AI company your business should actually build on, based on stability, pricing, compliance, and enterprise support.",
+    category: "AI Engineering",
+    date: "May 5, 2026",
+    readTime: "9 min read",
+    author: "Kovil AI Team",
+    featured: false,
+    heroImage: "/blog-openai-vs-anthropic-vs-google-for-business.jpg",
+    faqs: [
+      {
+        q: "Should my business build on OpenAI, Anthropic, or Google?",
+        a: "For most businesses building their first AI product in 2026, OpenAI is the lowest-risk choice due to its enterprise support maturity and ecosystem breadth. Anthropic is the stronger choice for applications requiring precise reasoning, compliance-sensitive outputs, or long-document analysis. Google is the right choice if your infrastructure is Google Cloud, you process very large contexts, or cost efficiency at high volume is the primary driver. The best platform for your specific use case depends on your technical requirements — not on which company is ahead in the AI race."
+      },
+      {
+        q: "Which AI company has the best enterprise support?",
+        a: "OpenAI has the most mature enterprise support offering, including dedicated account management, SLAs, and the widest range of enterprise agreements. Anthropic's enterprise tier (Claude for Enterprise) offers strong compliance and security documentation, SOC 2 compliance, and HIPAA BAAs for healthcare. Google Cloud's Vertex AI provides full enterprise GCP support with data residency guarantees and regulatory compliance across a wide range of frameworks. All three have enterprise tiers — the differentiator is which compliance framework matters most to you."
+      },
+      {
+        q: "Which AI platform is the most stable for production applications?",
+        a: "All three have had notable outages in 2024–2025. OpenAI has the longest track record and the most robust fallback mechanisms. Anthropic has improved significantly but has a shorter history. Google Cloud has the strongest infrastructure SLA guarantees through Vertex AI. For mission-critical production applications, the best practice is not to depend on a single provider — build with a model abstraction layer so you can route to a secondary provider if the primary is unavailable."
+      },
+      {
+        q: "What are the data privacy differences between OpenAI, Anthropic, and Google?",
+        a: "All three offer enterprise tiers with no training on customer data and strong data isolation. OpenAI Enterprise: data not used for training, encrypted at rest and in transit, SOC 2 Type II. Anthropic Claude for Enterprise: similar guarantees with strong emphasis on Constitutional AI safety framework. Google Vertex AI: data stays within GCP, full data residency controls, widest range of compliance certifications (HIPAA, FedRAMP, GDPR). For regulated industries — healthcare, finance, legal — Vertex AI typically offers the most documentation for compliance auditors."
+      },
+      {
+        q: "Can I switch AI providers after building on one platform?",
+        a: "You can, but switching is not free. If you build tightly coupled to OpenAI-specific APIs — function calling syntax, assistant thread management, fine-tuned model IDs — migrating requires rewriting that layer. The mitigation is to build behind an abstraction layer from day one: a wrapper that translates your application's requests into the provider's API format. Libraries like LiteLLM make this straightforward. With an abstraction layer in place, switching providers becomes a configuration change rather than a rewrite."
+      },
+    ],
+    body: `
+<img src="/blog-openai-vs-anthropic-vs-google-for-business.jpg" alt="OpenAI vs Anthropic vs Google: Which to Build On?" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+
+<p>The AI model comparisons you see online — benchmarks, accuracy scores, token pricing tables — are useful for choosing a model. They are much less useful for choosing a platform. Choosing which AI company to build your business on is a different decision, and it involves factors that never appear in benchmark comparisons: enterprise contracts, compliance documentation, pricing stability, provider reliability, and the cost of switching if things go wrong.</p>
+
+<p>Here is how to make that decision as a business, not as a benchmark reader.</p>
+
+<h2>OpenAI: The Enterprise Default</h2>
+
+<h3>Why businesses choose OpenAI</h3>
+<p>OpenAI has the longest track record in production business applications and the most mature enterprise infrastructure. ChatGPT Enterprise, GPT-4o, and the Assistants API have been deployed at scale across finance, legal, healthcare, and retail. The integration ecosystem — third-party tools, no-code platforms, SaaS connectors — is the broadest of any AI provider. If you are buying AI tools rather than building custom applications, OpenAI-powered products are available for almost every business function.</p>
+
+<p>Enterprise customers get dedicated account management, 99.9% uptime SLAs, SOC 2 Type II compliance, HIPAA BAA availability, and a procurement process that most legal and IT departments recognise. For large organisations with procurement requirements, OpenAI is often the path of least resistance.</p>
+
+<h3>The risks</h3>
+<p>OpenAI's pricing has changed multiple times as the model lineup has evolved. The ChatGPT Plus → Teams → Enterprise tiering restructure in 2024 created unexpected cost increases for some customers. API pricing for GPT-4o is competitive but not the cheapest at high volume. OpenAI also has the most public-facing attention of any AI company, which means its strategic direction — and the potential for major pivots — is more visible and more uncertain than more focused competitors.</p>
+
+<h2>Anthropic: The Reasoning and Compliance Leader</h2>
+
+<h3>Why businesses choose Anthropic</h3>
+<p>Anthropic's Claude models are the current leaders for applications that require precise, structured, consistent outputs — legal document analysis, financial report summarisation, compliance monitoring, complex reasoning chains. Claude's Constitutional AI training approach produces outputs with fewer hallucinations on tasks requiring careful adherence to instructions, and Claude's refusal patterns are more predictable than GPT-4o for safety-sensitive applications.</p>
+
+<p>Claude for Enterprise includes data privacy guarantees equivalent to OpenAI Enterprise, HIPAA BAAs, SOC 2 Type II, and — notably — a strong documented position on model behaviour and safety that some regulated industry compliance teams find easier to audit than OpenAI's more product-focused documentation.</p>
+
+<h3>The risks</h3>
+<p>Anthropic's enterprise customer success and support infrastructure is less mature than OpenAI's — the company is younger and grew enterprise operations more recently. The integration ecosystem is narrower: fewer third-party tools and SaaS platforms natively support Claude. For teams that need to connect AI to many existing tools without custom engineering, this is a meaningful constraint.</p>
+
+<h2>Google: The Infrastructure and Scale Leader</h2>
+
+<h3>Why businesses choose Google</h3>
+<p>Google's AI is not just a model API — it is an infrastructure choice. Vertex AI, Google's managed AI platform, bundles Gemini models with data pipelines, vector search (Vertex AI Matching Engine), model monitoring, and MLOps tooling inside Google Cloud. For businesses already on GCP, this integration eliminates significant infrastructure overhead.</p>
+
+<p>Gemini 2.0 Flash's 1 million token context window is genuinely useful for applications that process very large documents — entire codebases, lengthy legal agreements, multi-year financial reports — in a single prompt. Google also offers the widest range of compliance certifications: HIPAA, FedRAMP High, GDPR, ISO 27001, and more, making it the default choice for federal government and heavily regulated industries.</p>
+
+<p>Pricing: Gemini 2.0 Flash at $0.10/million input tokens is the cheapest frontier-tier model in 2026 — a meaningful advantage for high-volume, cost-sensitive applications.</p>
+
+<h3>The risks</h3>
+<p>Google has a documented history of deprecating developer products. Developers who built on Google+ APIs, Firebase ML Kit, Google Cloud AutoML, and several other discontinued products have experienced costly migrations. Building your core business AI on a Google product carries this background risk — one that OpenAI and Anthropic, being newer companies whose primary business is AI APIs, do not carry in the same way. This is not a reason to avoid Google, but it is a reason to build with an abstraction layer.</p>
+
+<h2>How to Choose: A Decision Framework</h2>
+
+<table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+<thead>
+<tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">If your priority is…</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Choose</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;">Broadest ecosystem and easiest enterprise procurement</td>
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">OpenAI</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;">Best reasoning quality, coding, and compliance-sensitive outputs</td>
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Anthropic (Claude)</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;">Lowest cost at high volume, GCP infrastructure, or FedRAMP compliance</td>
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Google (Vertex AI + Gemini)</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;">Maximum reliability and vendor independence</td>
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">All three, with abstraction layer</td>
+</tr>
+<tr style="background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;">HIPAA, SOC 2, and healthcare/legal compliance</td>
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Any (all offer BAAs) — check specifics</td>
+</tr>
+</tbody>
+</table>
+
+<h2>The Most Important Technical Decision: Build Behind an Abstraction Layer</h2>
+
+<p>Whichever platform you choose today, the competitive landscape will shift. Model pricing changes. New models launch. Providers introduce breaking changes to their APIs. The businesses that navigate this most cleanly are those that built their AI systems behind an abstraction layer — a thin service that translates application requests into provider-specific API calls.</p>
+
+<p>Tools like LiteLLM provide this out of the box, supporting OpenAI, Anthropic, Google, Azure, and dozens of other providers through a unified interface. Building this in from day one costs almost nothing and eliminates vendor lock-in as a risk.</p>
+
+<p>Our <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement includes model selection as part of the architecture process — we are vendor-neutral and will recommend the right platform for your specific use case, compliance requirements, and budget. If you have a project in mind, <a href="/contact">reach out</a> and we will scope the right platform alongside the rest of the solution.</p>
+    `,
+  },
+
+  // ─── BLOG 10, Publish Thu May 8, 2026 ────────────────────────────────────
+  // CTA_MAP entry (copy to BlogPostPage.tsx when publishing):
+  // 'how-to-reduce-llm-api-costs': {
+  //   label: 'Kovil AI · AI Engineering',
+  //   teaser: 'We design AI architectures that are accurate and cost-efficient from the start.',
+  //   headline: 'Are your LLM API costs higher than they should be?',
+  //   body: 'We audit and optimise AI system architectures for cost efficiency — model routing, caching, prompt compression, and right-sizing. Or we build cost-efficient systems from scratch with a fixed price.',
+  //   defaultGoal: 'project',
+  //   primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+  //   secondary: { text: 'See Our Work', href: '/case-studies' },
+  // },
+  {
+    slug: "how-to-reduce-llm-api-costs",
+    title: "How to Reduce LLM API Costs: A Guide for Leaders",
+    excerpt: "LLM API costs can spiral quickly in production. Here's the non-technical guide to the 6 levers that cut inference costs by 40–70% — with decisions your team can make today, no ML background required.",
+    category: "AI Engineering",
+    date: "May 8, 2026",
+    readTime: "8 min read",
+    author: "Kovil AI Team",
+    featured: false,
+    heroImage: "/blog-how-to-reduce-llm-api-costs.jpg",
+    faqs: [
+      {
+        q: "Why are LLM API costs so high in production?",
+        a: "Most LLM cost overruns trace to three causes: the application is using a premium model (GPT-4o, Claude Sonnet) for every request including simple ones that a cheaper model could handle, prompts are longer than necessary — repeating context on every call rather than caching it, and the application was built at low test volume without projecting costs at real usage scale. A system that costs $50/month in testing commonly costs $3,000/month when 1,000 real users start interacting with it."
+      },
+      {
+        q: "What is model routing and how does it reduce costs?",
+        a: "Model routing sends different types of requests to different models based on complexity. Simple tasks — keyword extraction, yes/no classification, short summaries — go to a cheap, fast model like Gemini 2.0 Flash or GPT-4o-mini at $0.10–0.60 per million tokens. Complex tasks — multi-step reasoning, code generation, nuanced document analysis — go to a premium model like Claude Sonnet or GPT-4o at $2.50–15 per million tokens. Routing by task type typically reduces total API spend by 40–65% with minimal quality impact on the simple-task tier."
+      },
+      {
+        q: "Does using a cheaper AI model significantly reduce output quality?",
+        a: "It depends entirely on the task. For binary classification, entity extraction, short summarisation, and simple question answering, cheaper models like Gemini Flash and GPT-4o-mini perform comparably to premium models. For complex reasoning, multi-step planning, code generation, and nuanced instruction following, premium models are meaningfully better. The answer is to test your specific tasks against both model tiers rather than applying blanket assumptions — in most production systems, 60–70% of requests are simple enough for the cheaper tier."
+      },
+      {
+        q: "What is prompt caching and how much does it save?",
+        a: "Prompt caching stores the processed version of a prompt prefix so it does not need to be recomputed on every request. If your application sends a 5,000-word system prompt with every API call, caching that prefix means you only pay to process it once rather than thousands of times per day. Anthropic offers cached tokens at 90% discount; OpenAI offers cached input tokens at 50% discount. For applications with long, static system prompts — RAG systems with large context windows, detailed instruction sets — caching alone can reduce input token costs by 60–80%."
+      },
+      {
+        q: "How do I know if my LLM costs are too high?",
+        a: "Benchmark your cost per meaningful unit of output: cost per ticket resolved, cost per document summarised, cost per lead qualified. If your AI automation is costing more per unit than the human labour it replaces, something is wrong with the architecture. A well-designed AI support system should cost $0.05–0.50 per resolved ticket depending on complexity. If you are paying $2–5 per resolved ticket, you are almost certainly using the wrong model tier or have prompt bloat driving up token counts."
+      },
+    ],
+    body: `
+<img src="/blog-how-to-reduce-llm-api-costs.jpg" alt="How to Reduce LLM API Costs: A Guide for Leaders" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+
+<p>The business case for an AI project looks strong in a spreadsheet. Then the application goes live, real users start generating real volume, and the monthly API bill is three times what the model showed in testing. This is not an unusual story — it is one of the most common budget surprises in production AI deployments.</p>
+
+<p>The good news is that LLM API cost overruns are almost always solvable without sacrificing output quality. Here are the six levers, explained without jargon, so you can have an informed conversation with your engineering team about where the spend is going.</p>
+
+<h2>Lever 1: Model Routing</h2>
+
+<p>Not every request needs your most expensive model. A request that asks "is this email spam or not?" needs a binary classification, not the full reasoning capability of GPT-4o at $10 per million output tokens. A request that asks an AI system to design a multi-step data migration plan probably does.</p>
+
+<p>Model routing assigns requests to models based on task complexity. Simple tasks — classification, short summaries, yes/no decisions, entity extraction — go to cheap models like Gemini 2.0 Flash ($0.40/M output) or GPT-4o-mini ($0.60/M output). Complex tasks go to premium models like Claude Sonnet ($15/M output) or GPT-4o ($10/M output).</p>
+
+<p>The cost difference between tiers is 15–40x. In most production systems, 60–70% of requests are simple enough for the cheaper tier. Applied correctly, routing reduces total API spend by 40–65%.</p>
+
+<h2>Lever 2: Prompt Caching</h2>
+
+<p>If your application sends the same large block of text with every API call — a long system prompt, a detailed instruction set, a big document that provides context — you are paying to process that text thousands of times per day. Prompt caching stores the processed version of static prompt content so you only pay for it once.</p>
+
+<p>Anthropic offers cached tokens at a 90% discount. OpenAI offers cached input tokens at a 50% discount. For a RAG system that includes a 4,000-word company knowledge base in every prompt, enabling caching on that static block cuts input token costs on that portion by 50–90% — often the single biggest cost reduction available in the architecture.</p>
+
+<h2>Lever 3: Prompt Compression</h2>
+
+<p>Prompts grow over time. Engineers add instructions to handle edge cases. Context grows. What started as a 400-token prompt becomes a 2,000-token prompt over six months of iteration, even though the actual instruction content has not grown proportionally. Token costs scale linearly with prompt length.</p>
+
+<p>A prompt audit — reviewing every instruction in the system prompt and removing redundant, overlapping, or never-triggered content — typically reduces prompt length by 20–40% without changing output quality. For high-volume applications, this compounds significantly at scale.</p>
+
+<h2>Lever 4: Output Length Control</h2>
+
+<p>Output tokens cost more than input tokens on most models. If your application is generating verbose responses — long preambles, repeated context, unnecessary summaries — you are paying for words your users do not read.</p>
+
+<p>Explicit output length instructions ("respond in three bullet points maximum," "answer in one sentence") are dramatically more effective than you might expect. Models follow these instructions well, and cutting average output length from 400 tokens to 150 tokens is a 62% reduction in output token costs on every single call.</p>
+
+<h2>Lever 5: Semantic Caching</h2>
+
+<p>Some applications receive the same user questions repeatedly. A customer support chatbot where 60% of questions are variations of the top 20 queries is a good example. Semantic caching stores the AI-generated answer to a question and serves it again when a semantically similar question arrives — without calling the LLM at all.</p>
+
+<p>Tools like GPTCache and Redis with vector search support semantic caching at the application layer. For applications with repetitive query patterns, cache hit rates of 30–50% are achievable, effectively eliminating LLM costs for those requests entirely.</p>
+
+<h2>Lever 6: Right-Sizing the Context Window</h2>
+
+<p>RAG systems retrieve documents and pass them to the LLM as context. The default retrieval configuration often pulls more context than the model needs. If your retrieval step pulls 8,000 tokens of context for every query when 2,000 tokens would be sufficient to answer most questions accurately, you are paying for 6,000 wasted input tokens per call.</p>
+
+<p>Tuning retrieval chunk size, the number of chunks retrieved, and the reranking configuration to find the minimum context required for accurate answers is one of the highest-ROI optimisation steps in RAG architectures. It also often improves answer accuracy — a focused 2,000-token context frequently produces better answers than a sprawling 8,000-token context full of marginally relevant information.</p>
+
+<h2>Cost Benchmarks to Sanity-Check Your Architecture</h2>
+
+<table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+<thead>
+<tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Application Type</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Reasonable Cost per Unit</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Red Flag Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;">Support ticket resolved</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">$0.05 – $0.50</td>
+<td style="padding:0.75rem 1rem;color:#e53e3e;">$2.00+</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;">Document summarised (1–5 pages)</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">$0.01 – $0.10</td>
+<td style="padding:0.75rem 1rem;color:#e53e3e;">$0.50+</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;">Lead classified (hot / warm / cold)</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">$0.001 – $0.01</td>
+<td style="padding:0.75rem 1rem;color:#e53e3e;">$0.10+</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;">Product description generated</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">$0.002 – $0.02</td>
+<td style="padding:0.75rem 1rem;color:#e53e3e;">$0.20+</td>
+</tr>
+<tr>
+<td style="padding:0.75rem 1rem;color:#374151;">RAG query answered (with retrieval)</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">$0.01 – $0.05</td>
+<td style="padding:0.75rem 1rem;color:#e53e3e;">$0.30+</td>
+</tr>
+</tbody>
+</table>
+
+<p>If your per-unit costs are running above these benchmarks, the architecture has a cost problem. The fix is almost always one of the six levers above — in our experience, the combination of model routing and prompt caching alone resolves 70% of LLM cost overruns in production systems.</p>
+
+<p>If you have an AI system with runaway API costs or are architecting a new system and want to get the cost model right from day one, our <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement includes cost architecture as part of the design scope. Or <a href="/contact">reach out</a> and we will take a look at what is driving the spend.</p>
+    `,
+  },
+
+  // ─── BLOG 11, Publish Mon May 12, 2026 ───────────────────────────────────
+  // CTA_MAP entry (copy to BlogPostPage.tsx when publishing):
+  // 'ai-use-cases-for-ecommerce': {
+  //   label: 'Kovil AI · AI for E-Commerce',
+  //   teaser: 'We have built AI automation systems for e-commerce businesses — from chatbots to product generation.',
+  //   headline: 'Ready to automate your e-commerce operations with AI?',
+  //   body: 'We have built AI-powered support chatbots, product description generators, returns automation systems, and personalisation engines for e-commerce businesses. Fixed price, clear deliverables, 4–8 week delivery.',
+  //   defaultGoal: 'project',
+  //   primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
+  //   secondary: { text: 'See Our Work', href: '/case-studies' },
+  // },
+  {
+    slug: "ai-use-cases-for-ecommerce",
+    title: "9 AI Automation Use Cases for E-Commerce in 2026",
+    excerpt: "E-commerce businesses are cutting support costs by 60%, recovering abandoned carts automatically, and generating thousands of product descriptions in hours. Here are 9 proven AI use cases with realistic ROI benchmarks for 2026.",
+    category: "AI Engineering",
+    date: "May 12, 2026",
+    readTime: "10 min read",
+    author: "Kovil AI Team",
+    featured: false,
+    heroImage: "/blog-ai-use-cases-for-ecommerce.jpg",
+    faqs: [
+      {
+        q: "What is the best AI use case for e-commerce in 2026?",
+        a: "Customer support automation consistently delivers the highest and fastest ROI for e-commerce businesses — typically 5–8 month payback periods. E-commerce support is highly repetitive (order status, returns, shipping queries account for 60–70% of volume), the data needed to train the system already exists in your help desk, and the cost of a full-time support agent is easy to compare against the build and running cost of an AI chatbot. For businesses with high SKU counts, AI product description generation is a close second — it delivers immediate productivity gains with very low build cost."
+      },
+      {
+        q: "How much does AI automation cost for an e-commerce business?",
+        a: "A customer support chatbot for e-commerce integrated with your help desk and order management system typically costs $20,000–$45,000 to build. An AI product description generator costs $8,000–$20,000. An abandoned cart recovery system with personalised AI-generated messages costs $15,000–$35,000. These are one-time build costs — running costs (LLM API + hosting) are typically $500–$3,000 per month depending on volume. Most e-commerce AI projects pay back within 6–12 months."
+      },
+      {
+        q: "Can AI replace my e-commerce customer support team?",
+        a: "AI can automate 55–75% of e-commerce support tickets — the tier of common, predictable queries about orders, shipping, returns, and product questions. It should not replace the support team entirely: the remaining 25–45% of tickets require human judgement, empathy, or authority to make exceptions. The right model is AI handling tier-1 queries automatically, routing tier-2 queries to agents with context pre-populated, and reserving human time for complex or high-value interactions."
+      },
+      {
+        q: "What data does an e-commerce AI system need?",
+        a: "For a support chatbot: historical support tickets with resolutions, your FAQ documentation, return policy, shipping carrier details, and API access to your order management system for real-time order lookup. For product description generation: existing product data (name, category, specifications, images), your brand voice guidelines, and examples of descriptions you consider high-quality. For recommendations: order history, browsing behaviour, product catalogue, and category relationships. Most e-commerce platforms (Shopify, Magento, WooCommerce) have APIs that make this data accessible."
+      },
+      {
+        q: "How long does it take to deploy AI for an e-commerce business?",
+        a: "A customer support chatbot integrated with Shopify or Zendesk typically takes 4–6 weeks from kickoff to production deployment. A product description generator takes 2–4 weeks. A personalised recommendation engine is more complex — typically 8–12 weeks including data pipeline setup, model configuration, and A/B test infrastructure. The main variable is integration complexity: the more systems the AI needs to connect to, the longer the build."
+      },
+    ],
+    body: `
+<img src="/blog-ai-use-cases-for-ecommerce.jpg" alt="AI Automation Use Cases for E-Commerce" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+
+<p>E-commerce was one of the first industries to adopt AI at scale — recommendation engines, fraud detection, and dynamic pricing have been running in production at major retailers for years. What has changed in 2024–2026 is that these capabilities, previously requiring data science teams and significant infrastructure investment, are now accessible to mid-market and independent e-commerce businesses through LLM APIs and pre-built integrations.</p>
+
+<p>Here are the nine AI use cases that deliver the clearest ROI for e-commerce businesses in 2026, with realistic build costs, timelines, and payback benchmarks.</p>
+
+<h2>1. Customer Support Chatbot</h2>
+
+<p><strong>What it does:</strong> Handles inbound support queries automatically — order status, shipping updates, return requests, product questions — without human agent involvement for the majority of tickets.</p>
+
+<p><strong>How it works:</strong> A RAG-based chatbot grounded in your return policy, shipping information, FAQ documentation, and integrated with your order management system for real-time order lookup. The AI retrieves relevant context and generates a response, escalating to a human agent when confidence is low or the issue requires judgement.</p>
+
+<p><strong>ROI benchmark:</strong> E-commerce support teams report 55–75% ticket automation rates. At 700 tickets/week with a $35/hour support cost, automated resolution of 60% of tickets saves approximately $340,000/year. Build cost: $25,000–$45,000. Payback: 4–7 months.</p>
+
+<h2>2. AI Product Description Generator</h2>
+
+<p><strong>What it does:</strong> Generates SEO-optimised product descriptions at scale — from product specifications, images, and category context — in your brand voice.</p>
+
+<p><strong>How it works:</strong> A prompt pipeline that takes structured product data (name, category, specifications, materials, dimensions) and brand voice guidelines as input and generates descriptions in the required format. Human review is typically applied to a sample before bulk publication.</p>
+
+<p><strong>ROI benchmark:</strong> Businesses with 1,000+ SKUs report 90% reduction in time to publish new products. A copywriter at $50/hour producing 10 descriptions per hour costs $5 per description. AI generation costs $0.02–0.10 per description. Build cost: $8,000–$20,000. Payback: 2–4 months for high-SKU catalogues.</p>
+
+<h2>3. Abandoned Cart Recovery</h2>
+
+<p><strong>What it does:</strong> Sends personalised, AI-generated follow-up messages to shoppers who abandoned a cart, tailored to their specific cart contents, browsing history, and the likely reason for abandonment.</p>
+
+<p><strong>How it works:</strong> Triggered by cart abandonment event in your e-commerce platform, an AI system generates a personalised email or SMS that references the specific products left in the cart, highlights relevant social proof or urgency signals, and optionally includes a personalised incentive based on customer lifetime value.</p>
+
+<p><strong>ROI benchmark:</strong> Personalised abandonment messages recover 5–12% of abandoned carts, compared to 3–5% for generic template emails. At $120 average order value and 500 cart abandonments per week, even a 2% improvement in recovery rate generates $6,240/week in additional revenue.</p>
+
+<h2>4. AI-Powered Product Recommendations</h2>
+
+<p><strong>What it does:</strong> Recommends products based on a customer's browsing behaviour, purchase history, and semantic similarity to products they have engaged with — not just "customers who bought this also bought" collaborative filtering.</p>
+
+<p><strong>How it works:</strong> Products are embedded as vectors capturing their semantic content (category, description, attributes). Customer behaviour is used to build a preference profile. Recommendations are generated by finding products whose vector representations are close to the customer's inferred interest vector.</p>
+
+<p><strong>ROI benchmark:</strong> Product recommendation engines account for 35% of Amazon's revenue. For mid-market e-commerce, well-implemented recommendation systems increase average order value by 10–25% and repeat purchase rate by 15–30%. Build cost: $30,000–$60,000 including data pipeline.</p>
+
+<h2>5. Intelligent Search</h2>
+
+<p><strong>What it does:</strong> Returns semantically relevant search results rather than keyword matches. A search for "something waterproof for camping" returns appropriate rain gear and waterproof packs — not just products with the word "waterproof" in the title.</p>
+
+<p><strong>How it works:</strong> Product catalogue is embedded and stored in a vector database. Search queries are embedded at query time. Nearest-neighbour search retrieves the most semantically relevant products, optionally combined with traditional keyword search in a hybrid retrieval setup.</p>
+
+<p><strong>ROI benchmark:</strong> Sites with improved search convert browsers to buyers at 2–3x the rate of sites with poor search. Search users typically have a higher purchase intent — lifting search quality directly lifts conversion rate for the highest-intent segment of your traffic.</p>
+
+<h2>6. Returns Processing Automation</h2>
+
+<p><strong>What it does:</strong> Automates the intake, classification, and initial processing of return requests — determining eligibility, generating return labels, updating inventory systems, and communicating status to customers — without manual agent involvement.</p>
+
+<p><strong>How it works:</strong> An AI agent processes return requests against your policy, verifies eligibility criteria, interfaces with your order management and inventory systems, generates the appropriate label or refund instruction, and sends confirmation to the customer. Exceptions and policy edge cases escalate to a human.</p>
+
+<p><strong>ROI benchmark:</strong> Returns processing typically costs $15–35 per return in agent time. Automating 65% of return processing at an average $25/return saves $16.25 per automated return. For a business processing 200 returns/week, this is $169,000/year in labour savings.</p>
+
+<h2>7. Review Summarisation and Sentiment Analysis</h2>
+
+<p><strong>What it does:</strong> Synthesises hundreds of customer reviews into structured summaries — top pros, top cons, common themes, sentiment by product attribute — surfacing actionable insights from the review corpus without manual analysis.</p>
+
+<p><strong>How it works:</strong> A batch LLM pipeline processes review text in chunks, extracts sentiment by product attribute (quality, sizing, shipping, value), identifies recurring themes, and generates a structured summary. Can be run on demand or on a scheduled basis as new reviews accumulate.</p>
+
+<p><strong>ROI benchmark:</strong> Build cost is low ($5,000–$15,000 as a standalone tool). Value is primarily in product development and merchandising intelligence — understanding which product attributes drive returns or negative reviews before they compound.</p>
+
+<h2>8. Dynamic Pricing Intelligence</h2>
+
+<p><strong>What it does:</strong> Monitors competitor pricing and your own inventory levels to recommend price adjustments that maximise margin while staying competitive — without a data science team.</p>
+
+<p><strong>How it works:</strong> An AI agent monitors competitor prices via structured data sources, compares against your current prices and inventory position, and generates pricing recommendations within rules you define (minimum margin, maximum discount, priority categories). Recommendations can be reviewed by a human or applied automatically with guardrails.</p>
+
+<p><strong>ROI benchmark:</strong> Even a 1% improvement in net margin from better pricing decisions is significant at scale. For a business doing $5M in annual revenue at 30% margin, 1% margin improvement is $50,000/year. Build cost: $20,000–$40,000.</p>
+
+<h2>9. AI-Assisted Buying and Inventory Forecasting</h2>
+
+<p><strong>What it does:</strong> Analyses sales velocity, seasonal patterns, and external signals (trend data, search volume changes) to generate reorder recommendations and demand forecasts — reducing overstock and stockout events.</p>
+
+<p><strong>How it works:</strong> Historical sales data combined with external trend signals (Google Trends, social search volume, seasonal indices) feeds an AI forecasting pipeline that generates category-level and SKU-level demand projections. Reorder recommendations are surfaced to buyers with confidence intervals and the signal data behind each recommendation.</p>
+
+<p><strong>ROI benchmark:</strong> Inventory optimisation typically reduces overstock by 15–25% and stockout events by 20–35%. For a business carrying $1M in average inventory, a 20% overstock reduction frees $200,000 in working capital.</p>
+
+<h2>Where to Start</h2>
+
+<p>The highest-ROI starting point for most e-commerce businesses is the combination of customer support automation and product description generation — both have fast payback periods, clear success metrics, and do not require complex data infrastructure to build.</p>
+
+<p>We have built AI systems across all nine of these use cases for e-commerce businesses. If you want to understand which would deliver the clearest return for your specific operation, our <a href="/engage/outcome-based-project">Outcome-Based AI Project</a> process includes a scoping session that maps your current operations to the right AI investment. <a href="/contact">Reach out</a> and we will scope it in 48 hours.</p>
+    `,
+  },
+
+  // ─── BLOG 12, Publish Thu May 15, 2026 ───────────────────────────────────
+  // CTA_MAP entry (copy to BlogPostPage.tsx when publishing):
+  // 'prompt-engineering-for-business-teams': {
+  //   label: 'Kovil AI · AI Engineering',
+  //   teaser: 'We build AI systems your team can actually use — and train them on how to use them.',
+  //   headline: 'Want AI that works for your team, not just in demos?',
+  //   body: 'We build production AI systems and help your team use them effectively — with clear handover documentation and working sessions included in every engagement.',
+  //   defaultGoal: 'project',
+  //   primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+  //   secondary: { text: 'See Our Work', href: '/case-studies' },
+  // },
+  {
+    slug: "prompt-engineering-for-business-teams",
+    title: "Prompt Engineering for Business Teams: A Guide",
+    excerpt: "You don't need to understand transformers to write better AI prompts. Here's the practical guide for sales, support, and ops teams — with 7 techniques and copy-paste templates that improve AI output quality immediately.",
+    category: "AI Engineering",
+    date: "May 15, 2026",
+    readTime: "8 min read",
+    author: "Kovil AI Team",
+    featured: false,
+    heroImage: "/blog-prompt-engineering-for-business-teams.jpg",
+    faqs: [
+      {
+        q: "What is prompt engineering in simple terms?",
+        a: "Prompt engineering is the practice of writing instructions to an AI model clearly enough that it reliably produces useful output. A prompt is everything you send to the AI before it responds — your instruction, the context you provide, the format you want, and any examples of good output. The difference between a mediocre AI output and a great one is almost always in the quality of the prompt, not the capability of the model."
+      },
+      {
+        q: "Do you need to know how to code to do prompt engineering?",
+        a: "No. Prompt engineering is a writing skill, not a coding skill. It requires clear thinking about what you want the AI to do, knowledge of the AI model's strengths and limitations, and the discipline to test variations and refine based on output quality. Business analysts, writers, customer support leads, and operations managers become effective prompt engineers without any technical background."
+      },
+      {
+        q: "What makes a good prompt?",
+        a: "A good prompt has five elements: a clear role or persona for the AI (who it is in this task), a specific task instruction (what it must do), the relevant context (what it needs to know), format requirements (how the output should be structured), and at least one example of a good output when the task is ambiguous. Vague prompts produce vague outputs. The most common mistake is treating the AI like a search engine — asking a keyword rather than giving a detailed instruction."
+      },
+      {
+        q: "How do I get the AI to always respond in the same format?",
+        a: "Specify the format explicitly in the prompt, and provide an example. 'Respond in JSON with the fields: name, sentiment (positive/negative/neutral), and reason' is far more reliable than 'give me structured output.' For business workflows requiring consistent format — CRM updates, report fields, classification tags — include a template in the prompt and instruct the AI to fill it in. Models follow explicit format instructions reliably when the instructions are clear."
+      },
+      {
+        q: "What are the most common prompt engineering mistakes businesses make?",
+        a: "The most common mistakes are: giving the AI no role or context (it defaults to generic assistant mode), not specifying the output format (leading to inconsistent results), writing one long paragraph of mixed instructions instead of structured sections, not testing the prompt on edge cases before deploying it, and not versioning prompts when they change (making it impossible to know what changed when output quality drops). Treating prompt development like software development — with version control and structured testing — dramatically reduces production quality issues."
+      },
+    ],
+    body: `
+<img src="/blog-prompt-engineering-for-business-teams.jpg" alt="Prompt Engineering for Business Teams" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+
+<p>Prompt engineering has an unfortunate name. It sounds technical. It is not. It is the practice of writing clear instructions to an AI model — something every business professional already does in email, documentation, and briefing. The difference is knowing which elements the model needs to produce reliable output, and which shortcuts cause it to guess wrong.</p>
+
+<p>This guide covers the seven techniques that matter most for business teams using AI tools, with examples from sales, customer support, and operations contexts.</p>
+
+<h2>Why Prompts Matter More Than You Expect</h2>
+
+<p>The same model, given different prompts, produces outputs that range from genuinely useful to completely wrong. This is not a bug — language models are designed to follow instructions. The problem is that most business users write prompts the way they write search engine queries: short, vague, and keyword-based. A model told to "summarise this email" will produce something generic. A model told to "summarise this email in three bullet points — decision needed, key facts, and recommended action — for a CFO who has 30 seconds to read it" produces something useful.</p>
+
+<p>The techniques below close that gap without requiring any technical knowledge.</p>
+
+<h2>Technique 1: Give the AI a Role</h2>
+
+<p>Starting your prompt by assigning the AI a specific role changes its output register, vocabulary, and reasoning approach.</p>
+
+<p><strong>Weak:</strong> "Write a follow-up email to this prospect."</p>
+<p><strong>Strong:</strong> "You are a senior enterprise sales executive at a B2B software company. Write a concise follow-up email to a CFO who attended a 30-minute discovery call yesterday. The tone should be confident and direct, not pushy. Assume they are evaluating three vendors."</p>
+
+<p>The role instruction tells the model whose perspective to adopt, what assumptions to make about the audience, and what register is appropriate. It is the fastest single improvement in prompt quality.</p>
+
+<h2>Technique 2: Specify the Output Format</h2>
+
+<p>If you need a consistent output format for downstream use — a CRM note, a classification tag, a structured report — specify it explicitly and provide a template.</p>
+
+<p><strong>Weak:</strong> "Classify this support ticket."</p>
+<p><strong>Strong:</strong> "Classify this support ticket using the following format exactly:<br/>
+Category: [Billing / Shipping / Returns / Technical / Other]<br/>
+Priority: [High / Medium / Low]<br/>
+Sentiment: [Positive / Neutral / Frustrated / Angry]<br/>
+One-line summary: [max 15 words]"</p>
+
+<p>Explicit format instructions with a template produce consistent, parseable output every time. Without them, output format drifts across calls, making downstream processing unreliable.</p>
+
+<h2>Technique 3: Provide Relevant Context</h2>
+
+<p>Models do not have access to your business context unless you provide it. Customer history, product details, account records, policy specifics — anything the AI needs to produce a relevant response must be in the prompt.</p>
+
+<p><strong>Weak:</strong> "Draft a response to this customer complaint."</p>
+<p><strong>Strong:</strong> "Draft a response to this customer complaint. Context: The customer's order (#48291) was shipped via FedEx on April 3rd, is currently showing 'in transit' with a delivery estimate of April 8th, and was for a wedding gift needed by April 10th. Our policy allows expedited re-shipping at no cost for orders delayed by more than 5 days when the original estimated delivery date was provided at checkout."</p>
+
+<p>The context transforms the response from a generic apology template into a specific, accurate, actionable reply.</p>
+
+<h2>Technique 4: Use Chain-of-Thought for Complex Tasks</h2>
+
+<p>For tasks that require reasoning — analysis, decision-making, risk assessment — instructing the model to think step by step before giving a final answer significantly improves output quality.</p>
+
+<p><strong>Prompt addition:</strong> "Before giving your final answer, think through the relevant factors one by one. Then provide your conclusion."</p>
+
+<p>This is particularly effective for: reviewing contracts for missing clauses, evaluating proposals against criteria, writing risk assessments, and any task where the reasoning behind the conclusion matters as much as the conclusion itself.</p>
+
+<h2>Technique 5: Provide Examples (Few-Shot Prompting)</h2>
+
+<p>When the task involves a style, format, or classification that is hard to describe in words, showing the AI two or three examples is more effective than trying to write the description.</p>
+
+<p><strong>Example structure:</strong></p>
+<p>"Classify each support ticket as Tier 1 (can be resolved by AI without human input) or Tier 2 (requires human agent). Here are examples:</p>
+<p>Ticket: 'Where is my order?' → Tier 1<br/>
+Ticket: 'I was charged twice and need a refund' → Tier 2<br/>
+Ticket: 'What is your return policy?' → Tier 1<br/>
+Ticket: 'My delivery address was wrong — can you change it before it ships?' → Tier 2</p>
+<p>Now classify this ticket: [ticket text]"</p>
+
+<p>Two to four examples calibrate the model to your specific definition of each category more reliably than any amount of abstract description.</p>
+
+<h2>Technique 6: Set Explicit Constraints</h2>
+
+<p>AI models will fill in gaps with plausible-sounding content if you do not constrain them. In a business context, plausible-but-wrong is often worse than no answer at all.</p>
+
+<p>Useful constraints for business prompts:</p>
+<ul>
+<li>"If you are not certain, say 'I don't know' — do not guess."</li>
+<li>"Only use information provided in the context below. Do not add information from your training data."</li>
+<li>"Do not include any specific pricing, legal commitments, or delivery dates — flag those for human review."</li>
+<li>"Keep the response under 150 words."</li>
+</ul>
+
+<p>Constraint instructions are especially important for customer-facing applications where an AI confidently providing incorrect information creates liability.</p>
+
+<h2>Technique 7: Version and Test Your Prompts</h2>
+
+<p>A prompt is not a one-time piece of writing — it is a piece of software that should be versioned, tested, and improved. When an AI output starts degrading in quality, it is almost always because a prompt was changed without being tracked, or because the underlying model was updated in a way that changed its response to your existing instructions.</p>
+
+<p>Practical prompt management for business teams:</p>
+<ul>
+<li>Store prompts in a shared document with version numbers and change dates</li>
+<li>When you change a prompt, record what changed and why</li>
+<li>Maintain a test set of 10–20 representative inputs with expected outputs — run them against any prompt change before deploying</li>
+<li>Review output quality weekly on a random sample of production outputs</li>
+</ul>
+
+<h2>A Reusable Prompt Template</h2>
+
+<p>Most business prompts can be structured using this template:</p>
+
+<table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+<thead>
+<tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Section</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">What to Write</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Role</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">You are a [specific role] at [type of company]…</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Task</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Your task is to [specific action verb] [specific object]…</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Context</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Background information the AI needs to complete the task</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Format</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Respond in [format]. Use this template: [template]</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Constraints</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Do not [specific things to avoid]. If uncertain, [fallback behaviour]</td>
+</tr>
+<tr style="background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Examples</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">2–4 input/output examples when the task is ambiguous</td>
+</tr>
+</tbody>
+</table>
+
+<p>If your team is using AI tools but not getting consistent results, the prompt structure above will resolve the majority of quality problems. If you are looking to build an AI system that your entire team can use reliably — with prompts designed for your specific workflows built in from the start — our <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement includes prompt design and team handover as part of every engagement. <a href="/contact">Reach out</a> to discuss what that would look like for your team.</p>
     `,
   },
 ];

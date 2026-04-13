@@ -1,14 +1,28 @@
 'use client'
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { motion } from "motion/react"
 import { Mail, Linkedin, Calendar, Send, CheckCircle, ArrowRight } from "lucide-react"
 import { Button } from "../components/ui/button"
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", company: "", email: "", role: "", message: "" })
+  const [form, setForm] = useState({ name: "", company: "", email: "", role: "", message: "", website: "" })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const mountedAt = useRef(Date.now())
+
+  function validate() {
+    const e: Record<string, string> = {}
+    if (!form.name.trim().includes(' '))
+      e.name = 'Please enter your full name (first and last).'
+    if (form.company && form.company.trim().length > 20 && !form.company.trim().includes(' '))
+      e.company = 'Please enter a valid company name.'
+    const msgWords = form.message.trim().split(/\s+/).filter(Boolean)
+    if (form.message.trim().length < 30 || msgWords.length < 4)
+      e.message = 'Please describe your project in a bit more detail (at least a sentence).'
+    return e
+  }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -16,6 +30,21 @@ export default function ContactPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+
+    // Honeypot check — bots fill hidden fields, humans don't
+    if (form.website) { setSubmitted(true); return }
+
+    // Time check — legitimate humans take at least 3 seconds to fill a form
+    if (Date.now() - mountedAt.current < 3000) { setSubmitted(true); return }
+
+    // Input quality validation — catches garbage submissions
+    const validationErrors = validate()
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors)
+      return
+    }
+    setErrors({})
+
     setLoading(true)
 
     const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
@@ -142,16 +171,18 @@ export default function ContactPage() {
                     <input
                       name="name" required value={form.name} onChange={handleChange}
                       placeholder="Jane Smith"
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent/40 transition text-sm"
+                      className={`w-full px-4 py-3 rounded-xl border bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent/40 transition text-sm ${errors.name ? 'border-red-400' : 'border-border'}`}
                     />
+                    {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1.5">Company</label>
                     <input
                       name="company" value={form.company} onChange={handleChange}
                       placeholder="Acme Inc."
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent/40 transition text-sm"
+                      className={`w-full px-4 py-3 rounded-xl border bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent/40 transition text-sm ${errors.company ? 'border-red-400' : 'border-border'}`}
                     />
+                    {errors.company && <p className="text-xs text-red-500 mt-1">{errors.company}</p>}
                   </div>
                 </div>
 
@@ -185,7 +216,16 @@ export default function ContactPage() {
                     name="message" required value={form.message} onChange={handleChange}
                     rows={5}
                     placeholder="Tell us about your project, your tech stack, and what you're trying to build or fix..."
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent/40 transition text-sm resize-none"
+                    className={`w-full px-4 py-3 rounded-xl border bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent/40 transition text-sm resize-none ${errors.message ? 'border-red-400' : 'border-border'}`}
+                  />
+                  {errors.message && <p className="text-xs text-red-500 mt-1">{errors.message}</p>}
+                </div>
+
+                {/* Honeypot — hidden from humans, filled by bots */}
+                <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }} aria-hidden="true">
+                  <input
+                    name="website" tabIndex={-1} autoComplete="off"
+                    value={form.website} onChange={handleChange}
                   />
                 </div>
 
