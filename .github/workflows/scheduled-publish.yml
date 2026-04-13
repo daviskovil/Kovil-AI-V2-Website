@@ -1,9 +1,15 @@
 name: Scheduled Blog Publish
 
 # Runs at 13:30 UTC (7:00 PM IST) on each scheduled publish date
-# Mon Apr 14 → Blog 4: gpt-4o-vs-claude-vs-gemini
-# Thu Apr 17 → Blog 5: how-much-does-an-ai-project-cost
-# Mon Apr 21 → Blog 6: what-is-a-vector-database
+# Mon Apr 14 → Blog 4:  gpt-4o-vs-claude-vs-gemini
+# Thu Apr 17 → Blog 5:  how-much-does-an-ai-project-cost
+# Mon Apr 21 → Blog 6:  what-is-a-vector-database
+# Mon Apr 28 → Blog 7:  how-to-write-an-ai-project-brief
+# Thu May 1  → Blog 8:  how-to-measure-ai-roi
+# Mon May 5  → Blog 9:  openai-vs-anthropic-vs-google-for-business
+# Thu May 8  → Blog 10: how-to-reduce-llm-api-costs
+# Mon May 12 → Blog 11: ai-use-cases-for-ecommerce
+# Thu May 15 → Blog 12: prompt-engineering-for-business-teams
 #
 # To add future posts: add a new job block with the correct cron and slug.
 
@@ -12,6 +18,12 @@ on:
     - cron: '30 13 14 4 *'   # Mon Apr 14, 2026 — 7 PM IST
     - cron: '30 13 17 4 *'   # Thu Apr 17, 2026 — 7 PM IST
     - cron: '30 13 21 4 *'   # Mon Apr 21, 2026 — 7 PM IST
+    - cron: '30 13 28 4 *'   # Mon Apr 28, 2026 — 7 PM IST
+    - cron: '30 13 1 5 *'    # Thu May 1,  2026 — 7 PM IST
+    - cron: '30 13 5 5 *'    # Mon May 5,  2026 — 7 PM IST
+    - cron: '30 13 8 5 *'    # Thu May 8,  2026 — 7 PM IST
+    - cron: '30 13 12 5 *'   # Mon May 12, 2026 — 7 PM IST
+    - cron: '30 13 15 5 *'   # Thu May 15, 2026 — 7 PM IST
   workflow_dispatch:
     inputs:
       slug:
@@ -102,4 +114,172 @@ jobs:
           git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
           git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
           git commit -m "publish: what-is-a-vector-database blog post"
+          git push
+
+  # ── Blog 7: Mon Apr 28 ───────────────────────────────────────────────────
+  publish-blog-7:
+    name: 'Publish: how-to-write-an-ai-project-brief'
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && contains(github.event.schedule, '28 4'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PUBLISH_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish post
+        run: node scripts/publish-draft.mjs how-to-write-an-ai-project-brief
+
+      - name: Commit and push
+        run: |
+          git config user.email "davis@kovil.ai"
+          git config user.name "Kovil Publish Bot"
+          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
+          git commit -m "publish: how-to-write-an-ai-project-brief blog post"
+          git push
+
+  # ── Blog 8: Thu May 1 ────────────────────────────────────────────────────
+  publish-blog-8:
+    name: 'Publish: how-to-measure-ai-roi'
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && contains(github.event.schedule, '1 5'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PUBLISH_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish post
+        run: node scripts/publish-draft.mjs how-to-measure-ai-roi
+
+      - name: Commit and push
+        run: |
+          git config user.email "davis@kovil.ai"
+          git config user.name "Kovil Publish Bot"
+          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
+          git commit -m "publish: how-to-measure-ai-roi blog post"
+          git push
+
+  # ── Blog 9: Mon May 5 ────────────────────────────────────────────────────
+  publish-blog-9:
+    name: 'Publish: openai-vs-anthropic-vs-google-for-business'
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && contains(github.event.schedule, '5 5'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PUBLISH_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish post
+        run: node scripts/publish-draft.mjs openai-vs-anthropic-vs-google-for-business
+
+      - name: Commit and push
+        run: |
+          git config user.email "davis@kovil.ai"
+          git config user.name "Kovil Publish Bot"
+          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
+          git commit -m "publish: openai-vs-anthropic-vs-google-for-business blog post"
+          git push
+
+  # ── Blog 10: Thu May 8 ───────────────────────────────────────────────────
+  publish-blog-10:
+    name: 'Publish: how-to-reduce-llm-api-costs'
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && contains(github.event.schedule, '8 5'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PUBLISH_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish post
+        run: node scripts/publish-draft.mjs how-to-reduce-llm-api-costs
+
+      - name: Commit and push
+        run: |
+          git config user.email "davis@kovil.ai"
+          git config user.name "Kovil Publish Bot"
+          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
+          git commit -m "publish: how-to-reduce-llm-api-costs blog post"
+          git push
+
+  # ── Blog 11: Mon May 12 ──────────────────────────────────────────────────
+  publish-blog-11:
+    name: 'Publish: ai-use-cases-for-ecommerce'
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && contains(github.event.schedule, '12 5'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PUBLISH_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish post
+        run: node scripts/publish-draft.mjs ai-use-cases-for-ecommerce
+
+      - name: Commit and push
+        run: |
+          git config user.email "davis@kovil.ai"
+          git config user.name "Kovil Publish Bot"
+          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
+          git commit -m "publish: ai-use-cases-for-ecommerce blog post"
+          git push
+
+  # ── Blog 12: Thu May 15 ──────────────────────────────────────────────────
+  publish-blog-12:
+    name: 'Publish: prompt-engineering-for-business-teams'
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && contains(github.event.schedule, '15 5'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PUBLISH_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish post
+        run: node scripts/publish-draft.mjs prompt-engineering-for-business-teams
+
+      - name: Commit and push
+        run: |
+          git config user.email "davis@kovil.ai"
+          git config user.name "Kovil Publish Bot"
+          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
+          git commit -m "publish: prompt-engineering-for-business-teams blog post"
           git push
