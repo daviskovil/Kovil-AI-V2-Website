@@ -238,7 +238,7 @@ function SelectChip({ label, selected, onClick }: { label: string; selected: boo
       className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition-all ${
         selected
           ? 'bg-orange-500 border-orange-500 text-white'
-          : 'bg-background border-border text-muted-foreground hover:border-orange-400 hover:text-foreground'
+          : 'bg-[#1a1a1a] border-[#333333] text-[#888888] hover:border-orange-400 hover:text-white'
       }`}
     >
       {label}
@@ -253,8 +253,8 @@ function RadioCard({ label, selected, onClick }: { label: string; selected: bool
       onClick={onClick}
       className={`px-4 py-2.5 rounded-xl border text-sm font-medium text-left transition-all ${
         selected
-          ? 'bg-orange-500/10 border-orange-500 text-foreground'
-          : 'bg-background border-border text-muted-foreground hover:border-orange-400 hover:text-foreground'
+          ? 'bg-orange-500/10 border-orange-500 text-white'
+          : 'bg-[#1a1a1a] border-[#333333] text-[#888888] hover:border-orange-400 hover:text-white'
       }`}
     >
       {selected && <span className="mr-1.5 text-orange-500">✓</span>}
@@ -267,10 +267,10 @@ function DimensionBar({ label, value }: { label: string; value: number }) {
   return (
     <div>
       <div className="flex justify-between text-xs mb-1">
-        <span className="text-muted-foreground font-medium capitalize">{label}</span>
-        <span className="text-foreground font-semibold">{value}</span>
+        <span className="text-[#888888] font-medium capitalize">{label}</span>
+        <span className="text-white font-semibold">{value}</span>
       </div>
-      <div className="h-2 bg-muted rounded-full overflow-hidden">
+      <div className="h-2 bg-[#222222] rounded-full overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${value}%` }}
@@ -473,7 +473,7 @@ export default function AIReadinessPage() {
         }
       ` }} />
 
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen bg-[#0A0A0A]">
 
         {/* ── Hero ──────────────────────────────────────────────────────────── */}
         <section className="max-w-4xl mx-auto px-6 pt-16 pb-10 text-center">
@@ -481,10 +481,10 @@ export default function AIReadinessPage() {
             <span className="inline-flex items-center gap-2 text-[11px] font-bold text-orange-500 uppercase tracking-widest mb-4">
               Free Assessment · Ad &amp; Marketing Agencies
             </span>
-            <h1 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight leading-[1.1] mb-5">
+            <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-5">
               Is Your Agency<br className="hidden sm:block" /> Ready for AI?
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-[#888888] max-w-2xl mx-auto leading-relaxed">
               Most agencies know AI matters. Very few know where to start, what to automate first, or whether their data and team are actually ready. This assessment tells you exactly where you stand — in 3 minutes.
             </p>
           </motion.div>
@@ -494,10 +494,10 @@ export default function AIReadinessPage() {
             className="flex flex-wrap justify-center gap-4 mt-8"
           >
             {HERO_PILLS.map(({ icon: Icon, label, sub }) => (
-              <div key={label} className="flex items-center gap-2.5 bg-muted/60 border border-border rounded-full px-4 py-2">
+              <div key={label} className="flex items-center gap-2.5 bg-[#111111] border border-[#222222] rounded-full px-4 py-2">
                 <Icon className="h-4 w-4 text-orange-500 shrink-0" />
-                <span className="text-sm font-semibold text-foreground">{label}</span>
-                <span className="text-sm text-muted-foreground">{sub}</span>
+                <span className="text-sm font-semibold text-white">{label}</span>
+                <span className="text-sm text-[#888888]">{sub}</span>
               </div>
             ))}
           </motion.div>
@@ -516,16 +516,16 @@ export default function AIReadinessPage() {
                 className="space-y-6"
               >
                 {/* Score card */}
-                <div className="rounded-2xl border border-border bg-card p-8 text-center">
-                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Your AI Readiness Score</p>
-                  <div className="text-7xl font-bold text-foreground mb-2">{result.score}</div>
+                <div className="rounded-2xl border border-[#222222] bg-[#111111] p-8 text-center">
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#666666] mb-3">Your AI Readiness Score</p>
+                  <div className="text-7xl font-bold text-white mb-2">{result.score}</div>
                   <div className={`text-lg font-semibold mb-4 ${result.tierColor}`}>{result.tier}</div>
-                  <p className="text-sm text-muted-foreground leading-relaxed max-w-xl mx-auto">{result.summary}</p>
+                  <p className="text-sm text-[#888888] leading-relaxed max-w-xl mx-auto">{result.summary}</p>
                 </div>
 
                 {/* Dimension scores */}
-                <div className="rounded-2xl border border-border bg-card p-6">
-                  <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-5">Readiness by Dimension</h2>
+                <div className="rounded-2xl border border-[#222222] bg-[#111111] p-6">
+                  <h2 className="text-sm font-bold uppercase tracking-widest text-[#666666] mb-5">Readiness by Dimension</h2>
                   <div className="space-y-4">
                     {Object.entries(result.dimensionScores).map(([key, val]) => (
                       <DimensionBar key={key} label={key} value={val} />
@@ -534,21 +534,21 @@ export default function AIReadinessPage() {
                 </div>
 
                 {/* Top opportunities */}
-                <div className="rounded-2xl border border-border bg-card p-6">
-                  <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground mb-5">
+                <div className="rounded-2xl border border-[#222222] bg-[#111111] p-6">
+                  <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#666666] mb-5">
                     <TrendingUp className="h-4 w-4 text-orange-500" /> Top 3 Automation Opportunities
                   </h2>
                   <div className="space-y-4">
                     {result.topOpportunities.map((opp, i) => (
-                      <div key={i} className="flex gap-4 p-4 rounded-xl bg-muted/40 border border-border">
+                      <div key={i} className="flex gap-4 p-4 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a]">
                         <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white text-xs font-bold">{i + 1}</div>
                         <div>
                           <div className="flex flex-wrap items-center gap-2 mb-1">
-                            <span className="text-sm font-semibold text-foreground">{opp.title}</span>
-                            <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${opp.impact === 'High' ? 'bg-orange-500/15 text-orange-500' : 'bg-muted text-muted-foreground'}`}>{opp.impact} impact</span>
-                            <span className="text-[10px] text-muted-foreground">{opp.timeline}</span>
+                            <span className="text-sm font-semibold text-white">{opp.title}</span>
+                            <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${opp.impact === 'High' ? 'bg-orange-500/15 text-orange-500' : 'bg-[#222222] text-[#888888]'}`}>{opp.impact} impact</span>
+                            <span className="text-[10px] text-[#666666]">{opp.timeline}</span>
                           </div>
-                          <p className="text-xs text-muted-foreground leading-relaxed">{opp.description}</p>
+                          <p className="text-xs text-[#888888] leading-relaxed">{opp.description}</p>
                         </div>
                       </div>
                     ))}
@@ -557,13 +557,13 @@ export default function AIReadinessPage() {
 
                 {/* Recommended tools + risk flags */}
                 <div className="grid sm:grid-cols-2 gap-6">
-                  <div className="rounded-2xl border border-border bg-card p-6">
-                    <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">
+                  <div className="rounded-2xl border border-[#222222] bg-[#111111] p-6">
+                    <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#666666] mb-4">
                       <Wrench className="h-4 w-4 text-orange-500" /> Recommended Tools
                     </h2>
                     <ul className="space-y-2">
                       {result.recommendedTools.map((t) => (
-                        <li key={t} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <li key={t} className="flex items-start gap-2 text-sm text-[#888888]">
                           <CheckCircle2 className="h-4 w-4 text-orange-500 shrink-0 mt-0.5" /> {t}
                         </li>
                       ))}
@@ -571,15 +571,15 @@ export default function AIReadinessPage() {
                   </div>
 
                   {result.riskFlags.length > 0 && (
-                    <div className="rounded-2xl border border-border bg-card p-6">
-                      <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">
+                    <div className="rounded-2xl border border-[#222222] bg-[#111111] p-6">
+                      <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#666666] mb-4">
                         <AlertTriangle className="h-4 w-4 text-orange-500" /> Risk Flags
                       </h2>
                       <ul className="space-y-3">
                         {result.riskFlags.map((f, i) => (
                           <li key={i} className="flex items-start gap-2">
                             <span className={`mt-0.5 h-2 w-2 rounded-full shrink-0 ${f.severity === 'high' ? 'bg-red-500' : f.severity === 'medium' ? 'bg-yellow-500' : 'bg-blue-400'}`} />
-                            <span className="text-xs text-muted-foreground leading-relaxed">{f.text}</span>
+                            <span className="text-xs text-[#888888] leading-relaxed">{f.text}</span>
                           </li>
                         ))}
                       </ul>
@@ -593,7 +593,7 @@ export default function AIReadinessPage() {
                     onClick={handleDownloadPDF}
                     variant="outline"
                     size="sm"
-                    className="rounded-xl border-border gap-2"
+                    className="rounded-xl border-[#333333] text-[#888888] hover:text-white gap-2"
                     disabled={downloading}
                   >
                     <Download className={`h-4 w-4 ${downloading ? 'animate-bounce' : ''}`} />
@@ -602,7 +602,7 @@ export default function AIReadinessPage() {
                   <button
                     type="button"
                     onClick={() => { setStep(1); setData(INITIAL_DATA); setResult(null) }}
-                    className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
+                    className="text-xs text-[#666666] underline underline-offset-2 hover:text-white transition-colors"
                   >
                     Retake assessment
                   </button>
@@ -701,10 +701,10 @@ export default function AIReadinessPage() {
                 key={step}
                 initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="rounded-2xl border border-border bg-card shadow-sm overflow-hidden"
+                className="rounded-2xl border border-[#222222] bg-[#111111] shadow-sm overflow-hidden"
               >
                 {/* Progress bar */}
-                <div className="h-1 bg-muted">
+                <div className="h-1 bg-[#222222]">
                   <div
                     className="h-full bg-orange-500 transition-all duration-500"
                     style={{ width: `${(step as number / 4) * 100}%` }}
@@ -715,7 +715,7 @@ export default function AIReadinessPage() {
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-0.5">Step {step} of 4</p>
-                      <h2 className="text-xl font-bold text-foreground">{stepTitles[step as number]}</h2>
+                      <h2 className="text-xl font-bold text-white">{stepTitles[step as number]}</h2>
                     </div>
                   </div>
 
@@ -725,28 +725,28 @@ export default function AIReadinessPage() {
                       <div className="grid sm:grid-cols-2 gap-4">
                         {([['agencyName', 'Agency name'], ['contactName', 'Your name'], ['email', 'Work email *']] as [keyof FormData, string][]).map(([field, label]) => (
                           <div key={field} className={field === 'email' ? 'sm:col-span-2' : ''}>
-                            <label className="block text-xs font-semibold text-muted-foreground mb-1.5">{label}</label>
+                            <label className="block text-xs font-semibold text-[#888888] mb-1.5">{label}</label>
                             <input
                               type={field === 'email' ? 'email' : 'text'}
                               value={data[field] as string}
                               onChange={e => set(field, e.target.value)}
                               placeholder={label}
-                              className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 transition"
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-[#333333] bg-[#1a1a1a] text-sm text-white placeholder:text-[#555555] focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 transition"
                             />
                           </div>
                         ))}
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Team size</label>
+                        <label className="block text-xs font-semibold text-[#888888] mb-2">Team size</label>
                         <div className="flex flex-wrap gap-2">
                           {TEAM_SIZES.map(s => <RadioCard key={s} label={s} selected={data.teamSize === s} onClick={() => set('teamSize', s)} />)}
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-muted-foreground mb-2">
-                          Agency specialisation <span className="font-normal text-muted-foreground/60">— select all that apply</span>
+                        <label className="block text-xs font-semibold text-[#888888] mb-2">
+                          Agency specialisation <span className="font-normal text-[#555555]">— select all that apply</span>
                         </label>
                         <div className="flex flex-wrap gap-2">
                           {SPECIALIZATIONS.map(s => (
@@ -759,8 +759,8 @@ export default function AIReadinessPage() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-muted-foreground mb-2">
-                          Location <span className="font-normal text-muted-foreground/60">— select all that apply</span>
+                        <label className="block text-xs font-semibold text-[#888888] mb-2">
+                          Location <span className="font-normal text-[#555555]">— select all that apply</span>
                         </label>
                         <div className="flex flex-wrap gap-2">
                           {BOROUGHS.map(b => (
@@ -777,7 +777,7 @@ export default function AIReadinessPage() {
                   {/* ── Step 2 ── */}
                   {step === 2 && (
                     <div>
-                      <p className="text-sm text-muted-foreground mb-4">Select all that apply — where does your team spend the most time on manual work?</p>
+                      <p className="text-sm text-[#888888] mb-4">Select all that apply — where does your team spend the most time on manual work?</p>
                       <div className="flex flex-wrap gap-2">
                         {PAIN_POINTS.map(p => (
                           <SelectChip key={p} label={p} selected={data.painPoints.includes(p)} onClick={() => toggle('painPoints', p)} />
@@ -792,10 +792,10 @@ export default function AIReadinessPage() {
                   {/* ── Step 3 ── */}
                   {step === 3 && (
                     <div className="space-y-5">
-                      <p className="text-sm text-muted-foreground">Select all tools your team currently uses.</p>
+                      <p className="text-sm text-[#888888]">Select all tools your team currently uses.</p>
                       {TOOL_CATEGORIES.map(cat => (
                         <div key={cat.name}>
-                          <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">{cat.name}</p>
+                          <p className="text-xs font-bold uppercase tracking-widest text-[#666666] mb-2">{cat.name}</p>
                           <div className="flex flex-wrap gap-2">
                             {cat.tools.map(t => (
                               <SelectChip key={t} label={t} selected={data.tools.includes(t)} onClick={() => toggle('tools', t)} />
@@ -813,14 +813,14 @@ export default function AIReadinessPage() {
                   {step === 4 && (
                     <div className="space-y-6">
                       <div>
-                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Current AI usage</label>
+                        <label className="block text-xs font-semibold text-[#888888] mb-2">Current AI usage</label>
                         <div className="flex flex-wrap gap-2">
                           {AI_MATURITY_OPTIONS.map(o => <RadioCard key={o} label={o} selected={data.aiMaturity === o} onClick={() => set('aiMaturity', o)} />)}
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-muted-foreground mb-1.5">AI tools already in use <span className="font-normal">(optional)</span></label>
+                        <label className="block text-xs font-semibold text-[#888888] mb-1.5">AI tools already in use <span className="font-normal text-[#555555]">(optional)</span></label>
                         <input
                           type="text"
                           value={data.toolsUsed}
@@ -831,14 +831,14 @@ export default function AIReadinessPage() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Team openness to AI</label>
+                        <label className="block text-xs font-semibold text-[#888888] mb-2">Team openness to AI</label>
                         <div className="flex flex-wrap gap-2">
                           {OPENNESS_OPTIONS.map(o => <RadioCard key={o} label={o} selected={data.openness === o} onClick={() => set('openness', o)} />)}
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-muted-foreground mb-2">Monthly AI/automation budget</label>
+                        <label className="block text-xs font-semibold text-[#888888] mb-2">Monthly AI/automation budget</label>
                         <div className="flex flex-wrap gap-2">
                           {BUDGET_OPTIONS.map(b => <RadioCard key={b} label={b} selected={data.budget === b} onClick={() => set('budget', b)} />)}
                         </div>
@@ -847,7 +847,7 @@ export default function AIReadinessPage() {
                   )}
 
                   {/* ── Nav buttons ── */}
-                  <div className="flex items-center justify-between mt-8 pt-6 border-t border-border">
+                  <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#222222]">
                     {(step as number) > 1 ? (
                       <Button variant="ghost" size="sm" onClick={() => setStep(((step as number) - 1) as Step)}>
                         <ArrowLeft className="mr-1.5 h-4 w-4" /> Back
@@ -884,14 +884,14 @@ export default function AIReadinessPage() {
           <section className="max-w-3xl mx-auto px-6 pb-16">
             <motion.div
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.2 }}
-              className="bg-muted/40 border border-border rounded-2xl p-8"
+              className="bg-[#111111] border border-[#222222] rounded-2xl p-8"
             >
-              <h2 className="text-xl font-bold text-foreground mb-5">What you get from this assessment</h2>
+              <h2 className="text-xl font-bold text-white mb-5">What you get from this assessment</h2>
               <ul className="space-y-3.5">
                 {WHAT_YOU_GET.map(item => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
-                    <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+                    <span className="text-sm text-[#888888] leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -900,13 +900,13 @@ export default function AIReadinessPage() {
         )}
 
         {/* ── CTA ───────────────────────────────────────────────────────────── */}
-        <section className="bg-foreground text-background py-16 px-6">
+        <section className="bg-[#111111] border-t border-[#222222] py-16 px-6">
           <div className="max-w-2xl mx-auto text-center">
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.25 }}>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 Want an expert to review your results?
               </h2>
-              <p className="text-background/70 mb-8 leading-relaxed">
+              <p className="text-[#888888] mb-8 leading-relaxed">
                 Book a free 20-minute call with a Kovil AI engineer. We'll look at your assessment results, identify the highest-ROI automation for your agency, and tell you exactly what it would take to build it.
               </p>
               <OnboardingModal defaultGoal="automation">
@@ -917,7 +917,7 @@ export default function AIReadinessPage() {
                   Book a Free Strategy Call <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </OnboardingModal>
-              <p className="text-background/40 text-xs mt-4">No pitch. No pressure. Just a direct conversation about what&apos;s possible.</p>
+              <p className="text-[#555555] text-xs mt-4">No pitch. No pressure. Just a direct conversation about what&apos;s possible.</p>
             </motion.div>
           </div>
         </section>
