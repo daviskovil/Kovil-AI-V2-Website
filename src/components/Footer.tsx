@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Main grid: brand col (wider) + 4 nav cols */}
-        <div className="grid grid-cols-2 md:grid-cols-[2fr_1fr_1.5fr_1fr_1.5fr] gap-10 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-[1.8fr_1.2fr_1.4fr_1.4fr] gap-10 md:gap-12">
 
           {/* Brand + contact */}
           <div className="col-span-2 md:col-span-1">
