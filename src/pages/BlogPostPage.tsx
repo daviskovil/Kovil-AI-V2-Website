@@ -132,6 +132,17 @@ const CTA_MAP: Record<string, CtaConfig> = {
     secondary: { text: "See What We've Built", href: '/case-studies' },
   },
 
+
+  'gpt-4o-vs-claude-vs-gemini': {
+    label: 'Kovil AI · AI Engineering',
+    teaser: 'Not sure which AI model to build on? Our engineers work across GPT-4o, Claude, and Gemini.',
+    headline: 'Need help choosing the right AI model for your business?',
+    body: "The wrong model choice can double your inference costs or cut your accuracy in half. Our engineers have built production systems on all three — we'll help you choose and build right.",
+    defaultGoal: 'project',
+    primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },
+
 const DEFAULT_CTA: CtaConfig = {
   label: 'Kovil AI',
   teaser: 'We build AI-powered software for businesses — from automations to full product builds.',

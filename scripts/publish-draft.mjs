@@ -33,10 +33,10 @@ const DRAFTS_PATH   = resolve(ROOT, 'src/data/drafts.ts');
 const POSTS_PATH    = resolve(ROOT, 'src/data/posts.ts');
 const CTAPAGE_PATH  = resolve(ROOT, 'src/pages/BlogPostPage.tsx');
 
-// ─── Step 1: Read files ────────────────────────────────────────────────────
-const draftsContent  = readFileSync(DRAFTS_PATH,  'utf8');
-const postsContent   = readFileSync(POSTS_PATH,   'utf8');
-const ctaContent     = readFileSync(CTAPAGE_PATH, 'utf8');
+// ─── Step 1: Read files (normalize CRLF → LF for cross-platform safety) ───
+const draftsContent  = readFileSync(DRAFTS_PATH,  'utf8').replace(/\r\n/g, '\n');
+const postsContent   = readFileSync(POSTS_PATH,   'utf8').replace(/\r\n/g, '\n');
+const ctaContent     = readFileSync(CTAPAGE_PATH, 'utf8').replace(/\r\n/g, '\n');
 
 // ─── Step 2: Idempotency check ─────────────────────────────────────────────
 if (postsContent.includes(`slug: "${slug}"`)) {
