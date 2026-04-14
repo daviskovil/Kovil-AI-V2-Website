@@ -55,7 +55,7 @@ jobs:
         run: |
           git config user.email "davis@kovil.ai"
           git config user.name "Kovil Publish Bot"
-          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git add src/data/posts.ts src/pages/BlogPostPage.tsx
           git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
           git commit -m "publish: gpt-4o-vs-claude-vs-gemini blog post"
           git push
@@ -83,7 +83,7 @@ jobs:
         run: |
           git config user.email "davis@kovil.ai"
           git config user.name "Kovil Publish Bot"
-          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git add src/data/posts.ts src/pages/BlogPostPage.tsx
           git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
           git commit -m "publish: how-much-does-an-ai-project-cost blog post"
           git push
@@ -111,7 +111,7 @@ jobs:
         run: |
           git config user.email "davis@kovil.ai"
           git config user.name "Kovil Publish Bot"
-          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git add src/data/posts.ts src/pages/BlogPostPage.tsx
           git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
           git commit -m "publish: what-is-a-vector-database blog post"
           git push
@@ -139,7 +139,7 @@ jobs:
         run: |
           git config user.email "davis@kovil.ai"
           git config user.name "Kovil Publish Bot"
-          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git add src/data/posts.ts src/pages/BlogPostPage.tsx
           git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
           git commit -m "publish: how-to-write-an-ai-project-brief blog post"
           git push
@@ -167,7 +167,7 @@ jobs:
         run: |
           git config user.email "davis@kovil.ai"
           git config user.name "Kovil Publish Bot"
-          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git add src/data/posts.ts src/pages/BlogPostPage.tsx
           git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
           git commit -m "publish: how-to-measure-ai-roi blog post"
           git push
@@ -195,7 +195,7 @@ jobs:
         run: |
           git config user.email "davis@kovil.ai"
           git config user.name "Kovil Publish Bot"
-          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git add src/data/posts.ts src/pages/BlogPostPage.tsx
           git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
           git commit -m "publish: openai-vs-anthropic-vs-google-for-business blog post"
           git push
@@ -223,7 +223,7 @@ jobs:
         run: |
           git config user.email "davis@kovil.ai"
           git config user.name "Kovil Publish Bot"
-          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git add src/data/posts.ts src/pages/BlogPostPage.tsx
           git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
           git commit -m "publish: how-to-reduce-llm-api-costs blog post"
           git push
@@ -251,7 +251,7 @@ jobs:
         run: |
           git config user.email "davis@kovil.ai"
           git config user.name "Kovil Publish Bot"
-          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git add src/data/posts.ts src/pages/BlogPostPage.tsx
           git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
           git commit -m "publish: ai-use-cases-for-ecommerce blog post"
           git push
@@ -279,7 +279,7 @@ jobs:
         run: |
           git config user.email "davis@kovil.ai"
           git config user.name "Kovil Publish Bot"
-          git add src/data/posts.ts public/sitemap.xml src/pages/BlogPostPage.tsx
+          git add src/data/posts.ts src/pages/BlogPostPage.tsx
           git diff --cached --quiet && echo "Nothing to commit (already published)" && exit 0
           git commit -m "publish: prompt-engineering-for-business-teams blog post"
           git push
