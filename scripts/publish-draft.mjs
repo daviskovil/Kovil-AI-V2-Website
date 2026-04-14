@@ -31,13 +31,11 @@ console.log(`\n📝 Publishing blog post: ${slug}\n`);
 // ─── File paths ────────────────────────────────────────────────────────────
 const DRAFTS_PATH   = resolve(ROOT, 'src/data/drafts.ts');
 const POSTS_PATH    = resolve(ROOT, 'src/data/posts.ts');
-const SITEMAP_PATH  = resolve(ROOT, 'public/sitemap.xml');
 const CTAPAGE_PATH  = resolve(ROOT, 'src/pages/BlogPostPage.tsx');
 
 // ─── Step 1: Read files ────────────────────────────────────────────────────
 const draftsContent  = readFileSync(DRAFTS_PATH,  'utf8');
 const postsContent   = readFileSync(POSTS_PATH,   'utf8');
-const sitemapContent = readFileSync(SITEMAP_PATH, 'utf8');
 const ctaContent     = readFileSync(CTAPAGE_PATH, 'utf8');
 
 // ─── Step 2: Idempotency check ─────────────────────────────────────────────
@@ -112,22 +110,10 @@ const newPostsContent =
 writeFileSync(POSTS_PATH, newPostsContent, 'utf8');
 console.log(`✅ Appended to posts.ts`);
 
-// ─── Step 5: Update sitemap.xml ───────────────────────────────────────────
-const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-const sitemapEntry = `
-  <url>
-    <loc>https://kovil.ai/blog/${slug}</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-`;
+// Sitemap is dynamic (src/app/sitemap.ts) — no static sitemap.xml to update.
+console.log(`✅ Sitemap is dynamic — no update needed`);
 
-const newSitemapContent = sitemapContent.replace('</urlset>', sitemapEntry + '</urlset>');
-writeFileSync(SITEMAP_PATH, newSitemapContent, 'utf8');
-console.log(`✅ Updated sitemap.xml`);
-
-// ─── Step 6: Update CTA_MAP in BlogPostPage.tsx ───────────────────────────
+// ─── Step 5: Update CTA_MAP in BlogPostPage.tsx ───────────────────────────
 // CTA configs keyed by slug — add new slugs here when writing new draft posts
 const CTA_CONFIGS = {
   'gpt-4o-vs-claude-vs-gemini': `
