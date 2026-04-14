@@ -9,6 +9,18 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      // ── Tool pages moved under /tools/ ────────────────────────────────────────
+      {
+        source: '/ai-project-estimator',
+        destination: '/tools/ai-project-estimator',
+        permanent: true,
+      },
+      {
+        source: '/ai-readiness-ad-marketing-agencies',
+        destination: '/tools/ai-readiness-ad-marketing-agencies',
+        permanent: true,
+      },
+
       // ── High-value old URLs still ranking on Google → 301 to new pages ──────
       // Passes existing page authority to the new site immediately
 

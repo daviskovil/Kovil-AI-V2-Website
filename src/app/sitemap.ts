@@ -21,7 +21,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/contact`,                           lastModified: now,          changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/apply`,                             lastModified: now,          changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE_URL}/ai-readiness-ad-marketing-agencies`, lastModified: now,         changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${BASE_URL}/ai-project-estimator`,              lastModified: now,          changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${BASE_URL}/tools`,                             lastModified: now,          changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/tools/ai-project-estimator`,        lastModified: now,          changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/tools/ai-readiness-ad-marketing-agencies`, lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
   ]
 
   // ── Blog posts (auto-generated from posts.ts) ──────────────────────────────

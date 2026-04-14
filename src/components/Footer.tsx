@@ -37,6 +37,15 @@ export default function Footer() {
         </div>
 
         <div>
+          <h4 className="font-bold mb-4">Free Tools</h4>
+          <ul className="space-y-3 text-sm text-muted/60">
+            <li><Link href="/tools" className="hover:text-accent transition-colors">All Tools</Link></li>
+            <li><Link href="/tools/ai-project-estimator" className="hover:text-accent transition-colors">AI Project Cost Estimator</Link></li>
+            <li><Link href="/tools/ai-readiness-ad-marketing-agencies" className="hover:text-accent transition-colors">AI Readiness Assessment</Link></li>
+          </ul>
+        </div>
+
+        <div>
           <h4 className="font-bold mb-4">Contact</h4>
           <ul className="space-y-3 text-sm text-muted/60">
             <li>+1 646-535-9141</li>
