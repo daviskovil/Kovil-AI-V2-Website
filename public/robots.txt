@@ -51,9 +51,47 @@ Disallow: /?paged=
 Disallow: /?ref=
 Disallow: /?aff=
 
+# ── Block old staffing/talent pages (404s from previous site) ────────────────
+Disallow: /hire-
+Disallow: /servicenow-
+Disallow: /workday-
+Disallow: /adobe-
+Disallow: /senior-ai/
+Disallow: /cloud-consultant/
+Disallow: /cloud-migration-specialist/
+Disallow: /database-administrator/
+Disallow: /founders-friend/
+Disallow: /ultimate-business-advisor/
+Disallow: /the-high-business-council/
+Disallow: /web-design-wizard/
+Disallow: /scaling-your-saas-with-offshore-full-stack-developers-a-guide-to-rapid-growth/
+# Old AI tool review pages
+Disallow: /weaverse-ai/
+Disallow: /webwave-ai/
+Disallow: /entelligence-ai/
+Disallow: /astria-ai/
+Disallow: /leania-ai/
+Disallow: /ellipsis-ai/
+Disallow: /img2prompt/
+Disallow: /supaclip-pro/
+Disallow: /streamlabs-podcast-editor/
+Disallow: /smartsheet-2/
+Disallow: /chris-worths-ai-alter-ego/
+Disallow: /macky-ai/
+Disallow: /saas-quick/
+Disallow: /llm-engineers/
+Disallow: /remote-full-stack-developer/
+Disallow: /big-data-engineer/
+Disallow: /gaming-hire-game-developers/
+Disallow: /how-it-works-hire-dedicated-developers/
+Disallow: /salesforce-community-cloud-specialist/
+Disallow: /events/
+Disallow: /ai-studio/
+Disallow: /power-automate-vs-zapier-vs-n8n-vs-make-which-workflow-automation-tool-should-your-team-master-2025/
+
 # ── Block utility paths ───────────────────────────────────────────────────────
 Disallow: /api/
 Disallow: /*.json$
 
 # Sitemap
-Sitemap: https://kovil.ai/sitemap.xml
+Sitemap: https://kovil.ai/sitemap
