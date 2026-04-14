@@ -121,6 +121,17 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
 }
 
+
+  'how-to-write-an-ai-project-brief': {
+    label: 'Kovil AI · Fixed-Cost AI Builds',
+    teaser: 'We scope AI projects in 48 hours and give you a fixed price before any work begins.',
+    headline: 'Ready to scope your AI project?',
+    body: "Hand us your brief — or let us help you write one. We'll scope your AI project in 48 hours with a fixed price, clear deliverables, and a team that has shipped AI products across fintech, retail, and SaaS.",
+    defaultGoal: 'project',
+    primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
+    secondary: { text: "See What We've Built", href: '/case-studies' },
+  },
+
 const DEFAULT_CTA: CtaConfig = {
   label: 'Kovil AI',
   teaser: 'We build AI-powered software for businesses — from automations to full product builds.',
