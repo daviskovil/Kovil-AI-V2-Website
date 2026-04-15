@@ -159,6 +159,7 @@ const input = (err?: string) =>
 export default function ApplyRecruiterPage() {
   const [step, setStep]             = useState(1)
   const [submitted, setSubmitted]   = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors]         = useState<Record<string, string>>({})
   const [dragOver, setDragOver]     = useState(false)
   const [mathQ]                     = useState(generateMathQuestion)
@@ -232,8 +233,11 @@ export default function ApplyRecruiterPage() {
   const handleSubmit = async () => {
     if (!validate(4)) return
     if (form._honeypot) return
+    if (isSubmitting) return
     const elapsed = (Date.now() - formLoadTime.current) / 1000
     if (elapsed < 5) return
+
+    setIsSubmitting(true)
 
     const SUPABASE_URL      = process.env.NEXT_PUBLIC_SUPABASE_URL!
     const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -316,6 +320,8 @@ export default function ApplyRecruiterPage() {
       }).catch(err => console.error('Email notification error:', err))
     } catch (err) {
       console.error('Application submission error:', err)
+      setIsSubmitting(false)
+      return
     }
 
     setSubmitted(true)
@@ -682,8 +688,8 @@ export default function ApplyRecruiterPage() {
               Continue <span className="ml-1">→</span>
             </Button>
           ) : (
-            <Button variant="accent" onClick={handleSubmit}>
-              Submit Application <CheckCircle2 className="ml-2 h-4 w-4" />
+            <Button variant="accent" onClick={handleSubmit} disabled={isSubmitting}>
+              {isSubmitting ? 'Submitting…' : <> Submit Application <CheckCircle2 className="ml-2 h-4 w-4" /></>}
             </Button>
           )}
         </div>

@@ -20,6 +20,7 @@ import * as VisuallyHidden from "@radix-ui/react-visually-hidden"
 export function OnboardingModal({ children, defaultGoal = "" }: { children: React.ReactNode, defaultGoal?: string }) {
   const [isOpen, setIsOpen] = useState(false)
   const [step, setStep] = useState(1)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     goal: defaultGoal,
     details: "",
@@ -59,6 +60,9 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
     // Validate corporate email before submitting
     const emailErr = validateCorporateEmail(formData.email)
     if (emailErr) { setEmailError(emailErr); return }
+    if (isSubmitting) return
+
+    setIsSubmitting(true)
 
     const engagementMap: Record<string, string> = {
       talent: 'managed_ai_builder',
@@ -105,6 +109,8 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
       }).catch(err => console.error('Email notification error:', err))
     } catch (err) {
       console.error('Lead submission error:', err)
+      setIsSubmitting(false)
+      return
     }
 
     handleNext() // Move to success step regardless
@@ -325,10 +331,10 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
                       <Button type="button" variant="ghost" onClick={handleBack}>Back</Button>
                       <Button
                         type="submit"
-                        disabled={!formData.email.includes("@") || !formData.firstName.trim()}
+                        disabled={!formData.email.includes("@") || !formData.firstName.trim() || isSubmitting}
                         className="bg-accent text-accent-foreground hover:bg-accent/90"
                       >
-                        Submit Request
+                        {isSubmitting ? 'Submitting…' : 'Submit Request'}
                       </Button>
                     </div>
                   </form>
