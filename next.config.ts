@@ -135,6 +135,26 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/hire-a-front-end-developer/',
+        destination: '/engage/managed-ai-engineer',
+        permanent: true,
+      },
+      {
+        source: '/hire-mern-developers/',
+        destination: '/engage/managed-ai-engineer',
+        permanent: true,
+      },
+      {
+        source: '/hire-top-handpicked-pre-vetted-computer-vision-engineers/',
+        destination: '/engage/managed-ai-engineer',
+        permanent: true,
+      },
+      {
+        source: '/scaling-your-saas-with-offshore-full-stack-developers-a-guide-to-rapid-growth/',
+        destination: '/blog/build-mvp-4-weeks',
+        permanent: true,
+      },
+      {
         source: '/llm-fine-tuning-guide/',
         destination: '/blog/rag-vs-fine-tuning',
         permanent: true,
