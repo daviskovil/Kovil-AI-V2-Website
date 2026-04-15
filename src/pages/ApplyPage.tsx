@@ -166,6 +166,7 @@ function CheckItem({
 export default function ApplyPage() {
   const [step, setStep]           = useState(1)
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors]       = useState<Record<string, string>>({})
   const [dragOver, setDragOver]   = useState(false)
   const [mathQ]                   = useState(generateMathQuestion)
@@ -238,8 +239,11 @@ export default function ApplyPage() {
   const handleSubmit = async () => {
     if (!validate(4)) return
     if (form._honeypot) return
+    if (isSubmitting) return
     const elapsed = (Date.now() - formLoadTime.current) / 1000
     if (elapsed < 5) return
+
+    setIsSubmitting(true)
 
     const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
     const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -341,6 +345,8 @@ export default function ApplyPage() {
       }).catch(err => console.error('Email notification error:', err))
     } catch (err) {
       console.error('Application submission error:', err)
+      setIsSubmitting(false)
+      return
     }
 
     setSubmitted(true)
@@ -794,8 +800,8 @@ export default function ApplyPage() {
 
               <div className="flex justify-between pt-2">
                 <Button variant="ghost" onClick={handleBack}>Back</Button>
-                <Button variant="accent" onClick={handleSubmit} className="group">
-                  Submit Application <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <Button variant="accent" onClick={handleSubmit} disabled={isSubmitting} className="group">
+                  {isSubmitting ? 'Submitting…' : <>Submit Application <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></>}
                 </Button>
               </div>
             </motion.div>
