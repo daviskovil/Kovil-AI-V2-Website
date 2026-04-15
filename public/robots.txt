@@ -101,4 +101,4 @@ Disallow: /api/
 Disallow: /*.json$
 
 # Sitemap
-Sitemap: https://kovil.ai/sitemap
+Sitemap: https://kovil.ai/sitemap.xml
