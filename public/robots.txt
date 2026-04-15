@@ -51,8 +51,8 @@ Disallow: /?paged=
 Disallow: /?ref=
 Disallow: /?aff=
 
-# ── Block old staffing/talent pages (404s from previous site) ────────────────
-Disallow: /hire-
+# ── Block old junk pages — no SEO value, no redirects ────────────────────────
+# Pure junk from the old site. No 301 redirects set for these.
 Disallow: /servicenow-
 Disallow: /workday-
 Disallow: /adobe-
@@ -64,7 +64,6 @@ Disallow: /founders-friend/
 Disallow: /ultimate-business-advisor/
 Disallow: /the-high-business-council/
 Disallow: /web-design-wizard/
-Disallow: /scaling-your-saas-with-offshore-full-stack-developers-a-guide-to-rapid-growth/
 # Old AI tool review pages
 Disallow: /weaverse-ai/
 Disallow: /webwave-ai/
@@ -79,15 +78,23 @@ Disallow: /smartsheet-2/
 Disallow: /chris-worths-ai-alter-ego/
 Disallow: /macky-ai/
 Disallow: /saas-quick/
-Disallow: /llm-engineers/
-Disallow: /remote-full-stack-developer/
-Disallow: /big-data-engineer/
-Disallow: /gaming-hire-game-developers/
-Disallow: /how-it-works-hire-dedicated-developers/
-Disallow: /salesforce-community-cloud-specialist/
 Disallow: /events/
 Disallow: /ai-studio/
-Disallow: /power-automate-vs-zapier-vs-n8n-vs-make-which-workflow-automation-tool-should-your-team-master-2025/
+
+# NOTE: The following old URLs are intentionally NOT blocked here because they
+# have 301 redirects set in next.config.ts. Google must be able to crawl them
+# to follow the redirect and transfer ranking authority to the new pages.
+# /hire-*                → /engage/managed-ai-engineer
+# /llm-engineers/        → /engage/managed-ai-engineer
+# /remote-full-stack-developer/ → /engage/managed-ai-engineer
+# /big-data-engineer/    → /engage/managed-ai-engineer
+# /gaming-hire-game-developers/ → /engage/managed-ai-engineer
+# /how-it-works-hire-dedicated-developers/ → /how-it-works
+# /salesforce-community-cloud-specialist/ → /engage/managed-ai-engineer
+# /scaling-your-saas-with-offshore-full-stack-developers-a-guide-to-rapid-growth/ → /blog/build-mvp-4-weeks
+# /power-automate-vs-zapier-vs-n8n-vs-make-which-workflow-automation-tool-should-your-team-master-2025/ → /blog/n8n-vs-zapier-vs-power-automate
+# /llm-fine-tuning-guide/ → /blog/rag-vs-fine-tuning
+# /unlocking-precision-the-magic-of-custom-llm-embeddings-in-ai-solutions/ → /blog/rag-vs-fine-tuning
 
 # ── Block utility paths ───────────────────────────────────────────────────────
 Disallow: /api/
