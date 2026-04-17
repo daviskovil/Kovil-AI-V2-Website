@@ -2713,6 +2713,7 @@ export const posts: Post[] = [
     readTime: "9 min read",
     author: "Kovil AI Team",
     featured: false,
+    heroImage: "/blog-how-much-does-an-ai-project-cost.jpg",
     faqs: [
       {
         q: "How much does it cost to build an AI chatbot in 2026?",
