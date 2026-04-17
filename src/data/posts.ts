@@ -369,7 +369,7 @@ export const posts: Post[] = [
     readTime: "12 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/AI-Development-Lifecycle.png",
+    heroImage: "/blog-ai-development-lifecycle-v2.jpg",
     faqs: [
       {
         q: "What is the AI development lifecycle?",
@@ -2388,7 +2388,7 @@ export const posts: Post[] = [
     readTime: "11 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-why-ai-projects-fail.jpg",
+    heroImage: "/blog-why-ai-projects-fail-v2.jpg",
     faqs: [
       {
         q: "What is AI project failure?",

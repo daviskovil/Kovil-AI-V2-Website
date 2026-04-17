@@ -548,9 +548,225 @@ def make_agents_vs_chatbots_image():
     print(f"Saved: {out}")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 5: AI Development Lifecycle
+# Visual: horizontal pipeline of 6 stages with connecting arrows
+# ─────────────────────────────────────────────────────────────────────────────
+def make_ai_dev_lifecycle_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (6, 8, 20), (18, 14, 30))
+    draw_circle_glow(img, 600, 200, 500, (99, 102, 241), alpha_max=30)
+    draw_circle_glow(img, 100, 550, 200, ORANGE, alpha_max=25)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    # ── Headline ──────────────────────────────────────────────────────────
+    h1_f  = ImageFont.truetype(FONT_BOLD, 44)
+    sub_f = ImageFont.truetype(FONT_REGULAR, 19)
+    tag_f = ImageFont.truetype(FONT_BOLD, 13)
+
+    pill = "AI ENGINEERING"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2] + 24
+    draw.rounded_rectangle([W//2 - pw//2, 42, W//2 + pw//2, 72],
+                            radius=14, fill=(*ORANGE, 50))
+    draw.text((W//2, 57), pill, font=tag_f, fill=ORANGE, anchor="mm")
+
+    draw.text((W//2, 108), "The AI Development Lifecycle",
+              font=h1_f, fill=WHITE, anchor="mm")
+    draw.text((W//2, 152), "6 phases every AI project must pass through — from data to deployment",
+              font=sub_f, fill=GREY_DIM, anchor="mm")
+
+    # ── Six stage boxes ───────────────────────────────────────────────────
+    stages = [
+        ("01", "Data\nCollection",   (59, 130, 246)),
+        ("02", "Data\nPrep",         (99, 102, 241)),
+        ("03", "Model\nSelection",   (139, 92, 246)),
+        ("04", "Training &\nEval",   (168, 85, 247)),
+        ("05", "Deployment",         (229, 101, 43)),
+        ("06", "Monitor &\nIterate", (239, 68, 68)),
+    ]
+
+    n = len(stages)
+    box_w  = 152
+    box_h  = 170
+    gap    = 18
+    total  = n * box_w + (n - 1) * gap
+    x0     = (W - total) // 2
+    y0     = 200
+
+    num_f   = ImageFont.truetype(FONT_BOLD, 13)
+    name_f  = ImageFont.truetype(FONT_BOLD, 16)
+
+    for i, (num, name, col) in enumerate(stages):
+        bx = x0 + i * (box_w + gap)
+
+        # Card
+        card = Image.new("RGBA", (box_w, box_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, box_w, box_h], radius=12,
+                              fill=(*col, 22))
+        cd.rounded_rectangle([0, 0, box_w, box_h], radius=12,
+                              outline=(*col, 90), width=1)
+        img.paste(card, (bx, y0), mask=card)
+
+        draw = ImageDraw.Draw(img)
+
+        # Top accent bar
+        draw.rounded_rectangle([bx, y0, bx + box_w, y0 + 4],
+                                radius=2, fill=col)
+
+        # Number badge
+        draw.text((bx + box_w // 2, y0 + 28), num,
+                  font=num_f, fill=col, anchor="mm")
+
+        # Separator line
+        draw.line([bx + 20, y0 + 42, bx + box_w - 20, y0 + 42],
+                  fill=(*col, 50), width=1)
+
+        # Stage name (multi-line)
+        lines = name.split("\n")
+        line_h = 26
+        text_y = y0 + 68 - (len(lines) - 1) * line_h // 2
+        for line in lines:
+            draw.text((bx + box_w // 2, text_y), line,
+                      font=name_f, fill=WHITE, anchor="mm")
+            text_y += line_h
+
+        # Arrow to next (except last)
+        if i < n - 1:
+            ax = bx + box_w + gap // 2
+            ay = y0 + box_h // 2
+            draw.line([ax - 6, ay, ax + 6, ay], fill=GREY_DIM, width=2)
+            draw.polygon([(ax + 6, ay - 5), (ax + 6, ay + 5), (ax + 14, ay)],
+                         fill=GREY_DIM)
+
+    # ── Bottom stat strip ─────────────────────────────────────────────────
+    stat_f  = ImageFont.truetype(FONT_BOLD, 22)
+    stat_sf = ImageFont.truetype(FONT_REGULAR, 13)
+    stats   = [("80%", "of projects skip phases"), ("4–20 wks", "average build time"), ("3×", "cost of skipping eval")]
+    stat_y  = y0 + box_h + 36
+    sw      = W // len(stats)
+    for i, (val, label) in enumerate(stats):
+        sx = i * sw + sw // 2
+        draw.text((sx, stat_y),      val,   font=stat_f,  fill=ORANGE, anchor="mm")
+        draw.text((sx, stat_y + 30), label, font=stat_sf, fill=GREY_DIM, anchor="mm")
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-ai-development-lifecycle-v2.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 6: Why AI Projects Fail
+# Visual: 5 failure reasons as warning cards on dark red-toned bg
+# ─────────────────────────────────────────────────────────────────────────────
+def make_why_ai_fails_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (14, 6, 6), (20, 10, 14))
+    draw_circle_glow(img, 300, 200, 380, (239, 68, 68),  alpha_max=35)
+    draw_circle_glow(img, 950, 450, 300, (229, 101, 43), alpha_max=28)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=10)
+
+    RED    = (239, 68, 68)
+    AMBER  = (245, 158, 11)
+
+    # ── Headline block (left) ─────────────────────────────────────────────
+    tag_f = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f  = ImageFont.truetype(FONT_BOLD, 52)
+    num_f = ImageFont.truetype(FONT_BOLD, 88)
+    sub_f = ImageFont.truetype(FONT_REGULAR, 18)
+
+    pill = "AI ENGINEERING"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2] + 24
+    draw.rounded_rectangle([56, 60, 56 + pw, 88], radius=14,
+                            fill=(*RED, 40))
+    draw.text((56 + pw // 2, 74), pill, font=tag_f, fill=RED, anchor="mm")
+
+    # Big 80% number
+    draw.text((56, 110), "80%", font=num_f, fill=(*RED, 200))
+
+    draw.text((56, 216), "of AI projects fail", font=h1_f, fill=WHITE)
+    draw.text((56, 274), "in production", font=h1_f, fill=WHITE)
+
+    draw.text((56, 334), "Here's exactly why — and how to", font=sub_f, fill=GREY_DIM)
+    draw.text((56, 360), "make sure yours doesn't.", font=sub_f, fill=GREY_DIM)
+
+    # ── Failure reason cards (right) ──────────────────────────────────────
+    reasons = [
+        (RED,   "No clear success metric defined upfront"),
+        (AMBER, "Data quality issues discovered late"),
+        (AMBER, "Proof-of-concept ≠ production system"),
+        (RED,   "No monitoring after deployment"),
+        (ORANGE,"Team lacks AI engineering specialisation"),
+    ]
+
+    card_x   = 560
+    card_w   = 600
+    card_h   = 80
+    card_gap = 14
+    card_y0  = 80
+
+    reason_f = ImageFont.truetype(FONT_BOLD, 17)
+    num2_f   = ImageFont.truetype(FONT_BOLD, 20)
+
+    for i, (col, text) in enumerate(reasons):
+        cy = card_y0 + i * (card_h + card_gap)
+
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=10,
+                              fill=(*col, 18))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=10,
+                              outline=(*col, 70), width=1)
+        img.paste(card, (card_x, cy), mask=card)
+
+        draw = ImageDraw.Draw(img)
+
+        # Left accent
+        draw.rounded_rectangle([card_x, cy, card_x + 4, cy + card_h],
+                                radius=2, fill=col)
+
+        # Number
+        draw.text((card_x + 34, cy + card_h // 2),
+                  f"#{i+1}", font=num2_f, fill=col, anchor="mm")
+
+        # Separator
+        draw.line([card_x + 56, cy + 16, card_x + 56, cy + card_h - 16],
+                  fill=(*col, 40), width=1)
+
+        # Text
+        draw.text((card_x + 74, cy + card_h // 2),
+                  text, font=reason_f, fill=WHITE, anchor="lm")
+
+    # ── Bottom CTA line ───────────────────────────────────────────────────
+    cta_f = ImageFont.truetype(FONT_REGULAR, 16)
+    draw.text((card_x, card_y0 + len(reasons) * (card_h + card_gap) + 16),
+              "Kovil AI · AI Engineering & Production Reliability",
+              font=cta_f, fill=GREY_DIM)
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-why-ai-projects-fail-v2.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
     make_rag_vs_finetuning_image()
     make_agents_vs_chatbots_image()
+    make_ai_dev_lifecycle_image()
+    make_why_ai_fails_image()
     print("Done.")
