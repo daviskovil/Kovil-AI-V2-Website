@@ -762,6 +762,681 @@ def make_why_ai_fails_image():
     print(f"Saved: {out}")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 7: n8n vs Zapier vs Power Automate
+# Visual: 3-column comparison cards (green/orange/blue)
+# ─────────────────────────────────────────────────────────────────────────────
+def make_n8n_vs_zapier_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (6, 14, 10), (16, 12, 26))
+    draw_circle_glow(img, 200, 250, 300, (34, 197, 94),  alpha_max=40)
+    draw_circle_glow(img, 600, 150, 280, (249, 115, 22), alpha_max=35)
+    draw_circle_glow(img, 1000, 300, 300, (59, 130, 246), alpha_max=40)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    tools = [
+        {
+            "name": "n8n",
+            "tag": "Developer's Choice",
+            "color": (34, 197, 94),
+            "x": 40,
+            "items": [
+                ("Type",    "Self-hosted / Cloud"),
+                ("Best for","Developers & DevOps"),
+                ("Pricing", "Free self-host / $20+"),
+                ("Logic",   "Code nodes + JS/Python"),
+                ("Verdict", "Most flexible & powerful"),
+            ],
+        },
+        {
+            "name": "Zapier",
+            "tag": "Easiest to Start",
+            "color": (249, 115, 22),
+            "x": 420,
+            "items": [
+                ("Type",    "Cloud only"),
+                ("Best for","Non-technical teams"),
+                ("Pricing", "Free → $20–$100+/mo"),
+                ("Logic",   "Linear zaps, basic filters"),
+                ("Verdict", "Fastest setup, limited scale"),
+            ],
+        },
+        {
+            "name": "Power Automate",
+            "tag": "Microsoft Ecosystem",
+            "color": (59, 130, 246),
+            "x": 800,
+            "items": [
+                ("Type",    "Cloud + Desktop"),
+                ("Best for","M365 / Azure shops"),
+                ("Pricing", "Included in M365 plans"),
+                ("Logic",   "Conditions, loops, AI Builder"),
+                ("Verdict", "Best if you're already on M365"),
+            ],
+        },
+    ]
+
+    card_w  = 340
+    card_h  = 430
+    card_top = 95
+
+    title_f = ImageFont.truetype(FONT_BOLD, 40)
+    tag_f   = ImageFont.truetype(FONT_BOLD, 13)
+    item_kf = ImageFont.truetype(FONT_REGULAR, 14)
+    item_vf = ImageFont.truetype(FONT_BOLD, 15)
+
+    for t in tools:
+        cx  = t["x"]
+        col = t["color"]
+
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=14, fill=(*col, 20))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=14, outline=(*col, 85), width=1)
+        img.paste(card, (cx, card_top), mask=card)
+        draw = ImageDraw.Draw(img)
+
+        draw.rounded_rectangle([cx, card_top, cx + card_w, card_top + 5], radius=3, fill=col)
+        draw.text((cx + card_w // 2, card_top + 52), t["name"], font=title_f, fill=WHITE, anchor="mm")
+
+        tw = draw.textbbox((0,0), t["tag"], font=tag_f)[2] + 20
+        tx = cx + (card_w - tw) // 2
+        draw.rounded_rectangle([tx, card_top + 70, tx + tw, card_top + 92], radius=8, fill=(*col, 45))
+        draw.text((tx + tw // 2, card_top + 81), t["tag"], font=tag_f, fill=col, anchor="mm")
+        draw.line([cx + 20, card_top + 106, cx + card_w - 20, card_top + 106], fill=(255,255,255,20), width=1)
+
+        for i, (k, v) in enumerate(t["items"]):
+            y = card_top + 120 + i * 56
+            draw.text((cx + 22, y),      k, font=item_kf, fill=GREY_DIM)
+            draw.text((cx + 22, y + 20), v, font=item_vf, fill=WHITE)
+            if i < len(t["items"]) - 1:
+                draw.line([cx + 16, y + 48, cx + card_w - 16, y + 48], fill=(255,255,255,12), width=1)
+
+    # Footer line
+    foot_f = ImageFont.truetype(FONT_BOLD, 20)
+    draw.text((W//2, card_top + card_h + 30),
+              "Which workflow automation tool is right for your team?",
+              font=foot_f, fill=WHITE, anchor="mm")
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-n8n-vs-zapier-vs-power-automate-v2.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 8: LLM Chatbot for Business
+# Visual: chat bubble interface mockup on dark bg
+# ─────────────────────────────────────────────────────────────────────────────
+def make_llm_chatbot_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (8, 10, 22), (18, 14, 32))
+    draw_circle_glow(img, 750, 300, 400, (99, 102, 241), alpha_max=40)
+    draw_circle_glow(img, 150, 500, 220, ORANGE, alpha_max=28)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    PURPLE = (99, 102, 241)
+
+    # ── Left: headline ─────────────────────────────────────────────────────
+    tag_f = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f  = ImageFont.truetype(FONT_BOLD, 50)
+    sub_f = ImageFont.truetype(FONT_REGULAR, 18)
+
+    pill = "AI ENGINEERING"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2] + 24
+    draw.rounded_rectangle([56, 60, 56+pw, 88], radius=14, fill=(*PURPLE, 50))
+    draw.text((56+pw//2, 74), pill, font=tag_f, fill=PURPLE, anchor="mm")
+
+    draw.text((56, 118), "LLM Chatbots", font=h1_f, fill=WHITE)
+    draw.text((56, 174), "for Business", font=h1_f, fill=PURPLE)
+    draw.text((56, 238), "How to build, deploy and maintain", font=sub_f, fill=GREY_DIM)
+    draw.text((56, 265), "a chatbot that actually works.", font=sub_f, fill=GREY_DIM)
+
+    # Stat pills
+    stats = [("< 48h", "to first response"), ("Top 1%", "LLM engineers"), ("100%", "IP ownership")]
+    sf1 = ImageFont.truetype(FONT_BOLD, 17)
+    sf2 = ImageFont.truetype(FONT_REGULAR, 13)
+    sy = 320
+    for val, label in stats:
+        sw = draw.textbbox((0,0), val, font=sf1)[2] + draw.textbbox((0,0), " · " + label, font=sf2)[2] + 28
+        draw.rounded_rectangle([56, sy, 56+sw, sy+34], radius=17, fill=(*PURPLE, 25))
+        draw.rounded_rectangle([56, sy, 56+sw, sy+34], radius=17, outline=(*PURPLE, 60), width=1)
+        vw = draw.textbbox((0,0), val, font=sf1)[2]
+        draw.text((70, sy+17), val, font=sf1, fill=WHITE, anchor="lm")
+        draw.text((70+vw+6, sy+17), "· "+label, font=sf2, fill=GREY_DIM, anchor="lm")
+        sy += 46
+
+    # ── Right: chat bubbles mockup ─────────────────────────────────────────
+    chat_x  = 530
+    chat_top = 55
+    chat_w  = 620
+    chat_h  = 560
+
+    # Chat window frame
+    frame = Image.new("RGBA", (chat_w, chat_h), (0,0,0,0))
+    fd = ImageDraw.Draw(frame)
+    fd.rounded_rectangle([0, 0, chat_w, chat_h], radius=18, fill=(255,255,255,10))
+    fd.rounded_rectangle([0, 0, chat_w, chat_h], radius=18, outline=(*PURPLE, 70), width=1)
+    img.paste(frame, (chat_x, chat_top), mask=frame)
+    draw = ImageDraw.Draw(img)
+
+    # Title bar
+    draw.rounded_rectangle([chat_x, chat_top, chat_x+chat_w, chat_top+46], radius=18, fill=(*PURPLE, 40))
+    title_bar_f = ImageFont.truetype(FONT_BOLD, 14)
+    draw.text((chat_x+20, chat_top+23), "● Kovil AI Assistant", font=title_bar_f, fill=WHITE, anchor="lm")
+    draw.text((chat_x+chat_w-20, chat_top+23), "Powered by LLM", font=ImageFont.truetype(FONT_REGULAR, 12), fill=GREY_DIM, anchor="rm")
+
+    # Chat messages
+    messages = [
+        ("user",  "How can AI help my customer support team?"),
+        ("bot",   "Great question. An LLM chatbot can handle 60–80%\nof tier-1 support tickets automatically — resolving\npassword resets, FAQs, and order tracking instantly."),
+        ("user",  "What about complex issues that need a human?"),
+        ("bot",   "The chatbot detects when a query is out-of-scope\nand routes it to your team — with full context\nattached so agents don't start from scratch."),
+        ("user",  "How long does it take to build?"),
+        ("bot",   "A production-ready chatbot connected to your\nknowledge base typically takes 4–8 weeks."),
+    ]
+
+    bub_f  = ImageFont.truetype(FONT_REGULAR, 14)
+    bub_bf = ImageFont.truetype(FONT_BOLD, 14)
+    my = chat_top + 60
+    for role, text in messages:
+        lines = text.split("\n")
+        line_h = 20
+        bh = len(lines) * line_h + 22
+        max_bw = int(chat_w * 0.72)
+
+        if role == "user":
+            bw = max(min(max_bw, max(draw.textbbox((0,0), l, font=bub_f)[2] for l in lines) + 28), 80)
+            bx = chat_x + chat_w - bw - 20
+            bubble = Image.new("RGBA", (bw, bh), (0,0,0,0))
+            bd = ImageDraw.Draw(bubble)
+            bd.rounded_rectangle([0,0,bw,bh], radius=12, fill=(*PURPLE, 180))
+            img.paste(bubble, (bx, my), mask=bubble)
+            draw = ImageDraw.Draw(img)
+            for li, line in enumerate(lines):
+                draw.text((bx+14, my+12+li*line_h), line, font=bub_f, fill=WHITE)
+        else:
+            bw = max(min(max_bw, max(draw.textbbox((0,0), l, font=bub_f)[2] for l in lines) + 28), 80)
+            bx = chat_x + 20
+            bubble = Image.new("RGBA", (bw, bh), (0,0,0,0))
+            bd = ImageDraw.Draw(bubble)
+            bd.rounded_rectangle([0,0,bw,bh], radius=12, fill=(255,255,255,15))
+            bd.rounded_rectangle([0,0,bw,bh], radius=12, outline=(255,255,255,30), width=1)
+            img.paste(bubble, (bx, my), mask=bubble)
+            draw = ImageDraw.Draw(img)
+            for li, line in enumerate(lines):
+                draw.text((bx+14, my+12+li*line_h), line, font=bub_f, fill=WHITE)
+        my += bh + 10
+
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-llm-chatbot-for-business-v2.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 9: Software Maintenance Time Bomb
+# Visual: warning/danger theme — ticking clock + debt counter
+# ─────────────────────────────────────────────────────────────────────────────
+def make_maintenance_timebomb_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (14, 8, 6), (22, 10, 8))
+    RED   = (239, 68, 68)
+    AMBER = (245, 158, 11)
+    draw_circle_glow(img, 300, 340, 380, RED,   alpha_max=45)
+    draw_circle_glow(img, 950, 200, 280, AMBER, alpha_max=30)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=10)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f   = ImageFont.truetype(FONT_BOLD, 54)
+    h2_f   = ImageFont.truetype(FONT_BOLD, 42)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 18)
+    num_f  = ImageFont.truetype(FONT_BOLD, 72)
+    item_f = ImageFont.truetype(FONT_BOLD, 17)
+    item_sf= ImageFont.truetype(FONT_REGULAR, 14)
+
+    # Left: headline
+    pill = "TECH DEBT"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2] + 24
+    draw.rounded_rectangle([56, 58, 56+pw, 86], radius=14, fill=(*RED, 40))
+    draw.text((56+pw//2, 72), pill, font=tag_f, fill=RED, anchor="mm")
+
+    draw.text((56, 108), "Your Software", font=h1_f, fill=WHITE)
+    draw.text((56, 168), "Is a Time Bomb", font=h1_f, fill=RED)
+    draw.text((56, 236), "Tech debt compounds silently.", font=sub_f, fill=GREY_DIM)
+    draw.text((56, 262), "Here's how to defuse it.", font=sub_f, fill=GREY_DIM)
+
+    # Warning stats left-bottom
+    stats = [
+        (RED,   "3×", "higher dev cost with heavy tech debt"),
+        (AMBER, "40%", "of dev time spent on workarounds"),
+        (ORANGE,"23%", "slower feature delivery every year"),
+    ]
+    sy = 320
+    for col, val, label in stats:
+        draw.text((56, sy), val, font=ImageFont.truetype(FONT_BOLD, 32), fill=col)
+        draw.text((56, sy+38), label, font=item_sf, fill=GREY_DIM)
+        sy += 86
+
+    # Right: warning cards
+    warnings = [
+        (RED,   "⚠", "Outdated dependencies with known CVEs"),
+        (RED,   "⚠", "No test coverage on core business logic"),
+        (AMBER, "!", "Zero documentation for key modules"),
+        (AMBER, "!", "Single developer knows the entire codebase"),
+        (ORANGE,"↑", "Bug fix time growing month over month"),
+    ]
+    cx   = 580
+    cw   = 580
+    ch   = 72
+    cgap = 12
+    cy0  = 80
+    icon_f = ImageFont.truetype(FONT_BOLD, 22)
+    card_f = ImageFont.truetype(FONT_BOLD, 16)
+
+    for i, (col, icon, text) in enumerate(warnings):
+        cy = cy0 + i*(ch+cgap)
+        card = Image.new("RGBA", (cw, ch), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0,0,cw,ch], radius=10, fill=(*col, 18))
+        cd.rounded_rectangle([0,0,cw,ch], radius=10, outline=(*col, 65), width=1)
+        img.paste(card, (cx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([cx, cy, cx+4, cy+ch], radius=2, fill=col)
+        draw.text((cx+28, cy+ch//2), icon, font=icon_f, fill=col, anchor="lm")
+        draw.line([cx+52, cy+14, cx+52, cy+ch-14], fill=(*col, 40), width=1)
+        draw.text((cx+68, cy+ch//2), text, font=card_f, fill=WHITE, anchor="lm")
+
+    foot_f = ImageFont.truetype(FONT_REGULAR, 15)
+    draw.text((cx, cy0+len(warnings)*(ch+cgap)+14),
+              "Kovil AI · App Rescue & Software Reliability",
+              font=foot_f, fill=GREY_DIM)
+
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-software-maintenance-time-bomb-v2.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 10: Build an MVP in 4 Weeks
+# Visual: 4-week sprint timeline with milestone markers
+# ─────────────────────────────────────────────────────────────────────────────
+def make_build_mvp_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (6, 14, 16), (16, 12, 26))
+    TEAL = (20, 184, 166)
+    draw_circle_glow(img, 600, 220, 450, TEAL,   alpha_max=30)
+    draw_circle_glow(img, 100, 550, 200, ORANGE, alpha_max=28)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f   = ImageFont.truetype(FONT_BOLD, 54)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 18)
+    wk_f   = ImageFont.truetype(FONT_BOLD, 15)
+    item_f = ImageFont.truetype(FONT_REGULAR, 14)
+    stat_f = ImageFont.truetype(FONT_BOLD, 28)
+    stat_sf= ImageFont.truetype(FONT_REGULAR, 13)
+
+    # Headline
+    pill = "MVP SPRINT"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2] + 24
+    draw.rounded_rectangle([W//2-pw//2, 38, W//2+pw//2, 66], radius=14, fill=(*TEAL, 50))
+    draw.text((W//2, 52), pill, font=tag_f, fill=TEAL, anchor="mm")
+    draw.text((W//2, 104), "Build Your MVP in 4 Weeks", font=h1_f, fill=WHITE, anchor="mm")
+    draw.text((W//2, 152), "Fixed scope · Fixed price · Production-ready on day 28",
+              font=sub_f, fill=GREY_DIM, anchor="mm")
+
+    # 4-week lane
+    weeks = [
+        ("Week 1", "Discovery & Design",   ["Requirements", "Architecture", "UI wireframes"]),
+        ("Week 2", "Core Build",           ["Backend APIs", "Database setup", "Auth & security"]),
+        ("Week 3", "Integration & Test",   ["Frontend build", "API integration", "QA testing"]),
+        ("Week 4", "Deploy & Launch",      ["Staging review", "Production deploy", "Handover docs"]),
+    ]
+
+    n    = len(weeks)
+    bw   = 248
+    bh   = 220
+    gap  = 20
+    tot  = n*bw + (n-1)*gap
+    x0   = (W - tot) // 2
+    y0   = 190
+
+    cols = [TEAL, (99,102,241), (168,85,247), ORANGE]
+
+    for i, (wk, title, items) in enumerate(weeks):
+        bx  = x0 + i*(bw+gap)
+        col = cols[i]
+
+        card = Image.new("RGBA", (bw, bh), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0,0,bw,bh], radius=12, fill=(*col, 20))
+        cd.rounded_rectangle([0,0,bw,bh], radius=12, outline=(*col, 85), width=1)
+        img.paste(card, (bx, y0), mask=card)
+        draw = ImageDraw.Draw(img)
+
+        draw.rounded_rectangle([bx, y0, bx+bw, y0+5], radius=3, fill=col)
+        draw.text((bx+bw//2, y0+26), wk,   font=wk_f, fill=col,   anchor="mm")
+        draw.text((bx+bw//2, y0+50), title, font=wk_f, fill=WHITE, anchor="mm")
+        draw.line([bx+16, y0+66, bx+bw-16, y0+66], fill=(255,255,255,20), width=1)
+
+        for j, item in enumerate(items):
+            iy = y0 + 82 + j*42
+            # Tick circle
+            tc = Image.new("RGBA", (W, H), (0,0,0,0))
+            td = ImageDraw.Draw(tc)
+            td.ellipse([bx+18, iy+1, bx+32, iy+15], fill=(*col, 60))
+            img.paste(tc, mask=tc)
+            draw = ImageDraw.Draw(img)
+            draw.text((bx+25, iy+8), "✓", font=ImageFont.truetype(FONT_BOLD, 10), fill=WHITE, anchor="mm")
+            draw.text((bx+40, iy+8), item, font=item_f, fill=GREY_LT, anchor="lm")
+
+        # Arrow
+        if i < n-1:
+            ax = bx + bw + gap//2
+            ay = y0 + bh//2
+            draw.polygon([(ax-8, ay-6),(ax-8, ay+6),(ax+4, ay)], fill=GREY_DIM)
+
+    # Stats row
+    stats = [("4 weeks", "from kick-off to launch"), ("Fixed price", "no hourly surprises"), ("Top 1%", "vetted engineers")]
+    sy = y0 + bh + 36
+    sw = W // len(stats)
+    for i, (val, label) in enumerate(stats):
+        sx = i*sw + sw//2
+        draw.text((sx, sy),    val,   font=stat_f,  fill=TEAL,    anchor="mm")
+        draw.text((sx, sy+36), label, font=stat_sf, fill=GREY_DIM, anchor="mm")
+
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-build-mvp-4-weeks-v2.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 11: What Is AI Integration
+# Visual: hub-and-spoke — AI in centre connecting to business systems
+# ─────────────────────────────────────────────────────────────────────────────
+def make_ai_integration_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (6, 8, 20), (18, 12, 28))
+    INDIGO = (99, 102, 241)
+    draw_circle_glow(img, W//2, H//2+40, 350, INDIGO, alpha_max=35)
+    draw_circle_glow(img, 100, 100, 200, ORANGE, alpha_max=22)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f   = ImageFont.truetype(FONT_BOLD, 46)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 17)
+    node_f = ImageFont.truetype(FONT_BOLD, 14)
+    hub_f  = ImageFont.truetype(FONT_BOLD, 18)
+
+    # Headline top
+    pill = "AI INTEGRATION"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2] + 24
+    draw.rounded_rectangle([W//2-pw//2, 36, W//2+pw//2, 64], radius=14, fill=(*INDIGO, 50))
+    draw.text((W//2, 50), pill, font=tag_f, fill=INDIGO, anchor="mm")
+    draw.text((W//2, 102), "Connect AI to Your Business Stack", font=h1_f, fill=WHITE, anchor="mm")
+    draw.text((W//2, 148), "No rip-and-replace — targeted integrations that save real time",
+              font=sub_f, fill=GREY_DIM, anchor="mm")
+
+    # Hub-and-spoke diagram
+    cx, cy = W//2, 390
+    hub_r  = 58
+    spoke_r = 200
+
+    # Spokes
+    import math as _math
+    nodes = [
+        ("CRM",       (229, 101,  43), 270),
+        ("ERP",       ( 59, 130, 246),  330),
+        ("Data Lake", ( 34, 197,  94),   30),
+        ("APIs",      (168,  85, 247),   90),
+        ("Slack / Email",(245,158, 11), 150),
+        ("Web App",   (239,  68,  68),  210),
+    ]
+
+    for name, col, angle_deg in nodes:
+        rad = _math.radians(angle_deg)
+        nx  = int(cx + spoke_r * _math.cos(rad))
+        ny  = int(cy + spoke_r * _math.sin(rad))
+
+        # Dashed line (draw short segments)
+        steps = 8
+        for s in range(steps):
+            t0 = s / steps
+            t1 = (s + 0.5) / steps
+            x0l = int(cx + (nx-cx)*t0)
+            y0l = int(cy + (ny-cy)*t0)
+            x1l = int(cx + (nx-cx)*t1)
+            y1l = int(cy + (ny-cy)*t1)
+            draw.line([x0l, y0l, x1l, y1l], fill=(*col, 70), width=2)
+
+        # Node circle
+        nr = 38
+        nc = Image.new("RGBA", (W, H), (0,0,0,0))
+        nd = ImageDraw.Draw(nc)
+        nd.ellipse([nx-nr, ny-nr, nx+nr, ny+nr], fill=(*col, 30))
+        nd.ellipse([nx-nr, ny-nr, nx+nr, ny+nr], outline=(*col, 120), width=2)
+        img.paste(nc, mask=nc)
+        draw = ImageDraw.Draw(img)
+        draw.text((nx, ny), name, font=node_f, fill=WHITE, anchor="mm")
+
+    # Centre hub
+    hub_bg = Image.new("RGBA", (W, H), (0,0,0,0))
+    hd = ImageDraw.Draw(hub_bg)
+    hd.ellipse([cx-hub_r, cy-hub_r, cx+hub_r, cy+hub_r], fill=(*INDIGO, 200))
+    hd.ellipse([cx-hub_r, cy-hub_r, cx+hub_r, cy+hub_r], outline=(*INDIGO, 255), width=2)
+    img.paste(hub_bg, mask=hub_bg)
+    draw = ImageDraw.Draw(img)
+    draw.text((cx, cy-10), "AI",     font=hub_f, fill=WHITE, anchor="mm")
+    draw.text((cx, cy+12), "Layer",  font=ImageFont.truetype(FONT_REGULAR, 13), fill=GREY_LT, anchor="mm")
+
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-what-is-ai-integration-v2.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 12: Real Cost of Building an MVP in 2026
+# Visual: cost breakdown by option (agency vs freelancer vs Kovil)
+# ─────────────────────────────────────────────────────────────────────────────
+def make_real_cost_mvp_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (8, 10, 20), (20, 14, 28))
+    draw_circle_glow(img, 900, 180, 320, ORANGE, alpha_max=38)
+    draw_circle_glow(img, 150, 500, 240, (59, 130, 246), alpha_max=28)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f   = ImageFont.truetype(FONT_BOLD, 48)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 18)
+    row_f  = ImageFont.truetype(FONT_BOLD, 17)
+    row_sf = ImageFont.truetype(FONT_REGULAR, 15)
+
+    # Headline left
+    pill = "MVP ECONOMICS"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2] + 24
+    draw.rounded_rectangle([56, 58, 56+pw, 86], radius=14, fill=(*ORANGE, 50))
+    draw.text((56+pw//2, 72), pill, font=tag_f, fill=ORANGE, anchor="mm")
+    draw.text((56, 114), "The Real Cost of", font=h1_f, fill=WHITE)
+    draw.text((56, 168), "Building an MVP", font=h1_f, fill=WHITE)
+    draw.text((56, 222), "in 2026", font=h1_f, fill=ORANGE)
+    draw.text((56, 290), "What agencies won't tell you —", font=sub_f, fill=GREY_DIM)
+    draw.text((56, 316), "and how to budget right.", font=sub_f, fill=GREY_DIM)
+
+    # Comparison table right
+    options = [
+        # label, cost, time, risk, color, highlight
+        ("US Agency",      "$120k–$250k",  "4–9 months",  "High overhead",        (239,68,68),    False),
+        ("Offshore Agency","$40k–$100k",   "3–7 months",  "Quality risk",         (245,158,11),   False),
+        ("Freelancers",    "$30k–$80k",    "3–6 months",  "Coordination cost",    (99,102,241),   False),
+        ("Kovil AI",       "$25k–$70k",    "4 weeks",     "Fixed scope & price",  ORANGE,         True),
+    ]
+
+    tx   = 550
+    tw   = 620
+    th   = 88
+    tgap = 12
+    ty0  = 68
+
+    hdr_f = ImageFont.truetype(FONT_BOLD, 12)
+    # Column headers
+    cols_x = [tx+16, tx+220, tx+350, tx+480]
+    hdrs   = ["Option", "Cost", "Timeline", "Risk"]
+    for hx, hdr in zip(cols_x, hdrs):
+        draw.text((hx, ty0), hdr, font=hdr_f, fill=GREY_DIM)
+    ty0 += 22
+
+    for i, (label, cost, time, risk, col, hl) in enumerate(options):
+        ty = ty0 + i*(th+tgap)
+        card = Image.new("RGBA", (tw, th), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        bg_a = 35 if hl else 15
+        cd.rounded_rectangle([0,0,tw,th], radius=10, fill=(*col, bg_a))
+        cd.rounded_rectangle([0,0,tw,th], radius=10, outline=(*col, 80 if hl else 50), width=2 if hl else 1)
+        img.paste(card, (tx, ty), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([tx, ty, tx+4, ty+th], radius=2, fill=col)
+
+        txt_col = WHITE if hl else GREY_LT
+        draw.text((tx+16, ty+th//2), label, font=row_f if hl else row_sf, fill=txt_col, anchor="lm")
+        draw.text((tx+220, ty+th//2), cost,  font=row_f if hl else row_sf, fill=txt_col, anchor="lm")
+        draw.text((tx+350, ty+th//2), time,  font=row_f if hl else row_sf, fill=txt_col, anchor="lm")
+        draw.text((tx+480, ty+th//2), risk,  font=row_sf, fill=GREY_LT if not hl else col, anchor="lm")
+
+        if hl:
+            badge_f = ImageFont.truetype(FONT_BOLD, 11)
+            draw.text((tx+tw-14, ty+14), "BEST VALUE", font=badge_f, fill=col, anchor="rm")
+
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-real-cost-building-mvp-2026-v2.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 13: AI Automation for NYC Ad & Marketing Agencies
+# Visual: NYC skyline silhouette + automation workflow on dark bg
+# ─────────────────────────────────────────────────────────────────────────────
+def make_nyc_agencies_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (6, 8, 18), (16, 10, 24))
+    VIOLET = (124, 58, 237)
+    draw_circle_glow(img, 600, 150, 400, VIOLET, alpha_max=30)
+    draw_circle_glow(img, 100, 400, 250, ORANGE, alpha_max=28)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=10)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f   = ImageFont.truetype(FONT_BOLD, 52)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 18)
+    loc_f  = ImageFont.truetype(FONT_BOLD, 20)
+    item_f = ImageFont.truetype(FONT_BOLD, 16)
+    item_sf= ImageFont.truetype(FONT_REGULAR, 14)
+
+    # NYC skyline silhouette (simple block buildings)
+    skyline_y = H - 60
+    buildings = [
+        (0,   80, 40),
+        (38,  120, 45),
+        (80,  60,  35),
+        (113, 150, 50),
+        (160, 90,  42),
+        (200, 180, 55),
+        (252, 80,  38),
+        (288, 130, 48),
+        (333, 70,  40),
+        (370, 160, 52),
+        (420, 100, 45),
+        (460, 200, 60),
+        (515, 90,  42),
+        (554, 140, 50),
+        (600, 110, 45),
+        (640, 80,  38),
+        (675, 170, 55),
+        (726, 60,  35),
+        (758, 130, 48),
+    ]
+    for bx, bh_b, bw_b in buildings:
+        draw.rectangle([bx, skyline_y-bh_b, bx+bw_b, skyline_y],
+                       fill=(255,255,255,12))
+        # Windows
+        for wy in range(skyline_y-bh_b+8, skyline_y-8, 16):
+            for wx in range(bx+5, bx+bw_b-5, 10):
+                if (wx + wy) % 3 != 0:
+                    draw.rectangle([wx, wy, wx+5, wy+8], fill=(*ORANGE, 60))
+
+    # Headline left
+    pill = "NYC · AI AUTOMATION"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2] + 24
+    draw.rounded_rectangle([56, 54, 56+pw, 82], radius=14, fill=(*ORANGE, 50))
+    draw.text((56+pw//2, 68), pill, font=tag_f, fill=ORANGE, anchor="mm")
+
+    draw.text((56, 108), "AI Automation", font=h1_f, fill=WHITE)
+    draw.text((56, 164), "for NYC Ad &", font=h1_f, fill=WHITE)
+    draw.text((56, 220), "Marketing Agencies", font=ImageFont.truetype(FONT_BOLD, 40), fill=ORANGE)
+    draw.text((56, 278), "Replace your most time-consuming manual", font=sub_f, fill=GREY_DIM)
+    draw.text((56, 304), "workflows — starting this week.", font=sub_f, fill=GREY_DIM)
+
+    # Right: 5 automation wins
+    wins = [
+        (ORANGE, "Campaign performance reporting — automated"),
+        (VIOLET, "Creative brief generation from minimal inputs"),
+        (ORANGE, "Competitive media intelligence at scale"),
+        (VIOLET, "AI-powered new business outreach"),
+        (ORANGE, "Geo-targeted content at agency speed"),
+    ]
+    wx0  = 620
+    ww   = 540
+    wh   = 72
+    wgap = 12
+    wy0  = 70
+
+    for i, (col, text) in enumerate(wins):
+        wy = wy0 + i*(wh+wgap)
+        card = Image.new("RGBA", (ww, wh), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0,0,ww,wh], radius=10, fill=(*col, 18))
+        cd.rounded_rectangle([0,0,ww,wh], radius=10, outline=(*col, 65), width=1)
+        img.paste(card, (wx0, wy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([wx0, wy, wx0+4, wy+wh], radius=2, fill=col)
+        draw.text((wx0+22, wy+wh//2-10), f"#{i+1}", font=ImageFont.truetype(FONT_BOLD, 13), fill=col, anchor="lm")
+        draw.text((wx0+52, wy+wh//2), text, font=item_f, fill=WHITE, anchor="lm")
+
+    foot_f = ImageFont.truetype(FONT_REGULAR, 14)
+    draw.text((wx0, wy0+len(wins)*(wh+wgap)+14),
+              "Kovil AI · NYC Agency AI Automation",
+              font=foot_f, fill=GREY_DIM)
+
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-ai-automation-nyc-agencies-v2.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -769,4 +1444,11 @@ if __name__ == "__main__":
     make_agents_vs_chatbots_image()
     make_ai_dev_lifecycle_image()
     make_why_ai_fails_image()
+    make_n8n_vs_zapier_image()
+    make_llm_chatbot_image()
+    make_maintenance_timebomb_image()
+    make_build_mvp_image()
+    make_ai_integration_image()
+    make_real_cost_mvp_image()
+    make_nyc_agencies_image()
     print("Done.")

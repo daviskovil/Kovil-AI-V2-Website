@@ -628,7 +628,7 @@ export const posts: Post[] = [
     author: "Kovil AI Team",
     featured: true,
     localBusiness: true,
-    heroImage: "/blog-ai-automation-nyc-ad-marketing-agencies.jpg",
+    heroImage: "/blog-ai-automation-nyc-agencies-v2.jpg",
     faqs: [
       {
         q: "What is AI automation for marketing agencies?",
@@ -854,7 +854,7 @@ export const posts: Post[] = [
     readTime: "8 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/what-is-ai-integration.jpg",
+    heroImage: "/blog-what-is-ai-integration-v2.jpg",
     faqs: [
       {
         q: "What is AI integration?",
@@ -1056,7 +1056,7 @@ export const posts: Post[] = [
     readTime: "9 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/build-mvp-4-weeks.jpg",
+    heroImage: "/blog-build-mvp-4-weeks-v2.jpg",
     faqs: [
       {
         q: "Can you really build a production-ready MVP in 4 weeks?",
@@ -1290,7 +1290,7 @@ export const posts: Post[] = [
     readTime: "7 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-software-maintenance-time-bomb.jpg",
+    heroImage: "/blog-software-maintenance-time-bomb-v2.jpg",
     faqs: [
       {
         q: "What is technical debt and why does it matter?",
@@ -1517,7 +1517,7 @@ export const posts: Post[] = [
     readTime: "10 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/n8n-vs-zapier-vs-power-automate.png",
+    heroImage: "/blog-n8n-vs-zapier-vs-power-automate-v2.jpg",
     faqs: [
       {
         q: "What is the main difference between n8n, Zapier, and Power Automate?",
@@ -1879,7 +1879,7 @@ export const posts: Post[] = [
     readTime: "8 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/real-cost-building-mvp-2026.jpg",
+    heroImage: "/blog-real-cost-building-mvp-2026-v2.jpg",
     faqs: [
       {
         q: "How much does it cost to build an MVP in 2026?",
@@ -2122,7 +2122,7 @@ export const posts: Post[] = [
     readTime: "10 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/llm-chatbot-for-business.jpg",
+    heroImage: "/blog-llm-chatbot-for-business-v2.jpg",
     faqs: [
       {
         q: "What is an LLM-powered chatbot and how is it different from a rule-based chatbot?",
