@@ -59,7 +59,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/hire-machine-learning-engineer-offshore-at-low-cost',
-        destination: '/engage/managed-ai-engineer',
+        destination: '/engage/machine-learning-engineers',
         permanent: true,
       },
       {
@@ -84,7 +84,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/hire-top-handpicked-pre-vetted-computer-vision-engineers',
-        destination: '/engage/managed-ai-engineer',
+        destination: '/engage/computer-vision-engineers',
         permanent: true,
       },
       {
@@ -126,7 +126,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/hire-machine-learning-engineer-offshore-at-low-cost/',
-        destination: '/engage/managed-ai-engineer',
+        destination: '/engage/machine-learning-engineers',
         permanent: true,
       },
       {
@@ -146,7 +146,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/hire-top-handpicked-pre-vetted-computer-vision-engineers/',
-        destination: '/engage/managed-ai-engineer',
+        destination: '/engage/computer-vision-engineers',
         permanent: true,
       },
       {
