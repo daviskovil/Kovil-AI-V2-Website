@@ -59,7 +59,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/hire-machine-learning-engineer-offshore-at-low-cost',
-        destination: '/engage/machine-learning-engineers',
+        destination: '/hire/machine-learning-engineers',
         permanent: true,
       },
       {
@@ -84,7 +84,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/hire-top-handpicked-pre-vetted-computer-vision-engineers',
-        destination: '/engage/computer-vision-engineers',
+        destination: '/hire/computer-vision-engineers',
         permanent: true,
       },
       {
@@ -108,6 +108,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // ── /engage specialist pages → /hire (canonical move) ────────────────
+      {
+        source: '/engage/computer-vision-engineers',
+        destination: '/hire/computer-vision-engineers',
+        permanent: true,
+      },
+      {
+        source: '/engage/machine-learning-engineers',
+        destination: '/hire/machine-learning-engineers',
+        permanent: true,
+      },
+
       // Trailing slash variants
       {
         source: '/power-automate-vs-zapier-vs-n8n-vs-make-which-workflow-automation-tool-should-your-team-master-2025/',
@@ -126,7 +138,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/hire-machine-learning-engineer-offshore-at-low-cost/',
-        destination: '/engage/machine-learning-engineers',
+        destination: '/hire/machine-learning-engineers',
         permanent: true,
       },
       {
@@ -146,7 +158,17 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/hire-top-handpicked-pre-vetted-computer-vision-engineers/',
-        destination: '/engage/computer-vision-engineers',
+        destination: '/hire/computer-vision-engineers',
+        permanent: true,
+      },
+      {
+        source: '/engage/computer-vision-engineers/',
+        destination: '/hire/computer-vision-engineers',
+        permanent: true,
+      },
+      {
+        source: '/engage/machine-learning-engineers/',
+        destination: '/hire/machine-learning-engineers',
         permanent: true,
       },
       {
