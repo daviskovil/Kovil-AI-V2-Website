@@ -24,7 +24,7 @@ export const posts: Post[] = [
     readTime: "10 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-rag-vs-fine-tuning.jpg",
+    heroImage: "/blog-rag-vs-fine-tuning-v2.jpg",
     faqs: [
       {
         q: "What is the difference between RAG and fine-tuning?",
@@ -205,7 +205,7 @@ export const posts: Post[] = [
     readTime: "9 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-ai-agents-vs-chatbots.jpg",
+    heroImage: "/blog-ai-agents-vs-chatbots-v2.jpg",
     faqs: [
       {
         q: "What is the difference between an AI agent and an AI chatbot?",

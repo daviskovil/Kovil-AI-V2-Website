@@ -285,7 +285,272 @@ def make_llm_comparison_image():
     print(f"Saved: {out}")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 3: RAG vs Fine-Tuning
+# Visual: two-column split — RAG on left, Fine-Tuning on right, VS divider
+# ─────────────────────────────────────────────────────────────────────────────
+def make_rag_vs_finetuning_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (8, 10, 24), (20, 12, 28))
+
+    # Two-tone side glows
+    draw_circle_glow(img, 220, 300, 340, (59, 130, 246), alpha_max=50)   # blue left
+    draw_circle_glow(img, 980, 300, 340, (229, 101, 43),  alpha_max=50)  # orange right
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=12)
+
+    col_pad = 60
+    col_w   = 490
+    col_top = 90
+    col_h   = 460
+
+    # ── Left card: RAG ─────────────────────────────────────────────────────
+    rag_col = (59, 130, 246)   # blue
+    lcard = Image.new("RGBA", (col_w, col_h), (0, 0, 0, 0))
+    lcd = ImageDraw.Draw(lcard)
+    lcd.rounded_rectangle([0, 0, col_w, col_h], radius=14,
+                          fill=(59, 130, 246, 18))
+    lcd.rounded_rectangle([0, 0, col_w, col_h], radius=14,
+                          outline=(59, 130, 246, 90), width=1)
+    img.paste(lcard, (col_pad, col_top), mask=lcard)
+    draw = ImageDraw.Draw(img)
+
+    draw.rounded_rectangle([col_pad, col_top, col_pad + col_w, col_top + 5],
+                            radius=3, fill=rag_col)
+
+    title_f = ImageFont.truetype(FONT_BOLD, 42)
+    body_f  = ImageFont.truetype(FONT_REGULAR, 16)
+    tag_f   = ImageFont.truetype(FONT_BOLD, 13)
+    item_f  = ImageFont.truetype(FONT_BOLD, 15)
+    item_sf = ImageFont.truetype(FONT_REGULAR, 14)
+
+    draw.text((col_pad + col_w // 2, col_top + 58), "RAG",
+              font=title_f, fill=WHITE, anchor="mm")
+    draw.text((col_pad + col_w // 2, col_top + 92),
+              "Retrieval-Augmented Generation",
+              font=body_f, fill=GREY_DIM, anchor="mm")
+
+    # Tag
+    tag = "No Retraining"
+    tw = draw.textbbox((0,0), tag, font=tag_f)[2] + 20
+    tx = col_pad + (col_w - tw) // 2
+    draw.rounded_rectangle([tx, col_top + 110, tx + tw, col_top + 132],
+                            radius=8, fill=(*rag_col, 50))
+    draw.text((tx + tw // 2, col_top + 121), tag, font=tag_f,
+              fill=rag_col, anchor="mm")
+
+    draw.line([col_pad + 20, col_top + 148, col_pad + col_w - 20, col_top + 148],
+              fill=(255,255,255,20), width=1)
+
+    rag_items = [
+        ("Use case",   "Dynamic or fast-changing data"),
+        ("How",        "Query → retrieve docs → generate"),
+        ("Training",   "None required"),
+        ("Best for",   "Chatbots, search, Q&A systems"),
+        ("Cost",       "Lower — no GPU training needed"),
+    ]
+    for i, (k, v) in enumerate(rag_items):
+        y = col_top + 165 + i * 56
+        draw.text((col_pad + 28, y), k, font=item_sf, fill=GREY_DIM)
+        draw.text((col_pad + 28, y + 20), v, font=item_f, fill=WHITE)
+        if i < len(rag_items) - 1:
+            draw.line([col_pad + 20, y + 48, col_pad + col_w - 20, y + 48],
+                      fill=(255,255,255,12), width=1)
+
+    # ── Right card: Fine-Tuning ─────────────────────────────────────────────
+    ft_col  = ORANGE
+    rx      = W - col_pad - col_w
+    rcard = Image.new("RGBA", (col_w, col_h), (0, 0, 0, 0))
+    rcd = ImageDraw.Draw(rcard)
+    rcd.rounded_rectangle([0, 0, col_w, col_h], radius=14,
+                          fill=(229, 101, 43, 18))
+    rcd.rounded_rectangle([0, 0, col_w, col_h], radius=14,
+                          outline=(229, 101, 43, 90), width=1)
+    img.paste(rcard, (rx, col_top), mask=rcard)
+    draw = ImageDraw.Draw(img)
+
+    draw.rounded_rectangle([rx, col_top, rx + col_w, col_top + 5],
+                            radius=3, fill=ft_col)
+
+    draw.text((rx + col_w // 2, col_top + 58), "Fine-Tuning",
+              font=title_f, fill=WHITE, anchor="mm")
+    draw.text((rx + col_w // 2, col_top + 92),
+              "Model Weight Adjustment",
+              font=body_f, fill=GREY_DIM, anchor="mm")
+
+    tag2 = "Custom Model"
+    tw2 = draw.textbbox((0,0), tag2, font=tag_f)[2] + 20
+    tx2 = rx + (col_w - tw2) // 2
+    draw.rounded_rectangle([tx2, col_top + 110, tx2 + tw2, col_top + 132],
+                            radius=8, fill=(*ft_col, 50))
+    draw.text((tx2 + tw2 // 2, col_top + 121), tag2, font=tag_f,
+              fill=ft_col, anchor="mm")
+
+    draw.line([rx + 20, col_top + 148, rx + col_w - 20, col_top + 148],
+              fill=(255,255,255,20), width=1)
+
+    ft_items = [
+        ("Use case",   "Stable, specialised domain tasks"),
+        ("How",        "Retrain on your labelled dataset"),
+        ("Training",   "Required — GPU hours + data"),
+        ("Best for",   "Classification, tone, style tasks"),
+        ("Cost",       "Higher — training + infra costs"),
+    ]
+    for i, (k, v) in enumerate(ft_items):
+        y = col_top + 165 + i * 56
+        draw.text((rx + 28, y), k, font=item_sf, fill=GREY_DIM)
+        draw.text((rx + 28, y + 20), v, font=item_f, fill=WHITE)
+        if i < len(ft_items) - 1:
+            draw.line([rx + 20, y + 48, rx + col_w - 20, y + 48],
+                      fill=(255,255,255,12), width=1)
+
+    # ── VS badge in centre ─────────────────────────────────────────────────
+    cx_mid = W // 2
+    cy_mid = col_top + col_h // 2
+    vs_r = 38
+    vs_bg = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    vd = ImageDraw.Draw(vs_bg)
+    vd.ellipse([cx_mid - vs_r, cy_mid - vs_r, cx_mid + vs_r, cy_mid + vs_r],
+               fill=(229, 101, 43, 220))
+    img.paste(vs_bg, mask=vs_bg)
+    draw = ImageDraw.Draw(img)
+    vs_f = ImageFont.truetype(FONT_BOLD, 26)
+    draw.text((cx_mid, cy_mid), "VS", font=vs_f, fill=WHITE, anchor="mm")
+
+    # Bottom strip
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-rag-vs-fine-tuning-v2.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 4: AI Agents vs AI Chatbots
+# Visual: two panels — Chatbot (reactive) vs Agent (proactive/multi-step)
+# ─────────────────────────────────────────────────────────────────────────────
+def make_agents_vs_chatbots_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (6, 12, 22), (18, 10, 26))
+
+    draw_circle_glow(img, 180, 280, 300, (139, 92, 246), alpha_max=45)  # purple left (chatbot)
+    draw_circle_glow(img, 1020, 280, 300, (16, 185, 129), alpha_max=45) # green right (agent)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    col_pad = 60
+    col_w   = 490
+    col_top = 90
+    col_h   = 480
+
+    title_f = ImageFont.truetype(FONT_BOLD, 42)
+    sub_f   = ImageFont.truetype(FONT_REGULAR, 16)
+    tag_f   = ImageFont.truetype(FONT_BOLD, 13)
+    item_f  = ImageFont.truetype(FONT_BOLD, 15)
+    item_sf = ImageFont.truetype(FONT_REGULAR, 14)
+
+    sides = [
+        {
+            "label": "AI Chatbot",
+            "sub":   "Reactive — responds to prompts",
+            "tag":   "Single Turn",
+            "color": (139, 92, 246),
+            "x":     col_pad,
+            "items": [
+                ("Behaviour",  "Responds to one message at a time"),
+                ("Memory",     "Limited or session-only"),
+                ("Actions",    "Text output only"),
+                ("Best for",   "Support, FAQ, conversations"),
+                ("Example",    "\"What's your return policy?\""),
+            ],
+        },
+        {
+            "label": "AI Agent",
+            "sub":   "Proactive — plans and executes",
+            "tag":   "Multi-Step",
+            "color": (16, 185, 129),
+            "x":     W - col_pad - col_w,
+            "items": [
+                ("Behaviour",  "Plans, decides, acts autonomously"),
+                ("Memory",     "Persistent across steps & sessions"),
+                ("Actions",    "Calls APIs, writes code, sends email"),
+                ("Best for",   "Workflows, automation, research"),
+                ("Example",    "\"Qualify this lead and book a call\""),
+            ],
+        },
+    ]
+
+    for s in sides:
+        cx = s["x"]
+        col = s["color"]
+
+        card = Image.new("RGBA", (col_w, col_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, col_w, col_h], radius=14,
+                              fill=(*col, 18))
+        cd.rounded_rectangle([0, 0, col_w, col_h], radius=14,
+                              outline=(*col, 85), width=1)
+        img.paste(card, (cx, col_top), mask=card)
+
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([cx, col_top, cx + col_w, col_top + 5],
+                                radius=3, fill=col)
+
+        draw.text((cx + col_w // 2, col_top + 58), s["label"],
+                  font=title_f, fill=WHITE, anchor="mm")
+        draw.text((cx + col_w // 2, col_top + 92), s["sub"],
+                  font=sub_f, fill=GREY_DIM, anchor="mm")
+
+        tw = draw.textbbox((0,0), s["tag"], font=tag_f)[2] + 20
+        tx = cx + (col_w - tw) // 2
+        draw.rounded_rectangle([tx, col_top + 110, tx + tw, col_top + 132],
+                                radius=8, fill=(*col, 50))
+        draw.text((tx + tw // 2, col_top + 121), s["tag"],
+                  font=tag_f, fill=col, anchor="mm")
+
+        draw.line([cx + 20, col_top + 148, cx + col_w - 20, col_top + 148],
+                  fill=(255,255,255,20), width=1)
+
+        for i, (k, v) in enumerate(s["items"]):
+            y = col_top + 165 + i * 58
+            draw.text((cx + 28, y),      k, font=item_sf, fill=GREY_DIM)
+            draw.text((cx + 28, y + 20), v, font=item_f,  fill=WHITE)
+            if i < len(s["items"]) - 1:
+                draw.line([cx + 20, y + 50, cx + col_w - 20, y + 50],
+                          fill=(255,255,255,12), width=1)
+
+    # VS badge
+    cx_mid = W // 2
+    cy_mid = col_top + col_h // 2
+    vs_r   = 38
+    vs_bg  = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    vd     = ImageDraw.Draw(vs_bg)
+    vd.ellipse([cx_mid - vs_r, cy_mid - vs_r, cx_mid + vs_r, cy_mid + vs_r],
+               fill=(229, 101, 43, 220))
+    img.paste(vs_bg, mask=vs_bg)
+    draw = ImageDraw.Draw(img)
+    vs_f = ImageFont.truetype(FONT_BOLD, 26)
+    draw.text((cx_mid, cy_mid), "VS", font=vs_f, fill=WHITE, anchor="mm")
+
+    # Bottom strip
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-ai-agents-vs-chatbots-v2.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
+    make_rag_vs_finetuning_image()
+    make_agents_vs_chatbots_image()
     print("Done.")
