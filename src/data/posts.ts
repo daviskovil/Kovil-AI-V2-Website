@@ -2550,7 +2550,7 @@ export const posts: Post[] = [
       readTime: "10 min read",
       author: "Kovil AI Team",
       featured: false,
-      heroImage: "/blog-gpt4o-vs-claude-vs-gemini.jpg",
+      heroImage: "/blog-gpt4o-claude-gemini-comparison.jpg",
       faqs: [
         {
           q: "Which AI model is best for business in 2026?",
