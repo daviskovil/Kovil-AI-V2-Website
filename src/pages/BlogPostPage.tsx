@@ -128,6 +128,15 @@ const CTA_MAP: Record<string, CtaConfig> = {
     primary: { text: 'Talk to Our Engineers →', href: '/contact' },
     secondary: { text: 'See Our Work', href: '/case-studies' },
   },
+  'how-much-does-an-ai-project-cost': {
+    label: 'Kovil AI · AI Engineering',
+    teaser: 'We scope and price AI projects upfront — fixed price, fixed timeline, no surprise overruns.',
+    headline: 'Want to know exactly what your AI project will cost?',
+    body: "We scope every project upfront with a fixed price and timeline — no hourly billing, no surprise overruns. Get a clear number before you commit to anything.",
+    defaultGoal: 'project',
+    primary: { text: 'Get a Fixed-Cost Quote →', href: '/engage/outcome-based-project' },
+    secondary: { text: "See What We've Built", href: '/case-studies' },
+  },
 }
 
 const DEFAULT_CTA: CtaConfig = {

@@ -2703,6 +2703,155 @@ export const posts: Post[] = [
   <p>If you want to skip the trial-and-error and get a model recommendation based on your specific use case, our <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement includes an architecture review that covers model selection, API cost modelling, and integration design. Or if you have a defined project, our <a href="/engage/outcome-based-project">Outcome-Based AI Project</a> handles model selection as part of the scoping process. <a href="/contact">Reach out</a> and we can scope it in 48 hours.</p>
       `,
     },
+  // ─── How Much Does an AI Project Cost ───────────────────────────────────────
+  {
+    slug: "how-much-does-an-ai-project-cost",
+    title: "How Much Does an AI Project Cost in 2026? (Full Breakdown)",
+    excerpt: "AI chatbots from $15k, RAG systems from $30k, AI agents from $40k. Here's the full 2026 cost breakdown — what drives the price, how to avoid surprise overruns, and how to get a fixed scope before you commit.",
+    category: "AI Engineering",
+    date: "Apr 17, 2026",
+    readTime: "9 min read",
+    author: "Kovil AI Team",
+    featured: false,
+    faqs: [
+      {
+        q: "How much does it cost to build an AI chatbot in 2026?",
+        a: "A simple FAQ chatbot grounded in existing documentation costs $8,000 to $20,000 to build and deploy. A customer-facing chatbot with RAG retrieval, session management, and CRM integration typically costs $25,000 to $60,000. Enterprise chatbots with compliance requirements, multi-language support, and analytics dashboards can run $80,000 to $150,000. Ongoing costs after launch include LLM API fees, vector database hosting, and quarterly maintenance."
+      },
+      {
+        q: "How much does an AI agent cost to build?",
+        a: "A single-workflow AI agent — for example, one that monitors an inbox, classifies emails, and routes them to the right system — typically costs $30,000 to $60,000 to build in production. A multi-agent system with several interconnected agents handling different steps of a business process costs $60,000 to $200,000 depending on the number of integrations, error handling requirements, and human oversight mechanisms."
+      },
+      {
+        q: "What is the biggest driver of AI project cost?",
+        a: "The number and complexity of integrations is the single biggest driver of AI project cost. Each external system your AI needs to connect to — a CRM, an ERP, a database, a third-party API — adds scope, testing time, and maintenance overhead. Data quality is the second biggest driver: messy, unstructured, or siloed data requires significant preparation work before the AI can use it effectively."
+      },
+      {
+        q: "Should I build AI in-house or hire an external team?",
+        a: "Building in-house is cost-competitive only when you have experienced AI engineers already on payroll. A senior AI engineer in the US costs $200,000 to $350,000 per year in total compensation. A scoped external build at $40,000 to $80,000 delivers a production-ready system in 4 to 8 weeks without the hiring cost, onboarding time, or permanent headcount commitment. For ongoing AI work, an embedded managed engineer is more cost-effective than a full-time hire."
+      },
+      {
+        q: "What ongoing costs should I budget for after an AI system is built?",
+        a: "Budget for three categories of ongoing cost: inference costs (LLM API fees, typically $200 to $5,000 per month depending on volume), infrastructure (vector database hosting, cloud compute, monitoring tools — typically $200 to $2,000 per month), and maintenance (prompt updates, knowledge base refreshes, dependency upgrades — typically $1,500 to $5,000 per quarter). A well-built system keeps maintenance costs low; a poorly built one can require constant intervention."
+      },
+    ],
+    body: `
+<p>The most common question we receive before starting an AI project is: what is this going to cost? The honest answer is that AI project costs vary enormously — a simple chatbot and a multi-agent automation platform are both called "AI projects" but they have nothing in common in terms of scope, timeline, or price.</p>
+
+<p>This guide breaks down AI project costs by type, explains what drives prices up or down, and gives you a framework for getting an accurate quote before you commit to anything.</p>
+
+<h2>AI Project Costs by Type</h2>
+
+<h3>AI Chatbot: $8,000–$60,000</h3>
+<p>The range here is wide because "chatbot" covers a lot of ground. A simple FAQ bot grounded in your documentation — the kind that answers common customer questions without human support intervention — typically costs $8,000 to $20,000 to build and deploy. A customer-facing chatbot with retrieval-augmented generation, multi-turn conversation handling, live CRM integration, and a custom UI falls in the $25,000 to $60,000 range. Enterprise chatbots with HIPAA or SOC 2 compliance, analytics dashboards, and A/B testing infrastructure can exceed $100,000.</p>
+
+<h3>RAG-Powered Knowledge Base: $20,000–$70,000</h3>
+<p>A RAG system ingests your documents, embeds them into a vector database, and allows users to query that knowledge using natural language. Cost depends on document volume, the complexity of the ingestion pipeline (PDFs, Word docs, and web pages all require different parsers), and the quality requirements on retrieval accuracy. Simple RAG systems over clean, structured documents cost $20,000 to $35,000. Complex multi-source systems with hybrid search, re-ranking, and source attribution cost $40,000 to $70,000.</p>
+
+<h3>AI Agent (Single Workflow): $30,000–$80,000</h3>
+<p>An AI agent that automates a single business workflow — email triage and routing, invoice processing, lead qualification, or a similar bounded task — typically costs $30,000 to $80,000. The main cost variables are the number of tools the agent needs to use (each integration adds scope), the reliability requirements (mission-critical agents need more testing and fallback design), and the human oversight mechanism (does a human need to review outputs before they are acted on).</p>
+
+<h3>Multi-Agent System: $60,000–$200,000+</h3>
+<p>A multi-agent system connects several specialised agents, each responsible for a different step in a workflow, into a coordinated pipeline. These systems are appropriate for complex business processes with multiple decision points, branching logic, and several external systems involved. They are significantly more expensive to build because agent coordination, error propagation, and testing across the full workflow add substantial engineering time.</p>
+
+<h3>AI Integration into an Existing Product: $15,000–$50,000</h3>
+<p>Adding AI capabilities to an existing application — a smart search feature, an AI writing assistant, an automated report generator — is usually scoped more tightly than a greenfield AI project. Cost depends on the state of the existing codebase, the complexity of the AI feature, and how many new infrastructure components (vector database, embedding pipeline, streaming responses) the integration requires.</p>
+
+<h3>Custom ML Model: $60,000–$250,000+</h3>
+<p>Training a custom machine learning model from scratch — for computer vision, specialised classification, or proprietary prediction tasks — is the most expensive and least common type of AI project for most businesses. Most use cases that historically required custom models can now be solved with fine-tuned LLMs or RAG at lower cost. Custom ML model development is appropriate for high-volume prediction tasks where inference cost at scale makes LLM usage uneconomical.</p>
+
+<h2>Cost Comparison by Project Type</h2>
+
+<table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+<thead>
+<tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Project Type</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Typical Range</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Timeline</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Main Cost Driver</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Simple FAQ chatbot</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">$8k–$20k</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">2–4 weeks</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Document quality &amp; volume</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Customer-facing chatbot with RAG</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">$25k–$60k</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">4–8 weeks</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Integrations &amp; UI complexity</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">RAG knowledge base</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">$20k–$70k</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">3–8 weeks</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Source diversity &amp; retrieval quality</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">AI agent (single workflow)</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">$30k–$80k</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">4–10 weeks</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Number of tool integrations</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Multi-agent system</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">$60k–$200k+</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">8–20 weeks</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Workflow complexity &amp; reliability</td>
+</tr>
+<tr style="background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">AI integration to existing product</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">$15k–$50k</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">3–8 weeks</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Codebase state &amp; feature scope</td>
+</tr>
+</tbody>
+</table>
+
+<h2>What Drives AI Project Costs Up</h2>
+
+<p><strong>Number of integrations.</strong> Every external system your AI needs to connect to — a CRM, an ERP, a ticketing system, a third-party API — adds engineering scope, testing time, and ongoing maintenance. A chatbot that only needs to query one internal knowledge base is dramatically simpler than one that also updates your CRM, checks inventory, and sends confirmation emails.</p>
+
+<p><strong>Data quality and preparation.</strong> AI systems are only as good as the data they work with. If your source data is unstructured, inconsistently formatted, spread across multiple systems, or protected behind complex access controls, data preparation can easily represent 30–40% of total project cost.</p>
+
+<p><strong>Compliance and security requirements.</strong> HIPAA compliance, SOC 2 certification, GDPR data residency requirements, or enterprise security reviews add significant overhead — both in engineering time (audit logging, encryption, access controls) and in testing requirements.</p>
+
+<p><strong>Reliability thresholds.</strong> A mission-critical AI system that handles financial transactions or medical triage requires more extensive testing, more robust error handling, more fallback design, and more careful rollout planning than an internal productivity tool. Higher reliability thresholds mean higher build cost.</p>
+
+<h2>What Reduces AI Project Cost</h2>
+
+<p><strong>Clean, well-structured data.</strong> If your source documents are already in a consistent format, well-organised, and accessible via API, the data preparation phase shrinks significantly.</p>
+
+<p><strong>Clear, bounded scope.</strong> The most expensive projects are the ones that expand during development. Starting with a tightly scoped first version and iterating from there is almost always cheaper than trying to build everything at once.</p>
+
+<p><strong>Using existing infrastructure.</strong> If you already have a Postgres database, using pgvector instead of standing up a dedicated vector database service saves cost. If you already have a React frontend, extending it is cheaper than a new build.</p>
+
+<h2>Build In-House vs Hire External</h2>
+
+<p>Building in-house is only cost-competitive when you have experienced AI engineers already on staff. A senior AI engineer in the US costs $220,000 to $350,000 per year in total compensation. A scoped external build at $40,000 to $80,000 delivers a production-ready system in four to eight weeks, with no hiring cost, no onboarding time, and no permanent headcount commitment.</p>
+
+<p>For ongoing AI development after the initial build, an embedded <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> is more cost-effective than a full-time hire — you get a vetted, experienced engineer integrated into your team without the full-time salary overhead.</p>
+
+<h2>Ongoing Costs After Launch</h2>
+
+<p>The build cost is a one-time expense. Budget separately for three categories of ongoing cost:</p>
+
+<ul>
+<li><strong>Inference costs</strong> (LLM API fees): $200 to $5,000 per month depending on query volume and model choice. A high-volume customer support application can exceed this range significantly.</li>
+<li><strong>Infrastructure</strong> (vector database, cloud compute, monitoring): $200 to $2,000 per month for most business-scale deployments.</li>
+<li><strong>Maintenance</strong> (prompt updates, knowledge base refreshes, dependency upgrades): $1,500 to $5,000 per quarter. A well-architected system keeps this low; a poorly built one requires constant intervention.</li>
+</ul>
+
+<h2>How to Get an Accurate Quote</h2>
+
+<p>The most reliable way to get an accurate number is to scope the project properly before any development starts. A good scoping process clarifies exactly what the system needs to do, what systems it connects to, what the data looks like, what the success criteria are, and what the timeline and budget constraints are.</p>
+
+<p>Kovil AI's <a href="/engage/outcome-based-project">Outcome-Based AI Project</a> starts with a fixed-price scoping phase that produces a detailed project specification, timeline, and cost estimate before any engineering begins. For more complex or ongoing requirements, our <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement embeds an experienced engineer in your team. <a href="/contact">Get in touch</a> and we will have a number for you within 48 hours.</p>
+    `,
+  },
 ];
 
 export function getPost(slug: string): Post | undefined {
