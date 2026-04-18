@@ -165,7 +165,7 @@ function DiagramArrow({ delay }: { delay: number }) {
       initial={{ opacity: 0, scaleY: 0 }}
       whileInView={{ opacity: 1, scaleY: 1 }}
       viewport={{ once: true }}
-      transition={{ delay, duration: 0.25, transformOrigin: "top" }}
+      transition={{ delay, duration: 0.25 }}
       className="flex flex-col items-center"
       style={{ originY: 0 }}
     >
