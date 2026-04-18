@@ -4,7 +4,8 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import {
   Eye, Brain, MessageSquare, FileText, Database,
-  ArrowRight, Clock, ShieldCheck, Repeat2, Zap, CheckCircle2
+  ArrowRight, Clock, ShieldCheck, Repeat2, Zap, CheckCircle2,
+  Users, GitBranch, Bot, Workflow
 } from "lucide-react"
 import { OnboardingModal } from "../../components/OnboardingModal"
 import { Button } from "../../components/ui/button"
@@ -77,6 +78,50 @@ const roles = [
     color:    "from-cyan-500/20 to-cyan-600/5",
     border:   "hover:border-cyan-500/40",
     iconColor:"text-cyan-400",
+  },
+  {
+    slug:     "crewai-developers",
+    icon:     Users,
+    title:    "CrewAI Developers",
+    keyword:  "hire crewai developers",
+    desc:     "Role-based multi-agent systems, crew orchestration, tool integration, and production CrewAI deployment. Autonomous workflows that collaborate.",
+    tags:     ["Multi-Agent", "Crew Orchestration", "Tool Use", "Agent Roles", "Production Deploy"],
+    color:    "from-rose-500/20 to-rose-600/5",
+    border:   "hover:border-rose-500/40",
+    iconColor:"text-rose-400",
+  },
+  {
+    slug:     "langgraph-engineers",
+    icon:     GitBranch,
+    title:    "LangGraph Engineers",
+    keyword:  "hire langgraph engineers",
+    desc:     "Stateful agent graphs, advanced RAG pipelines, multi-agent orchestration, human-in-the-loop workflows, and LangSmith observability.",
+    tags:     ["Stateful Graphs", "Advanced RAG", "Agent Workflows", "HiTL", "LangSmith"],
+    color:    "from-violet-500/20 to-violet-600/5",
+    border:   "hover:border-violet-500/40",
+    iconColor:"text-violet-400",
+  },
+  {
+    slug:     "autogen-developers",
+    icon:     Bot,
+    title:    "AutoGen Developers",
+    keyword:  "hire autogen developers",
+    desc:     "Conversational multi-agent systems, code-executing agents, GroupChat orchestration, and production AutoGen deployment with safety controls.",
+    tags:     ["Conversational Agents", "Code Execution", "GroupChat", "Docker Sandbox", "MS AutoGen"],
+    color:    "from-amber-500/20 to-amber-600/5",
+    border:   "hover:border-amber-500/40",
+    iconColor:"text-amber-400",
+  },
+  {
+    slug:     "n8n-automation-experts",
+    icon:     Workflow,
+    title:    "n8n Automation Experts",
+    keyword:  "hire n8n automation experts",
+    desc:     "Workflow automation, AI-powered n8n pipelines, API integrations, custom nodes, and self-hosted n8n infrastructure — built for production reliability.",
+    tags:     ["Workflow Automation", "AI Pipelines", "Custom Nodes", "Self-Hosted", "API Integration"],
+    color:    "from-teal-500/20 to-teal-600/5",
+    border:   "hover:border-teal-500/40",
+    iconColor:"text-teal-400",
   },
 ]
 
