@@ -33,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/tools`,                             lastModified: now,          changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/tools/ai-project-estimator`,        lastModified: now,          changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/tools/ai-readiness-ad-marketing-agencies`, lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ad-marketing-agencies`,                   lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
   ]
 
   // ── Blog posts (auto-generated from posts.ts) ──────────────────────────────
