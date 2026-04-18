@@ -5,9 +5,9 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import {
   ArrowRight, Network, BarChart3, Repeat2, Plug2,
-  AlertTriangle, Clock, ShieldCheck, CheckCircle2,
+  AlertTriangle, ShieldCheck, CheckCircle2,
   Users, Target, Wrench, Zap, Star, ChevronRight,
-  Brain, TrendingDown, DollarSign
+  Brain, DollarSign, FileText, Activity, Wand2, Search
 } from "lucide-react"
 import { Button } from "../../components/ui/button"
 import { OnboardingModal } from "../../components/OnboardingModal"
@@ -114,38 +114,108 @@ const comparison = [
 
 const logos = ["Unilever", "Smartfren", "Blibli", "LaVie", "CloseUp"]
 
-// ── Workflow diagram nodes ────────────────────────────────────────────────────
+// ── Workflow diagram components ───────────────────────────────────────────────
 
-function WNode({ text, delay, accent = false }: { text: string; delay: number; accent?: boolean }) {
+type NodeVariant = "input" | "agent" | "process" | "monitor" | "output"
+
+const nodeStyles: Record<NodeVariant, { card: string; icon: string; badge: string }> = {
+  input:   { card: "border-accent/50 bg-accent/[0.08]",           icon: "text-accent bg-accent/20",           badge: "text-accent border-accent/30 bg-accent/10" },
+  agent:   { card: "border-violet-500/40 bg-violet-500/[0.07]",   icon: "text-violet-400 bg-violet-500/15",   badge: "text-violet-400 border-violet-500/30 bg-violet-500/10" },
+  process: { card: "border-white/10 bg-white/[0.03]",             icon: "text-slate-400 bg-white/5",          badge: "text-slate-400 border-white/10 bg-white/5" },
+  monitor: { card: "border-blue-500/40 bg-blue-500/[0.07]",       icon: "text-blue-400 bg-blue-500/15",       badge: "text-blue-400 border-blue-500/30 bg-blue-500/10" },
+  output:  { card: "border-emerald-500/40 bg-emerald-500/[0.07]", icon: "text-emerald-400 bg-emerald-500/15", badge: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10" },
+}
+
+interface NodeDef {
+  step: string; label: string; sub: string; badge: string
+  variant: NodeVariant; Icon: React.ComponentType<{ className?: string }>
+}
+
+function DiagramNode({ node, delay }: { node: NodeDef; delay: number }) {
+  const s = nodeStyles[node.variant]
+  const { Icon } = node
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay, duration: 0.35 }}
-      className={`rounded-xl border px-4 py-2.5 font-mono text-xs text-center leading-snug ${
-        accent
-          ? "border-accent/60 bg-accent/10 text-accent"
-          : "border-border bg-muted/40 text-foreground"
-      }`}
+      transition={{ delay, duration: 0.38 }}
+      className={`rounded-xl border px-4 py-3.5 w-full ${s.card}`}
     >
-      {text}
+      <div className="flex items-center gap-3">
+        <div className={`h-9 w-9 rounded-lg flex items-center justify-center shrink-0 ${s.icon}`}>
+          <Icon className="h-4 w-4" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between gap-2 mb-0.5">
+            <span className="text-[9px] font-bold text-white/30 tracking-widest uppercase">{node.step}</span>
+            <span className={`text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border ${s.badge}`}>{node.badge}</span>
+          </div>
+          <p className="font-semibold text-sm text-white leading-snug">{node.label}</p>
+          <p className="text-[11px] text-white/45 mt-0.5">{node.sub}</p>
+        </div>
+      </div>
     </motion.div>
   )
 }
 
-function WArrow({ delay }: { delay: number }) {
+function DiagramArrow({ delay }: { delay: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, scaleY: 0 }}
+      whileInView={{ opacity: 1, scaleY: 1 }}
       viewport={{ once: true }}
-      transition={{ delay, duration: 0.25 }}
-      className="flex justify-center"
+      transition={{ delay, duration: 0.25, transformOrigin: "top" }}
+      className="flex flex-col items-center"
+      style={{ originY: 0 }}
     >
-      <div className="w-px h-6 bg-accent/40" />
-      <div className="absolute w-2 h-2 border-r-2 border-b-2 border-accent/40 rotate-45 mt-4 -ml-1" />
+      <div className="w-px h-6 bg-gradient-to-b from-orange-500/70 to-orange-500/30" />
+      <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-t-[5px] border-l-transparent border-r-transparent border-t-orange-500/60" />
     </motion.div>
+  )
+}
+
+function ForkConnector({ delay }: { delay: number }) {
+  return (
+    <motion.svg
+      initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+      viewport={{ once: true }} transition={{ delay, duration: 0.3 }}
+      viewBox="0 0 320 44" className="w-full max-w-[320px]" style={{ overflow: "visible" }}
+    >
+      {/* Stem down from center */}
+      <line x1="160" y1="0" x2="160" y2="18" stroke="rgba(249,115,22,0.5)" strokeWidth="1.5" />
+      {/* Horizontal bar */}
+      <line x1="40" y1="18" x2="280" y2="18" stroke="rgba(249,115,22,0.5)" strokeWidth="1.5" />
+      {/* Left drop */}
+      <line x1="40" y1="18" x2="40" y2="44" stroke="rgba(249,115,22,0.5)" strokeWidth="1.5" />
+      {/* Right drop */}
+      <line x1="280" y1="18" x2="280" y2="44" stroke="rgba(249,115,22,0.5)" strokeWidth="1.5" />
+      {/* Left arrowhead */}
+      <polygon points="36,40 44,40 40,46" fill="rgba(249,115,22,0.55)" />
+      {/* Right arrowhead */}
+      <polygon points="276,40 284,40 280,46" fill="rgba(249,115,22,0.55)" />
+    </motion.svg>
+  )
+}
+
+function MergeConnector({ delay }: { delay: number }) {
+  return (
+    <motion.svg
+      initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+      viewport={{ once: true }} transition={{ delay, duration: 0.3 }}
+      viewBox="0 0 320 44" className="w-full max-w-[320px]" style={{ overflow: "visible" }}
+    >
+      {/* Left rise */}
+      <line x1="40" y1="0" x2="40" y2="26" stroke="rgba(249,115,22,0.5)" strokeWidth="1.5" />
+      {/* Right rise */}
+      <line x1="280" y1="0" x2="280" y2="26" stroke="rgba(249,115,22,0.5)" strokeWidth="1.5" />
+      {/* Horizontal bar */}
+      <line x1="40" y1="26" x2="280" y2="26" stroke="rgba(249,115,22,0.5)" strokeWidth="1.5" />
+      {/* Center drop */}
+      <line x1="160" y1="26" x2="160" y2="44" stroke="rgba(249,115,22,0.5)" strokeWidth="1.5" />
+      {/* Center arrowhead */}
+      <polygon points="156,40 164,40 160,46" fill="rgba(249,115,22,0.55)" />
+    </motion.svg>
   )
 }
 
@@ -303,84 +373,123 @@ export default function NYAgencyPage() {
       </section>
 
       {/* ── 4. AI WORKFLOW DIAGRAM ─────────────────────────────────────────── */}
-      <section className="bg-muted/20 border-y border-border py-20 px-6">
+      <section className="border-y border-border py-20 px-6" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.04) 0%, transparent 70%)" }}>
         <div className="max-w-4xl mx-auto">
           <motion.div {...fade(0)} className="text-center mb-12">
             <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">How It Works</p>
             <h2 className="font-display font-bold text-3xl md:text-4xl mb-3">
-              How AI Workflow Automation Works Inside a Marketing Agency
+              How AI Workflow Automation Works<br className="hidden md:block" /> Inside a Marketing Agency
             </h2>
-            <p className="text-muted-foreground">A Kovil AI engineer builds this in your first sprint — typically 14 days.</p>
+            <p className="text-muted-foreground text-sm">A Kovil AI engineer builds this in your first sprint — typically 14 days.</p>
           </motion.div>
 
-          {/* Diagram */}
-          <div className="relative max-w-2xl mx-auto">
-            {/* Top linear nodes */}
-            <div className="flex flex-col items-center gap-0">
+          {/* Dark diagram container */}
+          <motion.div
+            {...fade(0.05)}
+            className="relative rounded-2xl border border-white/10 overflow-hidden p-6 md:p-10"
+            style={{ background: "linear-gradient(135deg, #0d0d0f 0%, #111115 100%)" }}
+          >
+            {/* Subtle grid bg */}
+            <div
+              className="absolute inset-0 opacity-[0.03] pointer-events-none"
+              style={{ backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)", backgroundSize: "40px 40px" }}
+            />
 
-              <WNode text="[ Client Brief Received ]" delay={0.05} accent />
-              <WArrow delay={0.12} />
-              <WNode text="[ AI Brief Parser — extracts goals, audience, budget ]" delay={0.18} />
-              <WArrow delay={0.25} />
-              <WNode text="[ AI Campaign Strategist Agent — generates channel mix + messaging ]" delay={0.3} />
+            <div className="relative flex flex-col items-center">
 
-              {/* Arrow splitting */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.38 }}
-                className="w-full flex flex-col items-center"
-              >
-                <div className="w-px h-5 bg-accent/40" />
-                <div className="w-[60%] h-px bg-accent/40 relative">
-                  <div className="absolute -left-px -top-1.5 w-px h-3 bg-accent/40" />
-                  <div className="absolute -right-px -top-1.5 w-px h-3 bg-accent/40" />
-                </div>
-              </motion.div>
+              {/* Node 1 — Input */}
+              <DiagramNode delay={0.1} node={{
+                step: "STEP 01", label: "Client Brief Received", sub: "Campaign request lands in your intake system",
+                badge: "INPUT", variant: "input", Icon: FileText,
+              }} />
+              <DiagramArrow delay={0.2} />
+
+              {/* Node 2 — Parser */}
+              <DiagramNode delay={0.28} node={{
+                step: "STEP 02", label: "AI Brief Parser", sub: "Extracts goals · audience · budget · KPIs",
+                badge: "PARSE", variant: "process", Icon: Search,
+              }} />
+              <DiagramArrow delay={0.38} />
+
+              {/* Node 3 — Strategist Agent */}
+              <DiagramNode delay={0.46} node={{
+                step: "STEP 03", label: "AI Campaign Strategist Agent", sub: "Generates channel mix + messaging angles + timing",
+                badge: "AI AGENT", variant: "agent", Icon: Brain,
+              }} />
+
+              {/* Fork */}
+              <div className="flex justify-center w-full">
+                <ForkConnector delay={0.56} />
+              </div>
 
               {/* Parallel tracks */}
-              <div className="grid grid-cols-2 gap-4 w-full mb-0">
+              <div className="grid grid-cols-2 gap-4 w-full">
                 <div className="flex flex-col items-center gap-0">
-                  <WNode text="[ Paid Media Plan (Google/Meta targeting) ]" delay={0.45} />
-                  <WArrow delay={0.52} />
-                  <WNode text="[ Budget Allocator Agent (auto-optimizes spend) ]" delay={0.58} />
+                  <DiagramNode delay={0.64} node={{
+                    step: "TRACK A", label: "Paid Media Plan", sub: "Google & Meta audience targeting",
+                    badge: "PAID", variant: "process", Icon: Target,
+                  }} />
+                  <DiagramArrow delay={0.72} />
+                  <DiagramNode delay={0.78} node={{
+                    step: "TRACK A", label: "Budget Allocator Agent", sub: "Auto-optimizes spend across channels",
+                    badge: "AI AGENT", variant: "agent", Icon: DollarSign,
+                  }} />
                 </div>
                 <div className="flex flex-col items-center gap-0">
-                  <WNode text="[ Content Brief Generator (copy angles, ad variants) ]" delay={0.45} />
-                  <WArrow delay={0.52} />
-                  <WNode text="[ Creative Asset Prompt Engine (design team prompts) ]" delay={0.58} />
+                  <DiagramNode delay={0.64} node={{
+                    step: "TRACK B", label: "Content Brief Generator", sub: "Copy angles · ad variants · hooks",
+                    badge: "CONTENT", variant: "process", Icon: FileText,
+                  }} />
+                  <DiagramArrow delay={0.72} />
+                  <DiagramNode delay={0.78} node={{
+                    step: "TRACK B", label: "Creative Asset Prompt Engine", sub: "Generates prompts for your design team",
+                    badge: "AI AGENT", variant: "agent", Icon: Wand2,
+                  }} />
                 </div>
               </div>
 
               {/* Merge */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.65 }}
-                className="w-full flex flex-col items-center"
-              >
-                <div className="w-[60%] h-px bg-accent/40 relative mt-0">
-                  <div className="absolute -left-px top-0 w-px h-3 bg-accent/40" />
-                  <div className="absolute -right-px top-0 w-px h-3 bg-accent/40" />
-                </div>
-                <div className="w-px h-5 bg-accent/40" />
-              </motion.div>
+              <div className="flex justify-center w-full">
+                <MergeConnector delay={0.86} />
+              </div>
 
-              <WNode text="[ Campaign Performance Monitor (real-time AI scoring) ]" delay={0.72} />
-              <WArrow delay={0.79} />
-              <WNode text="[ Auto-Report Generator → Client Dashboard ]" delay={0.85} accent />
+              {/* Node 6 — Monitor */}
+              <DiagramNode delay={0.93} node={{
+                step: "STEP 06", label: "Campaign Performance Monitor", sub: "Real-time AI scoring across all active channels",
+                badge: "MONITOR", variant: "monitor", Icon: Activity,
+              }} />
+              <DiagramArrow delay={1.01} />
+
+              {/* Node 7 — Output */}
+              <DiagramNode delay={1.08} node={{
+                step: "STEP 07", label: "Auto-Report Generator → Client Dashboard", sub: "Live performance data, formatted for client review",
+                badge: "OUTPUT", variant: "output", Icon: BarChart3,
+              }} />
+
             </div>
 
-            {/* Caption */}
-            <motion.p
-              {...fade(0.95)}
-              className="text-center text-sm text-muted-foreground mt-8 italic border-t border-border pt-6"
+            {/* Caption bar */}
+            <motion.div
+              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+              viewport={{ once: true }} transition={{ delay: 1.18 }}
+              className="mt-8 flex items-center justify-center gap-3 border-t border-white/8 pt-6"
             >
-              This replaces 3 manual handoffs, 2 spreadsheets, and 1 status meeting per campaign.
-            </motion.p>
-          </div>
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/10" />
+              <p className="text-xs text-white/40 text-center px-4">
+                Replaces <span className="text-white/70 font-semibold">3 manual handoffs</span>, <span className="text-white/70 font-semibold">2 spreadsheets</span>, and <span className="text-white/70 font-semibold">1 status meeting</span> per campaign.
+              </p>
+              <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10" />
+            </motion.div>
+          </motion.div>
+
+          {/* Below diagram CTA */}
+          <motion.div {...fade(1.2)} className="text-center mt-8">
+            <OnboardingModal defaultGoal="project">
+              <Button className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-full px-8 h-11">
+                Build This For My Agency <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </OnboardingModal>
+          </motion.div>
         </div>
       </section>
 
