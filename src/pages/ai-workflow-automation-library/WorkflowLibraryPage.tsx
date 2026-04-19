@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ArrowRight, Clock, ChevronRight, Zap } from 'lucide-react'
+import Link from 'next/link'
+import { X, ArrowRight, Clock, ChevronRight, Zap, ExternalLink } from 'lucide-react'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -478,69 +479,129 @@ export default function WorkflowLibraryPage() {
 
         <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
-            {filtered.map(wf => (
-              <motion.article
-                key={wf.id}
-                layout
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.97 }}
-                transition={{ duration: 0.18 }}
-                whileHover={{ y: -3 }}
-                onClick={() => setSelectedWorkflow(wf)}
-                className="group relative cursor-pointer rounded-2xl border border-white/[0.07] bg-[#111111] p-5 transition-all duration-300 hover:border-[#FF4F00]/25 hover:shadow-[0_8px_40px_rgba(255,79,0,0.07)]"
-              >
-                {/* Hover glow overlay */}
-                <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF4F00]/[0.04] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            {filtered.map(wf => {
+              // Card #1 links to a dedicated deep-dive page; rest open the modal
+              const hasDedicatedPage = wf.id === 1
+              const slug = 'campaign-performance-reporting'
 
-                {/* Top row */}
-                <div className="flex items-center justify-between">
-                  <span
-                    className="inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wide font-display"
-                    style={{ color: wf.industryColor, background: `${wf.industryColor}18`, border: `1px solid ${wf.industryColor}28` }}
-                  >
-                    {wf.industry}
-                  </span>
-                  <span className="flex items-center gap-1 text-[11px] font-semibold text-[#FF4F00]">
-                    <Clock size={10} strokeWidth={2.5} />{wf.timeSaved}
-                  </span>
-                </div>
+              const cardContent = (
+                <>
+                  {/* Colored top accent bar */}
+                  <div
+                    className="absolute inset-x-0 top-0 h-[3px] rounded-t-2xl transition-opacity duration-300"
+                    style={{ background: `linear-gradient(90deg, ${wf.industryColor}, ${wf.industryColor}55)` }}
+                  />
 
-                {/* Title */}
-                <h3 className="mt-3 font-display text-[14px] font-semibold leading-snug text-white/90 group-hover:text-white transition-colors">
-                  {wf.title}
-                </h3>
+                  {/* Hover glow overlay */}
+                  <div
+                    className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{ background: `radial-gradient(ellipse at top left, ${wf.industryColor}0A, transparent 60%)` }}
+                  />
 
-                {/* Description */}
-                <p className="mt-1.5 text-[12px] leading-relaxed text-white/40">
-                  {wf.description}
-                </p>
-
-                {/* Diagram */}
-                <div className="mt-4">
-                  <WorkflowDiagram nodes={wf.nodes} nodeEmojis={wf.nodeEmojis} />
-                </div>
-
-                {/* Tools */}
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {wf.tools.slice(0, 4).map(t => (
-                    <span key={t} className="rounded px-2 py-0.5 text-[10px] text-white/40 border border-white/[0.07] bg-white/[0.03]">
-                      {t}
+                  {/* Top row */}
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wide font-display"
+                      style={{ color: wf.industryColor, background: `${wf.industryColor}18`, border: `1px solid ${wf.industryColor}30` }}
+                    >
+                      {wf.industry}
                     </span>
-                  ))}
-                  {wf.tools.length > 4 && (
-                    <span className="rounded px-2 py-0.5 text-[10px] text-white/30 border border-white/[0.05]">
-                      +{wf.tools.length - 4}
+                    <span className="flex items-center gap-1 text-[11px] font-semibold" style={{ color: wf.industryColor }}>
+                      <Clock size={10} strokeWidth={2.5} />{wf.timeSaved}
                     </span>
-                  )}
-                </div>
+                  </div>
 
-                {/* Footer */}
-                <div className="mt-4 flex items-center gap-1 text-[11px] font-semibold text-[#FF4F00]/70 transition-colors group-hover:text-[#FF4F00]">
-                  View full workflow <ChevronRight size={12} strokeWidth={2.5} />
-                </div>
-              </motion.article>
-            ))}
+                  {/* Title */}
+                  <h3 className="mt-3 font-display text-[14px] font-semibold leading-snug text-white/90 group-hover:text-white transition-colors">
+                    {wf.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="mt-1.5 text-[12px] leading-relaxed text-white/40">
+                    {wf.description}
+                  </p>
+
+                  {/* Diagram */}
+                  <div className="mt-4">
+                    <WorkflowDiagram nodes={wf.nodes} nodeEmojis={wf.nodeEmojis} />
+                  </div>
+
+                  {/* Tools */}
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {wf.tools.slice(0, 4).map(t => (
+                      <span key={t} className="rounded px-2 py-0.5 text-[10px] text-white/40 border border-white/[0.07] bg-white/[0.03]">
+                        {t}
+                      </span>
+                    ))}
+                    {wf.tools.length > 4 && (
+                      <span className="rounded px-2 py-0.5 text-[10px] text-white/30 border border-white/[0.05]">
+                        +{wf.tools.length - 4}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Footer */}
+                  <div className="mt-4 flex items-center justify-between">
+                    <div className="flex items-center gap-1 text-[11px] font-semibold text-white/40 transition-colors group-hover:text-white/70"
+                      style={{ color: hasDedicatedPage ? undefined : undefined }}>
+                      {hasDedicatedPage ? (
+                        <span className="flex items-center gap-1 font-semibold" style={{ color: wf.industryColor }}>
+                          Full workflow deep-dive <ExternalLink size={11} />
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-1">
+                          View workflow <ChevronRight size={12} strokeWidth={2.5} />
+                        </span>
+                      )}
+                    </div>
+                    {hasDedicatedPage && (
+                      <span className="rounded-full bg-[#FF4F00]/10 border border-[#FF4F00]/25 px-2 py-0.5 text-[10px] font-semibold text-[#FF4F00] font-display">
+                        Detailed
+                      </span>
+                    )}
+                  </div>
+                </>
+              )
+
+              const sharedMotionProps = {
+                key: wf.id,
+                layout: true,
+                initial: { opacity: 0, scale: 0.97 },
+                animate: { opacity: 1, scale: 1 },
+                exit: { opacity: 0, scale: 0.97 },
+                transition: { duration: 0.18 },
+                whileHover: { y: -3 },
+                className: "group relative cursor-pointer rounded-2xl border border-white/[0.07] bg-[#111111] p-5 pt-6 overflow-hidden transition-all duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)]",
+                style: { '--hover-border': `${wf.industryColor}35` } as React.CSSProperties,
+                onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = `${wf.industryColor}35`
+                },
+                onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)'
+                },
+              }
+
+              return hasDedicatedPage ? (
+                <motion.article
+                  {...sharedMotionProps}
+                  onClick={undefined}
+                >
+                  <Link
+                    href={`/ai-workflow-automation-library/${slug}`}
+                    className="absolute inset-0 z-10"
+                    aria-label={wf.title}
+                  />
+                  {cardContent}
+                </motion.article>
+              ) : (
+                <motion.article
+                  {...sharedMotionProps}
+                  onClick={() => setSelectedWorkflow(wf)}
+                >
+                  {cardContent}
+                </motion.article>
+              )
+            })}
           </AnimatePresence>
         </motion.div>
       </section>
