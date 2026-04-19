@@ -45,7 +45,7 @@ const resourceLinks = [
     to: "/ai-workflow-automation-library",
     icon: Workflow,
     label: "AI Workflow Library",
-    desc: "24 real automations across 8 industries.",
+    desc: "Real AI automations across industries.",
   },
 ]
 

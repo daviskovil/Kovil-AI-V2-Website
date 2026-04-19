@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import WorkflowLibraryPage from '@/src/pages/ai-workflow-automation-library/WorkflowLibraryPage'
 
 export const metadata: Metadata = {
-  title: 'AI Workflow Automation Library — 24 Real Builds | Kovil AI',
+  title: 'AI Workflow Automation Library — Real Builds by Kovil AI',
   description:
-    'Browse 24 real AI workflow automations built and deployed by Kovil AI engineers across 8 industries: marketing, fintech, healthtech, SaaS, e-commerce, legal, proptech, and logistics.',
+    'Browse real AI workflow automations built and deployed by Kovil AI engineers across industries including marketing, fintech, healthtech, SaaS, e-commerce, legal, proptech, and logistics.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library' },
   keywords: [
     'AI workflow automation',
@@ -22,17 +22,17 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'AI Workflow Automation Library — 24 Real Builds | Kovil AI',
+    title: 'AI Workflow Automation Library — Real Builds by Kovil AI',
     description:
-      'Browse 24 real AI workflow automations built and deployed by Kovil AI engineers across 8 industries.',
+      'Browse real AI workflow automations built and deployed by Kovil AI engineers across industries.',
     url: 'https://kovil.ai/ai-workflow-automation-library',
     siteName: 'Kovil AI',
     images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'AI Workflow Automation Library — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Workflow Automation Library — 24 Real Builds | Kovil AI',
-    description: 'Browse 24 real AI workflow automations across 8 industries. See the stack, steal the workflow, or have us build it.',
+    title: 'AI Workflow Automation Library — Real Builds by Kovil AI',
+    description: 'Browse real AI workflow automations across industries. See the stack, steal the workflow, or have us build it.',
     images: ['https://kovil.ai/og-image.png'],
   },
 }
@@ -42,7 +42,7 @@ const webPageSchema = {
   '@type': 'WebPage',
   name: 'AI Workflow Automation Library',
   description:
-    'A library of 24 real-world AI workflow automations built and deployed by Kovil AI engineers across 8 industries.',
+    'A growing library of real-world AI workflow automations built and deployed by Kovil AI engineers across multiple industries.',
   url: 'https://kovil.ai/ai-workflow-automation-library',
   publisher: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },
 }
@@ -51,8 +51,7 @@ const itemListSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: 'AI Workflow Automation Examples',
-  description: '24 real AI workflow automations across 8 industries built by Kovil AI engineers.',
-  numberOfItems: 24,
+  description: 'Real AI workflow automations across industries built by Kovil AI engineers.',
   itemListElement: [
     { '@type': 'ListItem', position: 1,  name: 'Campaign Performance Reporting Automation', description: 'Pull data from Meta, Google, LinkedIn → GPT-4o analysis → auto-build slide deck → email client + Slack team' },
     { '@type': 'ListItem', position: 2,  name: 'AI Creative Brief Generator', description: 'Client fills Typeform → pull brand guidelines → GPT-4o writes structured brief → approval gate → creative team' },
@@ -114,7 +113,7 @@ const faqSchema = {
       name: 'Can I see these automations before hiring Kovil AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes — this library documents 24 real workflow automations that Kovil AI has built and deployed for clients across 8 industries. Each workflow shows the node diagram, tech stack, step-by-step breakdown, and time saved.',
+        text: 'Yes — this library documents real workflow automations that Kovil AI has built and deployed for clients across multiple industries. Each workflow shows the node diagram, tech stack, step-by-step breakdown, and time saved.',
       },
     },
   ],

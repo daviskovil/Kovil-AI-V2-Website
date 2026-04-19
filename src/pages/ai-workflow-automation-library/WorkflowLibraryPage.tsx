@@ -1021,7 +1021,7 @@ export default function WorkflowLibraryPage() {
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.18 }}
           className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-white/55"
         >
-          Browse 49 real-world AI workflow automations across 8 industries. See the stack, steal the flow, or have us build it for you.
+          Browse real-world AI workflow automations across industries. See the stack, steal the flow, or have us build it for you.
         </motion.p>
 
         {/* CTAs */}
@@ -1048,7 +1048,7 @@ export default function WorkflowLibraryPage() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.36 }}
           className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-white/30"
         >
-          {['49 workflows documented', '8 industries covered', 'n8n · GPT-4o · LangChain · Make'].map((s, i) => (
+          {['Growing workflow library', 'Multiple industries covered', 'n8n · GPT-4o · LangChain · Make'].map((s, i) => (
             <span key={i} className="flex items-center gap-2">
               {i > 0 && <span className="text-[#FF4F00]/40">·</span>}
               {s}

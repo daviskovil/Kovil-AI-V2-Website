@@ -511,7 +511,7 @@ export default function NYAgencyPage() {
               href="/ai-workflow-automation-library"
               className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:gap-3 transition-all"
             >
-              Browse all 49 AI workflow automations <ArrowRight size={14} />
+              Browse all AI workflow automations <ArrowRight size={14} />
             </Link>
           </motion.div>
         </div>
