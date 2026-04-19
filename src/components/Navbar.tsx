@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ChevronDown, Users, Rocket, Shield, BookOpen, FileText, Workflow } from "lucide-react"
+import { ChevronDown, Users, Rocket, Shield, BookOpen, FileText, Workflow, Menu, X, ChevronRight } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
 
@@ -164,46 +164,214 @@ function EngageDropdown() {
   )
 }
 
-export default function Navbar() {
+// ── Mobile Menu ───────────────────────────────────────────────────────────────
+
+function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const pathname = usePathname() ?? ''
+  const [engageOpen, setEngageOpen] = useState(false)
+  const [resourcesOpen, setResourcesOpen] = useState(false)
+
+  // Close on route change
+  useEffect(() => { onClose() }, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Lock body scroll when open
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
+
+  if (!open) return null
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+    <div className="fixed inset-0 z-50 flex flex-col bg-background md:hidden">
+      {/* Header */}
+      <div className="flex items-center justify-between px-6 h-20 border-b border-border shrink-0">
+        <Link href="/" className="flex items-center gap-2" onClick={onClose}>
           <img src="/kovil-logo-symbol.webp" alt="Kovil AI" className="h-8 w-8 rounded-sm object-cover" />
           <span className="font-display font-bold text-xl tracking-tight">Kovil AI</span>
         </Link>
-
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-          <Link
-            href="/"
-            className={`hover:text-foreground transition-colors ${pathname === "/" ? "text-foreground font-semibold" : ""}`}
-          >
-            Home
-          </Link>
-
-          <Link
-            href="/how-it-works"
-            className={`hover:text-foreground transition-colors ${pathname === "/how-it-works" ? "text-foreground font-semibold" : ""}`}
-          >
-            How It Works
-          </Link>
-
-          <EngageDropdown />
-
-          <ResourcesDropdown />
-        </div>
-
-        <div className="flex items-center gap-4">
-          <Link href="/apply" className="hidden sm:block text-sm font-medium hover:text-accent transition-colors cursor-pointer">Apply as AI Engineer</Link>
-          <OnboardingModal>
-            <Button variant="accent" className="rounded-full font-semibold">
-              Start My AI Build
-            </Button>
-          </OnboardingModal>
-        </div>
+        <button
+          onClick={onClose}
+          className="h-10 w-10 flex items-center justify-center rounded-full hover:bg-muted/50 transition-colors"
+          aria-label="Close menu"
+        >
+          <X className="h-5 w-5" />
+        </button>
       </div>
-    </nav>
+
+      {/* Links */}
+      <div className="flex-1 overflow-y-auto px-6 py-6 space-y-1">
+        <Link
+          href="/"
+          onClick={onClose}
+          className={`flex items-center h-12 px-3 rounded-xl text-base font-medium transition-colors ${pathname === "/" ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
+        >
+          Home
+        </Link>
+
+        <Link
+          href="/how-it-works"
+          onClick={onClose}
+          className={`flex items-center h-12 px-3 rounded-xl text-base font-medium transition-colors ${pathname === "/how-it-works" ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
+        >
+          How It Works
+        </Link>
+
+        {/* Engage accordion */}
+        <div>
+          <button
+            onClick={() => setEngageOpen((o) => !o)}
+            className={`flex items-center justify-between w-full h-12 px-3 rounded-xl text-base font-medium transition-colors ${pathname.startsWith("/engage") ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
+          >
+            Engage
+            <ChevronRight className={`h-4 w-4 transition-transform duration-200 ${engageOpen ? "rotate-90" : ""}`} />
+          </button>
+          {engageOpen && (
+            <div className="mt-1 ml-3 pl-3 border-l border-border space-y-1">
+              {engageLinks.map((item) => {
+                const Icon = item.icon
+                return (
+                  <Link
+                    key={item.to}
+                    href={item.to}
+                    onClick={onClose}
+                    className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-colors ${pathname === item.to ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/40"}`}
+                  >
+                    <div className="h-7 w-7 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+                      <Icon className="h-3.5 w-3.5 text-accent" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold leading-snug">{item.label}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* Resources accordion */}
+        <div>
+          <button
+            onClick={() => setResourcesOpen((o) => !o)}
+            className={`flex items-center justify-between w-full h-12 px-3 rounded-xl text-base font-medium transition-colors ${(pathname.startsWith("/case-studies") || pathname.startsWith("/blog") || pathname.startsWith("/ai-workflow-automation-library")) ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
+          >
+            Resources
+            <ChevronRight className={`h-4 w-4 transition-transform duration-200 ${resourcesOpen ? "rotate-90" : ""}`} />
+          </button>
+          {resourcesOpen && (
+            <div className="mt-1 ml-3 pl-3 border-l border-border space-y-1">
+              {resourceLinks.map((item) => {
+                const Icon = item.icon
+                return (
+                  <Link
+                    key={item.to}
+                    href={item.to}
+                    onClick={onClose}
+                    className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-colors ${pathname.startsWith(item.to) ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/40"}`}
+                  >
+                    <div className="h-7 w-7 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+                      <Icon className="h-3.5 w-3.5 text-accent" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold leading-snug">{item.label}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          )}
+        </div>
+
+        <Link
+          href="/apply"
+          onClick={onClose}
+          className={`flex items-center h-12 px-3 rounded-xl text-base font-medium transition-colors ${pathname === "/apply" ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
+        >
+          Apply as AI Engineer
+        </Link>
+      </div>
+
+      {/* Bottom CTA */}
+      <div className="px-6 pb-8 pt-4 border-t border-border shrink-0">
+        <OnboardingModal>
+          <Button variant="accent" className="w-full rounded-full font-semibold h-12 text-base">
+            Start My AI Build
+          </Button>
+        </OnboardingModal>
+      </div>
+    </div>
+  )
+}
+
+// ── Navbar ────────────────────────────────────────────────────────────────────
+
+export default function Navbar() {
+  const pathname = usePathname() ?? ''
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  return (
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <img src="/kovil-logo-symbol.webp" alt="Kovil AI" className="h-8 w-8 rounded-sm object-cover" />
+            <span className="font-display font-bold text-xl tracking-tight">Kovil AI</span>
+          </Link>
+
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
+            <Link
+              href="/"
+              className={`hover:text-foreground transition-colors ${pathname === "/" ? "text-foreground font-semibold" : ""}`}
+            >
+              Home
+            </Link>
+
+            <Link
+              href="/how-it-works"
+              className={`hover:text-foreground transition-colors ${pathname === "/how-it-works" ? "text-foreground font-semibold" : ""}`}
+            >
+              How It Works
+            </Link>
+
+            <EngageDropdown />
+            <ResourcesDropdown />
+          </div>
+
+          {/* Desktop right */}
+          <div className="hidden md:flex items-center gap-4">
+            <Link href="/apply" className="text-sm font-medium hover:text-accent transition-colors cursor-pointer">
+              Apply as AI Engineer
+            </Link>
+            <OnboardingModal>
+              <Button variant="accent" className="rounded-full font-semibold">
+                Start My AI Build
+              </Button>
+            </OnboardingModal>
+          </div>
+
+          {/* Mobile right — CTA + hamburger */}
+          <div className="flex items-center gap-3 md:hidden">
+            <OnboardingModal>
+              <Button variant="accent" className="rounded-full font-semibold text-sm px-5 h-10">
+                Start My AI Build
+              </Button>
+            </OnboardingModal>
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="h-10 w-10 flex items-center justify-center rounded-full hover:bg-muted/50 transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
+    </>
   )
 }
