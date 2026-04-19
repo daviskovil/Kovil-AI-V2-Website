@@ -15,6 +15,8 @@ type Workflow = {
   description: string
   nodes: string[]
   nodeEmojis: string[]
+  nodeBgs: string[]
+  nodeShorts: string[]
   tools: string[]
   timeSaved: string
   steps: string[]
@@ -31,6 +33,8 @@ const workflows: Workflow[] = [
     description: 'Pull data from Meta, Google, LinkedIn → GPT-4o analysis → auto-build slide deck → email client + Slack team',
     nodes: ['Schedule', 'Meta Ads', 'Google Ads', 'Merge', 'GPT-4o', 'Report'],
     nodeEmojis: ['⏰', '📱', '🔍', '🔗', '🤖', '📊'],
+    nodeBgs: ['#FF4F00', '#1877F2', '#4285F4', '#F65B2B', '#10A37F', '#FBBC04'],
+    nodeShorts: ['CRN', 'f', 'G', '⚡', 'AI', 'SLD'],
     tools: ['n8n', 'GPT-4o', 'Google Slides', 'Gmail', 'Slack'],
     timeSaved: '12 hrs/week',
     steps: ['Schedule trigger fires every Monday 8am', 'Pull last 7 days from Meta Ads, Google Ads, LinkedIn', 'Merge all data in n8n', 'GPT-4o analyses performance trends and anomalies', 'Report Builder generates slide deck via Google Slides API', 'Auto-email to client, post summary to Slack'],
@@ -42,6 +46,8 @@ const workflows: Workflow[] = [
     description: 'Client fills Typeform → pull brand guidelines from Notion → GPT-4o writes structured brief → approval gate → creative team',
     nodes: ['Typeform', 'Notion', 'GPT-4o', 'Approval', 'Deliver'],
     nodeEmojis: ['📋', '📝', '🤖', '✅', '📤'],
+    nodeBgs: ['#0099FF', '#3D3D3D', '#10A37F', '#22C55E', '#EA4335'],
+    nodeShorts: ['Tf', 'N', 'AI', '✓', '→'],
     tools: ['Typeform', 'Notion', 'GPT-4o', 'Slack'],
     timeSaved: '3 hrs/brief',
     steps: ['Client fills brief intake via Typeform', 'Pull brand guidelines + past briefs from Notion', 'GPT-4o writes structured creative brief', 'Approval gate: human reviews in Slack (approve/revise)', 'Approved brief delivered to creative team channel'],
@@ -53,6 +59,8 @@ const workflows: Workflow[] = [
     description: 'Deal Won in HubSpot → parallel: contract + invoice + onboarding → auto-create Notion workspace + Slack channel → kickoff',
     nodes: ['HubSpot', 'DocuSign', 'Stripe', 'Notion', 'Slack', 'Calendly'],
     nodeEmojis: ['🔶', '✍️', '💳', '📝', '💬', '📅'],
+    nodeBgs: ['#FF7A59', '#FFA500', '#635BFF', '#3D3D3D', '#4A154B', '#006BFF'],
+    nodeShorts: ['HS', 'DS', 'S$', 'N', '#', 'CAL'],
     tools: ['HubSpot', 'DocuSign', 'Stripe', 'n8n', 'Notion', 'Calendly'],
     timeSaved: '3 days → 2 hrs',
     steps: ['HubSpot deal marked Won triggers workflow', 'Parallel: send DocuSign contract, raise Stripe invoice, send Typeform onboarding', 'Wait for all 3 to complete', 'Auto-create Notion client workspace from template', 'Create dedicated Slack channel, invite team', 'Schedule kickoff call via Calendly'],
@@ -65,6 +73,8 @@ const workflows: Workflow[] = [
     description: 'PDF uploaded → GPT-4o Vision extracts document type + fields → classifier routes to checklist → flags missing docs → notifies underwriter',
     nodes: ['Upload', 'GPT-4o Vision', 'Classifier', 'Complete?', 'Notify'],
     nodeEmojis: ['📄', '👁️', '🗂️', '❓', '🔔'],
+    nodeBgs: ['#6366F1', '#10A37F', '#F65B2B', '#FBBF24', '#EA4335'],
+    nodeShorts: ['PDF', 'AI', '⊞', '?', '🔔'],
     tools: ['GPT-4o Vision', 'Python', 'FastAPI', 'n8n', 'Email'],
     timeSaved: '8 hrs/day',
     steps: ['Document uploaded to intake portal', 'GPT-4o Vision extracts document type and all key fields', 'Classifier routes to correct document checklist', 'Check: all required docs present?', 'Complete: notify underwriter / Incomplete: flag missing items'],
@@ -76,6 +86,8 @@ const workflows: Workflow[] = [
     description: 'New loan application → credit bureau data → AI risk scoring → decision engine [approve/review/decline] → decision letter → CRM',
     nodes: ['Application', 'Credit Bureau', 'AI Score', 'Decision', 'Letter', 'CRM'],
     nodeEmojis: ['📋', '🏦', '🤖', '⚖️', '📄', '💼'],
+    nodeBgs: ['#6366F1', '#1E40AF', '#10A37F', '#FBBF24', '#60A5FA', '#FF7A59'],
+    nodeShorts: ['APP', 'CB', 'AI', '⚖', 'LTR', 'CRM'],
     tools: ['GPT-4o', 'Python', 'FastAPI', 'HubSpot', 'n8n'],
     timeSaved: '70% faster',
     steps: ['New loan application received via API or form', 'Pull credit bureau data (Experian/Equifax)', 'AI risk scoring model runs — outputs score + rationale', 'Decision engine: Approve / Manual Review / Decline', 'Auto-generate formatted decision letter', 'Log decision + rationale to HubSpot CRM'],
@@ -87,6 +99,8 @@ const workflows: Workflow[] = [
     description: 'New deal enters pipeline → validate policy rules → AI extracts deal terms → auto-populate deal sheet → notify team → schedule review',
     nodes: ['Deal Trigger', 'Policy Check', 'AI Extract', 'Populate', 'Notify'],
     nodeEmojis: ['💼', '✅', '🤖', '📊', '🔔'],
+    nodeBgs: ['#FF7A59', '#22C55E', '#10A37F', '#FBBC04', '#4A154B'],
+    nodeShorts: ['DL', '✓', 'AI', 'SHT', '#'],
     tools: ['n8n', 'GPT-4o', 'Google Sheets', 'Slack', 'Calendly'],
     timeSaved: '4 hrs/deal',
     steps: ['New deal enters pipeline', 'Validate against policy rules (automated)', 'GPT-4o extracts key deal terms from documents', 'Auto-populate standardised deal sheet in Google Sheets', 'Notify deal team via Slack', 'Auto-schedule review call via Calendly'],
@@ -99,6 +113,8 @@ const workflows: Workflow[] = [
     description: 'Patient submits intake → Voice AI collects missing info → AI extracts structured data → push to 3 EHR systems → flag high-risk → alert team',
     nodes: ['Intake Form', 'Voice AI', 'AI Extract', 'EHR Push', 'Risk Flag'],
     nodeEmojis: ['📋', '🎙️', '🤖', '🏥', '⚠️'],
+    nodeBgs: ['#6366F1', '#F22F46', '#10A37F', '#34D399', '#F87171'],
+    nodeShorts: ['📋', 'VOC', 'AI', 'EHR', '⚠'],
     tools: ['Twilio', 'GPT-4o', 'Python', 'n8n', 'EHR API'],
     timeSaved: '18 min → 2 min',
     steps: ['Patient submits intake form online', 'Voice AI (Twilio) calls to collect any missing information', 'GPT-4o extracts and structures all patient data', 'Push structured data to 3 EHR systems simultaneously', 'AI flags any high-risk clinical fields', 'Alert care team for immediate review'],
@@ -110,6 +126,8 @@ const workflows: Workflow[] = [
     description: 'Appointment booked → T-48hr: AI personalised reminder → SMS + email → no response: auto-reschedule prompt → calendar update',
     nodes: ['Booked', 'Wait 48hr', 'AI Reminder', 'Send', 'Follow-up'],
     nodeEmojis: ['📅', '⏰', '🤖', '📱', '🔄'],
+    nodeBgs: ['#4285F4', '#FF4F00', '#10A37F', '#EA4335', '#F65B2B'],
+    nodeShorts: ['CAL', '48h', 'AI', 'SMS', '↩'],
     tools: ['Twilio', 'GPT-4o', 'Gmail', 'Google Calendar', 'n8n'],
     timeSaved: '40% fewer no-shows',
     steps: ['Appointment created in booking system', 'Wait until 48 hours before appointment', 'GPT-4o writes personalised reminder', 'Send via SMS (Twilio) + email (Gmail)', 'Check for response after 4 hours', 'No response: send reschedule prompt / Confirmed: update calendar'],
@@ -121,6 +139,8 @@ const workflows: Workflow[] = [
     description: 'Doctor completes consultation → audio uploaded → Whisper transcribes → GPT-4o structures into SOAP note → human review → push to EHR',
     nodes: ['Audio Upload', 'Whisper', 'GPT-4o', 'Review', 'EHR Push'],
     nodeEmojis: ['🎙️', '📝', '🤖', '👩‍⚕️', '🏥'],
+    nodeBgs: ['#6366F1', '#10A37F', '#10A37F', '#F87171', '#34D399'],
+    nodeShorts: ['MIC', 'WSP', 'AI', 'DR', 'EHR'],
     tools: ['OpenAI Whisper', 'GPT-4o', 'EHR API', 'n8n'],
     timeSaved: '45 min/day per doctor',
     steps: ['Doctor uploads audio recording of consultation', 'Whisper API transcribes audio to text', 'GPT-4o structures transcript into SOAP note format', 'Doctor reviews and approves in lightweight UI', 'Approved note pushed directly to EHR system'],
@@ -133,6 +153,8 @@ const workflows: Workflow[] = [
     description: 'Request submitted → AI classifies type → routes to correct approver → auto-drafts decision message → sends decision → logs to Airtable',
     nodes: ['Form Submit', 'AI Classify', 'Route', 'Draft', 'Send'],
     nodeEmojis: ['📋', '🤖', '🔀', '✏️', '📤'],
+    nodeBgs: ['#6366F1', '#10A37F', '#FBBF24', '#60A5FA', '#EA4335'],
+    nodeShorts: ['FRM', 'AI', '→', '✏', 'SND'],
     tools: ['n8n', 'GPT-4o', 'Slack', 'Airtable', 'Gmail'],
     timeSaved: '15 hrs/week',
     steps: ['Request submitted via intake form', 'GPT-4o classifies request type (budget, HR, legal, IT)', 'Route to correct approver based on type + amount', 'GPT-4o drafts approval/rejection message for review', 'Send decision to requestor', 'Log outcome to Airtable'],
@@ -144,6 +166,8 @@ const workflows: Workflow[] = [
     description: 'Support ticket → RAG pipeline searches knowledge base → GPT-4o drafts response → confidence check → auto-send or human queue → CSAT',
     nodes: ['Ticket', 'RAG Search', 'GPT-4o Draft', 'Confidence?', 'Send/Queue'],
     nodeEmojis: ['🎫', '🔍', '🤖', '📊', '📤'],
+    nodeBgs: ['#6366F1', '#8B5CF6', '#10A37F', '#FBBF24', '#EA4335'],
+    nodeShorts: ['TKT', 'RAG', 'AI', '%', 'SND'],
     tools: ['LangChain', 'Pinecone', 'GPT-4o', 'Zendesk', 'n8n'],
     timeSaved: '70% tickets deflected',
     steps: ['Support ticket arrives via email or Zendesk', 'RAG pipeline searches knowledge base and docs', 'GPT-4o drafts context-aware response', 'Confidence scoring: high or low?', 'High: auto-send / Low: route to human queue with draft', 'CSAT follow-up sent 24hrs after resolution'],
@@ -155,6 +179,8 @@ const workflows: Workflow[] = [
     description: 'Daily usage pull → AI scores churn risk per account → high-risk flagged → personalised outreach email drafted → CSM notified → CRM log',
     nodes: ['Daily Trigger', 'Usage Pull', 'AI Score', 'Flag Risk', 'Draft Email'],
     nodeEmojis: ['⏰', '📊', '🤖', '⚠️', '✉️'],
+    nodeBgs: ['#FF4F00', '#60A5FA', '#10A37F', '#EF4444', '#EA4335'],
+    nodeShorts: ['CRN', 'DB', 'AI', '⚠', '✉'],
     tools: ['GPT-4o', 'Python', 'HubSpot', 'Gmail', 'n8n'],
     timeSaved: '3 hrs/day CSM time',
     steps: ['Daily trigger fires at 6am', 'Pull usage metrics per account from product database', 'AI churn risk model scores each account (0–100)', 'Flag accounts scoring >70 as high risk', 'GPT-4o drafts personalised outreach email per account', 'Log risk scores and outreach status to HubSpot'],
@@ -167,6 +193,8 @@ const workflows: Workflow[] = [
     description: 'Customer message → intent classifier → RAG searches product/policy docs → GPT-4o response → sentiment check → send or escalate',
     nodes: ['Message', 'Intent', 'RAG Search', 'GPT-4o', 'Send/Escalate'],
     nodeEmojis: ['💬', '🎯', '🔍', '🤖', '📤'],
+    nodeBgs: ['#60A5FA', '#FBBF24', '#8B5CF6', '#10A37F', '#22C55E'],
+    nodeShorts: ['MSG', 'INT', 'RAG', 'AI', 'SND'],
     tools: ['GPT-4o', 'LangChain', 'Pinecone', 'Shopify API', 'n8n'],
     timeSaved: '70% queries deflected',
     steps: ['Customer message received via chat widget', 'Intent classifier identifies query type', 'RAG pipeline searches product catalog and policy docs', 'GPT-4o generates accurate, contextual response', 'Sentiment analysis on drafted response', 'Positive: send / Negative: escalate to human agent'],
@@ -178,6 +206,8 @@ const workflows: Workflow[] = [
     description: 'Hourly stock check → AI forecasts demand based on sales velocity → low stock predicted → auto-raise PO draft → notify procurement',
     nodes: ['Hourly Check', 'Stock Pull', 'AI Forecast', 'Draft PO', 'Notify'],
     nodeEmojis: ['⏰', '📦', '🤖', '📋', '🔔'],
+    nodeBgs: ['#FF4F00', '#96BF48', '#10A37F', '#FBBF24', '#EA4335'],
+    nodeShorts: ['CRN', 'SHP', 'AI', 'PO', '🔔'],
     tools: ['Shopify API', 'GPT-4o', 'Google Sheets', 'Gmail', 'n8n'],
     timeSaved: '5 hrs/week',
     steps: ['Hourly trigger fires', 'Pull current stock levels from Shopify', 'AI demand forecasting model runs on sales velocity', 'Low stock predicted in next 7 days? Draft PO.', 'Auto-draft purchase order in Google Sheets', 'Notify procurement team via email'],
@@ -189,6 +219,8 @@ const workflows: Workflow[] = [
     description: 'Cart abandoned → wait 1hr → AI generates personalised recovery email → send → no purchase in 24hr → SMS with discount → analytics log',
     nodes: ['Cart Abandoned', 'Wait 1hr', 'AI Email', 'Send', 'SMS Fallback'],
     nodeEmojis: ['🛒', '⏰', '🤖', '📧', '📱'],
+    nodeBgs: ['#96BF48', '#FF4F00', '#10A37F', '#EA4335', '#F22F46'],
+    nodeShorts: ['🛒', '1HR', 'AI', '✉', 'SMS'],
     tools: ['Shopify API', 'GPT-4o', 'Klaviyo', 'Twilio', 'n8n'],
     timeSaved: '15% revenue recovery',
     steps: ['Cart abandonment event fires from Shopify', 'Wait 1 hour (grace period)', 'GPT-4o generates personalised recovery email with product details', 'Send email via Klaviyo', 'Check for purchase after 24 hours', 'No purchase: send SMS via Twilio with discount code'],
@@ -201,6 +233,8 @@ const workflows: Workflow[] = [
     description: 'Contract uploaded → GPT-4o Vision extracts clauses → AI risk classifier → flags non-standard terms → redline summary → lawyer review',
     nodes: ['Upload', 'GPT-4o Extract', 'Risk Classify', 'Flag Terms', 'Redline'],
     nodeEmojis: ['📄', '👁️', '🤖', '⚠️', '📝'],
+    nodeBgs: ['#6366F1', '#10A37F', '#EF4444', '#FBBF24', '#F472B6'],
+    nodeShorts: ['PDF', 'AI', '⚖', '⚠', 'RL'],
     tools: ['GPT-4o Vision', 'Python', 'LangChain', 'DocuSign', 'n8n'],
     timeSaved: '6 hrs → 25 min',
     steps: ['Contract uploaded via secure portal', 'GPT-4o Vision extracts all clauses and key terms', 'AI risk classifier scores each clause', 'Flag non-standard terms with specific risk notes', 'Generate formatted redline summary document', 'Route to lawyer for final review before client delivery'],
@@ -212,6 +246,8 @@ const workflows: Workflow[] = [
     description: 'New client enquiry → AI extracts case details → conflict check → matter opened → engagement letter drafted → signed via DocuSign',
     nodes: ['Enquiry', 'AI Extract', 'Conflict Check', 'Open Matter', 'DocuSign'],
     nodeEmojis: ['📧', '🤖', '⚖️', '📂', '✍️'],
+    nodeBgs: ['#60A5FA', '#10A37F', '#EF4444', '#2563EB', '#FFA500'],
+    nodeShorts: ['ENQ', 'AI', '⚖', 'MТR', 'DS'],
     tools: ['GPT-4o', 'n8n', 'Clio', 'DocuSign', 'Gmail'],
     timeSaved: '4 hrs/matter',
     steps: ['New client enquiry received via email or web form', 'GPT-4o extracts case type, parties, key facts', 'Automated conflict check against existing client database', 'Open new matter in Clio practice management', 'GPT-4o drafts engagement letter from template', 'Auto-send for e-signature via DocuSign'],
@@ -223,6 +259,8 @@ const workflows: Workflow[] = [
     description: 'Deposition transcript uploaded → Whisper transcribes → GPT-4o extracts key admissions + contradictions → structured summary → attorney review',
     nodes: ['Audio/PDF', 'Whisper', 'GPT-4o', 'Extract', 'Summary'],
     nodeEmojis: ['📄', '🎙️', '🤖', '🔍', '📋'],
+    nodeBgs: ['#6366F1', '#10A37F', '#10A37F', '#FBBF24', '#F472B6'],
+    nodeShorts: ['AUD', 'WSP', 'AI', 'EXT', 'SUM'],
     tools: ['OpenAI Whisper', 'GPT-4o', 'Python', 'n8n', 'Google Docs'],
     timeSaved: '3 hrs → 20 min',
     steps: ['Deposition audio or transcript uploaded', 'Whisper transcribes audio to text (if audio)', 'GPT-4o reads full transcript', 'Extract: key admissions, contradictions, important quotes', 'Generate structured deposition summary with timestamps', 'Attorney reviews and exports to Google Docs'],
@@ -235,6 +273,8 @@ const workflows: Workflow[] = [
     description: 'New enquiry → AI scores lead quality → classifies property preference → routes to specialist agent → auto-sends property matches → CRM log',
     nodes: ['Enquiry', 'AI Score', 'Classify', 'Route Agent', 'Match'],
     nodeEmojis: ['🏠', '🤖', '🏷️', '👤', '🔍'],
+    nodeBgs: ['#6366F1', '#10A37F', '#FBBF24', '#2DD4BF', '#60A5FA'],
+    nodeShorts: ['ENQ', 'AI', '⊞', '→', '🏠'],
     tools: ['GPT-4o', 'n8n', 'HubSpot', 'MLS API', 'Gmail'],
     timeSaved: '2 hrs/day',
     steps: ['New property enquiry received', 'AI lead scoring model runs (budget fit, intent signals, timeline)', 'Classify by property type, location, budget range', 'Route to specialist agent based on classification', 'Auto-pull matching properties from MLS API, send to lead', 'Log lead score and assignment to HubSpot'],
@@ -246,6 +286,8 @@ const workflows: Workflow[] = [
     description: 'Application submitted → AI verifies employment + income → credit check → reference check automated → risk score → decision → notify applicant',
     nodes: ['Application', 'Income Verify', 'Credit Check', 'References', 'Decision'],
     nodeEmojis: ['📋', '💼', '🏦', '📧', '✅'],
+    nodeBgs: ['#6366F1', '#22C55E', '#EF4444', '#60A5FA', '#22C55E'],
+    nodeShorts: ['APP', 'INC', 'CB', 'REF', '✓'],
     tools: ['GPT-4o', 'n8n', 'Stripe', 'Gmail', 'Python'],
     timeSaved: '3 days → 4 hrs',
     steps: ['Tenant application submitted online', 'AI verifies employment and income documents', 'Automated credit check via API', 'Auto-send reference check emails, parse responses', 'AI risk scoring model generates overall tenant risk score', 'Auto-generate approve/decline letter, notify applicant'],
@@ -257,6 +299,8 @@ const workflows: Workflow[] = [
     description: 'Tenant submits request → AI classifies urgency + trade → routes to contractor → auto-schedules → tracks completion → tenant SMS update',
     nodes: ['Request', 'AI Classify', 'Route', 'Schedule', 'Update'],
     nodeEmojis: ['🔧', '🤖', '👷', '📅', '📱'],
+    nodeBgs: ['#FB923C', '#10A37F', '#FBBF24', '#4285F4', '#F22F46'],
+    nodeShorts: ['REQ', 'AI', '→', 'CAL', 'SMS'],
     tools: ['GPT-4o', 'n8n', 'Twilio', 'Google Calendar', 'Airtable'],
     timeSaved: '1 hr/request',
     steps: ['Tenant submits maintenance request via app or SMS', 'AI classifies urgency (emergency/urgent/routine) and trade', 'Route to correct contractor from approved list', 'Auto-schedule via Google Calendar, confirm with contractor', 'Track job completion status in Airtable', 'SMS tenant with confirmation and completion update'],
@@ -269,6 +313,8 @@ const workflows: Workflow[] = [
     description: 'Delay detected → AI classifies exception → notifies customer with ETA → raises carrier claim if needed → updates order management → logs',
     nodes: ['Delay Alert', 'AI Classify', 'Notify Customer', 'Carrier Claim?', 'Update OMS'],
     nodeEmojis: ['🚨', '🤖', '📧', '📋', '🔄'],
+    nodeBgs: ['#EF4444', '#10A37F', '#60A5FA', '#FBBF24', '#FB923C'],
+    nodeShorts: ['⚠', 'AI', '✉', 'CLM', 'OMS'],
     tools: ['GPT-4o', 'n8n', 'Twilio', 'Carrier APIs', 'Shopify'],
     timeSaved: '4 hrs/day ops team',
     steps: ['Shipment delay or exception detected via carrier API', 'AI classifies exception type (weather, lost, customs, damage)', 'Auto-draft contextual customer notification with new ETA', 'Raise carrier claim automatically if threshold exceeded', 'Update order status in OMS / Shopify', 'Log exception type, resolution, and customer comms'],
@@ -280,6 +326,8 @@ const workflows: Workflow[] = [
     description: 'Quote request → AI extracts shipment details → query 5 carrier APIs in parallel → AI ranks by cost/speed/reliability → formatted quote in 2 min',
     nodes: ['Quote Request', 'AI Extract', 'Carrier APIs', 'AI Rank', 'Send'],
     nodeEmojis: ['📋', '🤖', '🚢', '⚖️', '📤'],
+    nodeBgs: ['#6366F1', '#10A37F', '#FB923C', '#FBBF24', '#EA4335'],
+    nodeShorts: ['REQ', 'AI', '🚢', '⚖', 'SND'],
     tools: ['GPT-4o', 'n8n', 'Carrier APIs', 'Gmail', 'Google Sheets'],
     timeSaved: '45 min → 2 min',
     steps: ['Quote request received via email or form', 'GPT-4o extracts: origin, destination, weight, dimensions, timeline', 'Query 5 carrier APIs simultaneously (FedEx, UPS, DHL, etc.)', 'AI ranks options by weighted score: cost, speed, reliability', 'Generate formatted quote comparison document', 'Auto-send to customer within 2 minutes of request'],
@@ -291,6 +339,8 @@ const workflows: Workflow[] = [
     description: 'Daily: pull orders → AI optimises delivery routes → assign drivers → push to driver app → real-time monitoring → ETA updates to customers',
     nodes: ['Daily Orders', 'AI Optimise', 'Assign', 'Push Routes', 'Monitor'],
     nodeEmojis: ['📦', '🤖', '👤', '📱', '📡'],
+    nodeBgs: ['#FB923C', '#10A37F', '#FBBF24', '#60A5FA', '#F22F46'],
+    nodeShorts: ['ORD', 'AI', '→', 'APP', '📡'],
     tools: ['GPT-4o', 'Python', 'Google Maps API', 'n8n', 'Twilio'],
     timeSaved: '25% fuel cost reduction',
     steps: ['Pull all orders for the day at 6am', 'AI route optimisation algorithm runs', 'Assign optimised routes to available drivers', 'Push route to driver mobile app', 'Real-time monitoring: flag exceptions (delays, failed deliveries)', 'Auto-send ETA updates to customers via SMS'],
@@ -303,6 +353,8 @@ const workflows: Workflow[] = [
     description: 'GA4 + ad platform data → GPT-4o drafts weekly client reports + pushes daily synthesized Slack briefs to Account Managers covering meetings, tasks, and priority emails',
     nodes: ['GA4', 'Ad Platforms', 'n8n Merge', 'GPT-4o', 'Client Report', 'Slack Brief'],
     nodeEmojis: ['📊', '📱', '🔗', '🤖', '📄', '💬'],
+    nodeBgs: ['#E37400', '#1877F2', '#F65B2B', '#10A37F', '#FBBC04', '#4A154B'],
+    nodeShorts: ['GA4', 'ADS', '⚡', 'AI', 'SLD', '#'],
     tools: ['Google Analytics 4', 'GPT-4o', 'n8n', 'Google Slides', 'Slack', 'Gmail'],
     timeSaved: '8 hrs/week',
     steps: [
@@ -321,6 +373,8 @@ const workflows: Workflow[] = [
     description: 'Instagram DMs + WhatsApp + Email → AI dispatcher instantly answers FAQs, qualifies prospects, and autonomously books meetings into your sales calendar',
     nodes: ['Instagram DM', 'WhatsApp', 'Email', 'AI Dispatcher', 'Qualify', 'Book Meeting'],
     nodeEmojis: ['📸', '💬', '📧', '🤖', '✅', '📅'],
+    nodeBgs: ['#833AB4', '#25D366', '#4285F4', '#10A37F', '#FBBF24', '#006BFF'],
+    nodeShorts: ['IG', 'WA', '✉', 'AI', '✓', 'CAL'],
     tools: ['Instagram API', 'WhatsApp Business API', 'GPT-4o', 'n8n', 'Calendly', 'HubSpot'],
     timeSaved: 'Zero lead leakage',
     steps: [
@@ -339,6 +393,8 @@ const workflows: Workflow[] = [
     description: 'Customized conversational voice bots handle complex inbound calls with zero latency — resell to local SMB clients as a profitable recurring SaaS revenue stream',
     nodes: ['Inbound Call', 'Voice AI', 'Intent Detect', 'Response', 'CRM Log'],
     nodeEmojis: ['📞', '🎙️', '🎯', '💬', '💼'],
+    nodeBgs: ['#F22F46', '#6B21A8', '#10A37F', '#22C55E', '#FF7A59'],
+    nodeShorts: ['📞', 'EL', 'AI', '💬', 'CRM'],
     tools: ['Twilio', 'ElevenLabs', 'GPT-4o', 'n8n', 'HubSpot', 'Google Calendar'],
     timeSaved: '24/7 coverage',
     steps: [
@@ -357,6 +413,8 @@ const workflows: Workflow[] = [
     description: 'AI agents parse messy inbound requests, enforce strict naming conventions, and ensure pristine data hygiene before information ever enters your Salesforce or HubSpot instance',
     nodes: ['Inbound Request', 'AI Parser', 'Validate', 'Enrich', 'CRM Push'],
     nodeEmojis: ['📨', '🤖', '✅', '💡', '💼'],
+    nodeBgs: ['#6366F1', '#10A37F', '#FBBF24', '#1E40AF', '#FF7A59'],
+    nodeShorts: ['IN', 'AI', '✓', 'CB', 'CRM'],
     tools: ['GPT-4o', 'n8n', 'Clearbit', 'Salesforce', 'HubSpot', 'Slack'],
     timeSaved: '5 hrs/day ops',
     steps: [
@@ -375,6 +433,111 @@ const industries = ['All', 'Ad & Marketing', 'FinTech', 'HealthTech', 'SaaS & B2
 
 // ── Node Diagram ──────────────────────────────────────────────────────────────
 
+function ColoredWorkflowDiagram({ nodes, nodeBgs, nodeShorts }: {
+  nodes: string[]
+  nodeBgs: string[]
+  nodeShorts: string[]
+}) {
+  const size = 36
+  const gap = 12
+  const shown = Math.min(nodes.length, 6)
+  const vbW = shown * size + (shown - 1) * gap + 16
+  const vbH = size + 28
+
+  return (
+    <svg
+      width="100%"
+      viewBox={`0 0 ${vbW} ${vbH}`}
+      style={{ display: 'block', borderRadius: 10, background: '#0D0D0D', border: '1px solid rgba(255,255,255,0.06)' }}
+    >
+      <defs>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0,0 0,6 6,3" fill="rgba(255,255,255,0.18)" />
+        </marker>
+      </defs>
+
+      {Array.from({ length: shown }).map((_, i) => {
+        const x = 8 + i * (size + gap)
+        const cy = 8 + size / 2
+        const bg = nodeBgs[i] ?? '#444'
+        const short = nodeShorts[i] ?? '?'
+        const label = (nodes[i]?.length ?? 0) > 8 ? nodes[i].substring(0, 7) + '…' : (nodes[i] ?? '')
+
+        // detect if short is an emoji (non-ASCII) to use emoji font
+        const isEmoji = /\p{Emoji}/u.test(short) && short.length <= 2
+        const fontFamily = isEmoji
+          ? 'Apple Color Emoji, Segoe UI Emoji, sans-serif'
+          : 'Inter, Helvetica Neue, Arial, sans-serif'
+        const fontSize = isEmoji ? 14 : (short.length >= 3 ? 8.5 : 11)
+
+        return (
+          <g key={i}>
+            {/* Arrow connector */}
+            {i < shown - 1 && (
+              <line
+                x1={x + size + 1}
+                y1={cy}
+                x2={x + size + gap - 2}
+                y2={cy}
+                stroke="rgba(255,255,255,0.18)"
+                strokeWidth="1.2"
+                markerEnd="url(#arr)"
+              />
+            )}
+
+            {/* Colored node box */}
+            <rect
+              x={x} y={8}
+              width={size} height={size}
+              rx={7}
+              fill={bg}
+            />
+
+            {/* Short text */}
+            <text
+              x={x + size / 2}
+              y={cy + (isEmoji ? 5 : fontSize * 0.38)}
+              textAnchor="middle"
+              fontSize={fontSize}
+              fontWeight={isEmoji ? '400' : '700'}
+              fontFamily={fontFamily}
+              fill="white"
+            >
+              {short}
+            </text>
+
+            {/* Label below */}
+            <text
+              x={x + size / 2}
+              y={8 + size + 14}
+              textAnchor="middle"
+              fontSize="7"
+              fill="rgba(255,255,255,0.38)"
+              fontFamily="Inter, sans-serif"
+            >
+              {label}
+            </text>
+          </g>
+        )
+      })}
+
+      {nodes.length > 6 && (
+        <text
+          x={vbW - 4}
+          y={8 + size / 2 + 4}
+          textAnchor="end"
+          fontSize="8"
+          fill="rgba(255,255,255,0.3)"
+          fontFamily="Inter, sans-serif"
+        >
+          +{nodes.length - 6}
+        </text>
+      )}
+    </svg>
+  )
+}
+
+// Keep old WorkflowDiagram for modal use (large variant with emojis)
 function WorkflowDiagram({ nodes, nodeEmojis, large = false }: { nodes: string[]; nodeEmojis: string[]; large?: boolean }) {
   const size = large ? 48 : 40
   const gap = 14
@@ -485,7 +648,7 @@ export default function WorkflowLibraryPage() {
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.18 }}
           className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-white/55"
         >
-          Browse 24 real-world AI workflow automations across 8 industries. See the stack, steal the flow, or have us build it for you.
+          Browse 28 real-world AI workflow automations across 8 industries. See the stack, steal the flow, or have us build it for you.
         </motion.p>
 
         {/* CTAs */}
@@ -512,7 +675,7 @@ export default function WorkflowLibraryPage() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.36 }}
           className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-white/30"
         >
-          {['24 workflows documented', '8 industries covered', 'n8n · GPT-4o · LangChain · Make'].map((s, i) => (
+          {['28 workflows documented', '8 industries covered', 'n8n · GPT-4o · LangChain · Make'].map((s, i) => (
             <span key={i} className="flex items-center gap-2">
               {i > 0 && <span className="text-[#FF4F00]/40">·</span>}
               {s}
@@ -605,7 +768,7 @@ export default function WorkflowLibraryPage() {
 
                   {/* Diagram */}
                   <div className="mt-4">
-                    <WorkflowDiagram nodes={wf.nodes} nodeEmojis={wf.nodeEmojis} />
+                    <ColoredWorkflowDiagram nodes={wf.nodes} nodeBgs={wf.nodeBgs} nodeShorts={wf.nodeShorts} />
                   </div>
 
                   {/* Tools */}
@@ -811,7 +974,7 @@ export default function WorkflowLibraryPage() {
             Start my AI build <ArrowRight size={16} />
           </a>
           <p className="relative mt-6 text-xs text-white/20">
-            All 24 workflows have been built and deployed by Kovil AI engineers.
+            All 28 workflows have been built and deployed by Kovil AI engineers.
           </p>
         </div>
       </section>
