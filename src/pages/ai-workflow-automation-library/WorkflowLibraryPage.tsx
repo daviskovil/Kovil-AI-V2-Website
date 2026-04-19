@@ -480,9 +480,14 @@ export default function WorkflowLibraryPage() {
         <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filtered.map(wf => {
-              // Card #1 links to a dedicated deep-dive page; rest open the modal
-              const hasDedicatedPage = wf.id === 1
-              const slug = 'campaign-performance-reporting'
+              // Cards with dedicated deep-dive pages link directly; rest open the modal
+              const dedicatedPageSlugs: Record<number, string> = {
+                1: 'campaign-performance-reporting',
+                2: 'ai-creative-brief-generator',
+                3: 'new-client-onboarding-automation',
+              }
+              const hasDedicatedPage = wf.id in dedicatedPageSlugs
+              const slug = dedicatedPageSlugs[wf.id] ?? ''
 
               const cardContent = (
                 <>
