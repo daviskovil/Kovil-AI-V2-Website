@@ -296,6 +296,79 @@ const workflows: Workflow[] = [
     steps: ['Pull all orders for the day at 6am', 'AI route optimisation algorithm runs', 'Assign optimised routes to available drivers', 'Push route to driver mobile app', 'Real-time monitoring: flag exceptions (delays, failed deliveries)', 'Auto-send ETA updates to customers via SMS'],
     buildTime: '4–6 week sprint',
   },
+  // AD & MARKETING — extended
+  {
+    id: 25, industry: 'Ad & Marketing', industryColor: '#A78BFA',
+    title: 'Automated AM Briefs & Client Reporting',
+    description: 'GA4 + ad platform data → GPT-4o drafts weekly client reports + pushes daily synthesized Slack briefs to Account Managers covering meetings, tasks, and priority emails',
+    nodes: ['GA4', 'Ad Platforms', 'n8n Merge', 'GPT-4o', 'Client Report', 'Slack Brief'],
+    nodeEmojis: ['📊', '📱', '🔗', '🤖', '📄', '💬'],
+    tools: ['Google Analytics 4', 'GPT-4o', 'n8n', 'Google Slides', 'Slack', 'Gmail'],
+    timeSaved: '8 hrs/week',
+    steps: [
+      'Daily: pull GA4 sessions, conversions, revenue by channel',
+      'Pull ad platform data (Meta, Google, LinkedIn) in parallel',
+      'n8n merges and normalises all data sources',
+      'GPT-4o drafts client report narrative + AM daily brief',
+      'Google Slides API builds weekly client report deck',
+      'Gmail delivers client report; Slack posts AM brief',
+    ],
+    buildTime: '2–3 week sprint',
+  },
+  {
+    id: 26, industry: 'Ad & Marketing', industryColor: '#A78BFA',
+    title: 'Multi-Channel Inbound Dispatching',
+    description: 'Instagram DMs + WhatsApp + Email → AI dispatcher instantly answers FAQs, qualifies prospects, and autonomously books meetings into your sales calendar',
+    nodes: ['Instagram DM', 'WhatsApp', 'Email', 'AI Dispatcher', 'Qualify', 'Book Meeting'],
+    nodeEmojis: ['📸', '💬', '📧', '🤖', '✅', '📅'],
+    tools: ['Instagram API', 'WhatsApp Business API', 'GPT-4o', 'n8n', 'Calendly', 'HubSpot'],
+    timeSaved: 'Zero lead leakage',
+    steps: [
+      'Messages arrive via Instagram DM, WhatsApp Business, and email',
+      'n8n unifies all channels into single inbound queue',
+      'AI dispatcher classifies: FAQ, lead, existing client, or spam',
+      'FAQ: GPT-4o replies instantly in the same channel',
+      'Lead: AI qualifies with 3 follow-up questions',
+      'Qualified lead: Calendly link sent + HubSpot contact created',
+    ],
+    buildTime: '3–4 week sprint',
+  },
+  {
+    id: 27, industry: 'Ad & Marketing', industryColor: '#A78BFA',
+    title: 'White-Label Voice AI Agents',
+    description: 'Customized conversational voice bots handle complex inbound calls with zero latency — resell to local SMB clients as a profitable recurring SaaS revenue stream',
+    nodes: ['Inbound Call', 'Voice AI', 'Intent Detect', 'Response', 'CRM Log'],
+    nodeEmojis: ['📞', '🎙️', '🎯', '💬', '💼'],
+    tools: ['Twilio', 'ElevenLabs', 'GPT-4o', 'n8n', 'HubSpot', 'Google Calendar'],
+    timeSaved: '24/7 coverage',
+    steps: [
+      'Inbound call received via Twilio phone number',
+      'ElevenLabs Voice AI answers with natural, branded voice',
+      'GPT-4o detects intent: booking, FAQ, complaint, or transfer',
+      'AI handles conversation: answers questions, qualifies caller',
+      'Qualified: books appointment in Google Calendar automatically',
+      'Call summary + transcript logged to HubSpot CRM',
+    ],
+    buildTime: '4–6 week sprint',
+  },
+  {
+    id: 28, industry: 'Ad & Marketing', industryColor: '#A78BFA',
+    title: 'CRM Ops Layer — Intelligent Data Hygiene',
+    description: 'AI agents parse messy inbound requests, enforce strict naming conventions, and ensure pristine data hygiene before information ever enters your Salesforce or HubSpot instance',
+    nodes: ['Inbound Request', 'AI Parser', 'Validate', 'Enrich', 'CRM Push'],
+    nodeEmojis: ['📨', '🤖', '✅', '💡', '💼'],
+    tools: ['GPT-4o', 'n8n', 'Clearbit', 'Salesforce', 'HubSpot', 'Slack'],
+    timeSaved: '5 hrs/day ops',
+    steps: [
+      'Inbound request arrives: form, email, CSV upload, or API',
+      'GPT-4o parses and standardises all fields',
+      'Validation engine checks naming conventions and required fields',
+      'Clearbit enriches contact with firmographic data',
+      'Clean, enriched record pushed to Salesforce or HubSpot',
+      'Slack alert for any records that failed validation',
+    ],
+    buildTime: '3–4 week sprint',
+  },
 ]
 
 const industries = ['All', 'Ad & Marketing', 'FinTech', 'HealthTech', 'SaaS & B2B', 'E-Commerce', 'LegalTech', 'PropTech', 'Logistics']
@@ -485,6 +558,10 @@ export default function WorkflowLibraryPage() {
                 1: 'campaign-performance-reporting',
                 2: 'ai-creative-brief-generator',
                 3: 'new-client-onboarding-automation',
+                25: 'automated-am-briefs-client-reporting',
+                26: 'multi-channel-inbound-dispatching',
+                27: 'white-label-voice-ai-agents',
+                28: 'crm-ops-layer',
               }
               const hasDedicatedPage = wf.id in dedicatedPageSlugs
               const slug = dedicatedPageSlugs[wf.id] ?? ''
@@ -522,7 +599,7 @@ export default function WorkflowLibraryPage() {
                   </h3>
 
                   {/* Description */}
-                  <p className="mt-1.5 text-[12px] leading-relaxed text-white/40">
+                  <p className="mt-1.5 text-[12px] leading-relaxed text-white/55">
                     {wf.description}
                   </p>
 
@@ -534,12 +611,12 @@ export default function WorkflowLibraryPage() {
                   {/* Tools */}
                   <div className="mt-3 flex flex-wrap gap-1.5">
                     {wf.tools.slice(0, 4).map(t => (
-                      <span key={t} className="rounded px-2 py-0.5 text-[10px] text-white/40 border border-white/[0.07] bg-white/[0.03]">
+                      <span key={t} className="rounded px-2 py-0.5 text-[10px] text-white/55 border border-white/[0.10] bg-white/[0.04]">
                         {t}
                       </span>
                     ))}
                     {wf.tools.length > 4 && (
-                      <span className="rounded px-2 py-0.5 text-[10px] text-white/30 border border-white/[0.05]">
+                      <span className="rounded px-2 py-0.5 text-[10px] text-white/45 border border-white/[0.08]">
                         +{wf.tools.length - 4}
                       </span>
                     )}
@@ -554,7 +631,7 @@ export default function WorkflowLibraryPage() {
                           Full workflow deep-dive <ExternalLink size={11} />
                         </span>
                       ) : (
-                        <span className="flex items-center gap-1">
+                        <span className="flex items-center gap-1 text-white/55">
                           View workflow <ChevronRight size={12} strokeWidth={2.5} />
                         </span>
                       )}

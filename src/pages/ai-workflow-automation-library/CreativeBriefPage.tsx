@@ -375,12 +375,11 @@ export default function CreativeBriefPage() {
                 className="group relative grid gap-6 rounded-2xl border border-white/[0.07] bg-[#111111] p-6 transition-colors hover:border-white/[0.12] sm:grid-cols-[auto_1fr]">
                 {/* Left: step number + tool */}
                 <div className="flex sm:flex-col items-center sm:items-start gap-4 sm:gap-3 sm:w-36">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border font-display text-sm font-bold"
-                    style={{ borderColor: `${step.toolColor}40`, background: `${step.toolColor}14`, color: step.toolColor }}>
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl font-display text-sm font-bold text-white"
+                    style={{ background: step.toolColor }}>
                     {step.num}
                   </div>
-                  <span className="text-[11px] font-semibold font-display tracking-wide"
-                    style={{ color: step.toolColor }}>
+                  <span className="text-[11px] font-semibold font-display tracking-wide text-white/60">
                     {step.tool}
                   </span>
                 </div>
