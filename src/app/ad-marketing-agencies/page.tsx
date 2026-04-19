@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'AI Engineers for NY Ad & Marketing Agencies — Matched in 48 Hours | Kovil AI',
   description: 'Kovil AI embeds vetted AI engineers into New York marketing agencies in 48 hours. AI orchestration, workflow automation, campaign intelligence, and AI integration — 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/ad-marketing-agencies' },
+  robots: { index: true, follow: true },
   keywords: [
     'AI engineers for marketing agencies',
     'AI for advertising agencies New York',
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
+  '@type': ['ProfessionalService', 'Organization'],
   name: 'Kovil AI — AI Engineers for Marketing Agencies',
   description: 'Kovil AI embeds vetted Tier-1 AI engineers into New York advertising and marketing agencies within 48 hours. Specialists in AI orchestration, workflow automation, digital marketing AI, and AI integration.',
   url: 'https://kovil.ai/ad-marketing-agencies',
@@ -77,6 +78,7 @@ const serviceSchema = {
   serviceType: 'AI Engineering for Marketing Agencies',
   areaServed: { '@type': 'City', name: 'New York City' },
   url: 'https://kovil.ai/ad-marketing-agencies',
+  dateModified: '2025-04-19',
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'AI Services for Marketing Agencies',
@@ -121,6 +123,59 @@ const faqSchema = {
   ],
 }
 
+const workflowListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'AI Workflow Automations for Ad & Marketing Agencies',
+  description: 'Six production-ready AI workflow automations built by Kovil AI specifically for advertising and marketing agencies.',
+  url: 'https://kovil.ai/ad-marketing-agencies',
+  numberOfItems: 6,
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Campaign Performance Reporting Automation',
+      description: 'Pull data from Meta, Google, and LinkedIn Ads → GPT-4o analysis → auto-build Google Slides deck → email client + Slack team brief. Saves 12 hours per week.',
+      url: 'https://kovil.ai/ai-workflow-automation-library/campaign-performance-reporting',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'White-Label Voice AI Agents',
+      description: 'Customized conversational voice bots built on Twilio, ElevenLabs, and GPT-4o handle complex inbound calls 24/7. Resell to SMB clients as a recurring SaaS revenue stream.',
+      url: 'https://kovil.ai/ai-workflow-automation-library/white-label-voice-ai-agents',
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'New Client Onboarding Automation',
+      description: 'Deal Won in HubSpot triggers parallel contract, invoice, and onboarding flows. Auto-creates Notion workspace and Slack channel. Reduces onboarding from 3 days to 2 hours.',
+      url: 'https://kovil.ai/ai-workflow-automation-library/new-client-onboarding-automation',
+    },
+    {
+      '@type': 'ListItem',
+      position: 4,
+      name: 'Automated AM Briefs & Client Reporting',
+      description: 'GA4 and ad platform data feeds GPT-4o to draft weekly client reports and push personalised daily Slack briefs to each Account Manager. Saves 8 hours per week.',
+      url: 'https://kovil.ai/ai-workflow-automation-library/automated-am-briefs-client-reporting',
+    },
+    {
+      '@type': 'ListItem',
+      position: 5,
+      name: 'Multi-Channel Inbound Dispatching',
+      description: 'Instagram DMs, WhatsApp, and email unified into one AI dispatcher that answers FAQs, qualifies prospects, and books meetings automatically. Zero lead leakage.',
+      url: 'https://kovil.ai/ai-workflow-automation-library/multi-channel-inbound-dispatching',
+    },
+    {
+      '@type': 'ListItem',
+      position: 6,
+      name: 'CRM Ops Layer — Intelligent Data Hygiene',
+      description: 'AI agents parse messy inbound requests, enforce naming conventions, and ensure clean data before it enters Salesforce or HubSpot. Saves 5 hours per day of ops work.',
+      url: 'https://kovil.ai/ai-workflow-automation-library/crm-ops-layer',
+    },
+  ],
+}
+
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -136,6 +191,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(workflowListSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="pt-20"><NYAgencyPage /></div>
     </>

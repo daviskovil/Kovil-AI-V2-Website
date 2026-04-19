@@ -339,9 +339,17 @@ export default function NYAgencyPage() {
             </Button>
           </motion.div>
 
-          <motion.p {...fade(0.28)} className="text-sm text-muted-foreground mb-16">
+          <motion.p {...fade(0.28)} className="text-sm text-muted-foreground mb-8">
             <Star className="inline h-3.5 w-3.5 text-accent mr-1 mb-0.5" />
             Trusted by 50+ enterprise clients across the US, UK &amp; Australia
+          </motion.p>
+
+          {/* Entity description — readable by crawlers + AI models */}
+          <motion.p
+            {...fade(0.32)}
+            className="text-xs text-muted-foreground/60 max-w-2xl mx-auto mb-16 leading-relaxed"
+          >
+            Kovil AI is a New York-based AI engineering firm that embeds pre-vetted AI engineers into advertising and marketing agencies. Specialising in AI orchestration, agentic workflow automation, and AI integration into existing marketing stacks, Kovil AI has completed 150+ production AI deployments across agencies in the US, UK, and Australia — all without the 3-month hiring cycle or freelance accountability gaps.
           </motion.p>
 
           {/* Stat bar */}
@@ -629,7 +637,47 @@ export default function NYAgencyPage() {
         </div>
       </section>
 
-      {/* ── 8. FREE TOOLS CALLOUT ──────────────────────────────────────────── */}
+      {/* ── 8. FAQ SECTION ─────────────────────────────────────────────────── */}
+      <section className="py-20 px-6">
+        <div className="max-w-3xl mx-auto">
+          <motion.div {...fade(0)} className="text-center mb-12">
+            <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">FAQ</p>
+            <h2 className="font-display font-bold text-3xl md:text-4xl">Common Questions</h2>
+          </motion.div>
+
+          <div className="divide-y divide-border">
+            {[
+              {
+                q: 'How quickly can Kovil AI embed an AI engineer into my marketing agency?',
+                a: 'Most agencies are matched with a vetted AI engineer within 48 hours of submitting a brief. The engineer starts on a milestone plan within 3–5 days, and every engagement includes a 2-week risk-free trial — you only pay if you hire.',
+              },
+              {
+                q: 'What AI services does Kovil AI build for marketing agencies?',
+                a: 'Kovil AI builds AI orchestration systems, AI workflow automation, digital marketing AI (campaign intelligence, performance reporting, personalization), and AI integrations into existing tools like HubSpot, Salesforce, Meta Ads, and Google Analytics.',
+              },
+              {
+                q: 'How is Kovil AI different from freelancers or offshore agencies?',
+                a: 'Kovil AI is an embedded engineering partner — not a freelance marketplace. Every engineer passes a 5-stage vetting process. Every engagement has an Engagement Manager who audits milestone outputs before they reach you. Sprint-based delivery with clear outcomes, not open-ended hours.',
+              },
+              {
+                q: 'What is the risk-free trial?',
+                a: 'You work with your matched AI engineer for two weeks at no cost. If the fit is not right — technically or culturally — you owe nothing. We will rematch you with a different engineer at no additional cost.',
+              },
+              {
+                q: 'Can you build AI workflow automation for a marketing agency?',
+                a: 'Yes. Kovil AI engineers automate brief intake, creative approvals, reporting pipelines, and client updates using AI agents built with frameworks like n8n, CrewAI, LangGraph, and custom LLM pipelines. These run reliably in production — not just as demos.',
+              },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.08)} className="py-6">
+                <h3 className="font-display font-semibold text-base md:text-lg mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 10. FREE TOOLS CALLOUT ─────────────────────────────────────────── */}
       <section className="bg-muted/20 border-y border-border py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <motion.div {...fade(0)} className="text-center mb-10">
@@ -679,7 +727,7 @@ export default function NYAgencyPage() {
         </div>
       </section>
 
-      {/* ── 9. FINAL CTA ───────────────────────────────────────────────────── */}
+      {/* ── 11. FINAL CTA ──────────────────────────────────────────────────── */}
       <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
