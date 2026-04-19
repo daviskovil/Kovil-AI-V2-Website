@@ -108,6 +108,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // ── Old site talent pool page → /hire ────────────────────────────────
+      {
+        source: '/our-talent-pool',
+        destination: '/hire',
+        permanent: true,
+      },
+      {
+        source: '/our-talent-pool/',
+        destination: '/hire',
+        permanent: true,
+      },
+
       // ── /engage specialist pages → /hire (canonical move) ────────────────
       {
         source: '/engage/computer-vision-engineers',
