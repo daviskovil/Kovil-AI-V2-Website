@@ -4,7 +4,7 @@ import WorkflowLibraryPage from '@/src/pages/ai-workflow-automation-library/Work
 export const metadata: Metadata = {
   title: 'AI Workflow Automation Library — Real Builds by Kovil AI',
   description:
-    'Browse real AI workflow automations built and deployed by Kovil AI engineers across industries including marketing, fintech, healthtech, SaaS, e-commerce, legal, proptech, and logistics.',
+    'Browse real AI workflow automations that Kovil AI engineers can build across industries including marketing, fintech, healthtech, SaaS, e-commerce, legal, proptech, and logistics.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library' },
   keywords: [
     'AI workflow automation',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'AI Workflow Automation Library — Real Builds by Kovil AI',
     description:
-      'Browse real AI workflow automations built and deployed by Kovil AI engineers across industries.',
+      'Browse real AI workflow automations that Kovil AI engineers can build across industries.',
     url: 'https://kovil.ai/ai-workflow-automation-library',
     siteName: 'Kovil AI',
     images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'AI Workflow Automation Library — Kovil AI' }],
@@ -42,7 +42,7 @@ const webPageSchema = {
   '@type': 'WebPage',
   name: 'AI Workflow Automation Library',
   description:
-    'A growing library of real-world AI workflow automations built and deployed by Kovil AI engineers across multiple industries.',
+    'A growing library of real-world AI workflow automations that Kovil AI engineers can build across multiple industries.',
   url: 'https://kovil.ai/ai-workflow-automation-library',
   publisher: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },
 }
@@ -113,7 +113,7 @@ const faqSchema = {
       name: 'Can I see these automations before hiring Kovil AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes — this library documents real workflow automations that Kovil AI has built and deployed for clients across multiple industries. Each workflow shows the node diagram, tech stack, step-by-step breakdown, and time saved.',
+        text: 'Yes — this library documents real AI workflow automations that Kovil AI engineers can build for your business across multiple industries. Each workflow shows the node diagram, tech stack, step-by-step breakdown, and time saved.',
       },
     },
   ],

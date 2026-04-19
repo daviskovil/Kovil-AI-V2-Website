@@ -1385,7 +1385,7 @@ export default function WorkflowLibraryPage() {
             Start my AI build <ArrowRight size={16} />
           </a>
           <p className="relative mt-6 text-xs text-white/20">
-            All 28 workflows have been built and deployed by Kovil AI engineers.
+            All workflows in this library can be built for your business by Kovil AI engineers.
           </p>
         </div>
       </section>
