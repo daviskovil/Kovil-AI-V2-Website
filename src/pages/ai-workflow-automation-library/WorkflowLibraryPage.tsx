@@ -106,6 +106,45 @@ const workflows: Workflow[] = [
     steps: ['New deal enters pipeline', 'Validate against policy rules (automated)', 'GPT-4o extracts key deal terms from documents', 'Auto-populate standardised deal sheet in Google Sheets', 'Notify deal team via Slack', 'Auto-schedule review call via Calendly'],
     buildTime: '2 week sprint',
   },
+  {
+    id: 29, industry: 'FinTech', industryColor: '#34D399',
+    title: 'KYC/AML Identity Verification',
+    description: 'New customer submits docs → GPT-4o Vision extracts ID data → AML screening API → risk score → approve/flag/escalate → CRM log',
+    nodes: ['ID Upload', 'AI Extract', 'AML Check', 'Risk Score', 'Decision'],
+    nodeEmojis: ['📄', '👁️', '🔍', '📊', '✅'],
+    nodeBgs: ['#6366F1', '#10A37F', '#1E40AF', '#FBBF24', '#22C55E'],
+    nodeShorts: ['ID', 'AI', 'AML', '%', '✓'],
+    tools: ['GPT-4o Vision', 'n8n', 'Jumio API', 'HubSpot', 'Gmail'],
+    timeSaved: '2 hrs/application',
+    steps: ['Customer uploads government ID and proof of address', 'GPT-4o Vision extracts name, DOB, address, ID number', 'AML screening API checks against global watchlists', 'AI risk scoring model generates KYC risk score 1–100', 'Score <30: auto-approve; 30–70: manual review; >70: escalate', 'Decision logged to HubSpot with full audit trail'],
+    buildTime: '3–4 week sprint',
+  },
+  {
+    id: 30, industry: 'FinTech', industryColor: '#34D399',
+    title: 'Invoice Reconciliation AI',
+    description: 'Pull invoices from accounting → match against bank transactions → AI flags discrepancies → auto-reconcile matched pairs → CFO summary report',
+    nodes: ['Pull Invoices', 'Bank Feed', 'AI Match', 'Flag Gaps', 'Reconcile'],
+    nodeEmojis: ['📋', '🏦', '🤖', '⚠️', '✅'],
+    nodeBgs: ['#6366F1', '#1E40AF', '#10A37F', '#EF4444', '#22C55E'],
+    nodeShorts: ['INV', 'BNK', 'AI', '⚠', '✓'],
+    tools: ['Xero API', 'Plaid', 'GPT-4o', 'Google Sheets', 'n8n'],
+    timeSaved: '6 hrs/month',
+    steps: ['Pull all outstanding invoices from Xero via API', 'Pull last 30 days of bank transactions via Plaid', 'AI matching engine compares invoice amounts, dates, vendors', 'Flag unmatched transactions and over/under payments', 'Auto-reconcile all matched pairs in Xero', 'Generate CFO summary report with all discrepancies'],
+    buildTime: '2–3 week sprint',
+  },
+  {
+    id: 31, industry: 'FinTech', industryColor: '#34D399',
+    title: 'Real-Time Fraud Detection',
+    description: 'Transaction fires → ML model scores fraud probability → high risk: freeze + alert customer instantly → case opened → analyst review → resolution',
+    nodes: ['Transaction', 'Fraud Score', 'High Risk?', 'Freeze Card', 'Alert'],
+    nodeEmojis: ['💳', '🤖', '⚠️', '🔒', '📱'],
+    nodeBgs: ['#635BFF', '#10A37F', '#EF4444', '#1E40AF', '#F22F46'],
+    nodeShorts: ['TXN', 'AI', '?', '🔒', 'SMS'],
+    tools: ['Stripe API', 'Python', 'n8n', 'Twilio', 'HubSpot'],
+    timeSaved: '90% faster detection',
+    steps: ['Transaction event fires from payment processor in real time', 'ML fraud scoring model runs — outputs probability 0–100', 'Score >85: trigger high-risk path immediately', 'Freeze card via card issuer API, notify customer via SMS', 'Open fraud case in HubSpot with full transaction context', 'Route to fraud analyst for investigation and resolution'],
+    buildTime: '4–6 week sprint',
+  },
   // HEALTHTECH
   {
     id: 7, industry: 'HealthTech', industryColor: '#F87171',
@@ -145,6 +184,45 @@ const workflows: Workflow[] = [
     timeSaved: '45 min/day per doctor',
     steps: ['Doctor uploads audio recording of consultation', 'Whisper API transcribes audio to text', 'GPT-4o structures transcript into SOAP note format', 'Doctor reviews and approves in lightweight UI', 'Approved note pushed directly to EHR system'],
     buildTime: '2–3 week sprint',
+  },
+  {
+    id: 32, industry: 'HealthTech', industryColor: '#F87171',
+    title: 'Prior Authorization Automation',
+    description: 'Doctor submits auth request → AI extracts clinical data → checks payer rules database → auto-submits to insurance → tracks status → alerts team',
+    nodes: ['Auth Request', 'AI Extract', 'Payer Rules', 'Submit', 'Track'],
+    nodeEmojis: ['📋', '🤖', '📖', '📤', '🔄'],
+    nodeBgs: ['#6366F1', '#10A37F', '#F87171', '#EA4335', '#FBBF24'],
+    nodeShorts: ['RX', 'AI', '📖', 'SND', '📡'],
+    tools: ['GPT-4o', 'n8n', 'Availity API', 'EHR API', 'Slack'],
+    timeSaved: '4 hrs/day per practice',
+    steps: ['Doctor submits prior auth request via EHR or web form', 'GPT-4o extracts diagnosis codes, procedure codes, clinical notes', 'Check payer rules database for coverage criteria', 'Auto-submit structured prior auth request via Availity API', 'Poll for insurance decision every 4 hours', 'Alert care team on approval or denial via Slack'],
+    buildTime: '4–6 week sprint',
+  },
+  {
+    id: 33, industry: 'HealthTech', industryColor: '#F87171',
+    title: 'Medication Refill Agent',
+    description: 'Prescription due → AI checks eligibility + refill rules → sends refill request to pharmacy → patient confirmation SMS → updates EHR automatically',
+    nodes: ['Rx Due', 'Eligibility', 'Pharmacy Request', 'Patient SMS', 'EHR Update'],
+    nodeEmojis: ['💊', '✅', '🏥', '📱', '🔄'],
+    nodeBgs: ['#F87171', '#22C55E', '#10A37F', '#F22F46', '#34D399'],
+    nodeShorts: ['RX', '✓', 'PH', 'SMS', 'EHR'],
+    tools: ['n8n', 'GPT-4o', 'Pharmacy API', 'Twilio', 'EHR API'],
+    timeSaved: '15 min → 90 sec',
+    steps: ['Cron trigger identifies prescriptions due for refill in next 7 days', 'AI checks patient eligibility and refill count rules', 'Auto-send refill request to preferred pharmacy via API', 'Patient receives SMS confirmation with pickup time', 'EHR updated with refill date and pharmacy confirmation', 'Exceptions (out of stock, prior auth needed) escalated to care team'],
+    buildTime: '2–3 week sprint',
+  },
+  {
+    id: 34, industry: 'HealthTech', industryColor: '#F87171',
+    title: 'Lab Results Notification',
+    description: 'Lab results arrive → AI interprets values → classifies normal/borderline/critical → personalised patient message drafted → doctor alerted if critical',
+    nodes: ['Lab Result', 'AI Interpret', 'Classify', 'Patient Message', 'Doctor Alert'],
+    nodeEmojis: ['🧪', '🤖', '⚖️', '📱', '👨‍⚕️'],
+    nodeBgs: ['#6366F1', '#10A37F', '#FBBF24', '#34D399', '#F87171'],
+    nodeShorts: ['LAB', 'AI', '⚖', 'MSG', 'DR'],
+    tools: ['GPT-4o', 'n8n', 'Twilio', 'EHR API', 'Gmail'],
+    timeSaved: '3 hrs/day admin',
+    steps: ['Lab results received via HL7 feed or EHR webhook', 'GPT-4o interprets each result value against reference ranges', 'Classify: Normal / Borderline / Critical', 'GPT-4o drafts personalised patient message in plain language', 'Send via patient portal message or SMS', 'Critical results: immediately alert ordering physician via SMS + EHR flag'],
+    buildTime: '3–4 week sprint',
   },
   // SAAS & B2B
   {
@@ -186,6 +264,45 @@ const workflows: Workflow[] = [
     steps: ['Daily trigger fires at 6am', 'Pull usage metrics per account from product database', 'AI churn risk model scores each account (0–100)', 'Flag accounts scoring >70 as high risk', 'GPT-4o drafts personalised outreach email per account', 'Log risk scores and outreach status to HubSpot'],
     buildTime: '3–4 week sprint',
   },
+  {
+    id: 35, industry: 'SaaS & B2B', industryColor: '#60A5FA',
+    title: 'Lead Scoring & Enrichment',
+    description: 'New lead enters CRM → Clearbit enriches firmographic data → AI scores ICP fit + intent signals → route to correct rep → personalised outreach drafted',
+    nodes: ['New Lead', 'Clearbit', 'AI Score', 'Route', 'Draft Outreach'],
+    nodeEmojis: ['👤', '💡', '🤖', '🔀', '✉️'],
+    nodeBgs: ['#60A5FA', '#0F172A', '#10A37F', '#FBBF24', '#EA4335'],
+    nodeShorts: ['LD', 'CB', 'AI', '→', '✉'],
+    tools: ['HubSpot', 'Clearbit', 'GPT-4o', 'n8n', 'Gmail'],
+    timeSaved: '2 hrs/day SDR time',
+    steps: ['New lead created in HubSpot via form, LinkedIn, or import', 'Clearbit Enrichment appends company size, revenue, tech stack, LinkedIn', 'AI ICP fit scoring: does company match ideal customer profile?', 'Intent signal scoring: recent job posts, tech changes, news events', 'Route high-fit leads to senior AE; low-fit to nurture sequence', 'GPT-4o drafts personalised outreach email referencing their tech stack'],
+    buildTime: '2–3 week sprint',
+  },
+  {
+    id: 36, industry: 'SaaS & B2B', industryColor: '#60A5FA',
+    title: 'Contract Renewal Automation',
+    description: '90 days before renewal → pull usage data → AI drafts renewal proposal → send to champion → track email opens → CSM alerted at each stage',
+    nodes: ['90 Day Trigger', 'Usage Pull', 'AI Draft', 'Send Proposal', 'Track'],
+    nodeEmojis: ['⏰', '📊', '🤖', '📤', '📧'],
+    nodeBgs: ['#FF4F00', '#60A5FA', '#10A37F', '#EA4335', '#FBBF24'],
+    nodeShorts: ['90d', 'DB', 'AI', 'SND', '📧'],
+    tools: ['HubSpot', 'n8n', 'GPT-4o', 'Gmail', 'Mixpanel'],
+    timeSaved: '4 hrs/renewal',
+    steps: ['90-day trigger fires for all contracts expiring in next quarter', 'Pull customer usage metrics from Mixpanel: DAU, feature adoption, seats', 'AI generates renewal proposal with upsell recommendation based on usage', 'CSM reviews and approves proposal in Slack (one click)', 'Gmail sends branded proposal PDF to economic buyer + champion', 'Track email opens and link clicks; alert CSM at each engagement event'],
+    buildTime: '2–3 week sprint',
+  },
+  {
+    id: 37, industry: 'SaaS & B2B', industryColor: '#60A5FA',
+    title: 'Product Feedback Loop',
+    description: 'NPS/support response received → AI classifies sentiment + product category → routes to product team → auto-creates Jira ticket → closes loop with customer',
+    nodes: ['Feedback In', 'AI Classify', 'Route', 'Jira Ticket', 'Close Loop'],
+    nodeEmojis: ['💬', '🤖', '🔀', '🎫', '✅'],
+    nodeBgs: ['#60A5FA', '#10A37F', '#FBBF24', '#0052CC', '#22C55E'],
+    nodeShorts: ['FB', 'AI', '→', 'JRA', '✓'],
+    tools: ['Typeform', 'GPT-4o', 'n8n', 'Jira', 'Gmail'],
+    timeSaved: '5 hrs/week PM time',
+    steps: ['NPS response or support ticket received via Typeform or Zendesk', 'GPT-4o classifies: sentiment (positive/neutral/negative) + product area', 'Route to correct product squad channel in Slack', 'Auto-create Jira ticket with customer quote, sentiment score, account tier', 'Product manager triages and prioritises in next sprint planning', 'Auto-send customer follow-up: Thanks for your feedback, here is what we are building'],
+    buildTime: '1–2 week sprint',
+  },
   // ECOMMERCE
   {
     id: 13, industry: 'E-Commerce', industryColor: '#FBBF24',
@@ -225,6 +342,45 @@ const workflows: Workflow[] = [
     timeSaved: '15% revenue recovery',
     steps: ['Cart abandonment event fires from Shopify', 'Wait 1 hour (grace period)', 'GPT-4o generates personalised recovery email with product details', 'Send email via Klaviyo', 'Check for purchase after 24 hours', 'No purchase: send SMS via Twilio with discount code'],
     buildTime: '1–2 week sprint',
+  },
+  {
+    id: 38, industry: 'E-Commerce', industryColor: '#FBBF24',
+    title: 'Returns & Refunds Automation',
+    description: 'Return request submitted → AI validates against return policy → auto-approve or flag → generate return label → update inventory → trigger refund',
+    nodes: ['Return Request', 'Policy Check', 'Approve?', 'Return Label', 'Refund'],
+    nodeEmojis: ['📦', '📖', '✅', '🏷️', '💰'],
+    nodeBgs: ['#96BF48', '#FBBF24', '#22C55E', '#FB923C', '#635BFF'],
+    nodeShorts: ['RTN', '📖', '✓', 'LBL', '$'],
+    tools: ['Shopify API', 'GPT-4o', 'n8n', 'EasyPost', 'Stripe'],
+    timeSaved: '80% handled automatically',
+    steps: ['Customer submits return request via Shopify returns portal', 'AI checks request against return policy rules (30 days, condition, category)', 'Within-policy: auto-approve; edge case: route to human review queue', 'EasyPost API generates pre-paid return label, emailed to customer', 'Inventory system updated: item marked as in-transit on return', 'On label scan at warehouse: Stripe refund triggered automatically'],
+    buildTime: '2–3 week sprint',
+  },
+  {
+    id: 39, industry: 'E-Commerce', industryColor: '#FBBF24',
+    title: 'AI Product Description Generator',
+    description: 'New SKU added to catalog → AI writes SEO-optimised product description + bullet points → quality score check → auto-push to Shopify → A/B variant created',
+    nodes: ['New SKU', 'AI Write', 'SEO Score', 'Review Gate', 'Publish'],
+    nodeEmojis: ['📦', '🤖', '📊', '✅', '🚀'],
+    nodeBgs: ['#96BF48', '#10A37F', '#FBBF24', '#22C55E', '#F65B2B'],
+    nodeShorts: ['SKU', 'AI', 'SEO', '✓', '→'],
+    tools: ['Shopify API', 'GPT-4o', 'n8n', 'Google Search Console', 'Airtable'],
+    timeSaved: '45 min → 3 min per SKU',
+    steps: ['New product added to Shopify triggers n8n webhook', 'GPT-4o receives: product name, category, specs, brand voice guidelines', 'Generates: 200-word description, 5 bullet points, meta title, meta description', 'SEO scoring checks: keyword density, readability, character limits', 'Score above threshold: auto-publish to Shopify. Below: flag for human edit', 'Second GPT-4o call generates A/B variant description for split testing'],
+    buildTime: '1–2 week sprint',
+  },
+  {
+    id: 40, industry: 'E-Commerce', industryColor: '#FBBF24',
+    title: 'Influencer Outreach Automation',
+    description: 'Influencer identified → AI scores brand fit → personalised outreach drafted → email sent → response tracked → follow-up sequenced → tagged in CRM',
+    nodes: ['Identify', 'AI Score', 'Draft Outreach', 'Send', 'Track Response'],
+    nodeEmojis: ['📸', '🤖', '✉️', '📤', '📊'],
+    nodeBgs: ['#833AB4', '#10A37F', '#EA4335', '#FBBF24', '#60A5FA'],
+    nodeShorts: ['IG', 'AI', '✉', 'SND', '📊'],
+    tools: ['Instagram API', 'GPT-4o', 'n8n', 'Gmail', 'HubSpot'],
+    timeSaved: '8 hrs/campaign',
+    steps: ['Influencer profile identified via Instagram API or manual import', 'AI scores: follower count, engagement rate, audience overlap, brand alignment', 'GPT-4o drafts personalised outreach referencing specific posts and shared values', 'Send via Gmail with tracked link; log contact in HubSpot', 'Monitor for reply; if no response in 5 days: send follow-up sequence', 'Positive response: route to partnerships manager with full context'],
+    buildTime: '2–3 week sprint',
   },
   // LEGALTECH
   {
@@ -266,6 +422,45 @@ const workflows: Workflow[] = [
     steps: ['Deposition audio or transcript uploaded', 'Whisper transcribes audio to text (if audio)', 'GPT-4o reads full transcript', 'Extract: key admissions, contradictions, important quotes', 'Generate structured deposition summary with timestamps', 'Attorney reviews and exports to Google Docs'],
     buildTime: '2 week sprint',
   },
+  {
+    id: 41, industry: 'LegalTech', industryColor: '#F472B6',
+    title: 'NDA Generation & E-Signing',
+    description: 'NDA request submitted → AI populates standard template with party details → review gate → DocuSign envelope sent → signed copy auto-filed in Notion',
+    nodes: ['NDA Request', 'AI Populate', 'Review Gate', 'DocuSign', 'File in Notion'],
+    nodeEmojis: ['📋', '🤖', '✅', '✍️', '📂'],
+    nodeBgs: ['#6366F1', '#10A37F', '#22C55E', '#FFA500', '#3D3D3D'],
+    nodeShorts: ['REQ', 'AI', '✓', 'DS', 'N'],
+    tools: ['Typeform', 'GPT-4o', 'n8n', 'DocuSign', 'Notion'],
+    timeSaved: '45 min → 8 min',
+    steps: ['NDA request submitted via Typeform: counterparty name, entity type, scope', 'GPT-4o populates master NDA template with all party-specific details', 'Legal team receives Slack notification to review populated NDA (one-click approve)', 'DocuSign envelope created and sent to both parties simultaneously', 'Track signing status; send reminders at 24hr and 48hr if unsigned', 'Fully executed NDA auto-filed in Notion under correct client workspace'],
+    buildTime: '1–2 week sprint',
+  },
+  {
+    id: 42, industry: 'LegalTech', industryColor: '#F472B6',
+    title: 'Legal Research Assistant',
+    description: 'Case question submitted → AI searches case law databases → extracts relevant precedents → ranks by relevance + jurisdiction → structured memo to attorney',
+    nodes: ['Case Question', 'Search', 'Extract', 'Rank', 'Research Memo'],
+    nodeEmojis: ['❓', '🔍', '🤖', '⚖️', '📋'],
+    nodeBgs: ['#6366F1', '#1E40AF', '#10A37F', '#FBBF24', '#F472B6'],
+    nodeShorts: ['Q', 'SRH', 'AI', '⚖', 'MEM'],
+    tools: ['GPT-4o', 'LangChain', 'Westlaw API', 'n8n', 'Google Docs'],
+    timeSaved: '6 hrs → 45 min',
+    steps: ['Attorney submits research question via internal portal or Slack command', 'GPT-4o decomposes question into search queries for each relevant legal area', 'LangChain RAG searches Westlaw API + internal case library simultaneously', 'AI extracts key holdings, dissents, and distinguishing factors from each case', 'Rank results by relevance score, jurisdiction, and recency', 'Generate structured research memo in Google Docs: question, findings, key cases, gaps'],
+    buildTime: '3–4 week sprint',
+  },
+  {
+    id: 43, industry: 'LegalTech', industryColor: '#F472B6',
+    title: 'Billing & Time Entry Automation',
+    description: 'Activity completed → AI converts notes to billable time entry → checks hourly rate + matter → validates against budget → adds to invoice draft → partner approval',
+    nodes: ['Activity Note', 'AI Convert', 'Rate Check', 'Add to Invoice', 'Approve'],
+    nodeEmojis: ['📝', '🤖', '💰', '📊', '✅'],
+    nodeBgs: ['#6366F1', '#10A37F', '#FBBF24', '#F472B6', '#22C55E'],
+    nodeShorts: ['NOTE', 'AI', '$', 'INV', '✓'],
+    tools: ['GPT-4o', 'n8n', 'Clio', 'Google Sheets', 'Slack'],
+    timeSaved: '1 hr/day per attorney',
+    steps: ['Attorney logs brief activity note: Reviewed contract, call with client, drafted motion', 'GPT-4o converts notes into formatted time entries with task descriptions and duration', 'Check applicable hourly rate for attorney level and matter type', 'Validate total against matter budget; flag if approaching cap', 'Auto-add entries to monthly invoice draft in Clio', 'Partner receives Slack summary for one-click approval before billing runs'],
+    buildTime: '2–3 week sprint',
+  },
   // PROPTECH
   {
     id: 19, industry: 'PropTech', industryColor: '#2DD4BF',
@@ -304,6 +499,45 @@ const workflows: Workflow[] = [
     tools: ['GPT-4o', 'n8n', 'Twilio', 'Google Calendar', 'Airtable'],
     timeSaved: '1 hr/request',
     steps: ['Tenant submits maintenance request via app or SMS', 'AI classifies urgency (emergency/urgent/routine) and trade', 'Route to correct contractor from approved list', 'Auto-schedule via Google Calendar, confirm with contractor', 'Track job completion status in Airtable', 'SMS tenant with confirmation and completion update'],
+    buildTime: '2 week sprint',
+  },
+  {
+    id: 44, industry: 'PropTech', industryColor: '#2DD4BF',
+    title: 'Lease Renewal Automation',
+    description: '60 days before lease expiry → pull tenant data + payment history → AI drafts personalised renewal offer → send via email → track response → update PMS',
+    nodes: ['60 Day Trigger', 'Tenant Data', 'AI Draft Offer', 'Send', 'Update PMS'],
+    nodeEmojis: ['⏰', '📋', '🤖', '📧', '🔄'],
+    nodeBgs: ['#FF4F00', '#2DD4BF', '#10A37F', '#EA4335', '#4285F4'],
+    nodeShorts: ['60d', 'DATA', 'AI', '✉', 'PMS'],
+    tools: ['n8n', 'Buildium API', 'GPT-4o', 'Gmail', 'Google Sheets'],
+    timeSaved: '3 hrs/property/month',
+    steps: ['Trigger fires 60 days before each lease expiry date', 'Pull tenant profile: payment history, maintenance requests, tenure, current rent', 'AI drafts personalised renewal offer: market rent analysis, loyalty discount if applicable', 'Send branded renewal email with digital signature link', 'Track email open + response; send follow-up at day 7 if no response', 'Update property management system with renewal status and new lease terms'],
+    buildTime: '2–3 week sprint',
+  },
+  {
+    id: 45, industry: 'PropTech', industryColor: '#2DD4BF',
+    title: 'Property Listing Optimizer',
+    description: 'New listing added → AI writes compelling description + SEO headline → pulls comparable sales data → suggests optimal price → pushes to Zillow, MLS, website',
+    nodes: ['New Listing', 'Comps Pull', 'AI Write', 'Price Suggest', 'Publish'],
+    nodeEmojis: ['🏠', '📊', '🤖', '💰', '🚀'],
+    nodeBgs: ['#2DD4BF', '#4285F4', '#10A37F', '#FBBF24', '#22C55E'],
+    nodeShorts: ['LST', 'COMP', 'AI', '$', '→'],
+    tools: ['GPT-4o', 'n8n', 'MLS API', 'Zillow API', 'Google Sheets'],
+    timeSaved: '3 hrs per listing',
+    steps: ['New property listing created triggers n8n workflow', 'Pull 10 comparable sales from MLS API: same zip, bed/bath, sqft, sold in 90 days', 'AI analyses comps and generates optimal price range with confidence score', 'GPT-4o writes: 300-word listing description, catchy headline, 5 key highlights', 'Agent reviews and approves in Slack (one click)', 'Auto-publish to Zillow via API, MLS via RETS feed, and agency website CMS'],
+    buildTime: '2–3 week sprint',
+  },
+  {
+    id: 46, industry: 'PropTech', industryColor: '#2DD4BF',
+    title: 'Rental Income Reconciliation',
+    description: 'Monthly: pull rent payments → match against lease agreements → flag arrears automatically → send overdue reminders → generate landlord income report',
+    nodes: ['Monthly Trigger', 'Payments Pull', 'Match Leases', 'Flag Arrears', 'Landlord Report'],
+    nodeEmojis: ['⏰', '💳', '📋', '⚠️', '📊'],
+    nodeBgs: ['#FF4F00', '#635BFF', '#2DD4BF', '#EF4444', '#FBBF24'],
+    nodeShorts: ['CRN', 'PAY', '📋', '⚠', 'RPT'],
+    tools: ['n8n', 'Buildium API', 'Plaid', 'Twilio', 'Google Sheets'],
+    timeSaved: '4 hrs/month per portfolio',
+    steps: ['Monthly trigger fires on the 2nd of each month', 'Pull all rent payments received in previous month via Buildium API', 'Match each payment against corresponding lease agreement and expected amount', 'Flag arrears: partial payments, missed payments, late payments', 'Auto-send personalised SMS reminder to tenants with outstanding balance', 'Generate monthly income report per landlord: total collected, arrears, upcoming renewals'],
     buildTime: '2 week sprint',
   },
   // LOGISTICS
@@ -345,6 +579,45 @@ const workflows: Workflow[] = [
     timeSaved: '25% fuel cost reduction',
     steps: ['Pull all orders for the day at 6am', 'AI route optimisation algorithm runs', 'Assign optimised routes to available drivers', 'Push route to driver mobile app', 'Real-time monitoring: flag exceptions (delays, failed deliveries)', 'Auto-send ETA updates to customers via SMS'],
     buildTime: '4–6 week sprint',
+  },
+  {
+    id: 47, industry: 'Logistics', industryColor: '#FB923C',
+    title: 'Customs Documentation AI',
+    description: 'International shipment created → AI extracts product details → generates customs declaration → validates HS codes → submits to customs portal → tracks clearance',
+    nodes: ['Shipment Created', 'AI Extract', 'HS Code Check', 'Submit', 'Track Clearance'],
+    nodeEmojis: ['📦', '🤖', '🔍', '📤', '🌐'],
+    nodeBgs: ['#FB923C', '#10A37F', '#1E40AF', '#EA4335', '#22C55E'],
+    nodeShorts: ['SHP', 'AI', 'HS', 'SND', '📡'],
+    tools: ['GPT-4o', 'n8n', 'WCO API', 'Customs Portal API', 'Gmail'],
+    timeSaved: '2 hrs/international shipment',
+    steps: ['International shipment order created in OMS triggers workflow', 'GPT-4o extracts: product description, materials, weight, value, country of origin', 'Validate HS code classification against WCO tariff database', 'Flag any restricted goods, sanctions violations, or missing certificates', 'Auto-submit customs declaration to destination country portal via API', 'Poll for customs clearance status; alert ops team on hold or clearance'],
+    buildTime: '3–4 week sprint',
+  },
+  {
+    id: 48, industry: 'Logistics', industryColor: '#FB923C',
+    title: 'Carrier Performance Monitoring',
+    description: 'Weekly: pull delivery data per carrier → AI scores reliability + cost + damage rates → flag underperformers → generate scorecard → procurement team notified',
+    nodes: ['Weekly Trigger', 'Delivery Data', 'AI Score', 'Flag Poor', 'Scorecard'],
+    nodeEmojis: ['⏰', '📊', '🤖', '⚠️', '📋'],
+    nodeBgs: ['#FF4F00', '#FB923C', '#10A37F', '#EF4444', '#FBBF24'],
+    nodeShorts: ['CRN', 'DATA', 'AI', '⚠', 'RPT'],
+    tools: ['n8n', 'Carrier APIs', 'GPT-4o', 'Google Sheets', 'Slack'],
+    timeSaved: '5 hrs/week ops',
+    steps: ['Weekly trigger fires every Monday 6am', 'Pull delivery performance data from all carrier APIs: FedEx, UPS, DHL, regional carriers', 'AI scoring model runs per carrier: on-time rate, damage rate, cost per lb, claim resolution speed', 'Carriers scoring below threshold flagged with specific failure reasons', 'Generate formatted scorecard in Google Sheets with trend charts vs prior 4 weeks', 'Post scorecard summary to #procurement Slack channel with underperformer callouts'],
+    buildTime: '2–3 week sprint',
+  },
+  {
+    id: 49, industry: 'Logistics', industryColor: '#FB923C',
+    title: 'Warehouse Receiving Automation',
+    description: 'PO arrives at warehouse → AI reads barcode/manifest → matches against purchase order → flags discrepancies → updates inventory → notifies procurement team',
+    nodes: ['PO Arrival', 'Scan/Read', 'PO Match', 'Flag Gaps', 'Update Inventory'],
+    nodeEmojis: ['📦', '📷', '📋', '⚠️', '🔄'],
+    nodeBgs: ['#FB923C', '#10A37F', '#FBBF24', '#EF4444', '#22C55E'],
+    nodeShorts: ['PO', 'SCAN', '📋', '⚠', 'INV'],
+    tools: ['GPT-4o Vision', 'n8n', 'WMS API', 'Google Sheets', 'Slack'],
+    timeSaved: '3 hrs/receiving shift',
+    steps: ['Purchase order arrives at warehouse dock', 'Warehouse staff scans barcode or uploads photo of packing manifest', 'GPT-4o Vision reads manifest: SKUs, quantities, lot numbers, expiry dates', 'AI matches scanned items against expected PO line by line', 'Discrepancies flagged: short shipments, wrong SKUs, damaged items documented', 'Inventory management system updated with received quantities; Slack alert sent to procurement'],
+    buildTime: '2–3 week sprint',
   },
   // AD & MARKETING — extended
   {
@@ -537,6 +810,106 @@ function ColoredWorkflowDiagram({ nodes, nodeBgs, nodeShorts }: {
   )
 }
 
+// ── Dark card diagram (black/grey/white theme, preview on first card) ─────────
+
+function DarkCardDiagram({ nodes, nodeBgs, nodeShorts }: {
+  nodes: string[]
+  nodeBgs: string[]
+  nodeShorts: string[]
+}) {
+  const size = 38
+  const gap = 11
+  const shown = Math.min(nodes.length, 6)
+  const vbW = shown * size + (shown - 1) * gap + 16
+  const vbH = size + 26
+
+  return (
+    <svg
+      width="100%"
+      viewBox={`0 0 ${vbW} ${vbH}`}
+      style={{ display: 'block', borderRadius: 10, background: '#111111', border: '1px solid rgba(255,255,255,0.07)' }}
+    >
+      <defs>
+        <marker id="darr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0,0 0,6 6,3" fill="rgba(255,255,255,0.22)" />
+        </marker>
+      </defs>
+
+      {Array.from({ length: shown }).map((_, i) => {
+        const x = 8 + i * (size + gap)
+        const cy = 8 + size / 2
+        const short = nodeShorts[i] ?? '?'
+        const label = (nodes[i]?.length ?? 0) > 8 ? nodes[i].substring(0, 7) + '…' : (nodes[i] ?? '')
+        const isEmoji = /\p{Emoji}/u.test(short) && short.length <= 2
+        const fontFamily = isEmoji ? 'Apple Color Emoji, Segoe UI Emoji, sans-serif' : 'Inter, Helvetica Neue, Arial, sans-serif'
+        const fontSize = isEmoji ? 14 : (short.length >= 3 ? 8.5 : 11)
+
+        return (
+          <g key={i}>
+            {/* Connector line */}
+            {i < shown - 1 && (
+              <line
+                x1={x + size + 1} y1={cy}
+                x2={x + size + gap - 2} y2={cy}
+                stroke="rgba(255,255,255,0.22)"
+                strokeWidth="1.2"
+                markerEnd="url(#darr)"
+              />
+            )}
+
+            {/* Node box: dark bg with subtle white border, small colour dot at top-right */}
+            <rect
+              x={x} y={8}
+              width={size} height={size}
+              rx={8}
+              fill="#1A1A1A"
+              stroke="rgba(255,255,255,0.10)"
+              strokeWidth="1"
+            />
+            {/* Colour accent dot */}
+            <circle
+              cx={x + size - 6} cy={14}
+              r={3}
+              fill={nodeBgs[i] ?? '#555'}
+              opacity={0.85}
+            />
+
+            {/* Short label text */}
+            <text
+              x={x + size / 2}
+              y={cy + (isEmoji ? 5 : fontSize * 0.38)}
+              textAnchor="middle"
+              fontSize={fontSize}
+              fontWeight={isEmoji ? '400' : '700'}
+              fontFamily={fontFamily}
+              fill="rgba(255,255,255,0.88)"
+            >
+              {short}
+            </text>
+
+            {/* Node label below */}
+            <text
+              x={x + size / 2} y={8 + size + 14}
+              textAnchor="middle"
+              fontSize="7"
+              fill="rgba(255,255,255,0.38)"
+              fontFamily="Inter, sans-serif"
+            >
+              {label}
+            </text>
+          </g>
+        )
+      })}
+
+      {nodes.length > 6 && (
+        <text x={vbW - 4} y={8 + size / 2 + 4} textAnchor="end" fontSize="8" fill="rgba(255,255,255,0.3)" fontFamily="Inter, sans-serif">
+          +{nodes.length - 6}
+        </text>
+      )}
+    </svg>
+  )
+}
+
 // Keep old WorkflowDiagram for modal use (large variant with emojis)
 function WorkflowDiagram({ nodes, nodeEmojis, large = false }: { nodes: string[]; nodeEmojis: string[]; large?: boolean }) {
   const size = large ? 48 : 40
@@ -638,9 +1011,9 @@ export default function WorkflowLibraryPage() {
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.08 }}
           className="mx-auto mt-7 max-w-3xl font-display text-[clamp(42px,5.5vw,76px)] font-bold leading-[1.03] tracking-[-0.03em] text-white"
         >
-          Real automations<br />
-          <span className="bg-gradient-to-r from-[#FF4F00] to-[#FF8A00] bg-clip-text text-transparent">built &amp; deployed by</span><br />
-          Kovil AI engineers
+          AI workflow automations<br />
+          <span className="bg-gradient-to-r from-[#FF4F00] to-[#FF8A00] bg-clip-text text-transparent">Kovil AI engineers</span><br />
+          can build for you
         </motion.h1>
 
         {/* Sub */}
@@ -648,7 +1021,7 @@ export default function WorkflowLibraryPage() {
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.18 }}
           className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-white/55"
         >
-          Browse 28 real-world AI workflow automations across 8 industries. See the stack, steal the flow, or have us build it for you.
+          Browse 49 real-world AI workflow automations across 8 industries. See the stack, steal the flow, or have us build it for you.
         </motion.p>
 
         {/* CTAs */}
@@ -675,7 +1048,7 @@ export default function WorkflowLibraryPage() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.36 }}
           className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-white/30"
         >
-          {['28 workflows documented', '8 industries covered', 'n8n · GPT-4o · LangChain · Make'].map((s, i) => (
+          {['49 workflows documented', '8 industries covered', 'n8n · GPT-4o · LangChain · Make'].map((s, i) => (
             <span key={i} className="flex items-center gap-2">
               {i > 0 && <span className="text-[#FF4F00]/40">·</span>}
               {s}
@@ -707,148 +1080,186 @@ export default function WorkflowLibraryPage() {
 
       {/* ── CARD GRID ─────────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-7xl px-6 py-12">
+
         {/* Count */}
-        <p className="mb-6 text-xs text-white/30">
+        <p className="mb-8 text-xs text-white/30">
           Showing <span className="text-white/60">{filtered.length}</span> workflow{filtered.length !== 1 ? 's' : ''}
           {activeIndustry !== 'All' && <> in <span className="text-white/60">{activeIndustry}</span></>}
         </p>
 
-        <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence mode="popLayout">
-            {filtered.map(wf => {
-              // Cards with dedicated deep-dive pages link directly; rest open the modal
-              const dedicatedPageSlugs: Record<number, string> = {
-                1: 'campaign-performance-reporting',
-                2: 'ai-creative-brief-generator',
-                3: 'new-client-onboarding-automation',
-                25: 'automated-am-briefs-client-reporting',
-                26: 'multi-channel-inbound-dispatching',
-                27: 'white-label-voice-ai-agents',
-                28: 'crm-ops-layer',
-              }
-              const hasDedicatedPage = wf.id in dedicatedPageSlugs
-              const slug = dedicatedPageSlugs[wf.id] ?? ''
+        {(() => {
+          // ── Shared slug map ────────────────────────────────────────────
+          const dedicatedPageSlugs: Record<number, string> = {
+            1: 'campaign-performance-reporting',
+            2: 'ai-creative-brief-generator',
+            3: 'new-client-onboarding-automation',
+            25: 'automated-am-briefs-client-reporting',
+            26: 'multi-channel-inbound-dispatching',
+            27: 'white-label-voice-ai-agents',
+            28: 'crm-ops-layer',
+          }
 
-              const cardContent = (
-                <>
-                  {/* Colored top accent bar */}
-                  <div
-                    className="absolute inset-x-0 top-0 h-[3px] rounded-t-2xl transition-opacity duration-300"
-                    style={{ background: `linear-gradient(90deg, ${wf.industryColor}, ${wf.industryColor}55)` }}
-                  />
+          // ── Single card renderer ───────────────────────────────────────
+          const renderCard = (wf: Workflow) => {
+            const hasDedicatedPage = wf.id in dedicatedPageSlugs
+            const slug = dedicatedPageSlugs[wf.id] ?? ''
 
-                  {/* Hover glow overlay */}
-                  <div
-                    className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    style={{ background: `radial-gradient(ellipse at top left, ${wf.industryColor}0A, transparent 60%)` }}
-                  />
+            const cardContent = (
+              <>
+                {/* Colored top accent bar */}
+                <div
+                  className="absolute inset-x-0 top-0 h-[3px] rounded-t-2xl"
+                  style={{ background: `linear-gradient(90deg, ${wf.industryColor}, ${wf.industryColor}44)` }}
+                />
+                {/* Hover glow */}
+                <div
+                  className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ background: `radial-gradient(ellipse at top left, ${wf.industryColor}0A, transparent 60%)` }}
+                />
 
-                  {/* Top row */}
-                  <div className="flex items-center justify-between">
-                    <span
-                      className="inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wide font-display"
-                      style={{ color: wf.industryColor, background: `${wf.industryColor}18`, border: `1px solid ${wf.industryColor}30` }}
-                    >
-                      {wf.industry}
+                {/* Top row */}
+                <div className="flex items-center justify-between">
+                  <span
+                    className="inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wide font-display"
+                    style={{ color: wf.industryColor, background: `${wf.industryColor}18`, border: `1px solid ${wf.industryColor}30` }}
+                  >
+                    {wf.industry}
+                  </span>
+                  <span className="flex items-center gap-1 text-[11px] font-semibold" style={{ color: wf.industryColor }}>
+                    <Clock size={10} strokeWidth={2.5} />{wf.timeSaved}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="mt-3 font-display text-[14px] font-semibold leading-snug text-white/90 group-hover:text-white transition-colors">
+                  {wf.title}
+                </h3>
+
+                {/* Description */}
+                <p className="mt-1.5 text-[12px] leading-relaxed text-white/55">
+                  {wf.description}
+                </p>
+
+                {/* Dark diagram */}
+                <div className="mt-4">
+                  <DarkCardDiagram nodes={wf.nodes} nodeBgs={wf.nodeBgs} nodeShorts={wf.nodeShorts} />
+                </div>
+
+                {/* Tools */}
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {wf.tools.slice(0, 4).map(t => (
+                    <span key={t} className="rounded px-2 py-0.5 text-[10px] text-white/55 border border-white/[0.10] bg-white/[0.04]">
+                      {t}
                     </span>
+                  ))}
+                  {wf.tools.length > 4 && (
+                    <span className="rounded px-2 py-0.5 text-[10px] text-white/45 border border-white/[0.08]">
+                      +{wf.tools.length - 4}
+                    </span>
+                  )}
+                </div>
+
+                {/* Footer */}
+                <div className="mt-4 flex items-center justify-between">
+                  {hasDedicatedPage ? (
                     <span className="flex items-center gap-1 text-[11px] font-semibold" style={{ color: wf.industryColor }}>
-                      <Clock size={10} strokeWidth={2.5} />{wf.timeSaved}
+                      Full workflow deep-dive <ExternalLink size={11} />
                     </span>
-                  </div>
+                  ) : (
+                    <span className="flex items-center gap-1 text-[11px] text-white/45">
+                      View workflow <ChevronRight size={12} strokeWidth={2.5} />
+                    </span>
+                  )}
+                  {hasDedicatedPage && (
+                    <span className="rounded-full bg-[#FF4F00]/10 border border-[#FF4F00]/25 px-2 py-0.5 text-[10px] font-semibold text-[#FF4F00] font-display">
+                      Detailed
+                    </span>
+                  )}
+                </div>
+              </>
+            )
 
-                  {/* Title */}
-                  <h3 className="mt-3 font-display text-[14px] font-semibold leading-snug text-white/90 group-hover:text-white transition-colors">
-                    {wf.title}
-                  </h3>
+            const motionProps = {
+              key: wf.id,
+              layout: true as const,
+              initial: { opacity: 0, scale: 0.97 },
+              animate: { opacity: 1, scale: 1 },
+              exit: { opacity: 0, scale: 0.97 },
+              transition: { duration: 0.18 },
+              whileHover: { y: -3 },
+              className: 'group relative cursor-pointer rounded-2xl border border-white/[0.07] bg-[#111111] p-5 pt-6 overflow-hidden transition-all duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)]',
+              onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
+                (e.currentTarget as HTMLElement).style.borderColor = `${wf.industryColor}35`
+              },
+              onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)'
+              },
+            }
 
-                  {/* Description */}
-                  <p className="mt-1.5 text-[12px] leading-relaxed text-white/55">
-                    {wf.description}
-                  </p>
+            return hasDedicatedPage ? (
+              <motion.article {...motionProps}>
+                <Link href={`/ai-workflow-automation-library/${slug}`} className="absolute inset-0 z-10" aria-label={wf.title} />
+                {cardContent}
+              </motion.article>
+            ) : (
+              <motion.article {...motionProps} onClick={() => setSelectedWorkflow(wf)}>
+                {cardContent}
+              </motion.article>
+            )
+          }
 
-                  {/* Diagram */}
-                  <div className="mt-4">
-                    <ColoredWorkflowDiagram nodes={wf.nodes} nodeBgs={wf.nodeBgs} nodeShorts={wf.nodeShorts} />
-                  </div>
-
-                  {/* Tools */}
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {wf.tools.slice(0, 4).map(t => (
-                      <span key={t} className="rounded px-2 py-0.5 text-[10px] text-white/55 border border-white/[0.10] bg-white/[0.04]">
-                        {t}
-                      </span>
-                    ))}
-                    {wf.tools.length > 4 && (
-                      <span className="rounded px-2 py-0.5 text-[10px] text-white/45 border border-white/[0.08]">
-                        +{wf.tools.length - 4}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Footer */}
-                  <div className="mt-4 flex items-center justify-between">
-                    <div className="flex items-center gap-1 text-[11px] font-semibold text-white/40 transition-colors group-hover:text-white/70"
-                      style={{ color: hasDedicatedPage ? undefined : undefined }}>
-                      {hasDedicatedPage ? (
-                        <span className="flex items-center gap-1 font-semibold" style={{ color: wf.industryColor }}>
-                          Full workflow deep-dive <ExternalLink size={11} />
+          // ── Grouped view (All) — industry sections with separators ─────
+          if (activeIndustry === 'All') {
+            const industryOrder = ['Ad & Marketing', 'FinTech', 'HealthTech', 'SaaS & B2B', 'E-Commerce', 'LegalTech', 'PropTech', 'Logistics']
+            return (
+              <div className="space-y-14">
+                {industryOrder.map(industry => {
+                  const group = workflows.filter(w => w.industry === industry)
+                  if (group.length === 0) return null
+                  const color = group[0].industryColor
+                  return (
+                    <div key={industry}>
+                      {/* ── Industry separator header ── */}
+                      <div className="mb-6 flex items-center gap-3">
+                        <span
+                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                          style={{ background: color }}
+                        />
+                        <span
+                          className="font-display text-[11px] font-semibold uppercase tracking-widest"
+                          style={{ color }}
+                        >
+                          {industry}
                         </span>
-                      ) : (
-                        <span className="flex items-center gap-1 text-white/55">
-                          View workflow <ChevronRight size={12} strokeWidth={2.5} />
-                        </span>
-                      )}
+                        <div
+                          className="flex-1 h-px"
+                          style={{ background: `linear-gradient(to right, ${color}28, transparent)` }}
+                        />
+                        <span className="text-[10px] text-white/25 font-medium">{group.length} workflows</span>
+                      </div>
+
+                      {/* Cards */}
+                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        <AnimatePresence mode="popLayout">
+                          {group.map(wf => renderCard(wf))}
+                        </AnimatePresence>
+                      </div>
                     </div>
-                    {hasDedicatedPage && (
-                      <span className="rounded-full bg-[#FF4F00]/10 border border-[#FF4F00]/25 px-2 py-0.5 text-[10px] font-semibold text-[#FF4F00] font-display">
-                        Detailed
-                      </span>
-                    )}
-                  </div>
-                </>
-              )
+                  )
+                })}
+              </div>
+            )
+          }
 
-              const sharedMotionProps = {
-                key: wf.id,
-                layout: true,
-                initial: { opacity: 0, scale: 0.97 },
-                animate: { opacity: 1, scale: 1 },
-                exit: { opacity: 0, scale: 0.97 },
-                transition: { duration: 0.18 },
-                whileHover: { y: -3 },
-                className: "group relative cursor-pointer rounded-2xl border border-white/[0.07] bg-[#111111] p-5 pt-6 overflow-hidden transition-all duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)]",
-                style: { '--hover-border': `${wf.industryColor}35` } as React.CSSProperties,
-                onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = `${wf.industryColor}35`
-                },
-                onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)'
-                },
-              }
-
-              return hasDedicatedPage ? (
-                <motion.article
-                  {...sharedMotionProps}
-                  onClick={undefined}
-                >
-                  <Link
-                    href={`/ai-workflow-automation-library/${slug}`}
-                    className="absolute inset-0 z-10"
-                    aria-label={wf.title}
-                  />
-                  {cardContent}
-                </motion.article>
-              ) : (
-                <motion.article
-                  {...sharedMotionProps}
-                  onClick={() => setSelectedWorkflow(wf)}
-                >
-                  {cardContent}
-                </motion.article>
-              )
-            })}
-          </AnimatePresence>
-        </motion.div>
+          // ── Filtered single-industry view ──────────────────────────────
+          return (
+            <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <AnimatePresence mode="popLayout">
+                {filtered.map(wf => renderCard(wf))}
+              </AnimatePresence>
+            </motion.div>
+          )
+        })()}
       </section>
 
       {/* ── MODAL ────────────────────────────────────────────────────────── */}

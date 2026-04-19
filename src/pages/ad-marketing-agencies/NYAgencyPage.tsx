@@ -5,9 +5,9 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import {
   ArrowRight, Network, BarChart3, Repeat2, Plug2,
-  AlertTriangle, ShieldCheck, CheckCircle2,
+  AlertTriangle, CheckCircle2,
   Users, Target, Wrench, Zap, Star, ChevronRight,
-  Brain, DollarSign, FileText, Activity, Wand2, Search
+  Brain, DollarSign,
 } from "lucide-react"
 import { Button } from "../../components/ui/button"
 import { OnboardingModal } from "../../components/OnboardingModal"
@@ -113,6 +113,57 @@ const comparison = [
 ]
 
 const logos = ["Unilever", "Smartfren", "Blibli", "LaVie", "CloseUp"]
+
+const agencyWorkflows = [
+  {
+    title: 'Campaign Performance Reporting Automation',
+    description: 'Pull data from Meta, Google, LinkedIn → GPT-4o analysis → auto-build slide deck → email client + Slack team',
+    tools: ['n8n', 'GPT-4o', 'Google Slides', 'Gmail', 'Slack'],
+    timeSaved: '12 hrs/week',
+    buildTime: '2–3 week sprint',
+    slug: 'campaign-performance-reporting',
+  },
+  {
+    title: 'White-Label Voice AI Agents',
+    description: 'Customized conversational voice bots handle complex inbound calls with zero latency — resell to local SMB clients as a profitable recurring SaaS revenue stream',
+    tools: ['Twilio', 'ElevenLabs', 'GPT-4o', 'n8n', 'HubSpot', 'Google Calendar'],
+    timeSaved: '24/7 coverage',
+    buildTime: '4–6 week sprint',
+    slug: 'white-label-voice-ai-agents',
+  },
+  {
+    title: 'New Client Onboarding Automation',
+    description: 'Deal Won in HubSpot → parallel: contract + invoice + onboarding → auto-create Notion workspace + Slack channel → kickoff',
+    tools: ['HubSpot', 'DocuSign', 'Stripe', 'n8n', 'Notion', 'Calendly'],
+    timeSaved: '3 days → 2 hrs',
+    buildTime: '3–4 week sprint',
+    slug: 'new-client-onboarding-automation',
+  },
+  {
+    title: 'Automated AM Briefs & Client Reporting',
+    description: 'GA4 + ad platform data → GPT-4o drafts weekly client reports + pushes daily synthesized Slack briefs to Account Managers',
+    tools: ['Google Analytics 4', 'GPT-4o', 'n8n', 'Google Slides', 'Slack'],
+    timeSaved: '8 hrs/week',
+    buildTime: '2–3 week sprint',
+    slug: 'automated-am-briefs-client-reporting',
+  },
+  {
+    title: 'Multi-Channel Inbound Dispatching',
+    description: 'Instagram DMs + WhatsApp + Email → AI dispatcher instantly answers FAQs, qualifies prospects, and books meetings into your calendar',
+    tools: ['Instagram API', 'WhatsApp Business API', 'GPT-4o', 'n8n', 'Calendly', 'HubSpot'],
+    timeSaved: 'Zero lead leakage',
+    buildTime: '3–4 week sprint',
+    slug: 'multi-channel-inbound-dispatching',
+  },
+  {
+    title: 'CRM Ops Layer — Intelligent Data Hygiene',
+    description: 'AI agents parse messy inbound requests, enforce naming conventions, and ensure pristine data hygiene before it enters your Salesforce or HubSpot',
+    tools: ['GPT-4o', 'n8n', 'Clearbit', 'Salesforce', 'HubSpot', 'Slack'],
+    timeSaved: '5 hrs/day ops',
+    buildTime: '3–4 week sprint',
+    slug: 'crm-ops-layer',
+  },
+]
 
 // ── Workflow diagram components ───────────────────────────────────────────────
 
@@ -262,15 +313,15 @@ export default function NYAgencyPage() {
             className="font-display font-bold text-4xl md:text-6xl lg:text-7xl tracking-tight leading-[1.04] text-balance mb-6"
           >
             Your NY Agency Needs<br />
-            <span className="text-accent">AI Engineers,</span><br />
-            Not AI Experiments
+            <span className="text-accent">Reliable AI Agents,</span><br />
+            Not AI Experiments.
           </motion.h1>
 
           <motion.p
             {...fade(0.16)}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            Kovil AI embeds vetted AI talent into marketing agencies — in 48 hours. Build AI orchestration, automate workflows, and ship AI-powered campaigns without hiring nightmares.
+            Kovil AI embeds vetted AI Ops Engineers into your agency in 48 hours. Build reliable agentic workflows, automate your operational bottlenecks, and decouple your revenue growth from expensive headcount.
           </motion.p>
 
           <motion.div {...fade(0.22)} className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
@@ -372,123 +423,88 @@ export default function NYAgencyPage() {
         </div>
       </section>
 
-      {/* ── 4. AI WORKFLOW DIAGRAM ─────────────────────────────────────────── */}
+      {/* ── 4. WHAT WE CAN BUILD FOR YOU ──────────────────────────────────── */}
       <section className="border-y border-border py-20 px-6" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.04) 0%, transparent 70%)" }}>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <motion.div {...fade(0)} className="text-center mb-12">
-            <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">How It Works</p>
+            <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Real Builds</p>
             <h2 className="font-display font-bold text-3xl md:text-4xl mb-3">
-              How AI Workflow Automation Works<br className="hidden md:block" /> Inside a Marketing Agency
+              What We Can Build For You
             </h2>
-            <p className="text-muted-foreground text-sm">A Kovil AI engineer builds this in your first sprint — typically 14 days.</p>
+            <p className="text-muted-foreground text-sm max-w-xl mx-auto">
+              Six AI workflow automations we build specifically for ad &amp; marketing agencies. Each ships in 1–4 week sprints.
+            </p>
           </motion.div>
 
-          {/* Dark diagram container */}
-          <motion.div
-            {...fade(0.05)}
-            className="relative rounded-2xl border border-white/10 overflow-hidden p-6 md:p-10"
-            style={{ background: "linear-gradient(135deg, #0d0d0f 0%, #111115 100%)" }}
-          >
-            {/* Subtle grid bg */}
-            <div
-              className="absolute inset-0 opacity-[0.03] pointer-events-none"
-              style={{ backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)", backgroundSize: "40px 40px" }}
-            />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {agencyWorkflows.map((wf, i) => (
+              <motion.div
+                key={wf.title}
+                {...fade(i * 0.07)}
+                className="group relative rounded-2xl border border-border bg-background p-6 hover:border-accent/40 hover:shadow-lg hover:-translate-y-0.5 transition-all overflow-hidden"
+              >
+                {/* Full-card link overlay */}
+                <Link
+                  href={`/ai-workflow-automation-library/${wf.slug}`}
+                  className="absolute inset-0 z-10"
+                  aria-label={wf.title}
+                />
 
-            <div className="relative flex flex-col items-center">
+                {/* Accent top bar */}
+                <div className="absolute inset-x-0 top-0 h-[3px] rounded-t-2xl bg-gradient-to-r from-accent to-accent/40" />
 
-              {/* Node 1 — Input */}
-              <DiagramNode delay={0.1} node={{
-                step: "STEP 01", label: "Client Brief Received", sub: "Campaign request lands in your intake system",
-                badge: "INPUT", variant: "input", Icon: FileText,
-              }} />
-              <DiagramArrow delay={0.2} />
-
-              {/* Node 2 — Parser */}
-              <DiagramNode delay={0.28} node={{
-                step: "STEP 02", label: "AI Brief Parser", sub: "Extracts goals · audience · budget · KPIs",
-                badge: "PARSE", variant: "process", Icon: Search,
-              }} />
-              <DiagramArrow delay={0.38} />
-
-              {/* Node 3 — Strategist Agent */}
-              <DiagramNode delay={0.46} node={{
-                step: "STEP 03", label: "AI Campaign Strategist Agent", sub: "Generates channel mix + messaging angles + timing",
-                badge: "AI AGENT", variant: "agent", Icon: Brain,
-              }} />
-
-              {/* Fork */}
-              <div className="flex justify-center w-full">
-                <ForkConnector delay={0.56} />
-              </div>
-
-              {/* Parallel tracks */}
-              <div className="grid grid-cols-2 gap-4 w-full">
-                <div className="flex flex-col items-center gap-0">
-                  <DiagramNode delay={0.64} node={{
-                    step: "TRACK A", label: "Paid Media Plan", sub: "Google & Meta audience targeting",
-                    badge: "PAID", variant: "process", Icon: Target,
-                  }} />
-                  <DiagramArrow delay={0.72} />
-                  <DiagramNode delay={0.78} node={{
-                    step: "TRACK A", label: "Budget Allocator Agent", sub: "Auto-optimizes spend across channels",
-                    badge: "AI AGENT", variant: "agent", Icon: DollarSign,
-                  }} />
+                {/* Time saved badge */}
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-accent bg-accent/10 border border-accent/20 px-2.5 py-0.5 rounded-full">
+                    Ad &amp; Marketing
+                  </span>
+                  <span className="text-[11px] font-semibold text-accent flex items-center gap-1">
+                    <Zap size={10} /> {wf.timeSaved}
+                  </span>
                 </div>
-                <div className="flex flex-col items-center gap-0">
-                  <DiagramNode delay={0.64} node={{
-                    step: "TRACK B", label: "Content Brief Generator", sub: "Copy angles · ad variants · hooks",
-                    badge: "CONTENT", variant: "process", Icon: FileText,
-                  }} />
-                  <DiagramArrow delay={0.72} />
-                  <DiagramNode delay={0.78} node={{
-                    step: "TRACK B", label: "Creative Asset Prompt Engine", sub: "Generates prompts for your design team",
-                    badge: "AI AGENT", variant: "agent", Icon: Wand2,
-                  }} />
+
+                {/* Title */}
+                <h3 className="font-display font-bold text-[15px] leading-snug mb-2 group-hover:text-accent transition-colors">
+                  {wf.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-[12px] text-muted-foreground leading-relaxed mb-4">
+                  {wf.description}
+                </p>
+
+                {/* Tools */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {wf.tools.slice(0, 4).map(t => (
+                    <span key={t} className="rounded px-2 py-0.5 text-[10px] font-medium border border-border bg-muted/30 text-muted-foreground">
+                      {t}
+                    </span>
+                  ))}
+                  {wf.tools.length > 4 && (
+                    <span className="rounded px-2 py-0.5 text-[10px] border border-border text-muted-foreground">
+                      +{wf.tools.length - 4}
+                    </span>
+                  )}
                 </div>
-              </div>
 
-              {/* Merge */}
-              <div className="flex justify-center w-full">
-                <MergeConnector delay={0.86} />
-              </div>
+                {/* Footer */}
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-semibold text-accent flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Full deep-dive <ArrowRight size={11} />
+                  </span>
+                  <span className="text-[10px] text-muted-foreground">{wf.buildTime}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
-              {/* Node 6 — Monitor */}
-              <DiagramNode delay={0.93} node={{
-                step: "STEP 06", label: "Campaign Performance Monitor", sub: "Real-time AI scoring across all active channels",
-                badge: "MONITOR", variant: "monitor", Icon: Activity,
-              }} />
-              <DiagramArrow delay={1.01} />
-
-              {/* Node 7 — Output */}
-              <DiagramNode delay={1.08} node={{
-                step: "STEP 07", label: "Auto-Report Generator → Client Dashboard", sub: "Live performance data, formatted for client review",
-                badge: "OUTPUT", variant: "output", Icon: BarChart3,
-              }} />
-
-            </div>
-
-            {/* Caption bar */}
-            <motion.div
-              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
-              viewport={{ once: true }} transition={{ delay: 1.18 }}
-              className="mt-8 flex items-center justify-center gap-3 border-t border-white/8 pt-6"
+          <motion.div {...fade(0.5)} className="text-center mt-10">
+            <Link
+              href="/ai-workflow-automation-library"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:gap-3 transition-all"
             >
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/10" />
-              <p className="text-xs text-white/40 text-center px-4">
-                Replaces <span className="text-white/70 font-semibold">3 manual handoffs</span>, <span className="text-white/70 font-semibold">2 spreadsheets</span>, and <span className="text-white/70 font-semibold">1 status meeting</span> per campaign.
-              </p>
-              <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10" />
-            </motion.div>
-          </motion.div>
-
-          {/* Below diagram CTA */}
-          <motion.div {...fade(1.2)} className="text-center mt-8">
-            <OnboardingModal defaultGoal="project">
-              <Button className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-full px-8 h-11">
-                Build This For My Agency <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </OnboardingModal>
+              Browse all 49 AI workflow automations <ArrowRight size={14} />
+            </Link>
           </motion.div>
         </div>
       </section>
