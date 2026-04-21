@@ -1437,6 +1437,123 @@ def make_nyc_agencies_image():
     print(f"Saved: {out}")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE 14: What Is a Vector Database?
+# Visual: RAG pipeline — chunks → embed → store → query → retrieve → LLM
+# ─────────────────────────────────────────────────────────────────────────────
+def make_vector_database_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (6, 10, 22), (18, 12, 30))
+    CYAN = (6, 182, 212)
+    draw_circle_glow(img, 600, 200, 460, CYAN,   alpha_max=28)
+    draw_circle_glow(img, 100, 560, 200, ORANGE, alpha_max=25)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f   = ImageFont.truetype(FONT_BOLD, 46)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 17)
+    node_f = ImageFont.truetype(FONT_BOLD, 14)
+    node_sf= ImageFont.truetype(FONT_REGULAR, 12)
+    arrow_f= ImageFont.truetype(FONT_BOLD, 18)
+
+    # ── Headline top ─────────────────────────────────────────────────────────
+    pill = "AI ENGINEERING"
+    pw = draw.textbbox((0, 0), pill, font=tag_f)[2] + 24
+    draw.rounded_rectangle([W // 2 - pw // 2, 36, W // 2 + pw // 2, 64],
+                            radius=14, fill=(*CYAN, 50))
+    draw.text((W // 2, 50), pill, font=tag_f, fill=CYAN, anchor="mm")
+
+    draw.text((W // 2, 100), "What Is a Vector Database?", font=h1_f, fill=WHITE, anchor="mm")
+    draw.text((W // 2, 146), "The infrastructure behind every RAG system and AI-powered search",
+              font=sub_f, fill=GREY_DIM, anchor="mm")
+
+    # ── Pipeline nodes ────────────────────────────────────────────────────────
+    stages = [
+        ("Documents",     "PDFs, Docs,\nweb pages",      (59,  130, 246)),
+        ("Embedding\nModel", "text-embedding\n-3-small",  (99,  102, 241)),
+        ("Vector\nStore",  "Pinecone /\nQdrant / pgvec", CYAN),
+        ("Query\nVector",  "User question\nembedded",    (168,  85, 247)),
+        ("Nearest\nNeighbour", "Top-k similar\nchunks",  ORANGE),
+        ("LLM\nAnswer",   "Grounded\nresponse",          (16,  185, 129)),
+    ]
+
+    n       = len(stages)
+    box_w   = 148
+    box_h   = 175
+    gap     = 22
+    total   = n * box_w + (n - 1) * gap
+    x0      = (W - total) // 2
+    y0      = 195
+
+    for i, (title, subtitle, col) in enumerate(stages):
+        bx = x0 + i * (box_w + gap)
+
+        # Card
+        card = Image.new("RGBA", (box_w, box_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, box_w, box_h], radius=12, fill=(*col, 22))
+        cd.rounded_rectangle([0, 0, box_w, box_h], radius=12, outline=(*col, 90), width=1)
+        img.paste(card, (bx, y0), mask=card)
+
+        draw = ImageDraw.Draw(img)
+        # Top accent
+        draw.rounded_rectangle([bx, y0, bx + box_w, y0 + 4], radius=2, fill=col)
+
+        # Step number
+        step_f = ImageFont.truetype(FONT_BOLD, 11)
+        draw.text((bx + box_w // 2, y0 + 20), f"0{i+1}", font=step_f, fill=col, anchor="mm")
+
+        # Divider
+        draw.line([bx + 18, y0 + 33, bx + box_w - 18, y0 + 33],
+                  fill=(*col, 45), width=1)
+
+        # Title (multi-line)
+        title_lines = title.split("\n")
+        ty = y0 + 56 - (len(title_lines) - 1) * 14
+        for line in title_lines:
+            draw.text((bx + box_w // 2, ty), line, font=node_f, fill=WHITE, anchor="mm")
+            ty += 22
+
+        # Subtitle (multi-line, dimmed)
+        sub_lines = subtitle.split("\n")
+        sy_start = y0 + 108
+        for si, line in enumerate(sub_lines):
+            draw.text((bx + box_w // 2, sy_start + si * 18), line,
+                      font=node_sf, fill=GREY_DIM, anchor="mm")
+
+        # Arrow to next
+        if i < n - 1:
+            ax = bx + box_w + gap // 2
+            ay = y0 + box_h // 2
+            draw.line([ax - 7, ay, ax + 7, ay], fill=GREY_DIM, width=2)
+            draw.polygon([(ax + 7, ay - 5), (ax + 7, ay + 5), (ax + 15, ay)], fill=GREY_DIM)
+
+    # ── Bottom stat strip ─────────────────────────────────────────────────────
+    stat_f  = ImageFont.truetype(FONT_BOLD, 22)
+    stat_sf = ImageFont.truetype(FONT_REGULAR, 13)
+    stats   = [
+        ("HNSW / IVF",  "index algorithms"),
+        ("<10ms",        "retrieval at scale"),
+        ("1,536-dim",    "OpenAI embedding size"),
+    ]
+    stat_y = y0 + box_h + 36
+    sw     = W // len(stats)
+    for i, (val, label) in enumerate(stats):
+        sx = i * sw + sw // 2
+        draw.text((sx, stat_y),      val,   font=stat_f,  fill=CYAN,    anchor="mm")
+        draw.text((sx, stat_y + 30), label, font=stat_sf, fill=GREY_DIM, anchor="mm")
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-what-is-a-vector-database.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -1451,4 +1568,5 @@ if __name__ == "__main__":
     make_ai_integration_image()
     make_real_cost_mvp_image()
     make_nyc_agencies_image()
+    make_vector_database_image()
     print("Done.")
