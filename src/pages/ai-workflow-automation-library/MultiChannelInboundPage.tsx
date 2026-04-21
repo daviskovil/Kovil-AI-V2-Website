@@ -571,6 +571,29 @@ export default function MultiChannelInboundPage() {
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="bg-[#0D0D0D] py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div {...fade(0)} className="mb-10">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] font-display" style={{ color: `${accentColor}B3` }}>FAQ</span>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white">Common Questions</h2>
+          </motion.div>
+          <div className="divide-y divide-white/[0.06]">
+            {[
+              { q: 'How does the AI handle messages it cannot confidently answer?', a: "GPT-4o's intent classification includes a confidence score. If the message is ambiguous or classified as Existing Client with a complex query, the workflow routes it to a human handoff queue in Slack — tagged with the original message, channel source, and contact history. No message is ever dropped." },
+              { q: 'Can this workflow handle multiple languages?', a: 'Yes. GPT-4o detects the language of each incoming message and responds in the same language. The Notion knowledge base can contain multilingual FAQ entries, and GPT-4o will match the response language to the sender automatically.' },
+              { q: 'What happens to a lead who scores below the booking threshold?', a: 'Leads scoring below 7 receive a nurture message — typically a case study or resource link — and are logged to HubSpot with their score and answers. A follow-up reminder is created in HubSpot for the account manager to review and manually re-engage.' },
+              { q: 'Does this work with existing HubSpot contacts or only new ones?', a: "Both. The workflow checks HubSpot for an existing contact matching the sender's email or phone before creating a new record. If a match is found, the interaction is logged as a new timeline event on the existing contact — enriching the record rather than duplicating it." },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.07)} className="py-6">
+                <h3 className="font-display font-semibold text-white text-base mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <motion.div {...fade(0)}

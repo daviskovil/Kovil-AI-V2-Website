@@ -500,6 +500,29 @@ export default function HybridContentPage() {
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="bg-[#0D0D0D] py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div {...fade(0)} className="mb-10">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] font-display" style={{ color: `${accentColor}B3` }}>FAQ</span>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white">Common Questions</h2>
+          </motion.div>
+          <div className="divide-y divide-white/[0.06]">
+            {[
+              { q: 'Why does AI-only content fail to rank?', a: "Generic AI content fails to rank because it lacks the E-E-A-T signals Google's ranking systems reward: Experience (first-hand accounts), Expertise (depth beyond surface summaries), Authoritativeness (original perspectives), and Trustworthiness (verifiable data). AI models trained on public data produce content that mirrors what already ranks — creating a more polished version of existing content rather than something differentiated. Google's spam detection systems are specifically trained to identify and suppress this pattern." },
+              { q: 'What is the 90/10 rule in this workflow?', a: 'AI handles 90% of the work: SERP research, competitor structure mapping, information gap identification, H2 scaffolding, and first-draft writing. Human strategists handle 10%: injecting first-hand anecdotes, verifying statistics against primary sources, adding nuanced internal links, and adjusting 2–3 sections that need a genuine human voice. This ratio produces content that scales economically while maintaining the differentiation signals that rank.' },
+              { q: 'How does Perplexity API analyse the top 10 SERP results?', a: "The Perplexity API call is structured to return a structured analysis of the top 10 ranking pages for the target keyword: each page's H2 structure, approximate word count, content format (listicle, guide, comparison), and subtopics covered. n8n then runs a frequency analysis across all 10 results to identify which subtopics appear in fewer than 3 results — these are the information gaps worth targeting." },
+              { q: 'How long does the full workflow take from keyword to published article?', a: 'The automated portion — SERP analysis, gap mapping, and GPT-4o draft generation — takes 8–12 minutes. Human review and anecdote injection takes 15–25 minutes. CMS publishing and GSC indexing submission takes under 2 minutes via API. Total time from keyword submission to live published article: under 45 minutes.' },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.07)} className="py-6">
+                <h3 className="font-display font-semibold text-white text-base mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <motion.div {...fade(0)}

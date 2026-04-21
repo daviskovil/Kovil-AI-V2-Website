@@ -557,6 +557,29 @@ export default function AMBriefReportingPage() {
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="bg-[#0D0D0D] py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div {...fade(0)} className="mb-10">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] font-display" style={{ color: `${accentColor}B3` }}>FAQ</span>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white">Common Questions</h2>
+          </motion.div>
+          <div className="divide-y divide-white/[0.06]">
+            {[
+              { q: 'What is an AM brief and why does it need automation?', a: "An AM brief (Account Manager brief) is a daily summary of each client's performance metrics, delivered to the account manager before they start their day. Without automation, AMs spend 30–45 minutes each morning pulling data manually from GA4 and ad platforms. This workflow generates and delivers a personalised brief per AM via Slack at 7am — covering only their client portfolio." },
+              { q: 'How does the workflow differentiate between clients managed by different AMs?', a: "Each client record in the system is tagged with an account manager ID. The workflow loops through all active clients, generates a brief per client, then groups briefs by AM and delivers a consolidated Slack message to each AM's DM — showing only their own portfolio, never other AMs' clients." },
+              { q: 'Does the weekly client report include GA4 and paid ad data together?', a: 'Yes. The weekly report pulls GA4 organic and direct traffic data alongside Meta Ads, Google Ads, and optionally LinkedIn data into a unified view. GPT-4o synthesises both into a single narrative — explaining how paid activity influenced organic behaviour, and vice versa.' },
+              { q: 'Can the report template be customised per client?', a: "Yes. Each client has a report template variant in Google Slides — different logos, brand colours, and slide structures. The workflow clones the client-specific template and populates it with that client's data. One workflow, unlimited template variants." },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.07)} className="py-6">
+                <h3 className="font-display font-semibold text-white text-base mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <motion.div {...fade(0)}

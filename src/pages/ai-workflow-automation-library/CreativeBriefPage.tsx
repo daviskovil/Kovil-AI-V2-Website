@@ -489,6 +489,29 @@ export default function CreativeBriefPage() {
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="bg-[#0D0D0D] py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div {...fade(0)} className="mb-10">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] font-display" style={{ color: '#A78BFA' + 'B3' }}>FAQ</span>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white">Common Questions</h2>
+          </motion.div>
+          <div className="divide-y divide-white/[0.06]">
+            {[
+              { q: 'How does GPT-4o maintain brand voice in the generated brief?', a: "The workflow pulls the client's existing brand guidelines and the last three approved briefs from Notion before each GPT-4o call. This context is passed directly into the system prompt, allowing GPT-4o to match tone, vocabulary, and structural preferences that are specific to each client — not a generic output." },
+              { q: 'What happens if the creative team wants to revise the brief?', a: 'The Slack approval gate has two buttons: Approve and Request Revision. Clicking Request Revision opens a Slack modal where the reviewer types specific feedback. n8n sends that feedback back to GPT-4o, which regenerates the relevant sections and resubmits for approval — without restarting the full workflow.' },
+              { q: 'Can this handle briefs for multiple clients with different brand voices?', a: "Yes. Each client has their own Notion brand guidelines page and brief archive. The workflow uses the HubSpot deal or Typeform client identifier to route to the correct Notion pages before generating the brief." },
+              { q: 'How long does the full brief generation take end-to-end?', a: 'From Typeform submission to brief appearing in the Slack approval channel takes under 45 seconds. GPT-4o generation typically takes 8–12 seconds. The remainder is Notion API fetch time and Slack message formatting.' },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.07)} className="py-6">
+                <h3 className="font-display font-semibold text-white text-base mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <motion.div {...fade(0)}

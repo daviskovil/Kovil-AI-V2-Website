@@ -515,6 +515,29 @@ export default function SEOFoundationPage() {
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="bg-[#0D0D0D] py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div {...fade(0)} className="mb-10">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] font-display" style={{ color: `${accentColor}B3` }}>FAQ</span>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white">Common Questions</h2>
+          </motion.div>
+          <div className="divide-y divide-white/[0.06]">
+            {[
+              { q: 'What is citation building and why does it matter for SEO?', a: "Citation building means getting your client's business name, address, and phone number (NAP data) listed consistently across directories like Google Business Profile, Yelp, Bing Places, Apple Maps, and hundreds of industry-specific sites. Search engines use citation consistency as a local relevance signal. Inconsistent NAP data across directories is one of the most common reasons local businesses fail to rank." },
+              { q: 'How many directories does the workflow submit to?', a: "The standard build submits to 50+ citation sources via BrightLocal's Location Data product. This includes Tier 1 directories (Google Business Profile, Bing Places, Apple Maps, Facebook, Yelp), Tier 2 aggregators (Data Axle, Neustar Localeze), and relevant industry-specific directories matched to the client's business category." },
+              { q: 'How does the client receive their SEO progress report?', a: 'Every Monday, a branded report is auto-emailed to the client. It includes: citation status (submitted, live, pending), Google Search Console data showing indexing progress, average position changes for target keywords, and a GPT-4o-generated plain-English summary explaining what changed and why. Zero human time required to produce or send it.' },
+              { q: 'How does this allow 2 staff to manage 30+ SEO clients?', a: 'The critical efficiency gain is in the reporting layer. Without automation, each client report requires manually pulling GSC data, formatting it, writing a summary, and emailing — 45–60 minutes per client per week. With this workflow, all 30 reports are generated and delivered in under 10 minutes total, every Monday, with no human involvement.' },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.07)} className="py-6">
+                <h3 className="font-display font-semibold text-white text-base mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <motion.div {...fade(0)}

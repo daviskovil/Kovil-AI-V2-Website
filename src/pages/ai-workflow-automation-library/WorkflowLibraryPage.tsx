@@ -822,7 +822,7 @@ const workflows: Workflow[] = [
   },
 ]
 
-const industries = ['All', 'Ad & Marketing', 'FinTech', 'HealthTech', 'SaaS & B2B', 'E-Commerce', 'LegalTech', 'PropTech', 'Logistics']
+const industries = ['Ad & Marketing', 'FinTech', 'HealthTech', 'SaaS & B2B', 'E-Commerce', 'LegalTech', 'PropTech', 'Logistics']
 
 // ── Node Diagram ──────────────────────────────────────────────────────────────
 
@@ -1087,10 +1087,10 @@ function WorkflowDiagram({ nodes, nodeEmojis, large = false }: { nodes: string[]
 // ── Page ─────────────────────────────────────────────────────────────────────
 
 export default function WorkflowLibraryPage() {
-  const [activeIndustry, setActiveIndustry] = useState('All')
+  const [activeIndustry, setActiveIndustry] = useState('Ad & Marketing')
   const [selectedWorkflow, setSelectedWorkflow] = useState<Workflow | null>(null)
 
-  const filtered = activeIndustry === 'All' ? workflows : workflows.filter(w => w.industry === activeIndustry)
+  const filtered = workflows.filter(w => w.industry === activeIndustry)
 
   useEffect(() => {
     if (!selectedWorkflow) return
@@ -1203,8 +1203,7 @@ export default function WorkflowLibraryPage() {
 
         {/* Count */}
         <p className="mb-8 text-xs text-white/30">
-          Showing <span className="text-white/60">{filtered.length}</span> workflow{filtered.length !== 1 ? 's' : ''}
-          {activeIndustry !== 'All' && <> in <span className="text-white/60">{activeIndustry}</span></>}
+          Showing <span className="text-white/60">{filtered.length}</span> workflow{filtered.length !== 1 ? 's' : ''} in <span className="text-white/60">{activeIndustry}</span>
         </p>
 
         {(() => {
@@ -1334,50 +1333,6 @@ export default function WorkflowLibraryPage() {
             )
           }
 
-          // ── Grouped view (All) — industry sections with separators ─────
-          if (activeIndustry === 'All') {
-            const industryOrder = ['Ad & Marketing', 'FinTech', 'HealthTech', 'SaaS & B2B', 'E-Commerce', 'LegalTech', 'PropTech', 'Logistics']
-            return (
-              <div className="space-y-14">
-                {industryOrder.map(industry => {
-                  const group = workflows.filter(w => w.industry === industry)
-                  if (group.length === 0) return null
-                  const color = group[0].industryColor
-                  return (
-                    <div key={industry}>
-                      {/* ── Industry separator header ── */}
-                      <div className="mb-6 flex items-center gap-3">
-                        <span
-                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                          style={{ background: color }}
-                        />
-                        <span
-                          className="font-display text-[11px] font-semibold uppercase tracking-widest"
-                          style={{ color }}
-                        >
-                          {industry}
-                        </span>
-                        <div
-                          className="flex-1 h-px"
-                          style={{ background: `linear-gradient(to right, ${color}28, transparent)` }}
-                        />
-                        <span className="text-[10px] text-white/25 font-medium">{group.length} workflows</span>
-                      </div>
-
-                      {/* Cards */}
-                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        <AnimatePresence mode="popLayout">
-                          {group.map(wf => renderCard(wf))}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            )
-          }
-
-          // ── Filtered single-industry view ──────────────────────────────
           return (
             <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <AnimatePresence mode="popLayout">

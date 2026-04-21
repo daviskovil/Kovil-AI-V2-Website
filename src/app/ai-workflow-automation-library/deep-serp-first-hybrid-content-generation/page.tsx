@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import HybridContentPage from '@/src/pages/ai-workflow-automation-library/HybridContentPage'
 
 export const metadata: Metadata = {
-  title: 'Deep SERP-First Hybrid Content Generation — AI Workflow | Kovil AI',
+  title: 'SERP-First Hybrid Content Generation | Kovil AI',
   description: 'See how Kovil AI builds a hybrid content pipeline: target keyword → Perplexity maps top 10 SERP → information gap analysis → brand-voice GPT-4o draft → 15-minute human review → CMS publish. 90% drafting time saved.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/deep-serp-first-hybrid-content-generation' },
+  robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
     title: 'Deep SERP-First Hybrid Content Generation | Kovil AI',
@@ -27,6 +28,7 @@ const schema = {
   name: 'Deep SERP-First Hybrid Content Generation',
   description: 'A content production pipeline that uses Perplexity API to analyze top 10 SERP results, identifies information gaps competitors miss, generates brand-voice drafts with GPT-4o, and routes to human review for anecdote injection before CMS publishing.',
   totalTime: 'PT2H',
+  dateModified: '2025-04-21',
   tool: ['Perplexity API', 'GPT-4o', 'n8n', 'Notion', 'Google Search Console', 'Surfer SEO'],
   step: [
     { '@type': 'HowToStep', position: 1, name: 'Keyword submission', text: 'Target keyword submitted via Notion content calendar entry or Slack slash command. n8n webhook captures keyword, target URL, tone instructions, and brand-specific requirements.' },
@@ -48,11 +50,64 @@ const breadcrumb = {
   ],
 }
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Why does AI-only content fail to rank?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Generic AI content fails to rank because it lacks the E-E-A-T signals Google's ranking systems reward: Experience (first-hand accounts), Expertise (depth beyond surface summaries), Authoritativeness (original perspectives), and Trustworthiness (verifiable data). AI models trained on public data produce content that mirrors what already ranks — creating a more polished version of existing content rather than something differentiated. Google's spam detection systems are specifically trained to identify and suppress this pattern.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the 90/10 rule in this workflow?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'AI handles 90% of the work: SERP research, competitor structure mapping, information gap identification, H2 scaffolding, and first-draft writing. Human strategists handle 10%: injecting first-hand anecdotes, verifying statistics against primary sources, adding nuanced internal links, and adjusting 2–3 sections that need a genuine human voice. This ratio produces content that scales economically while maintaining the differentiation signals that rank.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does Perplexity API analyse the top 10 SERP results?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The Perplexity API call is structured to return a structured analysis of the top 10 ranking pages for the target keyword: each page\'s H2 structure, approximate word count, content format (listicle, guide, comparison), and subtopics covered. n8n then runs a frequency analysis across all 10 results to identify which subtopics appear in fewer than 3 results — these are the information gaps worth targeting.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does the full workflow take from keyword to published article?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The automated portion — SERP analysis, gap mapping, and GPT-4o draft generation — takes 8–12 minutes. Human review and anecdote injection takes 15–25 minutes. CMS publishing and GSC indexing submission takes under 2 minutes via API. Total time from keyword submission to live published article: under 45 minutes.',
+      },
+    },
+  ],
+}
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'SERP-First Hybrid Content Generation',
+  description: 'Hybrid content pipeline using Perplexity API for SERP analysis, GPT-4o for brand-voice drafting, and a 15-minute human review step — producing content that ranks vs. generic AI output.',
+  provider: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },
+  serviceType: 'AI Workflow Automation',
+  areaServed: { '@type': 'Country', name: 'United States' },
+  url: 'https://kovil.ai/ai-workflow-automation-library/deep-serp-first-hybrid-content-generation',
+  category: 'Ad & Marketing',
+}
+
 export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <div className="pt-20">
         <HybridContentPage />
       </div>

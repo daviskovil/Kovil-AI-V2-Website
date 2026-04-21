@@ -501,6 +501,29 @@ export default function SmartBiddingPage() {
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="bg-[#0D0D0D] py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div {...fade(0)} className="mb-10">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] font-display" style={{ color: `${accentColor}B3` }}>FAQ</span>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white">Common Questions</h2>
+          </motion.div>
+          <div className="divide-y divide-white/[0.06]">
+            {[
+              { q: 'Why do native platform algorithms outperform manual bidding?', a: "Meta and Google's native algorithms have access to thousands of behavioural signals per user that are invisible to advertisers — scroll patterns, app usage, purchase history across the platform ecosystem. Manual bid adjustments only act on the data visible in the dashboard. When fed clean deep-funnel conversion data (actual purchases or qualified leads rather than clicks), the native algorithms dramatically outperform human operators in optimising toward real business outcomes." },
+              { q: 'What is deep-funnel conversion tracking and how is it different from standard tracking?', a: 'Standard tracking fires when a user reaches a thank-you page (a shallow signal). Deep-funnel tracking fires when a user completes a high-value action — a qualified call, a completed application, an actual purchase — and sends that signal back to Meta via Conversions API and Google via Enhanced Conversions with hashed user data. This trains the algorithm on signals that actually correlate with revenue.' },
+              { q: 'How quickly does the GPT-4o alert fire when a campaign breaches CPA?', a: 'The n8n workflow polls Meta Ads API and Google Ads API every 4 hours. If GPT-4o detects any ad set spending more than 20% above the configured target CPA, a structured Slack alert fires within minutes of the polling cycle completing. The alert includes the ad set name, current CPR, target CPR, overspend amount, and a recommended action.' },
+              { q: 'Does this workflow make automatic bid changes?', a: 'No — and this is intentional. The workflow monitors, analyses, and alerts, but does not automatically adjust bids or pause campaigns. All actions are reviewed and executed by the media buyer. The goal is to give the human operator better information faster, not to remove human judgement from media buying decisions.' },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.07)} className="py-6">
+                <h3 className="font-display font-semibold text-white text-base mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <motion.div {...fade(0)}

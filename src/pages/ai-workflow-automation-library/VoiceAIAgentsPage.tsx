@@ -531,6 +531,29 @@ export default function VoiceAIAgentsPage() {
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="bg-[#0D0D0D] py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div {...fade(0)} className="mb-10">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] font-display" style={{ color: `${accentColor}B3` }}>FAQ</span>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white">Common Questions</h2>
+          </motion.div>
+          <div className="divide-y divide-white/[0.06]">
+            {[
+              { q: 'How realistic does the ElevenLabs voice sound on calls?', a: 'ElevenLabs Conversational AI produces voices that most callers cannot distinguish from a human in standard telephony audio quality. The voice is cloned from a 5–10 minute reference recording provided by the SMB client — typically a staff member or professional voice artist. End-to-end voice latency is under 500ms, which eliminates the robotic pause that signals AI to callers.' },
+              { q: 'Can the voice agent transfer calls to a human?', a: 'Yes. When a caller asks to speak to someone, expresses frustration, or triggers a configured escalation keyword, n8n initiates a Twilio warm transfer to a live agent. The human receives a Slack notification with the full call transcript before the transfer connects.' },
+              { q: 'How do agencies white-label and resell this to clients?', a: 'Kovil AI builds the core infrastructure once. Each SMB client gets their own Twilio number, ElevenLabs voice model, and system prompt customised with their business name, services, and hours. The agency manages all clients from a single n8n instance. Billing is set up as a recurring monthly retainer per client — turning a one-time build into ongoing SaaS revenue.' },
+              { q: 'What compliance and data handling considerations are there?', a: "Call recordings and transcripts are handled per Twilio's data processing agreements. The workflow can be configured to not record calls where regulations require consent. GPT-4o processes transcripts in real time but does not store them beyond the session unless explicitly logged to HubSpot." },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.07)} className="py-6">
+                <h3 className="font-display font-semibold text-white text-base mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <motion.div {...fade(0)}

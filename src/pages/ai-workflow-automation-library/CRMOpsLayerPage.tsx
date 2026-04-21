@@ -591,6 +591,29 @@ export default function CRMOpsLayerPage() {
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="bg-[#0D0D0D] py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div {...fade(0)} className="mb-10">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] font-display" style={{ color: `${accentColor}B3` }}>FAQ</span>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white">Common Questions</h2>
+          </motion.div>
+          <div className="divide-y divide-white/[0.06]">
+            {[
+              { q: 'What are the 18 validation checks?', a: 'The 18 checks cover: required fields present (company name, primary email, phone), email format valid, MX record check (the email domain must have active mail servers), phone number dialable in E.164 format, company name not on the configured blocklist, deal value within acceptable range, no duplicate contact email in CRM, industry matches the approved taxonomy of 24 categories, deal stage matches CRM pipeline stage names, first and last name split correctly, website URL resolvable, country code ISO 3166-1 compliant, and six custom business-logic rules configured per client.' },
+              { q: 'Can this work with both Salesforce and HubSpot simultaneously?', a: 'Yes. The workflow can be configured to write to either CRM or both simultaneously. For agencies managing clients on different CRM platforms, the routing logic uses the client identifier to determine the correct CRM target for each record.' },
+              { q: 'What happens to records that fail validation?', a: 'Hard failures (invalid email, confirmed duplicate, blocklisted company) are rejected and logged to the Slack #crm-ops-log channel with a specific error code. The ops team can correct the record and resubmit via a dedicated Slack action. Soft failures (missing optional field, unresolvable website) are allowed through with a flag visible in the CRM record.' },
+              { q: 'How does Clearbit enrichment work and what does it add?', a: 'For contacts with a valid business email, n8n calls the Clearbit Enrichment API and appends 12+ firmographic fields: employee headcount, estimated annual revenue, funding stage, tech stack (tools the company uses), LinkedIn company URL, industry classification, and HQ address. This eliminates manual research and ensures every CRM contact is fully populated on entry.' },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.07)} className="py-6">
+                <h3 className="font-display font-semibold text-white text-base mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <motion.div {...fade(0)}

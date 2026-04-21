@@ -500,6 +500,29 @@ export default function SocialIntelligencePage() {
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="bg-[#0D0D0D] py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div {...fade(0)} className="mb-10">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] font-display" style={{ color: `${accentColor}B3` }}>FAQ</span>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white">Common Questions</h2>
+          </motion.div>
+          <div className="divide-y divide-white/[0.06]">
+            {[
+              { q: "Is Reddit scraping against the platform's terms of service?", a: "The workflow uses the official Reddit API, not unauthorised scraping. Reddit's API provides programmatic access to public post data, which is permitted for monitoring and analytics purposes within their rate limits. The workflow operates within Reddit's API usage policies and does not scrape private communities or bypass access controls." },
+              { q: 'How does Claude 3.5 score posts on the three axes?', a: "Claude 3.5 Sonnet receives each post with a structured scoring prompt specifying: ICP relevance (0–10, how closely the poster matches the client's ideal customer profile), engagement potential (0–10, likelihood that a helpful reply would generate meaningful interaction), and purchase intent signal (0–10, strength of buying signals in the language). Scores are returned as JSON with a one-sentence rationale per axis." },
+              { q: 'How does the human approval queue work?', a: "Account managers access a filtered Airtable view showing only posts above the relevance threshold. Each row shows the original post, subreddit, score breakdown, and Claude's drafted reply. The AM reads the draft, edits it inline if needed, and clicks Approve. n8n receives the approval webhook and publishes the reply to the correct platform via the relevant API." },
+              { q: 'What platforms besides Reddit does this monitor?', a: 'The standard build monitors Reddit and LinkedIn groups. Additional integrations can be added for Quora, niche industry forums (via RSS scraping), Facebook Groups (via Meta API where permitted), and Twitter/X search via their API. Each platform is a separate n8n trigger node feeding the same Claude scoring pipeline.' },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.07)} className="py-6">
+                <h3 className="font-display font-semibold text-white text-base mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <motion.div {...fade(0)}

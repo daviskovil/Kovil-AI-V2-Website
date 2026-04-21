@@ -554,6 +554,29 @@ export default function ClientOnboardingPage() {
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="bg-[#0D0D0D] py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div {...fade(0)} className="mb-10">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] font-display" style={{ color: '#A78BFA' + 'B3' }}>FAQ</span>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white">Common Questions</h2>
+          </motion.div>
+          <div className="divide-y divide-white/[0.06]">
+            {[
+              { q: 'What triggers the onboarding automation?', a: 'The workflow triggers the moment a deal is moved to Won status in HubSpot CRM. A HubSpot webhook fires to n8n immediately — no manual action, no delay. The entire onboarding sequence kicks off within 30 seconds of the deal stage change.' },
+              { q: "What if the client hasn't signed the contract yet — does everything still fire?", a: 'The three parallel branches (DocuSign, Stripe, Typeform) fire simultaneously on deal Won. However, the Notion workspace creation, Slack channel setup, and Calendly kickoff scheduling are held at a Wait node until all three are confirmed complete. If the contract is not signed within 48 hours, a Slack escalation alert fires to the account manager.' },
+              { q: 'Can the Notion workspace template be customised per service tier?', a: 'Yes. The workflow uses HubSpot deal data (package tier, service type) to clone different Notion templates. A retainer client gets a different workspace structure than a project client — each with the correct page hierarchy, embedded forms, and pre-filled client data.' },
+              { q: 'How does this reduce onboarding from 3 days to 2 hours?', a: "The 3-day timeline was driven by manual sequential steps: waiting for contracts, then raising invoices, then setting up workspaces, then creating Slack channels. This workflow runs everything in parallel and automatically — the 2 hours remaining is purely the client's response time to sign and pay." },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.07)} className="py-6">
+                <h3 className="font-display font-semibold text-white text-base mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <motion.div {...fade(0)}

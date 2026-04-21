@@ -602,6 +602,29 @@ export default function CampaignReportingPage() {
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="bg-[#0D0D0D] py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div {...fade(0)} className="mb-10">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] font-display" style={{ color: '#A78BFA' + 'B3' }}>FAQ</span>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white">Common Questions</h2>
+          </motion.div>
+          <div className="divide-y divide-white/[0.06]">
+            {[
+              { q: 'How long does it take to set up automated campaign reporting?', a: 'A typical campaign reporting automation takes 2–3 weeks to build and deploy. This includes connecting Meta Ads, Google Ads, and LinkedIn APIs, configuring the GPT-4o analysis prompts for your specific KPIs, building the Google Slides template, and testing the full weekly delivery pipeline.' },
+              { q: 'Can this workflow handle multiple clients at once?', a: 'Yes. The workflow is built with a multi-client architecture — each client has their own Airtable row with API credentials, report template, and delivery email. The n8n schedule node loops through all active clients every Monday, generating and delivering individualised reports in parallel.' },
+              { q: 'What ad platforms does the reporting automation support?', a: 'The standard build connects Meta Ads (Facebook and Instagram), Google Ads, and LinkedIn Marketing API. Additional platforms — TikTok Ads, Pinterest Ads, and Bing Ads — can be added as parallel API nodes in the same n8n workflow.' },
+              { q: 'Does the client need to do anything to receive the report?', a: 'Nothing. The report is emailed to the client automatically every Monday at a configured time. The email includes a PDF attachment of the slide deck and a plain-text summary. No login or dashboard access required.' },
+            ].map((item, i) => (
+              <motion.div key={item.q} {...fade(i * 0.07)} className="py-6">
+                <h3 className="font-display font-semibold text-white text-base mb-2 leading-snug">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-white/50">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <motion.div {...fade(0)}
