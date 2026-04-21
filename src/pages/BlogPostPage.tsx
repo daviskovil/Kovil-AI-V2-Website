@@ -137,6 +137,15 @@ const CTA_MAP: Record<string, CtaConfig> = {
     primary: { text: 'Get a Fixed-Cost Quote →', href: '/engage/outcome-based-project' },
     secondary: { text: "See What We've Built", href: '/case-studies' },
   },
+  'what-is-a-vector-database': {
+    label: 'Kovil AI · AI Engineering',
+    teaser: 'We build RAG systems and AI search applications powered by the right vector infrastructure.',
+    headline: 'Ready to build a RAG system or AI-powered search for your business?',
+    body: 'We design and build vector database pipelines, embedding workflows, and RAG systems in production — connected to your documents, your data, and your existing stack.',
+    defaultGoal: 'project',
+    primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },
 }
 
 const DEFAULT_CTA: CtaConfig = {

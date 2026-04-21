@@ -2853,6 +2853,148 @@ export const posts: Post[] = [
 <p>Kovil AI's <a href="/engage/outcome-based-project">Outcome-Based AI Project</a> starts with a fixed-price scoping phase that produces a detailed project specification, timeline, and cost estimate before any engineering begins. For more complex or ongoing requirements, our <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement embeds an experienced engineer in your team. <a href="/contact">Get in touch</a> and we will have a number for you within 48 hours.</p>
     `,
   },
+
+  // ─── Blog 6, Apr 21, 2026 ────────────────────────────────────────────────
+  {
+    slug: "what-is-a-vector-database",
+    title: "What Is a Vector Database? (And Does Your Business Need One?)",
+    excerpt: "Vector databases are the infrastructure that makes AI search and RAG systems work. Here's the plain-English explanation — and a clear answer to whether your business actually needs one, with a guide to Pinecone, Weaviate, and pgvector.",
+    category: "AI Engineering",
+    date: "Apr 21, 2026",
+    readTime: "8 min read",
+    author: "Kovil AI Team",
+    featured: false,
+    heroImage: "/blog-what-is-a-vector-database.jpg",
+    faqs: [
+      {
+        q: "What is a vector database in simple terms?",
+        a: "A vector database stores information as mathematical representations of meaning called vectors, and allows you to search for conceptually similar content rather than exact keyword matches. When you ask an AI system 'what is our return policy?' it finds the relevant documentation even if the document uses the words 'refund terms' rather than 'return policy' — because the vector representations of both phrases are mathematically close. Traditional databases can't do this."
+      },
+      {
+        q: "Do I need a vector database for my AI application?",
+        a: "You need a vector database if you are building a RAG system (any AI that answers questions from your documents), a semantic search feature, or a recommendation engine based on content similarity. You do not need a vector database if your application only calls an LLM directly without retrieving context from external documents, or if you have fewer than a few thousand documents and can use simpler in-memory approaches."
+      },
+      {
+        q: "What is the best vector database in 2026?",
+        a: "For production applications: Qdrant is the fastest and most memory-efficient fully open-source option. Pinecone is the easiest managed option for teams that want zero infrastructure management. If you already use PostgreSQL, pgvector adds vector search with no additional infrastructure. Weaviate is the best choice for complex multi-modal use cases. For prototyping and development, Chroma is the simplest to set up."
+      },
+      {
+        q: "How does a vector database work with RAG?",
+        a: "In a RAG pipeline, your documents are split into chunks and converted to vectors by an embedding model. Those vectors are stored in the vector database. When a user asks a question, the question is also converted to a vector, and the database finds the document chunks whose vectors are mathematically closest to the question vector — meaning semantically similar content. Those chunks are passed to the LLM along with the user's question, giving the model relevant context to answer accurately."
+      },
+      {
+        q: "What is the difference between a vector database and a regular database?",
+        a: "A traditional database finds exact matches — it searches by specific values, IDs, or keywords. A vector database finds semantically similar content — it searches by meaning, not exact text. Traditional databases use indexes like B-trees for fast exact lookups. Vector databases use approximate nearest-neighbour algorithms like HNSW or IVF to find the most similar vectors in high-dimensional space. Both are good at what they do; they solve different retrieval problems."
+      },
+    ],
+    body: `
+<p>If you have been researching how to build an AI system that can answer questions from your company's documents, you have almost certainly encountered the term "vector database." It appears in every RAG tutorial, every AI search guide, and most AI infrastructure discussions. The explanations usually assume you already know what a vector is.</p>
+
+<p>This guide explains vector databases from first principles — what they are, why AI systems need them, how they work, and which one you should use.</p>
+
+<h2>What Is a Vector?</h2>
+
+<p>Before a vector database makes sense, you need to understand what a vector is in this context. A vector is a list of numbers that represents the meaning of a piece of text. When you feed a sentence like "our return policy allows 30 days" into an embedding model, it produces a list of several hundred or thousand numbers. A similar sentence — "customers can request refunds within a month" — produces a different list of numbers, but mathematically they are very close together in the high-dimensional space those numbers define.</p>
+
+<p>This mathematical closeness is what captures semantic similarity. Words that mean the same thing, sentences that express the same idea, documents that cover the same topic — their vectors are close together. Words and sentences that are unrelated are far apart.</p>
+
+<p>Traditional databases have no concept of meaning. They only find exact matches. If you store "return policy" and search for "refund terms," a traditional database returns nothing. A vector database returns the right result because both phrases land close together in vector space.</p>
+
+<h2>What Is a Vector Database?</h2>
+
+<p>A vector database is a storage system specifically designed to store, index, and efficiently search vectors. The key operation it provides is nearest-neighbour search: given a query vector (the vectorised form of a user's question), find the stored vectors that are closest to it.</p>
+
+<p>This is computationally different from traditional database lookups. Searching through millions of high-dimensional vectors for the closest matches requires specialised indexing algorithms — most commonly HNSW (Hierarchical Navigable Small World) or IVF (Inverted File Index) — that make the search fast enough to return results in milliseconds rather than seconds.</p>
+
+<h2>Why Do AI Applications Need Vector Databases?</h2>
+
+<p>Vector databases are the enabling infrastructure for three major AI application patterns:</p>
+
+<p><strong>Retrieval-Augmented Generation (RAG).</strong> The most common pattern. Your documents are vectorised and stored. When a user asks a question, the most relevant document chunks are retrieved and passed to the LLM as context. The model answers the question using that retrieved context rather than relying on training data alone. Without a vector database, there is no efficient way to find the relevant documents in a large corpus.</p>
+
+<p><strong>Semantic search.</strong> Search that understands meaning rather than matching keywords. A user searching "something for headaches" in a pharmaceutical catalogue should surface paracetamol and ibuprofen, even if neither product description uses that phrase. Vector search makes this possible.</p>
+
+<p><strong>Recommendation systems.</strong> Finding content, products, or documents that are similar to something a user has already engaged with. Vector similarity is a natural fit for content-based recommendation.</p>
+
+<h2>How Does a Vector Database Work? Step by Step</h2>
+
+<p>Here is the full pipeline, from raw documents to a working AI search system:</p>
+
+<ol>
+<li><strong>Chunk your documents.</strong> Split your source documents into smaller pieces — typically 200 to 500 tokens each, with some overlap between chunks to avoid cutting context at boundaries.</li>
+<li><strong>Embed each chunk.</strong> Pass each chunk through an embedding model (such as OpenAI's text-embedding-3-small or an open-source model like nomic-embed-text). The model returns a vector — a list of numbers — for each chunk.</li>
+<li><strong>Store the vectors.</strong> Write each chunk's vector to the vector database, along with the original text and any metadata (source document, page number, date) you want to filter on later.</li>
+<li><strong>Embed the user's query.</strong> When a user asks a question, pass their question through the same embedding model to get a query vector.</li>
+<li><strong>Search for nearest neighbours.</strong> The vector database finds the stored vectors closest to the query vector using its index, and returns the top-k most similar chunks.</li>
+<li><strong>Pass results to the LLM.</strong> The retrieved chunks are included in the prompt alongside the user's question. The LLM generates an answer grounded in the retrieved context.</li>
+</ol>
+
+<h2>Which Vector Database Should You Use?</h2>
+
+<p>The right choice depends on your scale, infrastructure preferences, and existing tech stack:</p>
+
+<table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+<thead>
+<tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Database</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Best For</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Managed?</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Pinecone</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Easiest managed option</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Yes (fully managed)</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">No infrastructure to manage; scales automatically; pricier at high volume</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Qdrant</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Production performance</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Self-hosted or managed</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Fastest and most memory-efficient; strong filtering; Rust-based</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Weaviate</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Complex multi-modal use cases</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Self-hosted or managed</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Highly flexible; built-in modules for different embedding models</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">pgvector</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Existing PostgreSQL users</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Depends on Postgres host</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">No new infrastructure if you already use Postgres; slower at very large scale</td>
+</tr>
+<tr>
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Chroma</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Prototyping &amp; development</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Self-hosted</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Easiest to set up locally; not recommended for production at scale</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Do You Actually Need a Dedicated Vector Database?</h2>
+
+<p>Not always. The decision depends on your document volume and query load:</p>
+
+<p><strong>You need a dedicated vector database when:</strong> your corpus exceeds 50,000 documents, you need sub-second retrieval under high concurrent query load, you need advanced filtering (by date, category, author) alongside semantic search, or your use case is customer-facing and reliability is critical.</p>
+
+<p><strong>You may not need one when:</strong> you have fewer than 10,000 documents (pgvector in an existing Postgres instance handles this well), your application is internal with low query volume, or you are still in prototyping and want to defer infrastructure decisions.</p>
+
+<h2>The Embedding Model Matters As Much As the Database</h2>
+
+<p>The quality of your vector search depends as much on your embedding model as on your vector database. A better embedding model produces vectors that more accurately capture semantic meaning, leading to more relevant retrieval results.</p>
+
+<p>OpenAI's text-embedding-3-small (1,536 dimensions, $0.02 per million tokens) is a strong default for most use cases. For higher accuracy on complex technical content, text-embedding-3-large (3,072 dimensions, $0.13 per million tokens) improves retrieval quality at higher cost. Open-source alternatives like nomic-embed-text are competitive on quality at zero inference cost when self-hosted.</p>
+
+<p>Matching your chunk size, embedding model, and retrieval strategy to your specific content type — technical documentation, customer support history, legal contracts, product catalogue — is where production RAG systems win or lose on accuracy.</p>
+
+<p>If you are building a RAG system, AI-powered search, or any application that needs to retrieve relevant information from a large document corpus, our <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement includes vector database design as part of the architecture scope. Our engineers have built retrieval pipelines across Pinecone, Qdrant, and pgvector in production. <a href="/contact">Get in touch</a> and we will scope the right approach for your use case.</p>
+    `,
+  },
 ];
 
 export function getPost(slug: string): Post | undefined {
