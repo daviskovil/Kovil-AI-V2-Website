@@ -226,18 +226,20 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                name: "Davis Rajan",
-                role: "Co-Founder",
-                photo: "/team-davis.webp",
-                bio: "20+ years across IT services, enterprise technology, and global operations. Davis drives Kovil AI's growth strategy, go-to-market execution, and outcome-based delivery model — moving clients from traditional development cycles to AI-accelerated results.",
-                highlights: ["GTM & Enterprise Sales", "AI-Led Delivery Models", "Global Ops & Offshore Delivery", "20+ Years IT Leadership"],
-              },
-              {
                 name: "Sahdev Thakur",
                 role: "Co-Founder",
                 photo: "/team-sahdev.webp",
-                bio: "Deep expertise in talent acquisition, offshore delivery, and engineering operations. Sahdev built Kovil AI's talent engine — the system that matches, vets, and deploys the right AI engineer to the right team in under 48 hours.",
-                highlights: ["Talent Acquisition", "Offshore Delivery Systems", "Execution & Operations", "Global Client Delivery"],
+                bio: "After 20 years of tech leadership, Kovil AI was born from seeing a peer drown in 200+ unvetted profiles. We bridge the trust gap for the 90% of businesses priced out of elite AI by deploying AI-native teams that implement production-ready agents with software-like speed and zero management overhead.",
+                highlights: ["AI Team Deployment", "Trust & Vetting", "Production-Ready AI", "Zero Management Overhead"],
+                linkedin: "https://www.linkedin.com/in/sahdev-thakur/",
+              },
+              {
+                name: "Davis Rajan",
+                role: "Co-Founder",
+                photo: "/team-davis.webp",
+                bio: "20+ years leading global IT delivery, AI Ops, and enterprise transformation. Davis works closely with every client, staying hands-on from kickoff to production, building trust through radical transparency, and moving organisations from traditional development cycles to AI-native, outcome-driven results.",
+                highlights: ["Global IT Delivery", "AI Ops & Transformation", "Client Partnerships", "Enterprise Leadership"],
+                linkedin: "https://www.linkedin.com/in/davisrajan/",
               },
             ].map((person, i) => (
               <motion.div
@@ -253,8 +255,21 @@ export default function AboutPage() {
                     className="h-16 w-16 rounded-full object-cover object-top border-2 border-border shrink-0"
                     loading="lazy"
                   />
-                  <div>
-                    <h3 className="font-display font-bold text-xl text-foreground leading-tight">{person.name}</h3>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-display font-bold text-xl text-foreground leading-tight">{person.name}</h3>
+                      <a
+                        href={person.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#0A66C2] hover:opacity-75 transition-opacity shrink-0"
+                        aria-label={`${person.name} on LinkedIn`}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                      </a>
+                    </div>
                     <p className="text-sm text-accent font-semibold mt-0.5">{person.role}, Kovil AI</p>
                   </div>
                 </div>
