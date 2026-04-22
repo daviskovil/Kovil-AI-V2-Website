@@ -35,6 +35,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/tools/ai-readiness-ad-marketing-agencies`, lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/ad-marketing-agencies`,                          lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/ai-workflow-automation-library`,                 lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
+    // ── Individual workflow pages ──────────────────────────────────────────────
+    { url: `${BASE_URL}/ai-workflow-automation-library/campaign-performance-reporting`,                   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/ai-creative-brief-generator`,                      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/new-client-onboarding-automation`,                 lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/automated-am-briefs-client-reporting`,             lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/multi-channel-inbound-dispatching`,                lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/white-label-voice-ai-agents`,                      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/crm-ops-layer`,                                    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/automated-seo-foundation-backlink-syndication`,    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/smart-bidding-algorithmic-media-buying`,           lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/deep-serp-first-hybrid-content-generation`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/comfyui-runway-commercial-video-pipelines`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/social-intelligence-subreddit-scraping`,           lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/browser-based-no-api-automation-legacy-enterprise`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
   ]
 
   // ── Blog posts (auto-generated from posts.ts) ──────────────────────────────
