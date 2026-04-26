@@ -39,6 +39,12 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Engage</h4>
             <ul className="space-y-3 text-sm text-muted/60">
+              <li>
+                <Link href="/agentforce" className="hover:text-accent transition-colors flex items-center gap-1.5">
+                  Salesforce Agentforce
+                  <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full" style={{ background: "#00A1E020", color: "#00A1E0" }}>New</span>
+                </Link>
+              </li>
               <li><Link href="/engage/managed-ai-engineer" className="hover:text-accent transition-colors">Managed AI Engineer</Link></li>
               <li><Link href="/engage/outcome-based-project" className="hover:text-accent transition-colors">Outcome-Based AI Project</Link></li>
               <li><Link href="/engage/app-rescue" className="hover:text-accent transition-colors">AI Reliability & App Rescue</Link></li>
