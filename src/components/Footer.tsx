@@ -5,11 +5,11 @@ export default function Footer() {
     <footer className="bg-foreground text-background py-16">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Main grid: brand takes 2/6 cols, each nav col takes 1/6 */}
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 md:gap-10">
+        {/* Main grid: brand | engage | other | company | tools */}
+        <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1.3fr_1.2fr_1fr_1fr] gap-8 md:gap-8">
 
           {/* Brand + contact */}
-          <div className="col-span-2 md:col-span-2">
+          <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-5">
               <img src="/kovil-logo-symbol-orange.webp" alt="Kovil AI" className="h-7 w-auto" loading="lazy" />
               <span className="font-display font-bold text-2xl tracking-tight">Kovil AI</span>
