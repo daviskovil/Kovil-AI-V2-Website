@@ -1554,6 +1554,90 @@ def make_vector_database_image():
     print(f"Saved: {out}")
 
 
+def make_ai_project_brief_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (8, 12, 24), (20, 14, 10))
+    draw_circle_glow(img, 900, 180, 420, ORANGE, alpha_max=30)
+    draw_circle_glow(img, 80,  500, 250, (251, 191, 36), alpha_max=20)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=10)
+
+    AMBER  = (251, 146, 60)
+    GREEN  = (52,  211, 153)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD,    13)
+    h1_f   = ImageFont.truetype(FONT_BOLD,    48)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 17)
+    sec_f  = ImageFont.truetype(FONT_BOLD,    14)
+    body_f = ImageFont.truetype(FONT_REGULAR, 12)
+
+    # ── Category pill ─────────────────────────────────────────────────────────
+    pill = "AI ENGINEERING"
+    pw = draw.textbbox((0, 0), pill, font=tag_f)[2] + 24
+    draw.rounded_rectangle([W // 2 - pw // 2, 34, W // 2 + pw // 2, 62],
+                            radius=14, fill=(*ORANGE, 50))
+    draw.text((W // 2, 48), pill, font=tag_f, fill=ORANGE, anchor="mm")
+
+    # ── Headlines ─────────────────────────────────────────────────────────────
+    draw.text((W // 2,  98), "How to Write an AI Project Brief",
+              font=h1_f, fill=WHITE, anchor="mm")
+    draw.text((W // 2, 145), "8 sections that let any team scope your project in 48 hours",
+              font=sub_f, fill=GREY_DIM, anchor="mm")
+
+    # ── Two-column section cards ──────────────────────────────────────────────
+    sections = [
+        ("01  Business Problem",   "What happens today & what goes wrong",        ORANGE),
+        ("02  Desired Outcome",    "Measurable success metric + target value",     AMBER),
+        ("03  End User",           "Who uses the output and in what context",      (59, 130, 246)),
+        ("04  Data Inventory",     "What exists, where it lives, how clean",       (99, 102, 241)),
+        ("05  System Integrations","Every system the AI reads from or writes to",  (168, 85, 247)),
+        ("06  Constraints",        "Compliance, latency, provider restrictions",   (236, 72, 153)),
+        ("07  Timeline",           "Hard deadlines and known milestones",          GREEN),
+        ("08  Budget Range",       "Even a rough range sharpens the scope",        (251, 191, 36)),
+    ]
+
+    cols      = 2
+    rows      = 4
+    card_w    = 530
+    card_h    = 68
+    gap_x     = 18
+    gap_y     = 10
+    total_w   = cols * card_w + gap_x
+    x0        = (W - total_w) // 2
+    y0        = 178
+
+    for i, (title, desc, col) in enumerate(sections):
+        col_i = i % cols
+        row_i = i // cols
+        cx = x0 + col_i * (card_w + gap_x)
+        cy = y0 + row_i * (card_h + gap_y)
+
+        # Card bg
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=10, fill=(*col, 18))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=10, outline=(*col, 70), width=1)
+        img.paste(card, (cx, cy), mask=card)
+
+        draw = ImageDraw.Draw(img)
+        # Left accent bar
+        draw.rounded_rectangle([cx, cy + 12, cx + 3, cy + card_h - 12], radius=2, fill=col)
+        # Title
+        draw.text((cx + 18, cy + 20), title, font=sec_f,  fill=WHITE,    anchor="lm")
+        # Description
+        draw.text((cx + 18, cy + 44), desc,  font=body_f, fill=GREY_DIM, anchor="lm")
+
+    # ── Bottom orange bar ─────────────────────────────────────────────────────
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-how-to-write-an-ai-project-brief.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -1569,4 +1653,5 @@ if __name__ == "__main__":
     make_real_cost_mvp_image()
     make_nyc_agencies_image()
     make_vector_database_image()
+    make_ai_project_brief_image()
     print("Done.")

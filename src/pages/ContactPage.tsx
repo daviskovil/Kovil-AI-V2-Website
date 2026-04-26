@@ -4,6 +4,7 @@ import { useRef, useState } from "react"
 import { motion } from "motion/react"
 import { Mail, Linkedin, Calendar, Send, CheckCircle, ArrowRight } from "lucide-react"
 import { Button } from "../components/ui/button"
+import { openCalendly } from "../lib/calendly"
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", company: "", email: "", role: "", message: "", website: "" })
@@ -122,6 +123,8 @@ export default function ContactPage() {
       desc: "Speak directly with our team.",
     },
   ]
+
+  const sharedCardClass = "group flex items-start gap-4 p-5 rounded-2xl border border-border bg-card hover:border-accent/40 hover:bg-accent/5 transition-all w-full text-left"
 
   return (
     <>
@@ -256,24 +259,38 @@ export default function ContactPage() {
               <p className="text-muted-foreground text-sm">Book a 30-minute discovery call and speak with someone from the Kovil team.</p>
             </div>
 
-            {contactMethods.map((m) => (
-              <a
-                key={m.label}
-                href={m.href}
-                target={m.href.startsWith("http") ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                className="group flex items-start gap-4 p-5 rounded-2xl border border-border bg-card hover:border-accent/40 hover:bg-accent/5 transition-all"
-              >
-                <div className="h-10 w-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-                  <m.icon className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide mb-0.5">{m.label}</p>
-                  <p className="font-semibold text-foreground text-sm group-hover:text-accent transition-colors">{m.value}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{m.desc}</p>
-                </div>
-              </a>
-            ))}
+            {contactMethods.map((m) => {
+              const inner = (
+                <>
+                  <div className="h-10 w-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+                    <m.icon className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide mb-0.5">{m.label}</p>
+                    <p className="font-semibold text-foreground text-sm group-hover:text-accent transition-colors">{m.value}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{m.desc}</p>
+                  </div>
+                </>
+              )
+              if (m.href === 'https://calendly.com/kovil-ai/talent') {
+                return (
+                  <button key={m.label} type="button" onClick={openCalendly} className={sharedCardClass}>
+                    {inner}
+                  </button>
+                )
+              }
+              return (
+                <a
+                  key={m.label}
+                  href={m.href}
+                  target={m.href.startsWith('http') ? '_blank' : undefined}
+                  rel="noopener noreferrer"
+                  className={sharedCardClass}
+                >
+                  {inner}
+                </a>
+              )
+            })}
 
             {/* Quick facts */}
             <div className="mt-4 p-6 rounded-2xl bg-foreground text-background">

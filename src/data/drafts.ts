@@ -6,7 +6,7 @@
 // Blog 4 → Publish Mon Apr 14, 2026 (gpt-4o-vs-claude-vs-gemini)
 // Blog 5 → Publish Thu Apr 17, 2026 (how-much-does-an-ai-project-cost)
 // Blog 6 → PUBLISHED Mon Apr 21, 2026 ✅
-// Blog 7 → Publish Mon Apr 28, 2026 (how-to-write-an-ai-project-brief)
+// Blog 7 → PUBLISHED Thu Apr 24, 2026 ✅
 // Blog 8 → Publish Thu May 1, 2026  (how-to-measure-ai-roi)
 // Blog 9 → Publish Mon May 5, 2026  (openai-vs-anthropic-vs-google-for-business)
 // Blog 10 → Publish Thu May 8, 2026 (how-to-reduce-llm-api-costs)

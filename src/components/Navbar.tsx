@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { ChevronDown, Users, Rocket, Shield, BookOpen, FileText, Workflow, Menu, X, ChevronRight } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
+import { openCalendly } from "@/src/lib/calendly"
 
 const engageLinks = [
   {
@@ -296,11 +297,9 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
 
       {/* Bottom CTA */}
       <div className="px-6 pb-8 pt-4 border-t border-border shrink-0">
-        <OnboardingModal>
-          <Button variant="accent" className="w-full rounded-full font-semibold h-12 text-base">
-            Start My AI Build
-          </Button>
-        </OnboardingModal>
+        <Button variant="accent" className="w-full rounded-full font-semibold h-12 text-base" onClick={openCalendly}>
+          Book a Call
+        </Button>
       </div>
     </div>
   )
@@ -346,20 +345,16 @@ export default function Navbar() {
             <Link href="/apply" className="text-sm font-medium hover:text-accent transition-colors cursor-pointer">
               Apply as AI Engineer
             </Link>
-            <OnboardingModal>
-              <Button variant="accent" className="rounded-full font-semibold">
-                Start My AI Build
-              </Button>
-            </OnboardingModal>
+            <Button variant="accent" className="rounded-full font-semibold" onClick={openCalendly}>
+              Book a Call
+            </Button>
           </div>
 
           {/* Mobile right — CTA + hamburger */}
           <div className="flex items-center gap-3 md:hidden">
-            <OnboardingModal>
-              <Button variant="accent" className="rounded-full font-semibold text-sm px-5 h-10">
-                Start My AI Build
-              </Button>
-            </OnboardingModal>
+            <Button variant="accent" className="rounded-full font-semibold text-sm px-5 h-10" onClick={openCalendly}>
+              Book a Call
+            </Button>
             <button
               onClick={() => setMobileOpen(true)}
               className="h-10 w-10 flex items-center justify-center rounded-full hover:bg-muted/50 transition-colors"

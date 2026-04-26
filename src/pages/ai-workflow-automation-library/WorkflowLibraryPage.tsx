@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { X, ArrowRight, Clock, ChevronRight, Zap, ExternalLink } from 'lucide-react'
+import { openCalendly } from '../../lib/calendly'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -1149,12 +1150,13 @@ export default function WorkflowLibraryPage() {
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.26 }}
           className="mt-9 flex flex-wrap items-center justify-center gap-3"
         >
-          <a
-            href="https://calendly.com/kovil-ai/talent" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-[#FF4F00] px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 font-display"
+          <button
+            type="button"
+            onClick={openCalendly}
+            className="inline-flex items-center gap-2 rounded-lg bg-[#FF4F00] px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 font-display cursor-pointer"
           >
             Book a discovery call <ArrowRight size={15} />
-          </a>
+          </button>
           <a
             href="/tools/ai-readiness-ad-marketing-agencies"
             className="inline-flex items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.04] px-6 py-3 text-sm font-medium text-white/80 transition-colors hover:border-white/25 hover:text-white"
@@ -1430,12 +1432,13 @@ export default function WorkflowLibraryPage() {
                   <span className="font-semibold text-[#FF4F00]">Typical build: </span>
                   {selectedWorkflow.buildTime}
                 </span>
-                <a
-                  href="https://calendly.com/kovil-ai/talent" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#FF4F00] px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 font-display shrink-0"
+                <button
+                  type="button"
+                  onClick={openCalendly}
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#FF4F00] px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 font-display shrink-0 cursor-pointer"
                 >
                   Build this for my team <ArrowRight size={14} />
-                </a>
+                </button>
               </div>
             </motion.div>
           </motion.div>
@@ -1459,12 +1462,13 @@ export default function WorkflowLibraryPage() {
           <p className="relative mx-auto mt-4 max-w-md text-base leading-relaxed text-white/50">
             We scope, build and ship custom AI automations in fixed-price sprints. Zero delivery risk.
           </p>
-          <a
-            href="https://calendly.com/kovil-ai/talent" target="_blank" rel="noopener noreferrer"
-            className="relative mt-8 inline-flex items-center gap-2 rounded-xl bg-[#FF4F00] px-8 py-3.5 text-sm font-bold text-white shadow-[0_8px_32px_rgba(255,79,0,0.30)] transition-all hover:shadow-[0_8px_40px_rgba(255,79,0,0.45)] hover:opacity-95 font-display"
+          <button
+            type="button"
+            onClick={openCalendly}
+            className="relative mt-8 inline-flex items-center gap-2 rounded-xl bg-[#FF4F00] px-8 py-3.5 text-sm font-bold text-white shadow-[0_8px_32px_rgba(255,79,0,0.30)] transition-all hover:shadow-[0_8px_40px_rgba(255,79,0,0.45)] hover:opacity-95 font-display cursor-pointer"
           >
             Start my AI build <ArrowRight size={16} />
-          </a>
+          </button>
           <p className="relative mt-6 text-xs text-white/20">
             All workflows in this library can be built for your business by Kovil AI engineers.
           </p>

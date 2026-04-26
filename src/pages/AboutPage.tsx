@@ -4,6 +4,7 @@ import { motion } from "motion/react"
 import { ArrowRight, Zap, Shield, Users, Target, CheckCircle } from "lucide-react"
 import { Button } from "../components/ui/button"
 import Link from "next/link"
+import { openCalendly } from "../lib/calendly"
 
 const values = [
   {
@@ -62,11 +63,11 @@ export default function AboutPage() {
                 Kovil AI is a managed AI engineering company. We embed vetted AI engineers into your team, build AI projects at a fixed price and timeline, and rescue AI applications that aren't working. We don't just provide talent — we own the delivery.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a href="https://calendly.com/kovil-ai/talent" target="_blank" rel="noopener noreferrer">
+                <button type="button" onClick={openCalendly}>
                   <Button variant="accent" size="lg" className="rounded-full px-8">
                     Book a Discovery Call <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                </a>
+                </button>
                 <Link href="/case-studies">
                   <Button variant="outline" size="lg" className="rounded-full px-8">
                     View Case Studies
@@ -296,11 +297,11 @@ export default function AboutPage() {
             <h2 className="font-display text-3xl font-bold text-background mb-3">Ready to ship your AI?</h2>
             <p className="text-background/60 mb-8 max-w-md mx-auto">Book a 30-minute discovery call. No sales pitch — we'll listen to what you're building and tell you honestly if we can help.</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="https://calendly.com/kovil-ai/talent" target="_blank" rel="noopener noreferrer">
+              <button type="button" onClick={openCalendly}>
                 <Button variant="accent" size="lg" className="rounded-full px-8">
                   Book a Discovery Call <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </a>
+              </button>
               <Link href="/contact">
                 <Button variant="outline" size="lg" className="rounded-full px-8 border-white/20 text-background hover:bg-white/10">
                   Send us a message

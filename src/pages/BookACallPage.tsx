@@ -1,0 +1,32 @@
+'use client'
+
+
+const EMBED_URL =
+  'https://calendly.com/kovil-ai/talent?embed_type=Inline&embed_domain=kovil.ai&hide_gdpr_banner=1&background_color=ffffff&text_color=111111&primary_color=FF4F00'
+
+export default function BookACallPage() {
+  return (
+    <div className="pt-20 min-h-screen bg-white">
+
+      {/* Header */}
+      <div className="border-b border-gray-100 bg-white px-6 py-6 flex flex-col items-center text-center">
+        <h1 className="text-2xl font-bold text-gray-900 font-display">Book a Discovery Call</h1>
+        <p className="mt-2 text-sm text-gray-500 max-w-md">
+          Tell us what you're building — we'll listen, ask the right questions, and give you an honest picture of how we can help.
+        </p>
+      </div>
+
+      {/* Calendly inline embed */}
+      <div className="w-full max-w-5xl mx-auto" style={{ minHeight: '700px' }}>
+        <iframe
+          src={EMBED_URL}
+          title="Book a call with Kovil AI"
+          className="w-full border-0"
+          style={{ height: '700px' }}
+          loading="lazy"
+        />
+      </div>
+
+    </div>
+  )
+}

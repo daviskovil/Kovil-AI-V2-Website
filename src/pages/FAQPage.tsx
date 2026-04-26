@@ -4,6 +4,7 @@ import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ChevronDown, Send, Sparkles, ArrowRight } from "lucide-react"
 import { Button } from "../components/ui/button"
+import { openCalendly } from "../lib/calendly"
 
 // ── FAQ Knowledge Base ────────────────────────────────────────────────────────
 const FAQ_DB = [
@@ -258,13 +259,13 @@ export default function FAQPage() {
                   className="mt-5 p-5 rounded-xl bg-white/5 border border-white/10"
                 >
                   <p className="text-background/70 text-sm">We don't have a pre-written answer for that — but our team does.</p>
-                  <a
-                    href="https://calendly.com/kovil-ai/talent"
-                    target="_blank" rel="noopener noreferrer"
-                    className="mt-3 inline-flex items-center gap-2 text-accent text-sm font-medium hover:underline"
+                  <button
+                    type="button"
+                    onClick={openCalendly}
+                    className="mt-3 inline-flex items-center gap-2 text-accent text-sm font-medium hover:underline cursor-pointer"
                   >
                     Book a 30-min call <ArrowRight className="h-3 w-3" />
-                  </a>
+                  </button>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -342,11 +343,11 @@ export default function FAQPage() {
           >
             <h2 className="font-display text-3xl font-bold text-background mb-3">Still have questions?</h2>
             <p className="text-background/60 mb-8 max-w-md mx-auto">Book a 30-minute discovery call. No sales pitch — just a real conversation about your AI build.</p>
-            <a href="https://calendly.com/kovil-ai/talent" target="_blank" rel="noopener noreferrer">
+            <button type="button" onClick={openCalendly}>
               <Button variant="accent" size="lg" className="rounded-full px-8 h-13 text-base">
                 Book a Discovery Call <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </a>
+            </button>
           </motion.div>
         </section>
       </div>

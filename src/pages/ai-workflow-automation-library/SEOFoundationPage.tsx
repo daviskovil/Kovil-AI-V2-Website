@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, ArrowLeft, Clock, CheckCircle, ChevronRight, Search } from 'lucide-react'
+import { openCalendly } from '../../lib/calendly'
 
 // ── Brand-coloured node icons ─────────────────────────────────────────────────
 
@@ -313,13 +314,14 @@ export default function SEOFoundationPage() {
 
             {/* CTAs */}
             <motion.div {...fade(0.22)} className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="https://calendly.com/kovil-ai/talent" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 font-display"
+              <button
+                type="button"
+                onClick={openCalendly}
+                className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 font-display cursor-pointer"
                 style={{ background: accentColor, boxShadow: `0 4px 24px ${accentColor}4D` }}
               >
                 Build this for my agency <ArrowRight size={15} />
-              </a>
+              </button>
               <Link
                 href="/ai-workflow-automation-library"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/[0.10] px-6 py-3 text-sm text-white/65 hover:text-white hover:border-white/25 transition-colors"
@@ -553,13 +555,14 @@ export default function SEOFoundationPage() {
             Book a 30-minute discovery call. Kovil AI engineers will scope the Airtable schema, BrightLocal integration, and GSC reporting cadence for your specific client roster — fixed price, zero delivery risk.
           </p>
           <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href="https://calendly.com/kovil-ai/talent" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-sm font-bold text-white transition-all hover:opacity-95 font-display"
+            <button
+              type="button"
+              onClick={openCalendly}
+              className="inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-sm font-bold text-white transition-all hover:opacity-95 font-display cursor-pointer"
               style={{ background: accentColor, boxShadow: `0 8px 32px ${accentColor}4D` }}
             >
               Book a discovery call <ArrowRight size={16} />
-            </a>
+            </button>
             <Link
               href="/ai-workflow-automation-library"
               className="inline-flex items-center gap-2 rounded-xl border border-white/[0.10] px-8 py-3.5 text-sm text-white/60 hover:text-white hover:border-white/25 transition-colors"

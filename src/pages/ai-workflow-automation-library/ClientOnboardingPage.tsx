@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, ArrowLeft, Clock, CheckCircle, BarChart3, ChevronRight, Users, MessageSquare } from 'lucide-react'
+import { openCalendly } from '../../lib/calendly'
 
 // ── Brand-coloured node icons for the hero diagram ────────────────────────────
 
@@ -350,12 +351,13 @@ export default function ClientOnboardingPage() {
 
             {/* CTAs */}
             <motion.div {...fade(0.22)} className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="https://calendly.com/kovil-ai/talent" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-[#A78BFA] px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 font-display shadow-[0_4px_24px_rgba(167,139,250,0.30)]"
+              <button
+                type="button"
+                onClick={openCalendly}
+                className="inline-flex items-center gap-2 rounded-lg bg-[#A78BFA] px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 font-display shadow-[0_4px_24px_rgba(167,139,250,0.30)] cursor-pointer"
               >
                 Build this for my agency <ArrowRight size={15} />
-              </a>
+              </button>
               <Link
                 href="/ai-workflow-automation-library"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/[0.10] px-6 py-3 text-sm text-white/65 hover:text-white hover:border-white/25 transition-colors"
@@ -592,12 +594,13 @@ export default function ClientOnboardingPage() {
             Book a 30-minute discovery call. We&apos;ll scope the full onboarding workflow for your CRM, contract, billing and workspace tools — fixed price, zero delivery risk.
           </p>
           <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href="https://calendly.com/kovil-ai/talent" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#A78BFA] px-8 py-3.5 text-sm font-bold text-white shadow-[0_8px_32px_rgba(167,139,250,0.30)] hover:shadow-[0_8px_40px_rgba(167,139,250,0.45)] transition-all hover:opacity-95 font-display"
+            <button
+              type="button"
+              onClick={openCalendly}
+              className="inline-flex items-center gap-2 rounded-xl bg-[#A78BFA] px-8 py-3.5 text-sm font-bold text-white shadow-[0_8px_32px_rgba(167,139,250,0.30)] hover:shadow-[0_8px_40px_rgba(167,139,250,0.45)] transition-all hover:opacity-95 font-display cursor-pointer"
             >
               Book a discovery call <ArrowRight size={16} />
-            </a>
+            </button>
             <Link
               href="/ai-workflow-automation-library"
               className="inline-flex items-center gap-2 rounded-xl border border-white/[0.10] px-8 py-3.5 text-sm text-white/60 hover:text-white hover:border-white/25 transition-colors"
