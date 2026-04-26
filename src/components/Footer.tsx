@@ -14,10 +14,7 @@ export default function Footer() {
               <img src="/kovil-logo-symbol-orange.webp" alt="Kovil AI" className="h-7 w-auto" loading="lazy" />
               <span className="font-display font-bold text-2xl tracking-tight">Kovil AI</span>
             </div>
-            <p className="text-sm text-muted/60 mb-6 leading-relaxed">
-              Managed AI implementation with zero delivery risk.
-            </p>
-            <ul className="space-y-2 text-sm text-muted/60">
+            <ul className="space-y-2 text-sm text-muted/60 mt-2">
               <li><a href="tel:+16465359141" className="hover:text-accent transition-colors">+1 646-535-9141</a></li>
               <li><a href="mailto:info@kovil.ai" className="hover:text-accent transition-colors">info@kovil.ai</a></li>
               <li className="pt-1 leading-relaxed">734 Franklin Ave,<br />Garden City, NY 11530</li>

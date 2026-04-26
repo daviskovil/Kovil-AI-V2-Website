@@ -676,11 +676,9 @@ export default function AgentforcePage() {
           <h2 className="font-display text-3xl md:text-4xl font-bold text-background mb-3">Ready to deploy your first Agentforce agent?</h2>
           <p className="text-background/60 mb-8 max-w-md mx-auto text-lg">Scoped and shipped in 2 weeks. Fixed price. Zero delivery risk.</p>
           <div className="flex flex-wrap justify-center gap-4 mb-6">
-            <button type="button" onClick={openCalendly}>
-              <Button variant="accent" size="lg" className="rounded-full px-8">
-                Book a discovery call <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </button>
+            <Button variant="accent" size="lg" className="rounded-full px-8" onClick={openCalendly}>
+              Book a discovery call <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
             <Link href="#downloads">
               <Button variant="outline" size="lg" className="rounded-full px-8 border-white/20 text-background hover:bg-white/10">
                 <BookOpen className="mr-2 h-4 w-4" />
