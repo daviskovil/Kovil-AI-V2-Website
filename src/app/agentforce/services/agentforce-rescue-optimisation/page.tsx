@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: 'We diagnose and fix failing Agentforce deployments — hallucinating agents, broken guardrails, integration failures — measurable improvement in 2 weeks.',
     url: 'https://kovil.ai/agentforce/services/agentforce-rescue-optimisation',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630, alt: 'Kovil AI' }],
   },
 }
 

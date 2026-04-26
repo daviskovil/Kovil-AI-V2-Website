@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: 'Audit your Salesforce org, map your highest-ROI Agentforce opportunities, and receive a prioritised implementation roadmap in 10 days.',
     url: 'https://kovil.ai/agentforce/services/agentforce-strategy-readiness',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630, alt: 'Kovil AI' }],
   },
 }
 

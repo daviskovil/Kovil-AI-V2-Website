@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: 'Agentforce service agents that resolve L1 and L2 support cases autonomously with full account context and intelligent human escalation.',
     url: 'https://kovil.ai/agentforce/services/service-cloud-agent-deployment',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630, alt: 'Kovil AI' }],
   },
 }
 

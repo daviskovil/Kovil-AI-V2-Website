@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: 'Bespoke Agentforce agent design using Agent Builder, Prompt Builder, and Flow. Scoped precisely to your workflows and data.',
     url: 'https://kovil.ai/agentforce/services/agent-design-configuration',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630, alt: 'Kovil AI' }],
   },
 }
 

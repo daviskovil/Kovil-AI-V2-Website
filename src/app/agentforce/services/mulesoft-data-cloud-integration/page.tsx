@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: 'Connect Agentforce agents to every enterprise system via MuleSoft and Data Cloud. Real-time data grounding across ERP, EHR, payments, and logistics.',
     url: 'https://kovil.ai/agentforce/services/mulesoft-data-cloud-integration',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630, alt: 'Kovil AI' }],
   },
 }
 

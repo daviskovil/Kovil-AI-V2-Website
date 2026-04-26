@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'Kovil AI',
     images: [
       {
-        url: 'https://kovil.ai/og-image.png',
+        url: 'https://kovil.ai/og-agentforce.png',
         width: 1200,
         height: 630,
         alt: 'Kovil AI — Salesforce Agentforce Implementation Partner',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: 'Salesforce Agentforce Implementation Partner | Kovil AI',
     description:
       'Kovil AI is a specialist Salesforce Agentforce implementation partner in New York. Fixed-price sprints. 2-week risk-free pilot.',
-    images: ['https://kovil.ai/og-image.png'],
+    images: ['https://kovil.ai/og-agentforce.png'],
   },
 }
 
