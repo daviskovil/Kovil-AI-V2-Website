@@ -5,8 +5,8 @@ export default function Footer() {
     <footer className="bg-foreground text-background py-16">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Main grid: brand col (wider) + 4 nav cols */}
-        <div className="grid grid-cols-2 md:grid-cols-[1.8fr_1.2fr_1.4fr_1.4fr] gap-10 md:gap-12">
+        {/* Main grid: brand col (wider) + 5 nav cols */}
+        <div className="grid grid-cols-2 md:grid-cols-[1.6fr_1.1fr_1.1fr_1.3fr_1.1fr] gap-8 md:gap-10">
 
           {/* Brand + contact */}
           <div className="col-span-2 md:col-span-1">
@@ -39,15 +39,24 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Engage</h4>
             <ul className="space-y-3 text-sm text-muted/60">
+              <li><Link href="/engage/managed-ai-engineer" className="hover:text-accent transition-colors">Managed AI Engineer</Link></li>
+              <li><Link href="/engage/outcome-based-project" className="hover:text-accent transition-colors">Outcome-Based AI Project</Link></li>
+              <li><Link href="/engage/app-rescue" className="hover:text-accent transition-colors">AI Reliability & App Rescue</Link></li>
+            </ul>
+          </div>
+
+          {/* Other Services */}
+          <div>
+            <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Other Services</h4>
+            <ul className="space-y-3 text-sm text-muted/60">
               <li>
                 <Link href="/agentforce" className="hover:text-accent transition-colors flex items-center gap-1.5">
                   Salesforce Agentforce
                   <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full" style={{ background: "#00A1E020", color: "#00A1E0" }}>New</span>
                 </Link>
               </li>
-              <li><Link href="/engage/managed-ai-engineer" className="hover:text-accent transition-colors">Managed AI Engineer</Link></li>
-              <li><Link href="/engage/outcome-based-project" className="hover:text-accent transition-colors">Outcome-Based AI Project</Link></li>
-              <li><Link href="/engage/app-rescue" className="hover:text-accent transition-colors">AI Reliability & App Rescue</Link></li>
+              <li><Link href="/ad-marketing-agencies" className="hover:text-accent transition-colors">Ad & Marketing Agencies</Link></li>
+              <li><Link href="/ai-workflow-automation-library" className="hover:text-accent transition-colors">Workflow Library</Link></li>
             </ul>
           </div>
 
