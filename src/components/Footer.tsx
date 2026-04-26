@@ -44,7 +44,7 @@ export default function Footer() {
 
           {/* Other Services */}
           <div>
-            <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Other Services</h4>
+            <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Explore</h4>
             <ul className="space-y-3 text-sm text-muted/60">
               <li>
                 <Link href="/agentforce" className="hover:text-accent transition-colors flex items-center gap-1.5">
