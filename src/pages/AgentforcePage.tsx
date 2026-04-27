@@ -245,11 +245,10 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        firstName: "Resource",
-        lastName: "Download",
+        name: "Resource Download",
         email,
-        goal: "resource_download",
-        details: `Downloaded: ${title}`,
+        engagement_type: "agentforce_download",
+        project_description: `Downloaded: ${title}`,
         source: "agentforce_download",
       }),
     }).catch(() => {})
