@@ -215,43 +215,43 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
     }
 
     setLoading(true)
-    try {
-      const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
-      const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-      await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
-        method: "POST",
-        headers: {
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          "Content-Type": "application/json",
-          Prefer: "return=minimal",
-        },
-        body: JSON.stringify({
-          name: "Resource Download",
-          email,
-          engagement_type: "general_inquiry",
-          project_description: `Downloaded: ${title}`,
-          source: "agentforce_download",
-        }),
-      })
-    } catch {
-      // fire-and-forget — still trigger download
+    const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
+    const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+    const leadData = {
+      name: "Resource Download",
+      email,
+      engagement_type: "agentforce_download",
+      project_description: `Downloaded: ${title}`,
+      source: "agentforce_download",
     }
-    // Fire notification email via the same Supabase edge function used site-wide
-    fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/notify-lead`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: "Resource Download",
-        email,
-        engagement_type: "agentforce_download",
-        project_description: `Downloaded: ${title}`,
-        source: "agentforce_download",
-      }),
-    }).catch(() => {})
+
+    try {
+      // 1. Save lead to Supabase
+      await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify(leadData),
+      })
+
+      // 2. Send notification email (fire-and-forget — don't block UX)
+      fetch(`${SUPABASE_URL}/functions/v1/notify-lead`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(leadData),
+      }).catch(err => console.error('Email notification error:', err))
+
+    } catch (err) {
+      console.error('Lead submission error:', err)
+    }
 
     setLoading(false)
     setSubmitted(true)
