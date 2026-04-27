@@ -174,6 +174,10 @@ const faqs = [
   { q: "How do you ensure our data stays secure?", a: "Agentforce includes the Einstein Trust Layer — preventing prompt injection, filtering sensitive outputs, auditing every agent action, and ensuring data never leaves your Salesforce trust boundary for AI processing. We configure all guardrails as standard." },
   { q: "What is the Kovil AI risk-free pilot?", a: "We scope a single high-impact use case, build and deploy in 2 weeks, and define clear success metrics upfront. If the pilot doesn't hit agreed metrics, you don't pay. Over 90% of our pilots convert to full engagements." },
   { q: "How is Kovil AI different from a traditional Salesforce SI?", a: "Traditional SIs are generalists. We are an AI engineering firm specialising exclusively in agentic AI. Every build team member understands both the Salesforce platform and the AI layer underneath." },
+  { q: "What is the difference between Agentforce and Einstein Copilot?", a: "Einstein Copilot was rebranded and evolved into Agentforce in October 2024. Agentforce is a significant architectural upgrade — it adds the Atlas Reasoning Engine for autonomous multi-step reasoning, expands beyond co-pilot assistance to fully autonomous action execution, and adds enterprise-grade guardrails via the Einstein Trust Layer. If you built on Einstein Copilot, migration to Agentforce is recommended." },
+  { q: "What is the Agentforce Atlas Reasoning Engine?", a: "The Atlas Reasoning Engine is Salesforce's hybrid AI reasoning layer that powers Agentforce agents. It operates in a four-phase loop: Observe (intake context from the conversation and CRM), Plan (identify which Topic applies and what Actions are needed), Act (execute the Actions — Apex, Flow, API calls, MuleSoft), and Reflect (evaluate whether the outcome was successful and determine next steps). Atlas enables agents to handle complex, multi-step tasks without human intervention." },
+  { q: "How much does Agentforce cost?", a: "Agentforce is priced per conversation at approximately $2 per conversation as of 2025, with volume discounts available for enterprise commitments. Additional costs may apply for Data Cloud licences, Einstein licences, and MuleSoft API calls depending on your integration architecture. Kovil AI provides a full licence audit as part of our scoping engagement so you understand the total cost before any implementation begins." },
+  { q: "Can Agentforce work with systems outside Salesforce?", a: "Yes. Agentforce connects to external systems through three primary mechanisms: MuleSoft API-led connectivity (recommended for enterprise-grade integrations with ERP, EHR, payments, logistics), HTTP callout Actions (for simpler REST/SOAP integrations), and native MCP (Model Context Protocol) support added in Agentforce 3, which enables direct connections to Google Cloud, Stripe, PayPal, DocuSign, and other platforms without custom code." },
 ]
 
 // ── Accordion Item ───────────────────────────────────────────────────────────
@@ -353,6 +357,9 @@ export default function AgentforcePage() {
             <p className="text-sm text-muted-foreground font-medium">
               2-week risk-free pilot · Fixed-price sprints · Milestone-gated delivery
             </p>
+            <p className="text-xs text-muted-foreground/50 mt-4 leading-relaxed max-w-lg">
+              Kovil AI is a Salesforce Agentforce implementation partner serving enterprises across the United States. Our Agentforce consulting practice covers agent design, Sales Cloud deployment, Service Cloud deployment, MuleSoft integration, and Atlas Reasoning Engine configuration — delivered in fixed-price sprints from our New York office.
+            </p>
           </motion.div>
 
           {/* Right — Agentforce mascot */}
@@ -364,7 +371,7 @@ export default function AgentforcePage() {
           >
             <img
               src="/agentforce-mascot.png"
-              alt="Salesforce Agentforce"
+              alt="Salesforce Agentforce AI agent — Kovil AI implementation partner"
               className="w-full max-w-2xl object-contain drop-shadow-2xl scale-110"
             />
           </motion.div>
@@ -470,6 +477,27 @@ export default function AgentforcePage() {
         </div>
       </section>
 
+      {/* ── SECTION 2B — WHAT IS AGENTFORCE (AEO) ── */}
+      <section className="border-t border-border py-16 bg-muted/20">
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+            <p className="text-sm font-mono text-accent tracking-widest uppercase mb-4">Agentforce Explained</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-6">What is Agentforce?</h2>
+            <div className="prose-like space-y-4 text-muted-foreground leading-relaxed">
+              <p className="text-lg"><strong className="text-foreground">Agentforce is Salesforce&apos;s autonomous AI agent platform</strong>, launched in October 2024. It enables companies to build, deploy, and manage AI agents that reason, plan, and take action across Sales Cloud, Service Cloud, Marketing Cloud, and Data Cloud — without requiring human intervention for routine tasks.</p>
+              <p>Unlike traditional Salesforce automation (Flows, Process Builder), Agentforce agents use the <strong className="text-foreground">Atlas Reasoning Engine</strong> — a hybrid AI layer that classifies intent, selects actions, executes tasks, and reflects on outcomes. Agents are configured using Topics (what the agent handles), Actions (what it can do), and Instructions (how it should behave).</p>
+              <p>Enterprise security is handled by the <strong className="text-foreground">Einstein Trust Layer</strong>, which ensures zero data retention for LLM calls, prevents prompt injection, masks PII, and maintains a full audit log of every agent action — making Agentforce suitable for regulated industries including financial services and healthcare.</p>
+              <p>As of 2025, Agentforce is licensed per conversation at approximately $2/conversation, with volume discounts available. Agentforce 3 added native MCP (Model Context Protocol) support, enabling agents to connect directly to Google Cloud, Stripe, PayPal, and other external platforms.</p>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {["Atlas Reasoning Engine", "Einstein Trust Layer", "Topics & Actions", "Data Cloud", "MuleSoft Integration", "Agentforce 360"].map(tag => (
+                <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full border border-border text-muted-foreground bg-card">{tag}</span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── SECTION 3 — SERVICES ── */}
       <section className="border-t border-border py-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-6">
@@ -495,6 +523,20 @@ export default function AgentforcePage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── MID CTA 1 — after services ── */}
+      <section className="py-14" style={{ background: `linear-gradient(135deg, ${SF_BLUE}08 0%, transparent 100%)` }}>
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-sm font-mono tracking-widest uppercase mb-3" style={{ color: SF_BLUE }}>Free · No commitment</p>
+          <h2 className="font-display text-2xl md:text-3xl font-bold tracking-tight mb-4">
+            Not sure which Agentforce service fits your org?
+          </h2>
+          <p className="text-muted-foreground mb-6 max-w-xl mx-auto">Book a free 30-minute discovery call. We&apos;ll review your Salesforce org, identify the 2–3 highest-ROI agent opportunities, and give you an honest implementation roadmap — no sales pitch.</p>
+          <Button variant="accent" size="lg" className="rounded-full px-8" onClick={openCalendly}>
+            Book a free discovery call <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
         </div>
       </section>
 
@@ -584,6 +626,31 @@ export default function AgentforcePage() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── MID CTA 2 — after case studies ── */}
+      <section className="py-14 border-t border-border bg-foreground">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <p className="text-xs font-semibold tracking-widest uppercase mb-2" style={{ color: SF_BLUE }}>2-week risk-free pilot</p>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-background leading-tight">
+                See results like these in your Salesforce org.
+              </h2>
+              <p className="text-background/60 mt-2 max-w-md">We scope, build, and deploy your first Agentforce agent in 2 weeks. Fixed price. If it doesn&apos;t hit your agreed metrics, you don&apos;t pay.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <Button variant="accent" size="lg" className="rounded-full px-8" onClick={openCalendly}>
+                Start my pilot <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Link href="#downloads">
+                <Button variant="outline" size="lg" className="rounded-full px-8 border-white/20 text-background hover:bg-white/10">
+                  Download Readiness Guide
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
