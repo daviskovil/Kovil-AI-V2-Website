@@ -44,6 +44,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/agentforce/services/service-cloud-agent-deployment`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/services/mulesoft-data-cloud-integration`,lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/services/agentforce-rescue-optimisation`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Agentforce playbook articles ──────────────────────────────────────────────
+    { url: `${BASE_URL}/agentforce/playbook/scope-your-first-agentforce-agent`,     lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/agentforce/playbook/atlas-reasoning-engine-explained`,       lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/agentforce/playbook/financial-services-service-cloud-build`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     // ── Individual workflow pages ──────────────────────────────────────────────
     { url: `${BASE_URL}/ai-workflow-automation-library/campaign-performance-reporting`,                   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/ai-workflow-automation-library/ai-creative-brief-generator`,                      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },

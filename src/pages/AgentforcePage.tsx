@@ -198,7 +198,7 @@ function AccordionItem({ q, a, open, onToggle }: { q: string; a: string; open: b
 
 // ── Download Card ─────────────────────────────────────────────────────────────
 
-function DownloadCard({ resourceLabel, title, desc, buttonLabel }: { resourceLabel: string; title: string; desc: string; buttonLabel: string }) {
+function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { resourceLabel: string; title: string; desc: string; buttonLabel: string; fileHref: string }) {
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState("")
@@ -235,10 +235,18 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel }: { resourceLab
         }),
       })
     } catch {
-      // fire-and-forget — still show success to user
+      // fire-and-forget — still trigger download
     }
     setLoading(false)
     setSubmitted(true)
+
+    // Trigger browser download immediately after lead capture
+    const a = document.createElement("a")
+    a.href = fileHref
+    a.download = fileHref.split("/").pop() ?? "download.pdf"
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
   }
 
   return (
@@ -256,7 +264,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel }: { resourceLab
       {submitted ? (
         <div className="flex items-center gap-2 text-sm font-medium text-accent bg-accent/10 rounded-xl px-4 py-3">
           <CheckCircle2 className="h-4 w-4 shrink-0" />
-          Check your inbox — it's on its way.
+          Your download has started — check your downloads folder.
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-3">
@@ -271,7 +279,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel }: { resourceLab
             />
             <Button type="submit" variant="accent" className="rounded-xl shrink-0" disabled={loading}>
               <Download className="h-4 w-4 mr-2" />
-              {loading ? "Sending…" : buttonLabel}
+              {loading ? "Saving…" : buttonLabel}
             </Button>
           </div>
           {error && (
@@ -614,6 +622,7 @@ export default function AgentforcePage() {
                 title="The Agentforce Readiness Guide"
                 desc="Is your Salesforce org ready for Agentforce? This guide covers the 5 readiness pillars — data quality, org architecture, use case prioritisation, team enablement, and governance — with a self-assessment scorecard included."
                 buttonLabel="Download free eBook"
+                fileHref="/agentforce-readiness-guide.pdf"
               />
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: 0.1 }}>
@@ -622,6 +631,7 @@ export default function AgentforcePage() {
                 title="Agentforce Implementation Whitepaper"
                 desc="Covers Agentforce 360 architecture, the Atlas Reasoning Engine, Einstein Trust Layer, MuleSoft integration patterns, and a phased rollout framework for enterprise."
                 buttonLabel="Download whitepaper"
+                fileHref="/agentforce-implementation-whitepaper.pdf"
               />
             </motion.div>
           </div>
