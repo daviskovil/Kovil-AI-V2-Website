@@ -237,6 +237,23 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
     } catch {
       // fire-and-forget — still trigger download
     }
+    // Fire notification email via the same Supabase edge function used site-wide
+    fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/notify-lead`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: "Resource",
+        lastName: "Download",
+        email,
+        goal: "resource_download",
+        details: `Downloaded: ${title}`,
+        source: "agentforce_download",
+      }),
+    }).catch(() => {})
+
     setLoading(false)
     setSubmitted(true)
 
