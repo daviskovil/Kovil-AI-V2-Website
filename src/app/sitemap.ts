@@ -48,6 +48,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/agentforce/playbook/scope-your-first-agentforce-agent`,     lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/agentforce/playbook/atlas-reasoning-engine-explained`,       lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/agentforce/playbook/financial-services-service-cloud-build`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    // ── Agentforce Sales Cloud use cases ──────────────────────────────────────────
+    { url: `${BASE_URL}/agentforce/sales-cloud/sdr-agent`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/sales-cloud/pipeline-health-monitor`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/sales-cloud/quote-proposal-agent`,    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Agentforce Service Cloud use cases ────────────────────────────────────────
+    { url: `${BASE_URL}/agentforce/service-cloud/autonomous-case-resolution`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/service-cloud/intelligent-escalation`,     lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/service-cloud/knowledge-base-agent`,       lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Agentforce Marketing Cloud use cases ──────────────────────────────────────
+    { url: `${BASE_URL}/agentforce/marketing-cloud/campaign-execution-agent`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/marketing-cloud/lead-nurture-agent`,       lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/marketing-cloud/event-webinar-agent`,      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Agentforce Internal Operations use cases ──────────────────────────────────
+    { url: `${BASE_URL}/agentforce/internal-operations/hr-onboarding-agent`,      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/internal-operations/finance-approval-agent`,   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/internal-operations/it-helpdesk-agent`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     // ── Individual workflow pages ──────────────────────────────────────────────
     { url: `${BASE_URL}/ai-workflow-automation-library/campaign-performance-reporting`,                   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/ai-workflow-automation-library/ai-creative-brief-generator`,                      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
