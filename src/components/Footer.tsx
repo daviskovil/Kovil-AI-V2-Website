@@ -18,6 +18,7 @@ export default function Footer() {
               <li><a href="tel:+16465359141" className="hover:text-accent transition-colors">+1 646-535-9141</a></li>
               <li><a href="mailto:info@kovil.ai" className="hover:text-accent transition-colors">info@kovil.ai</a></li>
               <li className="pt-1 leading-relaxed">734 Franklin Ave,<br />Garden City, NY 11530</li>
+              <li className="pt-1 leading-relaxed">1401 Lavaca Street, Unit #7259,<br />Austin, TX 78701</li>
               <li className="pt-3">
                 <a href="https://www.linkedin.com/company/kovil-ai/" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 hover:text-accent transition-colors">
@@ -52,6 +53,7 @@ export default function Footer() {
                   <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full" style={{ background: "#00A1E020", color: "#00A1E0" }}>New</span>
                 </Link>
               </li>
+              <li><Link href="/hire" className="hover:text-accent transition-colors">Hire an AI Engineer</Link></li>
               <li><Link href="/ad-marketing-agencies" className="hover:text-accent transition-colors">Ad & Marketing Agencies</Link></li>
               <li><Link href="/ai-workflow-automation-library" className="hover:text-accent transition-colors">Workflow Library</Link></li>
             </ul>
