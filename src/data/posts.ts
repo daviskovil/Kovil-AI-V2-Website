@@ -3141,6 +3141,140 @@ export const posts: Post[] = [
 <p>If you have a brief — or a business problem you are ready to scope — our <a href="/engage/outcome-based-project">Outcome-Based AI Project</a> process uses exactly this structure to produce a fixed price and clear deliverables within 48 hours. You can also <a href="/contact">reach out directly</a> and we will help you build the brief together as part of the scoping conversation.</p>
     `,
   },
+
+  {
+      slug: "how-to-measure-ai-roi",
+      title: "How to Measure AI ROI Before You Start Building",
+      excerpt: "Most businesses measure AI ROI after they've already spent the money. Here's how to calculate it before you commit — a practical framework for projecting cost savings, revenue impact, and payback period for any AI project.",
+      category: "AI Engineering",
+      date: "May 1, 2026",
+      readTime: "9 min read",
+      author: "Kovil AI Team",
+      featured: false,
+      heroImage: "/blog-how-to-measure-ai-roi.jpg",
+      faqs: [
+        {
+          q: "How do you calculate ROI for an AI project?",
+          a: "AI ROI = (Annual value generated − Annual total cost) ÷ Total build cost × 100. Annual value includes cost savings from automation (hours saved × hourly rate), revenue uplift from improved conversion or retention, and risk reduction value. Annual total cost includes API inference costs, hosting, and ongoing maintenance. Total build cost is the one-time development investment. A payback period under 18 months is generally a strong signal to proceed."
+        },
+        {
+          q: "What is a realistic ROI timeline for AI projects?",
+          a: "Most business AI projects reach ROI breakeven within 6 to 18 months of deployment, depending on build cost and the scale of the process being automated. Customer support automation projects — typically $25k–$60k to build — often break even within 4–8 months when replacing or reducing a full-time support role. More complex AI products with higher build costs take 12–24 months. Projects that automate a process affecting fewer than 5 hours per week per employee rarely justify the build cost."
+        },
+        {
+          q: "What costs should be included in an AI ROI calculation?",
+          a: "Build cost: engineering fees for design, development, and testing. Infrastructure: cloud hosting, vector database, API gateway. Inference: monthly LLM API costs based on estimated token volume. Maintenance: ongoing bug fixes, prompt updates, retraining — typically 15–25% of build cost annually. Integration: time to connect with existing systems. Also factor in transition costs: staff time for rollout, training, and the period where both the old and new processes run in parallel."
+        },
+        {
+          q: "What metrics should I track to measure AI performance after launch?",
+          a: "Track the metric you defined before building. For automation: tasks completed per day, error rate, time saved per task. For customer-facing AI: resolution rate (tickets closed without human escalation), customer satisfaction score (CSAT), response time. For AI-assisted sales: conversion rate change, deal velocity, average contract value. For internal tools: adoption rate (are employees actually using it), time saved per user per week. Pick one primary metric and track it weekly from day one."
+        },
+        {
+          q: "Is AI ROI always measurable?",
+          a: "It depends on the use case. Automation and efficiency plays are highly measurable — you can directly compare time spent before and after. Revenue impact from AI-assisted sales or recommendations is measurable through A/B testing or cohort comparison. Risk reduction — such as compliance monitoring or fraud detection — is harder to quantify until an incident is prevented. If your primary value case is risk reduction, frame the ROI as the expected cost of incidents prevented, using historical incident frequency and cost data."
+        },
+      ],
+      body: `
+  <img src="/blog-how-to-measure-ai-roi.jpg" alt="How to Measure AI ROI Before You Start Building" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+  
+  <p>The standard advice is to pilot an AI project, measure the results, and then decide whether to scale. The problem is that by the time you have results, you have already spent the money. A $60,000 pilot that delivers no measurable value is a poor way to learn that the ROI case was never there.</p>
+  
+  <p>A better approach is to build the ROI case before the project starts — not with certainty, but with enough rigour to make an informed go/no-go decision. Here is the framework we use to do that in 48 hours.</p>
+  
+  <h2>The Three Types of AI Value</h2>
+  
+  <p>Before running any numbers, identify which type of value your AI project primarily generates. This determines how you measure it.</p>
+  
+  <p><strong>Cost reduction.</strong> The AI automates a task that people currently do manually, reducing headcount, overtime, or contractor spend. This is the most directly measurable type of AI value. Calculate the hours per week currently spent on the task, multiply by the fully-loaded hourly cost (salary plus benefits plus management overhead), and that is the addressable saving.</p>
+  
+  <p><strong>Revenue uplift.</strong> The AI improves a revenue-generating process — faster lead response, better product recommendations, higher-converting copy, reduced churn through proactive intervention. This is measurable but requires a baseline and a control group. Define the conversion rate or revenue metric you expect to improve, and track it from day one against a control cohort.</p>
+  
+  <p><strong>Risk reduction.</strong> The AI reduces the probability or cost of a bad outcome — a compliance breach, a fraud loss, a missed maintenance event. Harder to measure until something goes wrong. Quantify it by multiplying the historical frequency of the incident by the average cost per incident.</p>
+  
+  <p>Most AI projects generate primarily one type of value with secondary contributions from the others. Identifying the primary type determines where to focus your ROI calculation.</p>
+  
+  <h2>The Pre-Build ROI Formula</h2>
+  
+  <p>The formula is simple. The discipline is in filling it in honestly.</p>
+  
+  <table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+  <thead>
+  <tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+  <th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Input</th>
+  <th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">How to Estimate It</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr style="border-bottom:1px solid #f3f4f6;">
+  <td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Annual value generated</td>
+  <td style="padding:0.75rem 1rem;color:#6b7280;">Hours saved × hourly rate, OR revenue uplift from conversion improvement, OR risk reduction value</td>
+  </tr>
+  <tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+  <td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Annual running cost</td>
+  <td style="padding:0.75rem 1rem;color:#6b7280;">LLM API costs + hosting + maintenance (typically 15–25% of build cost)</td>
+  </tr>
+  <tr style="border-bottom:1px solid #f3f4f6;">
+  <td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">One-time build cost</td>
+  <td style="padding:0.75rem 1rem;color:#6b7280;">Engineering fees for design, development, testing, and integration</td>
+  </tr>
+  <tr style="background:#fafafa;">
+  <td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Payback period</td>
+  <td style="padding:0.75rem 1rem;color:#6b7280;">Build cost ÷ (Annual value − Annual running cost)</td>
+  </tr>
+  </tbody>
+  </table>
+  
+  <p><strong>ROI % = (Annual net value ÷ Build cost) × 100</strong></p>
+  <p><strong>Payback period = Build cost ÷ Annual net value</strong></p>
+  
+  <h2>A Worked Example: Customer Support Automation</h2>
+  
+  <p>A B2B SaaS company handles 600 support tickets per week. 65% are common questions that could be automated. Each ticket takes an average of 10 minutes. The support team costs $45/hour fully loaded.</p>
+  
+  <ul>
+  <li><strong>Automatable tickets per year:</strong> 600 × 0.65 × 52 = 20,280</li>
+  <li><strong>Hours currently spent on these tickets:</strong> 20,280 × (10/60) = 3,380 hours/year</li>
+  <li><strong>Annual labour cost:</strong> 3,380 × $45 = $152,100</li>
+  <li><strong>Assumed automation rate:</strong> 70% (a realistic target; 30% escalate to human agents)</li>
+  <li><strong>Annual value generated:</strong> $152,100 × 0.70 = $106,470</li>
+  </ul>
+  
+  <ul>
+  <li><strong>Build cost (chatbot + RAG + integration):</strong> $45,000</li>
+  <li><strong>Annual running cost (API + hosting + maintenance):</strong> $12,000</li>
+  <li><strong>Annual net value:</strong> $106,470 − $12,000 = $94,470</li>
+  <li><strong>Payback period:</strong> $45,000 ÷ $94,470 = 5.7 months</li>
+  <li><strong>Year-1 ROI:</strong> ($94,470 − $45,000) ÷ $45,000 × 100 = 110%</li>
+  </ul>
+  
+  <p>A 110% year-1 ROI with a 6-month payback is a strong go signal. The same framework applied to a process that saves 5 hours per week — roughly $12,000/year at the same hourly rate — against a $45,000 build cost produces a 3.7-year payback and a negative year-1 ROI. That is a no-go without a compelling secondary value case.</p>
+  
+  <h2>Red Flags in AI ROI Projections</h2>
+  
+  <p><strong>The value assumes 100% automation.</strong> Real automation rates for business AI range from 50–85% depending on task complexity. Model your base case at 60% and your optimistic case at 80%. A projection that assumes everything gets automated is optimistic and usually wrong.</p>
+  
+  <p><strong>The cost model ignores inference at scale.</strong> LLM API costs are negligible at low volume and meaningful at high volume. A customer-facing chatbot handling 50,000 conversations per month at $0.002 per conversation is $100/month. At $0.05 per conversation (GPT-4o on longer conversations), it is $2,500/month. Model the cost at your actual projected conversation volume, not at your test volume.</p>
+  
+  <p><strong>The value case depends on behaviour change.</strong> "Our sales reps will close more deals if they get AI-generated briefs before each call." This may be true, but behaviour change is harder to achieve and slower to manifest than automation. If your ROI depends primarily on people working differently, add 6–12 months to your payback estimate and plan a structured adoption programme.</p>
+  
+  <p><strong>Maintenance is not in the budget.</strong> AI systems degrade. Prompts need tuning, data goes stale, model APIs change their pricing and behaviour. Budget 15–25% of the build cost annually for ongoing maintenance. Projects that budget zero for maintenance reliably become liabilities within 12–18 months.</p>
+  
+  <h2>When the ROI Case Does Not Work</h2>
+  
+  <p>Not every AI project makes financial sense, and that is not a failure. If the payback period exceeds 24 months and there is no strategic value case beyond cost savings, the capital is probably better deployed elsewhere. Common situations where AI ROI fails to pencil out:</p>
+  
+  <ul>
+  <li>The process being automated is low-volume and already fast</li>
+  <li>The data required does not exist or would cost more to create than the automation saves</li>
+  <li>Regulatory constraints require human review of every output, eliminating the time savings</li>
+  <li>The task requires judgement that current models cannot reliably replicate</li>
+  </ul>
+  
+  <p>A clear ROI framework identifies these situations before the project starts, not after the build cost has been spent.</p>
+  
+  <p>If you have a business process you are evaluating for AI automation, our <a href="/engage/outcome-based-project">Outcome-Based AI Project</a> scoping process includes an ROI projection as part of the proposal. You will know the expected payback period before any work begins. <a href="/contact">Reach out</a> and we will run the numbers with you.</p>
+      `,
+    },
 ];
 
 export function getPost(slug: string): Post | undefined {

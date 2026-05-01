@@ -157,6 +157,17 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
 }
 
+
+  'how-to-measure-ai-roi': {
+    label: 'Kovil AI · Fixed-Cost AI Builds',
+    teaser: 'We scope AI projects with a fixed price — so you know the ROI before you commit.',
+    headline: 'Want to know if your AI project will pay off before you build it?',
+    body: "We scope AI projects in 48 hours with a fixed price and clear ROI projection. No surprises mid-build — and no commitment until the numbers make sense for your business.",
+    defaultGoal: 'project',
+    primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
+    secondary: { text: "See What We've Built", href: '/case-studies' },
+  },
+
 const DEFAULT_CTA: CtaConfig = {
   label: 'Kovil AI',
   teaser: 'We build AI-powered software for businesses — from automations to full product builds.',
