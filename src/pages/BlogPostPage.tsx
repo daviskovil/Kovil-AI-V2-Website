@@ -155,9 +155,6 @@ const CTA_MAP: Record<string, CtaConfig> = {
     primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
     secondary: { text: 'See What We\'ve Built', href: '/case-studies' },
   },
-}
-
-
   'how-to-measure-ai-roi': {
     label: 'Kovil AI · Fixed-Cost AI Builds',
     teaser: 'We scope AI projects with a fixed price — so you know the ROI before you commit.',
@@ -167,6 +164,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
     secondary: { text: "See What We've Built", href: '/case-studies' },
   },
+}
 
 const DEFAULT_CTA: CtaConfig = {
   label: 'Kovil AI',
