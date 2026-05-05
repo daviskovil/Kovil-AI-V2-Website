@@ -53,6 +53,7 @@ export default function Footer() {
                   <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full" style={{ background: "#00A1E020", color: "#00A1E0" }}>New</span>
                 </Link>
               </li>
+              <li><Link href="/ai-operations" className="hover:text-accent transition-colors">AI Operations</Link></li>
               <li><Link href="/hire" className="hover:text-accent transition-colors">Hire an AI Engineer</Link></li>
               <li><Link href="/ad-marketing-agencies" className="hover:text-accent transition-colors">Ad & Marketing Agencies</Link></li>
               <li><Link href="/ai-workflow-automation-library" className="hover:text-accent transition-colors">Workflow Library</Link></li>
