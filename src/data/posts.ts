@@ -3285,6 +3285,7 @@ export const posts: Post[] = [
     readTime: '34 min read',
     author: 'Kovil AI Team',
     featured: true,
+    heroImage: '/blog-how-to-build-ai-agents-production-guide.jpg',
     body: `
 <p>Most guides on how to build AI agents stop the moment the code runs. They show you how to wire an LLM to a tool, produce a successful test case, and call it a day. What they skip is everything that happens next: the production deployment, the degrading retrieval accuracy at week six, the token bill that doubled without warning, the compliance team asking for an audit log you never built, and the quiet performance regression nobody noticed until a user complained. Building AI agents is the easy part. Running them is the discipline most engineering teams have not yet developed.</p>
 

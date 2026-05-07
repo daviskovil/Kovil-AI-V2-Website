@@ -1638,6 +1638,252 @@ def make_ai_project_brief_image():
     print(f"Saved: {out}")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE: How to Measure AI ROI Before You Start Building
+# Visual: 4 metric cards (2×2) on right, headline + formula on left
+# ─────────────────────────────────────────────────────────────────────────────
+def make_ai_roi_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (8, 10, 20), (20, 14, 28))
+
+    draw_circle_glow(img, 980, 180, 340, ORANGE, alpha_max=45)
+    draw_circle_glow(img, 120, 520, 200, (16, 185, 129), alpha_max=30)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=14)
+
+    # ── Left: pill + headline ──────────────────────────────────────────────
+    pill_font = ImageFont.truetype(FONT_BOLD, 13)
+    pill_text = "AI ENGINEERING"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 24
+    draw.rounded_rectangle([56, 72, 56 + pw, 72 + 30], radius=15,
+                            fill=(*ORANGE, 50))
+    draw.text((56 + pw // 2, 87), pill_text, font=pill_font,
+              fill=ORANGE, anchor="mm")
+
+    h1_font = ImageFont.truetype(FONT_BOLD, 52)
+    sub_font = ImageFont.truetype(FONT_REGULAR, 18)
+
+    for i, line in enumerate(["How to Measure", "AI ROI", "Before You Build"]):
+        draw.text((56, 120 + i * 64), line, font=h1_font, fill=WHITE)
+
+    draw.text((56, 320), "The framework engineers & executives agree on",
+              font=sub_font, fill=GREY_DIM)
+
+    # ── ROI formula box ────────────────────────────────────────────────────
+    fbox_y = 370
+    fbox_w = 460
+    fbox_h = 52
+    fcard = Image.new("RGBA", (fbox_w, fbox_h), (0, 0, 0, 0))
+    fd = ImageDraw.Draw(fcard)
+    fd.rounded_rectangle([0, 0, fbox_w, fbox_h], radius=10,
+                          fill=(*ORANGE, 28))
+    fd.rounded_rectangle([0, 0, fbox_w, fbox_h], radius=10,
+                          outline=(*ORANGE, 100), width=1)
+    img.paste(fcard, (56, fbox_y), mask=fcard)
+    draw = ImageDraw.Draw(img)
+    eq_font = ImageFont.truetype(FONT_BOLD, 17)
+    draw.text((56 + fbox_w // 2, fbox_y + fbox_h // 2),
+              "ROI = (Net Benefit ÷ Total Cost) × 100",
+              font=eq_font, fill=ORANGE, anchor="mm")
+
+    # ── Right: 2×2 metric cards ────────────────────────────────────────────
+    metrics = [
+        ("Cost Savings",    "–34%",   "Engineering hours reduced",  (16, 185, 129)),
+        ("Revenue Impact",  "+$2.4M", "Annual recurring uplift",    ORANGE),
+        ("Time to Value",   "6 wks",  "Avg. payback period",        (99, 102, 241)),
+        ("Error Reduction", "–78%",   "Manual process mistakes",    (59, 130, 246)),
+    ]
+
+    card_w  = 228
+    card_h  = 122
+    gap     = 14
+    start_x = W - 2 * card_w - gap - 56
+    start_y = 80
+
+    for i, (label, value, desc, col) in enumerate(metrics):
+        col_i = i % 2
+        row_i = i // 2
+        cx = start_x + col_i * (card_w + gap)
+        cy = start_y + row_i * (card_h + gap)
+
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12,
+                              fill=(*col, 20))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12,
+                              outline=(*col, 80), width=1)
+        img.paste(card, (cx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+
+        # Top accent bar
+        draw.rounded_rectangle([cx, cy, cx + card_w, cy + 4],
+                                radius=2, fill=col)
+
+        label_f = ImageFont.truetype(FONT_REGULAR, 13)
+        value_f = ImageFont.truetype(FONT_BOLD, 34)
+        desc_f  = ImageFont.truetype(FONT_REGULAR, 12)
+
+        draw.text((cx + 16, cy + 16), label, font=label_f, fill=GREY_DIM)
+        draw.text((cx + 16, cy + 36), value, font=value_f, fill=col)
+        draw.text((cx + 16, cy + 96), desc,  font=desc_f,  fill=GREY_DIM)
+
+    # ── Bottom "Key metrics" row ───────────────────────────────────────────
+    bottom_items = [
+        ("Baseline", "Measure before day 1"),
+        ("Targets",  "Define success metrics"),
+        ("Cadence",  "Review every 4 weeks"),
+        ("Report",   "Board-ready dashboard"),
+    ]
+    bx0 = start_x
+    bw  = 2 * card_w + gap
+    bi_w = bw // len(bottom_items)
+    by  = start_y + 2 * (card_h + gap) + 10
+    bcard = Image.new("RGBA", (bw, 60), (0, 0, 0, 0))
+    bc = ImageDraw.Draw(bcard)
+    bc.rounded_rectangle([0, 0, bw, 60], radius=10,
+                          fill=(255, 255, 255, 10))
+    bc.rounded_rectangle([0, 0, bw, 60], radius=10,
+                          outline=(255, 255, 255, 25), width=1)
+    img.paste(bcard, (bx0, by), mask=bcard)
+    draw = ImageDraw.Draw(img)
+    bi_key = ImageFont.truetype(FONT_BOLD, 14)
+    bi_val = ImageFont.truetype(FONT_REGULAR, 12)
+    for i, (k, v) in enumerate(bottom_items):
+        bix = bx0 + i * bi_w + bi_w // 2
+        draw.text((bix, by + 18), k, font=bi_key, fill=ORANGE, anchor="mm")
+        draw.text((bix, by + 38), v, font=bi_val, fill=GREY_DIM, anchor="mm")
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-how-to-measure-ai-roi.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE: How to Build AI Agents That Work in Production (pillar)
+# Visual: 5-stage pipeline (Design → Build → Test → Deploy → Operate) + stats
+# ─────────────────────────────────────────────────────────────────────────────
+def make_build_ai_agents_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (6, 8, 18), (16, 12, 26))
+
+    draw_circle_glow(img, 600, 320, 420, ORANGE, alpha_max=32)
+    draw_circle_glow(img, 80,  450, 200, (99, 102, 241), alpha_max=28)
+    draw_circle_glow(img, 1120, 130, 200, (16, 185, 129), alpha_max=28)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=12)
+
+    # ── Category pill (centred) ────────────────────────────────────────────
+    pill_font = ImageFont.truetype(FONT_BOLD, 13)
+    pill_text = "AI ENGINEERING"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 24
+    draw.rounded_rectangle([W // 2 - pw // 2, 34, W // 2 + pw // 2, 62],
+                            radius=14, fill=(*ORANGE, 50))
+    draw.text((W // 2, 48), pill_text, font=pill_font, fill=ORANGE, anchor="mm")
+
+    # ── Two-line headline ──────────────────────────────────────────────────
+    h1_f  = ImageFont.truetype(FONT_BOLD, 46)
+    sub_f = ImageFont.truetype(FONT_REGULAR, 17)
+    draw.text((W // 2, 102), "How to Build AI Agents",
+              font=h1_f, fill=WHITE, anchor="mm")
+    draw.text((W // 2, 152), "That Work in Production",
+              font=h1_f, fill=WHITE, anchor="mm")
+    draw.text((W // 2, 194),
+              "Framework selection  ·  Architecture  ·  LLMOps  ·  AI Operations  ·  2026",
+              font=sub_f, fill=GREY_DIM, anchor="mm")
+
+    # ── 5-stage pipeline nodes ─────────────────────────────────────────────
+    stages = [
+        ("Design",   "Architecture\n& framework",    ORANGE),
+        ("Build",    "Tools, memory\n& orchestration",(99, 102, 241)),
+        ("Test",     "Evals, red-team\n& guardrails", (59, 130, 246)),
+        ("Deploy",   "Infra, CI/CD\n& rollout",       (16, 185, 129)),
+        ("Operate",  "Monitor, drift\n& optimise",    (251, 146, 60)),
+    ]
+
+    n        = len(stages)
+    node_r   = 48
+    node_gap = 192
+    total_w  = (n - 1) * node_gap
+    cx_start = (W - total_w) // 2
+    cy_nodes = 360
+
+    node_f  = ImageFont.truetype(FONT_BOLD, 16)
+    num_f   = ImageFont.truetype(FONT_BOLD, 12)
+    desc_f  = ImageFont.truetype(FONT_REGULAR, 13)
+
+    for i, (name, desc, col) in enumerate(stages):
+        cx = cx_start + i * node_gap
+        cy = cy_nodes
+
+        # Connector line + arrow to next
+        if i < n - 1:
+            nx = cx_start + (i + 1) * node_gap
+            draw.line([cx + node_r + 4, cy, nx - node_r - 4, cy],
+                      fill=(255, 255, 255, 38), width=2)
+            ax = nx - node_r - 4
+            draw.polygon([(ax, cy), (ax - 10, cy - 5), (ax - 10, cy + 5)],
+                         fill=(255, 255, 255, 90))
+
+        # Soft glow halo
+        glow_layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        gd = ImageDraw.Draw(glow_layer)
+        for step in range(18, 0, -1):
+            r = node_r + step * 3
+            a = int(30 * (1 - step / 18) ** 1.5)
+            gd.ellipse([cx - r, cy - r, cx + r, cy + r],
+                       fill=(*col, a))
+        img.paste(glow_layer, mask=glow_layer)
+        draw = ImageDraw.Draw(img)
+
+        # Node circle
+        draw.ellipse([cx - node_r, cy - node_r, cx + node_r, cy + node_r],
+                     fill=(*col, 38))
+        draw.ellipse([cx - node_r, cy - node_r, cx + node_r, cy + node_r],
+                     outline=(*col, 210), width=2)
+
+        # Step number
+        draw.text((cx, cy - 18), f"{i+1:02d}", font=num_f,
+                  fill=(*col, 200), anchor="mm")
+        # Stage name
+        draw.text((cx, cy + 8), name, font=node_f, fill=WHITE, anchor="mm")
+
+        # Description below circle
+        for j, dline in enumerate(desc.split("\n")):
+            draw.text((cx, cy + node_r + 22 + j * 19), dline,
+                      font=desc_f, fill=GREY_DIM, anchor="mm")
+
+    # ── Bottom stat strip ──────────────────────────────────────────────────
+    strip_y = H - 88
+    draw.line([56, strip_y, W - 56, strip_y], fill=(255, 255, 255, 18), width=1)
+
+    stats_f  = ImageFont.truetype(FONT_BOLD, 20)
+    stats_sf = ImageFont.truetype(FONT_REGULAR, 13)
+    stats = [
+        ("3 Frameworks",   "CrewAI · LangGraph · AutoGen"),
+        ("18-Point List",  "Production readiness checklist"),
+        ("Full Lifecycle", "Design through AI Operations"),
+    ]
+    col_w = (W - 112) // len(stats)
+    for i, (main, sub) in enumerate(stats):
+        sx = 56 + i * col_w + col_w // 2
+        draw.text((sx, strip_y + 22), main, font=stats_f, fill=ORANGE, anchor="mm")
+        draw.text((sx, strip_y + 46), sub,  font=stats_sf, fill=GREY_DIM, anchor="mm")
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-how-to-build-ai-agents-production-guide.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -1654,4 +1900,6 @@ if __name__ == "__main__":
     make_nyc_agencies_image()
     make_vector_database_image()
     make_ai_project_brief_image()
+    make_ai_roi_image()
+    make_build_ai_agents_image()
     print("Done.")
