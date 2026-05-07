@@ -164,6 +164,15 @@ const CTA_MAP: Record<string, CtaConfig> = {
     primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
     secondary: { text: "See What We've Built", href: '/case-studies' },
   },
+  'how-to-build-ai-agents-production-guide': {
+    label: 'Kovil AI · AI Operations',
+    teaser: 'We build and operate production AI agents — scoped, deployed, and monitored as a managed service.',
+    headline: 'Ready to build AI agents that work beyond the demo?',
+    body: "Most AI agent projects stall between the prototype and production — or degrade silently after launch. Kovil AI scopes, builds, deploys, and operates AI agent systems end-to-end. Working agents, not prototypes.",
+    defaultGoal: 'project',
+    primary: { text: 'Book a Free AI Audit →', href: '/ai-operations' },
+    secondary: { text: 'See How We Work', href: '/how-it-works' },
+  },
 }
 
 const DEFAULT_CTA: CtaConfig = {
