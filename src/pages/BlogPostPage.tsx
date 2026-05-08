@@ -173,6 +173,15 @@ const CTA_MAP: Record<string, CtaConfig> = {
     primary: { text: 'Book a Free AI Audit →', href: '/ai-operations' },
     secondary: { text: 'See How We Work', href: '/how-it-works' },
   },
+  'what-is-ai-operations': {
+    label: 'Kovil AI · AI Operations',
+    teaser: 'We operate production AI systems — monitoring, drift detection, cost optimisation, and compliance as a managed service.',
+    headline: 'Need someone to run your AI in production?',
+    body: "Kovil AI covers all six AI Operations pillars — monitoring, drift detection, token cost optimisation, data pipeline management, compliance logging, and incident response — from $2,000/month with a 2-week risk-free trial.",
+    defaultGoal: 'project',
+    primary: { text: 'See AI Operations →', href: '/ai-operations' },
+    secondary: { text: 'Book a Free Audit', href: '/contact' },
+  },
 }
 
 const DEFAULT_CTA: CtaConfig = {

@@ -1884,6 +1884,147 @@ def make_build_ai_agents_image():
     print(f"Saved: {out}")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE: What Is AI Operations?
+# Visual: dark ops dashboard — 4 monitoring status cards (2×2) + left headline
+# ─────────────────────────────────────────────────────────────────────────────
+def make_what_is_ai_operations_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (6, 10, 20), (18, 12, 26))
+
+    draw_circle_glow(img, 950, 200, 360, ORANGE, alpha_max=38)
+    draw_circle_glow(img, 100, 520, 220, (16, 185, 129), alpha_max=28)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=12)
+
+    # ── Left: pill + headline + tags ──────────────────────────────────────
+    pill_font = ImageFont.truetype(FONT_BOLD, 13)
+    pill_text = "AI ENGINEERING"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 24
+    draw.rounded_rectangle([56, 72, 56 + pw, 72 + 30], radius=15,
+                            fill=(*ORANGE, 50))
+    draw.text((56 + pw // 2, 87), pill_text, font=pill_font,
+              fill=ORANGE, anchor="mm")
+
+    h1_font  = ImageFont.truetype(FONT_BOLD, 54)
+    sub_font = ImageFont.truetype(FONT_REGULAR, 18)
+    tag_f    = ImageFont.truetype(FONT_BOLD, 13)
+
+    draw.text((56, 122), "What Is", font=h1_font, fill=(200, 200, 210))
+    draw.text((56, 178), "AI Operations?", font=h1_font, fill=WHITE)
+
+    for i, line in enumerate([
+        "The discipline that keeps AI systems",
+        "accurate, cost-efficient & compliant",
+    ]):
+        draw.text((56, 256 + i * 26), line, font=sub_font, fill=GREY_DIM)
+
+    # Tag pills
+    tags = ["Monitor", "Drift Detection", "Cost Control", "Compliance"]
+    tx, ty = 56, 328
+    for tag in tags:
+        tw = draw.textbbox((0, 0), tag, font=tag_f)[2] + 20
+        draw.rounded_rectangle([tx, ty, tx + tw, ty + 28], radius=14,
+                                fill=(255, 255, 255, 10))
+        draw.rounded_rectangle([tx, ty, tx + tw, ty + 28], radius=14,
+                                outline=(255, 255, 255, 28), width=1)
+        draw.text((tx + tw // 2, ty + 14), tag, font=tag_f,
+                  fill=GREY_LT, anchor="mm")
+        tx += tw + 10
+
+    # ── Right: 2×2 monitoring status cards ───────────────────────────────
+    monitors = [
+        ("Model Health",     "Healthy",    "99.2%",   "Quality score",     (16, 185, 129)),
+        ("Drift Detection",  "Monitoring", "0.94",    "Similarity index",  (59, 130, 246)),
+        ("Token Costs",      "Optimised",  "$0.0012", "Per-request avg",   ORANGE),
+        ("Audit Logging",    "Compliant",  "24,847",  "Events logged",     (99, 102, 241)),
+    ]
+
+    card_w  = 232
+    card_h  = 136
+    gap     = 14
+    start_x = W - 2 * card_w - gap - 56
+    start_y = 80
+
+    label_f  = ImageFont.truetype(FONT_REGULAR, 13)
+    status_f = ImageFont.truetype(FONT_BOLD, 12)
+    value_f  = ImageFont.truetype(FONT_BOLD, 32)
+    desc_f   = ImageFont.truetype(FONT_REGULAR, 12)
+
+    for i, (label, status, value, desc, col) in enumerate(monitors):
+        col_i = i % 2
+        row_i = i // 2
+        cx = start_x + col_i * (card_w + gap)
+        cy = start_y + row_i * (card_h + gap)
+
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12,
+                              fill=(*col, 18))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12,
+                              outline=(*col, 78), width=1)
+        img.paste(card, (cx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+
+        draw.rounded_rectangle([cx, cy, cx + card_w, cy + 4],
+                                radius=2, fill=col)
+
+        draw.text((cx + 16, cy + 14), label, font=label_f, fill=GREY_DIM)
+
+        # Status pill (right-aligned)
+        sw = draw.textbbox((0, 0), status, font=status_f)[2] + 14
+        sx = cx + card_w - sw - 12
+        draw.rounded_rectangle([sx, cy + 10, sx + sw, cy + 28],
+                                radius=8, fill=(*col, 35))
+        draw.text((sx + sw // 2, cy + 19), status, font=status_f,
+                  fill=col, anchor="mm")
+
+        draw.text((cx + 16, cy + 36), value, font=value_f, fill=col)
+        draw.text((cx + 16, cy + 110), desc, font=desc_f, fill=GREY_DIM)
+
+    # ── Platform compat row (fills mid gap) ───────────────────────────────
+    plat_y = start_y + 2 * (card_h + gap) + 20
+    plat_w = 2 * card_w + gap
+    plat_card = Image.new("RGBA", (plat_w, 48), (0, 0, 0, 0))
+    pc = ImageDraw.Draw(plat_card)
+    pc.rounded_rectangle([0, 0, plat_w, 48], radius=10,
+                          fill=(255, 255, 255, 8))
+    pc.rounded_rectangle([0, 0, plat_w, 48], radius=10,
+                          outline=(255, 255, 255, 22), width=1)
+    img.paste(plat_card, (start_x, plat_y), mask=plat_card)
+    draw = ImageDraw.Draw(img)
+    plat_f = ImageFont.truetype(FONT_REGULAR, 13)
+    draw.text((start_x + plat_w // 2, plat_y + 24),
+              "OpenAI · Anthropic · LangChain · LlamaIndex · CrewAI · Azure AI",
+              font=plat_f, fill=GREY_DIM, anchor="mm")
+
+    # ── Bottom stat strip ──────────────────────────────────────────────────
+    strip_y = H - 82
+    draw.line([56, strip_y, W - 56, strip_y], fill=(255, 255, 255, 18), width=1)
+
+    stats_f  = ImageFont.truetype(FONT_BOLD, 19)
+    stats_sf = ImageFont.truetype(FONT_REGULAR, 13)
+    footer_stats = [
+        ("6 Pillars",     "Monitoring to compliance"),
+        ("Continuous",    "Real-time production health"),
+        ("From $2k/mo",   "Managed, no ramp time"),
+    ]
+    col_w_s = (W - 112) // 3
+    for i, (main, sub) in enumerate(footer_stats):
+        sx = 56 + i * col_w_s + col_w_s // 2
+        draw.text((sx, strip_y + 20), main, font=stats_f, fill=ORANGE, anchor="mm")
+        draw.text((sx, strip_y + 44), sub,  font=stats_sf, fill=GREY_DIM, anchor="mm")
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-what-is-ai-operations.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -1902,4 +2043,5 @@ if __name__ == "__main__":
     make_ai_project_brief_image()
     make_ai_roi_image()
     make_build_ai_agents_image()
+    make_what_is_ai_operations_image()
     print("Done.")
