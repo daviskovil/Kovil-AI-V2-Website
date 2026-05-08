@@ -184,6 +184,17 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
 }
 
+
+  'how-to-reduce-llm-api-costs': {
+    label: 'Kovil AI · AI Engineering',
+    teaser: 'We design AI architectures that are accurate and cost-efficient from the start.',
+    headline: 'Are your LLM API costs higher than they should be?',
+    body: "We audit and optimise AI system architectures for cost efficiency — model routing, caching, prompt compression, and right-sizing. Or we build cost-efficient systems from scratch with a fixed price.",
+    defaultGoal: 'project',
+    primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },
+
 const DEFAULT_CTA: CtaConfig = {
   label: 'Kovil AI',
   teaser: 'We build AI-powered software for businesses — from automations to full product builds.',
