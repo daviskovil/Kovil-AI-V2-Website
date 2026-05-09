@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ChevronDown, CheckCircle2, Shield, Database, Brain, Cpu, Zap, Users, Wrench, BarChart3, BookOpen, Download, Clock, FileText, AlertCircle, Lock, Settings } from "lucide-react"
 import { Button } from "../components/ui/button"
@@ -21,6 +20,98 @@ const CONSUMER_DOMAINS = new Set([
 function isCorporateEmail(email: string): boolean {
   const domain = email.split("@")[1]?.toLowerCase()
   return !!domain && !CONSUMER_DOMAINS.has(domain)
+}
+
+// ── Hero — Azure Ecosystem Diagram ───────────────────────────────────────────
+
+function AzureEcosystemDiagram() {
+  const ORANGE = "#F97316"
+  const leftItems  = ["Copilot Studio", "Semantic Kernel", "Prompt Flow", "GitHub Copilot", "Azure AI SDK"]
+  const rightItems = ["Azure OpenAI", "Azure AI Search", "Content Safety", "Model Catalog", "Agent Service"]
+  const itemYs     = [92, 118, 144, 170, 196]
+
+  return (
+    <svg
+      viewBox="0 0 520 250"
+      className="w-full h-auto"
+      aria-label="Azure AI Foundry ecosystem diagram"
+      role="img"
+    >
+      <defs>
+        {/* Center circle gradient */}
+        <radialGradient id="ag-grad" cx="50%" cy="30%">
+          <stop offset="0%" stopColor="#2EA8FF" />
+          <stop offset="100%" stopColor="#0056A3" />
+        </radialGradient>
+        {/* Outer glow blur for center */}
+        <filter id="ag-glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="10" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+
+      {/* ── Left oval fill + border ── */}
+      <ellipse cx="128" cy="125" rx="126" ry="106" fill={ORANGE} fillOpacity="0.04" stroke={ORANGE} strokeWidth="1.5" strokeOpacity="0.4" />
+
+      {/* ── Right oval fill + border ── */}
+      <ellipse cx="392" cy="125" rx="126" ry="106" fill={AZURE} fillOpacity="0.05" stroke={AZURE} strokeWidth="1.5" strokeOpacity="0.4" />
+
+      {/* ── Center circle glow ── */}
+      <circle cx="260" cy="125" r="80" fill={AZURE} fillOpacity="0.15" filter="url(#ag-glow)" />
+      {/* ── Center circle main ── */}
+      <circle cx="260" cy="125" r="80" fill="url(#ag-grad)" />
+
+      {/* ── Section labels ── */}
+      <text x="67" y="26" textAnchor="middle" fill={ORANGE} fontSize="8.5" fontWeight="700" fontFamily="system-ui,sans-serif" letterSpacing="2">BUILD</text>
+      <text x="453" y="26" textAnchor="middle" fill={AZURE}  fontSize="8.5" fontWeight="700" fontFamily="system-ui,sans-serif" letterSpacing="2">DELIVER</text>
+
+      {/* ── Left connector lines ── */}
+      {itemYs.map(y => (
+        <line key={`lc-${y}`} x1="137" y1={y} x2="181" y2="125" stroke={ORANGE} strokeWidth="0.9" strokeOpacity="0.22" strokeDasharray="3 3" />
+      ))}
+
+      {/* ── Left pills ── */}
+      {leftItems.map((label, i) => (
+        <g key={label}>
+          <rect x="8" y={itemYs[i] - 11} width="120" height="21" rx="10.5" fill={ORANGE} fillOpacity="0.09" stroke={ORANGE} strokeWidth="1" strokeOpacity="0.3" />
+          <text x="68" y={itemYs[i] + 4.5} textAnchor="middle" fill="#1C1C1E" fontSize="9" fontWeight="500" fontFamily="system-ui,sans-serif">{label}</text>
+        </g>
+      ))}
+
+      {/* ── Right connector lines ── */}
+      {itemYs.map(y => (
+        <line key={`rc-${y}`} x1="339" y1="125" x2="383" y2={y} stroke={AZURE} strokeWidth="0.9" strokeOpacity="0.22" strokeDasharray="3 3" />
+      ))}
+
+      {/* ── Right pills ── */}
+      {rightItems.map((label, i) => (
+        <g key={label}>
+          <rect x="392" y={itemYs[i] - 11} width="120" height="21" rx="10.5" fill={AZURE} fillOpacity="0.09" stroke={AZURE} strokeWidth="1" strokeOpacity="0.3" />
+          <text x="452" y={itemYs[i] + 4.5} textAnchor="middle" fill="#1C1C1E" fontSize="9" fontWeight="500" fontFamily="system-ui,sans-serif">{label}</text>
+        </g>
+      ))}
+
+      {/* ── Center: "AZURE AI FOUNDRY" ── */}
+      <text x="260" y="103" textAnchor="middle" fill="rgba(255,255,255,0.65)" fontSize="7.5" fontWeight="600" fontFamily="system-ui,sans-serif" letterSpacing="2.5">AZURE AI</text>
+      <text x="260" y="124" textAnchor="middle" fill="white" fontSize="15" fontWeight="700" fontFamily="system-ui,sans-serif">FOUNDRY</text>
+
+      {/* Thin divider */}
+      <line x1="228" y1="132" x2="292" y2="132" stroke="rgba(255,255,255,0.2)" strokeWidth="0.8" />
+
+      {/* Center sub-labels */}
+      {["Evaluations", "Governance", "Monitoring"].map((t, i) => (
+        <text key={t} x="260" y={145 + i * 13} textAnchor="middle" fill="rgba(255,255,255,0.65)" fontSize="8.5" fontFamily="system-ui,sans-serif">{t}</text>
+      ))}
+
+      {/* ── Connection dots at oval perimeters ── */}
+      {itemYs.map(y => (
+        <g key={`dot-l-${y}`}>
+          <circle cx="128" cy={y} r="2.5" fill={ORANGE} fillOpacity="0.5" />
+          <circle cx="392" cy={y} r="2.5" fill={AZURE}  fillOpacity="0.5" />
+        </g>
+      ))}
+    </svg>
+  )
 }
 
 // ── Section 3 — Services ──────────────────────────────────────────────────────
@@ -402,20 +493,8 @@ export default function AzureAIFoundryPage() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="hidden md:flex items-center justify-center"
           >
-            <div className="relative flex items-center justify-center w-full max-w-md mx-auto select-none">
-              {/* Soft glow behind logo */}
-              <div
-                className="absolute rounded-full blur-3xl opacity-25 w-72 h-72"
-                style={{ background: `radial-gradient(ellipse at center, ${AZURE}, transparent)` }}
-              />
-              <Image
-                src="/azure-ai-foundry-logo.jpg"
-                alt="Azure AI Foundry"
-                width={400}
-                height={400}
-                className="relative drop-shadow-2xl w-72 h-72 object-contain"
-                priority
-              />
+            <div className="w-full max-w-xl select-none">
+              <AzureEcosystemDiagram />
             </div>
           </motion.div>
         </div>
