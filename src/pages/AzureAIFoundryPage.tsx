@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
+import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ChevronDown, CheckCircle2, Shield, Database, Brain, Cpu, Zap, Users, Wrench, BarChart3, BookOpen, Download, Clock, FileText, AlertCircle, Cloud, Lock, Settings } from "lucide-react"
+import { ArrowRight, ChevronDown, CheckCircle2, Shield, Database, Brain, Cpu, Zap, Users, Wrench, BarChart3, BookOpen, Download, Clock, FileText, AlertCircle, Lock, Settings } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { openCalendly } from "../lib/calendly"
 
@@ -20,121 +21,6 @@ const CONSUMER_DOMAINS = new Set([
 function isCorporateEmail(email: string): boolean {
   const domain = email.split("@")[1]?.toLowerCase()
   return !!domain && !CONSUMER_DOMAINS.has(domain)
-}
-
-// ── Hero — Azure Architecture Diagram ────────────────────────────────────────
-
-function AzureArchDiagram() {
-  const layers = [
-    {
-      label: "User Interfaces",
-      items: [
-        { name: "Microsoft Teams" },
-        { name: "Web / Mobile" },
-        { name: "Custom API" },
-      ],
-      color: `${AZURE}20`,
-      border: `${AZURE}40`,
-    },
-    {
-      label: "Agent Orchestration",
-      items: [
-        { name: "Semantic Kernel" },
-        { name: "Prompt Flow" },
-        { name: "Copilot Studio" },
-      ],
-      color: `${AZURE}15`,
-      border: `${AZURE}35`,
-    },
-    {
-      label: "Azure AI Core",
-      items: [
-        { name: "Azure OpenAI" },
-        { name: "Azure AI Search" },
-        { name: "Model Catalog" },
-      ],
-      color: `${AZURE}10`,
-      border: `${AZURE}30`,
-    },
-    {
-      label: "Your Data & Systems",
-      items: [
-        { name: "SharePoint · SQL" },
-        { name: "Dynamics · M365" },
-        { name: "APIs · Files" },
-      ],
-      color: "transparent",
-      border: "rgba(255,255,255,0.1)",
-    },
-  ]
-
-  return (
-    <div className="relative w-full max-w-lg mx-auto select-none">
-      {/* Outer glow */}
-      <div className="absolute inset-0 rounded-3xl opacity-20 blur-3xl" style={{ background: `radial-gradient(ellipse at center, ${AZURE}, transparent)` }} />
-
-      <div className="relative space-y-2">
-        {/* Top badge */}
-        <div className="flex justify-center mb-4">
-          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl font-bold text-white text-sm shadow-xl" style={{ background: AZURE, boxShadow: `0 8px 32px ${AZURE}50` }}>
-            <div className="h-5 w-5 rounded-md bg-white/20 flex items-center justify-center">
-              <Cloud className="h-3 w-3 text-white" />
-            </div>
-            Azure AI Foundry
-          </div>
-        </div>
-
-        {/* Connector arrow */}
-        <div className="flex justify-center">
-          <div className="w-px h-4" style={{ background: `${AZURE}50` }} />
-        </div>
-
-        {/* Architecture layers */}
-        {layers.map((layer, li) => (
-          <div key={layer.label}>
-            <div
-              className="rounded-xl border px-4 py-3"
-              style={{ background: layer.color, borderColor: layer.border }}
-            >
-              <p className="text-[10px] font-semibold tracking-widest uppercase mb-2.5" style={{ color: AZURE }}>
-                {layer.label}
-              </p>
-              <div className="grid grid-cols-3 gap-2">
-                {layer.items.map(item => (
-                  <div
-                    key={item.name}
-                    className="rounded-lg px-2.5 py-2 text-center"
-                    style={{ background: `${AZURE}12`, border: `1px solid ${AZURE}25` }}
-                  >
-                    <span className="text-[11px] font-medium text-foreground leading-tight">{item.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {li < layers.length - 1 && (
-              <div className="flex justify-center">
-                <div className="w-px h-3" style={{ background: `${AZURE}40` }} />
-              </div>
-            )}
-          </div>
-        ))}
-
-        {/* Stats strip */}
-        <div className="mt-4 grid grid-cols-3 gap-2 pt-2">
-          {[
-            { value: "GPT-4o", label: "& 1,700+ models" },
-            { value: "99.9%", label: "Azure SLA" },
-            { value: "ISO 27001", label: "SOC 2 · HIPAA" },
-          ].map(stat => (
-            <div key={stat.value} className="text-center rounded-xl py-2.5" style={{ background: `${AZURE}10`, border: `1px solid ${AZURE}25` }}>
-              <div className="text-sm font-display font-bold" style={{ color: AZURE }}>{stat.value}</div>
-              <div className="text-[10px] text-muted-foreground mt-0.5">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
 }
 
 // ── Section 3 — Services ──────────────────────────────────────────────────────
@@ -516,7 +402,21 @@ export default function AzureAIFoundryPage() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="hidden md:flex items-center justify-center"
           >
-            <AzureArchDiagram />
+            <div className="relative flex items-center justify-center w-full max-w-md mx-auto select-none">
+              {/* Soft glow behind logo */}
+              <div
+                className="absolute rounded-full blur-3xl opacity-25 w-72 h-72"
+                style={{ background: `radial-gradient(ellipse at center, ${AZURE}, transparent)` }}
+              />
+              <Image
+                src="/azure-ai-foundry-logo.png"
+                alt="Azure AI Foundry"
+                width={400}
+                height={400}
+                className="relative drop-shadow-2xl w-72 h-72 object-contain"
+                priority
+              />
+            </div>
           </motion.div>
         </div>
       </section>
