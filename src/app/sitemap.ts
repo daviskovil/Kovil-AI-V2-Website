@@ -37,6 +37,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/ad-marketing-agencies`,                          lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/ai-workflow-automation-library`,                 lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/agentforce`,                                      lastModified: now,  changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${BASE_URL}/ai-operations`,                                   lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire`,                                            lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/engage/computer-vision-engineers`,                lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/engage/machine-learning-engineers`,               lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/apply-as-it-recruiter`,                           lastModified: now,  changeFrequency: 'monthly', priority: 0.6 },
     // ── Azure AI Foundry landing ───────────────────────────────────────────────
     { url: `${BASE_URL}/azure-ai-foundry`,                               lastModified: now,  changeFrequency: 'weekly',  priority: 0.9 },
     // ── Azure AI Foundry service pages ────────────────────────────────────────
