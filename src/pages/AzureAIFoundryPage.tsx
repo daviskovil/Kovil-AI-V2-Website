@@ -409,7 +409,7 @@ export default function AzureAIFoundryPage() {
                 style={{ background: `radial-gradient(ellipse at center, ${AZURE}, transparent)` }}
               />
               <Image
-                src="/azure-ai-foundry-logo.png"
+                src="/azure-ai-foundry-logo.jpg"
                 alt="Azure AI Foundry"
                 width={400}
                 height={400}
