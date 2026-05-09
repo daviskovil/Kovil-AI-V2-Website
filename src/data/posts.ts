@@ -4294,6 +4294,128 @@ export const posts: Post[] = [
       },
     ],
   },
+
+  {
+      slug: "how-to-reduce-llm-api-costs",
+      title: "How to Reduce LLM API Costs: A Guide for Leaders",
+      excerpt: "LLM API costs can spiral quickly in production. Here's the non-technical guide to the 6 levers that cut inference costs by 40–70% — with decisions your team can make today, no ML background required.",
+      category: "AI Engineering",
+      date: "May 8, 2026",
+      readTime: "8 min read",
+      author: "Kovil AI Team",
+      featured: false,
+      heroImage: "/blog-how-to-reduce-llm-api-costs.jpg",
+      faqs: [
+        {
+          q: "Why are LLM API costs so high in production?",
+          a: "Most LLM cost overruns trace to three causes: the application is using a premium model (GPT-4o, Claude Sonnet) for every request including simple ones that a cheaper model could handle, prompts are longer than necessary — repeating context on every call rather than caching it, and the application was built at low test volume without projecting costs at real usage scale. A system that costs $50/month in testing commonly costs $3,000/month when 1,000 real users start interacting with it."
+        },
+        {
+          q: "What is model routing and how does it reduce costs?",
+          a: "Model routing sends different types of requests to different models based on complexity. Simple tasks — keyword extraction, yes/no classification, short summaries — go to a cheap, fast model like Gemini 2.0 Flash or GPT-4o-mini at $0.10–0.60 per million tokens. Complex tasks — multi-step reasoning, code generation, nuanced document analysis — go to a premium model like Claude Sonnet or GPT-4o at $2.50–15 per million tokens. Routing by task type typically reduces total API spend by 40–65% with minimal quality impact on the simple-task tier."
+        },
+        {
+          q: "Does using a cheaper AI model significantly reduce output quality?",
+          a: "It depends entirely on the task. For binary classification, entity extraction, short summarisation, and simple question answering, cheaper models like Gemini Flash and GPT-4o-mini perform comparably to premium models. For complex reasoning, multi-step planning, code generation, and nuanced instruction following, premium models are meaningfully better. The answer is to test your specific tasks against both model tiers rather than applying blanket assumptions — in most production systems, 60–70% of requests are simple enough for the cheaper tier."
+        },
+        {
+          q: "What is prompt caching and how much does it save?",
+          a: "Prompt caching stores the processed version of a prompt prefix so it does not need to be recomputed on every request. If your application sends a 5,000-word system prompt with every API call, caching that prefix means you only pay to process it once rather than thousands of times per day. Anthropic offers cached tokens at 90% discount; OpenAI offers cached input tokens at 50% discount. For applications with long, static system prompts — RAG systems with large context windows, detailed instruction sets — caching alone can reduce input token costs by 60–80%."
+        },
+        {
+          q: "How do I know if my LLM costs are too high?",
+          a: "Benchmark your cost per meaningful unit of output: cost per ticket resolved, cost per document summarised, cost per lead qualified. If your AI automation is costing more per unit than the human labour it replaces, something is wrong with the architecture. A well-designed AI support system should cost $0.05–0.50 per resolved ticket depending on complexity. If you are paying $2–5 per resolved ticket, you are almost certainly using the wrong model tier or have prompt bloat driving up token counts."
+        },
+      ],
+      body: `
+  <img src="/blog-how-to-reduce-llm-api-costs.jpg" alt="How to Reduce LLM API Costs: A Guide for Leaders" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+  
+  <p>The business case for an AI project looks strong in a spreadsheet. Then the application goes live, real users start generating real volume, and the monthly API bill is three times what the model showed in testing. This is not an unusual story — it is one of the most common budget surprises in production AI deployments.</p>
+  
+  <p>The good news is that LLM API cost overruns are almost always solvable without sacrificing output quality. Here are the six levers, explained without jargon, so you can have an informed conversation with your engineering team about where the spend is going.</p>
+  
+  <h2>Lever 1: Model Routing</h2>
+  
+  <p>Not every request needs your most expensive model. A request that asks "is this email spam or not?" needs a binary classification, not the full reasoning capability of GPT-4o at $10 per million output tokens. A request that asks an AI system to design a multi-step data migration plan probably does.</p>
+  
+  <p>Model routing assigns requests to models based on task complexity. Simple tasks — classification, short summaries, yes/no decisions, entity extraction — go to cheap models like Gemini 2.0 Flash ($0.40/M output) or GPT-4o-mini ($0.60/M output). Complex tasks go to premium models like Claude Sonnet ($15/M output) or GPT-4o ($10/M output).</p>
+  
+  <p>The cost difference between tiers is 15–40x. In most production systems, 60–70% of requests are simple enough for the cheaper tier. Applied correctly, routing reduces total API spend by 40–65%.</p>
+  
+  <h2>Lever 2: Prompt Caching</h2>
+  
+  <p>If your application sends the same large block of text with every API call — a long system prompt, a detailed instruction set, a big document that provides context — you are paying to process that text thousands of times per day. Prompt caching stores the processed version of static prompt content so you only pay for it once.</p>
+  
+  <p>Anthropic offers cached tokens at a 90% discount. OpenAI offers cached input tokens at a 50% discount. For a RAG system that includes a 4,000-word company knowledge base in every prompt, enabling caching on that static block cuts input token costs on that portion by 50–90% — often the single biggest cost reduction available in the architecture.</p>
+  
+  <h2>Lever 3: Prompt Compression</h2>
+  
+  <p>Prompts grow over time. Engineers add instructions to handle edge cases. Context grows. What started as a 400-token prompt becomes a 2,000-token prompt over six months of iteration, even though the actual instruction content has not grown proportionally. Token costs scale linearly with prompt length.</p>
+  
+  <p>A prompt audit — reviewing every instruction in the system prompt and removing redundant, overlapping, or never-triggered content — typically reduces prompt length by 20–40% without changing output quality. For high-volume applications, this compounds significantly at scale.</p>
+  
+  <h2>Lever 4: Output Length Control</h2>
+  
+  <p>Output tokens cost more than input tokens on most models. If your application is generating verbose responses — long preambles, repeated context, unnecessary summaries — you are paying for words your users do not read.</p>
+  
+  <p>Explicit output length instructions ("respond in three bullet points maximum," "answer in one sentence") are dramatically more effective than you might expect. Models follow these instructions well, and cutting average output length from 400 tokens to 150 tokens is a 62% reduction in output token costs on every single call.</p>
+  
+  <h2>Lever 5: Semantic Caching</h2>
+  
+  <p>Some applications receive the same user questions repeatedly. A customer support chatbot where 60% of questions are variations of the top 20 queries is a good example. Semantic caching stores the AI-generated answer to a question and serves it again when a semantically similar question arrives — without calling the LLM at all.</p>
+  
+  <p>Tools like GPTCache and Redis with vector search support semantic caching at the application layer. For applications with repetitive query patterns, cache hit rates of 30–50% are achievable, effectively eliminating LLM costs for those requests entirely.</p>
+  
+  <h2>Lever 6: Right-Sizing the Context Window</h2>
+  
+  <p>RAG systems retrieve documents and pass them to the LLM as context. The default retrieval configuration often pulls more context than the model needs. If your retrieval step pulls 8,000 tokens of context for every query when 2,000 tokens would be sufficient to answer most questions accurately, you are paying for 6,000 wasted input tokens per call.</p>
+  
+  <p>Tuning retrieval chunk size, the number of chunks retrieved, and the reranking configuration to find the minimum context required for accurate answers is one of the highest-ROI optimisation steps in RAG architectures. It also often improves answer accuracy — a focused 2,000-token context frequently produces better answers than a sprawling 8,000-token context full of marginally relevant information.</p>
+  
+  <h2>Cost Benchmarks to Sanity-Check Your Architecture</h2>
+  
+  <table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+  <thead>
+  <tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+  <th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Application Type</th>
+  <th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Reasonable Cost per Unit</th>
+  <th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Red Flag Cost</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr style="border-bottom:1px solid #f3f4f6;">
+  <td style="padding:0.75rem 1rem;color:#374151;">Support ticket resolved</td>
+  <td style="padding:0.75rem 1rem;color:#6b7280;">$0.05 – $0.50</td>
+  <td style="padding:0.75rem 1rem;color:#e53e3e;">$2.00+</td>
+  </tr>
+  <tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+  <td style="padding:0.75rem 1rem;color:#374151;">Document summarised (1–5 pages)</td>
+  <td style="padding:0.75rem 1rem;color:#6b7280;">$0.01 – $0.10</td>
+  <td style="padding:0.75rem 1rem;color:#e53e3e;">$0.50+</td>
+  </tr>
+  <tr style="border-bottom:1px solid #f3f4f6;">
+  <td style="padding:0.75rem 1rem;color:#374151;">Lead classified (hot / warm / cold)</td>
+  <td style="padding:0.75rem 1rem;color:#6b7280;">$0.001 – $0.01</td>
+  <td style="padding:0.75rem 1rem;color:#e53e3e;">$0.10+</td>
+  </tr>
+  <tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+  <td style="padding:0.75rem 1rem;color:#374151;">Product description generated</td>
+  <td style="padding:0.75rem 1rem;color:#6b7280;">$0.002 – $0.02</td>
+  <td style="padding:0.75rem 1rem;color:#e53e3e;">$0.20+</td>
+  </tr>
+  <tr>
+  <td style="padding:0.75rem 1rem;color:#374151;">RAG query answered (with retrieval)</td>
+  <td style="padding:0.75rem 1rem;color:#6b7280;">$0.01 – $0.05</td>
+  <td style="padding:0.75rem 1rem;color:#e53e3e;">$0.30+</td>
+  </tr>
+  </tbody>
+  </table>
+  
+  <p>If your per-unit costs are running above these benchmarks, the architecture has a cost problem. The fix is almost always one of the six levers above — in our experience, the combination of model routing and prompt caching alone resolves 70% of LLM cost overruns in production systems.</p>
+  
+  <p>If you have an AI system with runaway API costs or are architecting a new system and want to get the cost model right from day one, our <a href="/engage/managed-ai-engineer">Managed AI Engineer</a> engagement includes cost architecture as part of the design scope. Or <a href="/contact">reach out</a> and we will take a look at what is driving the spend.</p>
+      `,
+    },
 ];
 
 export function getPost(slug: string): Post | undefined {
