@@ -22,93 +22,178 @@ function isCorporateEmail(email: string): boolean {
   return !!domain && !CONSUMER_DOMAINS.has(domain)
 }
 
-// ── Hero — Azure Ecosystem Diagram ───────────────────────────────────────────
+// ── Hero — Azure Ecosystem Diagram (3D) ──────────────────────────────────────
 
 function AzureEcosystemDiagram() {
   const ORANGE = "#F97316"
-  const leftItems  = ["Copilot Studio", "Semantic Kernel", "Prompt Flow", "GitHub Copilot", "Azure AI SDK"]
-  const rightItems = ["Azure OpenAI", "Azure AI Search", "Content Safety", "Model Catalog", "Agent Service"]
-  const itemYs     = [92, 118, 144, 170, 196]
+
+  // ── Geometry (all values verified against ellipse equations) ──────────────
+  // Left oval:   cx=148 cy=155 rx=146 ry=122  → right edge x=294
+  // Center sphere: cx=300 cy=155 r=90         → left edge x=210, right edge x=390
+  // Right oval:  cx=452 cy=155 rx=146 ry=122  → left edge x=306
+  // Pills: 5 items, y=[105,130,155,180,205], h=22 → tallest extent y=227
+  // At y=227: oval boundary checked: left≥35.7, right≤568.3 → pills fit safely
+  const CX = 300, CY = 155, R = 90
+  const itemYs   = [105, 130, 155, 180, 205]
+  const PW = 118, PH = 22, PR = 11           // pill width / height / radius
+  const LPX = 38                              // left pill x-start   (38 to 156)
+  const RPX = 444                             // right pill x-start  (444 to 562)
+  const leftItems  = ["Copilot Studio","Semantic Kernel","Prompt Flow","GitHub Copilot","Azure AI SDK"]
+  const rightItems = ["Azure OpenAI","Azure AI Search","Content Safety","Model Catalog","Agent Service"]
 
   return (
-    <svg
-      viewBox="0 0 520 250"
-      className="w-full h-auto"
-      aria-label="Azure AI Foundry ecosystem diagram"
-      role="img"
-    >
+    <svg viewBox="0 0 600 300" className="w-full h-auto" role="img" aria-label="Azure AI Foundry ecosystem diagram">
       <defs>
-        {/* Center circle gradient */}
-        <radialGradient id="ag-grad" cx="50%" cy="30%">
-          <stop offset="0%" stopColor="#2EA8FF" />
-          <stop offset="100%" stopColor="#0056A3" />
+        {/* ── 3D sphere gradient: lit from top-left ── */}
+        <radialGradient id="ag-sphere" cx="34%" cy="26%" r="72%" fx="34%" fy="26%">
+          <stop offset="0%"   stopColor="#72D4FF" />
+          <stop offset="28%"  stopColor="#1A9FE8" />
+          <stop offset="65%"  stopColor="#0078D4" />
+          <stop offset="100%" stopColor="#003870" />
         </radialGradient>
-        {/* Outer glow blur for center */}
-        <filter id="ag-glow" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="10" result="blur" />
+
+        {/* ── Left oval fill: lit from top-left ── */}
+        <radialGradient id="ag-left" cx="36%" cy="26%" r="68%">
+          <stop offset="0%"   stopColor={ORANGE} stopOpacity="0.22" />
+          <stop offset="55%"  stopColor={ORANGE} stopOpacity="0.07" />
+          <stop offset="100%" stopColor={ORANGE} stopOpacity="0.02" />
+        </radialGradient>
+
+        {/* ── Right oval fill: lit from top-right ── */}
+        <radialGradient id="ag-right" cx="64%" cy="26%" r="68%">
+          <stop offset="0%"   stopColor={AZURE} stopOpacity="0.22" />
+          <stop offset="55%"  stopColor={AZURE} stopOpacity="0.07" />
+          <stop offset="100%" stopColor={AZURE} stopOpacity="0.02" />
+        </radialGradient>
+
+        {/* ── Soft drop shadow ── */}
+        <filter id="ag-drop" x="-15%" y="-15%" width="130%" height="140%">
+          <feDropShadow dx="0" dy="5" stdDeviation="10" floodColor="#000" floodOpacity="0.10" />
+        </filter>
+
+        {/* ── Glow blur for sphere ── */}
+        <filter id="ag-glow" x="-35%" y="-35%" width="170%" height="170%">
+          <feGaussianBlur stdDeviation="14" result="blur" />
           <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
+
+        {/* ── Floor shadow blur ── */}
+        <filter id="ag-floor"><feGaussianBlur stdDeviation="5" /></filter>
+
+        {/* ── Pill shadow ── */}
+        <filter id="ag-pill" x="-8%" y="-25%" width="116%" height="175%">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#000" floodOpacity="0.09" />
+        </filter>
+
+        {/* ── Clip: top half of left oval ── */}
+        <clipPath id="top-left-oval"><rect x="0"   y="0"   width="300" height="155" /></clipPath>
+        {/* ── Clip: top half of right oval ── */}
+        <clipPath id="top-right-oval"><rect x="300" y="0"   width="300" height="155" /></clipPath>
+        {/* ── Clip: top half of sphere ── */}
+        <clipPath id="top-sphere"><rect x="210"  y="0"   width="180" height="155" /></clipPath>
       </defs>
 
-      {/* ── Left oval fill + border ── */}
-      <ellipse cx="128" cy="125" rx="126" ry="106" fill={ORANGE} fillOpacity="0.04" stroke={ORANGE} strokeWidth="1.5" strokeOpacity="0.4" />
+      {/* ═══ FLOOR SHADOWS (3D depth) ═══ */}
+      <ellipse cx="148" cy="284" rx="110" ry="9"  fill="rgba(0,0,0,0.08)"  filter="url(#ag-floor)" />
+      <ellipse cx="300" cy="284" rx="72"  ry="7"  fill="rgba(0,0,0,0.13)"  filter="url(#ag-floor)" />
+      <ellipse cx="452" cy="284" rx="110" ry="9"  fill="rgba(0,0,0,0.08)"  filter="url(#ag-floor)" />
 
-      {/* ── Right oval fill + border ── */}
-      <ellipse cx="392" cy="125" rx="126" ry="106" fill={AZURE} fillOpacity="0.05" stroke={AZURE} strokeWidth="1.5" strokeOpacity="0.4" />
+      {/* ═══ LEFT OVAL ═══ */}
+      {/* Fill */}
+      <ellipse cx="148" cy="155" rx="146" ry="122" fill="url(#ag-left)" filter="url(#ag-drop)" />
+      {/* Main border */}
+      <ellipse cx="148" cy="155" rx="146" ry="122" fill="none" stroke={ORANGE} strokeWidth="1.5" strokeOpacity="0.45" />
+      {/* Top rim highlight (light reflection) */}
+      <ellipse cx="148" cy="155" rx="142" ry="118" fill="none" stroke="white" strokeWidth="1.8" strokeOpacity="0.18" clipPath="url(#top-left-oval)" />
+      {/* Inner top sheen */}
+      <ellipse cx="128" cy="88"  rx="72"  ry="26"  fill={ORANGE} fillOpacity="0.07" />
 
-      {/* ── Center circle glow ── */}
-      <circle cx="260" cy="125" r="80" fill={AZURE} fillOpacity="0.15" filter="url(#ag-glow)" />
-      {/* ── Center circle main ── */}
-      <circle cx="260" cy="125" r="80" fill="url(#ag-grad)" />
+      {/* ═══ RIGHT OVAL ═══ */}
+      <ellipse cx="452" cy="155" rx="146" ry="122" fill="url(#ag-right)" filter="url(#ag-drop)" />
+      <ellipse cx="452" cy="155" rx="146" ry="122" fill="none" stroke={AZURE} strokeWidth="1.5" strokeOpacity="0.45" />
+      <ellipse cx="452" cy="155" rx="142" ry="118" fill="none" stroke="white" strokeWidth="1.8" strokeOpacity="0.18" clipPath="url(#top-right-oval)" />
+      <ellipse cx="472" cy="88"  rx="72"  ry="26"  fill={AZURE} fillOpacity="0.07" />
 
-      {/* ── Section labels ── */}
-      <text x="67" y="26" textAnchor="middle" fill={ORANGE} fontSize="8.5" fontWeight="700" fontFamily="system-ui,sans-serif" letterSpacing="2">BUILD</text>
-      <text x="453" y="26" textAnchor="middle" fill={AZURE}  fontSize="8.5" fontWeight="700" fontFamily="system-ui,sans-serif" letterSpacing="2">DELIVER</text>
+      {/* ═══ CENTER SPHERE ═══ */}
+      {/* Ambient glow halo */}
+      <circle cx={CX} cy={CY} r={R + 14} fill={AZURE} fillOpacity="0.12" filter="url(#ag-glow)" />
+      {/* Main sphere */}
+      <circle cx={CX} cy={CY} r={R} fill="url(#ag-sphere)" filter="url(#ag-drop)" />
+      {/* Top-left diffuse highlight */}
+      <ellipse cx={CX - 26} cy={CY - 34} rx="44" ry="30" fill="white" opacity="0.10" />
+      {/* Specular glint */}
+      <ellipse cx={CX - 20} cy={CY - 43} rx="16" ry="10" fill="white" opacity="0.22" />
+      {/* Top rim highlight */}
+      <circle cx={CX} cy={CY} r={R - 1} fill="none" stroke="white" strokeWidth="1.5" strokeOpacity="0.14" clipPath="url(#top-sphere)" />
+      {/* Bottom shadow crescent (3D depth) */}
+      <ellipse cx={CX + 14} cy={CY + 48} rx="58" ry="26" fill="rgba(0,24,64,0.28)" />
 
-      {/* ── Left connector lines ── */}
-      {itemYs.map(y => (
-        <line key={`lc-${y}`} x1="137" y1={y} x2="181" y2="125" stroke={ORANGE} strokeWidth="0.9" strokeOpacity="0.22" strokeDasharray="3 3" />
-      ))}
+      {/* ═══ SECTION LABELS ═══ */}
+      <text x="148" y="24" textAnchor="middle" fill={ORANGE} fontSize="9" fontWeight="700" fontFamily="system-ui,sans-serif" letterSpacing="2.5">BUILD</text>
+      <text x="452" y="24" textAnchor="middle" fill={AZURE}  fontSize="9" fontWeight="700" fontFamily="system-ui,sans-serif" letterSpacing="2.5">DELIVER</text>
 
-      {/* ── Left pills ── */}
-      {leftItems.map((label, i) => (
-        <g key={label}>
-          <rect x="8" y={itemYs[i] - 11} width="120" height="21" rx="10.5" fill={ORANGE} fillOpacity="0.09" stroke={ORANGE} strokeWidth="1" strokeOpacity="0.3" />
-          <text x="68" y={itemYs[i] + 4.5} textAnchor="middle" fill="#1C1C1E" fontSize="9" fontWeight="500" fontFamily="system-ui,sans-serif">{label}</text>
-        </g>
-      ))}
+      {/* ═══ CONNECTOR LINES ═══ */}
+      {itemYs.map(y => {
+        const mid = y + PH / 2
+        return (
+          <g key={`conn-${y}`}>
+            <line x1={LPX + PW} y1={mid} x2={CX - R} y2={CY} stroke={ORANGE} strokeWidth="1" strokeOpacity="0.22" strokeDasharray="3 3" />
+            <line x1={CX + R} y1={CY} x2={RPX}       y2={mid} stroke={AZURE}  strokeWidth="1" strokeOpacity="0.22" strokeDasharray="3 3" />
+          </g>
+        )
+      })}
 
-      {/* ── Right connector lines ── */}
-      {itemYs.map(y => (
-        <line key={`rc-${y}`} x1="339" y1="125" x2="383" y2={y} stroke={AZURE} strokeWidth="0.9" strokeOpacity="0.22" strokeDasharray="3 3" />
-      ))}
+      {/* ═══ LEFT PILLS ═══ */}
+      {leftItems.map((label, i) => {
+        const y = itemYs[i]
+        return (
+          <g key={label} filter="url(#ag-pill)">
+            {/* Pill base */}
+            <rect x={LPX} y={y} width={PW} height={PH} rx={PR}
+              fill={ORANGE} fillOpacity="0.11" stroke={ORANGE} strokeWidth="1" strokeOpacity="0.38" />
+            {/* Glass shine (top half) */}
+            <rect x={LPX + 5} y={y + 2} width={PW - 10} height={PH / 2 - 2} rx={PR - 2}
+              fill="white" opacity="0.22" />
+            {/* Label */}
+            <text x={LPX + PW / 2} y={y + PH / 2 + 4}
+              textAnchor="middle" fill="#1C1C1E" fontSize="9" fontWeight="500" fontFamily="system-ui,sans-serif">
+              {label}
+            </text>
+            {/* Dot on right edge (connector anchor) */}
+            <circle cx={LPX + PW} cy={y + PH / 2} r="2.8" fill={ORANGE} fillOpacity="0.55" />
+          </g>
+        )
+      })}
 
-      {/* ── Right pills ── */}
-      {rightItems.map((label, i) => (
-        <g key={label}>
-          <rect x="392" y={itemYs[i] - 11} width="120" height="21" rx="10.5" fill={AZURE} fillOpacity="0.09" stroke={AZURE} strokeWidth="1" strokeOpacity="0.3" />
-          <text x="452" y={itemYs[i] + 4.5} textAnchor="middle" fill="#1C1C1E" fontSize="9" fontWeight="500" fontFamily="system-ui,sans-serif">{label}</text>
-        </g>
-      ))}
+      {/* ═══ RIGHT PILLS ═══ */}
+      {rightItems.map((label, i) => {
+        const y = itemYs[i]
+        return (
+          <g key={label} filter="url(#ag-pill)">
+            {/* Dot on left edge (connector anchor) */}
+            <circle cx={RPX} cy={y + PH / 2} r="2.8" fill={AZURE} fillOpacity="0.55" />
+            {/* Pill base */}
+            <rect x={RPX} y={y} width={PW} height={PH} rx={PR}
+              fill={AZURE} fillOpacity="0.11" stroke={AZURE} strokeWidth="1" strokeOpacity="0.38" />
+            {/* Glass shine (top half) */}
+            <rect x={RPX + 5} y={y + 2} width={PW - 10} height={PH / 2 - 2} rx={PR - 2}
+              fill="white" opacity="0.22" />
+            {/* Label */}
+            <text x={RPX + PW / 2} y={y + PH / 2 + 4}
+              textAnchor="middle" fill="#1C1C1E" fontSize="9" fontWeight="500" fontFamily="system-ui,sans-serif">
+              {label}
+            </text>
+          </g>
+        )
+      })}
 
-      {/* ── Center: "AZURE AI FOUNDRY" ── */}
-      <text x="260" y="103" textAnchor="middle" fill="rgba(255,255,255,0.65)" fontSize="7.5" fontWeight="600" fontFamily="system-ui,sans-serif" letterSpacing="2.5">AZURE AI</text>
-      <text x="260" y="124" textAnchor="middle" fill="white" fontSize="15" fontWeight="700" fontFamily="system-ui,sans-serif">FOUNDRY</text>
-
-      {/* Thin divider */}
-      <line x1="228" y1="132" x2="292" y2="132" stroke="rgba(255,255,255,0.2)" strokeWidth="0.8" />
-
-      {/* Center sub-labels */}
-      {["Evaluations", "Governance", "Monitoring"].map((t, i) => (
-        <text key={t} x="260" y={145 + i * 13} textAnchor="middle" fill="rgba(255,255,255,0.65)" fontSize="8.5" fontFamily="system-ui,sans-serif">{t}</text>
-      ))}
-
-      {/* ── Connection dots at oval perimeters ── */}
-      {itemYs.map(y => (
-        <g key={`dot-l-${y}`}>
-          <circle cx="128" cy={y} r="2.5" fill={ORANGE} fillOpacity="0.5" />
-          <circle cx="392" cy={y} r="2.5" fill={AZURE}  fillOpacity="0.5" />
-        </g>
+      {/* ═══ CENTER SPHERE TEXT ═══ */}
+      <text x={CX} y={CY - 24} textAnchor="middle" fill="rgba(255,255,255,0.62)" fontSize="8" fontWeight="600" fontFamily="system-ui,sans-serif" letterSpacing="3">AZURE AI</text>
+      <text x={CX} y={CY - 4}  textAnchor="middle" fill="white" fontSize="17" fontWeight="800" fontFamily="system-ui,sans-serif">FOUNDRY</text>
+      <line x1={CX - 52} y1={CY + 5} x2={CX + 52} y2={CY + 5} stroke="rgba(255,255,255,0.18)" strokeWidth="0.8" />
+      {[["Evaluations", CY + 20], ["Governance", CY + 35], ["Monitoring", CY + 50]].map(([t, ty]) => (
+        <text key={t as string} x={CX} y={ty as number}
+          textAnchor="middle" fill="rgba(255,255,255,0.68)" fontSize="9" fontFamily="system-ui,sans-serif">{t}</text>
       ))}
     </svg>
   )
@@ -493,7 +578,7 @@ export default function AzureAIFoundryPage() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="hidden md:flex items-center justify-center"
           >
-            <div className="w-full max-w-xl select-none">
+            <div className="w-full select-none">
               <AzureEcosystemDiagram />
             </div>
           </motion.div>
