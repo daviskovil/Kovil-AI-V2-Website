@@ -166,7 +166,7 @@ export function OnboardingModal({ children, defaultGoal = "" }: { children: Reac
                   >
                     {[
                       { id: "talent", label: "Managed AI Engineer", desc: "Embed a vetted Tier-1 AI engineer into your team — milestone-gated and fully managed." },
-                      { id: "project", label: "Outcome-Based AI Project", desc: "We scope, build, and ship your AI product — fixed price, fixed timeline." },
+                      { id: "project", label: "Outcome-Based AI Project / AI Agent Build", desc: "We scope, build, and ship your AI agent — fixed price, fixed timeline." },
                       { id: "rescue", label: "AI Reliability & App Rescue", desc: "Audit, fix, and stabilise a failing, hallucinating, or half-finished AI app." }
                     ].map((option) => (
                       <Label
