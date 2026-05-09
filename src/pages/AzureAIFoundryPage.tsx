@@ -27,118 +27,120 @@ function isCorporateEmail(email: string): boolean {
 function AzureEcosystemDiagram() {
   const ORANGE = "#F97316"
 
-  // ── Geometry (all values verified against ellipse equations) ──────────────
-  // Left oval:   cx=148 cy=155 rx=146 ry=122  → right edge x=294
-  // Center sphere: cx=300 cy=155 r=90         → left edge x=210, right edge x=390
-  // Right oval:  cx=452 cy=155 rx=146 ry=122  → left edge x=306
-  // Pills: 5 items, y=[105,130,155,180,205], h=22 → tallest extent y=227
-  // At y=227: oval boundary checked: left≥35.7, right≤568.3 → pills fit safely
-  const CX = 300, CY = 155, R = 90
-  const itemYs   = [105, 130, 155, 180, 205]
-  const PW = 118, PH = 22, PR = 11           // pill width / height / radius
-  const LPX = 38                              // left pill x-start   (38 to 156)
-  const RPX = 444                             // right pill x-start  (444 to 562)
+  // ── Geometry — all values verified against ellipse equation ──────────────
+  // ViewBox 660 × 430
+  // Left oval:     cx=165 cy=225 rx=162 ry=175  → right x=327, bottom y=400
+  // Center sphere: cx=330 cy=225 r=110           → left x=220, right x=440
+  // Right oval:    cx=495 cy=225 rx=162 ry=175   → left x=333, bottom y=400
+  //
+  // Overlap zones:  left  x=220–327,  right x=333–440
+  // Non-overlap:    left  x=3–220  (pill centre ≈117),  right x=440–657 (≈543)
+  //
+  // Pills: 5 items y=[149,187,225,263,301] PH=26 PW=150
+  // Worst case bottom y=327: left boundary ≥33.5, right boundary ≤626.5
+  // LEFT_PILL_X=42→192 ✓   RIGHT_PILL_X=468→618 ✓
+  const CX = 330, CY = 225, R = 110
+  const itemYs   = [149, 187, 225, 263, 301]
+  const PW = 150, PH = 26, PR = 13
+  const LPX = 42                    // left pill x-start  → right edge 192
+  const RPX = 468                   // right pill x-start → right edge 618
   const leftItems  = ["Copilot Studio","Semantic Kernel","Prompt Flow","GitHub Copilot","Azure AI SDK"]
   const rightItems = ["Azure OpenAI","Azure AI Search","Content Safety","Model Catalog","Agent Service"]
 
   return (
-    <svg viewBox="0 0 600 300" className="w-full h-auto" role="img" aria-label="Azure AI Foundry ecosystem diagram">
+    <svg viewBox="0 0 660 430" className="w-full h-auto" role="img" aria-label="Azure AI Foundry ecosystem diagram">
       <defs>
-        {/* ── 3D sphere gradient: lit from top-left ── */}
+        {/* ── 3D sphere: lit top-left → deep bottom-right ── */}
         <radialGradient id="ag-sphere" cx="34%" cy="26%" r="72%" fx="34%" fy="26%">
-          <stop offset="0%"   stopColor="#72D4FF" />
-          <stop offset="28%"  stopColor="#1A9FE8" />
-          <stop offset="65%"  stopColor="#0078D4" />
-          <stop offset="100%" stopColor="#003870" />
+          <stop offset="0%"   stopColor="#82DAFF" />
+          <stop offset="25%"  stopColor="#1AACF0" />
+          <stop offset="60%"  stopColor="#0078D4" />
+          <stop offset="100%" stopColor="#002D6B" />
         </radialGradient>
 
-        {/* ── Left oval fill: lit from top-left ── */}
-        <radialGradient id="ag-left" cx="36%" cy="26%" r="68%">
-          <stop offset="0%"   stopColor={ORANGE} stopOpacity="0.22" />
-          <stop offset="55%"  stopColor={ORANGE} stopOpacity="0.07" />
+        {/* ── Left oval fill ── */}
+        <radialGradient id="ag-left" cx="35%" cy="25%" r="68%">
+          <stop offset="0%"   stopColor={ORANGE} stopOpacity="0.24" />
+          <stop offset="55%"  stopColor={ORANGE} stopOpacity="0.08" />
           <stop offset="100%" stopColor={ORANGE} stopOpacity="0.02" />
         </radialGradient>
 
-        {/* ── Right oval fill: lit from top-right ── */}
-        <radialGradient id="ag-right" cx="64%" cy="26%" r="68%">
-          <stop offset="0%"   stopColor={AZURE} stopOpacity="0.22" />
-          <stop offset="55%"  stopColor={AZURE} stopOpacity="0.07" />
+        {/* ── Right oval fill ── */}
+        <radialGradient id="ag-right" cx="65%" cy="25%" r="68%">
+          <stop offset="0%"   stopColor={AZURE} stopOpacity="0.24" />
+          <stop offset="55%"  stopColor={AZURE} stopOpacity="0.08" />
           <stop offset="100%" stopColor={AZURE} stopOpacity="0.02" />
         </radialGradient>
 
-        {/* ── Soft drop shadow ── */}
-        <filter id="ag-drop" x="-15%" y="-15%" width="130%" height="140%">
-          <feDropShadow dx="0" dy="5" stdDeviation="10" floodColor="#000" floodOpacity="0.10" />
+        {/* ── Drop shadow ── */}
+        <filter id="ag-drop" x="-15%" y="-15%" width="130%" height="145%">
+          <feDropShadow dx="0" dy="6" stdDeviation="12" floodColor="#000" floodOpacity="0.10" />
         </filter>
 
-        {/* ── Glow blur for sphere ── */}
-        <filter id="ag-glow" x="-35%" y="-35%" width="170%" height="170%">
-          <feGaussianBlur stdDeviation="14" result="blur" />
+        {/* ── Sphere glow ── */}
+        <filter id="ag-glow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="18" result="blur" />
           <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
 
-        {/* ── Floor shadow blur ── */}
-        <filter id="ag-floor"><feGaussianBlur stdDeviation="5" /></filter>
+        {/* ── Floor blur ── */}
+        <filter id="ag-floor"><feGaussianBlur stdDeviation="6" /></filter>
 
         {/* ── Pill shadow ── */}
-        <filter id="ag-pill" x="-8%" y="-25%" width="116%" height="175%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#000" floodOpacity="0.09" />
+        <filter id="ag-pill" x="-8%" y="-30%" width="116%" height="180%">
+          <feDropShadow dx="0" dy="2" stdDeviation="3.5" floodColor="#000" floodOpacity="0.10" />
         </filter>
 
-        {/* ── Clip: top half of left oval ── */}
-        <clipPath id="top-left-oval"><rect x="0"   y="0"   width="300" height="155" /></clipPath>
-        {/* ── Clip: top half of right oval ── */}
-        <clipPath id="top-right-oval"><rect x="300" y="0"   width="300" height="155" /></clipPath>
-        {/* ── Clip: top half of sphere ── */}
-        <clipPath id="top-sphere"><rect x="210"  y="0"   width="180" height="155" /></clipPath>
+        {/* ── Top-half clip paths for rim highlights ── */}
+        <clipPath id="tl-oval"><rect x="0"   y="0" width="330" height="225" /></clipPath>
+        <clipPath id="tr-oval"><rect x="330" y="0" width="330" height="225" /></clipPath>
+        <clipPath id="ts-sph" ><rect x="220" y="0" width="220" height="225" /></clipPath>
       </defs>
 
-      {/* ═══ FLOOR SHADOWS (3D depth) ═══ */}
-      <ellipse cx="148" cy="284" rx="110" ry="9"  fill="rgba(0,0,0,0.08)"  filter="url(#ag-floor)" />
-      <ellipse cx="300" cy="284" rx="72"  ry="7"  fill="rgba(0,0,0,0.13)"  filter="url(#ag-floor)" />
-      <ellipse cx="452" cy="284" rx="110" ry="9"  fill="rgba(0,0,0,0.08)"  filter="url(#ag-floor)" />
+      {/* ═══ FLOOR SHADOWS ═══ */}
+      <ellipse cx="165" cy="415" rx="140" ry="11" fill="rgba(0,0,0,0.08)" filter="url(#ag-floor)" />
+      <ellipse cx="330" cy="415" rx="90"  ry="8"  fill="rgba(0,0,0,0.14)" filter="url(#ag-floor)" />
+      <ellipse cx="495" cy="415" rx="140" ry="11" fill="rgba(0,0,0,0.08)" filter="url(#ag-floor)" />
 
       {/* ═══ LEFT OVAL ═══ */}
-      {/* Fill */}
-      <ellipse cx="148" cy="155" rx="146" ry="122" fill="url(#ag-left)" filter="url(#ag-drop)" />
-      {/* Main border */}
-      <ellipse cx="148" cy="155" rx="146" ry="122" fill="none" stroke={ORANGE} strokeWidth="1.5" strokeOpacity="0.45" />
-      {/* Top rim highlight (light reflection) */}
-      <ellipse cx="148" cy="155" rx="142" ry="118" fill="none" stroke="white" strokeWidth="1.8" strokeOpacity="0.18" clipPath="url(#top-left-oval)" />
-      {/* Inner top sheen */}
-      <ellipse cx="128" cy="88"  rx="72"  ry="26"  fill={ORANGE} fillOpacity="0.07" />
+      <ellipse cx="165" cy="225" rx="162" ry="175" fill="url(#ag-left)"  filter="url(#ag-drop)" />
+      <ellipse cx="165" cy="225" rx="162" ry="175" fill="none" stroke={ORANGE} strokeWidth="1.8" strokeOpacity="0.45" />
+      {/* Top rim highlight */}
+      <ellipse cx="165" cy="225" rx="158" ry="171" fill="none" stroke="white" strokeWidth="2" strokeOpacity="0.18" clipPath="url(#tl-oval)" />
+      {/* Inner top sheen blob */}
+      <ellipse cx="140" cy="108" rx="82" ry="32" fill={ORANGE} fillOpacity="0.07" />
 
       {/* ═══ RIGHT OVAL ═══ */}
-      <ellipse cx="452" cy="155" rx="146" ry="122" fill="url(#ag-right)" filter="url(#ag-drop)" />
-      <ellipse cx="452" cy="155" rx="146" ry="122" fill="none" stroke={AZURE} strokeWidth="1.5" strokeOpacity="0.45" />
-      <ellipse cx="452" cy="155" rx="142" ry="118" fill="none" stroke="white" strokeWidth="1.8" strokeOpacity="0.18" clipPath="url(#top-right-oval)" />
-      <ellipse cx="472" cy="88"  rx="72"  ry="26"  fill={AZURE} fillOpacity="0.07" />
+      <ellipse cx="495" cy="225" rx="162" ry="175" fill="url(#ag-right)" filter="url(#ag-drop)" />
+      <ellipse cx="495" cy="225" rx="162" ry="175" fill="none" stroke={AZURE}  strokeWidth="1.8" strokeOpacity="0.45" />
+      <ellipse cx="495" cy="225" rx="158" ry="171" fill="none" stroke="white" strokeWidth="2" strokeOpacity="0.18" clipPath="url(#tr-oval)" />
+      <ellipse cx="520" cy="108" rx="82" ry="32" fill={AZURE}  fillOpacity="0.07" />
 
       {/* ═══ CENTER SPHERE ═══ */}
-      {/* Ambient glow halo */}
-      <circle cx={CX} cy={CY} r={R + 14} fill={AZURE} fillOpacity="0.12" filter="url(#ag-glow)" />
+      {/* Ambient halo */}
+      <circle cx={CX} cy={CY} r={R + 18} fill={AZURE} fillOpacity="0.13" filter="url(#ag-glow)" />
       {/* Main sphere */}
       <circle cx={CX} cy={CY} r={R} fill="url(#ag-sphere)" filter="url(#ag-drop)" />
-      {/* Top-left diffuse highlight */}
-      <ellipse cx={CX - 26} cy={CY - 34} rx="44" ry="30" fill="white" opacity="0.10" />
-      {/* Specular glint */}
-      <ellipse cx={CX - 20} cy={CY - 43} rx="16" ry="10" fill="white" opacity="0.22" />
-      {/* Top rim highlight */}
-      <circle cx={CX} cy={CY} r={R - 1} fill="none" stroke="white" strokeWidth="1.5" strokeOpacity="0.14" clipPath="url(#top-sphere)" />
-      {/* Bottom shadow crescent (3D depth) */}
-      <ellipse cx={CX + 14} cy={CY + 48} rx="58" ry="26" fill="rgba(0,24,64,0.28)" />
+      {/* Diffuse top-left highlight */}
+      <ellipse cx={CX - 32} cy={CY - 42} rx="54" ry="38" fill="white" opacity="0.11" />
+      {/* Sharp specular glint */}
+      <ellipse cx={CX - 24} cy={CY - 54} rx="22" ry="14" fill="white" opacity="0.24" />
+      {/* Top rim arc */}
+      <circle cx={CX} cy={CY} r={R - 2} fill="none" stroke="white" strokeWidth="1.8" strokeOpacity="0.16" clipPath="url(#ts-sph)" />
+      {/* Bottom shadow crescent */}
+      <ellipse cx={CX + 18} cy={CY + 58} rx="72" ry="34" fill="rgba(0,20,60,0.30)" />
 
       {/* ═══ SECTION LABELS ═══ */}
-      <text x="148" y="24" textAnchor="middle" fill={ORANGE} fontSize="9" fontWeight="700" fontFamily="system-ui,sans-serif" letterSpacing="2.5">BUILD</text>
-      <text x="452" y="24" textAnchor="middle" fill={AZURE}  fontSize="9" fontWeight="700" fontFamily="system-ui,sans-serif" letterSpacing="2.5">DELIVER</text>
+      <text x="165" y="36" textAnchor="middle" fill={ORANGE} fontSize="11" fontWeight="700" fontFamily="system-ui,sans-serif" letterSpacing="3">BUILD</text>
+      <text x="495" y="36" textAnchor="middle" fill={AZURE}  fontSize="11" fontWeight="700" fontFamily="system-ui,sans-serif" letterSpacing="3">DELIVER</text>
 
       {/* ═══ CONNECTOR LINES ═══ */}
       {itemYs.map(y => {
         const mid = y + PH / 2
         return (
           <g key={`conn-${y}`}>
-            <line x1={LPX + PW} y1={mid} x2={CX - R} y2={CY} stroke={ORANGE} strokeWidth="1" strokeOpacity="0.22" strokeDasharray="3 3" />
-            <line x1={CX + R} y1={CY} x2={RPX}       y2={mid} stroke={AZURE}  strokeWidth="1" strokeOpacity="0.22" strokeDasharray="3 3" />
+            <line x1={LPX + PW} y1={mid} x2={CX - R} y2={CY} stroke={ORANGE} strokeWidth="1.2" strokeOpacity="0.22" strokeDasharray="4 3" />
+            <line x1={CX + R}   y1={CY}  x2={RPX}    y2={mid} stroke={AZURE}  strokeWidth="1.2" strokeOpacity="0.22" strokeDasharray="4 3" />
           </g>
         )
       })}
@@ -148,19 +150,16 @@ function AzureEcosystemDiagram() {
         const y = itemYs[i]
         return (
           <g key={label} filter="url(#ag-pill)">
-            {/* Pill base */}
             <rect x={LPX} y={y} width={PW} height={PH} rx={PR}
-              fill={ORANGE} fillOpacity="0.11" stroke={ORANGE} strokeWidth="1" strokeOpacity="0.38" />
-            {/* Glass shine (top half) */}
-            <rect x={LPX + 5} y={y + 2} width={PW - 10} height={PH / 2 - 2} rx={PR - 2}
+              fill={ORANGE} fillOpacity="0.11" stroke={ORANGE} strokeWidth="1.1" strokeOpacity="0.40" />
+            {/* Glass shine */}
+            <rect x={LPX + 6} y={y + 2.5} width={PW - 12} height={PH / 2 - 3} rx={PR - 3}
               fill="white" opacity="0.22" />
-            {/* Label */}
-            <text x={LPX + PW / 2} y={y + PH / 2 + 4}
-              textAnchor="middle" fill="#1C1C1E" fontSize="9" fontWeight="500" fontFamily="system-ui,sans-serif">
+            <text x={LPX + PW / 2} y={y + PH / 2 + 4.5}
+              textAnchor="middle" fill="#1C1C1E" fontSize="11" fontWeight="500" fontFamily="system-ui,sans-serif">
               {label}
             </text>
-            {/* Dot on right edge (connector anchor) */}
-            <circle cx={LPX + PW} cy={y + PH / 2} r="2.8" fill={ORANGE} fillOpacity="0.55" />
+            <circle cx={LPX + PW} cy={y + PH / 2} r="3.2" fill={ORANGE} fillOpacity="0.55" />
           </g>
         )
       })}
@@ -170,17 +169,14 @@ function AzureEcosystemDiagram() {
         const y = itemYs[i]
         return (
           <g key={label} filter="url(#ag-pill)">
-            {/* Dot on left edge (connector anchor) */}
-            <circle cx={RPX} cy={y + PH / 2} r="2.8" fill={AZURE} fillOpacity="0.55" />
-            {/* Pill base */}
+            <circle cx={RPX} cy={y + PH / 2} r="3.2" fill={AZURE} fillOpacity="0.55" />
             <rect x={RPX} y={y} width={PW} height={PH} rx={PR}
-              fill={AZURE} fillOpacity="0.11" stroke={AZURE} strokeWidth="1" strokeOpacity="0.38" />
-            {/* Glass shine (top half) */}
-            <rect x={RPX + 5} y={y + 2} width={PW - 10} height={PH / 2 - 2} rx={PR - 2}
+              fill={AZURE} fillOpacity="0.11" stroke={AZURE} strokeWidth="1.1" strokeOpacity="0.40" />
+            {/* Glass shine */}
+            <rect x={RPX + 6} y={y + 2.5} width={PW - 12} height={PH / 2 - 3} rx={PR - 3}
               fill="white" opacity="0.22" />
-            {/* Label */}
-            <text x={RPX + PW / 2} y={y + PH / 2 + 4}
-              textAnchor="middle" fill="#1C1C1E" fontSize="9" fontWeight="500" fontFamily="system-ui,sans-serif">
+            <text x={RPX + PW / 2} y={y + PH / 2 + 4.5}
+              textAnchor="middle" fill="#1C1C1E" fontSize="11" fontWeight="500" fontFamily="system-ui,sans-serif">
               {label}
             </text>
           </g>
@@ -188,12 +184,12 @@ function AzureEcosystemDiagram() {
       })}
 
       {/* ═══ CENTER SPHERE TEXT ═══ */}
-      <text x={CX} y={CY - 24} textAnchor="middle" fill="rgba(255,255,255,0.62)" fontSize="8" fontWeight="600" fontFamily="system-ui,sans-serif" letterSpacing="3">AZURE AI</text>
-      <text x={CX} y={CY - 4}  textAnchor="middle" fill="white" fontSize="17" fontWeight="800" fontFamily="system-ui,sans-serif">FOUNDRY</text>
-      <line x1={CX - 52} y1={CY + 5} x2={CX + 52} y2={CY + 5} stroke="rgba(255,255,255,0.18)" strokeWidth="0.8" />
-      {[["Evaluations", CY + 20], ["Governance", CY + 35], ["Monitoring", CY + 50]].map(([t, ty]) => (
+      <text x={CX} y={CY - 32} textAnchor="middle" fill="rgba(255,255,255,0.62)" fontSize="10" fontWeight="600" fontFamily="system-ui,sans-serif" letterSpacing="3.5">AZURE AI</text>
+      <text x={CX} y={CY - 6}  textAnchor="middle" fill="white" fontSize="24" fontWeight="800" fontFamily="system-ui,sans-serif">FOUNDRY</text>
+      <line x1={CX - 64} y1={CY + 6} x2={CX + 64} y2={CY + 6} stroke="rgba(255,255,255,0.20)" strokeWidth="1" />
+      {[["Evaluations", CY + 26], ["Governance", CY + 46], ["Monitoring", CY + 66]].map(([t, ty]) => (
         <text key={t as string} x={CX} y={ty as number}
-          textAnchor="middle" fill="rgba(255,255,255,0.68)" fontSize="9" fontFamily="system-ui,sans-serif">{t}</text>
+          textAnchor="middle" fill="rgba(255,255,255,0.70)" fontSize="11" fontFamily="system-ui,sans-serif">{t}</text>
       ))}
     </svg>
   )
@@ -540,7 +536,7 @@ export default function AzureAIFoundryPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <span className="inline-flex items-center px-4 py-1.5 rounded-full border text-xs font-semibold tracking-widest uppercase mb-6"
               style={{ borderColor: `${AZURE}50`, background: `${AZURE}10`, color: AZURE }}>
-              Azure AI Foundry Practice — New York &amp; Austin
+              Azure AI Foundry Practice
             </span>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight leading-[1.05] mb-6">
