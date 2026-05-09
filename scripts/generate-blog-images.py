@@ -2025,6 +2025,147 @@ def make_what_is_ai_operations_image():
     print(f"Saved: {out}")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE: CrewAI vs LangGraph vs AutoGen
+# Visual: three framework cards side-by-side (mirrors LLM comparison style)
+# ─────────────────────────────────────────────────────────────────────────────
+def make_crewai_vs_langgraph_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (6, 6, 16), (18, 14, 30))
+
+    CREW_COL  = (239, 68,  68)   # red — CrewAI
+    GRAPH_COL = (99,  102, 241)  # indigo — LangGraph
+    AUTO_COL  = (16,  185, 129)  # green — AutoGen
+
+    draw_circle_glow(img, 230,  260, 280, CREW_COL,  alpha_max=38)
+    draw_circle_glow(img, 600,  200, 260, GRAPH_COL, alpha_max=35)
+    draw_circle_glow(img, 970,  300, 280, AUTO_COL,  alpha_max=38)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=12)
+
+    frameworks = [
+        {
+            "name":  "CrewAI",
+            "tag":   "Role-Based Agents",
+            "badge": "Easiest to Start",
+            "stats": [
+                ("Paradigm",  "Crew of specialised agents"),
+                ("Best for",  "Pipelines & structured tasks"),
+                ("Learning",  "Low — intuitive roles API"),
+                ("Control",   "Medium — sequential by default"),
+                ("Prod-ready","Medium — needs ops layer"),
+            ],
+            "color": CREW_COL,
+            "x": 52,
+        },
+        {
+            "name":  "LangGraph",
+            "tag":   "Graph State Machine",
+            "badge": "Most Controllable",
+            "stats": [
+                ("Paradigm",  "Nodes, edges & shared state"),
+                ("Best for",  "Complex branching workflows"),
+                ("Learning",  "High — graph mental model"),
+                ("Control",   "Full — explicit graph logic"),
+                ("Prod-ready","High — built for production"),
+            ],
+            "color": GRAPH_COL,
+            "x": 430,
+        },
+        {
+            "name":  "AutoGen",
+            "tag":   "Conversational Agents",
+            "badge": "Best for Research",
+            "stats": [
+                ("Paradigm",  "Agents chat to solve tasks"),
+                ("Best for",  "Research & code generation"),
+                ("Learning",  "Medium — conversation model"),
+                ("Control",   "Low — emergent behaviour"),
+                ("Prod-ready","Lower — less deterministic"),
+            ],
+            "color": AUTO_COL,
+            "x": 808,
+        },
+    ]
+
+    card_w   = 336
+    card_top = 88
+    card_h   = 470
+
+    name_f   = ImageFont.truetype(FONT_BOLD, 36)
+    tag_f_s  = ImageFont.truetype(FONT_REGULAR, 15)
+    badge_f  = ImageFont.truetype(FONT_BOLD, 12)
+    key_f    = ImageFont.truetype(FONT_REGULAR, 14)
+    val_f    = ImageFont.truetype(FONT_BOLD, 14)
+
+    for fw in frameworks:
+        cx    = fw["x"]
+        color = fw["color"]
+
+        # Card bg
+        card_img = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card_img)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=16,
+                              fill=(255, 255, 255, 11))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=16,
+                              outline=(*color, 80), width=1)
+        img.paste(card_img, (cx, card_top), mask=card_img)
+        draw = ImageDraw.Draw(img)
+
+        # Top accent bar
+        draw.rounded_rectangle([cx, card_top, cx + card_w, card_top + 5],
+                                radius=3, fill=color)
+
+        # Framework name
+        draw.text((cx + card_w // 2, card_top + 52), fw["name"],
+                  font=name_f, fill=WHITE, anchor="mm")
+
+        # Subtype
+        draw.text((cx + card_w // 2, card_top + 84), fw["tag"],
+                  font=tag_f_s, fill=GREY_DIM, anchor="mm")
+
+        # Badge pill
+        btext = fw["badge"]
+        bw    = draw.textbbox((0, 0), btext, font=badge_f)[2] + 20
+        bx    = cx + (card_w - bw) // 2
+        draw.rounded_rectangle([bx, card_top + 104, bx + bw, card_top + 126],
+                                radius=10, fill=(*color, 40))
+        draw.text((bx + bw // 2, card_top + 115), btext,
+                  font=badge_f, fill=color, anchor="mm")
+
+        # Divider
+        draw.line([cx + 20, card_top + 142, cx + card_w - 20, card_top + 142],
+                  fill=(255, 255, 255, 22), width=1)
+
+        # Stats
+        for si, (key, val) in enumerate(fw["stats"]):
+            sy = card_top + 158 + si * 58
+            draw.text((cx + 24, sy),      key, font=key_f, fill=GREY_DIM)
+            draw.text((cx + 24, sy + 22), val, font=val_f, fill=WHITE)
+            if si < len(fw["stats"]) - 1:
+                draw.line([cx + 18, sy + 50, cx + card_w - 18, sy + 50],
+                          fill=(255, 255, 255, 14), width=1)
+
+    # Headline + sub below cards
+    foot_f   = ImageFont.truetype(FONT_BOLD, 22)
+    foot_sub = ImageFont.truetype(FONT_REGULAR, 16)
+    draw.text((W // 2, card_top + card_h + 26),
+              "Which AI agent framework should you build on in 2026?",
+              font=foot_f, fill=WHITE, anchor="mm")
+    draw.text((W // 2, card_top + card_h + 52),
+              "Production readiness  ·  Learning curve  ·  Control  ·  Best use cases",
+              font=foot_sub, fill=GREY_DIM, anchor="mm")
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-crewai-vs-langgraph-vs-autogen.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -2044,4 +2185,5 @@ if __name__ == "__main__":
     make_ai_roi_image()
     make_build_ai_agents_image()
     make_what_is_ai_operations_image()
+    make_crewai_vs_langgraph_image()
     print("Done.")

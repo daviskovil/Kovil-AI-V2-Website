@@ -3989,6 +3989,311 @@ export const posts: Post[] = [
       },
     ],
   },
+
+  // ─── Cluster 02: CrewAI vs LangGraph vs AutoGen ────────────────────────────
+  {
+    slug: 'crewai-vs-langgraph-vs-autogen',
+    title: 'CrewAI vs LangGraph vs AutoGen: Which AI Agent Framework Should You Use? (2026)',
+    excerpt: 'Choosing the wrong AI agent framework costs months. This guide compares CrewAI, LangGraph, and AutoGen across six production-critical dimensions — architecture, control, learning curve, production readiness, cost, and best use cases — so you can pick the right one before you write a line of code.',
+    category: 'AI Engineering',
+    date: 'May 9, 2026',
+    readTime: '15 min read',
+    author: 'Kovil AI Team',
+    featured: false,
+    heroImage: '/blog-crewai-vs-langgraph-vs-autogen.jpg',
+    body: `
+<p>Framework selection is one of the highest-leverage decisions in an AI agent project — and one of the most frequently rushed. Teams prototype on whichever framework had a good tutorial, ship to production, and discover six months later that the architecture cannot support the control flow they need, or that debugging is nearly impossible, or that the framework's conversational execution model is too non-deterministic for a compliance-sensitive workflow. Switching frameworks mid-project is expensive. Choosing correctly at the start is free.</p>
+
+<p>This guide compares the three dominant open-source AI agent frameworks of 2026 — CrewAI, LangGraph, and AutoGen — across the dimensions that actually matter in production: architecture, control, learning curve, production readiness, cost, and best use cases. If you want the full context of where framework selection fits within the AI agent lifecycle, read the <a href="/blog/how-to-build-ai-agents-production-guide">complete guide to building AI agents that work in production</a>.</p>
+
+<h2>Why Framework Choice Matters More Than Most Teams Realise</h2>
+
+<p>The three frameworks covered here share a surface similarity: they all let you orchestrate multiple LLM calls with tools and memory. But they differ fundamentally in their execution model, and that difference ripples through every aspect of your production system.</p>
+
+<p>A framework's execution model determines: how easily you can add a new step to a workflow, how predictably the system behaves under edge cases, how you debug a failure at step 7 of a 12-step chain, how you test the agent without running it live, and how an ops engineer can intervene when something goes wrong at 2am. These are not framework documentation questions. They are production engineering questions that reveal themselves after you ship.</p>
+
+<h2>Quick Comparison at a Glance</h2>
+
+<table style="width:100%;border-collapse:collapse;margin:24px 0;font-size:15px;">
+  <thead>
+    <tr style="background:#f9fafb;">
+      <th style="text-align:left;padding:12px 16px;border:1px solid #e5e7eb;font-weight:700;">Dimension</th>
+      <th style="text-align:left;padding:12px 16px;border:1px solid #e5e7eb;font-weight:700;">CrewAI</th>
+      <th style="text-align:left;padding:12px 16px;border:1px solid #e5e7eb;font-weight:700;">LangGraph</th>
+      <th style="text-align:left;padding:12px 16px;border:1px solid #e5e7eb;font-weight:700;">AutoGen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;font-weight:600;">Paradigm</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Role-based crew of agents</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Graph state machine</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Conversational agents</td>
+    </tr>
+    <tr style="background:#f9fafb;">
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;font-weight:600;">Learning curve</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Low</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">High</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Medium</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;font-weight:600;">Execution control</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Medium</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Full</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Low</td>
+    </tr>
+    <tr style="background:#f9fafb;">
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;font-weight:600;">Determinism</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Medium</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">High</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Low</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;font-weight:600;">Production readiness</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Medium</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">High</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Lower</td>
+    </tr>
+    <tr style="background:#f9fafb;">
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;font-weight:600;">Best for</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Pipelines, rapid prototyping</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Complex branching workflows</td>
+      <td style="padding:12px 16px;border:1px solid #e5e7eb;">Research, code generation</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>CrewAI: Role-Based Agent Orchestration</h2>
+
+<h3>What CrewAI Is</h3>
+
+<p>CrewAI organises AI agents into a "crew" — a team of specialised agents, each with a defined role, goal, backstory, and set of tools. A crew might include a Researcher agent, a Writer agent, and a Quality Reviewer agent, each responsible for a discrete portion of a larger task. The crew's manager (either a predefined process or an LLM-based orchestrator) assigns and sequences tasks between them.</p>
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;padding:20px 24px;border-radius:0 8px 8px 0;margin:24px 0;">
+<strong style="color:#ea580c;">How CrewAI works</strong><br/>
+<span style="color:#374151;">You define agents (role, goal, backstory, tools) and tasks (description, expected output, assigned agent). Tasks execute sequentially by default, with each agent's output feeding the next. A hierarchical process mode allows an LLM manager to delegate and route tasks dynamically. State is passed between agents as task context.</span>
+</div>
+
+<h3>CrewAI Strengths</h3>
+<ul>
+  <li><strong>Lowest barrier to entry</strong> — the role/agent/task mental model maps closely to how humans think about teamwork, making it easy to onboard non-ML engineers</li>
+  <li><strong>Fast prototyping</strong> — a working multi-agent pipeline can be built in hours, not days</li>
+  <li><strong>Rich tooling ecosystem</strong> — native integrations with common tools (web search, file I/O, code execution, API calls)</li>
+  <li><strong>Readable code</strong> — CrewAI configurations are declarative and self-documenting, making them easier to review and maintain</li>
+  <li><strong>Active community</strong> — large user base means abundant examples, Stack Overflow answers, and community plugins</li>
+</ul>
+
+<h3>CrewAI Weaknesses</h3>
+<ul>
+  <li><strong>Limited branching control</strong> — complex conditional logic ("if the researcher finds X, skip the writer and go straight to review") is difficult to express cleanly</li>
+  <li><strong>Sequential by default</strong> — parallel execution requires explicit configuration and has limitations compared to a true graph-based execution model</li>
+  <li><strong>Debugging at scale</strong> — when a crew of 5+ agents produces a bad output, tracing which agent made the wrong decision requires good logging infrastructure (not built in by default)</li>
+  <li><strong>Less deterministic in hierarchical mode</strong> — when an LLM manager is routing tasks, behaviour can vary between runs on the same input</li>
+</ul>
+
+<h3>Best Use Cases for CrewAI</h3>
+<p>CrewAI excels at linear or near-linear pipelines where the steps are well-defined: content research and drafting, report generation, data enrichment pipelines, lead qualification workflows, and any task that maps naturally to "person A does X, then person B does Y with the output." It is also the right choice for teams that need a working agent system quickly and have clear, relatively sequential task structures.</p>
+
+<!-- INLINE CTA 1 -->
+<div style="background:#111827;border-radius:12px;padding:32px 36px;margin:40px 0;border:1px solid #1f2937;">
+  <p style="color:#9ca3af;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px;">Kovil AI · AI Engineering</p>
+  <h3 style="color:#ffffff;font-size:22px;font-weight:700;margin:0 0 12px;">Need engineers who know these frameworks in production?</h3>
+  <p style="color:#d1d5db;margin:0 0 24px;">Kovil AI engineers have shipped production AI agent systems on CrewAI, LangGraph, and AutoGen — and operate them after launch. Scope a project or hire a dedicated AI engineer.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <a href="/engage/outcome-based-project" style="background:#FF4F00;color:#fff;padding:12px 24px;border-radius:8px;font-weight:700;text-decoration:none;font-size:15px;">Scope a Project →</a>
+    <a href="/hire" style="border:1px solid #374151;color:#d1d5db;padding:12px 24px;border-radius:8px;font-weight:600;text-decoration:none;font-size:15px;">Hire AI Engineers</a>
+  </div>
+</div>
+
+<h2>LangGraph: Graph-Based State Machine Orchestration</h2>
+
+<h3>What LangGraph Is</h3>
+
+<p>LangGraph, built by the LangChain team, models agent workflows as directed graphs. Nodes are processing steps (LLM calls, tool calls, conditional checks, human-in-the-loop pauses). Edges define the flow between nodes, including conditional edges that route execution based on state. A shared state object carries all relevant information between nodes throughout the graph's execution.</p>
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;padding:20px 24px;border-radius:0 8px 8px 0;margin:24px 0;">
+<strong style="color:#ea580c;">How LangGraph works</strong><br/>
+<span style="color:#374151;">You define a StateGraph with typed state, then add nodes (Python functions) and edges (including conditional edges that inspect state to decide next step). The graph is compiled and executed as a streaming state machine. Checkpointing is built in — you can pause execution, persist state to a database, and resume later. Human-in-the-loop is a first-class feature.</span>
+</div>
+
+<h3>LangGraph Strengths</h3>
+<ul>
+  <li><strong>Maximum execution control</strong> — every decision point, branch, and loop is an explicit node or edge you define in code; there is no hidden LLM orchestration layer making routing decisions</li>
+  <li><strong>Built-in persistence and checkpointing</strong> — state can be saved to any database between steps, enabling long-running workflows that survive infrastructure restarts</li>
+  <li><strong>First-class human-in-the-loop</strong> — pausing execution for human review or approval is a native feature, not a workaround</li>
+  <li><strong>Streaming support</strong> — token-level and step-level streaming is built in, making it suitable for real-time applications</li>
+  <li><strong>Production-grade observability</strong> — native integration with LangSmith for tracing every node execution, token usage, and state change</li>
+  <li><strong>Highly testable</strong> — because execution is deterministic and graph-shaped, individual nodes can be unit tested in isolation</li>
+</ul>
+
+<h3>LangGraph Weaknesses</h3>
+<ul>
+  <li><strong>Steeper learning curve</strong> — the graph/node/edge/state mental model is unfamiliar to engineers without a background in state machines or workflow orchestration</li>
+  <li><strong>More boilerplate</strong> — what takes 20 lines in CrewAI takes 80 lines in LangGraph; the verbosity is the price of control</li>
+  <li><strong>Slower to prototype</strong> — the graph definition requires planning the state schema and execution flow before writing any agent logic</li>
+  <li><strong>LangChain dependency</strong> — while LangGraph can be used without LangChain, the ecosystem tightly integrates the two, and LangChain's abstraction layer adds complexity</li>
+</ul>
+
+<h3>Best Use Cases for LangGraph</h3>
+<p>LangGraph is the framework for complex, branching workflows where execution control is critical: multi-step approval processes, agentic RAG with fallback retrieval strategies, customer-facing applications requiring guaranteed determinism, regulated industry workflows with mandatory human review steps, and any long-running background workflow that must survive restarts. If you are building for a compliance-sensitive environment, LangGraph's explicit state and checkpointing make it the only serious choice among the three.</p>
+
+<h2>AutoGen: Conversational Multi-Agent Systems</h2>
+
+<h3>What AutoGen Is</h3>
+
+<p>AutoGen, developed by Microsoft Research, takes a different approach: agents are participants in a conversation. Tasks are solved through back-and-forth dialogue between agents — a UserProxy agent representing the human, an AssistantAgent handling LLM calls, and specialised agents for code execution, web search, or domain expertise. The conversation continues until the task is completed or a termination condition is met.</p>
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;padding:20px 24px;border-radius:0 8px 8px 0;margin:24px 0;">
+<strong style="color:#ea580c;">How AutoGen works</strong><br/>
+<span style="color:#374151;">Agents are defined with system prompts, tool access, and termination conditions. An initiating agent sends a message; other agents reply based on their configuration and the conversation context. Code execution happens in a sandboxed environment. The conversation history is the shared state — agents reason about what has been said to decide their next action.</span>
+</div>
+
+<h3>AutoGen Strengths</h3>
+<ul>
+  <li><strong>Excellent for code generation and debugging</strong> — the conversational model with integrated code execution is highly effective for tasks that require iterative code writing and testing</li>
+  <li><strong>Natural for research tasks</strong> — the back-and-forth dialogue mirrors how researchers probe and refine ideas</li>
+  <li><strong>Flexible agent composition</strong> — adding a new agent capability (a specialised domain expert, a fact-checker) is as simple as adding a new conversation participant</li>
+  <li><strong>Group chat support</strong> — AutoGen natively supports multi-agent group chats where multiple agents collaborate on a task</li>
+  <li><strong>Strong Microsoft ecosystem integration</strong> — good integrations with Azure OpenAI, Azure AI Search, and Microsoft tooling</li>
+</ul>
+
+<h3>AutoGen Weaknesses</h3>
+<ul>
+  <li><strong>Low determinism</strong> — because execution emerges from conversation, two runs of the same task may produce different paths and outputs; this makes testing and debugging harder</li>
+  <li><strong>Difficult to constrain</strong> — adding guardrails to a conversation-based system requires careful prompt engineering rather than explicit code-level controls</li>
+  <li><strong>Token-expensive</strong> — conversational agents accumulate context rapidly; a 10-step task easily produces 3–5× the token consumption of an equivalent LangGraph workflow</li>
+  <li><strong>Harder to operate in production</strong> — monitoring and alerting on a conversation-based system is more complex; the "state" is implicit in the conversation history rather than in an explicit typed schema</li>
+  <li><strong>Less deterministic termination</strong> — in complex tasks, knowing when the conversation is "done" requires careful termination condition design</li>
+</ul>
+
+<h3>Best Use Cases for AutoGen</h3>
+<p>AutoGen is most effective for research and development use cases, code generation and review pipelines, data analysis workflows where the agent needs to write and execute code iteratively, and internal tooling where the conversational interface is a feature rather than a liability. It is less suited to customer-facing applications requiring consistent, deterministic outputs, or regulated environments where audit trails must map to explicit decision points.</p>
+
+<!-- INLINE CTA 2 -->
+<div style="background:#111827;border-radius:12px;padding:32px 36px;margin:40px 0;border:1px solid #1f2937;">
+  <p style="color:#9ca3af;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px;">Kovil AI · Managed AI Engineer</p>
+  <h3 style="color:#ffffff;font-size:22px;font-weight:700;margin:0 0 12px;">Skip the framework learning curve entirely</h3>
+  <p style="color:#d1d5db;margin:0 0 24px;">A Kovil AI managed engineer selects and implements the right framework for your use case, then builds and operates the system — so your team stays focused on product while we handle the AI infrastructure.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <a href="/engage/managed-ai-engineer" style="background:#FF4F00;color:#fff;padding:12px 24px;border-radius:8px;font-weight:700;text-decoration:none;font-size:15px;">See Managed AI Engineer →</a>
+    <a href="/contact" style="border:1px solid #374151;color:#d1d5db;padding:12px 24px;border-radius:8px;font-weight:600;text-decoration:none;font-size:15px;">Talk to Us</a>
+  </div>
+</div>
+
+<h2>Head-to-Head: Six Production-Critical Dimensions</h2>
+
+<h3>1. Execution Control &amp; Predictability</h3>
+<p><strong>Winner: LangGraph.</strong> LangGraph's explicit graph definition means every execution path is known before the system runs. Conditional routing is code, not LLM judgement. CrewAI's sequential process is predictable but limited; hierarchical mode introduces LLM-based routing decisions that are less deterministic. AutoGen's conversational model has the lowest predictability — the path to a solution emerges from dialogue.</p>
+
+<h3>2. Debugging &amp; Observability</h3>
+<p><strong>Winner: LangGraph.</strong> LangGraph's typed state schema makes every step's input and output explicit and inspectable. LangSmith integration provides per-node tracing out of the box. CrewAI debugging requires inspecting task outputs and agent logs. AutoGen debugging means reading through conversation histories to reconstruct the execution path — workable for a 5-turn conversation, painful for a 30-turn one.</p>
+
+<h3>3. Learning Curve &amp; Time to First Working Agent</h3>
+<p><strong>Winner: CrewAI.</strong> An engineer familiar with Python can have a working CrewAI crew in 2–4 hours. LangGraph requires understanding StateGraph, typed state, node functions, edge routing, and compilation before producing anything working — typically 1–3 days of investment. AutoGen sits in the middle; the conversation model is intuitive but configuring termination conditions, code execution sandboxes, and group chat routing adds complexity.</p>
+
+<h3>4. Production Readiness &amp; Operational Maturity</h3>
+<p><strong>Winner: LangGraph.</strong> Built-in checkpointing, streaming, human-in-the-loop, and typed state make LangGraph the most production-ready of the three for complex applications. CrewAI can be production-ready for simpler pipelines but requires more custom instrumentation for observability. AutoGen's non-determinism and conversation-as-state model create real challenges for production monitoring, retry logic, and incident response.</p>
+
+<h3>5. Token Efficiency</h3>
+<p><strong>Winner: LangGraph.</strong> LangGraph allows precise control over what context each node receives, enabling aggressive token optimisation. CrewAI passes task context through the crew, which is relatively efficient for sequential pipelines but can accumulate for complex crews. AutoGen accumulates conversation history by default, making it the most token-intensive of the three — a concern for high-volume production deployments.</p>
+
+<h3>6. Ecosystem &amp; Community</h3>
+<p><strong>Winner: CrewAI</strong> (by community size) / <strong>LangGraph</strong> (by production tooling). CrewAI has the largest user community and the most tutorials. LangGraph has the most production-grade tooling (LangSmith, LangServe, hosted deployment options). AutoGen has strong backing from Microsoft Research and good Azure integrations.</p>
+
+<h2>How to Choose: A Decision Framework</h2>
+
+<p>Rather than a single winner, here is a decision framework based on your specific situation:</p>
+
+<p><strong>Choose CrewAI if:</strong></p>
+<ul>
+  <li>Your workflow is sequential or near-sequential with well-defined steps</li>
+  <li>You need to be up and running within a week</li>
+  <li>Your team has limited AI engineering experience and needs the gentlest onboarding</li>
+  <li>You are building an internal tool or low-risk production feature where some non-determinism is acceptable</li>
+</ul>
+
+<p><strong>Choose LangGraph if:</strong></p>
+<ul>
+  <li>Your workflow has complex conditional logic, loops, or dynamic routing</li>
+  <li>You need human-in-the-loop checkpoints as a hard requirement</li>
+  <li>You are building for a regulated industry with audit trail requirements</li>
+  <li>Your team has the engineering capacity to invest in proper architecture upfront</li>
+  <li>You expect to operate this system for 12+ months and need sustainable observability</li>
+</ul>
+
+<p><strong>Choose AutoGen if:</strong></p>
+<ul>
+  <li>Your primary use case is code generation, data analysis, or research assistance</li>
+  <li>You are building developer tooling where the target users are technical</li>
+  <li>Conversational flexibility matters more than execution determinism</li>
+  <li>You are building internal tooling within a Microsoft/Azure ecosystem</li>
+</ul>
+
+<h2>Can You Combine Frameworks?</h2>
+
+<p>Yes — and in complex systems, you often should. A common pattern is using LangGraph as the outer orchestration layer (handling routing, state persistence, and human-in-the-loop) while embedding a CrewAI crew as a node within the graph for a contained multi-agent subtask. AutoGen can similarly be invoked as a node within a LangGraph workflow for code generation steps, with LangGraph handling the deterministic routing around it.</p>
+
+<p>This composability reflects the maturity of the AI agent ecosystem in 2026: these frameworks are tools, not religions. The best production systems use the right tool at the right layer.</p>
+
+<h2>The Framework-Agnostic Truth About Production</h2>
+
+<p>Here is the thing no framework documentation will tell you: the framework is not the hard part. Every team that has shipped AI agents to production will confirm that framework selection — critical as it is — is the beginning of the technical challenge, not the end.</p>
+
+<p>What comes after framework selection is the operational layer: the monitoring that detects when your agent starts producing worse outputs, the drift detection that catches retrieval index staleness before users notice, the token cost dashboard that shows you which workflow is consuming 40% of your monthly budget, the compliance logging that legal needs before you can close the enterprise deal. This is <a href="/blog/what-is-ai-operations">AI Operations</a> — and it applies equally whether you chose CrewAI, LangGraph, or AutoGen.</p>
+
+<p>The frameworks covered here all require operational infrastructure around them to remain healthy in production. None of them ship with built-in drift detection, cost optimisation, or compliance audit logging. That layer is your responsibility — or your managed service provider's.</p>
+
+<!-- INLINE CTA 3 -->
+<div style="background:#111827;border-radius:12px;padding:32px 36px;margin:40px 0;border:1px solid #1f2937;">
+  <p style="color:#9ca3af;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px;">Kovil AI · Build + Operate</p>
+  <h3 style="color:#ffffff;font-size:22px;font-weight:700;margin:0 0 12px;">We pick the right framework and operate the system after launch</h3>
+  <p style="color:#d1d5db;margin:0 0 24px;">Kovil AI scopes, architects, builds, and operates AI agent systems end-to-end — framework selection through post-launch AI Operations. One team, full lifecycle ownership.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <a href="/ai-operations" style="background:#FF4F00;color:#fff;padding:12px 24px;border-radius:8px;font-weight:700;text-decoration:none;font-size:15px;">See How We Work →</a>
+    <a href="/engage/outcome-based-project" style="border:1px solid #374151;color:#d1d5db;padding:12px 24px;border-radius:8px;font-weight:600;text-decoration:none;font-size:15px;">Scope a Project</a>
+  </div>
+</div>
+
+<h2>Key Takeaways</h2>
+
+<ul>
+  <li><strong>CrewAI</strong> is the fastest path to a working multi-agent system — ideal for sequential pipelines, rapid prototyping, and teams new to AI agents</li>
+  <li><strong>LangGraph</strong> offers the most execution control and production-grade observability — the right choice for complex, branching workflows and regulated environments</li>
+  <li><strong>AutoGen</strong> excels at conversational code generation and research tasks — less suited to customer-facing applications requiring consistent, deterministic outputs</li>
+  <li><strong>The decision criteria</strong> are: workflow complexity, required determinism, learning curve tolerance, production readiness requirements, and compliance constraints</li>
+  <li><strong>Combining frameworks</strong> is legitimate — LangGraph as the outer orchestrator with CrewAI or AutoGen nodes is a common production pattern</li>
+  <li><strong>Framework selection is step one</strong> — operational infrastructure (monitoring, drift detection, cost control, compliance logging) is required regardless of which framework you choose</li>
+</ul>
+
+<p>For the full context on building and operating AI agents — from framework selection through production deployment to long-term AI Operations — read the pillar guide: <a href="/blog/how-to-build-ai-agents-production-guide">How to Build AI Agents That Work in Production (2026)</a>.</p>
+    `,
+    faqs: [
+      {
+        q: 'What is the difference between CrewAI, LangGraph, and AutoGen?',
+        a: 'CrewAI organises agents into a role-based "crew" where specialised agents complete sequential tasks — easy to learn and fast to prototype, but limited for complex conditional workflows. LangGraph models agent workflows as directed graphs with explicit state, offering full execution control, built-in checkpointing, and human-in-the-loop support — the most production-ready of the three. AutoGen uses a conversational model where agents solve tasks through dialogue — excellent for code generation and research, but lower in determinism and harder to monitor in production.',
+      },
+      {
+        q: 'Which AI agent framework is best for production?',
+        a: 'LangGraph is generally the most production-ready framework for complex applications, offering explicit state management, built-in persistence and checkpointing, streaming, and first-class human-in-the-loop support. CrewAI can be production-ready for simpler, sequential pipelines with additional monitoring instrumentation. AutoGen requires the most operational investment to run reliably in production due to its conversational execution model and lower determinism.',
+      },
+      {
+        q: 'Is CrewAI or LangGraph better for beginners?',
+        a: 'CrewAI. The role/agent/task mental model is intuitive, the API is concise, and a working multi-agent pipeline can be built in hours. LangGraph requires understanding StateGraph, typed state schemas, node functions, and conditional edge routing before producing anything working — typically a 1–3 day investment before the first meaningful output. For teams new to AI agents, CrewAI is the recommended starting point; migrate to LangGraph when the workflow complexity requires it.',
+      },
+      {
+        q: 'Can I use CrewAI and LangGraph together?',
+        a: 'Yes. A common production pattern is using LangGraph as the outer orchestration layer — handling routing, state persistence, human-in-the-loop checkpoints — while embedding a CrewAI crew as a node within the graph for contained multi-agent subtasks. This gives you CrewAI\'s concise role-based API for the parts of the workflow that are sequential, and LangGraph\'s execution control for the parts that require branching and persistence.',
+      },
+      {
+        q: 'What is AutoGen best used for?',
+        a: 'AutoGen excels at code generation, iterative debugging, data analysis tasks where the agent needs to write and execute code repeatedly, and research-style tasks where back-and-forth dialogue between agents produces better results than sequential task handoffs. It is particularly effective for developer tooling, internal automation tools for technical users, and any workflow where conversational flexibility matters more than execution determinism.',
+      },
+      {
+        q: 'How do AI agent frameworks relate to AI Operations?',
+        a: 'AI agent frameworks handle the construction of the agent — how it plans, uses tools, and coordinates between agents. AI Operations covers what happens after the agent is deployed: monitoring output quality, detecting performance drift, optimising token costs, managing data pipelines, logging for compliance, and responding to incidents. All three frameworks — CrewAI, LangGraph, and AutoGen — require operational infrastructure around them to remain healthy in production. The framework choice affects how easy that operational layer is to build, but does not replace it.',
+      },
+    ],
+  },
 ];
 
 export function getPost(slug: string): Post | undefined {

@@ -182,6 +182,15 @@ const CTA_MAP: Record<string, CtaConfig> = {
     primary: { text: 'See AI Operations →', href: '/ai-operations' },
     secondary: { text: 'Book a Free Audit', href: '/contact' },
   },
+  'crewai-vs-langgraph-vs-autogen': {
+    label: 'Kovil AI · AI Engineering',
+    teaser: 'We build and operate production AI agent systems — framework selection, architecture, deployment, and ongoing AI Operations included.',
+    headline: 'Need engineers who know these frameworks in production?',
+    body: "Choosing the right framework is step one. Kovil AI engineers have shipped production AI agents on CrewAI, LangGraph, and AutoGen — and operate them after launch so they don't degrade. Scope a project or hire dedicated AI engineers.",
+    defaultGoal: 'project',
+    primary: { text: 'Book a Free AI Audit →', href: '/ai-operations' },
+    secondary: { text: 'Hire AI Engineers', href: '/hire' },
+  },
 }
 
 const DEFAULT_CTA: CtaConfig = {
