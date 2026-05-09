@@ -1,10 +1,25 @@
 'use client'
 
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 const EMBED_URL =
   'https://calendly.com/kovil-ai/talent?embed_type=Inline&embed_domain=kovil.ai&hide_gdpr_banner=1&background_color=ffffff&text_color=111111&primary_color=FF4F00'
 
 export default function BookACallPage() {
+  const router = useRouter()
+
+  // Detect Calendly booking completion and redirect to confirmation page
+  useEffect(() => {
+    function handleMessage(e: MessageEvent) {
+      if (e.data?.event === 'calendly.event_scheduled') {
+        router.push('/meeting-confirmed')
+      }
+    }
+    window.addEventListener('message', handleMessage)
+    return () => window.removeEventListener('message', handleMessage)
+  }, [router])
+
   return (
     <div className="pt-20 min-h-screen bg-white">
 
