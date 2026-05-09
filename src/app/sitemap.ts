@@ -37,6 +37,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/ad-marketing-agencies`,                          lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/ai-workflow-automation-library`,                 lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/agentforce`,                                      lastModified: now,  changeFrequency: 'weekly',  priority: 0.9 },
+    // ── Azure AI Foundry landing ───────────────────────────────────────────────
+    { url: `${BASE_URL}/azure-ai-foundry`,                               lastModified: now,  changeFrequency: 'weekly',  priority: 0.9 },
+    // ── Azure AI Foundry service pages ────────────────────────────────────────
+    { url: `${BASE_URL}/azure-ai-foundry/services/azure-ai-foundry-strategy-readiness`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/services/ai-agent-design-build`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/services/azure-openai-integration`,            lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/services/copilot-studio-agents`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/services/azure-ai-search-rag`,                 lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/services/azure-ai-rescue-optimisation`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Azure AI Foundry — Enterprise Automation use cases ────────────────────
+    { url: `${BASE_URL}/azure-ai-foundry/enterprise/document-intelligence-agent`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/enterprise/enterprise-knowledge-agent`,  lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/enterprise/erp-process-agent`,           lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Azure AI Foundry — Customer Experience use cases ──────────────────────
+    { url: `${BASE_URL}/azure-ai-foundry/customer-experience/ai-customer-service-agent`,       lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/customer-experience/personalised-recommendation-agent`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/customer-experience/omnichannel-engagement-agent`,    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Azure AI Foundry — Operations use cases ───────────────────────────────
+    { url: `${BASE_URL}/azure-ai-foundry/operations/predictive-maintenance-agent`,  lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/operations/supply-chain-intelligence-agent`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/operations/compliance-monitoring-agent`,   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Azure AI Foundry — Developer Tools use cases ──────────────────────────
+    { url: `${BASE_URL}/azure-ai-foundry/developer-tools/internal-developer-copilot`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/developer-tools/api-integration-agent`,      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/developer-tools/mlops-automation-agent`,     lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Azure AI Foundry — Playbook articles ──────────────────────────────────
+    { url: `${BASE_URL}/azure-ai-foundry/playbook/architect-your-first-azure-ai-agent`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/azure-ai-foundry/playbook/azure-openai-vs-openai-api`,          lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/azure-ai-foundry/playbook/claims-processing-azure-ai-build`,    lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     // ── Agentforce service pages ───────────────────────────────────────────────
     { url: `${BASE_URL}/agentforce/services/agentforce-strategy-readiness`,  lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/services/agent-design-configuration`,     lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
