@@ -2166,6 +2166,109 @@ def make_crewai_vs_langgraph_image():
     print(f"Saved: {out}")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE: How to Reduce LLM API Costs
+# Visual: 6 cost-reduction levers (3×2 cards) + headline + savings badge
+# ─────────────────────────────────────────────────────────────────────────────
+def make_reduce_llm_costs_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (8, 8, 18), (18, 14, 28))
+
+    draw_circle_glow(img, 950, 160, 340, ORANGE, alpha_max=42)
+    draw_circle_glow(img, 80,  520, 200, (16, 185, 129), alpha_max=28)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=14)
+
+    # ── Left: pill + headline ──────────────────────────────────────────────
+    pill_font = ImageFont.truetype(FONT_BOLD, 13)
+    pill_text = "AI ENGINEERING"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 24
+    draw.rounded_rectangle([56, 72, 56 + pw, 72 + 30], radius=15,
+                            fill=(*ORANGE, 50))
+    draw.text((56 + pw // 2, 87), pill_text, font=pill_font,
+              fill=ORANGE, anchor="mm")
+
+    h1_font  = ImageFont.truetype(FONT_BOLD, 48)
+    sub_font = ImageFont.truetype(FONT_REGULAR, 18)
+
+    for i, line in enumerate(["How to Reduce", "LLM API Costs"]):
+        draw.text((56, 122 + i * 58), line, font=h1_font, fill=WHITE)
+
+    draw.text((56, 254), "6 levers that cut inference spend", font=sub_font, fill=GREY_DIM)
+    draw.text((56, 282), "by 40–70% — no ML degree needed", font=sub_font, fill=GREY_DIM)
+
+    # Savings badge
+    badge_font = ImageFont.truetype(FONT_BOLD, 28)
+    badge_sub  = ImageFont.truetype(FONT_REGULAR, 14)
+    bcard = Image.new("RGBA", (240, 86), (0, 0, 0, 0))
+    bc = ImageDraw.Draw(bcard)
+    bc.rounded_rectangle([0, 0, 240, 86], radius=12,
+                          fill=(*ORANGE, 30))
+    bc.rounded_rectangle([0, 0, 240, 86], radius=12,
+                          outline=(*ORANGE, 100), width=1)
+    img.paste(bcard, (56, 335), mask=bcard)
+    draw = ImageDraw.Draw(img)
+    draw.text((56 + 120, 335 + 28), "40–70%", font=badge_font,
+              fill=ORANGE, anchor="mm")
+    draw.text((56 + 120, 335 + 60), "avg. cost reduction in production",
+              font=badge_sub, fill=GREY_DIM, anchor="mm")
+
+    # ── Right: 3×2 lever cards ─────────────────────────────────────────────
+    levers = [
+        ("Model Routing",      "–40–65%", "Cheap model for simple tasks",    (16, 185, 129)),
+        ("Prompt Caching",     "–30–50%", "Reuse repeated context blocks",   (59, 130, 246)),
+        ("Prompt Compression", "–15–25%", "Remove redundant instructions",   ORANGE),
+        ("Context Management", "–20–35%", "Truncate & summarise histories",  (99, 102, 241)),
+        ("Output Control",     "–10–20%", "Constrain verbose completions",   (251, 146, 60)),
+        ("Batch Processing",   "–20–40%", "Group non-realtime requests",     (236, 72, 153)),
+    ]
+
+    card_w  = 218
+    card_h  = 100
+    gap_x   = 12
+    gap_y   = 12
+    cols    = 3
+    total_w = cols * card_w + (cols - 1) * gap_x
+    start_x = W - total_w - 52
+    start_y = 72
+
+    label_f  = ImageFont.truetype(FONT_BOLD, 14)
+    saving_f = ImageFont.truetype(FONT_BOLD, 22)
+    desc_f   = ImageFont.truetype(FONT_REGULAR, 12)
+
+    for i, (name, saving, desc, col) in enumerate(levers):
+        col_i = i % cols
+        row_i = i // cols
+        cx = start_x + col_i * (card_w + gap_x)
+        cy = start_y + row_i * (card_h + gap_y)
+
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=10,
+                              fill=(*col, 18))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=10,
+                              outline=(*col, 75), width=1)
+        img.paste(card, (cx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+
+        # Left accent bar
+        draw.rounded_rectangle([cx, cy + 10, cx + 3, cy + card_h - 10],
+                                radius=2, fill=col)
+
+        draw.text((cx + 14, cy + 18), name,   font=label_f,  fill=WHITE)
+        draw.text((cx + 14, cy + 40), saving, font=saving_f, fill=col)
+        draw.text((cx + 14, cy + 74), desc,   font=desc_f,   fill=GREY_DIM)
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-how-to-reduce-llm-api-costs.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -2186,4 +2289,5 @@ if __name__ == "__main__":
     make_build_ai_agents_image()
     make_what_is_ai_operations_image()
     make_crewai_vs_langgraph_image()
+    make_reduce_llm_costs_image()
     print("Done.")
