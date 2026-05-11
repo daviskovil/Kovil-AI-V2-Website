@@ -50,7 +50,7 @@ const tools: Tool[] = [
     badge: 'Azure AI',
     badgeColor: 'bg-[#0078D4]/10 text-[#0078D4] border border-[#0078D4]/20',
     icon: <Server className="h-6 w-6 text-[#0078D4]" />,
-    href: '/tools/azure-agent-readiness',
+    href: '/tools/azure-ai-agent-readiness',
     cta: 'Take the Assessment',
   },
 ]

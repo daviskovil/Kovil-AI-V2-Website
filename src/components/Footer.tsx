@@ -87,6 +87,7 @@ export default function Footer() {
               <li><Link href="/tools" className="hover:text-accent transition-colors">All Tools</Link></li>
               <li><Link href="/tools/ai-project-estimator" className="hover:text-accent transition-colors">AI Project Cost Estimator</Link></li>
               <li><Link href="/tools/ai-readiness-ad-marketing-agencies" className="hover:text-accent transition-colors">AI Readiness Assessment</Link></li>
+              <li><Link href="/tools/azure-ai-agent-readiness" className="hover:text-accent transition-colors">Azure AI Agent Assessment</Link></li>
             </ul>
           </div>
 

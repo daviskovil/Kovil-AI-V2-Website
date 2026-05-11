@@ -49,7 +49,7 @@ const itemListSchema = {
       position: 3,
       name: 'Azure AI Foundry Agent Deployment Readiness Assessment',
       description: 'A free 4-minute assessment for enterprise AI decision-makers. Find out if your organisation is ready to deploy AI agents on Azure AI Foundry — scored across infrastructure, data, use case, team, and investment.',
-      url: 'https://kovil.ai/tools/azure-agent-readiness',
+      url: 'https://kovil.ai/tools/azure-ai-agent-readiness',
     },
   ],
 }
