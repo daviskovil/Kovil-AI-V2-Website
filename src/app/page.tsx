@@ -2,20 +2,20 @@ import type { Metadata } from 'next'
 import HomePage from '@/src/pages/HomePage'
 
 export const metadata: Metadata = {
-  title: 'Kovil AI — Managed AI Engineering, Zero Delivery Risk',
-  description: 'Kovil AI embeds vetted AI engineers into your team, builds fixed-price AI projects, and rescues failing AI applications. Milestone-gated delivery. Zero risk.',
+  title: 'Kovil AI — We Build AI Agents for Enterprises',
+  description: 'We build and deploy AI agents for enterprises — fixed price, fixed timeline, zero delivery risk. Managed AI engineers, outcome-based projects, and AI agent rescue. Ship your first agent in weeks.',
   alternates: { canonical: 'https://kovil.ai/' },
   openGraph: {
     url: 'https://kovil.ai/',
     type: 'website',
-    title: 'Kovil AI — Managed AI Engineering, Zero Delivery Risk',
-    description: 'Kovil AI embeds vetted AI engineers into your team, builds fixed-price AI projects, and rescues failing AI applications. Milestone-gated delivery. Zero risk.',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Kovil AI — Ship AI Agents, Deployed by Elite AI Engineers' }],
+    title: 'Kovil AI — We Build AI Agents for Enterprises',
+    description: 'We build and deploy AI agents for enterprises — fixed price, fixed timeline, zero delivery risk. Managed AI engineers, outcome-based projects, and AI agent rescue. Ship your first agent in weeks.',
+    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Kovil AI — We Build AI Agents for Enterprises' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kovil AI — Managed AI Engineering, Zero Delivery Risk',
-    description: 'Vetted Tier-1 AI engineers. Fixed-price sprints. Zero delivery risk.',
+    title: 'Kovil AI — We Build AI Agents for Enterprises',
+    description: 'We build and deploy AI agents for enterprises — fixed price, fixed timeline, zero delivery risk. Ship your first agent in weeks.',
     images: ['https://kovil.ai/og-image.png'],
   },
 }
