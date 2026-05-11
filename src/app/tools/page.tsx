@@ -28,7 +28,7 @@ const itemListSchema = {
   name: 'Free AI Tools by Kovil AI',
   description: 'A collection of free interactive AI tools for founders, product managers, and agency leaders.',
   url: 'https://kovil.ai/tools',
-  numberOfItems: 2,
+  numberOfItems: 3,
   itemListElement: [
     {
       '@type': 'ListItem',
@@ -43,6 +43,13 @@ const itemListSchema = {
       name: 'AI Readiness Assessment for Ad & Marketing Agencies',
       description: 'A free 3-minute assessment for ad and marketing agency leaders. Find out where you stand on AI automation readiness and receive a personalised action plan.',
       url: 'https://kovil.ai/tools/ai-readiness-ad-marketing-agencies',
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Azure AI Foundry Agent Deployment Readiness Assessment',
+      description: 'A free 4-minute assessment for enterprise AI decision-makers. Find out if your organisation is ready to deploy AI agents on Azure AI Foundry — scored across infrastructure, data, use case, team, and investment.',
+      url: 'https://kovil.ai/tools/azure-agent-readiness',
     },
   ],
 }

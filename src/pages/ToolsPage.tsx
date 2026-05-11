@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Clock, Zap, BarChart3 } from 'lucide-react'
+import { ArrowRight, Clock, Zap, BarChart3, Server } from 'lucide-react'
 
 interface Tool {
   slug: string
@@ -39,6 +39,18 @@ const tools: Tool[] = [
     badgeColor: 'bg-green-500/10 text-green-400 border border-green-500/20',
     icon: <Zap className="h-6 w-6 text-green-400" />,
     href: '/tools/ai-readiness-ad-marketing-agencies',
+    cta: 'Take the Assessment',
+  },
+  {
+    slug: 'azure-agent-readiness',
+    title: 'Azure AI Agent Deployment Assessment',
+    description: 'Find out if your enterprise is ready to build and deploy AI agents on Azure AI Foundry. Scored across 5 dimensions — infrastructure, data, use case, team, and investment — with a personalised action plan.',
+    forWho: 'Enterprise AI decision-makers & Azure architects',
+    duration: '4 min',
+    badge: 'Azure AI',
+    badgeColor: 'bg-[#0078D4]/10 text-[#0078D4] border border-[#0078D4]/20',
+    icon: <Server className="h-6 w-6 text-[#0078D4]" />,
+    href: '/tools/azure-agent-readiness',
     cta: 'Take the Assessment',
   },
 ]
