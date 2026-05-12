@@ -99,6 +99,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/agentforce/internal-operations/hr-onboarding-agent`,      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/internal-operations/finance-approval-agent`,   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/internal-operations/it-helpdesk-agent`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Google Cloud Vertex AI landing ────────────────────────────────────────────
+    { url: `${BASE_URL}/vertex-ai`,                                             lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
+    // ── Vertex AI service pages ───────────────────────────────────────────────────
+    { url: `${BASE_URL}/vertex-ai/services/vertex-ai-strategy-readiness`,       lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/services/gemini-integration`,                 lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/services/vertex-agent-builder`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/services/vertex-ai-search-rag`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/services/bigquery-ml-data-agents`,            lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/services/vertex-ai-rescue-optimisation`,      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Vertex AI — Data & Analytics use cases ────────────────────────────────────
+    { url: `${BASE_URL}/vertex-ai/data-analytics/bigquery-intelligent-agent`,   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/data-analytics/document-ai-pipeline`,         lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/data-analytics/enterprise-search-agent`,      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Vertex AI — Customer Experience use cases ─────────────────────────────────
+    { url: `${BASE_URL}/vertex-ai/customer-experience/conversational-ai-agent`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/customer-experience/personalisation-engine`,  lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/customer-experience/contact-centre-ai`,       lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Vertex AI — Operations use cases ─────────────────────────────────────────
+    { url: `${BASE_URL}/vertex-ai/operations/supply-chain-intelligence`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/operations/predictive-analytics-agent`,       lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/operations/quality-control-vision-agent`,     lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Vertex AI — Developer Tools use cases ─────────────────────────────────────
+    { url: `${BASE_URL}/vertex-ai/developer-tools/code-generation-agent`,       lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/developer-tools/mlops-pipeline-agent`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/developer-tools/api-testing-agent`,           lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Vertex AI — Playbook articles ─────────────────────────────────────────────
+    { url: `${BASE_URL}/vertex-ai/playbook/architect-your-first-vertex-ai-agent`,       lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/vertex-ai/playbook/vertex-ai-vs-gemini-api`,                    lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/vertex-ai/playbook/retail-personalisation-vertex-ai-build`,     lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     // ── Individual workflow pages ──────────────────────────────────────────────
     { url: `${BASE_URL}/ai-workflow-automation-library/campaign-performance-reporting`,                   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/ai-workflow-automation-library/ai-creative-brief-generator`,                      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },

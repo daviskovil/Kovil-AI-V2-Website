@@ -59,6 +59,12 @@ export default function Footer() {
                   <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full" style={{ background: "#0078D420", color: "#0078D4" }}>New</span>
                 </Link>
               </li>
+              <li>
+                <Link href="/vertex-ai" className="hover:text-accent transition-colors flex items-center gap-1.5">
+                  GCP Vertex AI
+                  <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full" style={{ background: "#4285F420", color: "#4285F4" }}>New</span>
+                </Link>
+              </li>
               <li><Link href="/ai-operations" className="hover:text-accent transition-colors">AI Operations</Link></li>
               <li><Link href="/hire" className="hover:text-accent transition-colors">Hire an AI Engineer</Link></li>
               <li><Link href="/ad-marketing-agencies" className="hover:text-accent transition-colors">Ad & Marketing Agencies</Link></li>
