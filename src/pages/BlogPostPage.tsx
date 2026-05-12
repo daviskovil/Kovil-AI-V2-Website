@@ -202,6 +202,17 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
 }
 
+
+  'ai-use-cases-for-ecommerce': {
+    label: 'Kovil AI · AI for E-Commerce',
+    teaser: 'We have built AI automation systems for e-commerce businesses — from chatbots to product generation.',
+    headline: 'Ready to automate your e-commerce operations with AI?',
+    body: "We have built AI-powered support chatbots, product description generators, returns automation systems, and personalisation engines for e-commerce businesses. Fixed price, clear deliverables, 4–8 week delivery.",
+    defaultGoal: 'project',
+    primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },
+
 const DEFAULT_CTA: CtaConfig = {
   label: 'Kovil AI',
   teaser: 'We build AI-powered software for businesses — from automations to full product builds.',
