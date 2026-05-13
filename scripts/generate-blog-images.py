@@ -2269,6 +2269,96 @@ def make_reduce_llm_costs_image():
     print(f"Saved: {out}")
 
 
+def make_ecommerce_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (8, 10, 18), (16, 12, 26))
+
+    draw_circle_glow(img, 920, 140, 360, ORANGE, alpha_max=40)
+    draw_circle_glow(img, 60,  540, 200, (16, 185, 129), alpha_max=25)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=13)
+
+    # ── Left: pill + headline ──────────────────────────────────────────────
+    pill_font = ImageFont.truetype(FONT_BOLD, 13)
+    pill_text = "AI ENGINEERING"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 24
+    draw.rounded_rectangle([56, 68, 56 + pw, 68 + 30], radius=15,
+                            fill=(*ORANGE, 50))
+    draw.text((56 + pw // 2, 83), pill_text, font=pill_font,
+              fill=ORANGE, anchor="mm")
+
+    h1_font  = ImageFont.truetype(FONT_BOLD, 46)
+    sub_font = ImageFont.truetype(FONT_REGULAR, 17)
+
+    for i, line in enumerate(["9 AI Automation", "Use Cases for", "E-Commerce"]):
+        draw.text((56, 116 + i * 54), line, font=h1_font, fill=WHITE)
+
+    draw.text((56, 286), "Proven ROI benchmarks for 2026", font=sub_font, fill=GREY_DIM)
+
+    # Stat badge
+    badge_font = ImageFont.truetype(FONT_BOLD, 30)
+    badge_sub  = ImageFont.truetype(FONT_REGULAR, 13)
+    bcard = Image.new("RGBA", (230, 84), (0, 0, 0, 0))
+    bc = ImageDraw.Draw(bcard)
+    bc.rounded_rectangle([0, 0, 230, 84], radius=12, fill=(*ORANGE, 28))
+    bc.rounded_rectangle([0, 0, 230, 84], radius=12, outline=(*ORANGE, 90), width=1)
+    img.paste(bcard, (56, 328), mask=bcard)
+    draw = ImageDraw.Draw(img)
+    draw.text((56 + 115, 328 + 27), "60%", font=badge_font, fill=ORANGE, anchor="mm")
+    draw.text((56 + 115, 328 + 58), "avg. support cost reduction", font=badge_sub, fill=GREY_DIM, anchor="mm")
+
+    # ── Right: 3×3 use case cards ─────────────────────────────────────────
+    use_cases = [
+        ("AI Support Chat",     (16,  185, 129)),
+        ("Cart Recovery",       (59,  130, 246)),
+        ("Product Descriptions",(229, 101,  43)),
+        ("Personalisation",     (99,  102, 241)),
+        ("Returns Automation",  (236,  72, 153)),
+        ("Demand Forecasting",  (251, 146,  60)),
+        ("Review Management",   (20,  184, 166)),
+        ("Visual Search",       (168,  85, 247)),
+        ("Dynamic Pricing",     (34,  197, 94)),
+    ]
+
+    card_w  = 192
+    card_h  = 78
+    gap_x   = 10
+    gap_y   = 10
+    cols    = 3
+    total_w = cols * card_w + (cols - 1) * gap_x
+    start_x = W - total_w - 44
+    start_y = 68
+
+    label_f = ImageFont.truetype(FONT_BOLD, 14)
+    num_f   = ImageFont.truetype(FONT_BOLD, 22)
+
+    for i, (name, col) in enumerate(use_cases):
+        col_i = i % cols
+        row_i = i // cols
+        cx = start_x + col_i * (card_w + gap_x)
+        cy = start_y + row_i * (card_h + gap_y)
+
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=10, fill=(*col, 18))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=10, outline=(*col, 70), width=1)
+        img.paste(card, (cx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+
+        draw.rounded_rectangle([cx, cy + 10, cx + 3, cy + card_h - 10], radius=2, fill=col)
+        draw.text((cx + 14, cy + 18), f"0{i+1}" if i < 9 else str(i+1), font=num_f, fill=col)
+        draw.text((cx + 14, cy + 48), name, font=label_f, fill=WHITE)
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-ai-use-cases-for-ecommerce.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -2290,4 +2380,5 @@ if __name__ == "__main__":
     make_what_is_ai_operations_image()
     make_crewai_vs_langgraph_image()
     make_reduce_llm_costs_image()
+    make_ecommerce_image()
     print("Done.")
