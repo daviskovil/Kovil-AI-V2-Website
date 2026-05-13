@@ -4450,8 +4450,6 @@ export const posts: Post[] = [
         },
       ],
       body: `
-  <img src="/blog-ai-use-cases-for-ecommerce.jpg" alt="AI Automation Use Cases for E-Commerce" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
-  
   <p>E-commerce was one of the first industries to adopt AI at scale — recommendation engines, fraud detection, and dynamic pricing have been running in production at major retailers for years. What has changed in 2024–2026 is that these capabilities, previously requiring data science teams and significant infrastructure investment, are now accessible to mid-market and independent e-commerce businesses through LLM APIs and pre-built integrations.</p>
   
   <p>Here are the nine AI use cases that deliver the clearest ROI for e-commerce businesses in 2026, with realistic build costs, timelines, and payback benchmarks.</p>
