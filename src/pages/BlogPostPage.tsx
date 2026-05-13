@@ -200,9 +200,6 @@ const CTA_MAP: Record<string, CtaConfig> = {
     primary: { text: 'Talk to Our Engineers →', href: '/contact' },
     secondary: { text: 'See Our Work', href: '/case-studies' },
   },
-}
-
-
   'ai-use-cases-for-ecommerce': {
     label: 'Kovil AI · AI for E-Commerce',
     teaser: 'We have built AI automation systems for e-commerce businesses — from chatbots to product generation.',
@@ -212,6 +209,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
     secondary: { text: 'See Our Work', href: '/case-studies' },
   },
+}
 
 const DEFAULT_CTA: CtaConfig = {
   label: 'Kovil AI',
