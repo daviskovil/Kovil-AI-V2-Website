@@ -32,6 +32,95 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: "law-firm-contract-review-ai",
+    title: "Law Firm Contract Review — 78% Faster, Zero Missed Clauses",
+    headline: "AI Contract Review Agent Cuts Review Time by 78% and Reclaims $380K in Annual Partner Hours",
+    excerpt:
+      "A 60-attorney corporate law firm was spending 4–6 associate hours per contract review on routine clause extraction, inconsistency flagging, and comparison against standard positions. Kovil AI built an AI contract review agent — trained on the firm's own precedent library — that handles 94% of standard clause analysis automatically and surfaces every non-standard provision before a human reads the document.",
+    service: "Outcome-Based AI Project",
+    industry: "Legal / LegalTech",
+    clientType: "Mid-size Law Firm (60 attorneys)",
+    timeline: "6 weeks",
+    teamSize: "3 engineers + 1 AI specialist",
+    published: "May 2026",
+    metrics: [
+      { value: "78%", label: "Faster Contract Review", sublabel: "Per document, end-to-end" },
+      { value: "$380K", label: "Partner Hours Reclaimed", sublabel: "Annually at billing rates" },
+      { value: "94%", label: "Standard Clauses Auto-Flagged", sublabel: "No human read required" },
+      { value: "0", label: "Missed Non-Standard Clauses", sublabel: "Since go-live" },
+    ],
+    techStack: [
+      { name: "GPT-4o", color: "bg-green-700" },
+      { name: "LangChain", color: "bg-yellow-700" },
+      { name: "Pinecone", color: "bg-blue-600" },
+      { name: "FastAPI", color: "bg-teal-700" },
+      { name: "Next.js 14", color: "bg-slate-800" },
+      { name: "AWS S3", color: "bg-orange-600" },
+      { name: "PostgreSQL", color: "bg-blue-900" },
+    ],
+    quote:
+      "We were billing associates for work that AI can now do in eight minutes. The agent flags every non-standard clause before anyone opens the document — and it knows our positions because we trained it on our own precedents. This is the biggest change to how we work in twenty years.",
+    quoteAuthor: "Managing Partner",
+    quoteRole: "Corporate Practice Group",
+    body: `
+<h2>The Situation</h2>
+<p>The client is a 60-attorney corporate law firm specialising in M&A, commercial contracts, and venture transactions. Their contract review process was high-cost and structurally inefficient in the way that's common across mid-size firms: associates performed the bulk of first-pass review — reading contracts against a mental model of the firm's standard positions — before escalating exceptions to senior attorneys for judgment calls.</p>
+<p>For a typical commercial contract (NDA, MSA, or SaaS agreement), first-pass review took 4–6 associate hours. For more complex agreements — supply chain contracts, licensing deals, co-development agreements — the number climbed to 10–14 hours. The work itself was largely pattern-matching: identifying which clauses deviated from the firm's standard positions, flagging missing provisions, and comparing defined terms for internal consistency.</p>
+<p>Partners were spending 60–90 minutes per engagement reviewing and correcting associate markup before they could offer substantive advice. At their billing rates, this represented significant cost — both in partner time consumed and in the opportunity cost of senior attorneys doing work that shouldn't require senior judgment.</p>
+
+<h2>The Challenge</h2>
+<p>Contract review automation is harder than it looks from the outside. The firm had evaluated two off-the-shelf contract AI tools before approaching Kovil AI. Both failed for the same reason: they compared contracts against generic "market standard" positions, not the firm's own negotiated positions built up over decades of practice.</p>
+<p>A non-disclosure clause that looks standard to a general AI tool might represent a significant departure from how this firm had negotiated the same clause in 400 prior engagements. The firm's value to clients wasn't generic market knowledge — it was their specific institutional positions and the reasoning behind them.</p>
+<p>The specific requirements for a viable solution were:</p>
+<ul>
+  <li><strong>Trained on firm precedents, not generic data:</strong> The system had to compare incoming contracts against the firm's own executed agreements, template library, and annotated negotiation history — not a third-party benchmark</li>
+  <li><strong>Clause-level explanation, not just flagging:</strong> Associates needed to know not just that a clause was non-standard, but how it deviated, what the firm's preferred position was, and what risk the deviation represented</li>
+  <li><strong>Full document coverage:</strong> Missing a non-standard clause or a defined term inconsistency was not an acceptable failure mode. The system had to handle the complete document, not sample it.</li>
+  <li><strong>Client confidentiality:</strong> No client documents or firm precedents could be sent to a third-party AI service for training or storage. Data had to stay within the firm's controlled infrastructure.</li>
+  <li><strong>Workflow integration:</strong> Output had to land in the formats attorneys actually use — annotated PDF, tracked-changes Word document, and a structured exception report — not a web interface that required a context switch</li>
+</ul>
+
+<h2>Our Approach</h2>
+<p>We started with a week of embedded discovery with the firm's practice group leads. Rather than observing a generic "contract review process," we sat through three live contract reviews — watching exactly what associates flagged, what they missed, how they communicated findings to supervising partners, and where the handoff broke down.</p>
+<p>The insight that shaped the architecture: the firm already had the answer key. Fifteen years of executed agreements, annotated templates, and partner redlines — all sitting in their document management system — contained every position the firm had ever taken on every clause type. The job was to make that institutional knowledge searchable and applicable at document processing speed.</p>
+<p>We designed a two-stage pipeline: a retrieval stage that uses the incoming contract to surface the most relevant firm precedents (via semantic search over a Pinecone vector index of the firm's document library), followed by a generation stage where GPT-4o compares the incoming clause against retrieved precedent and firm positions to produce a structured exception report.</p>
+
+<h2>The Solution</h2>
+
+<h3>Precedent Library Indexing</h3>
+<p>We built an ingestion pipeline that processed the firm's document management system — 12,000 documents spanning 15 years of executed agreements, template library versions, and annotated negotiation histories. Each document was parsed, segmented by clause type using a custom clause classifier trained on legal document structure, and embedded using OpenAI's text-embedding-3-large model. The embeddings were stored in Pinecone, partitioned by practice area and agreement type.</p>
+<p>Critically, the ingestion pipeline also extracted the firm's "positions" — partner annotations marking which clause versions were preferred, which were acceptable, and which were never acceptable — and stored these as structured metadata alongside each clause embedding. This metadata became the comparison baseline.</p>
+
+<h3>The Review Agent</h3>
+<p>When a new contract is uploaded for review, the agent processes it through the following stages:</p>
+<ul>
+  <li><strong>Document parsing and clause segmentation:</strong> The contract is parsed into discrete clause segments — definitions, representations and warranties, liability caps, indemnification, termination, governing law, and so on — using the same clause classifier applied to the precedent library. This ensures the incoming clauses are compared against the right category of precedent.</li>
+  <li><strong>Precedent retrieval:</strong> For each clause, the agent queries Pinecone for the 5 most semantically similar precedent clauses from the firm's library, weighted toward recent agreements in the same practice area and deal size range. The firm's annotated positions are retrieved alongside the clauses.</li>
+  <li><strong>Deviation analysis:</strong> GPT-4o receives each incoming clause alongside its retrieved precedents and the firm's positions, and produces a structured assessment: whether the clause is within the firm's acceptable range, what specific language deviates from the firm's preferred position, and what risk the deviation represents (categorised as Low / Moderate / High / Unacceptable based on the firm's own annotation history).</li>
+  <li><strong>Consistency checking:</strong> Separately from clause-level analysis, the agent checks for internal consistency across the document — flagging defined terms used but not defined, inconsistent usage of the same defined term, cross-references to sections that don't exist, and obligation provisions that conflict with limitation provisions.</li>
+  <li><strong>Exception report generation:</strong> All findings are compiled into a structured exception report — grouped by risk level, with the firm's preferred position stated for each deviation and a plain-English summary of the commercial impact written for the supervising partner.</li>
+</ul>
+
+<h3>Output Formats</h3>
+<p>The exception report is delivered in three formats simultaneously: a structured JSON output for the firm's matter management system, an annotated PDF with inline comments positioned at the relevant clause, and an exception summary document in Word format ready for partner review and client communication. The Word output uses tracked-changes formatting — the firm's preferred language appears as suggested replacements against the incoming contract text.</p>
+
+<h3>Security and Data Handling</h3>
+<p>No client documents or firm precedents are sent to OpenAI for training. The firm's entire document library is processed and stored within their AWS environment. All API calls to GPT-4o are made under a zero-data-retention agreement with OpenAI's enterprise API, which guarantees no input is used for model training. Every document processed by the system is logged with access control tied to the firm's existing Active Directory permissions — only attorneys with matter access can retrieve review output for that matter.</p>
+
+<h2>Results</h2>
+<p>The agent has been in production use across the firm's corporate practice group for three months. The outcomes have exceeded the targets set in the initial scoping engagement:</p>
+<ul>
+  <li><strong>Review time per document dropped from 4–6 associate hours to 50–80 minutes</strong> — a 78% reduction. Associates now spend their time on the minority of clauses that require genuine judgment, rather than the systematic read-through that the agent now handles.</li>
+  <li><strong>94% of standard clause deviations are flagged automatically</strong>, including clause types that associates had historically under-flagged due to unfamiliarity with certain practice area positions. The agent's consistency with firm positions is measurably higher than associate consistency was — the firm validated this against a retrospective sample of 80 prior reviews.</li>
+  <li><strong>Partner review time dropped from 60–90 minutes to 15–20 minutes</strong> per engagement, because partners receive a structured exception report organised by risk level rather than a full mark-up requiring re-reading. Time previously spent identifying issues is now spent making decisions about them.</li>
+  <li><strong>Zero non-standard clauses have been missed</strong> since go-live. The firm tracks this through a quality review process on a random 20% sample of all reviewed agreements. The previous associate-only process had a miss rate of approximately 6% on high-risk clauses — primarily in areas where an associate lacked experience with the firm's specific negotiating history.</li>
+  <li><strong>$380K in annual partner time reclaimed</strong>, calculated at the firm's internal billing rate for partner hours. This figure excludes associate time savings, which add a further $210K annually. The engagement paid for itself in the first six weeks of production use.</li>
+</ul>
+<p>The firm's managing partner described the most significant change as cultural rather than operational: "Associates are now spending their time on the hard parts. They're learning faster because they're doing real legal work — analysing risk, considering commercial context — instead of running a checklist. It's changed what we expect from a first-year on a contract matter."</p>
+<p>The firm is currently expanding the agent to cover due diligence document review for M&A transactions — a use case where the volume of documents makes the efficiency gain even more significant.</p>
+`,
+  },
+  {
     slug: "secondary-mortgage-document-platform",
     title: "the mortgage document platform — AI Document Platform for the Mortgage Secondary Market",
     headline: "AI-Powered Loan Package Verification Replaces Manual PDF Sorting and Spreadsheet Checklists",
