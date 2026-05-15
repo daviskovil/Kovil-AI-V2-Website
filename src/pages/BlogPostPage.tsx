@@ -211,6 +211,17 @@ const CTA_MAP: Record<string, CtaConfig> = {
   },
 }
 
+
+  'openai-vs-anthropic-vs-google-for-business': {
+    label: 'Kovil AI · Vendor-Neutral AI Engineering',
+    teaser: 'We build on OpenAI, Anthropic, and Google — and recommend the right one for your use case.',
+    headline: 'Not sure which AI platform your business should build on?',
+    body: "Our engineers work across OpenAI, Anthropic, and Google Gemini in production. We'll recommend the right platform for your use case — and build on it with a fixed price and clear deliverables.",
+    defaultGoal: 'project',
+    primary: { text: 'Talk to Our Engineers →', href: '/contact' },
+    secondary: { text: 'See Our Work', href: '/case-studies' },
+  },
+
 const DEFAULT_CTA: CtaConfig = {
   label: 'Kovil AI',
   teaser: 'We build AI-powered software for businesses — from automations to full product builds.',
