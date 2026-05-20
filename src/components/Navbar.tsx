@@ -211,6 +211,14 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
         </Link>
 
         <Link
+          href="/what-we-do"
+          onClick={onClose}
+          className={`flex items-center h-12 px-3 rounded-xl text-base font-medium transition-colors ${pathname === "/what-we-do" ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
+        >
+          What We Do
+        </Link>
+
+        <Link
           href="/how-it-works"
           onClick={onClose}
           className={`flex items-center h-12 px-3 rounded-xl text-base font-medium transition-colors ${pathname === "/how-it-works" ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
@@ -327,6 +335,13 @@ export default function Navbar() {
               className={`hover:text-foreground transition-colors ${pathname === "/" ? "text-foreground font-semibold" : ""}`}
             >
               Home
+            </Link>
+
+            <Link
+              href="/what-we-do"
+              className={`hover:text-foreground transition-colors ${pathname === "/what-we-do" ? "text-foreground font-semibold" : ""}`}
+            >
+              What We Do
             </Link>
 
             <Link

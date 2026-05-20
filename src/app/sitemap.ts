@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // ── Static core pages ──────────────────────────────────────────────────────
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/`,                                  lastModified: now,          changeFrequency: 'weekly',  priority: 1.0 },
+    { url: `${BASE_URL}/what-we-do`,                        lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/how-it-works`,                      lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/engage/managed-ai-engineer`,             lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/engage/outcome-based-project`,           lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
