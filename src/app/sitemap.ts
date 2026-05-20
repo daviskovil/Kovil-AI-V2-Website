@@ -142,6 +142,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/ai-workflow-automation-library/comfyui-runway-commercial-video-pipelines`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/ai-workflow-automation-library/social-intelligence-subreddit-scraping`,           lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/ai-workflow-automation-library/browser-based-no-api-automation-legacy-enterprise`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── FinTech vertical ──────────────────────────────────────────────────────
+    { url: `${BASE_URL}/fintech`,                                                                          lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/ai-loan-document-classifier`,                      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/automated-underwriting-workflow`,                   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/deal-processing-automation`,                        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/kyc-aml-identity-verification`,                    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/invoice-reconciliation-ai`,                        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-workflow-automation-library/real-time-fraud-detection`,                        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
   ]
 
   // ── Blog posts (auto-generated from posts.ts) ──────────────────────────────
