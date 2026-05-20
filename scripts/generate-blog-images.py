@@ -2454,6 +2454,85 @@ def make_ecommerce_image():
     print(f"Saved: {out}")
 
 
+def make_openai_vs_anthropic_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (8, 8, 18), (18, 10, 28))
+
+    # Glows: OpenAI green-ish, Anthropic orange, Google blue
+    draw_circle_glow(img, 200, 200, 280, (16, 185, 129), alpha_max=35)
+    draw_circle_glow(img, 620, 560, 240, ORANGE, alpha_max=35)
+    draw_circle_glow(img, 1050, 200, 260, (59, 130, 246), alpha_max=30)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=12)
+
+    # ── Left: pill + headline ────────────────────────────────────────────────
+    pill_font = ImageFont.truetype(FONT_BOLD, 13)
+    pill_text = "TOOLS & COMPARISONS"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 24
+    draw.rounded_rectangle([56, 68, 56 + pw, 68 + 30], radius=15,
+                            fill=(*ORANGE, 50))
+    draw.text((56 + pw // 2, 83), pill_text, font=pill_font,
+              fill=ORANGE, anchor="mm")
+
+    h1_font  = ImageFont.truetype(FONT_BOLD, 44)
+    sub_font = ImageFont.truetype(FONT_REGULAR, 17)
+
+    draw.text((56, 116), "OpenAI vs Anthropic",  font=h1_font, fill=WHITE)
+    draw.text((56, 168), "vs Google:",            font=h1_font, fill=WHITE)
+    draw.text((56, 220), "Which to Build On?",    font=h1_font, fill=ORANGE)
+
+    draw.text((56, 284), "Comparing GPT-4o, Claude, and Gemini for", font=sub_font, fill=GREY_DIM)
+    draw.text((56, 306), "production AI applications in 2026.",       font=sub_font, fill=GREY_DIM)
+
+    # ── Right: 3 vendor cards ────────────────────────────────────────────────
+    vendors = [
+        ("OpenAI",     "GPT-4o",    (16,  185, 129), "Ecosystem leader"),
+        ("Anthropic",  "Claude 3.5",(229, 101,  43),  "Safety-first"),
+        ("Google",     "Gemini 1.5",(59,  130, 246),  "Multimodal depth"),
+    ]
+
+    card_w = 222
+    card_h = 130
+    gap    = 14
+    total_h = len(vendors) * card_h + (len(vendors) - 1) * gap
+    start_y = (H - total_h) // 2
+    start_x = W - card_w - 56
+
+    name_f   = ImageFont.truetype(FONT_BOLD,    20)
+    model_f  = ImageFont.truetype(FONT_BOLD,    14)
+    label_f  = ImageFont.truetype(FONT_REGULAR, 13)
+
+    for i, (vendor, model, col, tagline) in enumerate(vendors):
+        cy = start_y + i * (card_h + gap)
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd   = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=14, fill=(*col, 22))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=14, outline=(*col, 100), width=1)
+        # left accent bar
+        cd.rounded_rectangle([0, 16, 4, card_h - 16], radius=2, fill=col)
+        img.paste(card, (start_x, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.text((start_x + 20, cy + 22),       vendor,   font=name_f,  fill=WHITE)
+        draw.text((start_x + 20, cy + 50),       model,    font=model_f, fill=col)
+        draw.text((start_x + 20, cy + 74),       tagline,  font=label_f, fill=GREY_DIM)
+
+        # small "VS" divider between cards
+        if i < len(vendors) - 1:
+            vs_font = ImageFont.truetype(FONT_BOLD, 11)
+            vx = start_x + card_w // 2
+            vy = cy + card_h + gap // 2
+            draw.text((vx, vy), "VS", font=vs_font, fill=GREY_DIM, anchor="mm")
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-openai-vs-anthropic-vs-google-for-business.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()

@@ -3175,7 +3175,7 @@ export const posts: Post[] = [
         },
       ],
       body: `
-  <img src="/blog-how-to-measure-ai-roi.jpg" alt="How to Measure AI ROI Before You Start Building" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+  
   
   <p>The standard advice is to pilot an AI project, measure the results, and then decide whether to scale. The problem is that by the time you have results, you have already spent the money. A $60,000 pilot that delivers no measurable value is a poor way to learn that the ROI case was never there.</p>
   
@@ -4328,7 +4328,7 @@ export const posts: Post[] = [
         },
       ],
       body: `
-  <img src="/blog-how-to-reduce-llm-api-costs.jpg" alt="How to Reduce LLM API Costs: A Guide for Leaders" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+  
   
   <p>The business case for an AI project looks strong in a spreadsheet. Then the application goes live, real users start generating real volume, and the monthly API bill is three times what the model showed in testing. This is not an unusual story — it is one of the most common budget surprises in production AI deployments.</p>
   
@@ -4567,7 +4567,7 @@ export const posts: Post[] = [
         },
       ],
       body: `
-  <img src="/blog-openai-vs-anthropic-vs-google-for-business.jpg" alt="OpenAI vs Anthropic vs Google: Which to Build On?" style="width:100%;border-radius:12px;margin-bottom:2rem;" />
+  
   
   <p>The AI model comparisons you see online — benchmarks, accuracy scores, token pricing tables — are useful for choosing a model. They are much less useful for choosing a platform. Choosing which AI company to build your business on is a different decision, and it involves factors that never appear in benchmark comparisons: enterprise contracts, compliance documentation, pricing stability, provider reliability, and the cost of switching if things go wrong.</p>
   
