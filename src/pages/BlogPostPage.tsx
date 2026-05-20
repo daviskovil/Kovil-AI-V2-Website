@@ -209,9 +209,6 @@ const CTA_MAP: Record<string, CtaConfig> = {
     primary: { text: 'Get a Fixed Scope →', href: '/engage/outcome-based-project' },
     secondary: { text: 'See Our Work', href: '/case-studies' },
   },
-}
-
-
   'ai-model-drift-detection': {
     label: 'Kovil AI · AI Operations',
     teaser: 'We detect and remediate AI model drift as part of our managed Operate tier — starting $8k/mo.',
@@ -230,6 +227,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     primary: { text: 'Talk to Our Engineers →', href: '/contact' },
     secondary: { text: 'See Our Work', href: '/case-studies' },
   },
+}
 
 const DEFAULT_CTA: CtaConfig = {
   label: 'Kovil AI',
