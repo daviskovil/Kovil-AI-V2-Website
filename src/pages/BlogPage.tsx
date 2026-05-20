@@ -26,10 +26,12 @@ const BREADCRUMB_SCHEMA = {
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
-  "AI Engineering":  "from-orange-950/60 to-orange-900/30",
-  "AI Automation":   "from-amber-950/60 to-amber-900/30",
-  "Product":         "from-zinc-800/60 to-zinc-700/30",
-  "Software":        "from-slate-800/60 to-slate-700/30",
+  "AI Engineering":      "from-orange-950/60 to-orange-900/30",
+  "Strategy & ROI":      "from-blue-950/60 to-blue-900/30",
+  "Tools & Comparisons": "from-violet-950/60 to-violet-900/30",
+  "Automation":          "from-amber-950/60 to-amber-900/30",
+  "AI Operations":       "from-emerald-950/60 to-emerald-900/30",
+  "Build & Ship":        "from-rose-950/60 to-rose-900/30",
 }
 
 function categoryGradient(cat: string) {
