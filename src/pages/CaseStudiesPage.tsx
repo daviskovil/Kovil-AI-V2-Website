@@ -42,7 +42,7 @@ export default function CaseStudiesPage() {
       {/* Grid */}
       <div className="max-w-7xl mx-auto px-6 pb-24">
         <div className="grid md:grid-cols-2 gap-6">
-          {caseStudies.map((cs) => (
+          {[...caseStudies].sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime()).map((cs) => (
             <Link key={cs.slug}
               href={`/case-studies/${cs.slug}`}
               className="group flex flex-col rounded-2xl border border-border hover:border-accent/40 bg-muted/20 hover:bg-muted/40 transition-all p-7 relative overflow-hidden"
