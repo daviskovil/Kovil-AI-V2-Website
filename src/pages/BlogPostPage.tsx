@@ -212,6 +212,15 @@ const CTA_MAP: Record<string, CtaConfig> = {
 }
 
 
+  'ai-model-drift-detection': {
+    label: 'Kovil AI · AI Operations',
+    teaser: 'We detect and remediate AI model drift as part of our managed Operate tier — starting $8k/mo.',
+    headline: 'Is your production AI system drifting?',
+    body: "Most teams don't know their model is drifting until users complain. Kovil AI's Operate tier includes full drift monitoring, alerting, ground truth evaluation, and remediation — managed by our engineers. Start with a free AI audit.",
+    defaultGoal: 'project',
+    primary: { text: 'See AI Operations →', href: '/ai-operations' },
+    secondary: { text: 'Get a Free Audit', href: '/contact' },
+  },
   'openai-vs-anthropic-vs-google-for-business': {
     label: 'Kovil AI · Vendor-Neutral AI Engineering',
     teaser: 'We build on OpenAI, Anthropic, and Google — and recommend the right one for your use case.',

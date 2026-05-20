@@ -2269,6 +2269,101 @@ def make_reduce_llm_costs_image():
     print(f"Saved: {out}")
 
 
+def make_ai_model_drift_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (8, 8, 16), (20, 12, 24))
+
+    draw_circle_glow(img, 950, 130, 320, (229, 101, 43), alpha_max=38)
+    draw_circle_glow(img, 60,  520, 200, (239, 68, 68),  alpha_max=28)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=13)
+
+    # ── Left: pill + headline ──────────────────────────────────────────────
+    pill_font = ImageFont.truetype(FONT_BOLD, 13)
+    pill_text = "AI OPERATIONS"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 24
+    draw.rounded_rectangle([56, 68, 56 + pw, 68 + 30], radius=15,
+                            fill=(*ORANGE, 50))
+    draw.text((56 + pw // 2, 83), pill_text, font=pill_font,
+              fill=ORANGE, anchor="mm")
+
+    h1_font  = ImageFont.truetype(FONT_BOLD, 46)
+    sub_font = ImageFont.truetype(FONT_REGULAR, 17)
+
+    for i, line in enumerate(["AI Model", "Drift"]):
+        draw.text((56, 116 + i * 54), line, font=h1_font, fill=WHITE)
+
+    draw.text((56, 240), "Detect it early.", font=sub_font, fill=GREY_DIM)
+    draw.text((56, 268), "Fix it before it breaks.", font=sub_font, fill=GREY_DIM)
+
+    # ── Monitoring metric cards ───────────────────────────────────────────
+    RED   = (239, 68, 68)
+    AMBER = (251, 146, 60)
+    GREEN = (34, 197, 94)
+    BLUE  = (59, 130, 246)
+
+    cards = [
+        ("Input PSI",      "0.24",  "⚠ Threshold exceeded",  RED),
+        ("Output Drift",   "+31%",  "Response length shift",  AMBER),
+        ("Retrieval Score","↓ 0.61","Was 0.82 at deploy",     AMBER),
+        ("Accuracy",       "71%",   "Was 94% at launch",      RED),
+        ("Escalation Rate","↑ 18%", "3-week trend",           AMBER),
+        ("GT Eval",        "PASS",  "Weekly sample: 97%",     GREEN),
+    ]
+
+    card_w  = 190
+    card_h  = 84
+    gap_x   = 10
+    gap_y   = 10
+    cols    = 3
+    total_w = cols * card_w + (cols - 1) * gap_x
+    start_x = W - total_w - 44
+    start_y = 68
+
+    label_f  = ImageFont.truetype(FONT_BOLD,    13)
+    val_f    = ImageFont.truetype(FONT_BOLD,    24)
+    sub2_f   = ImageFont.truetype(FONT_REGULAR, 11)
+
+    for i, (name, val, sub, col) in enumerate(cards):
+        col_i = i % cols
+        row_i = i // cols
+        cx = start_x + col_i * (card_w + gap_x)
+        cy = start_y + row_i * (card_h + gap_y)
+
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=10, fill=(*col, 18))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=10, outline=(*col, 70), width=1)
+        img.paste(card, (cx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+
+        draw.rounded_rectangle([cx, cy + 10, cx + 3, cy + card_h - 10], radius=2, fill=col)
+        draw.text((cx + 13, cy + 14), name, font=label_f, fill=GREY_DIM)
+        draw.text((cx + 13, cy + 34), val,  font=val_f,   fill=col)
+        draw.text((cx + 13, cy + 64), sub,  font=sub2_f,  fill=GREY_DIM)
+
+    # ── Bottom stat badge ─────────────────────────────────────────────────
+    badge_font = ImageFont.truetype(FONT_BOLD, 26)
+    badge_sub  = ImageFont.truetype(FONT_REGULAR, 13)
+    bcard = Image.new("RGBA", (246, 80), (0, 0, 0, 0))
+    bc = ImageDraw.Draw(bcard)
+    bc.rounded_rectangle([0, 0, 246, 80], radius=12, fill=(*RED, 22))
+    bc.rounded_rectangle([0, 0, 246, 80], radius=12, outline=(*RED, 80), width=1)
+    img.paste(bcard, (56, 336), mask=bcard)
+    draw = ImageDraw.Draw(img)
+    draw.text((56 + 123, 336 + 25), "Silent degradation", font=badge_font, fill=RED, anchor="mm")
+    draw.text((56 + 123, 336 + 56), "No errors. No alerts. Users notice first.", font=badge_sub, fill=GREY_DIM, anchor="mm")
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-ai-model-drift.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 def make_ecommerce_image():
     img = Image.new("RGBA", (W, H), DARK_BG)
     draw = ImageDraw.Draw(img)
@@ -2380,5 +2475,6 @@ if __name__ == "__main__":
     make_what_is_ai_operations_image()
     make_crewai_vs_langgraph_image()
     make_reduce_llm_costs_image()
+    make_ai_model_drift_image()
     make_ecommerce_image()
     print("Done.")
