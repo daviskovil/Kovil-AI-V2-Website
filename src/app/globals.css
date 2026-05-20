@@ -124,3 +124,10 @@
 .prose-content a:hover {
   opacity: 0.8;
 }
+
+.prose-content hr {
+  border: none;
+  height: 5px;
+  background-color: hsl(var(--border));
+  margin: 2rem 0;
+}
