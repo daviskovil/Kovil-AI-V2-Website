@@ -1224,6 +1224,13 @@ export default function WorkflowLibraryPage() {
             53: 'comfyui-runway-commercial-video-pipelines',
             54: 'social-intelligence-subreddit-scraping',
             55: 'browser-based-no-api-automation-legacy-enterprise',
+            // FinTech
+            4: 'ai-loan-document-classifier',
+            5: 'automated-underwriting-workflow',
+            6: 'deal-processing-automation',
+            29: 'kyc-aml-identity-verification',
+            30: 'invoice-reconciliation-ai',
+            31: 'real-time-fraud-detection',
           }
 
           // ── Single card renderer ───────────────────────────────────────
