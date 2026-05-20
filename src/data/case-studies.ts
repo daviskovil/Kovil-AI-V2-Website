@@ -883,6 +883,218 @@ export const caseStudies: CaseStudy[] = [
 <p>The Lighthouse performance score improved from 51 to 92. the platform's conversion rate from trial to paid subscription improved by 18% in the 60 days following the engagement — not a direct attribution, but a number the CTO cited as directly correlated with the load time improvements. The internal engineering team was finally able to focus on product development again.</p>
 `,
   },
+  {
+    slug: "ai-powered-lead-generation",
+    title: "AI-Powered Lead Generation — B2B Outbound Pipeline Automated",
+    headline: "Five AI Agents. One Automated B2B Pipeline. Triple the Pipeline Output.",
+    excerpt:
+      "A B2B field sales team was spending 80% of their time on prospect research, leaving only 20% for selling. Kovil AI built a five-agent pipeline — Researcher, Analyst, Copywriter, SDR, and CRM — that automates the full outbound cycle from prospect identification to booked meeting, tripling pipeline volume with the same headcount.",
+    service: "Outcome-Based AI Project",
+    industry: "Sales / B2B",
+    clientType: "B2B Field Sales Team (Manufacturing Sector)",
+    timeline: "4 weeks",
+    teamSize: "2 engineers + 1 AI specialist",
+    published: "May 2026",
+    metrics: [
+      { value: "80%→20%", label: "Research time slashed", sublabel: "Flipped research-to-selling ratio" },
+      { value: "3×", label: "More pipeline, same headcount", sublabel: "Without adding salespeople" },
+      { value: "Day 5", label: "First AI agent live", sublabel: "Researcher agent deployed" },
+      { value: "6 hrs/wk", label: "Saved per sales rep", sublabel: "In manual research & admin" },
+    ],
+    techStack: [
+      { name: "GPT-4o", color: "bg-green-700" },
+      { name: "CrewAI", color: "bg-orange-700" },
+      { name: "Apollo.io API", color: "bg-blue-600" },
+      { name: "HubSpot CRM", color: "bg-orange-600" },
+      { name: "Python", color: "bg-blue-700" },
+      { name: "n8n", color: "bg-orange-500" },
+      { name: "Instantly", color: "bg-purple-700" },
+    ],
+    quote:
+      "Our reps were researchers, not salespeople. Now they walk in knowing exactly who they're calling, why they should care, and with a personalised email already in the prospect's inbox. The pipeline tripled and nobody worked a longer day.",
+    quoteAuthor: "Head of Sales",
+    quoteRole: "B2B Manufacturing Company",
+    body: `
+<h2>The Situation</h2>
+<p>The client is a B2B manufacturing company with an 8-person field sales team selling to mid-market industrial buyers. Their sales process had a structural problem at the research stage: each rep was spending roughly 80% of their working day on prospect research, list building, manual CRM updates, and email drafting — leaving only 20% for actual selling activity.</p>
+<p>The numbers reflected this. Despite a large addressable market, the team was generating around 15 qualified conversations per rep per week — well below what's achievable with modern outbound infrastructure. Outreach emails were generic, pulled from a shared template bank that hadn't been updated in over a year. Follow-up was inconsistent, with no systematic tracking of who had replied, who had gone cold, and who needed a nudge. CRM data was perpetually stale — updated after the fact, often incomplete.</p>
+
+<h2>The Challenge</h2>
+<p>The client had already assembled the tools: Apollo.io for prospect data, ChatGPT for email drafts, HubSpot for CRM. But the tools weren't connected. Using them in sequence added steps rather than removing them — reps were still acting as the manual connective tissue between each tool.</p>
+<p>What they needed was a coordinated agent pipeline that handled the full outbound cycle end-to-end:</p>
+<ul>
+  <li><strong>Automatic prospect identification</strong> based on ICP criteria, without rep input per batch</li>
+  <li><strong>Genuine personalisation</strong> — actual outreach hooks based on timely company signals, not mail-merge fields</li>
+  <li><strong>Inbox management</strong> that classified replies, drafted responses, and booked meetings without requiring reps to process every email manually</li>
+  <li><strong>Zero CRM admin</strong> — HubSpot updating itself from every interaction, with no manual entry required</li>
+</ul>
+
+<h2>The Solution</h2>
+<p>Kovil AI designed and built a five-agent pipeline covering the full outbound cycle, with each agent owning a discrete step in the process.</p>
+
+<h3>Researcher Agent</h3>
+<p>Runs daily, pulling a fresh batch of target companies and decision-makers from Apollo.io based on configured ICP parameters. Verifies contact data, enriches with firmographic and technographic signals, and passes a scored list of qualified targets to the Analyst Agent. This was the first agent live — deployed on Day 5 of the engagement so the team could see output immediately.</p>
+
+<h3>Analyst Agent</h3>
+<p>For each qualified target, the Analyst Agent reads the company's website, recent press releases, LinkedIn activity, and job listings to surface concrete outreach hooks — timely reasons why a conversation is relevant right now. A company hiring three enterprise AEs signals a need for sales enablement tools. A recent funding announcement signals a need for growth infrastructure. The agent surfaces the top two hooks per prospect for the Copywriter Agent.</p>
+
+<h3>Copywriter Agent</h3>
+<p>Drafts a hyper-personalised 1-to-1 email for each prospect using the hooks from the Analyst Agent and the rep's name, role, and value proposition. Each email is unique — not a template with swapped fields. The agent is prompted to match the individual rep's tone and style, calibrated using sample emails provided during onboarding. Output is reviewed in a lightweight queue before sending.</p>
+
+<h3>SDR / Inbox Agent</h3>
+<p>Monitors the sending inbox in real time, classifying replies into: interested, objection, out of office, bounce, and unsubscribe. Interested replies trigger an immediate Slack notification to the rep and an auto-drafted follow-up for review. Objection replies trigger a tailored response draft based on objection type. Meeting requests trigger an auto-reply with a Calendly link and a HubSpot meeting record creation.</p>
+
+<h3>CRM Agent</h3>
+<p>Handles all HubSpot activity automatically: contact creation, email sequence logging, reply recording, deal stage progression, and flagging stale contacts for re-engagement. CRM data completeness went from 60% to 97% — not because anyone worked harder, but because the system updated itself from every interaction.</p>
+
+<h2>Results</h2>
+<p>Within four weeks of go-live, every metric the head of sales tracked had moved:</p>
+<ul>
+  <li><strong>Research time dropped from 80% to 20% of each rep's day</strong> — the remaining 80% was available for calls, demos, and relationship-building</li>
+  <li><strong>Pipeline volume tripled</strong> with the same eight-person team, driven by higher-volume personalised outreach reaching more qualified prospects each day</li>
+  <li><strong>Each rep reclaimed an average of 6 hours per week</strong> previously spent on manual research, email writing, inbox processing, and CRM updates</li>
+  <li><strong>HubSpot data completeness went from 60% to 97%</strong> — giving the head of sales a reliable real-time view of pipeline health for the first time</li>
+</ul>
+<p>The head of sales described the shift: "Our reps were researchers, not salespeople. Now they walk in knowing exactly who they're calling, why they should care, and with a personalised email already in the prospect's inbox. The pipeline tripled and nobody worked a longer day."</p>
+`,
+  },
+  {
+    slug: "ai-sales-follow-up-portal",
+    title: "AI Sales & Follow-Up Portal — Built for Field Sales Reps",
+    headline: "A Centralised AI Hub for Field Sales: Follow-Ups, LinkedIn Content, and Objection Handling — All from Your Phone",
+    excerpt:
+      "A B2B sales team operating in industrial sectors was losing context between client visits, sending generic follow-ups too late, and leaving valuable field insight unused. Kovil AI built a mobile-first AI portal with three integrated capabilities: a per-client AI assistant for personalised follow-ups, a voice-to-LinkedIn content engine, and an AI-enhanced objection response database.",
+    service: "Outcome-Based AI Project",
+    industry: "Sales / B2B",
+    clientType: "B2B Field Sales Team (Industrial Sector)",
+    timeline: "6 weeks",
+    teamSize: "2 engineers",
+    published: "May 2026",
+    metrics: [
+      { value: "3×", label: "Faster follow-up emails sent", sublabel: "From days to within the hour" },
+      { value: "60s", label: "Voice memo to LinkedIn post", sublabel: "Transcribed & drafted automatically" },
+      { value: "100%", label: "Client context preserved", sublabel: "Per-workspace relationship memory" },
+      { value: "Mobile-first", label: "Voice across all tools", sublabel: "No laptop required" },
+    ],
+    techStack: [
+      { name: "Next.js 15", color: "bg-slate-800" },
+      { name: "TypeScript", color: "bg-blue-700" },
+      { name: "Supabase", color: "bg-green-700" },
+      { name: "GPT-4o / Claude", color: "bg-purple-700" },
+      { name: "OpenAI Whisper", color: "bg-green-600" },
+      { name: "LinkedIn API", color: "bg-blue-600" },
+      { name: "HubSpot Webhooks", color: "bg-orange-600" },
+    ],
+    quote:
+      "I used to send follow-ups two days after a meeting if I remembered. Now I'm sending personalised emails from the car park before I've driven away. The LinkedIn content alone has generated three inbound conversations this month.",
+    quoteAuthor: "Senior Account Executive",
+    quoteRole: "Industrial B2B Sales",
+    body: `
+<h2>The Brief</h2>
+<p>The client sells into industrial and manufacturing sectors — a relationship-driven environment where field reps spend most of their time on customer sites, not at desks. They came to Kovil AI with a specific problem: their reps were losing context between client visits, generic follow-up emails were damaging relationships they had spent months building, and valuable insight gathered in the field was never making it back into the business in a usable form.</p>
+<p>They wanted a single tool a field rep could use from their phone to handle the full post-meeting workflow — follow-up drafting, LinkedIn content creation, and objection preparation — without needing to open a laptop.</p>
+
+<h2>What We Built</h2>
+<p>Kovil AI designed and delivered a centralised AI web application — the AI Sales & Follow-Up Portal — with three interconnected capabilities, each solving a distinct problem the field sales team faced daily.</p>
+
+<h3>01 — Client AI Assistant</h3>
+<p>Each client account in the portal has its own AI workspace containing the full relationship history: meeting notes (typed or voice-transcribed), objections raised, quotes sent, decision-maker preferences, and deal status. When a rep needs to draft a follow-up after a meeting, they open the client workspace, describe the conversation in a few lines or dictate it by voice, and the AI drafts a personalised follow-up grounded in the complete relationship context — referencing previous conversations, the prospect's stated concerns, and the rep's own tone and style.</p>
+<p>Voice input is supported throughout the portal — reps can dictate meeting notes while driving between visits, with the transcript and AI-structured summary waiting for them at their next stop. No notes get lost, and no context gets forgotten.</p>
+
+<h3>02 — Content Generation Engine</h3>
+<p>Field reps in industrial sectors have genuine expertise that resonates with their buyer community on LinkedIn — but they lack the time and writing skill to produce polished content consistently. The Content Generation Engine solves this: a rep records a 60-second voice memo from the field describing a customer problem they solved, a product insight, or an industry observation. The system transcribes it using Whisper and generates 2–3 polished LinkedIn posts optimised for industrial decision-maker audiences, with scheduling and direct publishing via the LinkedIn API.</p>
+<p>Posts are generated in the rep's own voice — grounded in their words from the voice memo — not generic corporate copy. This produces content that performs because it is authentic.</p>
+
+<h3>03 — Objection Response Database</h3>
+<p>The portal includes a searchable AI-enhanced library of proven objection responses, built from the client's historical deal data and sales team institutional knowledge. Responses are categorised by objection type (price, timing, incumbent vendor, internal approval process) and by format (email, verbal, text message). When a rep encounters an unfamiliar objection, they search the database and receive 2–3 proven responses, which the AI customises for the specific client context before use.</p>
+<p>The library grows with use: when a rep successfully handles a new objection type, they can add it to the database — making the entire team smarter with each deal closed.</p>
+
+<h2>Technical Architecture</h2>
+<p>The portal was built as a progressive web application — installable on iOS and Android home screens, with full voice input support across all tools. The architecture was mobile-first from day one.</p>
+<ul>
+  <li><strong>Stack:</strong> Next.js 15, TypeScript, ShadCN component library, and Tailwind CSS — optimised for mobile performance</li>
+  <li><strong>AI layer:</strong> Claude and GPT-4o for generation tasks, OpenAI Whisper for voice transcription; model selection varies by task and latency requirement</li>
+  <li><strong>Auth:</strong> Secure multi-user login with role-based access — managers can view team activity; reps see only their own client workspaces</li>
+  <li><strong>Integrations:</strong> LinkedIn API for direct post scheduling and publishing; CRM webhooks for two-way HubSpot sync; Calendly for meeting booking from within the portal</li>
+  <li><strong>Storage:</strong> Supabase for persistent per-client relationship memory — every meeting note, voice transcript, objection, and AI output is stored and fully searchable</li>
+  <li><strong>Deployment:</strong> VPS, mobile-first, with voice enabled across all tools</li>
+</ul>
+
+<h2>Results</h2>
+<p>The portal transformed how the sales team operated in the field. Reps who had previously sent follow-up emails two to three days after a meeting — or not at all — were sending personalised, context-aware follow-ups within an hour of leaving the client site, drafted on their phone during the drive.</p>
+<p>LinkedIn posting, which had previously happened monthly at best, became a weekly habit because the effort dropped from 45 minutes to under 5 minutes per post. The AI-generated posts — grounded in real field observations — generated more engagement than the polished but generic content the marketing team had been pushing.</p>
+<p>One senior AE described it as: "I used to send follow-ups two days after a meeting if I remembered. Now I am sending personalised emails from the car park before I have driven away. The LinkedIn content alone has generated three inbound conversations this month."</p>
+`,
+  },
+  {
+    slug: "geo-monitoring-platform",
+    title: "GEO Monitoring Platform — Brand Visibility in AI-Generated Answers",
+    headline: "GEO Monitoring Platform: Track Whether Your Brand Appears in AI Answers Across ChatGPT, Gemini, and Beyond",
+    excerpt:
+      "A digital marketing agency had no systematic way to track whether their clients' brands appeared in AI-generated answers from ChatGPT, Gemini, and Perplexity. Kovil AI built a GEO monitoring platform that executes 50 AI calls per scheduled run across multiple LLMs, detects domain mentions, stores citation URLs, tracks visibility trends over time, and runs on a fully automated schedule.",
+    service: "Outcome-Based AI Project",
+    industry: "SaaS / MarTech",
+    clientType: "Digital Marketing Agency",
+    timeline: "5 weeks",
+    teamSize: "2 engineers",
+    published: "April 2026",
+    metrics: [
+      { value: "50 AI calls", label: "Per scheduled run", sublabel: "Across web + non-web LLMs" },
+      { value: "5×5", label: "Keyword-query matrix", sublabel: "25 tracked queries per client" },
+      { value: "4 LLMs", label: "Monitored simultaneously", sublabel: "ChatGPT, Gemini, Perplexity, Claude" },
+      { value: "Zero effort", label: "After initial setup", sublabel: "Fully automated scheduling" },
+    ],
+    techStack: [
+      { name: "Next.js", color: "bg-slate-800" },
+      { name: "Python / FastAPI", color: "bg-blue-700" },
+      { name: "OpenAI API", color: "bg-green-700" },
+      { name: "Perplexity API", color: "bg-teal-600" },
+      { name: "Supabase", color: "bg-green-600" },
+      { name: "Playwright", color: "bg-slate-600" },
+      { name: "Cron / n8n", color: "bg-orange-600" },
+    ],
+    quote:
+      "We could see our clients ranking on page one of Google but disappearing entirely from AI answers. The GEO platform turned that into a measurable, trackable metric — and it became the foundation of an entirely new service line for the agency.",
+    quoteAuthor: "Director of Strategy",
+    quoteRole: "Digital Marketing Agency",
+    body: `
+<h2>The Context</h2>
+<p>Generative Engine Optimisation — GEO — has emerged as a critical discipline alongside traditional SEO. As AI-powered answers from ChatGPT, Perplexity, Google AI Overviews, and Gemini answer more search queries directly, whether a brand appears in those answers has become a real commercial concern for marketing teams. Brands with strong organic search rankings are finding they have little or no visibility in AI-generated responses to the same queries — and vice versa.</p>
+<p>The client is a digital marketing agency managing brand visibility for a portfolio of B2B clients. They had noticed several clients' competitors appearing consistently in AI-generated answers for high-intent industry queries — but had no systematic way to track this visibility, measure changes over time, or attribute appearances to specific content or citation sources. They approached Kovil AI to build a monitoring platform that could answer a commercially important question: is our brand appearing in the AI answers that matter for our clients' target queries?</p>
+
+<h2>What the Platform Does</h2>
+<p>The GEO Monitoring Platform tracks brand visibility across AI-generated answers from multiple LLMs, using a configurable keyword and query matrix that each client manages independently.</p>
+
+<h3>Keyword & Query Engine</h3>
+<p>Each monitored brand can configure up to 5 keywords, each with up to 5 distinct query formulations — creating a matrix of up to 25 tracked queries per client. Keywords represent core topics (e.g. "project management software") while queries represent specific questions an AI user might ask (e.g. "what is the best project management software for remote teams?"). Each query can be individually enabled or disabled, and run frequency is configurable per client account.</p>
+
+<h3>AI Run Engine</h3>
+<p>Each scheduled run executes up to 50 AI calls in parallel — querying multiple LLMs across the full query matrix. The platform covers both web-browsing models (where the AI cites live sources) and non-web models (where answers are drawn from training data). Calls are batched to stay within API rate limits, with retry logic for failed calls and structured parsing of every response to extract domain mentions and citation URLs.</p>
+
+<h3>Visibility Detection</h3>
+<p>For each AI response, the platform detects whether the client's domain appears — as a direct citation, a named brand mention, or a URL reference in the answer. Detection uses both exact and fuzzy matching to handle variations in how AI models reference brands. Every mention is stored with full context: the query, the model, the position of the mention, and the cited URL if present.</p>
+
+<h3>Trend Dashboard</h3>
+<p>The dashboard gives the agency's team — and, via a white-labelled view, their clients — a time-series view of visibility trends per keyword and per LLM. Key metrics include mention rate (percentage of runs that detected a mention), first-seen and last-seen dates per query, source breakdown (which URLs are cited when the brand appears), and a side-by-side comparison against up to two configured competitors.</p>
+
+<h3>Scheduled Runs</h3>
+<p>Runs can be triggered manually or scheduled at daily or weekly intervals per client. Scheduled runs execute automatically — Slack and email notifications are sent when a run completes, with a summary of visibility changes since the last run. Zero human effort is required after initial setup.</p>
+
+<h2>How It Works</h2>
+<ol>
+  <li><strong>Define:</strong> Configure the client's website, up to 5 keywords, up to 5 queries per keyword, and 2 competitors to benchmark against</li>
+  <li><strong>Run:</strong> The run engine sends all configured queries to the selected LLMs simultaneously — 50 AI calls per full run</li>
+  <li><strong>Detect:</strong> Every response is parsed, domain appearances are detected, and mention data is recorded with full context including cited URLs</li>
+  <li><strong>Analyse:</strong> The dashboard surfaces visibility trends, source breakdowns, and competitor comparisons in a clean, shareable view</li>
+  <li><strong>Repeat:</strong> Scheduled runs keep data current — daily for priority clients, weekly for standard accounts</li>
+</ol>
+
+<h2>Results</h2>
+<p>The platform gave the agency a capability they could not find anywhere else: systematic, repeatable tracking of AI answer visibility across multiple models, with trend data that made it possible to measure the impact of content changes on AI appearances over time.</p>
+<p>Within the first month of using the platform, the agency identified that three of their clients were appearing in fewer than 10% of monitored AI answers — despite having strong organic search rankings. This gap between SEO visibility and GEO visibility became the basis for a new service offering: GEO optimisation sprints, where targeted content changes were made and the platform was used to measure impact on AI appearances over 60-day windows.</p>
+<p>For one B2B SaaS client, a structured GEO programme increased AI answer visibility from 8% to 41% of monitored queries over 90 days. The platform made that result measurable, attributable, and demonstrable to the client — turning an emerging discipline into a quantified, repeatable service.</p>
+`,
+  },
 ];
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
