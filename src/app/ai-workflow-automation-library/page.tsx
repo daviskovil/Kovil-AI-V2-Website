@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import WorkflowLibraryPage from '@/src/pages/ai-workflow-automation-library/WorkflowLibraryPage'
 
 export const metadata: Metadata = {
@@ -136,7 +137,9 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="pt-20">
-        <WorkflowLibraryPage />
+        <Suspense fallback={null}>
+          <WorkflowLibraryPage />
+        </Suspense>
       </div>
     </>
   )

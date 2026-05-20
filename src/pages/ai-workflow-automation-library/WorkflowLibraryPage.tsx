@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { X, ArrowRight, Clock, ChevronRight, Zap, ExternalLink } from 'lucide-react'
 import { openCalendly } from '../../lib/calendly'
 
@@ -1088,8 +1089,24 @@ function WorkflowDiagram({ nodes, nodeEmojis, large = false }: { nodes: string[]
 // ── Page ─────────────────────────────────────────────────────────────────────
 
 export default function WorkflowLibraryPage() {
-  const [activeIndustry, setActiveIndustry] = useState('Ad & Marketing')
+  const searchParams = useSearchParams()
+  const router = useRouter()
+
+  // Seed the active tab from the URL ?tab= param so back-navigation restores the correct tab
+  const [activeIndustry, setActiveIndustry] = useState(() => {
+    const param = searchParams?.get('tab') ?? null
+    return param && industries.includes(param) ? param : 'Ad & Marketing'
+  })
   const [selectedWorkflow, setSelectedWorkflow] = useState<Workflow | null>(null)
+
+  // Keep URL in sync when tab changes (replace, not push — tab changes aren't history entries)
+  function handleTabChange(ind: string) {
+    setActiveIndustry(ind)
+    router.replace(
+      `/ai-workflow-automation-library?tab=${encodeURIComponent(ind)}`,
+      { scroll: false }
+    )
+  }
 
   const filtered = workflows.filter(w => w.industry === activeIndustry)
 
@@ -1186,7 +1203,7 @@ export default function WorkflowLibraryPage() {
             {industries.map(ind => (
               <button
                 key={ind}
-                onClick={() => setActiveIndustry(ind)}
+                onClick={() => handleTabChange(ind)}
                 className={`flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-200 font-display ${
                   activeIndustry === ind
                     ? 'bg-[#FF4F00] text-white shadow-[0_0_20px_rgba(255,79,0,0.35)]'
