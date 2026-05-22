@@ -4878,6 +4878,217 @@ export const posts: Post[] = [
 <p>For the complete picture of how drift monitoring fits within a full AI Operations practice, see <a href="/blog/what-is-ai-operations">What Is AI Operations?</a> — and for the specific challenges of keeping a production RAG system accurate over time, see the guide to <a href="/blog/building-production-rag-pipeline">building a production RAG pipeline</a>.</p>
     `,
   },
+  {
+    slug: 'reduce-ai-token-costs',
+    title: 'How to Reduce AI Token Costs by 30% Without Sacrificing Output Quality',
+    excerpt:
+      'Six months after shipping your first AI feature, the invoice arrives. Here are eight specific, immediately actionable techniques — prompt compression, semantic caching, model tiering, RAG optimisation, and more — that consistently deliver 30–70% token cost reduction in production without touching output quality.',
+    category: 'AI Engineering',
+    date: 'May 22, 2026',
+    readTime: '14 min read',
+    author: 'Kovil AI Team',
+    featured: false,
+    heroImage: '/blog-reduce-ai-token-costs.jpg',
+    faqs: [
+      {
+        q: 'What is a token in AI and why does it cost money?',
+        a: 'A token is roughly 3–4 characters of text. Every word you send to an LLM API and every word it generates is charged as tokens. OpenAI, Anthropic, and Google all price their APIs per million tokens — typically $0.15–$15.00 per million depending on the model. Costs compound quickly when prompts include long system instructions, conversation history, and retrieved document context.',
+      },
+      {
+        q: 'How much can I realistically save on my OpenAI or Anthropic bill?',
+        a: 'Most production AI systems that have never been optimised can achieve 25–50% cost reduction through prompt compression and model tiering alone, with no infrastructure investment. Systems with high query volume benefit further from semantic caching, which eliminates 20–40% of API calls. Combined, teams regularly achieve 40–70% total token cost reduction. Kovil AI targets 20–35% reduction in 90 days as a conservative, guaranteed baseline.',
+      },
+      {
+        q: 'What is semantic caching in AI applications?',
+        a: "Semantic caching stores the AI response to a query and returns that cached response to future queries that mean the same thing, even if phrased differently. For example, 'How do I cancel?' and 'Can I stop my subscription?' both hit the same cache entry. Semantic caching uses vector embeddings and cosine similarity to detect equivalent questions. Production hit rates of 25–40% are typical after the cache warms up over 3–4 weeks.",
+      },
+      {
+        q: 'Should I switch from GPT-4o to a cheaper model to save money?',
+        a: 'Not entirely — but yes for the right tasks. The most effective approach is model tiering: route simple tasks (classification, entity extraction, FAQ lookup) to cheap models like GPT-4o-mini or Claude Haiku, and reserve premium models for complex reasoning and synthesis. In typical production applications, 50–60% of queries can be safely handled by a cheap tier, producing 35–50% overall cost reduction with under 1% quality degradation on visible outputs.',
+      },
+      {
+        q: 'How does RAG retrieval optimisation reduce token costs?',
+        a: 'RAG pipelines inject retrieved document chunks into every prompt. Unoptimised RAG systems often retrieve too many chunks, chunks that are too large, or chunks with low relevance — all of which add tokens the model ignores but you still pay for. Tuning top-k down, reducing chunk size, and adding a reranker to filter low-relevance results before they reach the LLM typically produces 15–30% reduction in RAG-related token costs while preserving or improving answer quality.',
+      },
+    ],
+    body: `
+<h2>The Engineering Tax on AI</h2>
+
+<p>Six months after shipping your first AI feature, the excitement fades and the invoice arrives. For teams using OpenAI's API, a modest production workload — a few thousand daily active users, a handful of AI-powered features — can generate $8,000–$25,000 per month in token costs before any optimisation. For LLM-heavy products like customer support bots, document analysis pipelines, or coding assistants, that number routinely climbs into six figures annually.</p>
+
+<p>The problem is structural. Most engineering teams wire up the API, ship the feature, and move on. Token costs are a secondary concern until they aren't. By then, the architecture is baked in, the prompt engineering was done once and never revisited, and the billing dashboard becomes something the CTO checks with increasing alarm.</p>
+
+<p>This guide covers eight practical levers that, applied together, reduce AI token costs by 30–70% in production systems. Each section includes specific implementation details, not vague advice. By the end you will have a concrete optimisation roadmap you can start executing this sprint.</p>
+
+<h2>Why AI Token Costs Spiral: The 5 Most Common Culprits</h2>
+
+<p>Understanding why costs grow is the first step to controlling them. In our experience managing AI systems across dozens of production deployments, five patterns account for the majority of token waste:</p>
+
+<p><strong>1. System prompts that never shrink.</strong> The system prompt gets written once, reviewed by product, legal, and security, and then never touched again. Over months it accumulates caveats, formatting instructions, persona language, edge-case handlers, and safety instructions that now span 2,000–4,000 tokens. This overhead is paid on every single API call.</p>
+
+<p><strong>2. Full conversation history in every request.</strong> Stateless API design means maintaining context is the application's responsibility. The naive solution — prepend the entire chat history to every message — means the 20th message in a conversation sends 20× the context of the first. A support bot handling 500 messages per day with average conversation depth of 15 turns sends 7.5× more tokens than one that intelligently manages context windows.</p>
+
+<p><strong>3. Using GPT-4o for everything.</strong> The flagship model is powerful and general. It is also 3–15× more expensive than lighter models for tasks that don't require it. Classifying customer intent, extracting structured data from a predictable format, or deciding which FAQ to retrieve does not require GPT-4o. Routing these tasks to GPT-4o-mini or Claude Haiku costs a fraction of the price with equivalent output.</p>
+
+<p><strong>4. Redundant retrieval in RAG pipelines.</strong> Retrieval-Augmented Generation adds retrieved document chunks to every prompt. If retrieval is not carefully tuned, you are frequently sending 3,000–5,000 token context windows full of partially relevant or outright irrelevant text. The model ignores it, but you still pay for it.</p>
+
+<p><strong>5. No caching layer whatsoever.</strong> A surprising proportion of LLM requests in production are semantically identical — the same question phrased slightly differently, the same document processed twice, the same classification task running on similar inputs. Without a caching strategy, you pay for every one of them from scratch.</p>
+
+<h2>Context Window Hygiene: What's Eating Your Tokens</h2>
+
+<p>Before optimising anything, measure. Use your LLM provider's token counting API (or the <code>tiktoken</code> library for OpenAI models) to log the exact token breakdown of every request in production. Most teams are shocked by what they find.</p>
+
+<p>A typical unoptimised production prompt breaks down as follows:</p>
+
+<ul>
+  <li><strong>System prompt:</strong> 800–3,500 tokens (often 40–60% of total)</li>
+  <li><strong>Conversation history:</strong> 500–2,000 tokens (grows with session depth)</li>
+  <li><strong>Retrieved context (RAG):</strong> 1,000–4,000 tokens</li>
+  <li><strong>Current user message:</strong> 50–200 tokens (often the smallest part)</li>
+</ul>
+
+<p>The user message — the thing that actually changes between calls — is frequently 5–10% of total token spend. The rest is static or semi-static overhead you are paying for repeatedly.</p>
+
+<p><strong>Rolling window with summarisation.</strong> Rather than appending the full conversation history, maintain the last N turns verbatim (typically 4–6 for most chat applications) and summarise older context into a compact narrative: <em>"Earlier: user confirmed they are on the Professional plan and experiencing login issues on mobile. Issue appears related to SSO configuration."</em> This reduces history from 3,000 tokens to 100–150 tokens while preserving what the model needs.</p>
+
+<p><strong>Dynamic system prompt construction.</strong> Rather than a monolithic system prompt, build it modularly. Identify which sections are always required (core persona, ~200 tokens), which are conditionally required (specific domain instructions, 400–600 tokens per domain), and which can be removed without affecting quality (edge-case handlers that almost never trigger). Render only what is needed for the current conversation context.</p>
+
+<h2>Prompt Compression Techniques (With Before/After Examples)</h2>
+
+<p>Prompt compression is the practice of conveying the same instructions to the model using fewer tokens. The gains are typically 15–30% on system prompts and are entirely free — no model change, no architecture change, no quality degradation.</p>
+
+<p><strong>Before (87 tokens):</strong></p>
+
+<pre style="background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:16px 20px;overflow-x:auto;font-size:0.85rem;color:#94a3b8;margin:20px 0;">You are a helpful and professional customer support assistant for Acme Corp. Your job is to assist customers with their questions and issues in a friendly, professional, and empathetic manner. Always be polite. Never be rude. If you don't know the answer to a question, say so and offer to escalate to a human agent. Do not make up information. Only use information you know to be factual and accurate. Format your responses clearly and concisely.</pre>
+
+<p><strong>After (41 tokens):</strong></p>
+
+<pre style="background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:16px 20px;overflow-x:auto;font-size:0.85rem;color:#94a3b8;margin:20px 0;">Customer support AI for Acme Corp. Be concise, professional, empathetic. Unknown answers: say so and offer escalation. No fabrication. Confirmed facts only.</pre>
+
+<p>The compressed version eliminates redundancy ("helpful and professional" collapses to "professional"), removes obvious negatives the model already understands ("never be rude" is implied by "professional"), and converts verbose prose into dense instructions. GPT-4o and Claude respond identically well to both versions — the verbosity adds no value.</p>
+
+<p>Specific compression techniques that work consistently:</p>
+
+<ul>
+  <li><strong>Eliminate antonyms.</strong> "Be friendly, not cold" becomes "Be friendly." The model understands the implication.</li>
+  <li><strong>Use imperative rather than descriptive.</strong> "You should always respond in English" becomes "Respond in English."</li>
+  <li><strong>Remove filler transitions.</strong> "Additionally, please note that…" gives way directly to the next instruction.</li>
+  <li><strong>Prefer lists over prose for multi-rule prompts.</strong> A 400-token paragraph of rules typically compresses to a 180-token bulleted list with equivalent behaviour.</li>
+  <li><strong>Abbreviate repeated technical terms.</strong> Define once at the top of a long prompt ("User = U, Ticket = T") and save tokens on every subsequent reference.</li>
+</ul>
+
+<p><strong>LLMLingua for document compression.</strong> Microsoft's LLMLingua (open-source) and its successor LLMLingua-2 use a small language model to identify and drop low-informativity tokens from long contexts — including retrieved documents and conversation history. On RAG context, compression rates of 4–10× are achievable with under 5% quality degradation on most benchmarks. This is particularly effective for enterprise document processing pipelines where retrieved chunks are long and contain significant boilerplate.</p>
+
+<h2>Intelligent Caching: Three Layers</h2>
+
+<p>Caching is the highest-leverage single optimisation available to most AI applications. A well-implemented cache layer can eliminate 30–50% of API calls in applications with significant query volume.</p>
+
+<p><strong>Layer 1: Exact-match cache.</strong> Hash the complete prompt (system + messages) and cache the response. On cache hit, return the cached response without an API call. Effective for FAQ bots, document processing pipelines handling similar documents repeatedly, and report generation with recurring inputs. Redis with a configurable TTL (typically 1–24 hours) is the standard implementation. If 15% of your queries are exact duplicates — a conservative estimate for most support bots — this alone reduces costs by 15%.</p>
+
+<p><strong>Layer 2: Semantic cache.</strong> Exact-match caching misses queries that are semantically identical but phrased differently: "How do I cancel my subscription?" vs "Can I cancel my account?" vs "I want to stop my plan." A semantic cache embeds incoming queries using a fast embedding model (text-embedding-3-small is sufficient), computes cosine similarity against cached query embeddings, and returns the cached response if similarity exceeds a threshold (typically 0.92–0.96 depending on required precision). Tools: GPTCache (open-source), Zep, or a custom implementation with Pinecone or pgvector. For support applications, semantic cache hit rates of 25–40% are common after the system warms up over 2–4 weeks.</p>
+
+<p><strong>Layer 3: Provider-side prefix caching.</strong> OpenAI's prompt caching (GPT-4o and o-series), Anthropic's prompt caching (Claude 3.5+), and Google's context caching (Gemini 1.5) all cache the KV state of long static prompt prefixes server-side. If your system prompt and retrieved context are identical across requests, the model only computes over the new user message portion. Anthropic charges approximately 10% of the standard input token price for cache reads — a 90% discount on the cached portion. For applications where 60–70% of the prompt is static, this alone reduces input token costs by 50–60%.</p>
+
+<p>Implementation note: to maximise prefix cache hits, structure your prompts so that all static content (system prompt, persona, tool definitions) precedes dynamic content (conversation history, retrieved context, user message). Cache providers require consistent prefixes — even a single token change invalidates the cache.</p>
+
+<h2>Model Tiering: Routing Simple Queries to Cheaper Models</h2>
+
+<p>GPT-4o costs $5.00 per million input tokens. GPT-4o-mini costs $0.15 per million — a 33× difference. Claude 3.5 Haiku costs $0.80 per million vs Claude 3.5 Sonnet at $3.00 per million — a 3.75× difference. Routing the right query to the right model tier is one of the most impactful cost optimisations available.</p>
+
+<p>The standard implementation is a two-step classifier-router:</p>
+
+<ol>
+  <li>A lightweight classifier (fine-tuned on your query corpus, or a few-shot prompt sent to a cheap model) categorises the incoming query by complexity: simple / structured / complex.</li>
+  <li>Simple queries (classification, extraction, FAQ lookup) route to the cheap tier. Complex queries (multi-step reasoning, synthesis across multiple sources, code generation) route to the premium tier.</li>
+</ol>
+
+<p>Complexity thresholds to calibrate:</p>
+
+<ul>
+  <li><strong>Simple tier:</strong> Binary classification, intent detection, entity extraction from structured input, simple Q&amp;A from retrieved context, sentiment analysis, translation.</li>
+  <li><strong>Medium tier:</strong> Multi-step Q&amp;A, summarisation of moderate-length documents, structured data generation from semi-structured input.</li>
+  <li><strong>Complex tier:</strong> Multi-document synthesis, chain-of-thought reasoning, code generation and review, novel content creation requiring judgement.</li>
+</ul>
+
+<p>In typical production applications, query distribution across these tiers is roughly 55% simple, 30% medium, 15% complex. Routing optimally rather than sending everything to the premium tier produces 40–65% cost reduction on the inference bill, with sub-1% quality degradation on outputs users actually see.</p>
+
+<p>A simpler heuristic that works as a starting point before you have classifier data: route based on token count of the incoming message. Short queries (under 50 tokens) with no explicit reasoning requests go to the cheap tier. Queries that contain reasoning signals ("explain", "compare", "write", "generate") or exceed 200 tokens go to the premium tier. This captures approximately 70% of the value of a full classifier with zero ML work.</p>
+
+<h2>RAG Retrieval Optimisation: Fetch Less, Retrieve Better</h2>
+
+<p>Retrieval-Augmented Generation systems have a predictable failure mode: when in doubt, retrieve more. A top-k of 8 instead of 4 doubles the retrieved context. Retrieving 1,000-token chunks instead of 400-token chunks nearly doubles it again. The result is prompts bloated with context the model ignores.</p>
+
+<p>Optimisations that consistently deliver 15–30% RAG token reduction:</p>
+
+<p><strong>Tune top-k down.</strong> Most teams never revisit their initial top-k setting. Run an offline evaluation on 200–500 representative queries: what is the minimum k that preserves answer quality on 95% of queries? For most knowledge base applications, k=3–5 is sufficient where teams originally set k=8–10.</p>
+
+<p><strong>Reranking before truncation.</strong> Rather than sending k=10 chunks to the LLM, retrieve k=20 candidates, apply a cross-encoder reranker (BGE-Reranker, Cohere Rerank, or Colbert), and pass only the top 3–4 reranked results. You retrieve more broadly (better recall) but send less to the model (lower cost). This is the retrieval optimisation with the best quality-to-cost ratio.</p>
+
+<p><strong>Smaller chunks with denser retrieval.</strong> Retrieve smaller, more precise chunks (200–400 tokens) rather than large ones (800–1,200 tokens). A 300-token chunk that directly answers the question is worth more than a 1,000-token chunk that happens to contain the answer buried in boilerplate.</p>
+
+<p><strong>Query classification before retrieval.</strong> Not every query needs RAG. Build a lightweight query classifier that skips retrieval entirely for queries answerable from the system prompt alone. In customer support applications, 20–30% of queries are answerable without any knowledge base lookup — and skipping retrieval for those saves both latency and tokens.</p>
+
+<p>For the full architecture decisions behind retrieval systems, see <a href="/blog/rag-vs-fine-tuning">RAG vs Fine-Tuning: Which Should Your Company Choose?</a></p>
+
+<h2>Batching and Async Patterns for Non-Real-Time Workloads</h2>
+
+<p>Not all AI workloads need real-time responses. Document processing, report generation, batch classification, nightly analysis jobs, and email drafting pipelines can all tolerate latency. For these workloads, batching is the simplest and most underutilised cost lever available.</p>
+
+<p><strong>OpenAI Batch API.</strong> OpenAI's Batch API processes requests asynchronously within 24 hours at 50% of the standard API price. For any non-real-time workload — processing last night's support tickets, generating weekly reports, classifying a backlog of documents — this is a straightforward 50% cost reduction with zero quality tradeoff. The API accepts up to 50,000 requests per batch.</p>
+
+<p><strong>Anthropic Message Batches API.</strong> Claude's batch processing similarly offers 50% discounts for asynchronous processing. Both providers return results via polling or webhook, making integration straightforward for pipeline-style workloads.</p>
+
+<p><strong>Concurrency pooling for latency-tolerant real-time work.</strong> For workloads that need responses within 5–30 seconds rather than immediately, accumulate requests for a short window (500ms–2s), process as a batch, and fan out results. This amortises the overhead of multiple small API calls into fewer, larger ones.</p>
+
+<p>Audit your workloads for batch eligibility. Any non-real-time pipeline not using the Batch API is leaving 50% cost savings unconditionally on the table.</p>
+
+<h2>Measuring ROI on Cost Optimisation: The Metrics That Matter</h2>
+
+<p>Running cost optimisations without measurement is guesswork. These four metrics form the minimum viable observability stack for any AI cost programme:</p>
+
+<p><strong>Cost per successful output (CPSO).</strong> Divide total LLM spend by the number of successful, non-errored outputs that reached users. This normalises for volume changes and surfaces whether optimisations are saving money or just shifting it. A 30% reduction in token spend that increases error rates by 20% is not a win — CPSO exposes this immediately.</p>
+
+<p><strong>Cache hit rate (CHR).</strong> Track separately for exact-match and semantic cache layers. A warming semantic cache should reach 25–40% hit rates within 3–4 weeks of production traffic. If your CHR plateaus below 15%, your query diversity is too high for caching to be effective and you should focus effort on model tiering instead.</p>
+
+<p><strong>Tier distribution.</strong> If you have implemented model tiering, track the percentage of queries routed to each tier. If 80% of queries are reaching your premium tier, either your classifier is miscalibrated or your query distribution is genuinely complex — both are worth investigating.</p>
+
+<p><strong>Token efficiency ratio (TER).</strong> Output tokens divided by input tokens. A ratio below 0.1 — ten input tokens spent for each output token — indicates your prompts are disproportionately large relative to what the model is producing. This is the primary trigger for prompt compression work.</p>
+
+<p>Instrument these metrics from day one. Most teams instrument response time and error rate but not token spend — the cost optimisation equivalent of flying blind. A simple <code>token_usage</code> log entry on every API call, tagged with query type, model tier, and cache hit status, gives you the data to run this optimisation programme continuously.</p>
+
+<div style="background:#0f172a;border:1px solid #1e293b;border-radius:12px;padding:28px 32px;margin:40px 0;">
+<p style="font-size:0.75rem;font-weight:700;color:#e5650b;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 8px 0;">Kovil AI · Operate Tier</p>
+<p style="font-size:1.25rem;font-weight:700;color:#ffffff;margin:0 0 12px 0;">Our Operate tier delivers 20–35% token cost reduction in 90 days</p>
+<p style="color:#94a3b8;margin:0 0 20px 0;font-size:0.95rem;">We audit your current token spend, implement prompt caching, model tiering, and RAG optimisation as a managed service. Most clients see ROI within the first month. No architecture overhaul required — we optimise around your existing stack.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;">
+<a href="/pricing" style="display:inline-block;background:#e5650b;color:#ffffff;font-weight:600;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;">See Operate Pricing →</a>
+<a href="/contact" style="display:inline-block;background:transparent;color:#e5650b;font-weight:600;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;border:1px solid #e5650b30;">Get a Free Token Audit</a>
+</div>
+</div>
+
+<h2>Your Optimisation Roadmap</h2>
+
+<p>Applied in sequence, these eight levers compound. Real-world production systems routinely achieve 40–70% total token cost reduction. The sequencing matters:</p>
+
+<p><strong>Week 1 — Measurement.</strong> Instrument CPSO, TER, and raw token counts by prompt section. You cannot optimise what you cannot see.</p>
+
+<p><strong>Weeks 1–2 — Prompt compression.</strong> Audit your system prompts, compress them, run evals. Typical gain: 15–25% on system prompt tokens. Zero infrastructure cost.</p>
+
+<p><strong>Weeks 2–3 — Provider-side prefix caching.</strong> Enable prompt caching on Anthropic or OpenAI. Structure your prompt so the static prefix is as long as possible. This is a configuration change, not an engineering project. Typical gain: 40–60% on input tokens for the static prefix.</p>
+
+<p><strong>Weeks 3–6 — Model tiering.</strong> Implement the token-count heuristic first, then graduate to a trained classifier as you accumulate data. Typical gain: 30–50% on inference costs for the tiered workload.</p>
+
+<p><strong>Weeks 4–8 — Semantic caching.</strong> Deploy GPTCache or a custom semantic cache. Let it warm for 2–4 weeks before evaluating hit rates. Typical gain: 20–40% of API calls eliminated.</p>
+
+<p><strong>Weeks 6–10 — RAG optimisation.</strong> Run top-k tuning evaluation, implement reranking, reduce chunk sizes. Typical gain: 15–30% on RAG token spend.</p>
+
+<p><strong>Ongoing — Batching.</strong> Audit workloads for batch eligibility. Any non-real-time pipeline not using the Batch API is leaving 50% savings unconditionally on the table.</p>
+
+<p>For the broader context of how cost optimisation fits within a full AI Operations practice — including drift monitoring, SLA management, and production reliability — see <a href="/blog/what-is-ai-operations">What Is AI Operations?</a> And for the specific engineering trade-offs between retrieval architectures, see <a href="/blog/how-to-reduce-llm-api-costs">How to Reduce LLM API Costs</a>, which covers the infrastructure and provider-level levers in depth.</p>
+
+<p>Token cost optimisation is not a one-time project. It is a continuous discipline — the same discipline that mature engineering teams apply to cloud infrastructure costs and database query performance. The teams that treat it as such consistently hold their AI costs flat while scaling usage, which is the only sustainable position as AI features become load-bearing in production.</p>
+    `,
+  },
 ];
 
 export function getPost(slug: string): Post | undefined {

@@ -45,6 +45,7 @@ Disallow: /?s=
 Disallow: /?p=
 Disallow: /?cat=
 Disallow: /?tag=
+Disallow: /?tab=
 Disallow: /?attachment_id=
 Disallow: /?m=
 Disallow: /?paged=
