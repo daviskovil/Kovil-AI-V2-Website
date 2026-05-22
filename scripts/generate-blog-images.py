@@ -2633,6 +2633,113 @@ def make_reduce_ai_token_costs_image():
     print(f"Saved: {out}")
 
 
+def make_og_image():
+    """Global OG image — 1200×630, used as fallback for all non-blog pages."""
+    W_OG, H_OG = 1200, 630
+    img = Image.new("RGBA", (W_OG, H_OG), (8, 8, 14))
+    draw = ImageDraw.Draw(img)
+
+    # Gradient bg
+    for x in range(W_OG):
+        t = x / W_OG
+        r = int(8  + (20 -  8) * t)
+        g = int(8  + (12 -  8) * t)
+        b = int(14 + (26 - 14) * t)
+        draw.line([(x, 0), (x, H_OG)], fill=(r, g, b))
+
+    # Glows
+    glow = Image.new("RGBA", (W_OG, H_OG), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    for i in range(30, 0, -1):
+        r = int(360 * i / 30)
+        a = int(42 * (1 - i / 30) ** 0.5)
+        gd.ellipse([1060 - r, 80 - r, 1060 + r, 80 + r], fill=(*ORANGE, a))
+    img.paste(glow, mask=glow)
+
+    glow2 = Image.new("RGBA", (W_OG, H_OG), (0, 0, 0, 0))
+    gd2 = ImageDraw.Draw(glow2)
+    for i in range(30, 0, -1):
+        r = int(200 * i / 30)
+        a = int(24 * (1 - i / 30) ** 0.5)
+        gd2.ellipse([0 - r, 540 - r, 0 + r, 540 + r], fill=(16, 185, 129, a))
+    img.paste(glow2, mask=glow2)
+
+    draw = ImageDraw.Draw(img)
+
+    # Dot grid
+    for x in range(0, W_OG, 40):
+        for y in range(0, H_OG, 40):
+            draw.ellipse([x - 1, y - 1, x + 1, y + 1], fill=(255, 255, 255, 14))
+
+    # ── KOVIL.ai wordmark ─────────────────────────────────────────────────────
+    logo_font = ImageFont.truetype(FONT_BOLD, 26)
+    draw.text((56, 46), "KOVIL.ai", font=logo_font, fill=WHITE)
+    lw = draw.textbbox((0, 0), "KOVIL.ai", font=logo_font)[2]
+    draw.rectangle([56, 78, 56 + lw, 82], fill=ORANGE)
+
+    # ── Main headline ─────────────────────────────────────────────────────────
+    h1_font  = ImageFont.truetype(FONT_BOLD,    66)
+    sub_font = ImageFont.truetype(FONT_REGULAR, 20)
+
+    draw.text((56, 152), "We Build & Manage",       font=h1_font, fill=WHITE)
+    draw.text((56, 236), "AI Agents for Business.", font=h1_font, fill=ORANGE)
+
+    # Sub-tagline
+    draw.text((56, 334), "Design  ·  Build  ·  Operate  ·  Scale",
+              font=sub_font, fill=GREY_DIM)
+
+    # ── Bottom stat pills ─────────────────────────────────────────────────────
+    stats     = ["50+ AI Systems Built", "12-Week Delivery", "Fixed-Price. No Surprises."]
+    pill_font = ImageFont.truetype(FONT_BOLD, 14)
+    px, py    = 56, H_OG - 68
+    for stat in stats:
+        pw = draw.textbbox((0, 0), stat, font=pill_font)[2] + 28
+        ph = 34
+        pill = Image.new("RGBA", (pw, ph), (0, 0, 0, 0))
+        pc = ImageDraw.Draw(pill)
+        pc.rounded_rectangle([0, 0, pw, ph], radius=17, fill=(*ORANGE, 28))
+        pc.rounded_rectangle([0, 0, pw, ph], radius=17, outline=(*ORANGE, 80), width=1)
+        img.paste(pill, (px, py), mask=pill)
+        draw = ImageDraw.Draw(img)
+        draw.text((px + pw // 2, py + ph // 2), stat,
+                  font=pill_font, fill=ORANGE, anchor="mm")
+        px += pw + 12
+
+    # ── Right side: 3 service cards ───────────────────────────────────────────
+    services = [
+        ("AI Agent Development",      "Custom multi-agent pipelines",      (59, 130, 246)),
+        ("LLM Cost Optimisation",     "20–35% token reduction in 90 days", (16, 185, 129)),
+        ("AI Operations & Monitoring","Drift detection. SLA enforcement.",  ORANGE),
+    ]
+    card_w, card_h, gap = 390, 118, 16
+    sx = W_OG - card_w - 52
+    total_h = len(services) * card_h + (len(services) - 1) * gap
+    sy = (H_OG - total_h) // 2
+
+    name_f = ImageFont.truetype(FONT_BOLD,    16)
+    desc_f = ImageFont.truetype(FONT_REGULAR, 13)
+
+    for i, (name, desc, col) in enumerate(services):
+        cy = sy + i * (card_h + gap)
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12, fill=(*col, 16))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12, outline=(*col, 60), width=1)
+        cd.rounded_rectangle([0, 14, 4, card_h - 14], radius=2, fill=col)
+        img.paste(card, (sx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.text((sx + 18, cy + 26), name, font=name_f, fill=WHITE)
+        draw.text((sx + 18, cy + 54), desc, font=desc_f, fill=GREY_DIM)
+
+    # Orange bar
+    draw.rectangle([0, H_OG - 4, W_OG, H_OG], fill=ORANGE)
+
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "og-image.png")
+    img.save(out, "PNG", optimize=True)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -2658,4 +2765,5 @@ if __name__ == "__main__":
     make_ecommerce_image()
     make_openai_vs_anthropic_image()
     make_reduce_ai_token_costs_image()
+    make_og_image()
     print("Done.")
