@@ -2783,14 +2783,16 @@ def make_og_image():
     draw.rectangle([56, 78, 56 + lw, 82], fill=ORANGE)
 
     # ── Main headline ─────────────────────────────────────────────────────────
-    h1_font  = ImageFont.truetype(FONT_BOLD,    66)
-    sub_font = ImageFont.truetype(FONT_REGULAR, 20)
+    h1_font   = ImageFont.truetype(FONT_BOLD,    64)
+    qual_font = ImageFont.truetype(FONT_REGULAR, 24)
+    sub_font  = ImageFont.truetype(FONT_REGULAR, 20)
 
-    draw.text((56, 152), "We Build & Manage",       font=h1_font, fill=WHITE)
-    draw.text((56, 236), "AI Agents for Business.", font=h1_font, fill=ORANGE)
+    draw.text((56, 148), "We Build & Manage",     font=h1_font,   fill=WHITE)
+    draw.text((56, 220), "AI Agents",             font=h1_font,   fill=ORANGE)
+    draw.text((56, 298), "for Your Business.",    font=qual_font, fill=GREY_LT)
 
     # Sub-tagline
-    draw.text((56, 334), "Design  ·  Build  ·  Operate  ·  Scale",
+    draw.text((56, 338), "Design  ·  Build  ·  Operate  ·  Scale",
               font=sub_font, fill=GREY_DIM)
 
     # ── Bottom stat pills ─────────────────────────────────────────────────────
