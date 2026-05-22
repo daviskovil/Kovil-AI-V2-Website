@@ -2633,6 +2633,111 @@ def make_reduce_ai_token_costs_image():
     print(f"Saved: {out}")
 
 
+def make_case_studies_og_image():
+    """Shared OG image for all case study pages — 1200×675."""
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    gradient_bg(draw, (8, 8, 20), (16, 10, 28))
+
+    draw_circle_glow(img, 1080,  80, 340, ORANGE,          alpha_max=38)
+    draw_circle_glow(img,   60, 560, 220, (16, 185, 129),  alpha_max=28)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=14)
+
+    # ── KOVIL.ai wordmark ──────────────────────────────────────────────────
+    logo_font = ImageFont.truetype(FONT_BOLD, 24)
+    draw.text((56, 46), "KOVIL.ai", font=logo_font, fill=WHITE)
+    lw = draw.textbbox((0, 0), "KOVIL.ai", font=logo_font)[2]
+    draw.rectangle([56, 76, 56 + lw, 79], fill=ORANGE)
+
+    # ── "CASE STUDY" pill ─────────────────────────────────────────────────
+    pill_font = ImageFont.truetype(FONT_BOLD, 12)
+    pill_text = "CASE STUDY"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 22
+    draw.rounded_rectangle([56, 104, 56 + pw, 104 + 28], radius=14,
+                            fill=(*ORANGE, 45))
+    draw.text((56 + pw // 2, 118), pill_text, font=pill_font,
+              fill=ORANGE, anchor="mm")
+
+    # ── Headline ──────────────────────────────────────────────────────────
+    h1_font  = ImageFont.truetype(FONT_BOLD,    60)
+    sub_font = ImageFont.truetype(FONT_REGULAR, 17)
+
+    draw.text((56, 150), "Real AI Builds.", font=h1_font, fill=WHITE)
+    draw.text((56, 218), "Real Results.",   font=h1_font, fill=ORANGE)
+
+    draw.text((56, 302), "Production AI across 10+ industries.", font=sub_font, fill=GREY_DIM)
+    draw.text((56, 326), "From MVP sprints to multi-agent pipelines —", font=sub_font, fill=GREY_DIM)
+    draw.text((56, 350), "see what our engineers have shipped.",  font=sub_font, fill=GREY_DIM)
+
+    # ── Industry chips row ────────────────────────────────────────────────
+    industries = ["LegalTech", "FinTech", "HealthTech", "Logistics", "SaaS", "+ more"]
+    chip_font  = ImageFont.truetype(FONT_BOLD, 12)
+    chip_col   = (180, 180, 200)
+    cx, cy = 56, 430
+    for ind in industries:
+        cw = draw.textbbox((0, 0), ind, font=chip_font)[2] + 20
+        ch = 28
+        chip = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+        cc = ImageDraw.Draw(chip)
+        cc.rounded_rectangle([0, 0, cw, ch], radius=14,
+                              fill=(255, 255, 255, 12))
+        cc.rounded_rectangle([0, 0, cw, ch], radius=14,
+                              outline=(255, 255, 255, 30), width=1)
+        img.paste(chip, (cx, cy), mask=chip)
+        draw = ImageDraw.Draw(img)
+        draw.text((cx + cw // 2, cy + ch // 2), ind,
+                  font=chip_font, fill=chip_col, anchor="mm")
+        cx += cw + 8
+
+    # ── Right: 2×2 metric cards ───────────────────────────────────────────
+    metrics_data = [
+        ("$2M",     "Seed round closed",      "21-day MVP build · Logistics",   (16, 185, 129)),
+        ("78%",     "Faster contracts",        "Zero missed clauses · LegalTech",(59, 130, 246)),
+        ("18 Days", "Dashboard shipped",       "Under budget, on-spec · FinTech",(167, 139, 250)),
+        ("70%",     "Support deflected",       "No human needed · Retail AI",    (251, 146, 60)),
+    ]
+
+    card_w, card_h = 238, 220
+    gap_x,  gap_y  = 14, 14
+    total_w = 2 * card_w + gap_x
+    sx = W - total_w - 52
+    total_h = 2 * card_h + gap_y
+    sy = (H - total_h) // 2
+
+    val_f  = ImageFont.truetype(FONT_BOLD,    44)
+    name_f = ImageFont.truetype(FONT_BOLD,    15)
+    det_f  = ImageFont.truetype(FONT_REGULAR, 12)
+
+    for i, (val, name, detail, col) in enumerate(metrics_data):
+        col_i = i % 2
+        row_i = i // 2
+        cx2 = sx + col_i * (card_w + gap_x)
+        cy2 = sy + row_i * (card_h + gap_y)
+
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=14,
+                              fill=(*col, 18))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=14,
+                              outline=(*col, 70), width=1)
+        cd.rounded_rectangle([0, 16, 4, card_h - 16], radius=2, fill=col)
+        img.paste(card, (cx2, cy2), mask=card)
+        draw = ImageDraw.Draw(img)
+
+        draw.text((cx2 + 18, cy2 + 18), val,    font=val_f,  fill=col)
+        draw.text((cx2 + 18, cy2 + 76), name,   font=name_f, fill=WHITE)
+        draw.text((cx2 + 18, cy2 + 102), detail, font=det_f,  fill=GREY_DIM)
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "og-case-studies.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 def make_og_image():
     """Global OG image — 1200×630, used as fallback for all non-blog pages."""
     W_OG, H_OG = 1200, 630

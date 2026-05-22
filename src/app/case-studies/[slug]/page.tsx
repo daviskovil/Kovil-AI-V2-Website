@@ -15,6 +15,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: cs.headline,
     description: cs.excerpt,
     alternates: { canonical: `https://kovil.ai/case-studies/${cs.slug}` },
+    openGraph: {
+      type: 'article',
+      title: cs.headline,
+      description: cs.excerpt,
+      url: `https://kovil.ai/case-studies/${cs.slug}`,
+      siteName: 'Kovil AI',
+      images: [{ url: 'https://kovil.ai/og-case-studies.jpg', width: 1200, height: 675, alt: cs.headline }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: cs.headline,
+      description: cs.excerpt,
+      images: ['https://kovil.ai/og-case-studies.jpg'],
+    },
   }
 }
 

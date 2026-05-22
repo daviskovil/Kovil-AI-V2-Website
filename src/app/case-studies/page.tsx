@@ -11,13 +11,13 @@ export const metadata: Metadata = {
     description: 'Real AI engineering outcomes across FinTech, HealthTech, Logistics, SaaS and more. See what Kovil AI has shipped.',
     url: 'https://kovil.ai/case-studies',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Kovil AI Case Studies' }],
+    images: [{ url: 'https://kovil.ai/og-case-studies.jpg', width: 1200, height: 675, alt: 'Kovil AI Case Studies' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'AI Engineering Case Studies — Real Work, Real Results | Kovil AI',
     description: 'Real AI engineering outcomes across FinTech, HealthTech, Logistics, SaaS and more. See what Kovil AI has shipped.',
-    images: ['https://kovil.ai/og-image.png'],
+    images: ['https://kovil.ai/og-case-studies.jpg'],
   },
 }
 
