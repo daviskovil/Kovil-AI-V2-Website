@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     description: 'Vetted Tier-1 LLM engineers embedded in your team in 48 hours. RAG systems, fine-tuning, AI agents, LLMOps — sprint-delivered, Engagement Manager audited.',
     url: 'https://kovil.ai/hire/llm-engineers',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Hire an LLM Engineer — Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-hire.jpg', width: 1200, height: 630, alt: 'Hire an LLM Engineer — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hire an LLM Engineer — Matched in 48 Hours | Kovil AI',
     description: 'Vetted Tier-1 LLM engineers embedded in your team in 48 hours. RAG systems, fine-tuning, AI agents — sprint-delivered, Engagement Manager audited.',
-    images: ['https://kovil.ai/og-image.png'],
+    images: ['https://kovil.ai/og-hire.jpg'],
   },
 }
 
@@ -39,7 +39,7 @@ const serviceSchema = {
     '@type': 'Organization',
     name: 'Kovil AI',
     url: 'https://kovil.ai',
-    logo: 'https://kovil.ai/og-image.png',
+    logo: 'https://kovil.ai/kovil-logo-symbol-orange.webp',
     contactPoint: { '@type': 'ContactPoint', contactType: 'Sales', url: 'https://kovil.ai/contact' },
   },
   serviceType: 'LLM Engineering',

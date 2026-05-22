@@ -2847,6 +2847,424 @@ def make_og_image():
     print(f"Saved: {out}")
 
 
+def make_agentforce_og():
+    """OG image for Agentforce hub — 1200×630. Salesforce blue accent."""
+    W_OG, H_OG = 1200, 630
+    SF_BLUE = (0, 161, 224)   # Salesforce brand blue
+    SF_TEAL = (0, 186, 173)   # secondary teal
+
+    img = Image.new("RGBA", (W_OG, H_OG), (6, 8, 16))
+    draw = ImageDraw.Draw(img)
+
+    # Gradient bg — dark navy → dark blue-navy
+    for x in range(W_OG):
+        t = x / W_OG
+        r = int(6  + (10 -  6) * t)
+        g = int(8  + (14 -  8) * t)
+        b = int(16 + (30 - 16) * t)
+        draw.line([(x, 0), (x, H_OG)], fill=(r, g, b))
+
+    # Glows
+    glow = Image.new("RGBA", (W_OG, H_OG), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    for i in range(30, 0, -1):
+        r2 = int(340 * i / 30)
+        a = int(44 * (1 - i / 30) ** 0.5)
+        gd.ellipse([1050 - r2, 70 - r2, 1050 + r2, 70 + r2], fill=(*SF_BLUE, a))
+    img.paste(glow, mask=glow)
+    glow2 = Image.new("RGBA", (W_OG, H_OG), (0, 0, 0, 0))
+    gd2 = ImageDraw.Draw(glow2)
+    for i in range(30, 0, -1):
+        r2 = int(200 * i / 30)
+        a = int(28 * (1 - i / 30) ** 0.5)
+        gd2.ellipse([-r2, 560 - r2, r2, 560 + r2], fill=(*SF_TEAL, a))
+    img.paste(glow2, mask=glow2)
+
+    draw = ImageDraw.Draw(img)
+    for x in range(0, W_OG, 40):
+        for y in range(0, H_OG, 40):
+            draw.ellipse([x - 1, y - 1, x + 1, y + 1], fill=(255, 255, 255, 14))
+
+    # Wordmark
+    logo_font = ImageFont.truetype(FONT_BOLD, 26)
+    draw.text((56, 46), "KOVIL.ai", font=logo_font, fill=WHITE)
+    lw = draw.textbbox((0, 0), "KOVIL.ai", font=logo_font)[2]
+    draw.rectangle([56, 78, 56 + lw, 82], fill=ORANGE)
+
+    # Platform pill
+    pill_font = ImageFont.truetype(FONT_BOLD, 12)
+    pill_text = "SALESFORCE AGENTFORCE PARTNER"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 24
+    draw.rounded_rectangle([56, 100, 56 + pw, 128], radius=14, fill=(*SF_BLUE, 35))
+    draw.rounded_rectangle([56, 100, 56 + pw, 128], radius=14, outline=(*SF_BLUE, 80), width=1)
+    draw.text((56 + pw // 2, 114), pill_text, font=pill_font, fill=SF_BLUE, anchor="mm")
+
+    # Headline
+    h1_font  = ImageFont.truetype(FONT_BOLD,    58)
+    qual_font = ImageFont.truetype(FONT_REGULAR, 22)
+    sub_font = ImageFont.truetype(FONT_REGULAR, 18)
+    draw.text((56, 146), "Agentforce",          font=h1_font,  fill=WHITE)
+    draw.text((56, 212), "Implementation",      font=h1_font,  fill=SF_BLUE)
+    draw.text((56, 278), "Partner.",            font=h1_font,  fill=WHITE)
+    draw.text((56, 354), "Design · Build · Deploy AI agents", font=qual_font, fill=GREY_LT)
+    draw.text((56, 382), "in Salesforce — fixed-price sprints.", font=sub_font, fill=GREY_DIM)
+
+    # Stat pills row
+    pills = ["2-Week Pilot", "Fixed Price", "NY & Global"]
+    pf = ImageFont.truetype(FONT_BOLD, 13)
+    px, py = 56, 448
+    for pt in pills:
+        ptw = draw.textbbox((0, 0), pt, font=pf)[2] + 26
+        pp = Image.new("RGBA", (ptw, 30), (0, 0, 0, 0))
+        pd = ImageDraw.Draw(pp)
+        pd.rounded_rectangle([0, 0, ptw, 30], radius=15, fill=(*ORANGE, 38))
+        pd.rounded_rectangle([0, 0, ptw, 30], radius=15, outline=(*ORANGE, 90), width=1)
+        img.paste(pp, (px, py), mask=pp)
+        draw = ImageDraw.Draw(img)
+        draw.text((px + ptw // 2, py + 15), pt, font=pf, fill=ORANGE, anchor="mm")
+        px += ptw + 10
+
+    # Right: service cards
+    services = [
+        ("Sales Cloud Agents",    "SDR · Pipeline · Quote automation",    SF_BLUE),
+        ("Service Cloud Agents",  "Case resolution · Knowledge · Escalation", SF_TEAL),
+        ("Marketing Cloud Agents","Campaign · Lead nurture · Events",      ORANGE),
+    ]
+    card_w, card_h, gap = 374, 112, 14
+    sx = W_OG - card_w - 52
+    total_h = len(services) * card_h + (len(services) - 1) * gap
+    sy = (H_OG - total_h) // 2
+
+    name_f = ImageFont.truetype(FONT_BOLD,    15)
+    desc_f = ImageFont.truetype(FONT_REGULAR, 13)
+
+    for i, (name, desc, col) in enumerate(services):
+        cy = sy + i * (card_h + gap)
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12, fill=(*col, 16))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12, outline=(*col, 60), width=1)
+        cd.rounded_rectangle([0, 14, 4, card_h - 14], radius=2, fill=col)
+        img.paste(card, (sx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.text((sx + 18, cy + 24), name, font=name_f, fill=WHITE)
+        draw.text((sx + 18, cy + 50), desc, font=desc_f, fill=GREY_DIM)
+
+    draw.rectangle([0, H_OG - 4, W_OG, H_OG], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "og-agentforce.png")
+    img.save(out, "PNG", optimize=True)
+    print(f"Saved: {out}")
+
+
+def make_azure_ai_foundry_og():
+    """OG image for Azure AI Foundry hub — 1200×630. Azure blue accent."""
+    W_OG, H_OG = 1200, 630
+    AZ_BLUE  = (0, 120, 212)   # Azure brand blue
+    AZ_CYAN  = (0, 188, 242)   # Azure secondary
+
+    img = Image.new("RGBA", (W_OG, H_OG), (6, 8, 16))
+    draw = ImageDraw.Draw(img)
+
+    for x in range(W_OG):
+        t = x / W_OG
+        r = int(6  + (8  -  6) * t)
+        g = int(8  + (12 -  8) * t)
+        b = int(16 + (32 - 16) * t)
+        draw.line([(x, 0), (x, H_OG)], fill=(r, g, b))
+
+    glow = Image.new("RGBA", (W_OG, H_OG), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    for i in range(30, 0, -1):
+        r2 = int(360 * i / 30)
+        a = int(46 * (1 - i / 30) ** 0.5)
+        gd.ellipse([1060 - r2, 70 - r2, 1060 + r2, 70 + r2], fill=(*AZ_BLUE, a))
+    img.paste(glow, mask=glow)
+    glow2 = Image.new("RGBA", (W_OG, H_OG), (0, 0, 0, 0))
+    gd2 = ImageDraw.Draw(glow2)
+    for i in range(30, 0, -1):
+        r2 = int(200 * i / 30)
+        a = int(26 * (1 - i / 30) ** 0.5)
+        gd2.ellipse([-r2, 560 - r2, r2, 560 + r2], fill=(*AZ_CYAN, a))
+    img.paste(glow2, mask=glow2)
+
+    draw = ImageDraw.Draw(img)
+    for x in range(0, W_OG, 40):
+        for y in range(0, H_OG, 40):
+            draw.ellipse([x - 1, y - 1, x + 1, y + 1], fill=(255, 255, 255, 14))
+
+    logo_font = ImageFont.truetype(FONT_BOLD, 26)
+    draw.text((56, 46), "KOVIL.ai", font=logo_font, fill=WHITE)
+    lw = draw.textbbox((0, 0), "KOVIL.ai", font=logo_font)[2]
+    draw.rectangle([56, 78, 56 + lw, 82], fill=ORANGE)
+
+    pill_font = ImageFont.truetype(FONT_BOLD, 12)
+    pill_text = "AZURE AI FOUNDRY PARTNER"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 24
+    draw.rounded_rectangle([56, 100, 56 + pw, 128], radius=14, fill=(*AZ_BLUE, 35))
+    draw.rounded_rectangle([56, 100, 56 + pw, 128], radius=14, outline=(*AZ_BLUE, 80), width=1)
+    draw.text((56 + pw // 2, 114), pill_text, font=pill_font, fill=AZ_BLUE, anchor="mm")
+
+    h1_font   = ImageFont.truetype(FONT_BOLD,    58)
+    qual_font = ImageFont.truetype(FONT_REGULAR, 22)
+    sub_font  = ImageFont.truetype(FONT_REGULAR, 18)
+    draw.text((56, 146), "Azure AI Foundry",    font=h1_font,  fill=WHITE)
+    draw.text((56, 212), "Implementation",      font=h1_font,  fill=AZ_BLUE)
+    draw.text((56, 278), "Partner.",            font=h1_font,  fill=WHITE)
+    draw.text((56, 354), "Azure OpenAI · Copilot Studio · Semantic Kernel", font=qual_font, fill=GREY_LT)
+    draw.text((56, 382), "Production AI agents on Microsoft Azure.",         font=sub_font,  fill=GREY_DIM)
+
+    pills = ["Fixed-Price Sprints", "2-Week Pilot", "NY & Global"]
+    pf = ImageFont.truetype(FONT_BOLD, 13)
+    px, py = 56, 448
+    for pt in pills:
+        ptw = draw.textbbox((0, 0), pt, font=pf)[2] + 26
+        pp = Image.new("RGBA", (ptw, 30), (0, 0, 0, 0))
+        pd = ImageDraw.Draw(pp)
+        pd.rounded_rectangle([0, 0, ptw, 30], radius=15, fill=(*ORANGE, 38))
+        pd.rounded_rectangle([0, 0, ptw, 30], radius=15, outline=(*ORANGE, 90), width=1)
+        img.paste(pp, (px, py), mask=pp)
+        draw = ImageDraw.Draw(img)
+        draw.text((px + ptw // 2, py + 15), pt, font=pf, fill=ORANGE, anchor="mm")
+        px += ptw + 10
+
+    services = [
+        ("Azure OpenAI & Semantic Kernel", "GPT-4o · Embeddings · RAG pipelines",    AZ_BLUE),
+        ("Copilot Studio Agents",          "Teams · SharePoint · M365 integrations",  AZ_CYAN),
+        ("AI Search & MLOps",              "Vector RAG · Model monitoring · CI/CD",   ORANGE),
+    ]
+    card_w, card_h, gap = 374, 112, 14
+    sx = W_OG - card_w - 52
+    total_h = len(services) * card_h + (len(services) - 1) * gap
+    sy = (H_OG - total_h) // 2
+
+    name_f = ImageFont.truetype(FONT_BOLD,    15)
+    desc_f = ImageFont.truetype(FONT_REGULAR, 13)
+
+    for i, (name, desc, col) in enumerate(services):
+        cy = sy + i * (card_h + gap)
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12, fill=(*col, 16))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12, outline=(*col, 60), width=1)
+        cd.rounded_rectangle([0, 14, 4, card_h - 14], radius=2, fill=col)
+        img.paste(card, (sx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.text((sx + 18, cy + 24), name, font=name_f, fill=WHITE)
+        draw.text((sx + 18, cy + 50), desc, font=desc_f, fill=GREY_DIM)
+
+    draw.rectangle([0, H_OG - 4, W_OG, H_OG], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "og-azure-ai-foundry.png")
+    img.save(out, "PNG", optimize=True)
+    print(f"Saved: {out}")
+
+
+def make_vertex_ai_og():
+    """OG image for Vertex AI hub — 1200×630. Google green/blue accent."""
+    W_OG, H_OG = 1200, 630
+    GG_BLUE  = (66, 133, 244)   # Google blue
+    GG_GREEN = (52, 168, 83)    # Google green
+
+    img = Image.new("RGBA", (W_OG, H_OG), (6, 8, 14))
+    draw = ImageDraw.Draw(img)
+
+    for x in range(W_OG):
+        t = x / W_OG
+        r = int(6  + (10 -  6) * t)
+        g = int(8  + (14 -  8) * t)
+        b = int(14 + (26 - 14) * t)
+        draw.line([(x, 0), (x, H_OG)], fill=(r, g, b))
+
+    glow = Image.new("RGBA", (W_OG, H_OG), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    for i in range(30, 0, -1):
+        r2 = int(340 * i / 30)
+        a = int(42 * (1 - i / 30) ** 0.5)
+        gd.ellipse([1060 - r2, 70 - r2, 1060 + r2, 70 + r2], fill=(*GG_BLUE, a))
+    img.paste(glow, mask=glow)
+    glow2 = Image.new("RGBA", (W_OG, H_OG), (0, 0, 0, 0))
+    gd2 = ImageDraw.Draw(glow2)
+    for i in range(30, 0, -1):
+        r2 = int(200 * i / 30)
+        a = int(28 * (1 - i / 30) ** 0.5)
+        gd2.ellipse([-r2, 560 - r2, r2, 560 + r2], fill=(*GG_GREEN, a))
+    img.paste(glow2, mask=glow2)
+
+    draw = ImageDraw.Draw(img)
+    for x in range(0, W_OG, 40):
+        for y in range(0, H_OG, 40):
+            draw.ellipse([x - 1, y - 1, x + 1, y + 1], fill=(255, 255, 255, 14))
+
+    logo_font = ImageFont.truetype(FONT_BOLD, 26)
+    draw.text((56, 46), "KOVIL.ai", font=logo_font, fill=WHITE)
+    lw = draw.textbbox((0, 0), "KOVIL.ai", font=logo_font)[2]
+    draw.rectangle([56, 78, 56 + lw, 82], fill=ORANGE)
+
+    pill_font = ImageFont.truetype(FONT_BOLD, 12)
+    pill_text = "GOOGLE CLOUD VERTEX AI PARTNER"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 24
+    draw.rounded_rectangle([56, 100, 56 + pw, 128], radius=14, fill=(*GG_BLUE, 35))
+    draw.rounded_rectangle([56, 100, 56 + pw, 128], radius=14, outline=(*GG_BLUE, 80), width=1)
+    draw.text((56 + pw // 2, 114), pill_text, font=pill_font, fill=GG_BLUE, anchor="mm")
+
+    h1_font   = ImageFont.truetype(FONT_BOLD,    58)
+    qual_font = ImageFont.truetype(FONT_REGULAR, 22)
+    sub_font  = ImageFont.truetype(FONT_REGULAR, 18)
+    draw.text((56, 146), "Vertex AI",           font=h1_font,  fill=WHITE)
+    draw.text((56, 212), "Implementation",      font=h1_font,  fill=GG_BLUE)
+    draw.text((56, 278), "Partner.",            font=h1_font,  fill=WHITE)
+    draw.text((56, 354), "Gemini · Agent Builder · BigQuery ML", font=qual_font, fill=GREY_LT)
+    draw.text((56, 382), "Production AI agents on Google Cloud.", font=sub_font,  fill=GREY_DIM)
+
+    pills = ["Fixed-Price Sprints", "2-Week Pilot", "NY & Global"]
+    pf = ImageFont.truetype(FONT_BOLD, 13)
+    px, py = 56, 448
+    for pt in pills:
+        ptw = draw.textbbox((0, 0), pt, font=pf)[2] + 26
+        pp = Image.new("RGBA", (ptw, 30), (0, 0, 0, 0))
+        pd = ImageDraw.Draw(pp)
+        pd.rounded_rectangle([0, 0, ptw, 30], radius=15, fill=(*ORANGE, 38))
+        pd.rounded_rectangle([0, 0, ptw, 30], radius=15, outline=(*ORANGE, 90), width=1)
+        img.paste(pp, (px, py), mask=pp)
+        draw = ImageDraw.Draw(img)
+        draw.text((px + ptw // 2, py + 15), pt, font=pf, fill=ORANGE, anchor="mm")
+        px += ptw + 10
+
+    services = [
+        ("Gemini & Agent Builder",   "Multi-modal agents · Grounding · RAG",  GG_BLUE),
+        ("BigQuery ML & Data AI",    "Intelligent analytics · Predictions",    GG_GREEN),
+        ("MLOps & Vertex Pipelines", "Model monitoring · CI/CD · Drift alerts", ORANGE),
+    ]
+    card_w, card_h, gap = 374, 112, 14
+    sx = W_OG - card_w - 52
+    total_h = len(services) * card_h + (len(services) - 1) * gap
+    sy = (H_OG - total_h) // 2
+
+    name_f = ImageFont.truetype(FONT_BOLD,    15)
+    desc_f = ImageFont.truetype(FONT_REGULAR, 13)
+
+    for i, (name, desc, col) in enumerate(services):
+        cy = sy + i * (card_h + gap)
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12, fill=(*col, 16))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12, outline=(*col, 60), width=1)
+        cd.rounded_rectangle([0, 14, 4, card_h - 14], radius=2, fill=col)
+        img.paste(card, (sx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.text((sx + 18, cy + 24), name, font=name_f, fill=WHITE)
+        draw.text((sx + 18, cy + 50), desc, font=desc_f, fill=GREY_DIM)
+
+    draw.rectangle([0, H_OG - 4, W_OG, H_OG], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "og-vertex-ai.png")
+    img.save(out, "PNG", optimize=True)
+    print(f"Saved: {out}")
+
+
+def make_hire_og():
+    """OG image for /hire pages — 1200×630. Talent/engineering theme."""
+    W_OG, H_OG = 1200, 630
+    PURPLE = (139, 92, 246)   # violet accent
+    TEAL   = (16, 185, 129)   # teal
+
+    img = Image.new("RGBA", (W_OG, H_OG), (7, 7, 14))
+    draw = ImageDraw.Draw(img)
+
+    for x in range(W_OG):
+        t = x / W_OG
+        r = int(7  + (14 -  7) * t)
+        g = int(7  + (10 -  7) * t)
+        b = int(14 + (28 - 14) * t)
+        draw.line([(x, 0), (x, H_OG)], fill=(r, g, b))
+
+    glow = Image.new("RGBA", (W_OG, H_OG), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    for i in range(30, 0, -1):
+        r2 = int(340 * i / 30)
+        a = int(40 * (1 - i / 30) ** 0.5)
+        gd.ellipse([1060 - r2, 70 - r2, 1060 + r2, 70 + r2], fill=(*PURPLE, a))
+    img.paste(glow, mask=glow)
+    glow2 = Image.new("RGBA", (W_OG, H_OG), (0, 0, 0, 0))
+    gd2 = ImageDraw.Draw(glow2)
+    for i in range(30, 0, -1):
+        r2 = int(200 * i / 30)
+        a = int(28 * (1 - i / 30) ** 0.5)
+        gd2.ellipse([-r2, 560 - r2, r2, 560 + r2], fill=(*TEAL, a))
+    img.paste(glow2, mask=glow2)
+
+    draw = ImageDraw.Draw(img)
+    for x in range(0, W_OG, 40):
+        for y in range(0, H_OG, 40):
+            draw.ellipse([x - 1, y - 1, x + 1, y + 1], fill=(255, 255, 255, 14))
+
+    logo_font = ImageFont.truetype(FONT_BOLD, 26)
+    draw.text((56, 46), "KOVIL.ai", font=logo_font, fill=WHITE)
+    lw = draw.textbbox((0, 0), "KOVIL.ai", font=logo_font)[2]
+    draw.rectangle([56, 78, 56 + lw, 82], fill=ORANGE)
+
+    pill_font = ImageFont.truetype(FONT_BOLD, 12)
+    pill_text = "VETTED TIER-1 AI ENGINEERS"
+    pw = draw.textbbox((0, 0), pill_text, font=pill_font)[2] + 24
+    draw.rounded_rectangle([56, 100, 56 + pw, 128], radius=14, fill=(*PURPLE, 35))
+    draw.rounded_rectangle([56, 100, 56 + pw, 128], radius=14, outline=(*PURPLE, 80), width=1)
+    draw.text((56 + pw // 2, 114), pill_text, font=pill_font, fill=PURPLE, anchor="mm")
+
+    h1_font   = ImageFont.truetype(FONT_BOLD,    62)
+    qual_font = ImageFont.truetype(FONT_REGULAR, 22)
+    sub_font  = ImageFont.truetype(FONT_REGULAR, 18)
+    draw.text((56, 146), "Hire Elite",          font=h1_font,  fill=WHITE)
+    draw.text((56, 216), "AI Engineers",        font=h1_font,  fill=ORANGE)
+    draw.text((56, 292), "Matched in 48 Hours.",font=qual_font, fill=GREY_LT)
+    draw.text((56, 322), "Engagement Manager oversight. 2-week trial.", font=sub_font, fill=GREY_DIM)
+
+    pills = ["48-Hour Match", "2-Week Trial", "Fixed Monthly Rate"]
+    pf = ImageFont.truetype(FONT_BOLD, 13)
+    px, py = 56, 448
+    for pt in pills:
+        ptw = draw.textbbox((0, 0), pt, font=pf)[2] + 26
+        pp = Image.new("RGBA", (ptw, 30), (0, 0, 0, 0))
+        pd = ImageDraw.Draw(pp)
+        pd.rounded_rectangle([0, 0, ptw, 30], radius=15, fill=(*ORANGE, 38))
+        pd.rounded_rectangle([0, 0, ptw, 30], radius=15, outline=(*ORANGE, 90), width=1)
+        img.paste(pp, (px, py), mask=pp)
+        draw = ImageDraw.Draw(img)
+        draw.text((px + ptw // 2, py + 15), pt, font=pf, fill=ORANGE, anchor="mm")
+        px += ptw + 10
+
+    services = [
+        ("LLM & RAG Engineers",      "GPT-4o · Claude · Gemini · RAG systems", PURPLE),
+        ("AI Agent Developers",       "LangGraph · CrewAI · AutoGen · n8n",     TEAL),
+        ("MLOps & Data Engineers",    "Model pipelines · Drift · BigQuery",      ORANGE),
+    ]
+    card_w, card_h, gap = 374, 112, 14
+    sx = W_OG - card_w - 52
+    total_h = len(services) * card_h + (len(services) - 1) * gap
+    sy = (H_OG - total_h) // 2
+
+    name_f = ImageFont.truetype(FONT_BOLD,    15)
+    desc_f = ImageFont.truetype(FONT_REGULAR, 13)
+
+    for i, (name, desc, col) in enumerate(services):
+        cy = sy + i * (card_h + gap)
+        card = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12, fill=(*col, 16))
+        cd.rounded_rectangle([0, 0, card_w, card_h], radius=12, outline=(*col, 60), width=1)
+        cd.rounded_rectangle([0, 14, 4, card_h - 14], radius=2, fill=col)
+        img.paste(card, (sx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.text((sx + 18, cy + 24), name, font=name_f, fill=WHITE)
+        draw.text((sx + 18, cy + 50), desc, font=desc_f, fill=GREY_DIM)
+
+    draw.rectangle([0, H_OG - 4, W_OG, H_OG], fill=ORANGE)
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "og-hire.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -2872,5 +3290,10 @@ if __name__ == "__main__":
     make_ecommerce_image()
     make_openai_vs_anthropic_image()
     make_reduce_ai_token_costs_image()
+    make_case_studies_og_image()
     make_og_image()
+    make_agentforce_og()
+    make_azure_ai_foundry_og()
+    make_vertex_ai_og()
+    make_hire_og()
     print("Done.")

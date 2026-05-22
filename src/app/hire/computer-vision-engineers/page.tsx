@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     description: 'Vetted Tier-1 computer vision engineers embedded in your team in 48 hours. Object detection, video analytics, medical imaging — sprint-delivered, Engagement Manager audited.',
     url: 'https://kovil.ai/hire/computer-vision-engineers',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Hire a Computer Vision Developer — Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-hire.jpg', width: 1200, height: 630, alt: 'Hire a Computer Vision Developer — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hire a Computer Vision Developer — Matched in 48 Hours | Kovil AI',
     description: 'Vetted Tier-1 computer vision engineers embedded in your team in 48 hours. Sprint-delivered, Engagement Manager audited.',
-    images: ['https://kovil.ai/og-image.png'],
+    images: ['https://kovil.ai/og-hire.jpg'],
   },
 }
 

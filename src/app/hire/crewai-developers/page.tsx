@@ -33,13 +33,13 @@ export const metadata: Metadata = {
     description: 'Vetted Tier-1 CrewAI developers embedded in your team in 48 hours. Multi-agent orchestration, role-based agents, production deployment — sprint-delivered, Engagement Manager audited.',
     url: 'https://kovil.ai/hire/crewai-developers',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Hire CrewAI Developers — Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-hire.jpg', width: 1200, height: 630, alt: 'Hire CrewAI Developers — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hire CrewAI Developers — Matched in 48 Hours | Kovil AI',
     description: 'Vetted Tier-1 CrewAI developers in 48 hours. Multi-agent orchestration, sprint-delivered, Engagement Manager audited.',
-    images: ['https://kovil.ai/og-image.png'],
+    images: ['https://kovil.ai/og-hire.jpg'],
   },
 }
 

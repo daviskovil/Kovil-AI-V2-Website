@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     description: 'Vetted Tier-1 AutoGen developers embedded in your team in 48 hours. Conversational agents, code execution, GroupChat orchestration — sprint-delivered.',
     url: 'https://kovil.ai/hire/autogen-developers',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Hire AutoGen Developers — Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-hire.jpg', width: 1200, height: 630, alt: 'Hire AutoGen Developers — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hire AutoGen Developers — Matched in 48 Hours | Kovil AI',
     description: 'Vetted Tier-1 AutoGen developers in 48 hours. Sprint-delivered, Engagement Manager audited.',
-    images: ['https://kovil.ai/og-image.png'],
+    images: ['https://kovil.ai/og-hire.jpg'],
   },
 }
 

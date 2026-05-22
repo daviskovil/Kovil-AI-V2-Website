@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     description: 'Vetted Tier-1 LangGraph engineers embedded in your team in 48 hours. Stateful graphs, RAG, multi-agent orchestration — sprint-delivered.',
     url: 'https://kovil.ai/hire/langgraph-engineers',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Hire LangGraph Engineers — Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-hire.jpg', width: 1200, height: 630, alt: 'Hire LangGraph Engineers — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hire LangGraph Engineers — Matched in 48 Hours | Kovil AI',
     description: 'Vetted Tier-1 LangGraph engineers in 48 hours. Sprint-delivered, Engagement Manager audited.',
-    images: ['https://kovil.ai/og-image.png'],
+    images: ['https://kovil.ai/og-hire.jpg'],
   },
 }
 

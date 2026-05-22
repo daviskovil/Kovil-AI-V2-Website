@@ -22,13 +22,13 @@ export const metadata: Metadata = {
     description: 'Vetted Tier-1 specialist AI engineers embedded in your team in 48 hours. CV, ML, LLM, NLP, Data Engineering — sprint-delivered, Engagement Manager audited.',
     url: 'https://kovil.ai/hire',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Hire Specialist AI Engineers — Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-hire.jpg', width: 1200, height: 630, alt: 'Hire Specialist AI Engineers — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hire a Specialist AI Engineer — Matched in 48 Hours | Kovil AI',
     description: 'Vetted Tier-1 specialist AI engineers embedded in 48 hours. Sprint-delivered, Engagement Manager audited.',
-    images: ['https://kovil.ai/og-image.png'],
+    images: ['https://kovil.ai/og-hire.jpg'],
   },
 }
 
@@ -41,7 +41,7 @@ const serviceSchema = {
     '@type': 'Organization',
     name: 'Kovil AI',
     url: 'https://kovil.ai',
-    logo: 'https://kovil.ai/og-image.png',
+    logo: 'https://kovil.ai/kovil-logo-symbol-orange.webp',
     contactPoint: { '@type': 'ContactPoint', contactType: 'Sales', url: 'https://kovil.ai/contact' },
   },
   serviceType: 'AI Engineering Staffing',

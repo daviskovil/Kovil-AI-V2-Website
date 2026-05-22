@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     description: 'Vetted Tier-1 machine learning engineers embedded in your team in 48 hours. Predictive ML, recommendations, LLM fine-tuning, MLOps — sprint-delivered, Engagement Manager audited.',
     url: 'https://kovil.ai/hire/machine-learning-engineers',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Hire a Machine Learning Engineer — Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-hire.jpg', width: 1200, height: 630, alt: 'Hire a Machine Learning Engineer — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hire a Machine Learning Engineer — Matched in 48 Hours | Kovil AI',
     description: 'Vetted Tier-1 ML engineers embedded in your team in 48 hours. Sprint-delivered, Engagement Manager audited.',
-    images: ['https://kovil.ai/og-image.png'],
+    images: ['https://kovil.ai/og-hire.jpg'],
   },
 }
 
