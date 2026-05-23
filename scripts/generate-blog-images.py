@@ -2847,6 +2847,96 @@ def make_og_image():
     print(f"Saved: {out}")
 
 
+def make_vtiger_vs_suitecrm_image():
+    """Hero for 'VTiger vs SuiteCRM' — 1200×675, split VS comparison card."""
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+
+    # Gradient bg: deep navy → dark blue-purple
+    for x in range(W):
+        t = x / W
+        r = int(8  + (16 -  8) * t)
+        g = int(8  + (10 -  8) * t)
+        b = int(20 + (32 - 20) * t)
+        draw.line([(x, 0), (x, H)], fill=(r, g, b))
+
+    # Left glow (VTiger — green)
+    VTIGER_GREEN = (16, 185, 129)
+    draw_circle_glow(img, 180, 200, 300, VTIGER_GREEN, alpha_max=40)
+    # Right glow (SuiteCRM — blue)
+    SUITE_BLUE = (59, 130, 246)
+    draw_circle_glow(img, 1020, 200, 300, SUITE_BLUE, alpha_max=40)
+    # Centre glow (orange VS divider)
+    draw_circle_glow(img, 600, 338, 180, ORANGE, alpha_max=28)
+
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=14)
+
+    # KOVIL.ai wordmark top-left
+    logo_f = ImageFont.truetype(FONT_BOLD, 22)
+    draw.text((48, 40), "KOVIL.ai", font=logo_f, fill=WHITE)
+    lw = draw.textbbox((0, 0), "KOVIL.ai", font=logo_f)[2]
+    draw.rectangle([48, 68, 48 + lw, 71], fill=ORANGE)
+
+    # Category pill
+    pill_f = ImageFont.truetype(FONT_BOLD, 11)
+    pill_txt = "CRM COMPARISON  •  2026"
+    pw = draw.textbbox((0, 0), pill_txt, font=pill_f)[2] + 20
+    draw.rounded_rectangle([48, 88, 48 + pw, 88 + 24], radius=12, fill=(*ORANGE, 40))
+    draw.text((48 + pw // 2, 100), pill_txt, font=pill_f, fill=ORANGE, anchor="mm")
+
+    # Left panel label: VTiger
+    vtiger_f = ImageFont.truetype(FONT_BOLD, 52)
+    vtiger_sub_f = ImageFont.truetype(FONT_REGULAR, 15)
+    draw.text((80, 160), "VTiger", font=vtiger_f, fill=VTIGER_GREEN)
+    draw.text((80, 222), "Open-source CRM", font=vtiger_sub_f, fill=GREY_DIM)
+
+    # VTiger pro/con bullets
+    bullet_f = ImageFont.truetype(FONT_REGULAR, 14)
+    vtiger_points = ["✓ Built-in AI (Calculus)", "✓ Lower self-host cost", "✓ Mobile app", "✗ Smaller community"]
+    for i, pt in enumerate(vtiger_points):
+        col = VTIGER_GREEN if pt.startswith("✓") else (180, 70, 70)
+        draw.text((80, 256 + i * 28), pt, font=bullet_f, fill=col)
+
+    # Right panel label: SuiteCRM
+    suite_f = ImageFont.truetype(FONT_BOLD, 52)
+    suite_sub_f = ImageFont.truetype(FONT_REGULAR, 15)
+    draw.text((740, 160), "SuiteCRM", font=suite_f, fill=SUITE_BLUE)
+    draw.text((740, 222), "SugarCRM fork · 100% free", font=suite_sub_f, fill=GREY_DIM)
+
+    suite_points = ["✓ Truly open-source (GPL3)", "✓ Huge plugin ecosystem", "✓ Salesforce-like layout", "✗ No native AI layer"]
+    for i, pt in enumerate(suite_points):
+        col = SUITE_BLUE if pt.startswith("✓") else (180, 70, 70)
+        draw.text((740, 256 + i * 28), pt, font=bullet_f, fill=col)
+
+    # Centre VS badge
+    vs_f = ImageFont.truetype(FONT_BOLD, 54)
+    badge = Image.new("RGBA", (90, 90), (0, 0, 0, 0))
+    bd = ImageDraw.Draw(badge)
+    bd.ellipse([0, 0, 89, 89], fill=(*ORANGE, 230))
+    img.paste(badge, (555, 280), mask=badge)
+    draw = ImageDraw.Draw(img)
+    draw.text((600, 325), "VS", font=vs_f, fill=WHITE, anchor="mm")
+
+    # Divider line
+    draw.line([(600, 140), (600, 410)], fill=(*ORANGE, 60), width=1)
+
+    # Bottom bar: headline
+    h_f = ImageFont.truetype(FONT_BOLD, 24)
+    sub_f2 = ImageFont.truetype(FONT_REGULAR, 15)
+    draw.rectangle([0, 450, W, H], fill=(12, 12, 20))
+    draw.text((48, 478), "Which Open-Source CRM Should You Choose in 2026?", font=h_f, fill=WHITE)
+    draw.text((48, 514), "Pricing  ·  AI capabilities  ·  Integrations  ·  When to pick each  ·  How to add AI agents to either", font=sub_f2, fill=GREY_DIM)
+
+    # Bottom accent
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+
+    img = img.convert("RGB")
+    out = os.path.join(OUT_DIR, "blog-vtiger-vs-suitecrm.jpg")
+    img.save(out, "JPEG", quality=92)
+    print(f"Saved: {out}")
+
+
 def make_agentforce_og():
     """OG image for Agentforce hub — 1200×630. Salesforce blue accent."""
     W_OG, H_OG = 1200, 630
@@ -3290,6 +3380,7 @@ if __name__ == "__main__":
     make_ecommerce_image()
     make_openai_vs_anthropic_image()
     make_reduce_ai_token_costs_image()
+    make_vtiger_vs_suitecrm_image()
     make_case_studies_og_image()
     make_og_image()
     make_agentforce_og()
