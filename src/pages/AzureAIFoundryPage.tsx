@@ -758,70 +758,83 @@ export default function AzureAIFoundryPage() {
       </section>
 
       {/* ── SECTION HUB — EXPLORE OUR AZURE AI PRACTICE ── */}
-      <section id="practice-hub" className="border-t border-border py-20">
+      <section id="practice-hub" className="border-t border-border py-20" style={{ background: `linear-gradient(160deg, ${AZURE}06 0%, transparent 60%)` }}>
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-12"
+            className="text-center mb-12"
           >
             <p className="text-sm font-mono tracking-widest uppercase mb-3" style={{ color: AZURE }}>Azure AI Practice</p>
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-              <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight">
-                Explore our Azure AI practice
-              </h2>
-              <p className="text-muted-foreground text-sm max-w-sm leading-relaxed">
-                Deep expertise across industries, platforms, and use cases — find the content most relevant to your situation.
-              </p>
-            </div>
+            <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-3">
+              Explore our Azure AI practice
+            </h2>
+            <p className="text-muted-foreground text-base max-w-lg mx-auto leading-relaxed">
+              Deep expertise across industries, platforms, and use cases — find the content most relevant to your situation.
+            </p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {practiceHub.map((cluster, ci) => (
-              <motion.div
-                key={cluster.label}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: ci * 0.08 }}
-                className="bg-card border border-border rounded-2xl p-6"
-              >
-                {/* Cluster header */}
-                <div className="flex items-center gap-2.5 mb-5 pb-4 border-b border-border">
-                  <div className="h-8 w-8 rounded-lg flex items-center justify-center shrink-0" style={{ background: `${AZURE}15` }}>
-                    <cluster.icon className="h-4 w-4" style={{ color: AZURE }} />
-                  </div>
-                  <span className="font-semibold text-foreground text-sm">{cluster.label}</span>
-                </div>
+            {practiceHub.map((cluster, ci) => {
+              const liveCount = cluster.items.filter(i => i.href).length
+              return (
+                <motion.div
+                  key={cluster.label}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: ci * 0.08 }}
+                  className="bg-background border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-200"
+                >
+                  {/* Azure blue top accent bar */}
+                  <div className="h-[3px]" style={{ background: `linear-gradient(90deg, ${AZURE}, ${AZURE}80)` }} />
 
-                {/* Links */}
-                <ul className="space-y-2.5">
-                  {cluster.items.map((item) => (
-                    <li key={item.label}>
-                      {item.href ? (
-                        <Link
-                          href={item.href}
-                          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
-                        >
-                          <ArrowRight className="h-3 w-3 shrink-0 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-                          <span>{item.label}</span>
-                        </Link>
-                      ) : (
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="flex items-center gap-2 text-sm text-muted-foreground/50">
-                            <span className="h-1 w-1 rounded-full bg-muted-foreground/30 shrink-0" />
-                            {item.label}
-                          </span>
-                          <span className="text-[9px] font-bold tracking-widest uppercase px-1.5 py-0.5 rounded bg-muted text-muted-foreground/50 shrink-0">Soon</span>
+                  {/* Cluster header */}
+                  <div className="px-5 pt-5 pb-4 border-b border-border/70">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <div className="h-9 w-9 rounded-xl flex items-center justify-center shrink-0" style={{ background: `${AZURE}12` }}>
+                          <cluster.icon className="h-[18px] w-[18px]" style={{ color: AZURE }} />
                         </div>
+                        <span className="font-bold text-foreground text-sm tracking-tight">{cluster.label}</span>
+                      </div>
+                      {liveCount > 0 && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: `${AZURE}12`, color: AZURE }}>
+                          {liveCount} live
+                        </span>
                       )}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+                    </div>
+                  </div>
+
+                  {/* Links */}
+                  <ul className="px-3 py-3 space-y-0.5">
+                    {cluster.items.map((item) => (
+                      <li key={item.label}>
+                        {item.href ? (
+                          <Link
+                            href={item.href}
+                            className="flex items-center gap-2 px-2 py-2 rounded-lg text-sm font-medium transition-all group"
+                            style={{ color: AZURE }}
+                          >
+                            <div className="h-5 w-5 rounded-md flex items-center justify-center shrink-0 transition-colors" style={{ background: `${AZURE}12` }}>
+                              <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" style={{ color: AZURE }} />
+                            </div>
+                            <span className="leading-snug group-hover:underline underline-offset-2">{item.label}</span>
+                          </Link>
+                        ) : (
+                          <div className="flex items-center justify-between gap-2 px-2 py-2">
+                            <span className="text-sm text-muted-foreground/50 leading-snug">{item.label}</span>
+                            <span className="text-[9px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-muted/80 text-muted-foreground/40 shrink-0 border border-border/50">Soon</span>
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
