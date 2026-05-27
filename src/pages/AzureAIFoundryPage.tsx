@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from "react"
+import React, { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import Link from "next/link"
-import { ArrowRight, ChevronDown, CheckCircle2, Shield, Database, Brain, Cpu, Zap, Users, Wrench, BarChart3, BookOpen, Download, Clock, FileText, AlertCircle, Lock, Settings } from "lucide-react"
+import { ArrowRight, ChevronDown, CheckCircle2, Shield, Database, Brain, Cpu, Zap, Users, Wrench, BarChart3, BookOpen, Download, Clock, FileText, AlertCircle, Lock, Settings, Building2, Scale, Link2 } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { openCalendly } from "../lib/calendly"
 
@@ -333,6 +333,63 @@ const playbookArticles = [
     desc: "Step-by-step walkthrough of an insurance deployment — GPT-4o integration, Document Intelligence pipeline, Azure API Management, and compliance logging.",
     readTime: "16 min read",
     href: "/azure-ai-foundry/playbook/claims-processing-azure-ai-build",
+  },
+]
+
+// ── Practice Hub ─────────────────────────────────────────────────────────────
+
+const practiceHub: {
+  icon: React.ElementType
+  label: string
+  items: { label: string; href: string | null }[]
+}[] = [
+  {
+    icon: Building2,
+    label: "By Industry",
+    items: [
+      { label: "Financial Services & Banking",      href: null },
+      { label: "Healthcare & Life Sciences",         href: null },
+      { label: "Retail & eCommerce",                 href: null },
+      { label: "Manufacturing & Supply Chain",       href: null },
+      { label: "Legal & Professional Services",      href: null },
+      { label: "Insurance",                          href: null },
+    ],
+  },
+  {
+    icon: Scale,
+    label: "How We Compare",
+    items: [
+      { label: "Azure AI Foundry vs AWS Bedrock",         href: null },
+      { label: "Azure AI Foundry vs Google Vertex AI",    href: null },
+      { label: "Azure AI Foundry vs Agentforce",          href: null },
+      { label: "Copilot Studio vs Power Virtual Agents",  href: null },
+      { label: "Semantic Kernel vs LangChain",            href: null },
+      { label: "Azure OpenAI vs OpenAI API",              href: "/azure-ai-foundry/playbook/azure-openai-vs-openai-api" },
+    ],
+  },
+  {
+    icon: Link2,
+    label: "Integrations",
+    items: [
+      { label: "Azure AI + Dynamics 365",          href: null },
+      { label: "Azure AI + Microsoft 365 & Teams", href: null },
+      { label: "Azure AI + SharePoint",            href: null },
+      { label: "Azure AI + Power Platform",        href: null },
+      { label: "Azure AI + SAP",                   href: null },
+      { label: "Azure AI + ServiceNow",            href: null },
+    ],
+  },
+  {
+    icon: BookOpen,
+    label: "Playbook & Guides",
+    items: [
+      { label: "Architect your first Azure AI agent",       href: "/azure-ai-foundry/playbook/architect-your-first-azure-ai-agent" },
+      { label: "Azure OpenAI vs OpenAI API deep dive",      href: "/azure-ai-foundry/playbook/azure-openai-vs-openai-api" },
+      { label: "Claims processing build walkthrough",       href: "/azure-ai-foundry/playbook/claims-processing-azure-ai-build" },
+      { label: "Azure AI Foundry pricing guide 2026",       href: null },
+      { label: "Security & compliance guide",               href: null },
+      { label: "Azure AI Foundry ROI guide",                href: null },
+    ],
   },
 ]
 
@@ -700,6 +757,75 @@ export default function AzureAIFoundryPage() {
         </div>
       </section>
 
+      {/* ── SECTION HUB — EXPLORE OUR AZURE AI PRACTICE ── */}
+      <section id="practice-hub" className="border-t border-border py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
+          >
+            <p className="text-sm font-mono tracking-widest uppercase mb-3" style={{ color: AZURE }}>Azure AI Practice</p>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight">
+                Explore our Azure AI practice
+              </h2>
+              <p className="text-muted-foreground text-sm max-w-sm leading-relaxed">
+                Deep expertise across industries, platforms, and use cases — find the content most relevant to your situation.
+              </p>
+            </div>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {practiceHub.map((cluster, ci) => (
+              <motion.div
+                key={cluster.label}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: ci * 0.08 }}
+                className="bg-card border border-border rounded-2xl p-6"
+              >
+                {/* Cluster header */}
+                <div className="flex items-center gap-2.5 mb-5 pb-4 border-b border-border">
+                  <div className="h-8 w-8 rounded-lg flex items-center justify-center shrink-0" style={{ background: `${AZURE}15` }}>
+                    <cluster.icon className="h-4 w-4" style={{ color: AZURE }} />
+                  </div>
+                  <span className="font-semibold text-foreground text-sm">{cluster.label}</span>
+                </div>
+
+                {/* Links */}
+                <ul className="space-y-2.5">
+                  {cluster.items.map((item) => (
+                    <li key={item.label}>
+                      {item.href ? (
+                        <Link
+                          href={item.href}
+                          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+                        >
+                          <ArrowRight className="h-3 w-3 shrink-0 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <span>{item.label}</span>
+                        </Link>
+                      ) : (
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="flex items-center gap-2 text-sm text-muted-foreground/50">
+                            <span className="h-1 w-1 rounded-full bg-muted-foreground/30 shrink-0" />
+                            {item.label}
+                          </span>
+                          <span className="text-[9px] font-bold tracking-widest uppercase px-1.5 py-0.5 rounded bg-muted text-muted-foreground/50 shrink-0">Soon</span>
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── SECTION 3 — SERVICES ── */}
       <section className="border-t border-border py-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-6">
@@ -856,6 +982,23 @@ export default function AzureAIFoundryPage() {
           </div>
         </div>
       </section>
+
+      {/* ── CONTEXTUAL NUDGE — INDUSTRY PAGES ── */}
+      <div className="border-t border-border bg-muted/20">
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground text-center sm:text-left">
+            <span className="font-semibold text-foreground">Looking for industry-specific builds?</span>{" "}
+            We&apos;re publishing deep-dives for Financial Services, Healthcare, Retail, and more.
+          </p>
+          <Link
+            href="#practice-hub"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold shrink-0 hover:opacity-80 transition-opacity"
+            style={{ color: AZURE }}
+          >
+            Explore by industry <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      </div>
 
       {/* ── SECTION 6 — PLAYBOOK ── */}
       <section className="border-t border-border py-24">
