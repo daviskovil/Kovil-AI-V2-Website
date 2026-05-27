@@ -3,11 +3,14 @@ import AzureAIFoundryPage from '@/src/pages/AzureAIFoundryPage'
 
 export const metadata: Metadata = {
   title: 'Azure AI Foundry Implementation Partner — Build AI Agents on Azure | Kovil AI',
-  description: 'Kovil AI builds production AI agents on Azure AI Foundry — Azure OpenAI, Semantic Kernel, Copilot Studio, Azure AI Search RAG. Fixed-price sprints. 2-week risk-free pilot. New York & Austin.',
+  description: 'Kovil AI builds production AI agents on Azure AI Foundry (formerly Azure AI Studio) — Azure OpenAI, Semantic Kernel, Copilot Studio, Azure AI Search RAG. Fixed-price sprints. 2-week risk-free pilot. New York & Austin.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry' },
   keywords: [
     'Azure AI Foundry',
     'Azure AI Foundry implementation',
+    'Azure AI Studio',
+    'what is Azure AI Foundry',
+    'Azure AI Foundry pricing',
     'Azure OpenAI integration',
     'Semantic Kernel development',
     'Azure AI Search RAG',
@@ -24,6 +27,7 @@ export const metadata: Metadata = {
     'Azure AI implementation partner',
     'Microsoft Copilot Studio implementation',
     'Azure AI Foundry services',
+    'Azure AI Foundry agent service',
   ],
   openGraph: {
     type: 'website',
@@ -143,6 +147,14 @@ const faqSchema = {
       acceptedAnswer: {
         '@type': 'Answer',
         text: "We scope a single high-impact agent use case, define clear success metrics, and build and deploy it in 2 weeks. If the pilot doesn't hit agreed metrics, you pay nothing. The pilot includes Azure environment provisioning, agent architecture and Prompt Flow deployment, RAG pipeline setup if applicable, evaluation framework, and 30-day post-launch support. Over 90% of our Azure AI pilots convert to full production engagements.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happened to Azure AI Studio? Is it the same as Azure AI Foundry?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Azure AI Studio was rebranded to Azure AI Foundry in late 2024. Azure AI Foundry is the same platform with an expanded scope — it consolidates Azure AI Studio, Azure Machine Learning, Prompt Flow, the Model Catalog, and enterprise governance tooling into a single unified workspace. Existing Azure AI Studio projects and deployments continue to work in Azure AI Foundry without migration. If you are searching for Azure AI Studio documentation, configuration guidance, or implementation support, Azure AI Foundry is the current name for that platform.',
       },
     },
   ],

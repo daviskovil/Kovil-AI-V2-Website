@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 
 const articleSchema = {
   '@context': 'https://schema.org', '@type': 'Article',
+  datePublished: '2026-05-27',
+  dateModified: '2026-05-27',
   headline: 'Copilot Studio vs Power Virtual Agents: What Changed and What It Means for Your Agents',
   description: 'Technical explanation of what changed when Microsoft rebranded Power Virtual Agents to Copilot Studio in 2023, including GPT-4o grounding, Semantic Kernel backend, Azure AI Search integration, and migration guidance.',
   author: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },

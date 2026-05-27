@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 
 const articleSchema = {
   '@context': 'https://schema.org', '@type': 'Article',
+  datePublished: '2026-05-27',
+  dateModified: '2026-05-27',
   headline: 'Azure AI Foundry Pricing Guide 2026: What Enterprise AI Actually Costs',
   description: 'Complete Azure AI Foundry pricing breakdown — covering token costs, AI Search tiers, Copilot Studio licensing, hidden costs, and a framework for calculating ROI on enterprise AI deployments.',
   author: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },

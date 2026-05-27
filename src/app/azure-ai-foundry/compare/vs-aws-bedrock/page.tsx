@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 
 const articleSchema = {
   '@context': 'https://schema.org', '@type': 'Article',
+  datePublished: '2026-05-27',
+  dateModified: '2026-05-27',
   headline: 'Azure AI Foundry vs AWS Bedrock: Which Enterprise AI Platform Should You Build On?',
   description: 'Detailed enterprise comparison of Azure AI Foundry and AWS Bedrock covering identity management, M365 integration, compliance certifications, model catalog, multi-agent orchestration, and vendor lock-in risk.',
   author: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },

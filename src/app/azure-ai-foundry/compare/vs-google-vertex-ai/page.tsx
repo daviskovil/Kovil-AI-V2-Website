@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 
 const articleSchema = {
   '@context': 'https://schema.org', '@type': 'Article',
+  datePublished: '2026-05-27',
+  dateModified: '2026-05-27',
   headline: 'Azure AI Foundry vs Google Vertex AI: Enterprise AI Platform Comparison',
   description: 'Detailed enterprise comparison of Azure AI Foundry and Google Vertex AI covering identity management, M365 vs Google Workspace integration, compliance certifications, model capabilities, RAG tooling, and organisational fit.',
   author: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },

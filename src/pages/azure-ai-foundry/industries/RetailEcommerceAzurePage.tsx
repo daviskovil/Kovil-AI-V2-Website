@@ -5,6 +5,7 @@ import { CheckCircle2, ArrowRight, ChevronRight, ShoppingCart, BarChart3, Truck,
 import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
 import Link from "next/link"
+import AzurePracticeNavigation from '../../../components/azure/AzurePracticeNavigation'
 
 const AZURE = "#0078D4"
 
@@ -178,6 +179,8 @@ export default function RetailEcommerceAzurePage() {
           </div>
         </motion.div>
       </section>
+
+      <AzurePracticeNavigation currentPath="/azure-ai-foundry/industries/retail-ecommerce" />
     </div>
   )
 }

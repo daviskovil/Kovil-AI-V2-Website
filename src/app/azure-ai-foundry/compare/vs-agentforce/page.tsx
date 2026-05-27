@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 
 const articleSchema = {
   '@context': 'https://schema.org', '@type': 'Article',
+  datePublished: '2026-05-27',
+  dateModified: '2026-05-27',
   headline: 'Azure AI Foundry vs Salesforce Agentforce: Which AI Agent Platform Is Right for You?',
   description: 'Detailed comparison of Azure AI Foundry and Salesforce Agentforce covering data scope, model selection, compliance, enterprise integrations, and how to decide which platform fits which use case.',
   author: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },

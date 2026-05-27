@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 
 const articleSchema = {
   '@context': 'https://schema.org', '@type': 'Article',
+  datePublished: '2026-05-27',
+  dateModified: '2026-05-27',
   headline: 'Semantic Kernel vs LangChain: Choosing the Right AI Orchestration Framework for Enterprise',
   description: 'Detailed comparison of Semantic Kernel and LangChain for enterprise AI engineering teams, covering authentication, Azure integration, language ecosystem, multi-agent orchestration, community support, and architecture recommendations.',
   author: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },

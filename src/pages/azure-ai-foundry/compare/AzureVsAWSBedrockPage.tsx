@@ -5,6 +5,7 @@ import { CheckCircle2, XCircle, ArrowRight, ChevronRight, Minus } from "lucide-r
 import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
 import Link from "next/link"
+import AzurePracticeNavigation from '../../../components/azure/AzurePracticeNavigation'
 
 const AZURE = "#0078D4"
 
@@ -180,6 +181,8 @@ export default function AzureVsAWSBedrockPage() {
           </div>
         </motion.div>
       </section>
+
+      <AzurePracticeNavigation currentPath="/azure-ai-foundry/compare/vs-aws-bedrock" />
     </div>
   )
 }

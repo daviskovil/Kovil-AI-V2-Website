@@ -444,6 +444,10 @@ const faqs = [
     q: "What is the Kovil AI risk-free pilot for Azure AI Foundry?",
     a: "We scope a single high-impact agent use case, define clear success metrics, and build and deploy it in 2 weeks. If the pilot doesn't hit agreed metrics, you don't pay. The pilot includes: Azure environment provisioning and security configuration, agent architecture and Prompt Flow deployment, RAG pipeline setup if applicable, evaluation framework, and a 30-day post-launch support window. Over 90% of our Azure AI pilots convert to full production engagements. Book a free discovery call to get started.",
   },
+  {
+    q: "What happened to Azure AI Studio? Is it the same as Azure AI Foundry?",
+    a: "Azure AI Studio was rebranded to Azure AI Foundry in late 2024. It is the same platform with a significantly expanded scope — Azure AI Foundry consolidates Azure AI Studio, Azure Machine Learning, Prompt Flow, the Model Catalog (1,700+ models), and enterprise governance tooling into a single unified workspace. All existing Azure AI Studio projects and deployments continue to work within Azure AI Foundry without any migration required. The rebrand reflects Microsoft's shift from a developer-tooling focus to an enterprise-ready, governed AI development platform. If you are looking for Azure AI Studio implementation support, Azure AI Foundry is the current platform name.",
+  },
 ]
 
 // ── Accordion Item ────────────────────────────────────────────────────────────

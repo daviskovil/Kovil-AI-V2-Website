@@ -5,6 +5,7 @@ import { CheckCircle2, ArrowRight, ChevronRight, Shield, FileText, Heart, Users,
 import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
 import Link from "next/link"
+import AzurePracticeNavigation from '../../../components/azure/AzurePracticeNavigation'
 
 const AZURE = "#0078D4"
 
@@ -178,6 +179,8 @@ export default function HealthcareAzurePage() {
           </div>
         </motion.div>
       </section>
+
+      <AzurePracticeNavigation currentPath="/azure-ai-foundry/industries/healthcare-life-sciences" />
     </div>
   )
 }

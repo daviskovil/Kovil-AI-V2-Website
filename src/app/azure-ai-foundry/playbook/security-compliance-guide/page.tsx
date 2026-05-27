@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 
 const articleSchema = {
   '@context': 'https://schema.org', '@type': 'Article',
+  datePublished: '2026-05-27',
+  dateModified: '2026-05-27',
   headline: 'Azure AI Foundry Security & Compliance: The Complete Enterprise Configuration Guide',
   description: 'How to configure Azure AI Foundry for enterprise security across six layers: identity and access management, network isolation, data governance, Content Safety, compliance frameworks, and audit monitoring.',
   author: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },

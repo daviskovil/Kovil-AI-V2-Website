@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 
 const articleSchema = {
   '@context': 'https://schema.org', '@type': 'Article',
+  datePublished: '2026-05-27',
+  dateModified: '2026-05-27',
   headline: 'The Azure AI Foundry ROI Guide: How to Build a Business Case That Actually Holds Up',
   description: 'A practitioner\'s guide to building defensible Azure AI ROI models — covering the four value levers, calculation methodology with a worked example, realistic timelines, common failure modes, and executive presentation structure.',
   author: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai' },

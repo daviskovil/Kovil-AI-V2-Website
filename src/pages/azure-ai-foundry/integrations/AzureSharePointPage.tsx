@@ -5,6 +5,7 @@ import { CheckCircle2, ArrowRight, ChevronRight, BookOpen, Shield, FolderSearch,
 import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
 import Link from "next/link"
+import AzurePracticeNavigation from '../../../components/azure/AzurePracticeNavigation'
 
 const AZURE = "#0078D4"
 
@@ -252,6 +253,8 @@ export default function AzureSharePointPage() {
           </div>
         </motion.div>
       </section>
+
+      <AzurePracticeNavigation currentPath="/azure-ai-foundry/integrations/sharepoint" />
     </div>
   )
 }
