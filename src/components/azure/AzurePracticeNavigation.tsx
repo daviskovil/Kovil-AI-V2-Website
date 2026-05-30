@@ -5,6 +5,18 @@ const AZURE = "#0078D4"
 
 const clusters = [
   {
+    label: "Services",
+    links: [
+      { label: "Strategy & Readiness",         href: "/azure-ai-foundry/services/azure-ai-foundry-strategy-readiness" },
+      { label: "AI Agent Design & Build",       href: "/azure-ai-foundry/services/ai-agent-design-build" },
+      { label: "Azure OpenAI Integration",      href: "/azure-ai-foundry/services/azure-openai-integration" },
+      { label: "Azure AI Agent Service",        href: "/azure-ai-foundry/services/azure-ai-agent-service" },
+      { label: "Copilot Studio Agents",         href: "/azure-ai-foundry/services/copilot-studio-agents" },
+      { label: "Azure AI Search & RAG",         href: "/azure-ai-foundry/services/azure-ai-search-rag" },
+      { label: "Rescue & Optimisation",         href: "/azure-ai-foundry/services/azure-ai-rescue-optimisation" },
+    ],
+  },
+  {
     label: "By Industry",
     links: [
       { label: "Financial Services & Banking", href: "/azure-ai-foundry/industries/financial-services-banking" },
@@ -77,8 +89,8 @@ export default function AzurePracticeNavigation({ currentPath = "" }: { currentP
           </Link>
         </div>
 
-        {/* 4-column link grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 5-column link grid */}
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {clusters.map((cluster) => (
             <div key={cluster.label}>
               <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
