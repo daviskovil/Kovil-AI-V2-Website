@@ -56,6 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/azure-ai-foundry/services/copilot-studio-agents`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/azure-ai-foundry/services/azure-ai-search-rag`,                 lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/azure-ai-foundry/services/azure-ai-rescue-optimisation`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/services/azure-ai-agent-service`,              lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     // ── Azure AI Foundry — Enterprise Automation use cases ────────────────────
     { url: `${BASE_URL}/azure-ai-foundry/enterprise/document-intelligence-agent`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/azure-ai-foundry/enterprise/enterprise-knowledge-agent`,  lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
