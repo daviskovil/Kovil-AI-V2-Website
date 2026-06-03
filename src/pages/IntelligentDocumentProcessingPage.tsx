@@ -185,29 +185,114 @@ export default function IntelligentDocumentProcessingPage() {
 
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-20">
-        <div className="max-w-3xl">
-          <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <span className="text-foreground">Intelligent Document Processing</span>
-          </nav>
-          <p className="text-sm font-semibold uppercase tracking-widest mb-4 text-accent">Intelligent Document Processing</p>
-          <h1 className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-[1.05] text-balance mb-6">
-            AI Document Agents that read, reason, and act. <span className="text-accent">Not just OCR.</span>
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-            We design, build, and deploy production Intelligent Document Processing (IDP) pipelines powered by Vision LLMs and AI Document Agents — cutting manual document handling by 70–80% across BFSI, Insurance, Healthcare, and Legal.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Button variant="accent" className="rounded-full font-semibold px-8 text-base h-12" onClick={openCalendly}>
-              Book a Call <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Link href="/what-we-do">
-              <Button variant="outline" className="rounded-full font-semibold px-8 text-base h-12">
-                See All Services
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+          {/* Left — text */}
+          <div>
+            <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+              <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+              <ChevronRight className="h-3.5 w-3.5" />
+              <span className="text-foreground">Intelligent Document Processing</span>
+            </nav>
+            <p className="text-sm font-semibold uppercase tracking-widest mb-4 text-accent">Intelligent Document Processing</p>
+            <h1 className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-[1.05] text-balance mb-6">
+              AI Document Agents that read, reason, and act. <span className="text-accent">Not just OCR.</span>
+            </h1>
+            <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl">
+              We design, build, and deploy production Intelligent Document Processing (IDP) pipelines powered by Vision LLMs and AI Document Agents — cutting manual document handling by 70–80% across BFSI, Insurance, Healthcare, and Legal.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Button variant="accent" className="rounded-full font-semibold px-8 text-base h-12" onClick={openCalendly}>
+                Book a Call <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+              <Link href="/what-we-do">
+                <Button variant="outline" className="rounded-full font-semibold px-8 text-base h-12">
+                  See All Services
+                </Button>
+              </Link>
+            </div>
           </div>
+
+          {/* Right — live pipeline visual */}
+          <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, ease: "easeOut" }}
+            className="hidden lg:block">
+            <div className="rounded-2xl border border-border bg-muted/10 p-5 space-y-3 relative overflow-hidden">
+              {/* Subtle dot-grid background */}
+              <div className="absolute inset-0 opacity-[0.03]"
+                style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+
+              {/* Status bar */}
+              <div className="flex items-center gap-2 relative">
+                <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-[11px] font-mono text-muted-foreground">AI Document Agent · Processing</span>
+                <span className="ml-auto text-[10px] font-semibold text-green-600 bg-green-500/10 px-2 py-0.5 rounded-full">Live</span>
+              </div>
+
+              {/* Input documents */}
+              <div className="grid grid-cols-3 gap-2 relative">
+                {[
+                  { label: "Invoice PDF",      color: "#F97316" },
+                  { label: "Medical Record",   color: "#0078D4" },
+                  { label: "Insurance Claim",  color: "#10B981" },
+                ].map((doc) => (
+                  <div key={doc.label} className="rounded-xl border border-border bg-background p-2.5 text-center hover:border-accent/30 transition-colors">
+                    <FileText className="h-4 w-4 mx-auto mb-1" style={{ color: doc.color }} />
+                    <span className="text-[10px] text-muted-foreground leading-tight block">{doc.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Connector line */}
+              <div className="flex justify-center"><div className="w-px h-4 bg-accent/30" /></div>
+
+              {/* AI processing card */}
+              <div className="rounded-xl border border-accent/30 bg-accent/5 p-3 relative">
+                <div className="flex items-center gap-2 mb-2.5">
+                  <Brain className="h-3.5 w-3.5 text-accent" />
+                  <span className="text-[11px] font-bold text-accent">AI Document Agent</span>
+                </div>
+                <div className="space-y-1.5">
+                  {["Document Classification", "Vision LLM Extraction", "Confidence Scoring & HITL"].map((step) => (
+                    <div key={step} className="flex items-center gap-1.5">
+                      <CheckCircle2 className="h-3 w-3 text-green-500 shrink-0" />
+                      <span className="text-[11px] text-muted-foreground">{step}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Connector line */}
+              <div className="flex justify-center"><div className="w-px h-4 bg-accent/30" /></div>
+
+              {/* Extracted data */}
+              <div className="rounded-xl border border-border bg-background p-3">
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                  Extracted Data · 99.1% Confidence
+                </div>
+                <div className="space-y-1">
+                  {[
+                    { label: "Type",    value: "Invoice",          badge: "99.1%" },
+                    { label: "Vendor",  value: "Acme Corporation", badge: "98.7%" },
+                    { label: "Amount",  value: "$45,230.00",        badge: "99.8%" },
+                    { label: "PO Match",value: "PO-2026-4471",     badge: "✓ Matched" },
+                  ].map((field) => (
+                    <div key={field.label} className="flex items-center justify-between text-[11px] py-0.5">
+                      <span className="text-muted-foreground w-16 shrink-0">{field.label}</span>
+                      <span className="font-medium text-foreground flex-1 px-2">{field.value}</span>
+                      <span className="text-[10px] text-green-600 font-semibold">{field.badge}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Downstream action */}
+              <div className="flex items-center gap-2 rounded-xl bg-foreground/5 border border-border px-3 py-2">
+                <Zap className="h-3 w-3 text-accent shrink-0" />
+                <span className="text-[11px] text-muted-foreground">Pushed to SAP ERP · Approval workflow triggered</span>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </section>
 
