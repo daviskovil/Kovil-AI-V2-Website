@@ -336,79 +336,114 @@ export default function BankingFinancialServicesPage() {
             </div>
           </div>
 
-          {/* Right — banking pipeline visual */}
-          <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, ease: "easeOut" }}
-            className="hidden lg:block">
-            <div className="rounded-2xl border border-border bg-muted/10 p-5 space-y-3 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-[0.03]"
-                style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+          {/* Right — 3D banking pipeline visual */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="hidden lg:block"
+            style={{ perspective: "1400px" }}
+          >
+            <div
+              className="rounded-2xl p-5 space-y-3 relative overflow-hidden"
+              style={{
+                background: "linear-gradient(145deg, #0d1117 0%, #0c1629 50%, #0f0d1a 100%)",
+                transform: "rotateY(-10deg) rotateX(4deg)",
+                transformStyle: "preserve-3d",
+                boxShadow: "32px 40px 80px rgba(0,0,0,0.65), 0 0 0 1px rgba(249,115,22,0.18), inset 0 1px 0 rgba(255,255,255,0.06)",
+              }}
+            >
+              {/* Dot grid */}
+              <div className="absolute inset-0 opacity-[0.07]"
+                style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "22px 22px" }} />
+              {/* Orange top-edge glow */}
+              <div className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: "linear-gradient(90deg, transparent, rgba(249,115,22,0.6), transparent)" }} />
+              {/* Ambient orange orb */}
+              <div className="absolute -top-16 -left-16 w-48 h-48 rounded-full pointer-events-none"
+                style={{ background: "radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%)" }} />
 
               {/* Status bar */}
               <div className="flex items-center gap-2 relative">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-[11px] font-mono text-muted-foreground">AI Document Agent · Banking & Financial Services</span>
-                <span className="ml-auto text-[10px] font-semibold text-green-600 bg-green-500/10 px-2 py-0.5 rounded-full">Live</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-[11px] font-mono" style={{ color: "rgba(255,255,255,0.45)" }}>
+                  AI Document Agent · Banking &amp; Financial Services
+                </span>
+                <span className="ml-auto text-[10px] font-semibold px-2 py-0.5 rounded-full"
+                  style={{ color: "#4ade80", background: "rgba(74,222,128,0.12)" }}>Live</span>
               </div>
 
               {/* Input documents */}
               <div className="grid grid-cols-3 gap-2 relative">
                 {[
-                  { label: "KYC Bundle",       color: "#F97316" },
-                  { label: "Mortgage Bundle",  color: "#0078D4" },
-                  { label: "Bank Statement",   color: "#10B981" },
+                  { label: "KYC Bundle",      color: "#F97316" },
+                  { label: "Mortgage Bundle", color: "#60A5FA" },
+                  { label: "Bank Statement",  color: "#34D399" },
                 ].map((doc) => (
-                  <div key={doc.label} className="rounded-xl border border-border bg-background p-2.5 text-center hover:border-accent/30 transition-colors">
+                  <div key={doc.label}
+                    className="rounded-xl p-2.5 text-center transition-colors"
+                    style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${doc.color}28` }}>
                     <FileText className="h-4 w-4 mx-auto mb-1" style={{ color: doc.color }} />
-                    <span className="text-[10px] text-muted-foreground leading-tight block">{doc.label}</span>
+                    <span className="text-[10px] leading-tight block" style={{ color: "rgba(255,255,255,0.5)" }}>{doc.label}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="flex justify-center"><div className="w-px h-4 bg-accent/30" /></div>
+              <div className="flex justify-center">
+                <div className="w-px h-4" style={{ background: "rgba(249,115,22,0.35)" }} />
+              </div>
 
               {/* AI processing card */}
-              <div className="rounded-xl border border-accent/30 bg-accent/5 p-3 relative">
+              <div className="rounded-xl p-3 relative"
+                style={{ background: "rgba(249,115,22,0.08)", border: "1px solid rgba(249,115,22,0.3)" }}>
                 <div className="flex items-center gap-2 mb-2.5">
-                  <Brain className="h-3.5 w-3.5 text-accent" />
-                  <span className="text-[11px] font-bold text-accent">AI Document Agent</span>
+                  <Brain className="h-3.5 w-3.5" style={{ color: "#F97316" }} />
+                  <span className="text-[11px] font-bold" style={{ color: "#F97316" }}>AI Document Agent</span>
                 </div>
                 <div className="space-y-1.5">
                   {["KYC Document Classification", "Financial Data Extraction", "Confidence Scoring & BSA/AML Audit"].map((step) => (
                     <div key={step} className="flex items-center gap-1.5">
-                      <CheckCircle2 className="h-3 w-3 text-green-500 shrink-0" />
-                      <span className="text-[11px] text-muted-foreground">{step}</span>
+                      <CheckCircle2 className="h-3 w-3 shrink-0" style={{ color: "#4ade80" }} />
+                      <span className="text-[11px]" style={{ color: "rgba(255,255,255,0.6)" }}>{step}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="flex justify-center"><div className="w-px h-4 bg-accent/30" /></div>
+              <div className="flex justify-center">
+                <div className="w-px h-4" style={{ background: "rgba(249,115,22,0.35)" }} />
+              </div>
 
               {/* Extracted data */}
-              <div className="rounded-xl border border-border bg-background p-3">
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+              <div className="rounded-xl p-3"
+                style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                <div className="text-[10px] font-semibold uppercase tracking-wider mb-2"
+                  style={{ color: "rgba(255,255,255,0.3)" }}>
                   Extracted Data · 98.4% Confidence
                 </div>
                 <div className="space-y-1">
                   {[
-                    { label: "Name",    value: "Sarah J. Williams",  badge: "99.2%" },
-                    { label: "Income",  value: "$162,500 / yr",       badge: "99.1%" },
-                    { label: "DTI",     value: "26.8%",               badge: "98.4%" },
-                    { label: "Risk",    value: "None detected",       badge: "✓ Auto" },
+                    { label: "Name",   value: "Sarah J. Williams", badge: "99.2%" },
+                    { label: "Income", value: "$162,500 / yr",      badge: "99.1%" },
+                    { label: "DTI",    value: "26.8%",              badge: "98.4%" },
+                    { label: "Risk",   value: "None detected",      badge: "✓ Auto" },
                   ].map((field) => (
                     <div key={field.label} className="flex items-center justify-between text-[11px] py-0.5">
-                      <span className="text-muted-foreground w-16 shrink-0">{field.label}</span>
-                      <span className="font-medium text-foreground flex-1 px-2">{field.value}</span>
-                      <span className="text-[10px] text-green-600 font-semibold">{field.badge}</span>
+                      <span className="w-14 shrink-0" style={{ color: "rgba(255,255,255,0.35)" }}>{field.label}</span>
+                      <span className="font-medium flex-1 px-2" style={{ color: "rgba(255,255,255,0.85)" }}>{field.value}</span>
+                      <span className="text-[10px] font-semibold" style={{ color: "#4ade80" }}>{field.badge}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Downstream action */}
-              <div className="flex items-center gap-2 rounded-xl bg-foreground/5 border border-border px-3 py-2">
-                <Zap className="h-3 w-3 text-accent shrink-0" />
-                <span className="text-[11px] text-muted-foreground">Pushed to KYC Platform · LOS updated · BSA/AML trail logged</span>
+              <div className="flex items-center gap-2 rounded-xl px-3 py-2"
+                style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                <Zap className="h-3 w-3 shrink-0" style={{ color: "#F97316" }} />
+                <span className="text-[11px]" style={{ color: "rgba(255,255,255,0.45)" }}>
+                  Pushed to KYC Platform · LOS updated · BSA/AML trail logged
+                </span>
               </div>
             </div>
           </motion.div>
