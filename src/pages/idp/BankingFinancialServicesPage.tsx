@@ -47,7 +47,7 @@ const useCases = [
     id: "credit-underwriting-software",
     icon: TrendingUp,
     color: "#10B981",
-    title: "Credit Underwriting Document Processing",
+    title: "Credit Underwriting Software",
     subtitle: "Financial statements, credit reports, and risk signal extraction",
     description:
       "Financial institutions using our credit underwriting software capabilities replace manual spreading with AI-powered extraction of P&L statements, balance sheets, and tax returns. Risk signals — unusual cash flow patterns, covenant breaches, derogatory marks — are surfaced automatically before a human underwriter ever opens the document.",
@@ -483,6 +483,96 @@ export default function BankingFinancialServicesPage() {
               </motion.div>
             )
           })}
+        </div>
+      </section>
+
+      {/* ── KYC Automation deep-dive (H2 for primary keyword) ────────────────── */}
+      <section id="kyc-automation" className="max-w-7xl mx-auto px-6 py-20">
+        <p className="text-sm font-semibold uppercase tracking-widest mb-3 text-accent">Primary Use Case</p>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
+          KYC Automation for Banking and Financial Services
+        </h2>
+        <p className="text-muted-foreground text-lg mb-10 max-w-2xl">
+          KYC automation is the highest-volume document AI use case in BFSI. Every new account,
+          loan application, and onboarding event triggers a KYC document review. Manual review
+          at scale is slow, error-prone, and a compliance liability — AI automation handles it
+          in seconds with a full BSA/AML audit trail.
+        </p>
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
+          {/* Left — what it does */}
+          <div className="space-y-4">
+            {[
+              {
+                step: "01",
+                label: "Document Intake",
+                text: "Identity documents arrive via onboarding portal, email, mobile upload, or API. PDFs, photos, and scanned copies are all accepted — the pipeline normalises image quality automatically before processing.",
+              },
+              {
+                step: "02",
+                label: "Document Type Classification",
+                text: "The AI classifies the document as a passport, national ID, driver's licence, utility bill, or proof-of-address letter — across all issuing countries and formats, without country-specific templates.",
+              },
+              {
+                step: "03",
+                label: "Field Extraction",
+                text: "Vision LLM extracts all identity fields: full name, date of birth, ID number, nationality, expiry date, issuing authority, and address. MRZ lines on passports are parsed and cross-validated against the visual zone.",
+              },
+              {
+                step: "04",
+                label: "Tampering & Quality Flags",
+                text: "The pipeline flags documents with editing artifacts, font inconsistencies, mismatched MRZ/visual zone data, or image quality below the extraction confidence threshold for human review.",
+              },
+              {
+                step: "05",
+                label: "BSA/AML Audit Trail",
+                text: "Every event — document receipt, classification decision, extraction output, human review action — is logged to an immutable, timestamped audit trail that satisfies BSA/AML examination requirements.",
+              },
+            ].map((item) => (
+              <div key={item.step} className="flex gap-4">
+                <div className="h-8 w-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="font-display font-black text-accent text-xs">{item.step}</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-sm mb-1">{item.label}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Right — metrics + document types */}
+          <div className="space-y-4">
+            <div className="rounded-2xl border border-border bg-background p-6">
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">KYC Automation — Performance Benchmarks</p>
+              <div className="grid grid-cols-2 gap-4 mb-5">
+                {[
+                  { stat: "< 3s",    label: "end-to-end per document" },
+                  { stat: "98–99%",  label: "field extraction accuracy" },
+                  { stat: "2–4 wks", label: "to production pipeline" },
+                  { stat: "100%",    label: "BSA/AML audit trail coverage" },
+                ].map((m) => (
+                  <div key={m.stat} className="text-center p-3 rounded-xl bg-muted/20">
+                    <p className="font-display font-black text-xl text-foreground">{m.stat}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{m.label}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground/50">Based on production KYC automation deployments for BFSI clients.</p>
+            </div>
+            <div className="rounded-2xl border border-border bg-background p-6">
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Supported Identity Document Types</p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Passport (all countries)", "National ID Card", "Driver's Licence (US, UK, AU, CA)",
+                  "Utility Bill", "Bank Statement (address proof)", "Residence Permit",
+                  "Company Registration (B2B KYC)", "Certificate of Incorporation",
+                ].map((doc) => (
+                  <span key={doc} className="text-xs bg-muted/30 border border-border px-2.5 py-1 rounded-full text-muted-foreground">
+                    {doc}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

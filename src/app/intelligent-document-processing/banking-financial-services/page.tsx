@@ -198,7 +198,7 @@ const webPageSchema = {
   breadcrumb: { '@type': 'BreadcrumbList', itemListElement: breadcrumbSchema.itemListElement },
   speakable: {
     '@type': 'SpeakableSpecification',
-    cssSelector: ['h1', '#use-cases h3', '#faq-grid h3'],
+    cssSelector: ['h1', '#kyc-automation h2', '#financial-data-extraction h2', '#use-cases h3', '#faq-grid h3'],
   },
   publisher: {
     '@type': 'Organization',
