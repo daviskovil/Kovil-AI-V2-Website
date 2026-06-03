@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     description: 'Production IDP pipelines powered by Vision LLMs and AI Document Agents. Document classification, LLM data extraction, HITL validation. BFSI, Insurance, Healthcare, Legal.',
     url: 'https://kovil.ai/intelligent-document-processing',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Intelligent Document Processing & AI Document Agents — Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-intelligent-document-processing.png', width: 1200, height: 630, alt: 'Intelligent Document Processing & AI Document Agents — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Intelligent Document Processing & AI Document Agents | Kovil AI',
     description: 'Production IDP pipelines powered by Vision LLMs. Document classification, data extraction, HITL validation. BFSI, Insurance, Healthcare, Legal.',
-    images: ['https://kovil.ai/og-image.png'],
+    images: ['https://kovil.ai/og-intelligent-document-processing.png'],
   },
 }
 
