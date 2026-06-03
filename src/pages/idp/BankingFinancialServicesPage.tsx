@@ -9,7 +9,6 @@ import {
 import { Button } from "../../components/ui/button"
 import { openCalendly } from "../../lib/calendly"
 import Link from "next/link"
-import Image from "next/image"
 
 // ── Use-case data ─────────────────────────────────────────────────────────────
 const useCases = [
@@ -289,7 +288,7 @@ export default function BankingFinancialServicesPage() {
 
       {/* ── Hero ──────────────────────────────────────────────────────────────── */}
       <section id="hero" className="max-w-7xl mx-auto px-6 pt-16 pb-12">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
 
           {/* Left — text */}
           <div>
@@ -337,21 +336,81 @@ export default function BankingFinancialServicesPage() {
             </div>
           </div>
 
-          {/* Right — hero image */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="hidden lg:block"
-          >
-            <Image
-              src="/hero-idp-banking-financial-services.png"
-              alt="Financial data extraction and KYC automation pipeline — Banking IDP by Kovil AI"
-              width={900}
-              height={900}
-              className="rounded-2xl border border-border shadow-2xl w-full"
-              priority
-            />
+          {/* Right — banking pipeline visual */}
+          <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, ease: "easeOut" }}
+            className="hidden lg:block">
+            <div className="rounded-2xl border border-border bg-muted/10 p-5 space-y-3 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-[0.03]"
+                style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+
+              {/* Status bar */}
+              <div className="flex items-center gap-2 relative">
+                <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-[11px] font-mono text-muted-foreground">AI Document Agent · Banking & Financial Services</span>
+                <span className="ml-auto text-[10px] font-semibold text-green-600 bg-green-500/10 px-2 py-0.5 rounded-full">Live</span>
+              </div>
+
+              {/* Input documents */}
+              <div className="grid grid-cols-3 gap-2 relative">
+                {[
+                  { label: "KYC Bundle",       color: "#F97316" },
+                  { label: "Mortgage Bundle",  color: "#0078D4" },
+                  { label: "Bank Statement",   color: "#10B981" },
+                ].map((doc) => (
+                  <div key={doc.label} className="rounded-xl border border-border bg-background p-2.5 text-center hover:border-accent/30 transition-colors">
+                    <FileText className="h-4 w-4 mx-auto mb-1" style={{ color: doc.color }} />
+                    <span className="text-[10px] text-muted-foreground leading-tight block">{doc.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex justify-center"><div className="w-px h-4 bg-accent/30" /></div>
+
+              {/* AI processing card */}
+              <div className="rounded-xl border border-accent/30 bg-accent/5 p-3 relative">
+                <div className="flex items-center gap-2 mb-2.5">
+                  <Brain className="h-3.5 w-3.5 text-accent" />
+                  <span className="text-[11px] font-bold text-accent">AI Document Agent</span>
+                </div>
+                <div className="space-y-1.5">
+                  {["KYC Document Classification", "Financial Data Extraction", "Confidence Scoring & BSA/AML Audit"].map((step) => (
+                    <div key={step} className="flex items-center gap-1.5">
+                      <CheckCircle2 className="h-3 w-3 text-green-500 shrink-0" />
+                      <span className="text-[11px] text-muted-foreground">{step}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex justify-center"><div className="w-px h-4 bg-accent/30" /></div>
+
+              {/* Extracted data */}
+              <div className="rounded-xl border border-border bg-background p-3">
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                  Extracted Data · 98.4% Confidence
+                </div>
+                <div className="space-y-1">
+                  {[
+                    { label: "Name",    value: "Sarah J. Williams",  badge: "99.2%" },
+                    { label: "Income",  value: "$162,500 / yr",       badge: "99.1%" },
+                    { label: "DTI",     value: "26.8%",               badge: "98.4%" },
+                    { label: "Risk",    value: "None detected",       badge: "✓ Auto" },
+                  ].map((field) => (
+                    <div key={field.label} className="flex items-center justify-between text-[11px] py-0.5">
+                      <span className="text-muted-foreground w-16 shrink-0">{field.label}</span>
+                      <span className="font-medium text-foreground flex-1 px-2">{field.value}</span>
+                      <span className="text-[10px] text-green-600 font-semibold">{field.badge}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Downstream action */}
+              <div className="flex items-center gap-2 rounded-xl bg-foreground/5 border border-border px-3 py-2">
+                <Zap className="h-3 w-3 text-accent shrink-0" />
+                <span className="text-[11px] text-muted-foreground">Pushed to KYC Platform · LOS updated · BSA/AML trail logged</span>
+              </div>
+            </div>
           </motion.div>
 
         </div>
