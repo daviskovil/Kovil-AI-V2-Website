@@ -289,7 +289,7 @@ export default function BankingFinancialServicesPage() {
 
       {/* ── Hero ──────────────────────────────────────────────────────────────── */}
       <section id="hero" className="max-w-7xl mx-auto px-6 pt-16 pb-12">
-        <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
 
           {/* Left — text */}
           <div>
@@ -342,14 +342,14 @@ export default function BankingFinancialServicesPage() {
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="hidden lg:flex lg:items-stretch"
+            className="hidden lg:block"
           >
             <Image
               src="/hero-idp-banking-financial-services.png"
               alt="Financial data extraction and KYC automation pipeline — Banking IDP by Kovil AI"
               width={900}
               height={900}
-              className="rounded-2xl border border-border shadow-2xl w-full h-full object-cover"
+              className="rounded-2xl border border-border shadow-2xl w-full"
               priority
             />
           </motion.div>
