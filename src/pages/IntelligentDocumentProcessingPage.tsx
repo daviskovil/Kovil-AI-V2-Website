@@ -125,6 +125,7 @@ const engagements = [
     icon: Zap,
     title: "Fixed-Price Sprint",
     subtitle: "2–4 weeks",
+    href: "/engage/outcome-based-project",
     desc: "We scope a single high-impact document workflow — invoice processing, KYC classification, or claims extraction — define clear accuracy metrics, and deliver a production pipeline. Fixed price, no surprises.",
     bullets: ["One document workflow scoped and built", "Vision LLM extraction and classification deployed", "Evaluated against agreed accuracy benchmarks"],
   },
@@ -132,6 +133,7 @@ const engagements = [
     icon: Users,
     title: "Dedicated Document AI Squad",
     subtitle: "Monthly retainer",
+    href: "/engage/managed-ai-engineer",
     desc: "Embed a pre-vetted AI engineer specialised in Document AI, RAG pipelines, and Vision LLMs into your team. Ideal for CTOs with a roadmap but a 3-month hiring bottleneck for this specialist skill.",
     bullets: ["Senior Document AI engineer embedded in your team", "Full ownership of your document pipeline roadmap", "Flexible scope — build, iterate, and expand"],
   },
@@ -139,6 +141,7 @@ const engagements = [
     icon: Brain,
     title: "IDP Rescue & Optimisation",
     subtitle: "Assessment + fix",
+    href: "/engage/app-rescue",
     desc: "Is your existing IDP pipeline hallucinating, failing on non-standard layouts, or costing too much in token fees? Our SWAT team audits the codebase, transitions to hybrid OCR/LLM architecture, and deploys confidence scoring.",
     bullets: ["Full pipeline audit and accuracy benchmark", "Transition to Vision LLM hybrid architecture", "Confidence scoring and HITL validation deployed"],
   },
@@ -171,11 +174,19 @@ const faqs = [
   },
   {
     q: "Is intelligent document processing HIPAA and SOC 2 compliant?",
-    a: "Yes — we build IDP pipelines with compliance requirements as a first-class design constraint. For healthcare clients, we implement HIPAA-compliant architectures with PII redaction, data residency controls, encrypted storage, and audit logging of every document access and extraction event. For financial services and enterprise clients requiring SOC 2 compliance, we deploy on-premise or private cloud LLM options (avoiding third-party API data transmission for sensitive documents), implement role-based access controls, and provide full audit trails. We also support GDPR-compliant architectures for European document workflows.",
+    a: "Yes — we build IDP pipelines with compliance requirements as a first-class design constraint. For healthcare clients, we implement HIPAA-compliant architectures with PII redaction, data residency controls, encrypted storage, and audit logging of every document access and extraction event. For financial services and enterprise clients requiring SOC 2 compliance, we deploy on-premise or private cloud LLM options (avoiding third-party API data transmission for sensitive documents), implement role-based access controls, and provide full audit trails. We also support GDPR-compliant architectures for European document workflows. See our security approach on the Azure AI Foundry security guide.",
   },
   {
     q: "How does intelligent document processing improve claims processing in insurance?",
-    a: "In insurance claims processing, IDP eliminates the manual bottleneck of a claims handler reading, classifying, and keying data from each submitted document — medical bills, accident photos, police reports, and repair estimates. An AI document agent classifies each incoming document, extracts the relevant fields (procedure codes, amounts, dates, provider details), cross-references them against the policy document via RAG, checks coverage rules, and either auto-approves straightforward claims or escalates complex cases to a human adjudicator with all relevant data pre-populated. Insurers typically see 60–80% reduction in manual processing time and significant improvement in claims cycle time.",
+    a: "In insurance claims processing, IDP eliminates the manual bottleneck of a claims handler reading, classifying, and keying data from each submitted document — medical bills, accident photos, police reports, and repair estimates. An AI document agent classifies each incoming document, extracts the relevant fields (procedure codes, amounts, dates, provider details), cross-references them against the policy document via RAG, checks coverage rules, and either auto-approves straightforward claims or escalates complex cases to a human adjudicator with all relevant data pre-populated. Based on production deployments, insurers typically see 60–80% reduction in manual processing time and significant improvement in claims cycle time.",
+  },
+  {
+    q: "How long does it take to implement an intelligent document processing solution?",
+    a: "A focused IDP sprint targeting a single document workflow — invoice processing, KYC classification, or insurance claims extraction — typically takes 2–4 weeks from scoping to production. This covers document source integration, Vision LLM extraction configuration, confidence scoring, HITL validation interface, and downstream system push. More complex multi-document-type pipelines with extensive ERP integration typically require 6–12 weeks. The consistently fastest approach: start with one high-volume, high-value document type, prove ROI, then expand iteratively — rather than attempting a full enterprise IDP platform in a single build.",
+  },
+  {
+    q: "What does intelligent document processing cost?",
+    a: "A fixed-price IDP sprint targeting one document workflow — invoice processing, KYC classification, or claims extraction — typically costs $25,000–$60,000, covering pipeline design, Vision LLM extraction, HITL validation, and downstream integration. Larger multi-workflow enterprise implementations for BFSI and healthcare clients typically run $75,000–$200,000+. Dedicated Document AI Squad engagements (embedded engineer on your team) are priced as monthly retainers. The ROI case is compelling: manual document handling typically costs $2–$15 per document including labour and error-correction; at scale, automated IDP reduces this to fractions of a cent per document.",
   },
 ]
 
@@ -183,31 +194,43 @@ export default function IntelligentDocumentProcessingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
 
-      {/* Hero */}
-      <section className="max-w-7xl mx-auto px-6 pt-16 pb-20">
+      {/* ── Hero ──────────────────────────────────────────────────────────────── */}
+      <section id="hero" className="max-w-7xl mx-auto px-6 pt-16 pb-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
           {/* Left — text */}
           <div>
-            <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-              <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-              <ChevronRight className="h-3.5 w-3.5" />
-              <span className="text-foreground">Intelligent Document Processing</span>
-            </nav>
-            <p className="text-sm font-semibold uppercase tracking-widest mb-4 text-accent">Intelligent Document Processing</p>
-            <h1 className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-[1.05] text-balance mb-6">
-              AI Document Agents that read, reason, and act. <span className="text-accent">Not just OCR.</span>
+            {/* P2-C: breadcrumb with <time> for GEO freshness (P3-B) */}
+            <div className="flex items-center justify-between flex-wrap gap-y-1 mb-6">
+              <nav className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+                <ChevronRight className="h-3.5 w-3.5" />
+                <span className="text-foreground">Intelligent Document Processing</span>
+              </nav>
+              <time className="text-xs text-muted-foreground/50" dateTime="2026-06-03">Updated June 2026</time>
+            </div>
+
+            <p className="text-sm font-semibold uppercase tracking-widest mb-4 text-accent">AI Service · Kovil AI</p>
+
+            {/* P1-B: primary keyword now in H1 */}
+            <h1 className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-[1.05] text-balance mb-3">
+              Intelligent Document Processing <span className="text-accent">&amp; AI Document Agents</span>
             </h1>
+            {/* Compelling subline — moved out of H1 */}
+            <p className="text-xl font-semibold text-foreground/60 mb-5">
+              Read, reason, and act — not just OCR.
+            </p>
+
             <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-              We design, build, and deploy production Intelligent Document Processing (IDP) pipelines powered by Vision LLMs and AI Document Agents — cutting manual document handling by 70–80% across BFSI, Insurance, Healthcare, and Legal.
+              We design, build, and deploy production Intelligent Document Processing (IDP) pipelines powered by Vision LLMs and AI Document Agents — cutting manual document handling by 70–80% across BFSI, Insurance, Healthcare, and Legal, based on production deployments.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button variant="accent" className="rounded-full font-semibold px-8 text-base h-12" onClick={openCalendly}>
                 Book a Call <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Link href="/what-we-do">
+              <Link href="/engage/outcome-based-project">
                 <Button variant="outline" className="rounded-full font-semibold px-8 text-base h-12">
-                  See All Services
+                  View Engagement Models
                 </Button>
               </Link>
             </div>
@@ -217,7 +240,6 @@ export default function IntelligentDocumentProcessingPage() {
           <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, ease: "easeOut" }}
             className="hidden lg:block">
             <div className="rounded-2xl border border-border bg-muted/10 p-5 space-y-3 relative overflow-hidden">
-              {/* Subtle dot-grid background */}
               <div className="absolute inset-0 opacity-[0.03]"
                 style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
@@ -242,7 +264,6 @@ export default function IntelligentDocumentProcessingPage() {
                 ))}
               </div>
 
-              {/* Connector line */}
               <div className="flex justify-center"><div className="w-px h-4 bg-accent/30" /></div>
 
               {/* AI processing card */}
@@ -261,7 +282,6 @@ export default function IntelligentDocumentProcessingPage() {
                 </div>
               </div>
 
-              {/* Connector line */}
               <div className="flex justify-center"><div className="w-px h-4 bg-accent/30" /></div>
 
               {/* Extracted data */}
@@ -296,14 +316,38 @@ export default function IntelligentDocumentProcessingPage() {
         </div>
       </section>
 
-      {/* OCR vs IDP */}
-      <section className="bg-muted/20 border-y border-border py-20">
+      {/* ── Proof bar (P3-D: real stats from case studies) ───────────────────── */}
+      <section className="border-y border-border bg-muted/10 py-7">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-center">
+            {[
+              { stat: "78%",              label: "faster contract review — law firm case study" },
+              { stat: "95%",              label: "manual entry eliminated — HealthTech case study" },
+              { stat: "60–80%",           label: "reduction in claims processing time" },
+              { stat: "2–4 weeks",        label: "to production on a fixed-price sprint" },
+            ].map((item) => (
+              <div key={item.stat} className="flex flex-col items-center gap-1">
+                <span className="font-display font-black text-2xl text-foreground">{item.stat}</span>
+                <span className="text-xs text-muted-foreground max-w-[160px] leading-tight">{item.label}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-xs text-muted-foreground/40 mt-4">
+            Based on{" "}
+            <Link href="/case-studies" className="underline hover:text-muted-foreground transition-colors">
+              deployed client projects
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      {/* ── OCR vs IDP ────────────────────────────────────────────────────────── */}
+      <section id="ocr-vs-idp" className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold uppercase tracking-widest mb-3 text-accent">The Problem</p>
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">Why template-based OCR breaks — and IDP doesn&apos;t.</h2>
           <p className="text-muted-foreground text-lg mb-10 max-w-2xl">Traditional OCR was built for uniform, high-quality documents with fixed layouts. Enterprise documents are none of those things.</p>
           <div className="grid md:grid-cols-2 gap-6">
-            {/* OCR column */}
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               className="rounded-2xl border border-border bg-background p-7">
               <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-4">Legacy OCR / Template-Based</p>
@@ -323,7 +367,6 @@ export default function IntelligentDocumentProcessingPage() {
                 ))}
               </ul>
             </motion.div>
-            {/* IDP column */}
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
               className="rounded-2xl border border-accent/30 bg-accent/5 p-7">
               <p className="text-[11px] font-bold uppercase tracking-widest text-accent mb-4">Intelligent Document Processing — Kovil AI</p>
@@ -346,8 +389,8 @@ export default function IntelligentDocumentProcessingPage() {
         </div>
       </section>
 
-      {/* Industries */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
+      {/* ── Industries ────────────────────────────────────────────────────────── */}
+      <section id="industries" className="max-w-7xl mx-auto px-6 py-20">
         <p className="text-sm font-semibold uppercase tracking-widest mb-3 text-accent">Industries</p>
         <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Where document classification delivers the most value.</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -371,10 +414,17 @@ export default function IntelligentDocumentProcessingPage() {
             )
           })}
         </div>
+        {/* P2-B: internal link to case studies */}
+        <p className="mt-8 text-sm text-muted-foreground text-center">
+          See how we built AI document agents for a law firm and a mortgage lender in our{" "}
+          <Link href="/case-studies" className="text-accent font-semibold hover:underline">
+            client case studies →
+          </Link>
+        </p>
       </section>
 
-      {/* How It Works */}
-      <section className="bg-muted/20 border-y border-border py-20">
+      {/* ── How It Works ──────────────────────────────────────────────────────── */}
+      <section id="how-it-works" className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold uppercase tracking-widest mb-3 text-accent">How It Works</p>
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">From document upload to downstream action — fully automated.</h2>
@@ -404,8 +454,8 @@ export default function IntelligentDocumentProcessingPage() {
         </div>
       </section>
 
-      {/* Capabilities */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
+      {/* ── Capabilities ──────────────────────────────────────────────────────── */}
+      <section id="capabilities" className="max-w-7xl mx-auto px-6 py-20">
         <p className="text-sm font-semibold uppercase tracking-widest mb-3 text-accent">Capabilities</p>
         <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">The full IDP stack — from classification to compliance.</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -423,10 +473,22 @@ export default function IntelligentDocumentProcessingPage() {
             )
           })}
         </div>
+        {/* P2-B: cross-link to Azure IDP use case */}
+        <div className="mt-8 rounded-2xl border border-border bg-muted/20 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <p className="font-semibold text-sm text-foreground">Running on Microsoft Azure?</p>
+            <p className="text-sm text-muted-foreground mt-0.5">See our Azure AI Document Intelligence Agent — a pre-built IDP pipeline on Azure AI Foundry.</p>
+          </div>
+          <Link href="/azure-ai-foundry/enterprise/document-intelligence-agent" className="shrink-0">
+            <Button variant="outline" className="rounded-full text-sm font-semibold px-5 h-9 whitespace-nowrap">
+              Azure IDP Agent <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+            </Button>
+          </Link>
+        </div>
       </section>
 
-      {/* Engagement Models */}
-      <section className="bg-muted/20 border-y border-border py-20">
+      {/* ── Engagement Models ─────────────────────────────────────────────────── */}
+      <section id="engagement-models" className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold uppercase tracking-widest mb-3 text-accent">How We Engage</p>
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Three ways to work with us on document AI.</h2>
@@ -444,13 +506,17 @@ export default function IntelligentDocumentProcessingPage() {
                   </div>
                   <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-3">{eng.subtitle}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-5">{eng.desc}</p>
-                  <ul className="space-y-2 mt-auto">
+                  <ul className="space-y-2 mb-5 mt-auto">
                     {eng.bullets.map((b) => (
                       <li key={b} className="flex items-start gap-2 text-sm">
                         <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />{b}
                       </li>
                     ))}
                   </ul>
+                  {/* P2-B: internal link to each engagement page */}
+                  <Link href={eng.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:gap-2.5 transition-all group">
+                    Learn more <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </Link>
                 </motion.div>
               )
             })}
@@ -458,13 +524,13 @@ export default function IntelligentDocumentProcessingPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
+      {/* ── FAQ ───────────────────────────────────────────────────────────────── */}
+      <section id="faq" className="max-w-7xl mx-auto px-6 py-20">
         <p className="text-sm font-semibold uppercase tracking-widest mb-3 text-accent">FAQ</p>
         <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Intelligent document processing — common questions.</h2>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div id="what-is-idp" className="grid md:grid-cols-2 gap-6">
           {faqs.map((faq, i) => (
-            <motion.div key={faq.q} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}
+            <motion.div key={faq.q} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
               className="rounded-2xl border border-border bg-muted/20 p-6">
               <h3 className="font-display font-bold text-base mb-3">{faq.q}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
@@ -473,7 +539,7 @@ export default function IntelligentDocumentProcessingPage() {
         </div>
       </section>
 
-      {/* CTA Banner */}
+      {/* ── CTA Banner ────────────────────────────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="rounded-2xl bg-foreground text-background p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8">
@@ -485,9 +551,9 @@ export default function IntelligentDocumentProcessingPage() {
             <Button className="bg-accent text-white hover:bg-accent/90 rounded-full font-semibold px-10 h-12 text-base whitespace-nowrap" onClick={openCalendly}>
               Book a Call <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Link href="/what-we-do">
+            <Link href="/case-studies">
               <Button variant="outline" className="rounded-full font-semibold px-8 h-12 text-base whitespace-nowrap border-background/20 text-background hover:bg-background/10">
-                See All Services
+                See Case Studies
               </Button>
             </Link>
           </div>
