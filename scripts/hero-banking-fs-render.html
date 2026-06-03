@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px; height: 630px;
+    background: #0b0f1a;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow: hidden; position: relative;
+  }
+  .dot-grid {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .orb-orange {
+    position: absolute; top: -140px; left: -80px;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(249,115,22,0.18) 0%, transparent 68%);
+  }
+  .orb-blue {
+    position: absolute; bottom: -80px; right: 60px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(0,120,212,0.12) 0%, transparent 70%);
+  }
+  .orb-green {
+    position: absolute; top: 200px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%);
+  }
+
+  .wrap {
+    position: relative; z-index: 10;
+    padding: 44px 56px 44px 56px;
+    height: 100%;
+    display: flex; flex-direction: column;
+  }
+
+  /* TOP ROW */
+  .top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+  .logo { display: flex; align-items: center; gap: 9px; }
+  .logo-box {
+    width: 34px; height: 34px; background: #F97316; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-text { font-size: 17px; font-weight: 800; color: white; letter-spacing: -0.3px; }
+  .logo-text span { color: #F97316; }
+  .page-badge {
+    background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.35);
+    color: #F97316; padding: 7px 16px; border-radius: 20px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.02em;
+  }
+
+  /* ORANGE DIVIDER */
+  .accent-bar { width: 48px; height: 4px; background: #F97316; border-radius: 2px; margin-bottom: 22px; }
+
+  /* MAIN CONTENT */
+  .main { display: flex; gap: 52px; flex: 1; align-items: flex-start; }
+
+  .left { flex: 1; padding-top: 4px; }
+  .eyebrow {
+    font-size: 11px; font-weight: 700; color: #F97316;
+    text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px;
+  }
+  h1 { font-size: 42px; font-weight: 900; color: white; line-height: 1.1; margin-bottom: 18px; letter-spacing: -1px; }
+  h1 .highlight { color: #F97316; }
+  .sub {
+    font-size: 16px; color: rgba(255,255,255,0.45); line-height: 1.55;
+    max-width: 400px; margin-bottom: 24px;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.55); padding: 5px 12px; border-radius: 16px;
+    font-size: 11px; font-weight: 500;
+  }
+
+  /* RIGHT PANEL — pipeline cards */
+  .right { width: 390px; display: flex; flex-direction: column; gap: 9px; }
+
+  .pipeline-label {
+    font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.3);
+    text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 3px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 13px 14px;
+    display: flex; align-items: flex-start; gap: 11px;
+  }
+  .card.orange { border-color: rgba(249,115,22,0.38); background: rgba(249,115,22,0.07); }
+  .card.blue { border-color: rgba(0,120,212,0.38); background: rgba(0,120,212,0.06); }
+  .card.green { border-color: rgba(16,185,129,0.38); background: rgba(16,185,129,0.06); }
+
+  .card-icon {
+    width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .icon-o { background: rgba(249,115,22,0.2); }
+  .icon-b { background: rgba(0,120,212,0.2); }
+  .icon-g { background: rgba(16,185,129,0.2); }
+
+  .card-body { flex: 1; }
+  .card-title { font-size: 12px; font-weight: 700; color: white; margin-bottom: 4px; }
+  .card-sub { font-size: 10px; color: rgba(255,255,255,0.4); line-height: 1.45; }
+  .card-fields { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
+  .field-row { display: flex; align-items: center; gap: 6px; }
+  .field-key { font-size: 9px; color: rgba(255,255,255,0.35); width: 68px; flex-shrink: 0; }
+  .field-val { font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.75); flex: 1; }
+  .conf { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 6px; }
+  .conf-g { background: rgba(16,185,129,0.2); color: #10B981; }
+  .conf-b { background: rgba(0,120,212,0.2); color: #60A5FA; }
+  .conf-o { background: rgba(249,115,22,0.2); color: #FB923C; }
+
+  .arrow-row { display: flex; justify-content: center; align-items: center; gap: 4px; }
+  .arrow-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(249,115,22,0.5); }
+
+  /* BOTTOM ROW */
+  .bottom-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 24px; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .pills { display: flex; gap: 8px; }
+  .pill {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+    color: rgba(255,255,255,0.5); padding: 5px 12px; border-radius: 14px;
+    font-size: 10px; font-weight: 500;
+  }
+  .cta-text { font-size: 11px; color: rgba(255,255,255,0.25); }
+  .cta-text span { color: #F97316; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="dot-grid"></div>
+<div class="orb-orange"></div>
+<div class="orb-blue"></div>
+<div class="orb-green"></div>
+
+<div class="wrap">
+  <!-- Top -->
+  <div class="top-row">
+    <div class="logo">
+      <div class="logo-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="logo-text">KOVIL<span>.ai</span></div>
+    </div>
+    <div class="page-badge">Banking &amp; Financial Services IDP</div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <!-- Left -->
+    <div class="left">
+      <div class="accent-bar"></div>
+      <div class="eyebrow">Financial Document AI · BFSI</div>
+      <h1>Financial Data<br>Extraction &amp;<br><span class="highlight">KYC Automation</span></h1>
+      <div class="sub">
+        Production IDP pipelines for banking — KYC, automated mortgage processing, credit underwriting, and trade finance. Fixed-price sprints, 2–4 weeks to production.
+      </div>
+      <div class="tags">
+        <span class="tag">KYC Automation</span>
+        <span class="tag">Mortgage Processing</span>
+        <span class="tag">Credit Underwriting</span>
+        <span class="tag">Bank Statement Parsing</span>
+      </div>
+    </div>
+
+    <!-- Right: pipeline -->
+    <div class="right">
+      <div class="pipeline-label">AI Document Pipeline — Banking</div>
+
+      <!-- KYC card -->
+      <div class="card orange">
+        <div class="card-icon icon-o">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">KYC Document Extraction</div>
+          <div class="card-sub">Passport · Driver's License · Utility Bill</div>
+          <div class="card-fields">
+            <div class="field-row"><span class="field-key">Full Name</span><span class="field-val">John H. Smith</span><span class="conf conf-g">99.2%</span></div>
+            <div class="field-row"><span class="field-key">DOB</span><span class="field-val">12 Mar 1985</span><span class="conf conf-g">99.7%</span></div>
+            <div class="field-row"><span class="field-key">ID Number</span><span class="field-val">P123456789US</span><span class="conf conf-g">98.9%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mortgage card -->
+      <div class="card blue">
+        <div class="card-icon icon-b">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Automated Mortgage Processing</div>
+          <div class="card-sub">Paystubs · Bank Statements · Tax Returns (W-2)</div>
+          <div class="card-fields">
+            <div class="field-row"><span class="field-key">Gross Income</span><span class="field-val">$148,400 / yr</span><span class="conf conf-b">99.1%</span></div>
+            <div class="field-row"><span class="field-key">DTI Ratio</span><span class="field-val">28.4%</span><span class="conf conf-b">97.8%</span></div>
+            <div class="field-row"><span class="field-key">LTV</span><span class="field-val">76.2%</span><span class="conf conf-b">99.4%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Credit Underwriting -->
+      <div class="card green">
+        <div class="card-icon icon-g">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Credit Underwriting &amp; Bank Statement Parsing</div>
+          <div class="card-sub">Financial statements · 12-month transaction history</div>
+          <div class="card-fields">
+            <div class="field-row"><span class="field-key">Net Revenue</span><span class="field-val">$2.4M (FY2025)</span><span class="conf conf-g">98.3%</span></div>
+            <div class="field-row"><span class="field-key">Risk Signal</span><span class="field-val">Low — Auto Approve</span><span class="conf conf-o">Auto</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom row -->
+  <div class="bottom-row">
+    <div class="pills">
+      <span class="pill">Fixed-Price Sprints</span>
+      <span class="pill">SOC 2 · BSA/AML Ready</span>
+      <span class="pill">Vision LLM Powered</span>
+      <span class="pill">NY &amp; Global</span>
+    </div>
+    <div class="cta-text">kovil.ai/intelligent-document-processing/<span>banking-financial-services</span></div>
+  </div>
+</div>
+</body>
+</html>

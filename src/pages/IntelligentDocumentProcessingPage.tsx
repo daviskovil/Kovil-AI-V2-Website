@@ -10,6 +10,7 @@ const industries = [
   {
     icon: Building2,
     label: "Banking & Financial Services",
+    href: "/intelligent-document-processing/banking-financial-services",
     useCases: [
       "KYC & identity document classification",
       "Mortgage bundle processing — paystubs, bank statements, tax returns",
@@ -19,6 +20,7 @@ const industries = [
   {
     icon: Shield,
     label: "Insurance",
+    href: null,
     useCases: [
       "Claims processing — medical bills, police reports, repair estimates",
       "Underwriting — prior medical histories, property records",
@@ -28,6 +30,7 @@ const industries = [
   {
     icon: Heart,
     label: "Healthcare & Life Sciences",
+    href: null,
     useCases: [
       "Medical records indexing — EHRs, physician notes, lab results",
       "Medical billing & coding — procedural descriptions, diagnoses",
@@ -37,6 +40,7 @@ const industries = [
   {
     icon: Scale,
     label: "Legal & Compliance",
+    href: null,
     useCases: [
       "Contract lifecycle management — NDA and vendor agreement classification",
       "eDiscovery — email, memo, and record classification by relevance",
@@ -46,6 +50,7 @@ const industries = [
   {
     icon: Truck,
     label: "Supply Chain & Logistics",
+    href: null,
     useCases: [
       "Accounts payable automation — invoice, PO, and receipt 3-way matching",
       "Customs & shipping compliance — declarations, certificates of origin",
@@ -55,6 +60,7 @@ const industries = [
   {
     icon: Users,
     label: "Human Resources",
+    href: null,
     useCases: [
       "Resume parsing — work history, skills, education extraction",
       "Employee records management — onboarding, certifications, tax forms",
@@ -396,21 +402,31 @@ export default function IntelligentDocumentProcessingPage() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {industries.map((ind, i) => {
             const Icon = ind.icon
-            return (
+            const card = (
               <motion.div key={ind.label} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="rounded-2xl border border-border bg-muted/20 p-6 hover:border-accent/40 hover:bg-muted/40 transition-all">
+                className="rounded-2xl border border-border bg-muted/20 p-6 hover:border-accent/40 hover:bg-muted/40 transition-all h-full">
                 <div className="h-10 w-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
                   <Icon className="h-5 w-5 text-accent" />
                 </div>
                 <h3 className="font-display font-bold text-lg mb-3">{ind.label}</h3>
-                <ul className="space-y-2">
+                <ul className="space-y-2 mb-4">
                   {ind.useCases.map((uc) => (
                     <li key={uc} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <CheckCircle2 className="h-3.5 w-3.5 text-accent shrink-0 mt-0.5" />{uc}
                     </li>
                   ))}
                 </ul>
+                {ind.href && (
+                  <span className="text-xs font-semibold text-accent flex items-center gap-1">
+                    Deep-dive guide <ArrowRight className="h-3 w-3" />
+                  </span>
+                )}
               </motion.div>
+            )
+            return ind.href ? (
+              <Link key={ind.label} href={ind.href} className="block">{card}</Link>
+            ) : (
+              <div key={ind.label}>{card}</div>
             )
           })}
         </div>
