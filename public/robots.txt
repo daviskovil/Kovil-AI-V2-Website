@@ -54,35 +54,12 @@ Disallow: /?paged=
 Disallow: /?ref=
 Disallow: /?aff=
 
-# ── Block old junk pages — no SEO value, no redirects ────────────────────────
-# Pure junk from the old site. No 301 redirects set for these.
-Disallow: /servicenow-
-Disallow: /workday-
-Disallow: /adobe-
-Disallow: /senior-ai/
-Disallow: /cloud-consultant/
-Disallow: /cloud-migration-specialist/
-Disallow: /database-administrator/
-Disallow: /founders-friend/
-Disallow: /ultimate-business-advisor/
-Disallow: /the-high-business-council/
-Disallow: /web-design-wizard/
-# Old AI tool review pages
-Disallow: /weaverse-ai/
-Disallow: /webwave-ai/
-Disallow: /entelligence-ai/
-Disallow: /astria-ai/
-Disallow: /leania-ai/
-Disallow: /ellipsis-ai/
-Disallow: /img2prompt/
-Disallow: /supaclip-pro/
-Disallow: /streamlabs-podcast-editor/
-Disallow: /smartsheet-2/
-Disallow: /chris-worths-ai-alter-ego/
-Disallow: /macky-ai/
-Disallow: /saas-quick/
-Disallow: /events/
-Disallow: /ai-studio/
+# ── Old junk pages — intentionally NOT blocked ───────────────────────────────
+# These paths (old role pages, AI tool reviews, etc.) all 404 in Next.js.
+# Blocking them causes "Indexed, though blocked by robots.txt" if Google ever
+# indexed them from the old site — Google can't confirm the 404, so they stay
+# indexed indefinitely. Removing Disallow lets Google crawl → see 404 →
+# de-index permanently. No downside: un-indexed paths just return 404 and move on.
 
 # NOTE: The following old URLs are intentionally NOT blocked here because they
 # have 301 redirects set in next.config.ts. Google must be able to crawl them
