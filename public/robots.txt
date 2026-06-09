@@ -3,8 +3,10 @@ Allow: /
 
 # ── Block all spam/affiliate legacy URL patterns ──────────────────────────────
 # These are from the old affiliate/shopping site previously on this domain.
-# Disallowing stops Googlebot crawling them, speeding up de-indexing.
-Disallow: /onlines/
+# NOTE: /onlines/ is intentionally NOT blocked here.
+# Blocking it causes "Indexed, though blocked by robots.txt" in GSC — Google
+# can't crawl to confirm the 404, so pages stay indexed indefinitely.
+# Letting Google crawl /onlines/* → sees 404 → de-indexes naturally.
 Disallow: /blogs/
 Disallow: /category/
 Disallow: /product/
