@@ -1,48 +1,27 @@
 User-agent: *
 Allow: /
 
-# ── Block all spam/affiliate legacy URL patterns ──────────────────────────────
-# These are from the old affiliate/shopping site previously on this domain.
-# NOTE: /onlines/ is intentionally NOT blocked here.
-# Blocking it causes "Indexed, though blocked by robots.txt" in GSC — Google
-# can't crawl to confirm the 404, so pages stay indexed indefinitely.
-# Letting Google crawl /onlines/* → sees 404 → de-indexes naturally.
-Disallow: /blogs/
-Disallow: /category/
-Disallow: /product/
-Disallow: /products/
-Disallow: /shop/
-Disallow: /store/
-Disallow: /tag/
-Disallow: /tags/
-Disallow: /brand/
-Disallow: /brands/
-Disallow: /search/
-Disallow: /cart/
-Disallow: /checkout/
-Disallow: /account/
-Disallow: /my-account/
-Disallow: /wishlist/
-Disallow: /compare/
+# ── Legacy e-commerce content paths — intentionally NOT blocked ───────────────
+# All old affiliate/shopping site paths (/blogs/, /shop/, /product/, /category/,
+# /onlines/, etc.) all 404 in Next.js. Blocking them creates an unresolvable
+# loop: GSC shows "Indexed, though blocked by robots.txt" → Google can't crawl
+# to confirm 404 → pages stay indexed indefinitely → URL Removal expires →
+# they re-appear. Removing Disallow lets Google crawl → see 404 → de-index for good.
+# Active GSC prefix removals (blogs/, shop/, product/, category/, onlines/) provide
+# SERP protection through ~Oct 2026 while natural de-indexing completes.
+
+# ── WordPress admin/tech paths — keep blocked ─────────────────────────────────
+# These are infrastructure paths, never indexed as content. Blocking prevents
+# scanner bots from probing for WordPress vulnerabilities (security hygiene).
 Disallow: /wp-admin/
 Disallow: /wp-content/
 Disallow: /wp-includes/
 Disallow: /wp-json/
 Disallow: /xmlrpc.php
-Disallow: /feed/
-Disallow: /author/
-Disallow: /page/
-Disallow: /deals/
-Disallow: /offer/
-Disallow: /offers/
-Disallow: /coupon/
-Disallow: /coupons/
-Disallow: /promo/
-Disallow: /review/
-Disallow: /reviews/
-Disallow: /rating/
-Disallow: /collections/
-Disallow: /vendor/
+
+# ── Query parameter variants — keep blocked ───────────────────────────────────
+# Next.js returns the homepage (200) for unknown query params — blocking prevents
+# Google from indexing /?s=, /?p=, etc. as duplicate homepage variants.
 Disallow: /?s=
 Disallow: /?p=
 Disallow: /?cat=
