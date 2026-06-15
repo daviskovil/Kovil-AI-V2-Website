@@ -392,7 +392,7 @@ export default function HomePage() {
               transition={{ duration: 0.5 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-balance leading-[1.05]"
             >
-              Ship AI Agents, <br/><span className="text-accent">Deployed by Elite AI Engineers</span>
+              We Deploy AI Agents for Enterprises, <br/><span className="text-accent">Built By Elite AI Engineers</span>
             </motion.h1>
 
             <motion.p
