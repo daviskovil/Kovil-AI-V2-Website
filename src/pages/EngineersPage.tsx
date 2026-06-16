@@ -489,9 +489,9 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.97 }}
         transition={{ type: 'spring', stiffness: 320, damping: 28 }}
-        className="relative w-[95vw] max-w-[1320px] bg-white rounded-3xl overflow-hidden"
+        className="relative w-[95vw] max-w-[1320px] bg-white rounded-3xl overflow-hidden flex flex-col"
         style={{
-          height: 'min(88vh, 820px)',
+          height: 'min(90vh, 840px)',
           boxShadow: '0 32px 80px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.06)',
         }}
         onClick={e => e.stopPropagation()}
@@ -499,9 +499,8 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
         {/* Top border */}
         <div className="absolute inset-x-0 top-0 h-[2px] z-10 bg-black/[0.06]" />
 
-
         {/* ── Header ── */}
-        <div className="flex items-center gap-5 px-7 pt-7 pb-5 border-b border-black/[0.07]">
+        <div className="flex items-center gap-5 px-7 pt-7 pb-5 border-b border-black/[0.07] flex-none">
 
           {/* Avatar */}
           <div
@@ -547,17 +546,14 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
           </div>
         </div>
 
-        {/* ── Body — 3 columns, no scroll ── */}
+        {/* ── Body — 3 columns, fills remaining height via flex-1 ── */}
         <div
-          className="grid px-6 pb-6 pt-5 gap-x-6"
-          style={{
-            gridTemplateColumns: '1fr 1.1fr 0.95fr',
-            height: 'calc(100% - 105px)',
-          }}
+          className="grid px-6 pb-6 pt-5 gap-x-6 flex-1 min-h-0"
+          style={{ gridTemplateColumns: '1fr 1.1fr 0.95fr' }}
         >
 
           {/* ── Column 1: Bio, Skills, Certs, Education ── */}
-          <div className="flex flex-col gap-5 min-h-0 overflow-hidden">
+          <div className="flex flex-col gap-5 min-h-0 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 
             {/* Bio */}
             <div>
@@ -603,8 +599,7 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
 
           {/* ── Column 2: Highlights + Engagement ── */}
           <div
-            className="flex flex-col gap-5 min-h-0 overflow-hidden pl-6 pr-6"
-            style={{ borderLeft: '1px solid rgba(0,0,0,0.07)', borderRight: '1px solid rgba(0,0,0,0.07)' }}
+            className="flex flex-col gap-5 min-h-0 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pl-6 pr-6 border-x border-black/[0.07]"
           >
 
             {/* Highlights */}
@@ -631,7 +626,8 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
                 {eng.engagementType.map(e => (
                   <span
                     key={e}
-                    className="rounded-full px-3 py-[4px] text-[10.5px] font-semibold border border-black/15 text-black/50 bg-black/[0.02]"
+                    className="rounded-full px-3 py-[4px] text-[10.5px] font-semibold"
+                    style={{ color: ORANGE, border: `1.5px solid ${ORANGE}45`, background: `${ORANGE}0C` }}
                   >
                     {e}
                   </span>
@@ -642,7 +638,7 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
           </div>
 
           {/* ── Column 3: Stack + CTA ── */}
-          <div className="flex flex-col gap-5 min-h-0 overflow-hidden">
+          <div className="flex flex-col gap-5 min-h-0 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 
             {/* Tech Stack */}
             <div className="flex-1">
@@ -681,7 +677,8 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
               </p>
               <a
                 href="/#contact"
-                className="inline-flex items-center gap-1.5 rounded-xl px-5 py-2 text-[12px] font-bold text-white transition-all bg-[#111] hover:bg-[#333]"
+                className="inline-flex items-center gap-1.5 rounded-xl px-5 py-2 text-[12px] font-bold text-white transition-all hover:brightness-110"
+                style={{ background: ORANGE }}
               >
                 Get in Touch
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -806,19 +803,19 @@ export default function EngineersPage() {
 
                   {/* ── Dotted orange divider (not after last row) ── */}
                   {rowIdx < rows.length - 1 && (
-                    <div className="mt-14 mb-14 flex items-center gap-4">
+                    <div className="mt-14 mb-14 flex items-center gap-5">
                       <div
-                        className="flex-1 border-t-[1.5px] border-dashed"
-                        style={{ borderColor: `${ORANGE}40` }}
+                        className="flex-1 border-t-2 border-dashed"
+                        style={{ borderColor: `${ORANGE}CC` }}
                       />
-                      <div className="flex gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: `${ORANGE}55` }} />
-                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: `${ORANGE}35` }} />
-                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: `${ORANGE}20` }} />
+                      <div className="flex gap-2 items-center">
+                        <span className="w-2 h-2 rounded-full" style={{ background: ORANGE }} />
+                        <span className="w-2 h-2 rounded-full" style={{ background: `${ORANGE}99` }} />
+                        <span className="w-2 h-2 rounded-full" style={{ background: `${ORANGE}55` }} />
                       </div>
                       <div
-                        className="flex-1 border-t-[1.5px] border-dashed"
-                        style={{ borderColor: `${ORANGE}40` }}
+                        className="flex-1 border-t-2 border-dashed"
+                        style={{ borderColor: `${ORANGE}CC` }}
                       />
                     </div>
                   )}
