@@ -273,99 +273,103 @@ function EngineerCard({ eng, onClick }: { eng: Engineer; onClick: () => void }) 
 
   return (
     <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.97 }}
-      transition={{ duration: 0.28 }}
+      transition={{ duration: 0.3 }}
       onClick={onClick}
-      className="group bg-white rounded-[20px] overflow-hidden cursor-pointer select-none
-                 transition-all duration-300 hover:-translate-y-1"
-      style={{ boxShadow: '0 2px 16px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04)' }}
-      whileHover={{ boxShadow: '0 16px 48px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.05)' }}
+      className="group bg-white rounded-[22px] overflow-hidden cursor-pointer select-none
+                 transition-all duration-300 hover:-translate-y-1.5 flex flex-col"
+      style={{
+        height: '420px',
+        boxShadow: '0 2px 16px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04)',
+      }}
+      whileHover={{ boxShadow: '0 20px 56px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06)' }}
     >
-      {/* ── Dark top section ── */}
-      <div
-        className="h-[100px] relative overflow-hidden rounded-t-[20px]"
-        style={{ background: '#1A1A1A' }}
-      >
-        {/* Subtle dot texture */}
-        <div className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)',
-            backgroundSize: '20px 20px',
-          }}
+      {/* ── Dark header (fixed height) ── */}
+      <div className="h-[106px] flex-none relative overflow-hidden" style={{ background: '#1A1A1A' }}>
+        <div
+          className="absolute inset-0 opacity-[0.055]"
+          style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '22px 22px' }}
         />
-        {/* Domain label */}
-        <div className="absolute top-3 right-3.5">
-          <span className="text-[9px] font-semibold uppercase tracking-widest text-white/40">
+        <div className="absolute top-3.5 right-4">
+          <span className="text-[9px] font-semibold uppercase tracking-widest text-white/35">
             {DOMAIN_LABEL[eng.domain]}
           </span>
         </div>
       </div>
 
-      {/* ── Overlapping circular avatar ── */}
-      <div className="flex justify-center -mt-10 relative z-10">
-        <div
-          className="w-[80px] h-[80px] rounded-full flex items-center justify-center p-[15px]"
-          style={{
-            background: '#FFF5F0',
-            boxShadow: `0 0 0 4px white, 0 0 0 5.5px ${ORANGE}30, 0 4px 14px rgba(0,0,0,0.10)`,
-          }}
-        >
-          {eng.gender === 'female' ? <FemaleIcon /> : <MaleIcon />}
-        </div>
-      </div>
+      {/* ── Avatar + body (flex-1 so it fills the rest of the fixed-height card) ── */}
+      <div className="flex-1 flex flex-col min-h-0">
 
-      {/* ── Content ── */}
-      <div className="px-5 pb-5 pt-3 text-center">
-
-        {/* Name */}
-        <h3 className="text-[1.25rem] font-bold tracking-tight text-black leading-tight">
-          {eng.name}
-        </h3>
-
-        {/* Title */}
-        <p className="text-[0.7rem] font-semibold mt-0.5 leading-snug text-black/50">
-          {eng.title}
-        </p>
-
-        {/* Years */}
-        <p className="text-[0.65rem] text-black/35 mt-0.5 font-medium">
-          {eng.yearsExp} yrs experience
-        </p>
-
-        {/* Availability pill */}
-        <div className="flex justify-center mt-3">
-          <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-[4px] text-[10.5px] font-semibold ${avail.cls}`}>
-            <span className={`w-[5px] h-[5px] rounded-full flex-shrink-0 ${avail.dot}`} />
-            {avail.label}
-          </span>
+        {/* Avatar — overlaps up into header */}
+        <div className="flex justify-center -mt-[42px] relative z-10 flex-none">
+          <div
+            className="w-[84px] h-[84px] rounded-full flex items-center justify-center p-[15px]"
+            style={{
+              background: '#FFF5F0',
+              boxShadow: `0 0 0 5px white, 0 0 0 6.5px ${ORANGE}28, 0 6px 18px rgba(0,0,0,0.10)`,
+            }}
+          >
+            {eng.gender === 'female' ? <FemaleIcon /> : <MaleIcon />}
+          </div>
         </div>
 
-        {/* Divider */}
-        <div className="h-px bg-black/[0.07] my-3.5" />
+        {/* Text + button */}
+        <div className="flex-1 flex flex-col text-center px-8 pt-4 pb-7 min-h-0">
 
-        {/* Skill chips */}
-        <div className="flex flex-wrap gap-1.5 justify-center">
-          {eng.skills.slice(0, 3).map(s => (
-            <span
-              key={s}
-              className="rounded-md px-2 py-[3px] text-[10px] border border-black/[0.10] text-black/50 bg-black/[0.02] font-medium"
-            >
-              {s}
+          {/* Name */}
+          <h3 className="text-[1.3rem] font-bold tracking-tight text-black leading-tight truncate">
+            {eng.name}
+          </h3>
+
+          {/* Title — single line */}
+          <p className="text-[0.72rem] font-semibold mt-2 text-black/45 leading-snug truncate">
+            {eng.title}
+          </p>
+
+          {/* Years */}
+          <p className="text-[0.65rem] text-black/30 mt-1 font-medium">
+            {eng.yearsExp} yrs experience
+          </p>
+
+          {/* Availability */}
+          <div className="flex justify-center mt-5">
+            <span className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-[5px] text-[10.5px] font-semibold ${avail.cls}`}>
+              <span className={`w-[5px] h-[5px] rounded-full flex-shrink-0 ${avail.dot}`} />
+              {avail.label}
             </span>
-          ))}
+          </div>
+
+          {/* Dotted divider */}
+          <div
+            className="border-t border-dashed my-5"
+            style={{ borderColor: 'rgba(0,0,0,0.10)' }}
+          />
+
+          {/* Skills — single row, no wrap */}
+          <div className="flex gap-2 justify-center overflow-hidden">
+            {eng.skills.slice(0, 3).map(s => (
+              <span
+                key={s}
+                className="rounded-lg px-2.5 py-1 text-[10.5px] border border-black/[0.09] text-black/45 bg-black/[0.02] font-medium whitespace-nowrap"
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+
+          {/* Push button to bottom */}
+          <div className="flex-1" />
+
+          {/* CTA */}
+          <button
+            className="w-full py-3 rounded-xl text-[13px] font-bold text-white bg-[#111]
+                       hover:bg-[#333] active:scale-[0.98] transition-all duration-200"
+          >
+            View Profile
+          </button>
+
         </div>
-
-        {/* CTA */}
-        <button
-          className="mt-4 w-full py-[9px] rounded-xl text-[12.5px] font-bold text-white transition-all duration-200
-                     hover:bg-[#333] active:scale-[0.98] bg-[#111]"
-        >
-          View Profile
-        </button>
-
       </div>
     </motion.div>
   )
@@ -622,13 +626,20 @@ export default function EngineersPage() {
     [activeDomain],
   )
 
+  // Group into rows of 3 for the dotted divider treatment
+  const rows = useMemo(() => {
+    const chunks: Engineer[][] = []
+    for (let i = 0; i < filtered.length; i += 3) chunks.push(filtered.slice(i, i + 3))
+    return chunks
+  }, [filtered])
+
   return (
     <>
       {/* ── White page ── */}
       <div className="min-h-screen bg-white">
 
         {/* ── Header ── */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -680,15 +691,49 @@ export default function EngineersPage() {
           </p>
         </div>
 
-        {/* ── Card grid ── */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <AnimatePresence mode="popLayout">
-              {filtered.map(eng => (
-                <EngineerCard key={eng.id} eng={eng} onClick={() => setSelected(eng)} />
+        {/* ── Card grid — rows of 3 with dotted orange dividers ── */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-28">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeDomain}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {rows.map((row, rowIdx) => (
+                <div key={rowIdx}>
+
+                  {/* ── Row of 3 cards ── */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {row.map(eng => (
+                      <EngineerCard key={eng.id} eng={eng} onClick={() => setSelected(eng)} />
+                    ))}
+                  </div>
+
+                  {/* ── Dotted orange divider (not after last row) ── */}
+                  {rowIdx < rows.length - 1 && (
+                    <div className="mt-14 mb-14 flex items-center gap-4">
+                      <div
+                        className="flex-1 border-t-[1.5px] border-dashed"
+                        style={{ borderColor: `${ORANGE}40` }}
+                      />
+                      <div className="flex gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: `${ORANGE}55` }} />
+                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: `${ORANGE}35` }} />
+                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: `${ORANGE}20` }} />
+                      </div>
+                      <div
+                        className="flex-1 border-t-[1.5px] border-dashed"
+                        style={{ borderColor: `${ORANGE}40` }}
+                      />
+                    </div>
+                  )}
+
+                </div>
               ))}
-            </AnimatePresence>
-          </motion.div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>
