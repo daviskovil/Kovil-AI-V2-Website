@@ -307,7 +307,7 @@ export default function HomePage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="relative hidden lg:block h-[580px] w-full self-center"
+            className="relative hidden lg:block h-[660px] w-full self-center"
           >
             <Image
               src="/hero-homepage-circles-v2.png"
