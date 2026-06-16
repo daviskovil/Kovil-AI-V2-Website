@@ -24,27 +24,27 @@ const DOMAIN_LABEL: Record<Domain, string> = {
   'data-science':     'Data Science',
 }
 
-// Black / orange / white availability badges only
 const AVAIL: Record<Engineer['availability'], { label: string; cls: string; dot: string }> = {
-  'now':      { label: 'Available Now',           cls: 'bg-[#FF4F00] text-white',                                 dot: 'bg-white animate-pulse'  },
-  '1-week':   { label: 'Available in 1 Week',     cls: 'border border-[#FF4F00] text-[#FF4F00] bg-[#FF4F00]/5',  dot: 'bg-[#FF4F00]'            },
-  '2-weeks':  { label: 'Available in 2 Weeks',    cls: 'border border-black/25 text-black/55',                   dot: 'bg-black/40'             },
-  '2h-day':   { label: 'Available 2 hrs / day',   cls: 'bg-black text-white',                                    dot: 'bg-white'                },
-  '20h-week': { label: 'Available 20 hrs / week', cls: 'border border-black/20 text-black/45',                   dot: 'bg-black/35'             },
+  'now':      { label: 'Available Now',           cls: 'bg-[#111] text-white',                            dot: 'bg-[#4ade80] animate-pulse' },
+  '1-week':   { label: 'Available in 1 Week',     cls: 'border border-black/20 text-black/60 bg-[#F5F5F5]', dot: 'bg-black/25'               },
+  '2-weeks':  { label: 'Available in 2 Weeks',    cls: 'border border-black/15 text-black/45 bg-[#F8F8F8]', dot: 'bg-black/20'               },
+  '2h-day':   { label: 'Available 2 hrs / day',   cls: 'border border-black/20 text-black/55 bg-[#F5F5F5]', dot: 'bg-black/25'               },
+  '20h-week': { label: 'Available 20 hrs / week', cls: 'border border-black/12 text-black/40 bg-[#F8F8F8]', dot: 'bg-black/18'               },
 }
 
 // ─── Gender SVG Icons ──────────────────────────────────────────────────────
 
+const ICON_COLOR = '#555'
+
 function MaleIcon() {
   return (
     <svg viewBox="0 0 56 56" fill="none" className="w-full h-full">
-      <circle cx="28" cy="18" r="10" fill={ORANGE} opacity="0.15" />
-      <circle cx="28" cy="18" r="10" stroke={ORANGE} strokeWidth="2.5" />
+      <circle cx="28" cy="18" r="10" fill={ICON_COLOR} opacity="0.10" />
+      <circle cx="28" cy="18" r="10" stroke={ICON_COLOR} strokeWidth="2.5" />
       <path d="M10 52c0-9.941 8.059-18 18-18s18 8.059 18 18"
-        stroke={ORANGE} strokeWidth="2.5" strokeLinecap="round"
-        fill={ORANGE} fillOpacity="0.09" />
-      {/* tie/collar hint */}
-      <path d="M24 34.5 L28 40 L32 34.5" stroke={ORANGE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.55" />
+        stroke={ICON_COLOR} strokeWidth="2.5" strokeLinecap="round"
+        fill={ICON_COLOR} fillOpacity="0.07" />
+      <path d="M24 34.5 L28 40 L32 34.5" stroke={ICON_COLOR} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.45" />
     </svg>
   )
 }
@@ -52,15 +52,13 @@ function MaleIcon() {
 function FemaleIcon() {
   return (
     <svg viewBox="0 0 56 56" fill="none" className="w-full h-full">
-      <circle cx="28" cy="18" r="10" fill={ORANGE} opacity="0.15" />
-      <circle cx="28" cy="18" r="10" stroke={ORANGE} strokeWidth="2.5" />
-      {/* hair arc */}
-      <path d="M18.5 13.5 Q28 6 37.5 13.5" stroke={ORANGE} strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.45" />
-      {/* dress silhouette */}
+      <circle cx="28" cy="18" r="10" fill={ICON_COLOR} opacity="0.10" />
+      <circle cx="28" cy="18" r="10" stroke={ICON_COLOR} strokeWidth="2.5" />
+      <path d="M18.5 13.5 Q28 6 37.5 13.5" stroke={ICON_COLOR} strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.35" />
       <path d="M14 52 C14 41 20 34 28 32 C36 34 42 41 42 52"
-        stroke={ORANGE} strokeWidth="2.5" strokeLinecap="round"
-        fill={ORANGE} fillOpacity="0.09" />
-      <path d="M18 46 Q28 50 38 46" stroke={ORANGE} strokeWidth="1.8" strokeLinecap="round" opacity="0.4" />
+        stroke={ICON_COLOR} strokeWidth="2.5" strokeLinecap="round"
+        fill={ICON_COLOR} fillOpacity="0.07" />
+      <path d="M18 46 Q28 50 38 46" stroke={ICON_COLOR} strokeWidth="1.8" strokeLinecap="round" opacity="0.30" />
     </svg>
   )
 }
@@ -288,21 +286,21 @@ function EngineerCard({ eng, onClick }: { eng: Engineer; onClick: () => void }) 
       style={{ boxShadow: '0 2px 16px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04)' }}
       whileHover={{ boxShadow: '0 16px 48px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.05)' }}
     >
-      {/* ── Orange gradient top section ── */}
+      {/* ── Dark top section ── */}
       <div
-        className="h-[108px] relative overflow-hidden rounded-t-[20px]"
-        style={{ background: `linear-gradient(145deg, #FF6A00 0%, #FF4F00 50%, #CC2200 100%)` }}
+        className="h-[100px] relative overflow-hidden rounded-t-[20px]"
+        style={{ background: '#1A1A1A' }}
       >
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.07]"
+        {/* Subtle dot texture */}
+        <div className="absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)',
-            backgroundSize: '18px 18px',
+            backgroundSize: '20px 20px',
           }}
         />
-        {/* Domain label top-right */}
-        <div className="absolute top-3 right-3">
-          <span className="text-[9px] font-bold uppercase tracking-widest text-white/60">
+        {/* Domain label */}
+        <div className="absolute top-3 right-3.5">
+          <span className="text-[9px] font-semibold uppercase tracking-widest text-white/40">
             {DOMAIN_LABEL[eng.domain]}
           </span>
         </div>
@@ -311,10 +309,10 @@ function EngineerCard({ eng, onClick }: { eng: Engineer; onClick: () => void }) 
       {/* ── Overlapping circular avatar ── */}
       <div className="flex justify-center -mt-10 relative z-10">
         <div
-          className="w-[80px] h-[80px] rounded-full flex items-center justify-center p-[14px] bg-white"
+          className="w-[80px] h-[80px] rounded-full flex items-center justify-center p-[15px]"
           style={{
-            boxShadow: '0 0 0 4px white, 0 4px 16px rgba(0,0,0,0.12)',
-            background: '#FFF5F0',
+            background: '#F5F5F5',
+            boxShadow: '0 0 0 4px white, 0 4px 14px rgba(0,0,0,0.10)',
           }}
         >
           {eng.gender === 'female' ? <FemaleIcon /> : <MaleIcon />}
@@ -329,8 +327,8 @@ function EngineerCard({ eng, onClick }: { eng: Engineer; onClick: () => void }) 
           {eng.name}
         </h3>
 
-        {/* Title in orange */}
-        <p className="text-[0.7rem] font-semibold mt-0.5 leading-snug" style={{ color: ORANGE }}>
+        {/* Title */}
+        <p className="text-[0.7rem] font-semibold mt-0.5 leading-snug text-black/50">
           {eng.title}
         </p>
 
@@ -365,8 +363,7 @@ function EngineerCard({ eng, onClick }: { eng: Engineer; onClick: () => void }) 
         {/* CTA */}
         <button
           className="mt-4 w-full py-[9px] rounded-xl text-[12.5px] font-bold text-white transition-all duration-200
-                     hover:brightness-110 active:scale-[0.98]"
-          style={{ background: ORANGE }}
+                     hover:bg-[#333] active:scale-[0.98] bg-[#111]"
         >
           View Profile
         </button>
@@ -380,7 +377,7 @@ function EngineerCard({ eng, onClick }: { eng: Engineer; onClick: () => void }) 
 
 function SLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[9.5px] font-bold uppercase tracking-[0.14em] mb-2.5" style={{ color: ORANGE }}>
+    <p className="text-[9.5px] font-bold uppercase tracking-[0.14em] mb-2.5 text-black/35">
       {children}
     </p>
   )
@@ -416,8 +413,8 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
         }}
         onClick={e => e.stopPropagation()}
       >
-        {/* Orange top stripe */}
-        <div className="absolute inset-x-0 top-0 h-[3px] z-10" style={{ background: ORANGE }} />
+        {/* Top border */}
+        <div className="absolute inset-x-0 top-0 h-[2px] z-10 bg-black/[0.06]" />
 
 
         {/* ── Header ── */}
@@ -427,9 +424,9 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
           <div
             className="w-[68px] h-[68px] rounded-full flex-shrink-0 p-[13px]"
             style={{
-              background: '#FFF5F0',
-              boxShadow: `0 0 0 3px white, 0 4px 16px rgba(255,79,0,0.15)`,
-              border: `2px solid ${ORANGE}25`,
+              background: '#F0F0F0',
+              boxShadow: '0 0 0 3px white, 0 4px 12px rgba(0,0,0,0.08)',
+              border: '1.5px solid rgba(0,0,0,0.08)',
             }}
           >
             {eng.gender === 'female' ? <FemaleIcon /> : <MaleIcon />}
@@ -438,7 +435,7 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
           {/* Name + meta */}
           <div className="flex-1 min-w-0">
             <h2 className="text-[1.7rem] font-bold tracking-tight text-black leading-tight">{eng.name}</h2>
-            <p className="text-[0.8rem] font-semibold mt-0.5" style={{ color: ORANGE }}>{eng.title}</p>
+            <p className="text-[0.8rem] font-semibold mt-0.5 text-black/50">{eng.title}</p>
             <div className="flex items-center gap-3 mt-1.5 flex-wrap">
               <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-[3px] text-[10.5px] font-semibold ${avail.cls}`}>
                 <span className={`w-[5px] h-[5px] rounded-full flex-shrink-0 ${avail.dot}`} />
@@ -454,8 +451,7 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
           <div className="flex items-center gap-2.5 flex-shrink-0">
             <button
               onClick={handlePDF}
-              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-[12px] font-bold text-white transition-all hover:brightness-110"
-              style={{ background: ORANGE }}
+              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-[12px] font-bold text-white transition-all hover:bg-[#333] bg-[#111]"
             >
               <Download className="w-3.5 h-3.5" />
               Download PDF
@@ -508,7 +504,7 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
               <ul className="space-y-1.5">
                 {eng.certifications.map(c => (
                   <li key={c} className="flex items-start gap-2 text-[11px] text-black/55">
-                    <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 mt-[1px]" style={{ color: ORANGE }} />
+                    <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 mt-[1px] text-black/30" />
                     {c}
                   </li>
                 ))}
@@ -536,8 +532,7 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
                 {eng.highlights.map((h, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-[11.5px] text-black/60 leading-[1.65]">
                     <span
-                      className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white mt-[1px]"
-                      style={{ background: ORANGE }}
+                      className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white mt-[1px] bg-[#111]"
                     >
                       {i + 1}
                     </span>
@@ -554,8 +549,7 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
                 {eng.engagementType.map(e => (
                   <span
                     key={e}
-                    className="rounded-full px-3 py-[4px] text-[10.5px] font-semibold border"
-                    style={{ color: ORANGE, borderColor: `${ORANGE}40`, background: `${ORANGE}08` }}
+                    className="rounded-full px-3 py-[4px] text-[10.5px] font-semibold border border-black/15 text-black/50 bg-black/[0.02]"
                   >
                     {e}
                   </span>
@@ -596,20 +590,16 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
             </div>
 
             {/* CTA box */}
-            <div
-              className="rounded-2xl p-4 text-center"
-              style={{ background: '#FFF5F2', border: `1.5px solid ${ORANGE}30` }}
-            >
+            <div className="rounded-2xl p-4 text-center bg-[#F8F8F8] border border-black/[0.06]">
               <p className="text-[13px] font-bold text-black mb-1">
                 Interested in {eng.name.split(' ')[0]}?
               </p>
-              <p className="text-[10.5px] text-black/45 mb-3 leading-relaxed">
+              <p className="text-[10.5px] text-black/40 mb-3 leading-relaxed">
                 We can have {eng.gender === 'male' ? 'him' : 'her'} embedded with your team within days.
               </p>
               <a
                 href="/#contact"
-                className="inline-flex items-center gap-1.5 rounded-xl px-5 py-2 text-[12px] font-bold text-white transition-all hover:brightness-110"
-                style={{ background: ORANGE }}
+                className="inline-flex items-center gap-1.5 rounded-xl px-5 py-2 text-[12px] font-bold text-white transition-all bg-[#111] hover:bg-[#333]"
               >
                 Get in Touch
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -649,17 +639,12 @@ export default function EngineersPage() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto"
           >
-            <div
-              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5 text-[11px] font-bold uppercase tracking-widest"
-              style={{ background: `${ORANGE}10`, border: `1px solid ${ORANGE}30`, color: ORANGE }}
-            >
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5 text-[11px] font-semibold uppercase tracking-widest border border-black/10 text-black/40">
               Vetted Talent · Direct Access
             </div>
 
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-black mb-4 leading-tight">
-              Available{' '}
-              <span style={{ color: ORANGE }}>AI &amp; Data</span>
-              {' '}Engineers
+              Available AI &amp; Data Engineers
             </h1>
 
             <p className="text-[0.92rem] text-black/45 leading-relaxed">
