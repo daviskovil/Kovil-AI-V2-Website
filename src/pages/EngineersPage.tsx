@@ -1,545 +1,505 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { X, Download, ChevronRight, Briefcase, GraduationCap, Award } from 'lucide-react'
-import { engineers } from '../data/engineers'
-import type { Engineer } from '../data/engineers'
-import { openCalendly } from '../lib/calendly'
+import { X, Download, ChevronRight, CheckCircle2 } from 'lucide-react'
+import { engineers, type Engineer, type Domain } from '@/src/data/engineers'
 
-// ─── Domain & Availability metadata ──────────────────────────────────────────
+// ─── Domain config ─────────────────────────────────────────────────────────
 
-const DOMAINS = [
-  { key: 'all',               label: 'All Engineers' },
-  { key: 'ai-engineering',    label: 'AI Engineering' },
-  { key: 'data-engineering',  label: 'Data Engineering' },
-  { key: 'ml-engineering',    label: 'ML Engineering' },
-  { key: 'data-science',      label: 'Data Science' },
-] as const
+const DOMAINS: { key: Domain | 'all'; label: string; short: string }[] = [
+  { key: 'all',              label: 'All Profiles',     short: 'All'       },
+  { key: 'ai-engineering',   label: 'AI Engineering',   short: 'AI Eng.'   },
+  { key: 'data-engineering', label: 'Data Engineering', short: 'Data Eng.' },
+  { key: 'ml-engineering',   label: 'ML Engineering',   short: 'ML Eng.'   },
+  { key: 'data-science',     label: 'Data Science',     short: 'Data Sci.' },
+]
 
-const DOMAIN_META: Record<string, { color: string; bg: string; label: string }> = {
-  'ai-engineering':   { color: '#FF4F00', bg: '#FFF3EE', label: 'AI Engineering' },
-  'data-engineering': { color: '#B45309', bg: '#FFFBEB', label: 'Data Engineering' },
-  'ml-engineering':   { color: '#6D28D9', bg: '#F5F3FF', label: 'ML Engineering' },
-  'data-science':     { color: '#0369A1', bg: '#EFF6FF', label: 'Data Science' },
+const DOMAIN_COLOR: Record<Domain, string> = {
+  'ai-engineering':   '#FF4F00',
+  'data-engineering': '#3B82F6',
+  'ml-engineering':   '#A855F7',
+  'data-science':     '#10B981',
 }
 
-const AVAILABILITY_META: Record<string, { label: string; dot: string }> = {
-  'available':      { label: 'Available Now',        dot: '#22C55E' },
-  'available-soon': { label: 'Available in 4 Weeks', dot: '#F59E0B' },
-  'interviewing':   { label: 'In Final Interviews',  dot: '#8B5CF6' },
+const DOMAIN_LABEL: Record<Domain, string> = {
+  'ai-engineering':   'AI Engineering',
+  'data-engineering': 'Data Engineering',
+  'ml-engineering':   'ML Engineering',
+  'data-science':     'Data Science',
 }
 
-const STACK_LABELS: Record<string, string> = {
-  languages:  'Languages',
-  frameworks: 'Frameworks & Libraries',
-  cloud:      'Cloud & Platforms',
-  tools:      'Tools & Infrastructure',
+const AVAIL_CONFIG: Record<Engineer['availability'], { label: string; dot: string; badge: string }> = {
+  'now':      { label: 'Available Now',           dot: '#22C55E', badge: 'bg-green-500/10  border border-green-500/25  text-green-400'  },
+  '1-week':   { label: 'Available in 1 Week',     dot: '#3B82F6', badge: 'bg-blue-500/10   border border-blue-500/25   text-blue-400'   },
+  '2-weeks':  { label: 'Available in 2 Weeks',    dot: '#F59E0B', badge: 'bg-amber-500/10  border border-amber-500/25  text-amber-400'  },
+  '2h-day':   { label: 'Available 2 hrs / day',   dot: '#A855F7', badge: 'bg-purple-500/10 border border-purple-500/25 text-purple-400' },
+  '20h-week': { label: 'Available 20 hrs / week', dot: '#EC4899', badge: 'bg-pink-500/10   border border-pink-500/25   text-pink-400'   },
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
+// ─── SVG Avatar Icons ──────────────────────────────────────────────────────
 
-export default function EngineersPage() {
-  const [activeDomain, setActiveDomain] = useState('all')
-  const [selected, setSelected]         = useState<Engineer | null>(null)
-
-  const filtered = engineers.filter(
-    e => activeDomain === 'all' || e.domain === activeDomain
+function MaleIcon({ color }: { color: string }) {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <circle cx="32" cy="20" r="11" fill={color} opacity="0.15" />
+      <circle cx="32" cy="20" r="11" stroke={color} strokeWidth="2.5" />
+      <path
+        d="M12 58c0-11.046 8.954-20 20-20s20 8.954 20 20"
+        stroke={color} strokeWidth="2.5" strokeLinecap="round"
+        fill={color} fillOpacity="0.08"
+      />
+      <path d="M27 38.5 L32 44 L37 38.5" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+    </svg>
   )
+}
 
-  /* Lock body scroll when modal is open */
-  useEffect(() => {
-    document.body.style.overflow = selected ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [selected])
+function FemaleIcon({ color }: { color: string }) {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <circle cx="32" cy="20" r="11" fill={color} opacity="0.15" />
+      <circle cx="32" cy="20" r="11" stroke={color} strokeWidth="2.5" />
+      <path d="M21.5 15.5 Q32 8 42.5 15.5" stroke={color} strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.5" />
+      <path
+        d="M18 58 C18 47 24 40 32 38 C40 40 46 47 46 58"
+        stroke={color} strokeWidth="2.5" strokeLinecap="round"
+        fill={color} fillOpacity="0.08"
+      />
+      <path d="M22 50 Q32 54 42 50" stroke={color} strokeWidth="1.8" strokeLinecap="round" opacity="0.45" />
+    </svg>
+  )
+}
 
-  /* Keyboard close */
-  const handleKey = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape') setSelected(null)
-  }, [])
-  useEffect(() => {
-    document.addEventListener('keydown', handleKey)
-    return () => document.removeEventListener('keydown', handleKey)
-  }, [handleKey])
+// ─── Engineer Card ─────────────────────────────────────────────────────────
 
-  /* PDF download — visibility trick keeps it dependency-free */
-  const handleDownload = () => {
-    document.body.classList.add('kovil-printing')
-    window.print()
-    setTimeout(() => document.body.classList.remove('kovil-printing'), 800)
-  }
+function EngineerCard({ eng, onClick }: { eng: Engineer; onClick: () => void }) {
+  const color = DOMAIN_COLOR[eng.domain]
+  const avail = AVAIL_CONFIG[eng.availability]
 
   return (
-    <>
-      {/* ── Print stylesheet ─────────────────────────────── */}
-      <style>{`
-        @media print {
-          body.kovil-printing > *                { visibility: hidden; }
-          body.kovil-printing #kv-print-target,
-          body.kovil-printing #kv-print-target * { visibility: visible; }
-          body.kovil-printing #kv-print-target   {
-            position: fixed; inset: 0;
-            overflow: visible;
-            background: white;
-            padding: 32px 40px;
-            font-family: system-ui, sans-serif;
-          }
-          .no-print { display: none !important; }
-          * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        }
-      `}</style>
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 12, scale: 0.97 }}
+      transition={{ duration: 0.32 }}
+      onClick={onClick}
+      className="group relative rounded-2xl border border-white/[0.07] bg-[#111111] overflow-hidden cursor-pointer
+                 transition-all duration-300 hover:border-white/[0.14] select-none"
+      style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}
+    >
+      {/* Hover radial glow */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ background: `radial-gradient(ellipse at 30% 0%, ${color}14, transparent 65%)` }}
+      />
 
-      <main className="min-h-screen bg-background">
+      {/* Top accent stripe */}
+      <div
+        className="absolute inset-x-0 top-0 h-[3px] rounded-t-2xl"
+        style={{ background: `linear-gradient(90deg, ${color}, ${color}55)` }}
+      />
 
-        {/* ── Hero ─────────────────────────────────────────── */}
-        <section className="pt-28 pb-14 px-6 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+      {/* Top glow wash */}
+      <div
+        className="absolute inset-x-0 top-0 h-20 pointer-events-none"
+        style={{ background: `linear-gradient(180deg, ${color}0D 0%, transparent 100%)` }}
+      />
+
+      <div className="relative pt-7 pb-5 px-5 flex flex-col gap-4">
+
+        {/* Avatar + name */}
+        <div className="flex items-center gap-4">
+          <div
+            className="w-[62px] h-[62px] rounded-[14px] flex-shrink-0 flex items-center justify-center p-2.5"
+            style={{
+              background: `linear-gradient(145deg, ${color}1C, ${color}07)`,
+              border: `1.5px solid ${color}32`,
+              boxShadow: `0 4px 18px ${color}20`,
+            }}
           >
-            <p className="text-xs font-bold tracking-[0.22em] uppercase text-accent mb-4">
-              Kovil AI · Engineering Talent
-            </p>
-            <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-foreground mb-5">
-              Available Engineers
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              A curated selection of elite AI and Data engineers available for fixed-price
-              projects and staff augmentation engagements. Every engineer on this page
-              has been vetted and placed by the Kovil AI team.
-            </p>
-          </motion.div>
-        </section>
+            {eng.gender === 'female' ? <FemaleIcon color={color} /> : <MaleIcon color={color} />}
+          </div>
 
-        {/* ── Filter bar ───────────────────────────────────── */}
-        <div className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
-          <div className="max-w-7xl mx-auto px-6 py-3.5 flex gap-2 overflow-x-auto no-scrollbar">
-            {DOMAINS.map(d => (
-              <button
-                key={d.key}
-                onClick={() => setActiveDomain(d.key)}
-                className={`
-                  px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap
-                  transition-all duration-200 focus:outline-none
-                  ${activeDomain === d.key
-                    ? 'bg-foreground text-background shadow-sm'
-                    : 'bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/60'
-                  }
-                `}
-              >
-                {d.label}
-                {d.key !== 'all' && (
-                  <span className="ml-1.5 opacity-50 text-xs">
-                    {engineers.filter(e => e.domain === d.key).length}
-                  </span>
-                )}
-              </button>
-            ))}
+          <div className="min-w-0 flex-1">
+            <h3 className="text-[1.3rem] font-bold leading-tight tracking-tight text-white truncate">
+              {eng.name}
+            </h3>
+            <p className="text-[0.73rem] font-semibold mt-0.5 leading-snug truncate" style={{ color }}>
+              {eng.title}
+            </p>
+            <p className="text-[0.68rem] text-white/35 mt-0.5 font-medium">
+              {eng.yearsExp} yrs · {DOMAIN_LABEL[eng.domain]}
+            </p>
           </div>
         </div>
 
-        {/* ── Profile grid ─────────────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 py-12">
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
-          >
-            <AnimatePresence mode="popLayout">
-              {filtered.map((eng, i) => (
-                <EngineerCard
-                  key={eng.id}
-                  engineer={eng}
-                  index={i}
-                  onClick={() => setSelected(eng)}
-                />
-              ))}
-            </AnimatePresence>
-          </motion.div>
+        {/* Availability */}
+        <span className={`inline-flex items-center gap-1.5 self-start rounded-full px-2.5 py-[3px] text-[11px] font-semibold ${avail.badge}`}>
+          <span className="w-[6px] h-[6px] rounded-full flex-shrink-0" style={{ background: avail.dot }} />
+          {avail.label}
+        </span>
 
-          {filtered.length === 0 && (
-            <div className="text-center py-24 text-muted-foreground">
-              No engineers available in this category right now.
-            </div>
+        {/* Bio — 2 line clamp */}
+        <p className="text-[0.75rem] text-white/42 leading-relaxed line-clamp-2">
+          {eng.bio}
+        </p>
+
+        {/* Skill chips */}
+        <div className="flex flex-wrap gap-1.5">
+          {eng.skills.slice(0, 4).map(s => (
+            <span
+              key={s}
+              className="rounded px-2 py-[3px] text-[10px] text-white/50 border border-white/[0.09] bg-white/[0.04]"
+            >
+              {s}
+            </span>
+          ))}
+          {eng.skills.length > 4 && (
+            <span className="rounded px-2 py-[3px] text-[10px] text-white/25 border border-white/[0.05]">
+              +{eng.skills.length - 4}
+            </span>
           )}
-        </section>
+        </div>
 
-      </main>
-
-      {/* ── Modal ────────────────────────────────────────────── */}
-      <AnimatePresence>
-        {selected && (
-          <EngineerModal
-            engineer={selected}
-            onClose={() => setSelected(null)}
-            onDownload={handleDownload}
-          />
-        )}
-      </AnimatePresence>
-    </>
-  )
-}
-
-// ─── Engineer Card ────────────────────────────────────────────────────────────
-
-function EngineerCard({
-  engineer: e,
-  index,
-  onClick,
-}: {
-  engineer: Engineer
-  index: number
-  onClick: () => void
-}) {
-  const dm = DOMAIN_META[e.domain]
-  const av = AVAILABILITY_META[e.availability]
-
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.3, delay: Math.min(index * 0.05, 0.4) }}
-      layout
-      onClick={onClick}
-      className="group relative bg-card border border-border rounded-2xl p-6 cursor-pointer
-        flex flex-col transition-all duration-300
-        hover:shadow-2xl hover:shadow-black/10 hover:-translate-y-1.5
-        hover:border-transparent"
-      style={{ '--hover-shadow': dm.color } as React.CSSProperties}
-    >
-      {/* Domain chip */}
-      <span
-        className="self-start inline-flex items-center px-2.5 py-1 rounded-full
-          text-[10.5px] font-bold tracking-wide mb-5"
-        style={{ backgroundColor: dm.bg, color: dm.color }}
-      >
-        {dm.label}
-      </span>
-
-      {/* Avatar */}
-      <div
-        className="w-12 h-12 rounded-xl flex items-center justify-center
-          text-lg font-bold text-white mb-4 shadow-sm"
-        style={{ backgroundColor: dm.color }}
-      >
-        {e.codename[0]}
-      </div>
-
-      {/* Identity */}
-      <h3 className="text-base font-bold text-foreground mb-0.5 leading-snug">
-        {e.codename}
-      </h3>
-      <p className="text-xs text-muted-foreground mb-4 leading-snug">
-        {e.title}
-      </p>
-
-      {/* Top skills */}
-      <div className="flex flex-wrap gap-1.5 mb-auto">
-        {e.skills.slice(0, 3).map(s => (
-          <span
-            key={s}
-            className="text-[10.5px] font-medium px-2 py-0.5 rounded-md
-              bg-muted text-muted-foreground"
-          >
-            {s}
+        {/* Footer */}
+        <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
+          <span className="text-[11px] text-white/30 font-medium truncate max-w-[120px]">
+            {eng.engagementType[0]}
           </span>
-        ))}
-      </div>
-
-      {/* Footer */}
-      <div className="flex items-center justify-between mt-5 pt-4 border-t border-border">
-        <div className="flex items-center gap-1.5">
-          <div
-            className="w-1.5 h-1.5 rounded-full shrink-0"
-            style={{ backgroundColor: av.dot }}
-          />
-          <span className="text-[10.5px] text-muted-foreground font-medium">
-            {av.label}
+          <span
+            className="flex items-center gap-1 text-[12px] font-semibold group-hover:gap-1.5 transition-all"
+            style={{ color }}
+          >
+            View Profile
+            <ChevronRight className="w-3.5 h-3.5" />
           </span>
         </div>
-        <span className="text-[10.5px] font-semibold text-muted-foreground">
-          {e.yearsExp} yrs
-        </span>
-      </div>
 
-      {/* Hover caret */}
-      <div className="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <ChevronRight className="w-3.5 h-3.5" style={{ color: dm.color }} />
       </div>
-    </motion.article>
+    </motion.div>
   )
 }
 
-// ─── Engineer Modal ───────────────────────────────────────────────────────────
+// ─── Modal ─────────────────────────────────────────────────────────────────
 
-function EngineerModal({
-  engineer: e,
-  onClose,
-  onDownload,
-}: {
-  engineer: Engineer
-  onClose: () => void
-  onDownload: () => void
-}) {
-  const dm = DOMAIN_META[e.domain]
-  const av = AVAILABILITY_META[e.availability]
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-[10px] font-bold uppercase tracking-widest text-white/28 mb-3">
+      {children}
+    </p>
+  )
+}
+
+function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void }) {
+  const color = DOMAIN_COLOR[eng.domain]
+  const avail = AVAIL_CONFIG[eng.availability]
+
+  const handleDownload = () => {
+    document.body.classList.add('kovil-printing')
+    window.print()
+    document.body.classList.remove('kovil-printing')
+  }
 
   return (
-    <>
-      {/* Backdrop */}
+    <motion.div
+      key="modal-backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      onClick={onClose}
+    >
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.18 }}
-        className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm no-print"
-        onClick={onClose}
-        aria-hidden="true"
-      />
+        id="kv-print-target"
+        initial={{ opacity: 0, scale: 0.96, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 10 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/[0.09] bg-[#0F0F0F]"
+        style={{ boxShadow: `0 40px 100px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.04)` }}
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Accent stripe */}
+        <div className="absolute inset-x-0 top-0 h-[3px] rounded-t-3xl" style={{ background: `linear-gradient(90deg, ${color}, ${color}50)` }} />
+        {/* Top glow */}
+        <div className="absolute inset-x-0 top-0 h-48 pointer-events-none" style={{ background: `linear-gradient(180deg, ${color}0E 0%, transparent 100%)` }} />
 
-      {/* Panel wrapper — keeps modal centred */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 no-print pointer-events-none">
-        <motion.div
-          id="kv-print-target"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Profile: ${e.codename}`}
-          initial={{ opacity: 0, scale: 0.97, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.97, y: 10 }}
-          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="relative bg-background rounded-3xl shadow-2xl shadow-black/20
-            w-full max-w-5xl max-h-[92vh] overflow-hidden pointer-events-auto flex flex-col"
-          onClick={ev => ev.stopPropagation()}
-        >
-
-          {/* ── Header bar ── */}
-          <header className="flex items-center justify-between gap-4 px-8 py-5 border-b border-border shrink-0">
-            <div className="flex items-center gap-3 min-w-0">
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center
-                  text-sm font-bold text-white shrink-0"
-                style={{ backgroundColor: dm.color }}
-              >
-                {e.codename[0]}
-              </div>
-              <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-2 mb-0.5">
-                  <h2 className="text-base font-bold text-foreground">{e.codename}</h2>
-                  <span
-                    className="text-[10.5px] font-bold px-2 py-0.5 rounded-full shrink-0"
-                    style={{ backgroundColor: dm.bg, color: dm.color }}
-                  >
-                    {dm.label}
-                  </span>
-                </div>
-                <p className="text-xs text-muted-foreground truncate">{e.title}</p>
-              </div>
+        {/* Header */}
+        <div className="relative flex items-start justify-between px-7 pt-8 pb-5">
+          <div className="flex items-center gap-5">
+            {/* Avatar */}
+            <div
+              className="w-[76px] h-[76px] rounded-2xl flex-shrink-0 p-3"
+              style={{
+                background: `linear-gradient(145deg, ${color}20, ${color}07)`,
+                border: `1.5px solid ${color}35`,
+                boxShadow: `0 8px 32px ${color}28`,
+              }}
+            >
+              {eng.gender === 'female' ? <FemaleIcon color={color} /> : <MaleIcon color={color} />}
             </div>
 
-            <div className="flex items-center gap-2 shrink-0 no-print">
-              <button
-                onClick={onDownload}
-                className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold
-                  bg-foreground text-background rounded-full hover:opacity-80
-                  transition-opacity"
-              >
-                <Download className="w-3 h-3" />
-                Download Profile
-              </button>
-              <button
-                onClick={onClose}
-                aria-label="Close"
-                className="w-9 h-9 flex items-center justify-center rounded-full
-                  text-muted-foreground hover:bg-muted transition-colors"
-              >
-                <X className="w-4 h-4" />
-              </button>
+            <div>
+              <h2 className="text-[1.65rem] font-bold text-white leading-tight tracking-tight">{eng.name}</h2>
+              <p className="text-sm font-semibold mt-0.5" style={{ color }}>{eng.title}</p>
+              <div className="flex items-center gap-2.5 mt-2 flex-wrap">
+                <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${avail.badge}`}>
+                  <span className="w-[6px] h-[6px] rounded-full" style={{ background: avail.dot }} />
+                  {avail.label}
+                </span>
+                <span className="text-[11px] text-white/35">{eng.yearsExp} years experience</span>
+              </div>
             </div>
-          </header>
+          </div>
 
-          {/* ── Body ── */}
-          <div className="overflow-y-auto flex-1 overscroll-contain">
-            <div className="grid lg:grid-cols-[240px_1fr] lg:divide-x divide-border">
+          {/* Actions */}
+          <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+            <button
+              onClick={handleDownload}
+              className="flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-[12px] font-bold bg-[#FF4F00] text-white hover:bg-[#e64600] transition-colors"
+            >
+              <Download className="w-3.5 h-3.5" />
+              PDF
+            </button>
+            <button
+              onClick={onClose}
+              className="p-2 rounded-xl text-white/35 hover:text-white hover:bg-white/[0.07] transition-all"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
 
-              {/* ── Left sidebar ── */}
-              <aside className="p-7 space-y-7 border-b lg:border-b-0">
+        {/* Body */}
+        <div className="px-7 pb-8 space-y-6">
 
-                {/* Status */}
-                <div>
-                  <SideLabel>Status</SideLabel>
-                  <div className="flex items-center gap-2 mt-1.5">
-                    <div
-                      className="w-2 h-2 rounded-full shrink-0"
-                      style={{ backgroundColor: av.dot }}
-                    />
-                    <span className="text-sm font-semibold text-foreground">
-                      {av.label}
-                    </span>
-                  </div>
-                </div>
+          {/* Bio */}
+          <p className="text-[0.84rem] text-white/55 leading-relaxed">{eng.bio}</p>
 
-                {/* Experience */}
-                <div>
-                  <SideLabel>Experience</SideLabel>
-                  <p className="mt-1.5">
-                    <span className="text-3xl font-bold text-foreground">{e.yearsExp}</span>
-                    <span className="text-sm font-medium text-muted-foreground ml-1.5">years</span>
-                  </p>
-                </div>
+          {/* Highlights */}
+          <section>
+            <SectionLabel>Key Highlights</SectionLabel>
+            <ul className="space-y-2.5">
+              {eng.highlights.map((h, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-[0.82rem] text-white/60 leading-relaxed">
+                  <CheckCircle2 className="w-[15px] h-[15px] mt-0.5 flex-shrink-0" style={{ color }} />
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </section>
 
-                {/* Engagement */}
-                <div>
-                  <SideLabel>Engagement Types</SideLabel>
-                  <div className="mt-1.5 space-y-1.5">
-                    {e.engagementType.map(t => (
-                      <div key={t} className="flex items-center gap-1.5">
-                        <Briefcase className="w-3 h-3 text-muted-foreground shrink-0" />
-                        <span className="text-xs font-medium text-foreground">{t}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+          {/* Skills */}
+          <section>
+            <SectionLabel>Core Skills</SectionLabel>
+            <div className="flex flex-wrap gap-2">
+              {eng.skills.map(s => (
+                <span key={s} className="rounded-lg px-2.5 py-1 text-[12px] font-medium text-white/60 border border-white/[0.09] bg-white/[0.04]">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </section>
 
-                {/* Core skills */}
-                <div>
-                  <SideLabel>Core Skills</SideLabel>
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {e.skills.map(s => (
-                      <span
-                        key={s}
-                        className="text-[11px] font-semibold px-2 py-1 rounded-lg"
-                        style={{ backgroundColor: dm.bg, color: dm.color }}
-                      >
-                        {s}
+          {/* Tech Stack */}
+          <section>
+            <SectionLabel>Tech Stack</SectionLabel>
+            <div className="grid grid-cols-2 gap-3">
+              {(
+                [
+                  ['Languages',  eng.stack.languages],
+                  ['Frameworks', eng.stack.frameworks],
+                  ['Cloud',      eng.stack.cloud],
+                  ['Tools',      eng.stack.tools],
+                ] as [string, string[]][]
+              ).map(([cat, items]) => (
+                <div key={cat} className="rounded-xl p-3.5 bg-white/[0.03] border border-white/[0.06]">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-white/28 mb-2">{cat}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {items.map(it => (
+                      <span key={it} className="rounded px-1.5 py-[2px] text-[11px] text-white/50 border border-white/[0.07] bg-white/[0.02]">
+                        {it}
                       </span>
                     ))}
                   </div>
                 </div>
-
-                {/* Education */}
-                <div>
-                  <SideLabel>Education</SideLabel>
-                  <div className="mt-1.5 flex items-start gap-1.5">
-                    <GraduationCap className="w-3.5 h-3.5 text-muted-foreground shrink-0 mt-0.5" />
-                    <p className="text-xs text-foreground leading-snug">{e.education}</p>
-                  </div>
-                </div>
-
-                {/* Certifications */}
-                {e.certifications.length > 0 && (
-                  <div>
-                    <SideLabel>Certifications</SideLabel>
-                    <div className="mt-1.5 space-y-1.5">
-                      {e.certifications.map(c => (
-                        <div key={c} className="flex items-start gap-1.5">
-                          <Award className="w-3 h-3 text-muted-foreground shrink-0 mt-0.5" />
-                          <p className="text-xs text-muted-foreground leading-snug">{c}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-              </aside>
-
-              {/* ── Right content ── */}
-              <div className="p-7 lg:p-8 space-y-8">
-
-                {/* About */}
-                <section>
-                  <SectionLabel>About</SectionLabel>
-                  <p className="mt-3 text-[15px] text-foreground leading-relaxed">
-                    {e.bio}
-                  </p>
-                </section>
-
-                {/* Technical Stack */}
-                <section>
-                  <SectionLabel>Technical Stack</SectionLabel>
-                  <div className="mt-3 grid sm:grid-cols-2 gap-5">
-                    {(Object.entries(e.stack) as [keyof typeof e.stack, string[]][]).map(
-                      ([cat, items]) => (
-                        <div key={cat}>
-                          <p className="text-[10.5px] font-bold text-muted-foreground uppercase tracking-wider mb-2">
-                            {STACK_LABELS[cat] ?? cat}
-                          </p>
-                          <div className="flex flex-wrap gap-1.5">
-                            {items.map(item => (
-                              <span
-                                key={item}
-                                className="text-[11px] font-medium px-2.5 py-1
-                                  bg-muted rounded-lg text-foreground"
-                              >
-                                {item}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )
-                    )}
-                  </div>
-                </section>
-
-                {/* Key Highlights */}
-                <section>
-                  <SectionLabel>Key Project Highlights</SectionLabel>
-                  <div className="mt-3 space-y-3.5">
-                    {e.highlights.map((h, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <div
-                          className="w-5 h-5 rounded-full flex items-center justify-center
-                            text-[10px] font-bold text-white shrink-0 mt-0.5"
-                          style={{ backgroundColor: dm.color }}
-                        >
-                          {i + 1}
-                        </div>
-                        <p className="text-sm text-foreground leading-snug">{h}</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-
-                {/* CTA */}
-                <section className="pt-2 border-t border-border no-print">
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Interested in working with {e.codename}?
-                  </p>
-                  <button
-                    onClick={openCalendly}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full
-                      bg-accent text-white font-semibold text-sm
-                      hover:opacity-90 transition-opacity"
-                  >
-                    Discuss This Engineer
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </section>
-
-              </div>
+              ))}
             </div>
+          </section>
+
+          {/* Engagement + Education */}
+          <div className="grid grid-cols-2 gap-4">
+            <section>
+              <SectionLabel>Engagement</SectionLabel>
+              <div className="flex flex-wrap gap-1.5">
+                {eng.engagementType.map(e => (
+                  <span
+                    key={e}
+                    className="rounded-full px-2.5 py-[3px] text-[11px] font-medium border"
+                    style={{ color, borderColor: `${color}40`, background: `${color}0C` }}
+                  >
+                    {e}
+                  </span>
+                ))}
+              </div>
+            </section>
+            <section>
+              <SectionLabel>Education</SectionLabel>
+              <p className="text-[12px] text-white/50 leading-snug">{eng.education}</p>
+            </section>
           </div>
-        </motion.div>
+
+          {/* Certifications */}
+          {eng.certifications.length > 0 && (
+            <section>
+              <SectionLabel>Certifications</SectionLabel>
+              <div className="flex flex-wrap gap-2">
+                {eng.certifications.map(c => (
+                  <span key={c} className="rounded-lg px-2.5 py-1 text-[11px] text-white/55 border border-white/[0.08] bg-white/[0.04]">
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* CTA */}
+          <div
+            className="rounded-2xl p-5 text-center"
+            style={{ background: `linear-gradient(135deg, ${color}10, ${color}04)`, border: `1px solid ${color}22` }}
+          >
+            <p className="text-[0.88rem] font-semibold text-white mb-1">
+              Interested in {eng.name.split(' ')[0]}?
+            </p>
+            <p className="text-[0.75rem] text-white/40 mb-4">
+              Let&rsquo;s talk about how they can join your team — typically within days.
+            </p>
+            <a
+              href="/#contact"
+              className="inline-flex items-center gap-2 rounded-xl px-6 py-2.5 text-[13px] font-bold text-white transition-opacity hover:opacity-90"
+              style={{ background: color }}
+            >
+              Get in Touch
+              <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
+
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+// ─── Main Page ─────────────────────────────────────────────────────────────
+
+export default function EngineersPage() {
+  const [activeDomain, setActiveDomain] = useState<Domain | 'all'>('all')
+  const [selected, setSelected]         = useState<Engineer | null>(null)
+
+  const filtered = useMemo(
+    () => activeDomain === 'all' ? engineers : engineers.filter(e => e.domain === activeDomain),
+    [activeDomain],
+  )
+
+  return (
+    <>
+      {/* Print CSS — hides everything except the open modal */}
+      <style>{`
+        @media print {
+          body.kovil-printing > *           { display: none !important; }
+          body.kovil-printing #kv-print-target {
+            display: block !important;
+            position: static !important;
+            box-shadow: none !important;
+            max-height: none !important;
+            overflow: visible !important;
+            border: none !important;
+          }
+        }
+      `}</style>
+
+      <div className="min-h-screen bg-[#090909]">
+
+        {/* ── Page header ─────────────────────────────────── */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-2xl mx-auto"
+          >
+            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5
+                            bg-[#FF4F00]/10 border border-[#FF4F00]/25 text-[#FF4F00]
+                            text-[11px] font-bold uppercase tracking-widest">
+              Vetted Talent · Direct Access
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4 leading-tight">
+              Available{' '}
+              <span className="text-[#FF4F00]">AI &amp; Data</span>
+              {' '}Engineers
+            </h1>
+
+            <p className="text-[0.9rem] text-white/45 leading-relaxed">
+              Senior engineers, ready to deploy. Browse by domain, view full profiles, and get in touch in minutes.
+            </p>
+          </motion.div>
+
+          {/* ── Domain filter tabs ───────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.15 }}
+            className="flex items-center gap-2 mt-10 flex-wrap justify-center"
+          >
+            {DOMAINS.map(d => {
+              const isActive    = activeDomain === d.key
+              const domainColor = d.key !== 'all' ? DOMAIN_COLOR[d.key as Domain] : '#FF4F00'
+              return (
+                <button
+                  key={d.key}
+                  onClick={() => setActiveDomain(d.key as Domain | 'all')}
+                  className="rounded-xl px-4 py-2 text-[13px] font-semibold transition-all duration-200"
+                  style={
+                    isActive
+                      ? { background: `${domainColor}18`, border: `1px solid ${domainColor}55`, color: domainColor }
+                      : { background: 'transparent', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.40)' }
+                  }
+                >
+                  <span className="hidden sm:inline">{d.label}</span>
+                  <span className="sm:hidden">{d.short}</span>
+                </button>
+              )
+            })}
+          </motion.div>
+
+          <p className="text-center text-[12px] text-white/25 mt-4 font-medium">
+            {filtered.length} profile{filtered.length !== 1 ? 's' : ''}
+          </p>
+        </div>
+
+        {/* ── Card grid ────────────────────────────────────── */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <AnimatePresence mode="popLayout">
+              {filtered.map(eng => (
+                <EngineerCard key={eng.id} eng={eng} onClick={() => setSelected(eng)} />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+
       </div>
+
+      {/* ── Modal ─────────────────────────────────────────── */}
+      <AnimatePresence>
+        {selected && (
+          <EngineerModal eng={selected} onClose={() => setSelected(null)} />
+        )}
+      </AnimatePresence>
     </>
-  )
-}
-
-// ─── Small helpers ────────────────────────────────────────────────────────────
-
-function SideLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-[9.5px] font-bold tracking-[0.18em] uppercase text-muted-foreground">
-      {children}
-    </p>
-  )
-}
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-[9.5px] font-bold tracking-[0.18em] uppercase text-muted-foreground">
-      {children}
-    </p>
   )
 }

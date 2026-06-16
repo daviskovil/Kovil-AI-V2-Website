@@ -1,16 +1,6 @@
-import type { Metadata } from 'next'
-import EngineersPage from '@/src/pages/EngineersPage'
+import { redirect } from 'next/navigation'
 
-export const metadata: Metadata = {
-  title: 'Available AI & Data Engineers | Kovil AI',
-  description: 'Browse Kovil AI\'s curated roster of vetted AI and Data engineers available for staff augmentation and fixed-price AI projects.',
-  robots: { index: false, follow: false }, // unlisted — shared via direct link only
-}
-
+// Old URL — redirect to the new /profiles page
 export default function Page() {
-  return (
-    <div className="pt-20">
-      <EngineersPage />
-    </div>
-  )
+  redirect('/profiles')
 }
