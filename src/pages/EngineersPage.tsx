@@ -2,25 +2,21 @@
 
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { X, Download, ChevronRight, CheckCircle2 } from 'lucide-react'
+import { X, Download, CheckCircle2, ChevronRight } from 'lucide-react'
+import Image from 'next/image'
 import { engineers, type Engineer, type Domain } from '@/src/data/engineers'
 
-// ─── Domain config ─────────────────────────────────────────────────────────
+// ─── Constants ─────────────────────────────────────────────────────────────
 
-const DOMAINS: { key: Domain | 'all'; label: string; short: string }[] = [
-  { key: 'all',              label: 'All Profiles',     short: 'All'       },
-  { key: 'ai-engineering',   label: 'AI Engineering',   short: 'AI Eng.'   },
-  { key: 'data-engineering', label: 'Data Engineering', short: 'Data Eng.' },
-  { key: 'ml-engineering',   label: 'ML Engineering',   short: 'ML Eng.'   },
-  { key: 'data-science',     label: 'Data Science',     short: 'Data Sci.' },
+const ORANGE = '#FF4F00'
+
+const DOMAINS: { key: Domain | 'all'; label: string }[] = [
+  { key: 'all',              label: 'All' },
+  { key: 'ai-engineering',   label: 'AI Engineering' },
+  { key: 'data-engineering', label: 'Data Engineering' },
+  { key: 'ml-engineering',   label: 'ML Engineering' },
+  { key: 'data-science',     label: 'Data Science' },
 ]
-
-const DOMAIN_COLOR: Record<Domain, string> = {
-  'ai-engineering':   '#FF4F00',
-  'data-engineering': '#3B82F6',
-  'ml-engineering':   '#A855F7',
-  'data-science':     '#10B981',
-}
 
 const DOMAIN_LABEL: Record<Domain, string> = {
   'ai-engineering':   'AI Engineering',
@@ -29,173 +25,335 @@ const DOMAIN_LABEL: Record<Domain, string> = {
   'data-science':     'Data Science',
 }
 
-const AVAIL_CONFIG: Record<Engineer['availability'], { label: string; dot: string; badge: string }> = {
-  'now':      { label: 'Available Now',           dot: '#22C55E', badge: 'bg-green-500/10  border border-green-500/25  text-green-400'  },
-  '1-week':   { label: 'Available in 1 Week',     dot: '#3B82F6', badge: 'bg-blue-500/10   border border-blue-500/25   text-blue-400'   },
-  '2-weeks':  { label: 'Available in 2 Weeks',    dot: '#F59E0B', badge: 'bg-amber-500/10  border border-amber-500/25  text-amber-400'  },
-  '2h-day':   { label: 'Available 2 hrs / day',   dot: '#A855F7', badge: 'bg-purple-500/10 border border-purple-500/25 text-purple-400' },
-  '20h-week': { label: 'Available 20 hrs / week', dot: '#EC4899', badge: 'bg-pink-500/10   border border-pink-500/25   text-pink-400'   },
+// Black / orange / white availability badges only
+const AVAIL: Record<Engineer['availability'], { label: string; cls: string; dot: string }> = {
+  'now':      { label: 'Available Now',           cls: 'bg-[#FF4F00] text-white',                                 dot: 'bg-white animate-pulse'  },
+  '1-week':   { label: 'Available in 1 Week',     cls: 'border border-[#FF4F00] text-[#FF4F00] bg-[#FF4F00]/5',  dot: 'bg-[#FF4F00]'            },
+  '2-weeks':  { label: 'Available in 2 Weeks',    cls: 'border border-black/25 text-black/55',                   dot: 'bg-black/40'             },
+  '2h-day':   { label: 'Available 2 hrs / day',   cls: 'bg-black text-white',                                    dot: 'bg-white'                },
+  '20h-week': { label: 'Available 20 hrs / week', cls: 'border border-black/20 text-black/45',                   dot: 'bg-black/35'             },
 }
 
-// ─── SVG Avatar Icons ──────────────────────────────────────────────────────
+// ─── Gender SVG Icons ──────────────────────────────────────────────────────
 
-function MaleIcon({ color }: { color: string }) {
+function MaleIcon() {
   return (
-    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <circle cx="32" cy="20" r="11" fill={color} opacity="0.15" />
-      <circle cx="32" cy="20" r="11" stroke={color} strokeWidth="2.5" />
-      <path
-        d="M12 58c0-11.046 8.954-20 20-20s20 8.954 20 20"
-        stroke={color} strokeWidth="2.5" strokeLinecap="round"
-        fill={color} fillOpacity="0.08"
-      />
-      <path d="M27 38.5 L32 44 L37 38.5" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+    <svg viewBox="0 0 56 56" fill="none" className="w-full h-full">
+      <circle cx="28" cy="18" r="10" fill={ORANGE} opacity="0.15" />
+      <circle cx="28" cy="18" r="10" stroke={ORANGE} strokeWidth="2.5" />
+      <path d="M10 52c0-9.941 8.059-18 18-18s18 8.059 18 18"
+        stroke={ORANGE} strokeWidth="2.5" strokeLinecap="round"
+        fill={ORANGE} fillOpacity="0.09" />
+      {/* tie/collar hint */}
+      <path d="M24 34.5 L28 40 L32 34.5" stroke={ORANGE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.55" />
     </svg>
   )
 }
 
-function FemaleIcon({ color }: { color: string }) {
+function FemaleIcon() {
   return (
-    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <circle cx="32" cy="20" r="11" fill={color} opacity="0.15" />
-      <circle cx="32" cy="20" r="11" stroke={color} strokeWidth="2.5" />
-      <path d="M21.5 15.5 Q32 8 42.5 15.5" stroke={color} strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.5" />
-      <path
-        d="M18 58 C18 47 24 40 32 38 C40 40 46 47 46 58"
-        stroke={color} strokeWidth="2.5" strokeLinecap="round"
-        fill={color} fillOpacity="0.08"
-      />
-      <path d="M22 50 Q32 54 42 50" stroke={color} strokeWidth="1.8" strokeLinecap="round" opacity="0.45" />
+    <svg viewBox="0 0 56 56" fill="none" className="w-full h-full">
+      <circle cx="28" cy="18" r="10" fill={ORANGE} opacity="0.15" />
+      <circle cx="28" cy="18" r="10" stroke={ORANGE} strokeWidth="2.5" />
+      {/* hair arc */}
+      <path d="M18.5 13.5 Q28 6 37.5 13.5" stroke={ORANGE} strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.45" />
+      {/* dress silhouette */}
+      <path d="M14 52 C14 41 20 34 28 32 C36 34 42 41 42 52"
+        stroke={ORANGE} strokeWidth="2.5" strokeLinecap="round"
+        fill={ORANGE} fillOpacity="0.09" />
+      <path d="M18 46 Q28 50 38 46" stroke={ORANGE} strokeWidth="1.8" strokeLinecap="round" opacity="0.4" />
     </svg>
+  )
+}
+
+// ─── Print Profile (shown only on @media print) ────────────────────────────
+
+function PrintProfile({ eng }: { eng: Engineer }) {
+  const avail = AVAIL[eng.availability]
+  return (
+    <div
+      id="kovil-pdf-doc"
+      style={{
+        display: 'none',
+        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        background: '#fff',
+        color: '#111',
+        width: '100%',
+        padding: '40px 48px 32px',
+        boxSizing: 'border-box',
+      }}
+    >
+      {/* ─── Header bar ─── */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+        {/* Logo */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/kovil-logo-symbol.webp" alt="Kovil AI" style={{ height: 36, width: 36, borderRadius: 6 }} />
+          <span style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.5px', color: '#111' }}>Kovil AI</span>
+        </div>
+        <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#FF4F00' }}>
+          Candidate Profile · Confidential
+        </span>
+      </div>
+
+      {/* Orange rule */}
+      <div style={{ height: 3, background: '#FF4F00', borderRadius: 2, marginBottom: 24 }} />
+
+      {/* ─── Candidate headline ─── */}
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
+        <div>
+          <div style={{ fontSize: 30, fontWeight: 800, letterSpacing: '-0.5px', color: '#111', lineHeight: 1.1 }}>
+            {eng.name}
+          </div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: '#FF4F00', marginTop: 4 }}>{eng.title}</div>
+          <div style={{ fontSize: 11, color: '#666', marginTop: 3 }}>
+            {DOMAIN_LABEL[eng.domain]} · {eng.yearsExp} years experience
+          </div>
+        </div>
+        {/* Availability badge */}
+        <div style={{
+          padding: '6px 14px',
+          borderRadius: 999,
+          background: eng.availability === 'now' ? '#FF4F00' : eng.availability === '2h-day' ? '#111' : 'transparent',
+          border: eng.availability === 'now' || eng.availability === '2h-day' ? 'none' : '1.5px solid #FF4F00',
+          color: eng.availability === 'now' || eng.availability === '2h-day' ? '#fff' : '#FF4F00',
+          fontSize: 11,
+          fontWeight: 700,
+          marginTop: 4,
+          whiteSpace: 'nowrap' as const,
+        }}>
+          {avail.label}
+        </div>
+      </div>
+
+      {/* ─── Body: 2-column grid ─── */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 40px' }}>
+
+        {/* Left column */}
+        <div>
+          {/* Profile Summary */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 6 }}>Profile Summary</div>
+            <div style={{ fontSize: 11, color: '#444', lineHeight: 1.7 }}>{eng.bio}</div>
+          </div>
+
+          {/* Core Skills */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 8 }}>Core Skills</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 5 }}>
+              {eng.skills.map(s => (
+                <span key={s} style={{ fontSize: 10, padding: '3px 9px', border: '1px solid #ddd', borderRadius: 4, color: '#333' }}>{s}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* Technology Stack */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 8 }}>Technology Stack</div>
+            {([
+              ['Languages',  eng.stack.languages],
+              ['Frameworks', eng.stack.frameworks],
+              ['Cloud',      eng.stack.cloud],
+              ['Tools',      eng.stack.tools],
+            ] as [string, string[]][]).map(([cat, items]) => (
+              <div key={cat} style={{ display: 'flex', gap: 8, marginBottom: 5, fontSize: 11 }}>
+                <span style={{ fontWeight: 700, color: '#111', width: 80, flexShrink: 0 }}>{cat}</span>
+                <span style={{ color: '#555' }}>{items.join(', ')}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Education */}
+          <div>
+            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 6 }}>Education</div>
+            <div style={{ fontSize: 11, color: '#444', lineHeight: 1.6 }}>{eng.education}</div>
+          </div>
+        </div>
+
+        {/* Right column */}
+        <div>
+          {/* Key Achievements */}
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 8 }}>Key Achievements</div>
+            {eng.highlights.map((h, i) => (
+              <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+                <span style={{ fontSize: 14, color: '#FF4F00', lineHeight: 1, marginTop: 1, flexShrink: 0 }}>✓</span>
+                <span style={{ fontSize: 11, color: '#333', lineHeight: 1.65 }}>{h}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Certifications */}
+          {eng.certifications.length > 0 && (
+            <div style={{ marginBottom: 20 }}>
+              <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 8 }}>Certifications</div>
+              {eng.certifications.map(c => (
+                <div key={c} style={{ display: 'flex', gap: 8, marginBottom: 5, fontSize: 11, color: '#444' }}>
+                  <span style={{ color: '#FF4F00' }}>✓</span> {c}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Engagement */}
+          <div style={{ marginBottom: 24 }}>
+            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 8 }}>Engagement Options</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 5 }}>
+              {eng.engagementType.map(e => (
+                <span key={e} style={{ fontSize: 10, padding: '3px 10px', border: '1.5px solid #FF4F00', borderRadius: 999, color: '#FF4F00', fontWeight: 600 }}>{e}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA box */}
+          <div style={{ background: '#FFF5F2', border: '1.5px solid #FF4F00', borderRadius: 10, padding: '16px 18px' }}>
+            <div style={{ fontSize: 13, fontWeight: 800, color: '#111', marginBottom: 4 }}>
+              Ready to hire {eng.name.split(' ')[0]}?
+            </div>
+            <div style={{ fontSize: 11, color: '#666', marginBottom: 10, lineHeight: 1.5 }}>
+              Get in touch and we can have {eng.gender === 'male' ? 'him' : 'her'} embedded with your team within days — not weeks.
+            </div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: '#FF4F00' }}>
+              kovil.ai  ·  Get in Touch
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ─── Footer ─── */}
+      <div style={{ height: 1, background: '#eee', margin: '24px 0 14px' }} />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <span style={{ fontSize: 10, color: '#999' }}>
+          Kovil AI · <span style={{ color: '#FF4F00' }}>kovil.ai</span>
+        </span>
+        <span style={{ fontSize: 10, color: '#bbb' }}>Confidential · For recipient use only</span>
+      </div>
+    </div>
   )
 }
 
 // ─── Engineer Card ─────────────────────────────────────────────────────────
 
 function EngineerCard({ eng, onClick }: { eng: Engineer; onClick: () => void }) {
-  const color = DOMAIN_COLOR[eng.domain]
-  const avail = AVAIL_CONFIG[eng.availability]
+  const avail = AVAIL[eng.availability]
 
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 12, scale: 0.97 }}
-      transition={{ duration: 0.32 }}
+      exit={{ opacity: 0, scale: 0.97 }}
+      transition={{ duration: 0.28 }}
       onClick={onClick}
-      className="group relative rounded-2xl border border-white/[0.07] bg-[#111111] overflow-hidden cursor-pointer
-                 transition-all duration-300 hover:border-white/[0.14] select-none"
-      style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}
+      className="group bg-white rounded-[20px] overflow-hidden cursor-pointer select-none
+                 transition-all duration-300 hover:-translate-y-1"
+      style={{ boxShadow: '0 2px 16px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04)' }}
+      whileHover={{ boxShadow: '0 16px 48px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.05)' }}
     >
-      {/* Hover radial glow */}
+      {/* ── Orange gradient top section ── */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ background: `radial-gradient(ellipse at 30% 0%, ${color}14, transparent 65%)` }}
-      />
-
-      {/* Top accent stripe */}
-      <div
-        className="absolute inset-x-0 top-0 h-[3px] rounded-t-2xl"
-        style={{ background: `linear-gradient(90deg, ${color}, ${color}55)` }}
-      />
-
-      {/* Top glow wash */}
-      <div
-        className="absolute inset-x-0 top-0 h-20 pointer-events-none"
-        style={{ background: `linear-gradient(180deg, ${color}0D 0%, transparent 100%)` }}
-      />
-
-      <div className="relative pt-7 pb-5 px-5 flex flex-col gap-4">
-
-        {/* Avatar + name */}
-        <div className="flex items-center gap-4">
-          <div
-            className="w-[62px] h-[62px] rounded-[14px] flex-shrink-0 flex items-center justify-center p-2.5"
-            style={{
-              background: `linear-gradient(145deg, ${color}1C, ${color}07)`,
-              border: `1.5px solid ${color}32`,
-              boxShadow: `0 4px 18px ${color}20`,
-            }}
-          >
-            {eng.gender === 'female' ? <FemaleIcon color={color} /> : <MaleIcon color={color} />}
-          </div>
-
-          <div className="min-w-0 flex-1">
-            <h3 className="text-[1.3rem] font-bold leading-tight tracking-tight text-white truncate">
-              {eng.name}
-            </h3>
-            <p className="text-[0.73rem] font-semibold mt-0.5 leading-snug truncate" style={{ color }}>
-              {eng.title}
-            </p>
-            <p className="text-[0.68rem] text-white/35 mt-0.5 font-medium">
-              {eng.yearsExp} yrs · {DOMAIN_LABEL[eng.domain]}
-            </p>
-          </div>
+        className="h-[108px] relative overflow-hidden rounded-t-[20px]"
+        style={{ background: `linear-gradient(145deg, #FF6A00 0%, #FF4F00 50%, #CC2200 100%)` }}
+      >
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)',
+            backgroundSize: '18px 18px',
+          }}
+        />
+        {/* Domain label top-right */}
+        <div className="absolute top-3 right-3">
+          <span className="text-[9px] font-bold uppercase tracking-widest text-white/60">
+            {DOMAIN_LABEL[eng.domain]}
+          </span>
         </div>
+      </div>
 
-        {/* Availability */}
-        <span className={`inline-flex items-center gap-1.5 self-start rounded-full px-2.5 py-[3px] text-[11px] font-semibold ${avail.badge}`}>
-          <span className="w-[6px] h-[6px] rounded-full flex-shrink-0" style={{ background: avail.dot }} />
-          {avail.label}
-        </span>
+      {/* ── Overlapping circular avatar ── */}
+      <div className="flex justify-center -mt-10 relative z-10">
+        <div
+          className="w-[80px] h-[80px] rounded-full flex items-center justify-center p-[14px] bg-white"
+          style={{
+            boxShadow: '0 0 0 4px white, 0 4px 16px rgba(0,0,0,0.12)',
+            background: '#FFF5F0',
+          }}
+        >
+          {eng.gender === 'female' ? <FemaleIcon /> : <MaleIcon />}
+        </div>
+      </div>
 
-        {/* Bio — 2 line clamp */}
-        <p className="text-[0.75rem] text-white/42 leading-relaxed line-clamp-2">
-          {eng.bio}
+      {/* ── Content ── */}
+      <div className="px-5 pb-5 pt-3 text-center">
+
+        {/* Name */}
+        <h3 className="text-[1.25rem] font-bold tracking-tight text-black leading-tight">
+          {eng.name}
+        </h3>
+
+        {/* Title in orange */}
+        <p className="text-[0.7rem] font-semibold mt-0.5 leading-snug" style={{ color: ORANGE }}>
+          {eng.title}
         </p>
 
+        {/* Years */}
+        <p className="text-[0.65rem] text-black/35 mt-0.5 font-medium">
+          {eng.yearsExp} yrs experience
+        </p>
+
+        {/* Availability pill */}
+        <div className="flex justify-center mt-3">
+          <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-[4px] text-[10.5px] font-semibold ${avail.cls}`}>
+            <span className={`w-[5px] h-[5px] rounded-full flex-shrink-0 ${avail.dot}`} />
+            {avail.label}
+          </span>
+        </div>
+
+        {/* Divider */}
+        <div className="h-px bg-black/[0.07] my-3.5" />
+
         {/* Skill chips */}
-        <div className="flex flex-wrap gap-1.5">
-          {eng.skills.slice(0, 4).map(s => (
+        <div className="flex flex-wrap gap-1.5 justify-center">
+          {eng.skills.slice(0, 3).map(s => (
             <span
               key={s}
-              className="rounded px-2 py-[3px] text-[10px] text-white/50 border border-white/[0.09] bg-white/[0.04]"
+              className="rounded-md px-2 py-[3px] text-[10px] border border-black/[0.10] text-black/50 bg-black/[0.02] font-medium"
             >
               {s}
             </span>
           ))}
-          {eng.skills.length > 4 && (
-            <span className="rounded px-2 py-[3px] text-[10px] text-white/25 border border-white/[0.05]">
-              +{eng.skills.length - 4}
-            </span>
-          )}
         </div>
 
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
-          <span className="text-[11px] text-white/30 font-medium truncate max-w-[120px]">
-            {eng.engagementType[0]}
-          </span>
-          <span
-            className="flex items-center gap-1 text-[12px] font-semibold group-hover:gap-1.5 transition-all"
-            style={{ color }}
-          >
-            View Profile
-            <ChevronRight className="w-3.5 h-3.5" />
-          </span>
-        </div>
+        {/* CTA */}
+        <button
+          className="mt-4 w-full py-[9px] rounded-xl text-[12.5px] font-bold text-white transition-all duration-200
+                     hover:brightness-110 active:scale-[0.98]"
+          style={{ background: ORANGE }}
+        >
+          View Profile
+        </button>
 
       </div>
     </motion.div>
   )
 }
 
-// ─── Modal ─────────────────────────────────────────────────────────────────
+// ─── Section label helper ──────────────────────────────────────────────────
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[10px] font-bold uppercase tracking-widest text-white/28 mb-3">
+    <p className="text-[9.5px] font-bold uppercase tracking-[0.14em] mb-2.5" style={{ color: ORANGE }}>
       {children}
     </p>
   )
 }
 
-function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void }) {
-  const color = DOMAIN_COLOR[eng.domain]
-  const avail = AVAIL_CONFIG[eng.availability]
+// ─── Modal ─────────────────────────────────────────────────────────────────
 
-  const handleDownload = () => {
+function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void }) {
+  const avail = AVAIL[eng.availability]
+
+  const handlePDF = () => {
     document.body.classList.add('kovil-printing')
     window.print()
     document.body.classList.remove('kovil-printing')
@@ -203,187 +361,229 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
 
   return (
     <motion.div
-      key="modal-backdrop"
+      key="backdrop"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      transition={{ duration: 0.18 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
       onClick={onClose}
     >
+      {/* Print-only professional document — rendered with data, hidden on screen */}
+      <PrintProfile eng={eng} />
+
+      {/* ── Modal panel ── */}
       <motion.div
-        id="kv-print-target"
-        initial={{ opacity: 0, scale: 0.96, y: 20 }}
+        initial={{ opacity: 0, scale: 0.97, y: 16 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 10 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 26 }}
-        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/[0.09] bg-[#0F0F0F]"
-        style={{ boxShadow: `0 40px 100px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.04)` }}
+        exit={{ opacity: 0, scale: 0.97 }}
+        transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+        className="relative w-[95vw] max-w-[1320px] bg-white rounded-3xl overflow-hidden"
+        style={{
+          height: 'min(88vh, 820px)',
+          boxShadow: '0 32px 80px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.06)',
+        }}
         onClick={e => e.stopPropagation()}
       >
-        {/* Accent stripe */}
-        <div className="absolute inset-x-0 top-0 h-[3px] rounded-t-3xl" style={{ background: `linear-gradient(90deg, ${color}, ${color}50)` }} />
-        {/* Top glow */}
-        <div className="absolute inset-x-0 top-0 h-48 pointer-events-none" style={{ background: `linear-gradient(180deg, ${color}0E 0%, transparent 100%)` }} />
+        {/* Orange top stripe */}
+        <div className="absolute inset-x-0 top-0 h-[3px] z-10" style={{ background: ORANGE }} />
 
-        {/* Header */}
-        <div className="relative flex items-start justify-between px-7 pt-8 pb-5">
-          <div className="flex items-center gap-5">
-            {/* Avatar */}
-            <div
-              className="w-[76px] h-[76px] rounded-2xl flex-shrink-0 p-3"
-              style={{
-                background: `linear-gradient(145deg, ${color}20, ${color}07)`,
-                border: `1.5px solid ${color}35`,
-                boxShadow: `0 8px 32px ${color}28`,
-              }}
-            >
-              {eng.gender === 'female' ? <FemaleIcon color={color} /> : <MaleIcon color={color} />}
-            </div>
+        {/* ── Header ── */}
+        <div className="flex items-center gap-5 px-7 pt-7 pb-5 border-b border-black/[0.07]">
 
-            <div>
-              <h2 className="text-[1.65rem] font-bold text-white leading-tight tracking-tight">{eng.name}</h2>
-              <p className="text-sm font-semibold mt-0.5" style={{ color }}>{eng.title}</p>
-              <div className="flex items-center gap-2.5 mt-2 flex-wrap">
-                <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${avail.badge}`}>
-                  <span className="w-[6px] h-[6px] rounded-full" style={{ background: avail.dot }} />
-                  {avail.label}
-                </span>
-                <span className="text-[11px] text-white/35">{eng.yearsExp} years experience</span>
-              </div>
+          {/* Avatar */}
+          <div
+            className="w-[68px] h-[68px] rounded-full flex-shrink-0 p-[13px]"
+            style={{
+              background: '#FFF5F0',
+              boxShadow: `0 0 0 3px white, 0 4px 16px rgba(255,79,0,0.15)`,
+              border: `2px solid ${ORANGE}25`,
+            }}
+          >
+            {eng.gender === 'female' ? <FemaleIcon /> : <MaleIcon />}
+          </div>
+
+          {/* Name + meta */}
+          <div className="flex-1 min-w-0">
+            <h2 className="text-[1.7rem] font-bold tracking-tight text-black leading-tight">{eng.name}</h2>
+            <p className="text-[0.8rem] font-semibold mt-0.5" style={{ color: ORANGE }}>{eng.title}</p>
+            <div className="flex items-center gap-3 mt-1.5 flex-wrap">
+              <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-[3px] text-[10.5px] font-semibold ${avail.cls}`}>
+                <span className={`w-[5px] h-[5px] rounded-full flex-shrink-0 ${avail.dot}`} />
+                {avail.label}
+              </span>
+              <span className="text-[11px] text-black/38 font-medium">
+                {eng.yearsExp} yrs · {DOMAIN_LABEL[eng.domain]}
+              </span>
             </div>
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+          <div className="flex items-center gap-2.5 flex-shrink-0">
             <button
-              onClick={handleDownload}
-              className="flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-[12px] font-bold bg-[#FF4F00] text-white hover:bg-[#e64600] transition-colors"
+              onClick={handlePDF}
+              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-[12px] font-bold text-white transition-all hover:brightness-110"
+              style={{ background: ORANGE }}
             >
               <Download className="w-3.5 h-3.5" />
-              PDF
+              Download PDF
             </button>
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-white/35 hover:text-white hover:bg-white/[0.07] transition-all"
+              className="p-2.5 rounded-xl text-black/30 hover:text-black hover:bg-black/[0.05] transition-all"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
         </div>
 
-        {/* Body */}
-        <div className="px-7 pb-8 space-y-6">
+        {/* ── Body — 3 columns, no scroll ── */}
+        <div
+          className="grid px-6 pb-6 pt-5 gap-x-6"
+          style={{
+            gridTemplateColumns: '1fr 1.1fr 0.95fr',
+            height: 'calc(100% - 105px)',
+          }}
+        >
 
-          {/* Bio */}
-          <p className="text-[0.84rem] text-white/55 leading-relaxed">{eng.bio}</p>
+          {/* ── Column 1: Bio, Skills, Certs, Education ── */}
+          <div className="flex flex-col gap-5 min-h-0 overflow-hidden">
 
-          {/* Highlights */}
-          <section>
-            <SectionLabel>Key Highlights</SectionLabel>
-            <ul className="space-y-2.5">
-              {eng.highlights.map((h, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-[0.82rem] text-white/60 leading-relaxed">
-                  <CheckCircle2 className="w-[15px] h-[15px] mt-0.5 flex-shrink-0" style={{ color }} />
-                  {h}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          {/* Skills */}
-          <section>
-            <SectionLabel>Core Skills</SectionLabel>
-            <div className="flex flex-wrap gap-2">
-              {eng.skills.map(s => (
-                <span key={s} className="rounded-lg px-2.5 py-1 text-[12px] font-medium text-white/60 border border-white/[0.09] bg-white/[0.04]">
-                  {s}
-                </span>
-              ))}
+            {/* Bio */}
+            <div>
+              <SLabel>Profile Summary</SLabel>
+              <p className="text-[11.5px] text-black/55 leading-[1.7] line-clamp-5">{eng.bio}</p>
             </div>
-          </section>
 
-          {/* Tech Stack */}
-          <section>
-            <SectionLabel>Tech Stack</SectionLabel>
-            <div className="grid grid-cols-2 gap-3">
-              {(
-                [
-                  ['Languages',  eng.stack.languages],
-                  ['Frameworks', eng.stack.frameworks],
-                  ['Cloud',      eng.stack.cloud],
-                  ['Tools',      eng.stack.tools],
-                ] as [string, string[]][]
-              ).map(([cat, items]) => (
-                <div key={cat} className="rounded-xl p-3.5 bg-white/[0.03] border border-white/[0.06]">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-white/28 mb-2">{cat}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {items.map(it => (
-                      <span key={it} className="rounded px-1.5 py-[2px] text-[11px] text-white/50 border border-white/[0.07] bg-white/[0.02]">
-                        {it}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Engagement + Education */}
-          <div className="grid grid-cols-2 gap-4">
-            <section>
-              <SectionLabel>Engagement</SectionLabel>
+            {/* Skills */}
+            <div>
+              <SLabel>Core Skills</SLabel>
               <div className="flex flex-wrap gap-1.5">
+                {eng.skills.map(s => (
+                  <span
+                    key={s}
+                    className="rounded-md px-2 py-[3px] text-[10px] font-medium border border-black/[0.10] text-black/55 bg-black/[0.02]"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Certifications */}
+            <div>
+              <SLabel>Certifications</SLabel>
+              <ul className="space-y-1.5">
+                {eng.certifications.map(c => (
+                  <li key={c} className="flex items-start gap-2 text-[11px] text-black/55">
+                    <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 mt-[1px]" style={{ color: ORANGE }} />
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Education */}
+            <div>
+              <SLabel>Education</SLabel>
+              <p className="text-[11px] text-black/50 leading-relaxed">{eng.education}</p>
+            </div>
+
+          </div>
+
+          {/* ── Column 2: Highlights + Engagement ── */}
+          <div
+            className="flex flex-col gap-5 min-h-0 overflow-hidden pl-6 pr-6"
+            style={{ borderLeft: '1px solid rgba(0,0,0,0.07)', borderRight: '1px solid rgba(0,0,0,0.07)' }}
+          >
+
+            {/* Highlights */}
+            <div className="flex-1">
+              <SLabel>Key Achievements</SLabel>
+              <ul className="space-y-3">
+                {eng.highlights.map((h, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-[11.5px] text-black/60 leading-[1.65]">
+                    <span
+                      className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white mt-[1px]"
+                      style={{ background: ORANGE }}
+                    >
+                      {i + 1}
+                    </span>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Engagement */}
+            <div>
+              <SLabel>Engagement Options</SLabel>
+              <div className="flex flex-wrap gap-2">
                 {eng.engagementType.map(e => (
                   <span
                     key={e}
-                    className="rounded-full px-2.5 py-[3px] text-[11px] font-medium border"
-                    style={{ color, borderColor: `${color}40`, background: `${color}0C` }}
+                    className="rounded-full px-3 py-[4px] text-[10.5px] font-semibold border"
+                    style={{ color: ORANGE, borderColor: `${ORANGE}40`, background: `${ORANGE}08` }}
                   >
                     {e}
                   </span>
                 ))}
               </div>
-            </section>
-            <section>
-              <SectionLabel>Education</SectionLabel>
-              <p className="text-[12px] text-white/50 leading-snug">{eng.education}</p>
-            </section>
+            </div>
+
           </div>
 
-          {/* Certifications */}
-          {eng.certifications.length > 0 && (
-            <section>
-              <SectionLabel>Certifications</SectionLabel>
-              <div className="flex flex-wrap gap-2">
-                {eng.certifications.map(c => (
-                  <span key={c} className="rounded-lg px-2.5 py-1 text-[11px] text-white/55 border border-white/[0.08] bg-white/[0.04]">
-                    {c}
-                  </span>
+          {/* ── Column 3: Stack + CTA ── */}
+          <div className="flex flex-col gap-5 min-h-0 overflow-hidden">
+
+            {/* Tech Stack */}
+            <div className="flex-1">
+              <SLabel>Technology Stack</SLabel>
+              <div className="space-y-3">
+                {([
+                  ['Languages',  eng.stack.languages],
+                  ['Frameworks', eng.stack.frameworks],
+                  ['Cloud',      eng.stack.cloud],
+                  ['Tools',      eng.stack.tools],
+                ] as [string, string[]][]).map(([cat, items]) => (
+                  <div key={cat}>
+                    <p className="text-[9px] font-bold uppercase tracking-wider text-black/30 mb-1">{cat}</p>
+                    <div className="flex flex-wrap gap-1">
+                      {items.map(it => (
+                        <span
+                          key={it}
+                          className="rounded px-1.5 py-[2px] text-[10px] text-black/55 border border-black/[0.09] bg-black/[0.02]"
+                        >
+                          {it}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
-            </section>
-          )}
+            </div>
 
-          {/* CTA */}
-          <div
-            className="rounded-2xl p-5 text-center"
-            style={{ background: `linear-gradient(135deg, ${color}10, ${color}04)`, border: `1px solid ${color}22` }}
-          >
-            <p className="text-[0.88rem] font-semibold text-white mb-1">
-              Interested in {eng.name.split(' ')[0]}?
-            </p>
-            <p className="text-[0.75rem] text-white/40 mb-4">
-              Let&rsquo;s talk about how they can join your team — typically within days.
-            </p>
-            <a
-              href="/#contact"
-              className="inline-flex items-center gap-2 rounded-xl px-6 py-2.5 text-[13px] font-bold text-white transition-opacity hover:opacity-90"
-              style={{ background: color }}
+            {/* CTA box */}
+            <div
+              className="rounded-2xl p-4 text-center"
+              style={{ background: '#FFF5F2', border: `1.5px solid ${ORANGE}30` }}
             >
-              Get in Touch
-              <ChevronRight className="w-4 h-4" />
-            </a>
+              <p className="text-[13px] font-bold text-black mb-1">
+                Interested in {eng.name.split(' ')[0]}?
+              </p>
+              <p className="text-[10.5px] text-black/45 mb-3 leading-relaxed">
+                We can have {eng.gender === 'male' ? 'him' : 'her'} embedded with your team within days.
+              </p>
+              <a
+                href="/#contact"
+                className="inline-flex items-center gap-1.5 rounded-xl px-5 py-2 text-[12px] font-bold text-white transition-all hover:brightness-110"
+                style={{ background: ORANGE }}
+              >
+                Get in Touch
+                <ChevronRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+
           </div>
 
         </div>
@@ -405,24 +605,26 @@ export default function EngineersPage() {
 
   return (
     <>
-      {/* Print CSS — hides everything except the open modal */}
+      {/* ── Print CSS ── */}
       <style>{`
         @media print {
-          body.kovil-printing > *           { display: none !important; }
-          body.kovil-printing #kv-print-target {
+          body.kovil-printing * { visibility: hidden !important; }
+          body.kovil-printing #kovil-pdf-doc {
+            visibility: visible !important;
             display: block !important;
-            position: static !important;
-            box-shadow: none !important;
-            max-height: none !important;
-            overflow: visible !important;
-            border: none !important;
+            position: fixed !important;
+            top: 0; left: 0;
+            width: 100%;
+            background: #fff !important;
           }
+          body.kovil-printing #kovil-pdf-doc * { visibility: visible !important; }
         }
       `}</style>
 
-      <div className="min-h-screen bg-[#090909]">
+      {/* ── White page ── */}
+      <div className="min-h-screen bg-white">
 
-        {/* ── Page header ─────────────────────────────────── */}
+        {/* ── Header ── */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
 
           <motion.div
@@ -431,59 +633,58 @@ export default function EngineersPage() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5
-                            bg-[#FF4F00]/10 border border-[#FF4F00]/25 text-[#FF4F00]
-                            text-[11px] font-bold uppercase tracking-widest">
+            <div
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5 text-[11px] font-bold uppercase tracking-widest"
+              style={{ background: `${ORANGE}10`, border: `1px solid ${ORANGE}30`, color: ORANGE }}
+            >
               Vetted Talent · Direct Access
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4 leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-black mb-4 leading-tight">
               Available{' '}
-              <span className="text-[#FF4F00]">AI &amp; Data</span>
+              <span style={{ color: ORANGE }}>AI &amp; Data</span>
               {' '}Engineers
             </h1>
 
-            <p className="text-[0.9rem] text-white/45 leading-relaxed">
+            <p className="text-[0.92rem] text-black/45 leading-relaxed">
               Senior engineers, ready to deploy. Browse by domain, view full profiles, and get in touch in minutes.
             </p>
           </motion.div>
 
-          {/* ── Domain filter tabs ───────────────────────── */}
+          {/* ── Filter tabs ── */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.15 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
             className="flex items-center gap-2 mt-10 flex-wrap justify-center"
           >
             {DOMAINS.map(d => {
-              const isActive    = activeDomain === d.key
-              const domainColor = d.key !== 'all' ? DOMAIN_COLOR[d.key as Domain] : '#FF4F00'
+              const isActive = activeDomain === d.key
               return (
                 <button
                   key={d.key}
                   onClick={() => setActiveDomain(d.key as Domain | 'all')}
-                  className="rounded-xl px-4 py-2 text-[13px] font-semibold transition-all duration-200"
+                  className="rounded-xl px-5 py-2 text-[13px] font-semibold transition-all duration-200"
                   style={
                     isActive
-                      ? { background: `${domainColor}18`, border: `1px solid ${domainColor}55`, color: domainColor }
-                      : { background: 'transparent', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.40)' }
+                      ? { background: '#111', color: '#fff', border: '1px solid #111' }
+                      : { background: 'transparent', color: 'rgba(0,0,0,0.45)', border: '1px solid rgba(0,0,0,0.15)' }
                   }
                 >
-                  <span className="hidden sm:inline">{d.label}</span>
-                  <span className="sm:hidden">{d.short}</span>
+                  {d.label}
                 </button>
               )
             })}
           </motion.div>
 
-          <p className="text-center text-[12px] text-white/25 mt-4 font-medium">
+          <p className="text-center text-[11.5px] text-black/25 mt-4 font-medium">
             {filtered.length} profile{filtered.length !== 1 ? 's' : ''}
           </p>
         </div>
 
-        {/* ── Card grid ────────────────────────────────────── */}
+        {/* ── Card grid ── */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <AnimatePresence mode="popLayout">
               {filtered.map(eng => (
                 <EngineerCard key={eng.id} eng={eng} onClick={() => setSelected(eng)} />
@@ -494,11 +695,9 @@ export default function EngineersPage() {
 
       </div>
 
-      {/* ── Modal ─────────────────────────────────────────── */}
+      {/* ── Modal ── */}
       <AnimatePresence>
-        {selected && (
-          <EngineerModal eng={selected} onClose={() => setSelected(null)} />
-        )}
+        {selected && <EngineerModal eng={selected} onClose={() => setSelected(null)} />}
       </AnimatePresence>
     </>
   )
