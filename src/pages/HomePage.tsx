@@ -3,7 +3,8 @@
 import { motion, AnimatePresence } from "motion/react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2, Check, X, Rocket, LifeBuoy, Activity, Landmark, HeartPulse, BarChart3, ShieldAlert, LucideIcon, ChevronLeft, ChevronRight } from "lucide-react"
+import Image from "next/image"
+import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2, Check, X, Rocket, LifeBuoy, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { OnboardingModal } from "../components/OnboardingModal"
 import { caseStudies } from "../data/case-studies"
@@ -116,146 +117,6 @@ const FAQ_SCHEMA = {
   ]
 }
 
-const builderCards: { id: string; name: string; role: string; tags: string[]; result: string; resultSub: string; domainIcon: LucideIcon }[] = [
-  {
-    id: "DR",
-    name: "AI ENGINEER: DAVID R.",
-    role: "MANAGED FINTECH AUTOMATOR",
-    tags: ["GPT-4O VISION", "PYTHON", "EXTRACTOR"],
-    result: "RESULT: AUTO-LOAN VERIFICATION",
-    resultSub: "Replaces Manual PDF Sorting",
-    domainIcon: Landmark,
-  },
-  {
-    id: "EM",
-    name: "AI ENGINEER: ELENA M.",
-    role: "MANAGED PATIENT AUTOMATOR",
-    tags: ["VOICE AI", "N8N", "TWILIO"],
-    result: "RESULT: AUTOMATED PATIENT INTAKE",
-    resultSub: "Eliminated Appointment No-Shows",
-    domainIcon: HeartPulse,
-  },
-  {
-    id: "RS",
-    name: "AI ENGINEER: RAFAEL S.",
-    role: "MANAGED AI PERFORMANCE ARCHITECT",
-    tags: ["AWS AUTO-SCALE", "REDIS", "NODE.JS"],
-    result: "RESULT: 55% LOAD REDUCTION",
-    resultSub: "Zero-Crash Scalability",
-    domainIcon: BarChart3,
-  },
-  {
-    id: "TH",
-    name: "AI ENGINEER: TOMAS H.",
-    role: "MANAGED AI RELIABILITY ARCHITECT",
-    tags: ["LEGACY SYNC", "UPTIME OPS", "P1 TRIAGE"],
-    result: "RESULT: 23 → 4 MONTHLY P1 BUGS",
-    resultSub: "99.9% Uptime Restoration",
-    domainIcon: ShieldAlert,
-  },
-]
-
-function HeroCards() {
-  const [pairIndex, setPairIndex] = useState(0)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPairIndex(prev => (prev + 1) % 2)
-    }, 24000)
-    return () => clearInterval(interval)
-  }, [])
-  const topCard = builderCards[pairIndex * 2]
-  const bottomCard = builderCards[pairIndex * 2 + 1]
-  return (
-    <div className="relative h-[580px] hidden lg:block">
-      <div className="absolute inset-0 bg-accent/5 rounded-full blur-3xl" />
-      {/* Top card — top-right */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`top-${pairIndex}`}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.5 }}
-          className="absolute top-0 right-0 z-20"
-        >
-          <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <BuilderCard card={topCard} />
-          </motion.div>
-        </motion.div>
-      </AnimatePresence>
-      {/* Bottom card — positioned well below top card, offset left */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`bottom-${pairIndex}`}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="absolute top-[300px] left-0 z-10"
-        >
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          >
-            <BuilderCard card={bottomCard} />
-          </motion.div>
-        </motion.div>
-      </AnimatePresence>
-      {/* Pair indicators */}
-      <div className="absolute bottom-0 right-0 flex gap-1.5">
-        {[0, 1].map(i => (
-          <button
-            key={i}
-            onClick={() => setPairIndex(i)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${i === pairIndex ? "w-6 bg-accent" : "w-1.5 bg-border"}`}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-function BuilderCard({ card }: { card: (typeof builderCards)[0] }) {
-  const DomainIcon = card.domainIcon
-  return (
-    <div className="bg-background p-5 rounded-2xl shadow-lg border border-border w-80 relative">
-      {/* Domain icon — bottom right */}
-      <div className="absolute bottom-4 right-4 opacity-60">
-        <DomainIcon className="h-6 w-6 text-accent" strokeWidth={1.8} />
-      </div>
-      {/* Role Title */}
-      <h3 className="font-display font-bold text-xl leading-[1.2] text-foreground mb-4">
-        {card.role}
-      </h3>
-      {/* Tech Tags - outlined */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {card.tags.map(tag => (
-          <span key={tag} className="text-[10px] font-bold px-2.5 py-1 border border-border rounded text-foreground tracking-widest uppercase">
-            {tag}
-          </span>
-        ))}
-      </div>
-      {/* Divider */}
-      <div className="border-t border-border mb-3" />
-      {/* Result */}
-      <div className="flex items-start gap-2 mb-1">
-        <Activity className="h-3.5 w-3.5 text-muted-foreground shrink-0 mt-0.5" />
-        <p className="text-[11px] font-semibold text-accent tracking-wide italic">{card.result}</p>
-      </div>
-      <p className="text-[10px] text-muted-foreground font-medium pl-5 mb-4">{card.resultSub}</p>
-      {/* Builder Name */}
-      <div className="border-t border-border pt-3 flex items-center gap-2">
-        <div className="h-7 w-7 rounded-full bg-muted flex items-center justify-center text-[10px] font-bold text-foreground shrink-0">
-          {card.id}
-        </div>
-        <p className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">{card.name}</p>
-      </div>
-    </div>
-  )
-}
 
 function CaseStudyCarousel() {
   const [current, setCurrent] = useState(0)
@@ -441,8 +302,21 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          {/* Hero Visual - Cycling Builder Cards */}
-          <HeroCards />
+          {/* Hero Visual — Services Diagram */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="relative hidden lg:block h-[580px] w-full self-center"
+          >
+            <Image
+              src="/hero-homepage-circles-v2.png"
+              alt="Kovil AI service model: Outcome Based AI Projects, AI Engineer Augmentation, App Rescue & Support"
+              fill
+              className="object-contain object-center"
+              priority
+            />
+          </motion.div>
         </div>
       </section>
 

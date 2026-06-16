@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Transparent so the page background shows through in the PNG */
+html, body {
+  width: 900px; height: 900px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.wrap {
+  width: 900px; height: 900px;
+  position: relative; overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: transparent;
+}
+
+/* ─── 3-D scene ───────────────────────────────────────── */
+/*
+  Ring centres in scene coords (equilateral △ side ≈ 282 px):
+    R1  top           (375, 230)
+    R2  bottom-left   (233, 474)
+    R3  bottom-right  (517, 474)
+  Ring diameter 400 px  →  radius 200 px
+  Inner hole: 245 px
+*/
+.scene {
+  position: absolute;
+  top: 60px; left: 75px;
+  width: 750px; height: 750px;
+  transform: perspective(2000px) rotateX(14deg);
+  transform-style: preserve-3d;
+}
+
+/* ─── Ring base ───────────────────────────────────────── */
+.ring {
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+}
+
+/* Lit-acrylic sheen: bright top-left → dark bottom-right */
+.ring::after {
+  content: '';
+  position: absolute; inset: 0; border-radius: 50%;
+  background: linear-gradient(
+    140deg,
+    rgba(255,255,255,0.26) 0%,
+    rgba(255,255,255,0.07) 30%,
+    transparent 54%,
+    rgba(0,0,0,0.14) 100%
+  );
+  pointer-events: none; z-index: 2;
+}
+
+/* ─── Ring 1  Orange  #FF4F00 ─────────────────────────── */
+.ring-1 {
+  left: 175px; top: 30px; z-index: 3;
+  background:
+    radial-gradient(ellipse at 34% 28%, rgba(255,230,190,0.50) 0%, transparent 44%),
+    conic-gradient(from 228deg at 50% 50%,
+      #FF7848 0deg, #FF4F00 48deg, #E03800 100deg,
+      #B02200 188deg, #E03800 268deg, #FF7848 316deg, #FF7848 360deg);
+  box-shadow:
+    0 28px 70px rgba(255,79,0,0.28),
+    0 10px 28px rgba(0,0,0,0.14),
+    0 0 0 2px rgba(255,140,60,0.50);
+}
+
+/* ─── Ring 2  Amber  #FF8800 ──────────────────────────── */
+.ring-2 {
+  left: 33px; top: 274px; z-index: 2;
+  background:
+    radial-gradient(ellipse at 34% 28%, rgba(255,240,180,0.46) 0%, transparent 44%),
+    conic-gradient(from 228deg at 50% 50%,
+      #FFB840 0deg, #FF8800 48deg, #D07000 100deg,
+      #9A4E00 188deg, #D07000 268deg, #FFB840 316deg, #FFB840 360deg);
+  box-shadow:
+    0 28px 70px rgba(255,136,0,0.24),
+    0 10px 28px rgba(0,0,0,0.12),
+    0 0 0 2px rgba(255,180,60,0.46);
+}
+
+/* ─── Ring 3  Deep Red  #CC2200 ───────────────────────── */
+.ring-3 {
+  left: 317px; top: 274px; z-index: 1;
+  background:
+    radial-gradient(ellipse at 34% 28%, rgba(255,200,170,0.38) 0%, transparent 44%),
+    conic-gradient(from 228deg at 50% 50%,
+      #FF4838 0deg, #CC2200 48deg, #A01800 100deg,
+      #6A0800 188deg, #A01800 268deg, #FF4838 316deg, #FF4838 360deg);
+  box-shadow:
+    0 28px 70px rgba(204,34,0,0.24),
+    0 10px 28px rgba(0,0,0,0.12),
+    0 0 0 2px rgba(255,90,50,0.46);
+}
+
+/* ─── Inner circle — white, dark text for clarity ──────── */
+.ring-inner {
+  position: absolute;
+  width: 245px; height: 245px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.97);
+  box-shadow:
+    inset 0 4px 18px rgba(0,0,0,0.10),
+    0 0 0 1.5px rgba(255,255,255,0.7);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 22px;
+  z-index: 10;
+}
+
+/* ─── Icon, chip, title ───────────────────────────────── */
+.icon  { width: 46px; height: 46px; margin-bottom: 10px; }
+
+.chip  {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.15em;
+  text-transform: uppercase; color: #999;
+  margin-bottom: 6px;
+}
+
+.title {
+  font-size: 15.5px; font-weight: 700; line-height: 1.38;
+  color: #111;
+}
+
+/* ─── Overlap zone badges ─────────────────────────────── */
+.zone {
+  position: absolute;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.88);
+  border: 1.5px solid rgba(180,100,30,0.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800;
+  color: #444;
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+/* ─── Bottom legend ───────────────────────────────────── */
+.legend {
+  position: absolute; bottom: 26px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 28px; align-items: center;
+}
+.leg-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.10em;
+  text-transform: uppercase; color: #555;
+}
+.leg-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="scene">
+
+    <!-- ══ Ring 1 — Outcome Based AI Projects (top, orange) ══ -->
+    <div class="ring ring-1">
+      <div class="ring-inner">
+        <svg class="icon" viewBox="0 0 46 46" fill="none">
+          <line x1="6" y1="38" x2="41" y2="38" stroke="#e5e5e5" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="6" y1="38" x2="6"  y2="10" stroke="#e5e5e5" stroke-width="1.5" stroke-linecap="round"/>
+          <polyline points="7,36 15,27 21,31 31,18 39,12"
+            stroke="#FF4F00" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <polygon points="36,10 43,10 43,17" fill="#FF4F00"/>
+        </svg>
+        <div class="chip">Fixed Price</div>
+        <div class="title">Outcome Based<br>AI Projects</div>
+      </div>
+    </div>
+
+    <!-- ══ Ring 2 — AI Engineer Augmentation (bottom-left, amber) ══ -->
+    <div class="ring ring-2">
+      <div class="ring-inner">
+        <svg class="icon" viewBox="0 0 46 46" fill="none">
+          <circle cx="23" cy="15" r="7.5" stroke="#FF8800" stroke-width="2.5" fill="none"/>
+          <path d="M6 42c0-9.389 7.611-17 17-17s17 7.611 17 17"
+            stroke="#FF8800" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <rect x="30" y="6" width="13" height="11" rx="2.5"
+            fill="rgba(255,136,0,0.12)" stroke="#FF8800" stroke-width="1.5"/>
+          <text x="32.5" y="14.5" font-size="7" fill="#FF8800"
+            font-family="monospace" font-weight="900">&lt;/&gt;</text>
+        </svg>
+        <div class="chip">Staff Augmentation</div>
+        <div class="title">AI Engineer<br>Augmentation</div>
+      </div>
+    </div>
+
+    <!-- ══ Ring 3 — App Rescue & Support (bottom-right, deep red) ══ -->
+    <div class="ring ring-3">
+      <div class="ring-inner">
+        <svg class="icon" viewBox="0 0 46 46" fill="none">
+          <path d="M23 5L9 11v12c0 9 6.5 15.5 14 18 7.5-2.5 14-9 14-18V11L23 5z"
+            stroke="#CC2200" stroke-width="2.5" stroke-linejoin="round"
+            fill="rgba(204,34,0,0.07)"/>
+          <path d="M15 23l5.5 5.5 11-11"
+            stroke="#CC2200" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="chip">Maintenance</div>
+        <div class="title">App Rescue<br>&amp; Support</div>
+      </div>
+    </div>
+
+    <!-- ══ Overlap zone badges ══ -->
+    <!-- 01: R1↔R3 midpoint → scene (446, 352) -->
+    <div class="zone" style="left:427px; top:333px;">01</div>
+    <!-- 02: R2↔R3 midpoint → scene (375, 474) -->
+    <div class="zone" style="left:356px; top:455px;">02</div>
+    <!-- 03: R1↔R2 midpoint → scene (304, 352) -->
+    <div class="zone" style="left:285px; top:333px;">03</div>
+
+  </div><!-- /scene -->
+
+  <!-- Bottom legend — dark text for light background -->
+  <div class="legend">
+    <div class="leg-item">
+      <div class="leg-dot" style="background:#FF4F00"></div>Outcome Based Projects
+    </div>
+    <div class="leg-item">
+      <div class="leg-dot" style="background:#FF8800"></div>AI Engineer Augmentation
+    </div>
+    <div class="leg-item">
+      <div class="leg-dot" style="background:#CC2200"></div>App Rescue &amp; Support
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+</body>
+</html>
