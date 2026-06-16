@@ -25,26 +25,24 @@ const DOMAIN_LABEL: Record<Domain, string> = {
 }
 
 const AVAIL: Record<Engineer['availability'], { label: string; cls: string; dot: string }> = {
-  'now':      { label: 'Available Now',           cls: 'bg-[#111] text-white',                            dot: 'bg-[#4ade80] animate-pulse' },
-  '1-week':   { label: 'Available in 1 Week',     cls: 'border border-black/20 text-black/60 bg-[#F5F5F5]', dot: 'bg-black/25'               },
-  '2-weeks':  { label: 'Available in 2 Weeks',    cls: 'border border-black/15 text-black/45 bg-[#F8F8F8]', dot: 'bg-black/20'               },
-  '2h-day':   { label: 'Available 2 hrs / day',   cls: 'border border-black/20 text-black/55 bg-[#F5F5F5]', dot: 'bg-black/25'               },
-  '20h-week': { label: 'Available 20 hrs / week', cls: 'border border-black/12 text-black/40 bg-[#F8F8F8]', dot: 'bg-black/18'               },
+  'now':      { label: 'Available Now',           cls: 'bg-[#FF4F00] text-white',                            dot: 'bg-white animate-pulse'  },
+  '1-week':   { label: 'Available in 1 Week',     cls: 'border border-black/20 text-black/60 bg-[#F5F5F5]',  dot: 'bg-black/30'             },
+  '2-weeks':  { label: 'Available in 2 Weeks',    cls: 'border border-black/15 text-black/45 bg-[#F8F8F8]',  dot: 'bg-black/22'             },
+  '2h-day':   { label: 'Available 2 hrs / day',   cls: 'border border-black/20 text-black/55 bg-[#F5F5F5]',  dot: 'bg-black/28'             },
+  '20h-week': { label: 'Available 20 hrs / week', cls: 'border border-black/12 text-black/40 bg-[#F8F8F8]',  dot: 'bg-black/20'             },
 }
 
 // ─── Gender SVG Icons ──────────────────────────────────────────────────────
 
-const ICON_COLOR = '#555'
-
 function MaleIcon() {
   return (
     <svg viewBox="0 0 56 56" fill="none" className="w-full h-full">
-      <circle cx="28" cy="18" r="10" fill={ICON_COLOR} opacity="0.10" />
-      <circle cx="28" cy="18" r="10" stroke={ICON_COLOR} strokeWidth="2.5" />
+      <circle cx="28" cy="18" r="10" fill={ORANGE} opacity="0.12" />
+      <circle cx="28" cy="18" r="10" stroke={ORANGE} strokeWidth="2.5" />
       <path d="M10 52c0-9.941 8.059-18 18-18s18 8.059 18 18"
-        stroke={ICON_COLOR} strokeWidth="2.5" strokeLinecap="round"
-        fill={ICON_COLOR} fillOpacity="0.07" />
-      <path d="M24 34.5 L28 40 L32 34.5" stroke={ICON_COLOR} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.45" />
+        stroke={ORANGE} strokeWidth="2.5" strokeLinecap="round"
+        fill={ORANGE} fillOpacity="0.09" />
+      <path d="M24 34.5 L28 40 L32 34.5" stroke={ORANGE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.50" />
     </svg>
   )
 }
@@ -52,13 +50,13 @@ function MaleIcon() {
 function FemaleIcon() {
   return (
     <svg viewBox="0 0 56 56" fill="none" className="w-full h-full">
-      <circle cx="28" cy="18" r="10" fill={ICON_COLOR} opacity="0.10" />
-      <circle cx="28" cy="18" r="10" stroke={ICON_COLOR} strokeWidth="2.5" />
-      <path d="M18.5 13.5 Q28 6 37.5 13.5" stroke={ICON_COLOR} strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.35" />
+      <circle cx="28" cy="18" r="10" fill={ORANGE} opacity="0.12" />
+      <circle cx="28" cy="18" r="10" stroke={ORANGE} strokeWidth="2.5" />
+      <path d="M18.5 13.5 Q28 6 37.5 13.5" stroke={ORANGE} strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.40" />
       <path d="M14 52 C14 41 20 34 28 32 C36 34 42 41 42 52"
-        stroke={ICON_COLOR} strokeWidth="2.5" strokeLinecap="round"
-        fill={ICON_COLOR} fillOpacity="0.07" />
-      <path d="M18 46 Q28 50 38 46" stroke={ICON_COLOR} strokeWidth="1.8" strokeLinecap="round" opacity="0.30" />
+        stroke={ORANGE} strokeWidth="2.5" strokeLinecap="round"
+        fill={ORANGE} fillOpacity="0.09" />
+      <path d="M18 46 Q28 50 38 46" stroke={ORANGE} strokeWidth="1.8" strokeLinecap="round" opacity="0.35" />
     </svg>
   )
 }
@@ -311,8 +309,8 @@ function EngineerCard({ eng, onClick }: { eng: Engineer; onClick: () => void }) 
         <div
           className="w-[80px] h-[80px] rounded-full flex items-center justify-center p-[15px]"
           style={{
-            background: '#F5F5F5',
-            boxShadow: '0 0 0 4px white, 0 4px 14px rgba(0,0,0,0.10)',
+            background: '#FFF5F0',
+            boxShadow: `0 0 0 4px white, 0 0 0 5.5px ${ORANGE}30, 0 4px 14px rgba(0,0,0,0.10)`,
           }}
         >
           {eng.gender === 'female' ? <FemaleIcon /> : <MaleIcon />}
@@ -424,9 +422,8 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
           <div
             className="w-[68px] h-[68px] rounded-full flex-shrink-0 p-[13px]"
             style={{
-              background: '#F0F0F0',
-              boxShadow: '0 0 0 3px white, 0 4px 12px rgba(0,0,0,0.08)',
-              border: '1.5px solid rgba(0,0,0,0.08)',
+              background: '#FFF5F0',
+              boxShadow: `0 0 0 3px white, 0 0 0 4.5px ${ORANGE}28, 0 4px 12px rgba(0,0,0,0.08)`,
             }}
           >
             {eng.gender === 'female' ? <FemaleIcon /> : <MaleIcon />}
@@ -668,7 +665,7 @@ export default function EngineersPage() {
                   className="rounded-xl px-5 py-2 text-[13px] font-semibold transition-all duration-200"
                   style={
                     isActive
-                      ? { background: '#111', color: '#fff', border: '1px solid #111' }
+                      ? { background: `${ORANGE}10`, color: ORANGE, border: `1px solid ${ORANGE}55` }
                       : { background: 'transparent', color: 'rgba(0,0,0,0.45)', border: '1px solid rgba(0,0,0,0.15)' }
                   }
                 >
