@@ -3,7 +3,6 @@
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { X, Download, CheckCircle2, ChevronRight } from 'lucide-react'
-import Image from 'next/image'
 import { engineers, type Engineer, type Domain } from '@/src/data/engineers'
 
 // ─── Constants ─────────────────────────────────────────────────────────────
@@ -66,170 +65,209 @@ function FemaleIcon() {
   )
 }
 
-// ─── Print Profile (shown only on @media print) ────────────────────────────
+// ─── PDF generator (opens a new window, prints it, closes) ────────────────
 
-function PrintProfile({ eng }: { eng: Engineer }) {
-  const avail = AVAIL[eng.availability]
-  return (
-    <div
-      id="kovil-pdf-doc"
-      style={{
-        display: 'none',
-        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        background: '#fff',
-        color: '#111',
-        width: '100%',
-        padding: '40px 48px 32px',
-        boxSizing: 'border-box',
-      }}
-    >
-      {/* ─── Header bar ─── */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-        {/* Logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/kovil-logo-symbol.webp" alt="Kovil AI" style={{ height: 36, width: 36, borderRadius: 6 }} />
-          <span style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.5px', color: '#111' }}>Kovil AI</span>
-        </div>
-        <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#FF4F00' }}>
-          Candidate Profile · Confidential
-        </span>
+function openPrintWindow(eng: Engineer) {
+  const origin = typeof window !== 'undefined' ? window.location.origin : ''
+  const logoSrc = `${origin}/kovil-logo-symbol.webp`
+
+  const availLabel = AVAIL[eng.availability].label
+
+  const badgeBg    = eng.availability === 'now'    ? '#FF4F00'
+                   : eng.availability === '2h-day' ? '#111111'
+                   : 'transparent'
+  const badgeBorder = (eng.availability === 'now' || eng.availability === '2h-day')
+                   ? 'none' : '1.5px solid #FF4F00'
+  const badgeColor  = (eng.availability === 'now' || eng.availability === '2h-day')
+                   ? '#fff' : '#FF4F00'
+
+  const highlightRows = eng.highlights.map((h, i) => `
+    <div style="display:flex;gap:10px;margin-bottom:11px;align-items:flex-start;">
+      <div style="min-width:22px;height:22px;border-radius:50%;background:#FF4F00;color:#fff;
+                  font-size:10px;font-weight:800;display:flex;align-items:center;
+                  justify-content:center;flex-shrink:0;margin-top:1px;">${i + 1}</div>
+      <p style="font-size:11.5px;color:#333;line-height:1.65;margin:0;">${h}</p>
+    </div>`).join('')
+
+  const certRows = eng.certifications.map(c => `
+    <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:7px;">
+      <span style="color:#FF4F00;font-size:13px;line-height:1;margin-top:1px;flex-shrink:0;">✓</span>
+      <span style="font-size:11px;color:#444;line-height:1.55;">${c}</span>
+    </div>`).join('')
+
+  const skillChips = eng.skills.map(s =>
+    `<span style="display:inline-block;font-size:10px;padding:3px 9px;border:1px solid #ddd;
+                  border-radius:5px;color:#444;margin:0 4px 4px 0;">${s}</span>`
+  ).join('')
+
+  const stackRows = [
+    ['Languages',  eng.stack.languages],
+    ['Frameworks', eng.stack.frameworks],
+    ['Cloud',      eng.stack.cloud],
+    ['Tools',      eng.stack.tools],
+  ].map(([cat, items]) => `
+    <div style="display:flex;gap:8px;margin-bottom:6px;font-size:11px;">
+      <span style="font-weight:700;color:#111;width:82px;flex-shrink:0;">${cat}</span>
+      <span style="color:#555;">${(items as string[]).join(', ')}</span>
+    </div>`).join('')
+
+  const engagementBadges = eng.engagementType.map(e =>
+    `<span style="display:inline-block;font-size:10px;padding:3px 11px;
+                  border:1.5px solid #FF4F00;border-radius:999px;
+                  color:#FF4F00;font-weight:600;margin:0 5px 5px 0;">${e}</span>`
+  ).join('')
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kovil AI — ${eng.name} — Candidate Profile</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: #fff; color: #111;
+    padding: 36px 48px 28px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @media print {
+    body { padding: 28px 40px 22px; }
+    @page { margin: 0; size: A4; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ── -->
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <img src="${logoSrc}" alt="Kovil AI" style="height:38px;width:38px;border-radius:7px;object-fit:cover;">
+    <span style="font-size:22px;font-weight:800;letter-spacing:-0.4px;color:#111;">Kovil AI</span>
+  </div>
+  <span style="font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4F00;">
+    Candidate Profile &nbsp;·&nbsp; Confidential
+  </span>
+</div>
+
+<!-- Orange rule -->
+<div style="height:3px;background:#FF4F00;border-radius:2px;margin-bottom:22px;"></div>
+
+<!-- ── CANDIDATE HEADLINE ── -->
+<div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;">
+  <div>
+    <div style="font-size:32px;font-weight:800;letter-spacing:-0.6px;color:#111;line-height:1.05;">${eng.name}</div>
+    <div style="font-size:14px;font-weight:600;color:#FF4F00;margin-top:5px;">${eng.title}</div>
+    <div style="font-size:11px;color:#777;margin-top:3px;">${DOMAIN_LABEL[eng.domain]} &nbsp;·&nbsp; ${eng.yearsExp} years experience</div>
+  </div>
+  <div style="padding:7px 16px;border-radius:999px;background:${badgeBg};border:${badgeBorder};
+              color:${badgeColor};font-size:11px;font-weight:700;margin-top:4px;white-space:nowrap;">
+    ${availLabel}
+  </div>
+</div>
+
+<!-- ── 2-COL BODY ── -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 44px;">
+
+  <!-- LEFT COLUMN -->
+  <div>
+
+    <!-- Profile Summary -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+                  color:#FF4F00;margin-bottom:7px;">Profile Summary</div>
+      <p style="font-size:11.5px;color:#444;line-height:1.75;">${eng.bio}</p>
+    </div>
+
+    <!-- Core Skills -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+                  color:#FF4F00;margin-bottom:7px;">Core Skills</div>
+      <div>${skillChips}</div>
+    </div>
+
+    <!-- Technology Stack -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+                  color:#FF4F00;margin-bottom:8px;">Technology Stack</div>
+      ${stackRows}
+    </div>
+
+    <!-- Education -->
+    <div>
+      <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+                  color:#FF4F00;margin-bottom:7px;">Education</div>
+      <p style="font-size:11.5px;color:#444;line-height:1.65;">${eng.education}</p>
+    </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div>
+
+    <!-- Key Achievements -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+                  color:#FF4F00;margin-bottom:9px;">Key Achievements</div>
+      ${highlightRows}
+    </div>
+
+    <!-- Certifications -->
+    ${eng.certifications.length > 0 ? `
+    <div style="margin-bottom:20px;">
+      <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+                  color:#FF4F00;margin-bottom:8px;">Certifications</div>
+      ${certRows}
+    </div>` : ''}
+
+    <!-- Engagement -->
+    <div style="margin-bottom:24px;">
+      <div style="font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+                  color:#FF4F00;margin-bottom:8px;">Engagement Options</div>
+      ${engagementBadges}
+    </div>
+
+    <!-- CTA box -->
+    <div style="background:#FFF5F2;border:1.5px solid #FF4F00;border-radius:12px;padding:18px 20px;">
+      <div style="font-size:14px;font-weight:800;color:#111;margin-bottom:5px;">
+        Ready to hire ${eng.name.split(' ')[0]}?
       </div>
-
-      {/* Orange rule */}
-      <div style={{ height: 3, background: '#FF4F00', borderRadius: 2, marginBottom: 24 }} />
-
-      {/* ─── Candidate headline ─── */}
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
-        <div>
-          <div style={{ fontSize: 30, fontWeight: 800, letterSpacing: '-0.5px', color: '#111', lineHeight: 1.1 }}>
-            {eng.name}
-          </div>
-          <div style={{ fontSize: 14, fontWeight: 600, color: '#FF4F00', marginTop: 4 }}>{eng.title}</div>
-          <div style={{ fontSize: 11, color: '#666', marginTop: 3 }}>
-            {DOMAIN_LABEL[eng.domain]} · {eng.yearsExp} years experience
-          </div>
-        </div>
-        {/* Availability badge */}
-        <div style={{
-          padding: '6px 14px',
-          borderRadius: 999,
-          background: eng.availability === 'now' ? '#FF4F00' : eng.availability === '2h-day' ? '#111' : 'transparent',
-          border: eng.availability === 'now' || eng.availability === '2h-day' ? 'none' : '1.5px solid #FF4F00',
-          color: eng.availability === 'now' || eng.availability === '2h-day' ? '#fff' : '#FF4F00',
-          fontSize: 11,
-          fontWeight: 700,
-          marginTop: 4,
-          whiteSpace: 'nowrap' as const,
-        }}>
-          {avail.label}
-        </div>
-      </div>
-
-      {/* ─── Body: 2-column grid ─── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 40px' }}>
-
-        {/* Left column */}
-        <div>
-          {/* Profile Summary */}
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 6 }}>Profile Summary</div>
-            <div style={{ fontSize: 11, color: '#444', lineHeight: 1.7 }}>{eng.bio}</div>
-          </div>
-
-          {/* Core Skills */}
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 8 }}>Core Skills</div>
-            <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 5 }}>
-              {eng.skills.map(s => (
-                <span key={s} style={{ fontSize: 10, padding: '3px 9px', border: '1px solid #ddd', borderRadius: 4, color: '#333' }}>{s}</span>
-              ))}
-            </div>
-          </div>
-
-          {/* Technology Stack */}
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 8 }}>Technology Stack</div>
-            {([
-              ['Languages',  eng.stack.languages],
-              ['Frameworks', eng.stack.frameworks],
-              ['Cloud',      eng.stack.cloud],
-              ['Tools',      eng.stack.tools],
-            ] as [string, string[]][]).map(([cat, items]) => (
-              <div key={cat} style={{ display: 'flex', gap: 8, marginBottom: 5, fontSize: 11 }}>
-                <span style={{ fontWeight: 700, color: '#111', width: 80, flexShrink: 0 }}>{cat}</span>
-                <span style={{ color: '#555' }}>{items.join(', ')}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Education */}
-          <div>
-            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 6 }}>Education</div>
-            <div style={{ fontSize: 11, color: '#444', lineHeight: 1.6 }}>{eng.education}</div>
-          </div>
-        </div>
-
-        {/* Right column */}
-        <div>
-          {/* Key Achievements */}
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 8 }}>Key Achievements</div>
-            {eng.highlights.map((h, i) => (
-              <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-                <span style={{ fontSize: 14, color: '#FF4F00', lineHeight: 1, marginTop: 1, flexShrink: 0 }}>✓</span>
-                <span style={{ fontSize: 11, color: '#333', lineHeight: 1.65 }}>{h}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Certifications */}
-          {eng.certifications.length > 0 && (
-            <div style={{ marginBottom: 20 }}>
-              <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 8 }}>Certifications</div>
-              {eng.certifications.map(c => (
-                <div key={c} style={{ display: 'flex', gap: 8, marginBottom: 5, fontSize: 11, color: '#444' }}>
-                  <span style={{ color: '#FF4F00' }}>✓</span> {c}
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Engagement */}
-          <div style={{ marginBottom: 24 }}>
-            <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FF4F00', marginBottom: 8 }}>Engagement Options</div>
-            <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 5 }}>
-              {eng.engagementType.map(e => (
-                <span key={e} style={{ fontSize: 10, padding: '3px 10px', border: '1.5px solid #FF4F00', borderRadius: 999, color: '#FF4F00', fontWeight: 600 }}>{e}</span>
-              ))}
-            </div>
-          </div>
-
-          {/* CTA box */}
-          <div style={{ background: '#FFF5F2', border: '1.5px solid #FF4F00', borderRadius: 10, padding: '16px 18px' }}>
-            <div style={{ fontSize: 13, fontWeight: 800, color: '#111', marginBottom: 4 }}>
-              Ready to hire {eng.name.split(' ')[0]}?
-            </div>
-            <div style={{ fontSize: 11, color: '#666', marginBottom: 10, lineHeight: 1.5 }}>
-              Get in touch and we can have {eng.gender === 'male' ? 'him' : 'her'} embedded with your team within days — not weeks.
-            </div>
-            <div style={{ fontSize: 12, fontWeight: 700, color: '#FF4F00' }}>
-              kovil.ai  ·  Get in Touch
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ─── Footer ─── */}
-      <div style={{ height: 1, background: '#eee', margin: '24px 0 14px' }} />
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontSize: 10, color: '#999' }}>
-          Kovil AI · <span style={{ color: '#FF4F00' }}>kovil.ai</span>
-        </span>
-        <span style={{ fontSize: 10, color: '#bbb' }}>Confidential · For recipient use only</span>
+      <p style="font-size:11px;color:#666;line-height:1.6;margin-bottom:12px;">
+        Get in touch and we can have ${eng.gender === 'male' ? 'him' : 'her'} embedded
+        with your team within days — not weeks.
+      </p>
+      <div style="font-size:12px;font-weight:700;color:#FF4F00;">
+        kovil.ai &nbsp;·&nbsp; hello@kovil.ai
       </div>
     </div>
-  )
+
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<div style="height:1px;background:#e8e8e8;margin:26px 0 14px;"></div>
+<div style="display:flex;align-items:center;justify-content:space-between;">
+  <span style="font-size:10px;color:#aaa;">
+    Kovil AI &nbsp;·&nbsp; <span style="color:#FF4F00;">kovil.ai</span>
+  </span>
+  <span style="font-size:10px;color:#ccc;">Confidential &nbsp;·&nbsp; For recipient use only</span>
+</div>
+
+</body>
+</html>`
+
+  const pw = window.open('', '_blank', 'width=860,height=700')
+  if (!pw) return
+  pw.document.open()
+  pw.document.write(html)
+  pw.document.close()
+  // Small delay ensures images load before print dialog opens
+  pw.addEventListener('load', () => {
+    setTimeout(() => {
+      pw.focus()
+      pw.print()
+    }, 400)
+  })
 }
 
 // ─── Engineer Card ─────────────────────────────────────────────────────────
@@ -353,11 +391,7 @@ function SLabel({ children }: { children: React.ReactNode }) {
 function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void }) {
   const avail = AVAIL[eng.availability]
 
-  const handlePDF = () => {
-    document.body.classList.add('kovil-printing')
-    window.print()
-    document.body.classList.remove('kovil-printing')
-  }
+  const handlePDF = () => openPrintWindow(eng)
 
   return (
     <motion.div
@@ -369,9 +403,6 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
       onClick={onClose}
     >
-      {/* Print-only professional document — rendered with data, hidden on screen */}
-      <PrintProfile eng={eng} />
-
       {/* ── Modal panel ── */}
       <motion.div
         initial={{ opacity: 0, scale: 0.97, y: 16 }}
@@ -387,6 +418,7 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
       >
         {/* Orange top stripe */}
         <div className="absolute inset-x-0 top-0 h-[3px] z-10" style={{ background: ORANGE }} />
+
 
         {/* ── Header ── */}
         <div className="flex items-center gap-5 px-7 pt-7 pb-5 border-b border-black/[0.07]">
@@ -605,22 +637,6 @@ export default function EngineersPage() {
 
   return (
     <>
-      {/* ── Print CSS ── */}
-      <style>{`
-        @media print {
-          body.kovil-printing * { visibility: hidden !important; }
-          body.kovil-printing #kovil-pdf-doc {
-            visibility: visible !important;
-            display: block !important;
-            position: fixed !important;
-            top: 0; left: 0;
-            width: 100%;
-            background: #fff !important;
-          }
-          body.kovil-printing #kovil-pdf-doc * { visibility: visible !important; }
-        }
-      `}</style>
-
       {/* ── White page ── */}
       <div className="min-h-screen bg-white">
 
