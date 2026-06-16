@@ -375,6 +375,84 @@ function EngineerCard({ eng, onClick }: { eng: Engineer; onClick: () => void }) 
   )
 }
 
+// ─── PDF confirm dialog ────────────────────────────────────────────────────
+
+function PDFConfirmDialog({
+  eng, onClose, onConfirm,
+}: { eng: Engineer; onClose: () => void; onConfirm: () => void }) {
+  const firstName  = eng.name.split(' ')[0]
+  const possessive = `${firstName}'s`
+  const pronoun    = eng.gender === 'female' ? 'She' : 'He'
+  const availText  = AVAIL[eng.availability].label.toLowerCase()  // e.g. "available in 2 weeks"
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.15 }}
+      className="fixed inset-0 z-[60] flex items-center justify-center p-6"
+      style={{ background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(4px)' }}
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.94, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.94, y: 8 }}
+        transition={{ type: 'spring', stiffness: 340, damping: 28 }}
+        className="bg-white rounded-2xl p-8 w-full max-w-md"
+        style={{ boxShadow: '0 24px 60px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.06)' }}
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Icon */}
+        <div
+          className="w-11 h-11 rounded-full flex items-center justify-center mx-auto mb-5"
+          style={{ background: `${ORANGE}12`, border: `1.5px solid ${ORANGE}30` }}
+        >
+          <Download className="w-4.5 h-4.5" style={{ color: ORANGE }} />
+        </div>
+
+        {/* Heading */}
+        <h3 className="text-[1.15rem] font-bold text-black text-center mb-3 leading-snug">
+          You are now downloading<br />
+          <span style={{ color: ORANGE }}>&ldquo;{possessive} Profile&rdquo;</span>
+        </h3>
+
+        {/* Body */}
+        <p className="text-[0.84rem] text-black/50 text-center leading-relaxed mb-7">
+          {pronoun} seems to be <span className="font-semibold text-black/70">{availText}</span>.
+          {' '}Drop us an email at{' '}
+          <a
+            href="mailto:hire@kovil.ai"
+            className="font-semibold"
+            style={{ color: ORANGE }}
+            onClick={e => e.stopPropagation()}
+          >
+            hire@kovil.ai
+          </a>{' '}
+          and let us know who you would like to hire.
+        </p>
+
+        {/* Download CTA */}
+        <button
+          onClick={onConfirm}
+          className="w-full py-3 rounded-xl text-[13px] font-bold text-white bg-[#111] hover:bg-[#333] transition-all duration-200 mb-2.5"
+        >
+          Now, download &ldquo;{possessive} Profile&rdquo;
+        </button>
+
+        {/* Cancel */}
+        <button
+          onClick={onClose}
+          className="w-full py-2 rounded-xl text-[12px] text-black/35 hover:text-black/60 transition-colors"
+        >
+          Cancel
+        </button>
+      </motion.div>
+    </motion.div>
+  )
+}
+
 // ─── Section label helper ──────────────────────────────────────────────────
 
 function SLabel({ children }: { children: React.ReactNode }) {
@@ -389,10 +467,13 @@ function SLabel({ children }: { children: React.ReactNode }) {
 
 function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void }) {
   const avail = AVAIL[eng.availability]
+  const [showPDFDialog, setShowPDFDialog] = useState(false)
 
-  const handlePDF = () => openPrintWindow(eng)
+  const handlePDF        = () => setShowPDFDialog(true)
+  const handleConfirmPDF = () => { setShowPDFDialog(false); openPrintWindow(eng) }
 
   return (
+    <>
     <motion.div
       key="backdrop"
       initial={{ opacity: 0 }}
@@ -612,6 +693,18 @@ function EngineerModal({ eng, onClose }: { eng: Engineer; onClose: () => void })
         </div>
       </motion.div>
     </motion.div>
+
+    {/* ── PDF confirm dialog (above the modal) ── */}
+    <AnimatePresence>
+      {showPDFDialog && (
+        <PDFConfirmDialog
+          eng={eng}
+          onClose={() => setShowPDFDialog(false)}
+          onConfirm={handleConfirmPDF}
+        />
+      )}
+    </AnimatePresence>
+    </>
   )
 }
 
@@ -652,7 +745,7 @@ export default function EngineersPage() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-black mb-4 leading-tight">
-              Available AI &amp; Data Engineers
+              AI &amp; Data Engineers
             </h1>
 
             <p className="text-[0.92rem] text-black/45 leading-relaxed">
