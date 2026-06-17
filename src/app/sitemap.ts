@@ -50,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ── Intelligent Document Processing ──────────────────────────────────────
     { url: `${BASE_URL}/intelligent-document-processing`,                                      lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/intelligent-document-processing/banking-financial-services`,           lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/intelligent-document-processing/insurance`,                            lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     // ── Azure AI Foundry landing ───────────────────────────────────────────────
     { url: `${BASE_URL}/azure-ai-foundry`,                               lastModified: now,  changeFrequency: 'weekly',  priority: 0.9 },
     // ── Azure AI Foundry service pages ────────────────────────────────────────

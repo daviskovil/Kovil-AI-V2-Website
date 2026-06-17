@@ -20,7 +20,7 @@ const industries = [
   {
     icon: Shield,
     label: "Insurance",
-    href: null,
+    href: "/intelligent-document-processing/insurance",
     useCases: [
       "Claims processing — medical bills, police reports, repair estimates",
       "Underwriting — prior medical histories, property records",
