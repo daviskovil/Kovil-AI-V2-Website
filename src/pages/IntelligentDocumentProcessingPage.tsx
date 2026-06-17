@@ -30,7 +30,7 @@ const industries = [
   {
     icon: Heart,
     label: "Healthcare & Life Sciences",
-    href: null,
+    href: "/intelligent-document-processing/healthcare-life-sciences",
     useCases: [
       "Medical records indexing — EHRs, physician notes, lab results",
       "Medical billing & coding — procedural descriptions, diagnoses",
