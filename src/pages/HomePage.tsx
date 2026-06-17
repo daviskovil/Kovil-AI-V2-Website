@@ -310,7 +310,7 @@ export default function HomePage() {
             className="relative hidden lg:block h-[660px] w-full self-center"
           >
             <Image
-              src="/hero-homepage-circles-v2.png"
+              src="/hero-homepage-circles-v3.png"
               alt="Kovil AI service model: Outcome Based AI Projects, AI Engineer Augmentation, App Rescue & Support"
               fill
               className="object-contain object-center"
