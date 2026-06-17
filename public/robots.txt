@@ -135,6 +135,13 @@ Allow: /gaming-hire-game-developers
 Allow: /how-it-works-hire-dedicated-developers
 Allow: /our-talent-pool
 
+# ── /onlines/ — allow crawling so Google can see 404s and permanently deindex ─
+# ~19.5k /onlines/* product URLs are technically indexed but suppressed from
+# SERP by the active GSC prefix removal (expires Oct 3 2026). Allowing Google
+# to crawl them lets it confirm the 404 → permanent deindex. Once the indexed
+# count drops to near-zero, remove this Allow line.
+Allow: /onlines/
+
 # ── Next.js static assets (JS/CSS required for rendering) ────────────────────
 Allow: /_next/static/
 Allow: /_next/image
