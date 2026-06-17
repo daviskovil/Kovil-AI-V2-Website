@@ -24,7 +24,7 @@ export const posts: Post[] = [
     readTime: "10 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-rag-vs-fine-tuning-v2.jpg",
+    heroImage: "/blog-rag-vs-fine-tuning-v2.webp",
     faqs: [
       {
         q: "What is the difference between RAG and fine-tuning?",
@@ -205,7 +205,7 @@ export const posts: Post[] = [
     readTime: "9 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-ai-agents-vs-chatbots-v2.jpg",
+    heroImage: "/blog-ai-agents-vs-chatbots-v2.webp",
     faqs: [
       {
         q: "What is the difference between an AI agent and an AI chatbot?",
@@ -369,7 +369,7 @@ export const posts: Post[] = [
     readTime: "12 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-ai-development-lifecycle-v2.jpg",
+    heroImage: "/blog-ai-development-lifecycle-v2.webp",
     faqs: [
       {
         q: "What is the AI development lifecycle?",
@@ -628,7 +628,7 @@ export const posts: Post[] = [
     author: "Kovil AI Team",
     featured: true,
     localBusiness: true,
-    heroImage: "/blog-ai-automation-nyc-agencies-v2.jpg",
+    heroImage: "/blog-ai-automation-nyc-agencies-v2.webp",
     faqs: [
       {
         q: "What is AI automation for marketing agencies?",
@@ -854,7 +854,7 @@ export const posts: Post[] = [
     readTime: "8 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-what-is-ai-integration-v2.jpg",
+    heroImage: "/blog-what-is-ai-integration-v2.webp",
     faqs: [
       {
         q: "What is AI integration?",
@@ -1056,7 +1056,7 @@ export const posts: Post[] = [
     readTime: "9 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-build-mvp-4-weeks-v2.jpg",
+    heroImage: "/blog-build-mvp-4-weeks-v2.webp",
     faqs: [
       {
         q: "Can you really build a production-ready MVP in 4 weeks?",
@@ -1290,7 +1290,7 @@ export const posts: Post[] = [
     readTime: "7 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-software-maintenance-time-bomb-v2.jpg",
+    heroImage: "/blog-software-maintenance-time-bomb-v2.webp",
     faqs: [
       {
         q: "What is technical debt and why does it matter?",
@@ -1517,7 +1517,7 @@ export const posts: Post[] = [
     readTime: "10 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-n8n-vs-zapier-vs-power-automate-v2.jpg",
+    heroImage: "/blog-n8n-vs-zapier-vs-power-automate-v2.webp",
     faqs: [
       {
         q: "What is the main difference between n8n, Zapier, and Power Automate?",
@@ -1883,7 +1883,7 @@ export const posts: Post[] = [
     readTime: "8 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-real-cost-building-mvp-2026-v2.jpg",
+    heroImage: "/blog-real-cost-building-mvp-2026-v2.webp",
     faqs: [
       {
         q: "How much does it cost to build an MVP in 2026?",
@@ -2126,7 +2126,7 @@ export const posts: Post[] = [
     readTime: "10 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-llm-chatbot-for-business-v2.jpg",
+    heroImage: "/blog-llm-chatbot-for-business-v2.webp",
     faqs: [
       {
         q: "What is an LLM-powered chatbot and how is it different from a rule-based chatbot?",
@@ -2392,7 +2392,7 @@ export const posts: Post[] = [
     readTime: "11 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-why-ai-projects-fail-v2.jpg",
+    heroImage: "/blog-why-ai-projects-fail-v2.webp",
     faqs: [
       {
         q: "What is AI project failure?",
@@ -2554,7 +2554,7 @@ export const posts: Post[] = [
       readTime: "10 min read",
       author: "Kovil AI Team",
       featured: false,
-      heroImage: "/blog-gpt4o-claude-gemini-comparison.jpg",
+      heroImage: "/blog-gpt4o-claude-gemini-comparison.webp",
       faqs: [
         {
           q: "Which AI model is best for business in 2026?",
@@ -2717,7 +2717,7 @@ export const posts: Post[] = [
     readTime: "9 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-how-much-does-an-ai-project-cost.jpg",
+    heroImage: "/blog-how-much-does-an-ai-project-cost.webp",
     faqs: [
       {
         q: "How much does it cost to build an AI chatbot in 2026?",
@@ -2868,7 +2868,7 @@ export const posts: Post[] = [
     readTime: "8 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-what-is-a-vector-database.jpg",
+    heroImage: "/blog-what-is-a-vector-database.webp",
     faqs: [
       {
         q: "What is a vector database in simple terms?",
@@ -3010,7 +3010,7 @@ export const posts: Post[] = [
     readTime: "8 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-how-to-write-an-ai-project-brief.jpg",
+    heroImage: "/blog-how-to-write-an-ai-project-brief.webp",
     faqs: [
       {
         q: "What should an AI project brief include?",
@@ -3155,7 +3155,7 @@ export const posts: Post[] = [
       readTime: "9 min read",
       author: "Kovil AI Team",
       featured: false,
-      heroImage: "/blog-how-to-measure-ai-roi.jpg",
+      heroImage: "/blog-how-to-measure-ai-roi.webp",
       faqs: [
         {
           q: "How do you calculate ROI for an AI project?",
@@ -3289,7 +3289,7 @@ export const posts: Post[] = [
     readTime: '34 min read',
     author: 'Kovil AI Team',
     featured: true,
-    heroImage: '/blog-how-to-build-ai-agents-production-guide.jpg',
+    heroImage: '/blog-how-to-build-ai-agents-production-guide.webp',
     body: `
 <p>Most guides on how to build AI agents stop the moment the code runs. They show you how to wire an LLM to a tool, produce a successful test case, and call it a day. What they skip is everything that happens next: the production deployment, the degrading retrieval accuracy at week six, the token bill that doubled without warning, the compliance team asking for an audit log you never built, and the quiet performance regression nobody noticed until a user complained. Building AI agents is the easy part. Running them is the discipline most engineering teams have not yet developed.</p>
 
@@ -3705,7 +3705,7 @@ export const posts: Post[] = [
     readTime: '14 min read',
     author: 'Kovil AI Team',
     featured: false,
-    heroImage: '/blog-what-is-ai-operations.jpg',
+    heroImage: '/blog-what-is-ai-operations.webp',
     body: `
 <p>You have shipped an AI system. The demo impressed the board, the pilot results were solid, and your engineering team is proud of what they built. Three months later, the outputs are subtly worse. Costs are climbing without any change in user volume. A compliance question arrived from legal and nobody knows where the audit log is. This is not a failure of the build — it is a failure of operations, and it is the most common pattern in AI deployment today.</p>
 
@@ -4004,7 +4004,7 @@ export const posts: Post[] = [
     readTime: '15 min read',
     author: 'Kovil AI Team',
     featured: false,
-    heroImage: '/blog-crewai-vs-langgraph-vs-autogen.jpg',
+    heroImage: '/blog-crewai-vs-langgraph-vs-autogen.webp',
     body: `
 <p>Framework selection is one of the highest-leverage decisions in an AI agent project — and one of the most frequently rushed. Teams prototype on whichever framework had a good tutorial, ship to production, and discover six months later that the architecture cannot support the control flow they need, or that debugging is nearly impossible, or that the framework's conversational execution model is too non-deterministic for a compliance-sensitive workflow. Switching frameworks mid-project is expensive. Choosing correctly at the start is free.</p>
 
@@ -4308,7 +4308,7 @@ export const posts: Post[] = [
       readTime: "8 min read",
       author: "Kovil AI Team",
       featured: false,
-      heroImage: "/blog-how-to-reduce-llm-api-costs.jpg",
+      heroImage: "/blog-how-to-reduce-llm-api-costs.webp",
       faqs: [
         {
           q: "Why are LLM API costs so high in production?",
@@ -4430,7 +4430,7 @@ export const posts: Post[] = [
       readTime: "10 min read",
       author: "Kovil AI Team",
       featured: false,
-      heroImage: "/blog-ai-use-cases-for-ecommerce.jpg",
+      heroImage: "/blog-ai-use-cases-for-ecommerce.webp",
       faqs: [
         {
           q: "What is the best AI use case for e-commerce in 2026?",
@@ -4547,7 +4547,7 @@ export const posts: Post[] = [
       readTime: "9 min read",
       author: "Kovil AI Team",
       featured: false,
-      heroImage: "/blog-openai-vs-anthropic-vs-google-for-business.jpg",
+      heroImage: "/blog-openai-vs-anthropic-vs-google-for-business.webp",
       faqs: [
         {
           q: "Should my business build on OpenAI, Anthropic, or Google?",
@@ -4662,7 +4662,7 @@ export const posts: Post[] = [
     readTime: "12 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-ai-model-drift.jpg",
+    heroImage: "/blog-ai-model-drift.webp",
     faqs: [
       {
         q: "What is AI model drift?",
@@ -4892,7 +4892,7 @@ export const posts: Post[] = [
     readTime: '14 min read',
     author: 'Kovil AI Team',
     featured: false,
-    heroImage: '/blog-reduce-ai-token-costs.jpg',
+    heroImage: '/blog-reduce-ai-token-costs.webp',
     faqs: [
       {
         q: 'What is a token in AI and why does it cost money?',
@@ -5104,7 +5104,7 @@ export const posts: Post[] = [
     readTime: "13 min read",
     author: "Kovil AI Team",
     featured: false,
-    heroImage: "/blog-vtiger-vs-suitecrm.jpg",
+    heroImage: "/blog-vtiger-vs-suitecrm.webp",
     faqs: [
       {
         q: "Is VTiger CRM really free?",

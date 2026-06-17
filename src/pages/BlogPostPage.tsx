@@ -239,6 +239,160 @@ const DEFAULT_CTA: CtaConfig = {
   secondary: { text: 'See Our Work', href: '/case-studies' },
 }
 
+// ─── Related Internal Links ───────────────────────────────────────────────────
+
+type RelatedLink = { label: string; href: string; desc: string }
+
+const RELATED_LINKS_MAP: Record<string, RelatedLink[]> = {
+  'rag-vs-fine-tuning': [
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Vetted engineers with RAG & fine-tuning experience' },
+    { label: 'Hire ML Engineers', href: '/hire/machine-learning-engineers', desc: 'Fine-tuning, MLOps & model training specialists' },
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'Ship a RAG or ML build at a fixed price' },
+  ],
+  'ai-agents-vs-chatbots': [
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Production LLM & chatbot specialists' },
+    { label: 'Hire CrewAI Developers', href: '/hire/crewai-developers', desc: 'Multi-agent AI systems with CrewAI' },
+    { label: 'Hire LangGraph Engineers', href: '/hire/langgraph-engineers', desc: 'Stateful AI agent pipelines with LangGraph' },
+  ],
+  'ai-development-lifecycle': [
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Embed a vetted AI engineer in your team in 48hrs' },
+    { label: 'How It Works', href: '/how-it-works', desc: 'Our milestone-gated delivery process' },
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'Scope, build & ship — fixed price, fixed timeline' },
+  ],
+  'ai-automation-nyc-ad-marketing-agencies': [
+    { label: 'AI Workflow Library', href: '/ai-workflow-automation-library', desc: 'Pre-built AI automation workflows for agencies' },
+    { label: 'Hire n8n Experts', href: '/hire/n8n-automation-experts', desc: 'Vetted n8n automation engineers' },
+    { label: 'Ad & Marketing Agency AI', href: '/ad-marketing-agencies', desc: 'Kovil AI\'s services for ad & marketing agencies' },
+  ],
+  'what-is-ai-integration': [
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Embed a vetted AI engineer in your team' },
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'AI integration scoped, built & shipped at fixed price' },
+    { label: 'AI Workflow Library', href: '/ai-workflow-automation-library', desc: 'Production AI automation workflows' },
+  ],
+  'build-mvp-4-weeks': [
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'Ship your MVP in 4 weeks — fixed scope, fixed price' },
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Embedded engineers for ongoing product development' },
+    { label: 'How It Works', href: '/how-it-works', desc: 'Our milestone-gated delivery process' },
+  ],
+  'software-maintenance-time-bomb': [
+    { label: 'AI App Rescue', href: '/engage/app-rescue', desc: 'Audit, fix & stabilise failing AI applications' },
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Ongoing embedded engineering to prevent technical debt' },
+    { label: 'How It Works', href: '/how-it-works', desc: 'Milestone-gated delivery — pay only for done work' },
+  ],
+  'n8n-vs-zapier-vs-power-automate': [
+    { label: 'Hire n8n Experts', href: '/hire/n8n-automation-experts', desc: 'Vetted n8n automation engineers' },
+    { label: 'AI Workflow Library', href: '/ai-workflow-automation-library', desc: 'Production-ready AI automation workflows' },
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'We scope & build your automation — fixed price' },
+  ],
+  'real-cost-building-mvp-2026': [
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'Know the price before you commit — guaranteed' },
+    { label: 'How It Works', href: '/how-it-works', desc: 'Milestone-gated sprints — pay for done work only' },
+    { label: 'Case Studies', href: '/case-studies', desc: 'Real AI builds with real costs and outcomes' },
+  ],
+  'llm-chatbot-for-business': [
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Vetted engineers who build production LLM systems' },
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'Get your chatbot built at a fixed price' },
+    { label: 'Intelligent Document Processing', href: '/intelligent-document-processing', desc: 'AI for document extraction & classification' },
+  ],
+  'why-ai-projects-fail': [
+    { label: 'AI App Rescue', href: '/engage/app-rescue', desc: 'We rescue failing AI projects — audit to production' },
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Embed a Kovil engineer before things go wrong' },
+    { label: 'How It Works', href: '/how-it-works', desc: 'Milestone-gated delivery reduces delivery risk' },
+  ],
+  'gpt-4o-vs-claude-vs-gemini': [
+    { label: 'Azure AI Foundry', href: '/azure-ai-foundry', desc: 'Build on Azure OpenAI — GPT-4o on Microsoft infrastructure' },
+    { label: 'Google Vertex AI', href: '/vertex-ai', desc: 'Build on Gemini and Google Cloud AI' },
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Engineers who work across all three platforms' },
+  ],
+  'how-much-does-an-ai-project-cost': [
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'Know your price before you commit' },
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Monthly pricing, milestone-gated — no surprise invoices' },
+    { label: 'How It Works', href: '/how-it-works', desc: 'Our process explained end to end' },
+  ],
+  'what-is-a-vector-database': [
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'RAG, embeddings & vector search specialists' },
+    { label: 'Hire Data Engineers', href: '/hire/data-engineers', desc: 'Pipeline and infrastructure engineers' },
+    { label: 'Intelligent Document Processing', href: '/intelligent-document-processing', desc: 'AI extraction powered by vector search' },
+  ],
+  'how-to-write-an-ai-project-brief': [
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'We scope your project in 48hrs with a fixed price' },
+    { label: 'Book a Discovery Call', href: '/book-a-call', desc: '30 minutes — we\'ll scope it together' },
+    { label: 'How It Works', href: '/how-it-works', desc: 'Our end-to-end delivery process' },
+  ],
+  'how-to-measure-ai-roi': [
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'Fixed-price builds make ROI calculation simple' },
+    { label: 'Case Studies', href: '/case-studies', desc: 'Real ROI numbers from real AI builds' },
+    { label: 'How It Works', href: '/how-it-works', desc: 'Milestone-gated sprints — measurable progress' },
+  ],
+  'how-to-build-ai-agents-production-guide': [
+    { label: 'Hire LangGraph Engineers', href: '/hire/langgraph-engineers', desc: 'Stateful agent pipelines in production' },
+    { label: 'Hire CrewAI Developers', href: '/hire/crewai-developers', desc: 'Multi-agent orchestration specialists' },
+    { label: 'AI Operations', href: '/ai-operations', desc: 'Keep your production AI agents healthy' },
+  ],
+  'what-is-ai-operations': [
+    { label: 'AI Operations', href: '/ai-operations', desc: 'Managed AI Ops — monitoring, drift detection, cost control' },
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Embedded engineers for ongoing AI work' },
+    { label: 'Hire ML Engineers', href: '/hire/machine-learning-engineers', desc: 'ML and MLOps specialists' },
+  ],
+  'crewai-vs-langgraph-vs-autogen': [
+    { label: 'Hire CrewAI Developers', href: '/hire/crewai-developers', desc: 'Multi-agent CrewAI specialists' },
+    { label: 'Hire LangGraph Engineers', href: '/hire/langgraph-engineers', desc: 'Stateful LangGraph agent pipelines' },
+    { label: 'Hire AutoGen Developers', href: '/hire/autogen-developers', desc: 'Microsoft AutoGen multi-agent specialists' },
+  ],
+  'how-to-reduce-llm-api-costs': [
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Engineers who design cost-efficient LLM architectures' },
+    { label: 'AI Operations', href: '/ai-operations', desc: 'Token cost optimisation as a managed service' },
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Embed a cost-focused AI engineer in your team' },
+  ],
+  'ai-use-cases-for-ecommerce': [
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'E-commerce AI built at a fixed price' },
+    { label: 'AI Workflow Library', href: '/ai-workflow-automation-library', desc: 'Pre-built AI automations for e-commerce operations' },
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Ongoing AI engineering for your e-commerce platform' },
+  ],
+  'openai-vs-anthropic-vs-google-for-business': [
+    { label: 'Agentforce', href: '/agentforce', desc: 'Salesforce AI agents — Kovil is an implementation partner' },
+    { label: 'Azure AI Foundry', href: '/azure-ai-foundry', desc: 'Azure OpenAI & Microsoft AI platform builds' },
+    { label: 'Google Vertex AI', href: '/vertex-ai', desc: 'Gemini & Google Cloud AI implementations' },
+  ],
+  'ai-model-drift-detection': [
+    { label: 'AI Operations', href: '/ai-operations', desc: 'Drift monitoring, alerting & remediation as a service' },
+    { label: 'Hire ML Engineers', href: '/hire/machine-learning-engineers', desc: 'MLOps & model monitoring specialists' },
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Embed an ML engineer to own your model health' },
+  ],
+  'reduce-ai-token-costs': [
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Architects who design cost-efficient LLM systems' },
+    { label: 'AI Operations', href: '/ai-operations', desc: 'Token cost tracking & optimisation, managed' },
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Ongoing AI engineering — cost efficiency included' },
+  ],
+  'vtiger-vs-suitecrm': [
+    { label: 'What We Do', href: '/what-we-do', desc: 'AI engineering, operations & talent — overview' },
+    { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Embed a CRM + AI integration engineer' },
+    { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'CRM AI integration at a fixed price' },
+  ],
+}
+
+function RelatedLinks({ slug }: { slug: string }) {
+  const links = RELATED_LINKS_MAP[slug]
+  if (!links || links.length === 0) return null
+  return (
+    <div className="mt-12 pt-10 border-t border-border">
+      <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-5">Related Services</p>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {links.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="group flex flex-col gap-1.5 rounded-xl border border-border bg-muted/30 px-4 py-3.5 hover:border-accent/40 hover:bg-accent/[0.04] transition-colors"
+          >
+            <span className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">{link.label} →</span>
+            <span className="text-xs text-muted-foreground leading-snug">{link.desc}</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // Split HTML after the Nth closing </p> tag
 function splitAfterParagraph(html: string, afterN = 2): [string, string] {
   let count = 0
@@ -540,6 +694,9 @@ export default function BlogPostPage() {
               <div className="prose-content" dangerouslySetInnerHTML={{ __html: bodyTop }} />
               <MidBlogCta cta={cta} />
               <div className="prose-content" dangerouslySetInnerHTML={{ __html: bodyBottom }} />
+
+              {/* Related Services — internal linking for SEO */}
+              <RelatedLinks slug={post.slug} />
 
               {/* FAQ Section */}
               {post.faqs && post.faqs.length > 0 && (
