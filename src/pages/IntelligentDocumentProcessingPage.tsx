@@ -40,7 +40,7 @@ const industries = [
   {
     icon: Scale,
     label: "Legal & Compliance",
-    href: null,
+    href: "/intelligent-document-processing/legal-compliance",
     useCases: [
       "Contract lifecycle management — NDA and vendor agreement classification",
       "eDiscovery — email, memo, and record classification by relevance",
@@ -50,7 +50,7 @@ const industries = [
   {
     icon: Truck,
     label: "Supply Chain & Logistics",
-    href: null,
+    href: "/intelligent-document-processing/supply-chain-logistics",
     useCases: [
       "Accounts payable automation — invoice, PO, and receipt 3-way matching",
       "Customs & shipping compliance — declarations, certificates of origin",
@@ -60,7 +60,7 @@ const industries = [
   {
     icon: Users,
     label: "Human Resources",
-    href: null,
+    href: "/intelligent-document-processing/human-resources",
     useCases: [
       "Resume parsing — work history, skills, education extraction",
       "Employee records management — onboarding, certifications, tax forms",
