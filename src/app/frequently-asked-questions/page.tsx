@@ -5,6 +5,20 @@ export const metadata: Metadata = {
   title: 'Frequently Asked Questions — Kovil AI',
   description: 'Got questions about hiring AI engineers, fixed-price AI projects, or rescuing a failing AI app? Find answers to every question about Kovil AI.',
   alternates: { canonical: 'https://kovil.ai/frequently-asked-questions' },
+  openGraph: {
+    type: 'website',
+    title: 'Frequently Asked Questions — Kovil AI',
+    description: 'Questions about AI engineers, fixed-price projects, or app rescue? Everything you need to know about Kovil AI, answered.',
+    url: 'https://kovil.ai/frequently-asked-questions',
+    siteName: 'Kovil AI',
+    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Kovil AI FAQs' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Frequently Asked Questions — Kovil AI',
+    description: 'Questions about AI engineers, fixed-price projects, or app rescue? Everything you need to know about Kovil AI, answered.',
+    images: ['https://kovil.ai/og-image.png'],
+  },
 }
 
 const faqSchema = {
