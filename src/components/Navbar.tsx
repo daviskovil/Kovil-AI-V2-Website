@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ChevronDown, Users, Rocket, Shield, BookOpen, FileText, Workflow, Menu, X, ChevronRight } from "lucide-react"
+import { ChevronDown, Users, Rocket, Shield, BookOpen, FileText, Workflow, Menu, X, ChevronRight, Zap, Cloud, Globe } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
 import { openCalendly } from "@/src/lib/calendly"
@@ -47,6 +47,41 @@ const resourceLinks = [
     icon: Workflow,
     label: "AI Workflow Library",
     desc: "Real AI automations across industries.",
+  },
+]
+
+const exploreLinks = [
+  {
+    to: "/agentforce",
+    icon: Zap,
+    label: "Salesforce Agentforce",
+    desc: "AI agents built natively on Salesforce.",
+    color: "#00A1E0",
+    isNew: true,
+  },
+  {
+    to: "/azure-ai-foundry",
+    icon: Cloud,
+    label: "Azure AI Foundry",
+    desc: "Enterprise AI agents on Microsoft Azure.",
+    color: "#0078D4",
+    isNew: true,
+  },
+  {
+    to: "/vertex-ai",
+    icon: Globe,
+    label: "GCP Vertex AI",
+    desc: "AI agents powered by Google Cloud.",
+    color: "#4285F4",
+    isNew: true,
+  },
+  {
+    to: "/intelligent-document-processing",
+    icon: FileText,
+    label: "Document AI & IDP",
+    desc: "Intelligent document processing pipelines.",
+    color: "#F97316",
+    isNew: true,
   },
 ]
 
@@ -165,11 +200,85 @@ function EngageDropdown() {
   )
 }
 
+function ExploreDropdown() {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const pathname = usePathname() ?? ''
+  const isActive =
+    pathname.startsWith("/agentforce") ||
+    pathname.startsWith("/azure-ai-foundry") ||
+    pathname.startsWith("/vertex-ai") ||
+    pathname.startsWith("/intelligent-document-processing")
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener("mousedown", handleClick)
+    return () => document.removeEventListener("mousedown", handleClick)
+  }, [])
+
+  useEffect(() => { setOpen(false) }, [pathname])
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className={`flex items-center gap-1 font-medium text-sm transition-colors hover:text-foreground ${isActive ? "text-foreground font-semibold" : "text-muted-foreground"}`}
+      >
+        Explore
+        <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+      </button>
+
+      {open && (
+        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 bg-background border border-border rounded-2xl shadow-xl overflow-hidden z-50">
+          <div className="h-0.5 bg-accent w-full" />
+          <div className="px-2 pt-3 pb-0.5">
+            <p className="px-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/70">Explore Platforms</p>
+          </div>
+          <div className="px-2 pb-2">
+            {exploreLinks.map((item) => {
+              const Icon = item.icon
+              const active = pathname.startsWith(item.to)
+              return (
+                <Link
+                  key={item.to}
+                  href={item.to}
+                  className={`flex items-start gap-3 px-4 py-3 rounded-xl transition-colors group ${active ? "bg-accent/8 text-foreground" : "hover:bg-muted/50"}`}
+                >
+                  <div
+                    className="h-8 w-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 transition-colors"
+                    style={{ backgroundColor: `${item.color}22` }}
+                  >
+                    <Icon className="h-4 w-4" style={{ color: item.color }} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <p className="text-sm font-semibold text-foreground leading-snug">{item.label}</p>
+                      {item.isNew && (
+                        <span className="text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-orange-500/15 text-orange-400 leading-none whitespace-nowrap">
+                          New
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{item.desc}</p>
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ── Mobile Menu ───────────────────────────────────────────────────────────────
 
 function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const pathname = usePathname() ?? ''
   const [engageOpen, setEngageOpen] = useState(false)
+  const [exploreOpen, setExploreOpen] = useState(false)
   const [resourcesOpen, setResourcesOpen] = useState(false)
 
   // Close on route change
@@ -251,6 +360,50 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
                     </div>
                     <div>
                       <p className="text-sm font-semibold leading-snug">{item.label}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* Explore accordion */}
+        <div>
+          <button
+            onClick={() => setExploreOpen((o) => !o)}
+            className={`flex items-center justify-between w-full h-12 px-3 rounded-xl text-base font-medium transition-colors ${(pathname.startsWith("/agentforce") || pathname.startsWith("/azure-ai-foundry") || pathname.startsWith("/vertex-ai") || pathname.startsWith("/intelligent-document-processing")) ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
+          >
+            Explore
+            <ChevronRight className={`h-4 w-4 transition-transform duration-200 ${exploreOpen ? "rotate-90" : ""}`} />
+          </button>
+          {exploreOpen && (
+            <div className="mt-1 ml-3 pl-3 border-l border-border space-y-1">
+              {exploreLinks.map((item) => {
+                const Icon = item.icon
+                return (
+                  <Link
+                    key={item.to}
+                    href={item.to}
+                    onClick={onClose}
+                    className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-colors ${pathname.startsWith(item.to) ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/40"}`}
+                  >
+                    <div
+                      className="h-7 w-7 rounded-lg flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: `${item.color}22` }}
+                    >
+                      <Icon className="h-3.5 w-3.5" style={{ color: item.color }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <p className="text-sm font-semibold leading-snug">{item.label}</p>
+                        {item.isNew && (
+                          <span className="text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-orange-500/15 text-orange-400 leading-none">
+                            New
+                          </span>
+                        )}
+                      </div>
                       <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
                     </div>
                   </Link>
@@ -352,6 +505,7 @@ export default function Navbar() {
             </Link>
 
             <EngageDropdown />
+            <ExploreDropdown />
             <ResourcesDropdown />
           </div>
 
