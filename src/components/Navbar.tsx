@@ -57,7 +57,6 @@ const exploreLinks = [
     label: "Salesforce Agentforce",
     desc: "AI agents built natively on Salesforce.",
     color: "#00A1E0",
-    isNew: true,
   },
   {
     to: "/azure-ai-foundry",
@@ -65,7 +64,6 @@ const exploreLinks = [
     label: "Azure AI Foundry",
     desc: "Enterprise AI agents on Microsoft Azure.",
     color: "#0078D4",
-    isNew: true,
   },
   {
     to: "/vertex-ai",
@@ -73,7 +71,6 @@ const exploreLinks = [
     label: "GCP Vertex AI",
     desc: "AI agents powered by Google Cloud.",
     color: "#4285F4",
-    isNew: true,
   },
   {
     to: "/intelligent-document-processing",
@@ -81,7 +78,6 @@ const exploreLinks = [
     label: "Document AI & IDP",
     desc: "Intelligent document processing pipelines.",
     color: "#F97316",
-    isNew: true,
   },
 ]
 
@@ -253,13 +249,8 @@ function ExploreDropdown() {
                     <Icon className="h-4 w-4" style={{ color: item.color }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
+                    <div className="flex items-center gap-2">
                       <p className="text-sm font-semibold text-foreground leading-snug">{item.label}</p>
-                      {item.isNew && (
-                        <span className="text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-orange-500/15 text-orange-400 leading-none whitespace-nowrap">
-                          New
-                        </span>
-                      )}
                     </div>
                     <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{item.desc}</p>
                   </div>
@@ -396,14 +387,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
                       <Icon className="h-3.5 w-3.5" style={{ color: item.color }} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <p className="text-sm font-semibold leading-snug">{item.label}</p>
-                        {item.isNew && (
-                          <span className="text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-orange-500/15 text-orange-400 leading-none">
-                            New
-                          </span>
-                        )}
-                      </div>
+                      <p className="text-sm font-semibold leading-snug">{item.label}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
                     </div>
                   </Link>
