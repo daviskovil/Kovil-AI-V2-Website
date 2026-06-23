@@ -119,6 +119,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/agentforce/playbook/agentforce-pricing-guide-2026`,          lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/playbook/agentforce-roi-guide`,                   lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/agentforce/playbook/how-does-agentforce-work`,               lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    // ── Agentforce cloud hub pages ────────────────────────────────────────────────
+    { url: `${BASE_URL}/agentforce/service-cloud`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/marketing-cloud`,      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/internal-operations`,  lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     // ── Agentforce Sales Cloud hub + use cases ────────────────────────────────────
     { url: `${BASE_URL}/agentforce/sales-cloud`,                         lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/sales-cloud/sdr-agent`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
