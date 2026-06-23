@@ -115,10 +115,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/agentforce/playbook/scope-your-first-agentforce-agent`,     lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/agentforce/playbook/atlas-reasoning-engine-explained`,       lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/agentforce/playbook/financial-services-service-cloud-build`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    // ── Agentforce Sales Cloud use cases ──────────────────────────────────────────
+    { url: `${BASE_URL}/agentforce/playbook/agentforce-pricing-guide-2026`,          lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/playbook/agentforce-roi-guide`,                   lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/agentforce/playbook/how-does-agentforce-work`,               lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    // ── Agentforce Sales Cloud hub + use cases ────────────────────────────────────
+    { url: `${BASE_URL}/agentforce/sales-cloud`,                         lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/sales-cloud/sdr-agent`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/sales-cloud/pipeline-health-monitor`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/sales-cloud/quote-proposal-agent`,    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Agentforce Industry pages ─────────────────────────────────────────────────
+    { url: `${BASE_URL}/agentforce/industries/financial-services`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/industries/healthcare`,          lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/industries/insurance`,           lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/industries/retail-ecommerce`,    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/industries/manufacturing`,       lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/agentforce/industries/telecom`,             lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     // ── Agentforce Service Cloud use cases ────────────────────────────────────────
     { url: `${BASE_URL}/agentforce/service-cloud/autonomous-case-resolution`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/service-cloud/intelligent-escalation`,     lastModified: now, changeFrequency: 'monthly', priority: 0.8 },

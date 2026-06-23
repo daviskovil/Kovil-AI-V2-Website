@@ -137,6 +137,47 @@ const caseStudies = [
   },
 ]
 
+// ── Section 5b — Industries ───────────────────────────────────────────────────
+
+const industries = [
+  {
+    label: "Financial Services",
+    slug: "financial-services",
+    desc: "Wealth management onboarding, loan servicing automation, compliance monitoring, and KYC case resolution.",
+    color: SF_BLUE,
+  },
+  {
+    label: "Healthcare & Life Sciences",
+    slug: "healthcare",
+    desc: "Patient scheduling agents, prior authorization resolution, care coordination, and billing inquiry handling.",
+    color: "#34D399",
+  },
+  {
+    label: "Insurance",
+    slug: "insurance",
+    desc: "FNOL claims intake, policy renewal automation, underwriting triage, and broker support agents.",
+    color: "#60A5FA",
+  },
+  {
+    label: "Retail & Ecommerce",
+    slug: "retail-ecommerce",
+    desc: "Order management agents, returns automation, personalised shopping assistants, and loyalty program agents.",
+    color: "#F59E0B",
+  },
+  {
+    label: "Manufacturing",
+    slug: "manufacturing",
+    desc: "Field service scheduling, warranty claim intake, dealer support, and preventive maintenance alert agents.",
+    color: "#A78BFA",
+  },
+  {
+    label: "Telecommunications",
+    slug: "telecom",
+    desc: "Network outage support agents, billing dispute resolution, plan management, and churn prevention agents.",
+    color: "#FB923C",
+  },
+]
+
 // ── Section 6 — Playbook ─────────────────────────────────────────────────────
 
 const playbookArticles = [
@@ -160,6 +201,27 @@ const playbookArticles = [
     desc: "Step-by-step walkthrough of a financial services deployment — architecture, MuleSoft integration, and guardrail configuration.",
     readTime: "15 min read",
     href: "/agentforce/playbook/financial-services-service-cloud-build",
+  },
+  {
+    pill: "Pricing Guide",
+    title: "Agentforce Pricing Guide 2026: What it really costs to deploy",
+    desc: "Per-conversation pricing, Data Cloud add-ons, Einstein licences, implementation cost, and a full TCO model.",
+    readTime: "10 min read",
+    href: "/agentforce/playbook/agentforce-pricing-guide-2026",
+  },
+  {
+    pill: "Business Case",
+    title: "The Agentforce ROI Guide: How to build the business case",
+    desc: "Cost savings model, revenue uplift calculation, time-to-ROI analysis, and real numbers from production deployments.",
+    readTime: "9 min read",
+    href: "/agentforce/playbook/agentforce-roi-guide",
+  },
+  {
+    pill: "Technical Guide",
+    title: "How Agentforce works: Atlas Reasoning, Topics, Actions & Trust Layer",
+    desc: "Complete technical guide — the four-phase reasoning loop, data grounding, action execution, and the Einstein Trust Layer explained.",
+    readTime: "14 min read",
+    href: "/agentforce/playbook/how-does-agentforce-work",
   },
 ]
 
@@ -568,7 +630,8 @@ export default function AgentforcePage() {
 
           {/* Tab content */}
           <AnimatePresence mode="wait">
-            <motion.div key={activeTab} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.25 }} className="grid md:grid-cols-3 gap-6">
+            <motion.div key={activeTab} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.25 }} className="space-y-6">
+              <div className="grid md:grid-cols-3 gap-6">
               {useCases[activeTab].map((uc, i) => (
                 <Link
                   key={uc.title}
@@ -587,6 +650,14 @@ export default function AgentforcePage() {
                   </div>
                 </Link>
               ))}
+              </div>
+              {activeTab === "Sales Cloud" && (
+                <div className="text-center pt-2">
+                  <Link href="/agentforce/sales-cloud" className="inline-flex items-center gap-2 text-sm font-semibold hover:underline" style={{ color: SF_BLUE }}>
+                    Explore the full Agentforce for Sales Teams hub <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -651,6 +722,36 @@ export default function AgentforcePage() {
                 </Button>
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 5b — INDUSTRIES ── */}
+      <section className="border-t border-border py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center max-w-2xl mx-auto mb-16">
+            <p className="text-sm font-mono text-accent tracking-widest uppercase mb-4">Industries</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight mb-4">Agentforce by Industry</h2>
+            <p className="text-muted-foreground text-lg">Production Agentforce deployments across six regulated and high-volume industries — each with dedicated compliance guardrails, cloud integration patterns, and use cases proven in the field.</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-5 mb-10">
+            {industries.map((ind, i) => (
+              <motion.div key={ind.slug} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}>
+                <Link href={`/agentforce/industries/${ind.slug}`} className="group bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full block" style={{ borderColor: "var(--border)" }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = `${ind.color}40` }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--border)" }}>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full" style={{ color: ind.color, background: `${ind.color}15` }}>
+                      {ind.label}
+                    </span>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all duration-200" />
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{ind.desc}</p>
+                  <p className="text-xs font-semibold mt-4" style={{ color: ind.color }}>Explore use cases →</p>
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
