@@ -124,7 +124,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/agentforce/sales-cloud/sdr-agent`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/sales-cloud/pipeline-health-monitor`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/sales-cloud/quote-proposal-agent`,    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    // ── Agentforce Industry pages ─────────────────────────────────────────────────
+    // ── Agentforce Industry hub + pages ──────────────────────────────────────────
+    { url: `${BASE_URL}/agentforce/industries`,                    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/industries/financial-services`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/industries/healthcare`,          lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/industries/insurance`,           lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
