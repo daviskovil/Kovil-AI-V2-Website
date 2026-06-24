@@ -72,6 +72,7 @@ export interface IndustryPageData {
 }
 
 export default function IndustryPageTemplate({ data }: { data: IndustryPageData }) {
+  if (!data) return null
   return (
     <div className="min-h-screen bg-background text-foreground">
 
