@@ -51,16 +51,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: [
           ...sitemapPaths,
           ...legacyRedirectSources,
-          /**
-           * TEMPORARY — remove once GSC "Indexed pages" count drops to ~200.
-           *
-           * ~19.5k /onlines/* affiliate product URLs are technically indexed
-           * but suppressed from SERP by an active GSC prefix removal (expires
-           * Oct 3 2026). Allowing crawl lets Google confirm the 404 responses
-           * and permanently deindex them. Without this, robots.txt blocks crawl
-           * → Google can't see the 404 → pages stay indexed indefinitely.
-           */
-          '/onlines/',
           // Next.js assets (JS/CSS needed for page rendering)
           '/_next/static/',
           '/_next/image',
