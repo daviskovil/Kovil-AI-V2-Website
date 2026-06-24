@@ -530,70 +530,95 @@ export default function AgentforcePage() {
       </AnimatePresence>
 
       {/* ── SECTION 1 — HERO ── */}
-      <section className="max-w-7xl mx-auto px-6 pt-10 pb-20">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section className="relative overflow-hidden">
+        {/* Atmospheric gradient orbs */}
+        <div className="absolute top-0 right-0 w-[900px] h-[700px] pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 60% at 80% 10%, rgba(0,161,224,0.10) 0%, transparent 65%)' }} />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[500px] pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 50% at 10% 90%, rgba(0,112,210,0.07) 0%, transparent 65%)' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[600px] pointer-events-none" style={{ background: 'radial-gradient(ellipse 100% 60% at 50% 50%, rgba(0,161,224,0.03) 0%, transparent 70%)' }} />
 
-          {/* Left — text */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full border text-xs font-semibold tracking-widest uppercase mb-6"
-              style={{ borderColor: `${SF_BLUE}50`, background: `${SF_BLUE}10`, color: SF_BLUE }}>
-              Salesforce Agentforce Practice — New York
-            </span>
+        <div className="max-w-7xl mx-auto px-6 pt-12 pb-24 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight leading-[1.05] mb-6">
-              Build your Agentforce.{" "}
-              <span className="text-accent">Ship agents that work.</span>
-            </h1>
+            {/* Left — text */}
+            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-7 shadow-sm"
+                style={{ border: `1px solid ${SF_BLUE}40`, background: `linear-gradient(135deg, ${SF_BLUE}14 0%, ${SF_BLUE}07 100%)`, color: SF_BLUE }}>
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: SF_BLUE }} />
+                Salesforce Agentforce Practice — New York
+              </span>
 
-            <p className="text-xl text-muted-foreground leading-relaxed mb-10 max-w-lg">
-              Kovil AI is a specialist Agentforce implementation partner. We design, build and deploy autonomous AI agents inside your Salesforce org — in fixed-price sprints with zero delivery risk.
-            </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight leading-[1.05] mb-6">
+                Build your Agentforce.{" "}
+                <span style={{ background: `linear-gradient(135deg, ${SF_BLUE} 0%, #0055C4 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Ship agents that work.</span>
+              </h1>
 
-            <div className="flex flex-col sm:flex-row items-start gap-4 mb-8">
-              <Button variant="accent" size="lg" className="text-base h-12 px-8 rounded-full shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all" onClick={openCalendly}>
-                Start my Agentforce build <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Link href="#downloads">
-                <Button variant="outline" size="lg" className="text-base h-12 px-8 rounded-full">
-                  Download the Readiness Guide
+              <p className="text-xl text-muted-foreground leading-relaxed mb-10 max-w-lg">
+                Kovil AI is a specialist Agentforce implementation partner. We design, build and deploy autonomous AI agents inside your Salesforce org — in fixed-price sprints with zero delivery risk.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-start gap-4 mb-10">
+                <Button variant="accent" size="lg" className="text-base h-12 px-8 rounded-full shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5 transition-all duration-200" onClick={openCalendly}>
+                  Start my Agentforce build <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </Link>
-            </div>
+                <Link href="#downloads">
+                  <Button variant="outline" size="lg" className="text-base h-12 px-8 rounded-full hover:-translate-y-0.5 transition-all duration-200">
+                    Download the Readiness Guide
+                  </Button>
+                </Link>
+              </div>
 
-            <p className="text-sm text-muted-foreground font-medium">
-              2-week risk-free pilot · Fixed-price sprints · Milestone-gated delivery
-            </p>
-            <p className="text-xs text-muted-foreground/50 mt-4 leading-relaxed max-w-lg">
-              Kovil AI is a Salesforce Agentforce implementation partner serving enterprises across the United States. Our Agentforce consulting practice covers agent design, Sales Cloud deployment, Service Cloud deployment, MuleSoft integration, and Atlas Reasoning Engine configuration — delivered in fixed-price sprints from our New York office.
-            </p>
-          </motion.div>
+              {/* Trust pills */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {['2-week risk-free pilot', 'Fixed-price sprints', 'Milestone-gated delivery'].map(pill => (
+                  <span key={pill} className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full bg-card border border-border text-muted-foreground">
+                    <CheckCircle2 className="h-3 w-3 shrink-0" style={{ color: SF_BLUE }} />
+                    {pill}
+                  </span>
+                ))}
+              </div>
 
-          {/* Right — Agentforce mascot */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="hidden md:flex items-center justify-center"
-          >
-            <img
-              src="/agentforce-mascot.png"
-              alt="Salesforce Agentforce AI agent — Kovil AI implementation partner"
-              className="w-full max-w-2xl object-contain drop-shadow-2xl scale-110"
-            />
-          </motion.div>
+              <p className="text-xs text-muted-foreground/50 leading-relaxed max-w-lg">
+                Kovil AI is a Salesforce Agentforce implementation partner serving enterprises across the United States. Our Agentforce consulting practice covers agent design, Sales Cloud deployment, Service Cloud deployment, MuleSoft integration, and Atlas Reasoning Engine configuration — delivered in fixed-price sprints from our New York office.
+              </p>
+            </motion.div>
+
+            {/* Right — Agentforce mascot */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="hidden md:flex items-center justify-center relative"
+            >
+              {/* Glow behind mascot */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-[420px] h-[420px] rounded-full" style={{ background: `radial-gradient(circle, ${SF_BLUE}18 0%, transparent 70%)` }} />
+              </div>
+              <img
+                src="/agentforce-mascot.png"
+                alt="Salesforce Agentforce AI agent — Kovil AI implementation partner"
+                className="w-full max-w-2xl object-contain drop-shadow-2xl scale-110 relative z-10"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ── SECTION 1.5 — AGENTFORCE SECTION EXPLORER ── */}
-      <section className="border-t border-border bg-muted/20 py-10">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="relative overflow-hidden py-14" style={{ background: 'linear-gradient(135deg, #050D1A 0%, #091526 50%, #0C1E38 100%)' }}>
+        {/* Background glow orbs */}
+        <div className="absolute top-0 left-1/3 w-[500px] h-[300px] pointer-events-none" style={{ background: 'radial-gradient(ellipse, rgba(0,161,224,0.13) 0%, transparent 70%)', transform: 'translateY(-50%)' }} />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] pointer-events-none" style={{ background: 'radial-gradient(ellipse, rgba(0,80,180,0.10) 0%, transparent 70%)', transform: 'translateY(40%)' }} />
+        {/* Subtle grid texture */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-7">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-9">
             <div>
-              <p className="text-xs font-mono tracking-widest uppercase mb-1.5" style={{ color: SF_BLUE }}>Quick Navigation</p>
-              <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-foreground">Explore the Agentforce Section</h2>
+              <p className="text-xs font-mono tracking-widest uppercase mb-2 font-semibold" style={{ color: SF_BLUE }}>Quick Navigation</p>
+              <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-white">Explore the Agentforce Section</h2>
             </div>
-            <p className="text-xs text-muted-foreground sm:pb-0.5">7 sections · 45+ pages</p>
+            <p className="text-xs text-white/25 sm:pb-1">7 sections · 45+ pages</p>
           </div>
 
           {/* 7-card grid: 1 col → 2 col → 4 col */}
@@ -601,40 +626,47 @@ export default function AgentforcePage() {
             {agentforceNavSections.map((sec) => (
               <div
                 key={sec.label}
-                className="bg-card border border-border rounded-2xl p-4 hover:shadow-md transition-all duration-200 group"
+                className="group relative rounded-2xl p-px transition-all duration-300 hover:shadow-2xl hover:-translate-y-0.5"
+                style={{ background: `linear-gradient(135deg, ${sec.color}35 0%, rgba(255,255,255,0.06) 100%)` }}
               >
-                {/* Section header — links to hub page */}
-                <Link href={sec.href} className="flex items-center justify-between mb-3.5 group/head">
-                  <div className="flex items-center gap-2.5">
-                    <div className="h-7 w-7 rounded-lg flex items-center justify-center shrink-0" style={{ background: `${sec.color}18` }}>
-                      <sec.Icon className="h-3.5 w-3.5" style={{ color: sec.color }} />
+                {/* Glass inner card */}
+                <div className="rounded-[15px] p-4 h-full" style={{ background: 'rgba(10, 22, 44, 0.85)', backdropFilter: 'blur(16px)' }}>
+                  {/* Section header — links to hub page */}
+                  <Link href={sec.href} className="flex items-center justify-between mb-4 group/head">
+                    <div className="flex items-center gap-2.5">
+                      <div className="h-8 w-8 rounded-xl flex items-center justify-center shrink-0" style={{ background: `linear-gradient(135deg, ${sec.color}28 0%, ${sec.color}14 100%)`, boxShadow: `0 0 14px ${sec.color}22` }}>
+                        <sec.Icon className="h-4 w-4" style={{ color: sec.color }} />
+                      </div>
+                      <span className="text-sm font-bold text-white/90 group-hover/head:text-white transition-colors">{sec.label}</span>
                     </div>
-                    <span className="text-sm font-bold text-foreground group-hover/head:text-accent transition-colors">{sec.label}</span>
-                  </div>
-                  <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-accent transition-colors shrink-0" />
-                </Link>
+                    <ArrowRight className="h-3.5 w-3.5 text-white/20 group-hover:text-white/50 transition-all group-hover:translate-x-0.5 shrink-0" />
+                  </Link>
 
-                {/* Child page links — show up to 4, then "+N more" */}
-                <ul className="space-y-1.5">
-                  {sec.items.slice(0, 4).map(item => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="flex items-start gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors py-0.5 leading-snug"
-                      >
-                        <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ background: `${sec.color}60` }} />
-                        {item.title}
-                      </Link>
-                    </li>
-                  ))}
-                  {sec.items.length > 4 && (
-                    <li className="pt-0.5">
-                      <Link href={sec.href} className="text-xs font-semibold flex items-center gap-1 hover:underline" style={{ color: sec.color }}>
-                        +{sec.items.length - 4} more <ArrowRight className="h-2.5 w-2.5" />
-                      </Link>
-                    </li>
-                  )}
-                </ul>
+                  {/* Divider */}
+                  <div className="mb-3 h-px" style={{ background: `linear-gradient(90deg, ${sec.color}30 0%, transparent 100%)` }} />
+
+                  {/* Child page links */}
+                  <ul className="space-y-1.5">
+                    {sec.items.slice(0, 4).map(item => (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          className="flex items-start gap-2 text-xs text-white/40 hover:text-white/75 transition-colors py-0.5 leading-snug"
+                        >
+                          <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ background: `${sec.color}70` }} />
+                          {item.title}
+                        </Link>
+                      </li>
+                    ))}
+                    {sec.items.length > 4 && (
+                      <li className="pt-1">
+                        <Link href={sec.href} className="text-xs font-bold flex items-center gap-1 transition-opacity hover:opacity-70" style={{ color: sec.color }}>
+                          +{sec.items.length - 4} more <ArrowRight className="h-2.5 w-2.5" />
+                        </Link>
+                      </li>
+                    )}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
@@ -773,14 +805,19 @@ export default function AgentforcePage() {
           <div className="grid md:grid-cols-3 gap-6">
             {services.map((svc, i) => (
               <motion.div key={svc.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.08 }}>
-                <Link href={`/agentforce/services/${svc.slug}`} className="group bg-card border border-border rounded-2xl p-8 hover:border-accent/40 hover:shadow-lg transition-all duration-300 flex flex-col h-full block">
-                  <div className="h-12 w-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors">
-                    <svc.icon className="h-6 w-6 text-accent" />
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">{svc.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed flex-1">{svc.desc}</p>
-                  <div className="flex items-center gap-1 text-xs text-accent mt-5 opacity-0 group-hover:opacity-100 transition-opacity font-semibold">
-                    Learn more <ArrowRight className="h-3.5 w-3.5" />
+                <Link href={`/agentforce/services/${svc.slug}`} className="group bg-card border border-border rounded-2xl hover:shadow-2xl hover:-translate-y-1.5 hover:border-transparent transition-all duration-300 flex flex-col h-full relative overflow-hidden" style={{ '--hover-shadow': `0 20px 60px ${SF_BLUE}15` } as React.CSSProperties}>
+                  {/* Top gradient strip */}
+                  <div className="h-[3px] w-full rounded-t-2xl shrink-0 transition-all duration-300" style={{ background: `linear-gradient(90deg, ${SF_BLUE} 0%, ${SF_BLUE}60 100%)` }} />
+                  <div className="p-8 flex flex-col flex-1">
+                    <div className="h-12 w-12 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110" style={{ background: `linear-gradient(135deg, ${SF_BLUE}1E 0%, ${SF_BLUE}0C 100%)`, boxShadow: `0 4px 16px ${SF_BLUE}20` }}>
+                      <svc.icon className="h-6 w-6" style={{ color: SF_BLUE }} />
+                    </div>
+                    <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">{svc.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed flex-1">{svc.desc}</p>
+                    <div className="flex items-center gap-1.5 text-xs font-semibold mt-5 overflow-hidden h-5" style={{ color: SF_BLUE }}>
+                      <span className="opacity-0 group-hover:opacity-100 -translate-y-3 group-hover:translate-y-0 transition-all duration-200">Learn more</span>
+                      <ArrowRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 -translate-y-3 group-hover:translate-y-0 transition-all duration-200 delay-75" />
+                    </div>
                   </div>
                 </Link>
               </motion.div>
@@ -790,14 +827,20 @@ export default function AgentforcePage() {
       </section>
 
       {/* ── MID CTA 1 — after services ── */}
-      <section className="py-14" style={{ background: `linear-gradient(135deg, ${SF_BLUE}08 0%, transparent 100%)` }}>
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-sm font-mono tracking-widest uppercase mb-3" style={{ color: SF_BLUE }}>Free · No commitment</p>
-          <h2 className="font-display text-2xl md:text-3xl font-bold tracking-tight mb-4">
+      <section className="relative overflow-hidden py-16">
+        {/* Deep dark background with SF blue glow */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #050D1A 0%, #091526 60%, #0C1E38 100%)' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] pointer-events-none" style={{ background: `radial-gradient(ellipse, ${SF_BLUE}18 0%, transparent 70%)` }} />
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase mb-6" style={{ border: `1px solid ${SF_BLUE}35`, color: SF_BLUE, background: `${SF_BLUE}10` }}>
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: SF_BLUE }} />
+            Free · No commitment
+          </span>
+          <h2 className="font-display text-2xl md:text-4xl font-bold tracking-tight mb-4 text-white">
             Not sure which Agentforce service fits your org?
           </h2>
-          <p className="text-muted-foreground mb-6 max-w-xl mx-auto">Book a free 30-minute discovery call. We&apos;ll review your Salesforce org, identify the 2–3 highest-ROI agent opportunities, and give you an honest implementation roadmap — no sales pitch.</p>
-          <Button variant="accent" size="lg" className="rounded-full px-8" onClick={openCalendly}>
+          <p className="text-white/50 mb-8 max-w-xl mx-auto leading-relaxed">Book a free 30-minute discovery call. We&apos;ll review your Salesforce org, identify the 2–3 highest-ROI agent opportunities, and give you an honest implementation roadmap — no sales pitch.</p>
+          <Button variant="accent" size="lg" className="rounded-full px-10 shadow-xl hover:-translate-y-0.5 transition-all duration-200" style={{ boxShadow: `0 8px 32px ${SF_BLUE}45` }} onClick={openCalendly}>
             Book a free discovery call <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
@@ -837,17 +880,19 @@ export default function AgentforcePage() {
                 <Link
                   key={uc.title}
                   href={`/agentforce/${tabSlug[activeTab]}/${uc.slug}`}
-                  className="group bg-card border border-border rounded-2xl p-6 hover:border-accent/40 hover:shadow-lg transition-all duration-300 block"
+                  className="group bg-card border border-border rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 hover:border-transparent transition-all duration-300 block relative overflow-hidden"
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="h-6 w-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 text-white" style={{ background: SF_BLUE }}>
+                  {/* Subtle gradient corner on hover */}
+                  <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: `radial-gradient(circle at top right, ${SF_BLUE}10 0%, transparent 70%)` }} />
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-7 w-7 rounded-xl flex items-center justify-center text-xs font-bold shrink-0 text-white shadow-md" style={{ background: `linear-gradient(135deg, ${SF_BLUE} 0%, #0050C8 100%)`, boxShadow: `0 4px 12px ${SF_BLUE}35` }}>
                       {i + 1}
                     </div>
                     <h3 className="font-display font-bold text-base text-foreground group-hover:text-accent transition-colors">{uc.title}</h3>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-4">{uc.desc}</p>
-                  <div className="flex items-center gap-1 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity font-semibold">
-                    View details <ArrowRight className="h-3 w-3" />
+                  <div className="flex items-center gap-1 text-xs font-bold opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200" style={{ color: SF_BLUE }}>
+                    View details <ArrowRight className="h-3 w-3 ml-0.5" />
                   </div>
                 </Link>
               ))}
@@ -875,26 +920,38 @@ export default function AgentforcePage() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {caseStudies.map((cs, i) => (
-              <motion.div key={cs.label} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }} className="bg-card border border-border rounded-2xl p-6 flex flex-col">
-                <div className="mb-4">
-                  <span className="text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full" style={{ color: SF_BLUE, background: `${SF_BLUE}15` }}>{cs.label}</span>
-                  <p className="text-xs text-muted-foreground mt-2">{cs.sub}</p>
-                </div>
-                <div className="mb-4">
-                  <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1">Problem</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{cs.problem}</p>
-                </div>
-                <div className="mb-6">
-                  <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1">What we built</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{cs.built}</p>
-                </div>
-                <div className="mt-auto grid grid-cols-3 gap-2">
-                  {cs.metrics.map((m) => (
-                    <div key={m.label} className="rounded-xl p-3 text-center" style={{ background: `${SF_BLUE}10` }}>
-                      <div className="font-display font-bold text-lg" style={{ color: SF_BLUE }}>{m.value}</div>
-                      <div className="text-[10px] text-muted-foreground mt-0.5 leading-tight">{m.label}</div>
+              <motion.div key={cs.label} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="bg-card border border-border rounded-2xl flex flex-col overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Gradient top strip */}
+                <div className="h-1 w-full shrink-0" style={{ background: `linear-gradient(90deg, ${SF_BLUE} 0%, #0050C8 100%)` }} />
+
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="mb-5">
+                    <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ color: SF_BLUE, background: `${SF_BLUE}15` }}>{cs.label}</span>
+                    <p className="text-xs text-muted-foreground mt-2 leading-relaxed">{cs.sub}</p>
+                  </div>
+
+                  <div className="mb-4 space-y-3 flex-1">
+                    <div>
+                      <p className="text-[10px] font-bold text-foreground/50 uppercase tracking-widest mb-1">Problem</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{cs.problem}</p>
                     </div>
-                  ))}
+                    <div>
+                      <p className="text-[10px] font-bold text-foreground/50 uppercase tracking-widest mb-1">What we built</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{cs.built}</p>
+                    </div>
+                  </div>
+
+                  {/* Metrics — dark tile strip */}
+                  <div className="mt-4 rounded-xl overflow-hidden grid grid-cols-3" style={{ background: 'linear-gradient(135deg, #050D1A 0%, #0C1E38 100%)' }}>
+                    {cs.metrics.map((m, mi) => (
+                      <div key={m.label} className={`py-4 px-2 text-center flex flex-col items-center justify-center ${mi < cs.metrics.length - 1 ? 'border-r border-white/5' : ''}`}>
+                        <div className="font-display font-black text-2xl leading-none mb-1" style={{ background: `linear-gradient(135deg, ${SF_BLUE} 0%, #60CFFF 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{m.value}</div>
+                        <div className="text-[9px] text-white/35 leading-tight font-medium">{m.label}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -903,22 +960,32 @@ export default function AgentforcePage() {
       </section>
 
       {/* ── MID CTA 2 — after case studies ── */}
-      <section className="py-14 border-t border-border bg-foreground">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="relative overflow-hidden py-16">
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #050D1A 0%, #091526 50%, #0C1E38 100%)' }} />
+        {/* Glow orbs */}
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[300px] pointer-events-none" style={{ background: `radial-gradient(ellipse, ${SF_BLUE}20 0%, transparent 70%)` }} />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[300px] h-[300px] pointer-events-none" style={{ background: 'radial-gradient(ellipse, rgba(255,79,0,0.08) 0%, transparent 70%)' }} />
+        {/* Subtle grid */}
+        <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
+
+        <div className="relative z-10 max-w-5xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
-              <p className="text-xs font-semibold tracking-widest uppercase mb-2" style={{ color: SF_BLUE }}>2-week risk-free pilot</p>
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-background leading-tight">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase mb-4" style={{ border: `1px solid ${SF_BLUE}35`, color: SF_BLUE, background: `${SF_BLUE}10` }}>
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: SF_BLUE }} />
+                2-week risk-free pilot
+              </span>
+              <h2 className="font-display text-2xl md:text-4xl font-bold text-white leading-tight">
                 See results like these in your Salesforce org.
               </h2>
-              <p className="text-background/60 mt-2 max-w-md">We scope, build, and deploy your first Agentforce agent in 2 weeks. Fixed price. If it doesn&apos;t hit your agreed metrics, you don&apos;t pay.</p>
+              <p className="text-white/45 mt-3 max-w-md leading-relaxed">We scope, build, and deploy your first Agentforce agent in 2 weeks. Fixed price. If it doesn&apos;t hit your agreed metrics, you don&apos;t pay.</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-              <Button variant="accent" size="lg" className="rounded-full px-8" onClick={openCalendly}>
+              <Button variant="accent" size="lg" className="rounded-full px-8 shadow-xl hover:-translate-y-0.5 transition-all duration-200" style={{ boxShadow: `0 8px 32px ${SF_BLUE}40` }} onClick={openCalendly}>
                 Start my pilot <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Link href="#downloads">
-                <Button variant="outline" size="lg" className="rounded-full px-8 border-white/20 text-background hover:bg-white/10">
+                <Button variant="outline" size="lg" className="rounded-full px-8 border-white/15 text-white/70 hover:text-white hover:border-white/30 hover:bg-white/5">
                   Download Readiness Guide
                 </Button>
               </Link>
@@ -939,17 +1006,30 @@ export default function AgentforcePage() {
           <div className="grid md:grid-cols-3 gap-5 mb-10">
             {industries.map((ind, i) => (
               <motion.div key={ind.slug} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}>
-                <Link href={`/agentforce/industries/${ind.slug}`} className="group bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full block" style={{ borderColor: "var(--border)" }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = `${ind.color}40` }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--border)" }}>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full" style={{ color: ind.color, background: `${ind.color}15` }}>
-                      {ind.label}
-                    </span>
-                    <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all duration-200" />
+                <Link
+                  href={`/agentforce/industries/${ind.slug}`}
+                  className="group bg-card border border-border rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative overflow-hidden"
+                  style={{ borderColor: "var(--border)" }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = `${ind.color}50` }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--border)" }}
+                >
+                  {/* Left accent bar */}
+                  <div className="absolute left-0 top-4 bottom-4 w-[3px] rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" style={{ background: `linear-gradient(180deg, ${ind.color} 0%, ${ind.color}40 100%)` }} />
+                  {/* Subtle glow on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ background: `radial-gradient(ellipse at top left, ${ind.color}08 0%, transparent 60%)` }} />
+
+                  <div className="flex items-center justify-between mb-4 relative z-10">
+                    <div className="flex items-center gap-3">
+                      <div className="h-8 w-8 rounded-xl shrink-0 flex items-center justify-center" style={{ background: `${ind.color}18`, boxShadow: `0 0 12px ${ind.color}15` }}>
+                        <span className="text-sm font-black leading-none" style={{ color: ind.color }}>{ind.label.charAt(0)}</span>
+                      </div>
+                      <span className="text-xs font-bold tracking-wider uppercase" style={{ color: ind.color }}>{ind.label}</span>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:translate-x-1 transition-all duration-200" style={{ color: `${ind.color}` }} />
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{ind.desc}</p>
-                  <p className="text-xs font-semibold mt-4" style={{ color: ind.color }}>Explore use cases →</p>
+
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 relative z-10">{ind.desc}</p>
+                  <p className="text-xs font-bold mt-4 relative z-10 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200" style={{ color: ind.color }}>Explore use cases →</p>
                 </Link>
               </motion.div>
             ))}
@@ -969,14 +1049,29 @@ export default function AgentforcePage() {
           <div className="grid md:grid-cols-3 gap-6 mb-10">
             {playbookArticles.map((article, i) => (
               <motion.div key={article.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }}>
-                <Link href={article.href} className="group bg-card border border-border rounded-2xl p-6 hover:border-accent/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full block">
-                  <span className="text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full self-start mb-4" style={{ color: SF_BLUE, background: `${SF_BLUE}15` }}>
-                    {article.pill}
-                  </span>
-                  <h3 className="font-display font-bold text-base text-foreground leading-snug mb-3 group-hover:text-accent transition-colors flex-1">{article.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{article.desc}</p>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <Clock className="h-3.5 w-3.5" />{article.readTime}
+                <Link href={article.href} className="group bg-card border border-border rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1.5 hover:border-transparent transition-all duration-300 flex flex-col h-full relative">
+                  {/* Top gradient strip */}
+                  <div className="h-[3px] w-full shrink-0" style={{ background: `linear-gradient(90deg, #8B5CF6 0%, ${SF_BLUE} 100%)` }} />
+
+                  {/* Hover background glow */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ background: 'radial-gradient(ellipse at top left, rgba(139,92,246,0.06) 0%, transparent 60%)' }} />
+
+                  <div className="p-6 flex flex-col flex-1 relative z-10">
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full" style={{ color: '#8B5CF6', background: 'rgba(139,92,246,0.12)' }}>
+                        {article.pill}
+                      </span>
+                      <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground font-medium px-2.5 py-1 rounded-full border border-border">
+                        <Clock className="h-3 w-3 shrink-0" />{article.readTime}
+                      </div>
+                    </div>
+
+                    <h3 className="font-display font-bold text-base text-foreground leading-snug mb-3 group-hover:text-accent transition-colors flex-1">{article.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-5">{article.desc}</p>
+
+                    <div className="flex items-center gap-1.5 text-xs font-bold opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200" style={{ color: SF_BLUE }}>
+                      Read article <ArrowRight className="h-3.5 w-3.5" />
+                    </div>
                   </div>
                 </Link>
               </motion.div>
