@@ -166,6 +166,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/agentforce/internal-operations/hr-onboarding-agent`,      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/internal-operations/finance-approval-agent`,   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/agentforce/internal-operations/it-helpdesk-agent`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Agentforce high-value SEO pages ───────────────────────────────────────────
+    { url: `${BASE_URL}/agentforce/compare/agentforce-vs-einstein-copilot`,       lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/agentforce/compare/agentforce-vs-microsoft-copilot`,      lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/agentforce/faq`,                                           lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/agentforce/pricing`,                                       lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     // ── Google Cloud Vertex AI landing ────────────────────────────────────────────
     { url: `${BASE_URL}/vertex-ai`,                                             lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
     // ── Vertex AI section hub pages ───────────────────────────────────────────────
