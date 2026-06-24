@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
 const SF_BLUE = '#00A1E0'
+const MS_PURPLE = '#7C3AED'
 const BASE = 'https://kovil.ai'
 const CANONICAL = `${BASE}/agentforce/compare/agentforce-vs-microsoft-copilot`
 
@@ -10,94 +11,23 @@ export const metadata: Metadata = {
   title: 'Agentforce vs Microsoft Copilot: 2026 Comparison — Which AI Agent Platform Wins? | Kovil AI',
   description: 'Agentforce vs Microsoft Copilot compared across ecosystem, CRM integration, autonomy, pricing and security. Agentforce works best for Salesforce-native orgs; Microsoft Copilot for Microsoft 365/Dynamics shops.',
   alternates: { canonical: CANONICAL },
-  keywords: [
-    'agentforce vs microsoft copilot',
-    'salesforce agentforce vs microsoft copilot',
-    'agentforce vs copilot comparison',
-    'microsoft copilot vs salesforce agentforce',
-    'agentforce or microsoft copilot which is better',
-    'salesforce ai vs microsoft ai',
-    'agentforce vs m365 copilot',
-    'agentforce vs dynamics 365 copilot',
-    'best ai agent for salesforce',
-    'agentforce microsoft comparison 2026',
-  ],
-  openGraph: {
-    type: 'article',
-    title: 'Agentforce vs Microsoft Copilot: 2026 Comparison | Kovil AI',
-    description: 'Comprehensive comparison of Agentforce and Microsoft Copilot across ecosystem, autonomy, pricing and security — with a practical decision framework.',
-    url: CANONICAL,
-    siteName: 'Kovil AI',
-    images: [{ url: `${BASE}/og-agentforce.png`, width: 1200, height: 630, alt: 'Agentforce vs Microsoft Copilot — Kovil AI' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Agentforce vs Microsoft Copilot: 2026 Comparison | Kovil AI',
-    description: 'Agentforce vs Microsoft Copilot — full technical comparison with a practical decision framework.',
-    images: [`${BASE}/og-agentforce.png`],
-  },
+  keywords: ['agentforce vs microsoft copilot','salesforce agentforce vs microsoft copilot','agentforce vs copilot comparison','microsoft copilot vs salesforce agentforce','agentforce or microsoft copilot which is better','salesforce ai vs microsoft ai','agentforce vs m365 copilot','agentforce vs dynamics 365 copilot','best ai agent for salesforce','agentforce microsoft comparison 2026'],
+  openGraph: { type: 'article', title: 'Agentforce vs Microsoft Copilot: 2026 Comparison | Kovil AI', description: 'Comprehensive comparison of Agentforce and Microsoft Copilot — ecosystem, autonomy, pricing, security and a practical decision framework.', url: CANONICAL, siteName: 'Kovil AI', images: [{ url: `${BASE}/og-agentforce.png`, width: 1200, height: 630 }] },
+  twitter: { card: 'summary_large_image', title: 'Agentforce vs Microsoft Copilot 2026 | Kovil AI', description: 'Full comparison — ecosystem, autonomy, pricing, security and decision framework.', images: [`${BASE}/og-agentforce.png`] },
 }
 
-const articleSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: 'Agentforce vs Microsoft Copilot: 2026 Full Comparison',
-  description: 'Agentforce vs Microsoft Copilot compared across ecosystem, CRM integration, autonomy, pricing and security.',
-  url: CANONICAL,
-  datePublished: '2026-06-24',
-  dateModified: '2026-06-24',
-  author: { '@type': 'Organization', name: 'Kovil AI', url: BASE },
-  publisher: { '@type': 'Organization', name: 'Kovil AI', url: BASE, logo: { '@type': 'ImageObject', url: `${BASE}/kovil-logo-symbol-orange.webp` } },
-  inLanguage: 'en-US',
-  mainEntityOfPage: { '@type': 'WebPage', '@id': CANONICAL },
-}
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What is the main difference between Agentforce and Microsoft Copilot?',
-      acceptedAnswer: { '@type': 'Answer', text: "The primary difference is ecosystem. Agentforce is built for organisations running Salesforce CRM — it is natively integrated with Sales Cloud, Service Cloud, Marketing Cloud, and Data Cloud, and executes autonomous actions directly within Salesforce. Microsoft Copilot is built for the Microsoft 365 and Dynamics 365 ecosystem. Each platform is strongest in its own ecosystem; neither has meaningful native integration with the other's CRM." },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is Agentforce or Microsoft Copilot more autonomous?',
-      acceptedAnswer: { '@type': 'Answer', text: "Agentforce is more autonomous for CRM-centric workflows. It uses the Atlas Reasoning Engine to observe, plan, act, and reflect in a four-phase loop — executing multi-step tasks like resolving a support case from intake to close without human intervention. Microsoft Copilot Studio can build autonomous agents but is more commonly deployed as a chat-based assistant embedded in Teams and Office apps. For deep CRM automation, Agentforce has a structural advantage." },
-    },
-    {
-      '@type': 'Question',
-      name: 'How does Agentforce pricing compare to Microsoft Copilot pricing?',
-      acceptedAnswer: { '@type': 'Answer', text: "Agentforce is priced at approximately $2 per conversation as of 2026, with volume discounts for enterprise commitments. This is consumption-based: you pay for what your agents actually do. Microsoft Copilot for Microsoft 365 is priced at $30 per user per month as a seat-based subscription. For low-volume AI use, Microsoft Copilot may be cheaper; for high-volume autonomous workflows (thousands of agent conversations), Agentforce's per-conversation pricing can be more cost-efficient." },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can Agentforce integrate with Microsoft tools?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes — Agentforce can connect to Microsoft tools through MuleSoft, HTTP callouts, and the Model Context Protocol (MCP). However, these are integration patterns, not native deep integrations. If your team works primarily in Microsoft 365 (Teams, Outlook, SharePoint), Agentforce will require additional integration configuration where Microsoft Copilot would be natively embedded.' },
-    },
-    {
-      '@type': 'Question',
-      name: 'Which AI agent platform is better for customer service?',
-      acceptedAnswer: { '@type': 'Answer', text: "Agentforce has a clear advantage for Salesforce Service Cloud customers. It can autonomously resolve cases, access the full CRM record, execute Flows, and escalate to a human with full context — all within the existing Salesforce support workflow. Microsoft Copilot can augment service agents within Dynamics 365 Customer Service, but does not natively integrate with Salesforce case management." },
-    },
-    {
-      '@type': 'Question',
-      name: 'Should I choose Agentforce or Microsoft Copilot?',
-      acceptedAnswer: { '@type': 'Answer', text: "The decision is primarily an ecosystem choice. If your CRM is Salesforce, choose Agentforce — the native integration depth, Data Cloud access, and Einstein Trust Layer create a structural advantage you cannot replicate with Microsoft Copilot in a Salesforce environment. If your organisation runs Microsoft 365 and Dynamics 365 with no Salesforce investment, Microsoft Copilot is the natural fit. If you have both ecosystems, implement both and connect them via integration middleware." },
-    },
-  ],
-}
-
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: BASE },
-    { '@type': 'ListItem', position: 2, name: 'Agentforce', item: `${BASE}/agentforce` },
-    { '@type': 'ListItem', position: 3, name: 'Agentforce vs Microsoft Copilot', item: CANONICAL },
-  ],
-}
+const schemas = [
+  { '@context': 'https://schema.org', '@type': 'Article', headline: 'Agentforce vs Microsoft Copilot: 2026 Full Comparison', url: CANONICAL, datePublished: '2026-06-24', dateModified: '2026-06-24', author: { '@type': 'Organization', name: 'Kovil AI', url: BASE }, publisher: { '@type': 'Organization', name: 'Kovil AI', url: BASE } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+    { '@type': 'Question', name: 'What is the main difference between Agentforce and Microsoft Copilot?', acceptedAnswer: { '@type': 'Answer', text: "The primary difference is ecosystem. Agentforce is built for Salesforce CRM organisations. Microsoft Copilot is built for Microsoft 365 and Dynamics 365. Each is strongest in its own ecosystem." } },
+    { '@type': 'Question', name: 'Is Agentforce or Microsoft Copilot more autonomous?', acceptedAnswer: { '@type': 'Answer', text: "Agentforce is more autonomous for CRM-centric workflows. The Atlas Reasoning Engine executes multi-step tasks end-to-end. Microsoft Copilot is more commonly deployed as an embedded productivity assistant." } },
+    { '@type': 'Question', name: 'How does Agentforce pricing compare to Microsoft Copilot pricing?', acceptedAnswer: { '@type': 'Answer', text: "Agentforce: ~$2 per conversation (consumption-based). Microsoft Copilot for M365: $30/user/month (seat-based). High-volume automation favours Agentforce; broad productivity rollouts often favour Microsoft." } },
+    { '@type': 'Question', name: 'Can Agentforce integrate with Microsoft tools?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — via MuleSoft, HTTP callouts, and MCP. But these require integration work; they are not native deep integrations like Microsoft Copilot embedded in Teams or SharePoint.' } },
+    { '@type': 'Question', name: 'Which is better for customer service?', acceptedAnswer: { '@type': 'Answer', text: "Agentforce has a structural advantage for Salesforce Service Cloud customers — it can autonomously resolve cases with full CRM context. Microsoft Copilot integrates natively into Dynamics 365 Customer Service instead." } },
+    { '@type': 'Question', name: 'Should I choose Agentforce or Microsoft Copilot?', acceptedAnswer: { '@type': 'Answer', text: "Primarily an ecosystem decision: Salesforce CRM → Agentforce; Microsoft 365/Dynamics 365 → Microsoft Copilot." } },
+  ]},
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: BASE }, { '@type': 'ListItem', position: 2, name: 'Agentforce', item: `${BASE}/agentforce` }, { '@type': 'ListItem', position: 3, name: 'Agentforce vs Microsoft Copilot', item: CANONICAL }] },
+]
 
 const tableRows = [
   { feature: 'Native CRM ecosystem', agentforce: 'Salesforce (Sales, Service, Marketing, Data Cloud)', microsoft: 'Microsoft Dynamics 365' },
@@ -107,74 +37,132 @@ const tableRows = [
   { feature: 'Custom agents', agentforce: 'Agent Builder (Topics, Actions, Instructions)', microsoft: 'Copilot Studio (Power Platform-based)' },
   { feature: 'External integration', agentforce: 'MuleSoft, MCP, Data Cloud, HTTP callouts', microsoft: 'Power Automate, Azure Logic Apps, MCP' },
   { feature: 'Security & trust', agentforce: 'Einstein Trust Layer (PII masking, audit trail)', microsoft: 'Microsoft Purview, Azure AD, Entra ID' },
-  { feature: 'Pricing model', agentforce: '~$2 per conversation (consumption)', microsoft: '$30/user/month for M365 Copilot' },
+  { feature: 'Pricing model', agentforce: '~$2 per conversation (consumption)', microsoft: '$30/user/month (M365 Copilot)' },
   { feature: 'Best fit', agentforce: 'Salesforce-native organisations', microsoft: 'Microsoft 365 / Dynamics 365 organisations' },
-  { feature: 'Implementation partner', agentforce: 'Salesforce SIs (Kovil AI)', microsoft: 'Microsoft SIs' },
 ]
+
+const afFeatures = ['End-to-end autonomous case resolution', 'Atlas Reasoning Engine 4-phase loop', 'Salesforce CRM deep native integration', 'Data Cloud unified customer profiles', 'MuleSoft enterprise API connectivity', 'Einstein Trust Layer — PII masking + audit', 'Per-conversation pricing — scales with volume', 'Sales, Service, Marketing, Ops automation']
+const msFeatures = ['Microsoft 365 deep native integration', 'Teams, Outlook, SharePoint intelligence', 'Copilot Studio low-code agent builder', 'Power Platform workflow automation canvas', 'Azure AD and Entra ID security posture', 'Dynamics 365 native CRM integration', '$30/user/month flat predictable cost', 'Document intelligence across SharePoint']
+
+const chooseAF = ['Your CRM is Salesforce (Sales Cloud, Service Cloud, etc.)', 'You need autonomous multi-step CRM workflow execution', 'Customer data lives in Data Cloud or Salesforce', 'Your support or sales teams are Salesforce-native', 'You want per-conversation pricing at volume scale', 'You have or plan MuleSoft for integration layer', 'You need HIPAA/FedRAMP compliance on Salesforce platform']
+const chooseMS = ['Your CRM is Dynamics 365, not Salesforce', 'Your team lives in Microsoft 365 (Teams, Outlook, Word)', 'You want AI embedded in daily productivity applications', 'SharePoint is your primary knowledge management system', 'You have existing Azure investment and governance', 'Power Platform is already in use for automation', 'You need per-user flat-rate pricing for broad rollout']
 
 const faqs = [
   { q: 'What is the main difference between Agentforce and Microsoft Copilot?', a: "The primary difference is ecosystem. Agentforce is natively integrated with Salesforce CRM — Sales Cloud, Service Cloud, Data Cloud. Microsoft Copilot is natively integrated with Microsoft 365 and Dynamics 365. Each is strongest in its own ecosystem." },
-  { q: 'Is Agentforce or Microsoft Copilot more autonomous?', a: "Agentforce is more autonomous for CRM-centric workflows. Its Atlas Reasoning Engine executes multi-step tasks end-to-end without user intervention. Microsoft Copilot is more commonly deployed as a chat assistant embedded in Teams and Office, though Copilot Studio can build autonomous agents." },
-  { q: 'How does pricing compare?', a: "Agentforce: ~$2 per conversation (consumption-based). Microsoft Copilot for M365: $30/user/month (seat-based). High-volume autonomous workflows often favour Agentforce; broad-deployment productivity assistance often favours Microsoft." },
-  { q: 'Can Agentforce integrate with Microsoft tools?', a: 'Yes — via MuleSoft, HTTP callouts, and MCP. But these require integration configuration; they are not native deep integrations like Microsoft Copilot embedded in Teams or SharePoint.' },
+  { q: 'Is Agentforce or Microsoft Copilot more autonomous?', a: "Agentforce is more autonomous for CRM-centric workflows. Its Atlas Reasoning Engine executes multi-step tasks end-to-end without user intervention. Microsoft Copilot is more commonly deployed as a chat assistant embedded in Teams and Office." },
+  { q: 'How does pricing compare?', a: "Agentforce: ~$2 per conversation (consumption-based). Microsoft Copilot for M365: $30/user/month (seat-based). High-volume autonomous workflows favour Agentforce; broad-deployment productivity assistance often favours Microsoft." },
+  { q: 'Can Agentforce integrate with Microsoft tools?', a: 'Yes — via MuleSoft, HTTP callouts, and MCP. But these require integration configuration; they are not native deep integrations like Copilot embedded in Teams or SharePoint.' },
   { q: 'Which is better for customer service?', a: "Agentforce has a structural advantage for Salesforce Service Cloud customers — it can autonomously resolve cases, access the full CRM record, run Flows, and escalate with full context. Microsoft Copilot integrates natively into Dynamics 365 Customer Service instead." },
-  { q: 'Should I choose Agentforce or Microsoft Copilot?', a: "Primarily an ecosystem decision: Salesforce CRM → Agentforce; Microsoft 365/Dynamics 365 → Microsoft Copilot. If you have both, implement both and connect via integration middleware." },
+  { q: 'Should I choose Agentforce or Microsoft Copilot?', a: "Primarily an ecosystem decision: Salesforce CRM → Agentforce; Microsoft 365/Dynamics 365 → Microsoft Copilot. If you have both ecosystems, implement both and connect via MuleSoft or Azure Integration Services." },
 ]
 
 export default function Page() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
 
-      <main className="pt-20 bg-background min-h-screen">
+      <main className="bg-background min-h-screen">
 
-        {/* ── HERO ── */}
-        <section className="border-b border-border py-16 relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse 60% 50% at 80% 50%, ${SF_BLUE}08 0%, transparent 70%)` }} />
-          <div className="max-w-5xl mx-auto px-6 relative z-10">
-            <nav className="flex items-center gap-2 text-xs text-muted-foreground mb-8" aria-label="Breadcrumb">
+        {/* ── CINEMATIC HERO ── */}
+        <section className="relative overflow-hidden pt-20 pb-32">
+          <div className="absolute top-0 right-0 w-[800px] h-[700px] pointer-events-none" style={{ background: `radial-gradient(ellipse 55% 55% at 90% 5%, ${SF_BLUE}12 0%, transparent 65%)` }} />
+          <div className="absolute bottom-0 left-0 w-[700px] h-[600px] pointer-events-none" style={{ background: `radial-gradient(ellipse 50% 50% at 5% 95%, ${MS_PURPLE}09 0%, transparent 65%)` }} />
+          <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] pointer-events-none" style={{ background: `radial-gradient(ellipse, ${MS_PURPLE}06 0%, transparent 70%)` }} />
+
+          <div className="max-w-6xl mx-auto px-6 relative z-10">
+            <nav className="flex items-center gap-2 text-xs text-muted-foreground mb-10" aria-label="Breadcrumb">
               <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-              <span>/</span>
+              <span className="opacity-40">/</span>
               <Link href="/agentforce" className="hover:text-foreground transition-colors">Agentforce</Link>
-              <span>/</span>
-              <span className="text-foreground">Agentforce vs Microsoft Copilot</span>
+              <span className="opacity-40">/</span>
+              <span className="text-foreground">vs Microsoft Copilot</span>
             </nav>
 
-            <p className="text-sm font-mono font-semibold tracking-widest uppercase mb-4" style={{ color: SF_BLUE }}>Comparison Guide · Updated June 2026</p>
-            <h1 className="font-display text-4xl md:text-5xl font-bold tracking-tight mb-6 text-foreground">
-              Agentforce vs Microsoft Copilot:<br className="hidden md:block" /> Which AI Agent Platform Wins?
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mb-6">
-              <strong className="text-foreground">The direct answer:</strong> This is primarily an ecosystem decision, not a feature one. If your CRM is Salesforce, Agentforce wins on native integration depth. If your organisation runs Microsoft 365 and Dynamics 365, Microsoft Copilot is the natural fit. Neither has meaningful native integration with the other&apos;s core platform.
-            </p>
-            <p className="text-sm text-muted-foreground max-w-3xl">
-              This comparison covers architecture, autonomy, pricing, security, and a practical decision framework — written by Kovil AI Agentforce implementation engineers with hands-on experience deploying both platforms.
-            </p>
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-sm mb-8" style={{ border: `1px solid ${SF_BLUE}40`, background: `linear-gradient(135deg, ${SF_BLUE}15 0%, ${SF_BLUE}07 100%)`, color: SF_BLUE }}>
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: SF_BLUE }} />
+              Comparison Guide · June 2026
+            </span>
+
+            {/* Split title */}
+            <div className="grid md:grid-cols-[1fr_auto_1fr] gap-6 items-start mb-10">
+              <div>
+                <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-3 font-semibold">Salesforce</p>
+                <h1 className="font-display text-5xl md:text-6xl font-black tracking-tight leading-[1.02]" style={{ background: `linear-gradient(135deg, ${SF_BLUE} 0%, #60CFFF 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  Agentforce
+                </h1>
+                <p className="text-sm text-muted-foreground mt-3 leading-relaxed max-w-xs">Autonomous AI agents natively inside Salesforce CRM</p>
+              </div>
+              <div className="flex items-center justify-center pt-8">
+                <span className="font-display text-4xl font-black text-muted-foreground/20 select-none">vs</span>
+              </div>
+              <div>
+                <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-3 font-semibold">Microsoft</p>
+                <h1 className="font-display text-5xl md:text-6xl font-black tracking-tight leading-[1.02]" style={{ background: `linear-gradient(135deg, ${MS_PURPLE} 0%, #A78BFA 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  Copilot
+                </h1>
+                <p className="text-sm text-muted-foreground mt-3 leading-relaxed max-w-xs">AI embedded in Microsoft 365 and Dynamics 365</p>
+              </div>
+            </div>
+
+            <div className="max-w-2xl">
+              <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+                <strong className="text-foreground">The direct answer:</strong> This is primarily an ecosystem decision. Salesforce CRM → Agentforce. Microsoft 365 + Dynamics → Microsoft Copilot. Neither has meaningful native integration with the other&apos;s core platform.
+              </p>
+            </div>
+
+            {/* Key differentiator chips */}
+            <div className="flex flex-wrap gap-3">
+              {[
+                { label: 'Agentforce pricing', value: '~$2 / conversation', color: SF_BLUE },
+                { label: 'M365 Copilot pricing', value: '$30 / user / month', color: MS_PURPLE },
+                { label: 'Both autonomous?', value: 'Different approaches', color: 'rgba(255,255,255,0.4)' },
+              ].map(chip => (
+                <div key={chip.label} className="flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-border bg-card/80 text-sm shadow-sm">
+                  <span className="text-muted-foreground">{chip.label}:</span>
+                  <strong style={{ color: chip.color }} className="font-bold">{chip.value}</strong>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* ── COMPARISON TABLE ── */}
-        <section className="py-20 border-b border-border">
-          <div className="max-w-5xl mx-auto px-6">
+        {/* ── COMPARISON TABLE (DARK) ── */}
+        <section className="py-28 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #050D1A 0%, #07111F 100%)' }}>
+          <div className="absolute top-0 left-0 w-[600px] h-[400px] pointer-events-none" style={{ background: `radial-gradient(ellipse at top left, ${SF_BLUE}09 0%, transparent 65%)` }} />
+          <div className="absolute top-0 right-0 w-[600px] h-[400px] pointer-events-none" style={{ background: `radial-gradient(ellipse at top right, ${MS_PURPLE}07 0%, transparent 65%)` }} />
+          <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)`, backgroundSize: '80px 80px' }} />
+
+          <div className="max-w-6xl mx-auto px-6 relative z-10">
             <p className="text-sm font-mono font-semibold tracking-widest uppercase mb-3" style={{ color: SF_BLUE }}>Side by Side</p>
-            <h2 className="font-display text-3xl font-bold tracking-tight mb-10 text-foreground">Full Feature Comparison</h2>
-            <div className="overflow-x-auto rounded-2xl border border-border">
+            <h2 className="font-display text-4xl md:text-5xl font-black tracking-tight mb-14 text-white">Full Feature Comparison</h2>
+
+            <div className="rounded-3xl overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.07)', boxShadow: '0 40px 100px rgba(0,0,0,0.5)' }}>
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-border" style={{ background: `${SF_BLUE}08` }}>
-                    <th className="text-left px-6 py-4 font-semibold text-foreground w-48">Feature</th>
-                    <th className="text-left px-6 py-4 font-semibold" style={{ color: SF_BLUE }}>Agentforce</th>
-                    <th className="text-left px-6 py-4 font-semibold text-muted-foreground">Microsoft Copilot</th>
+                  <tr style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%)' }}>
+                    <th className="text-left px-8 py-5 font-semibold text-white/30 text-xs uppercase tracking-widest w-48">Feature</th>
+                    <th className="text-left px-8 py-5 font-bold">
+                      <span className="flex items-center gap-2 text-sm" style={{ color: SF_BLUE }}>
+                        <span className="h-2 w-2 rounded-full animate-pulse" style={{ background: SF_BLUE }} />
+                        Agentforce
+                      </span>
+                    </th>
+                    <th className="text-left px-8 py-5 font-semibold">
+                      <span className="flex items-center gap-2 text-sm" style={{ color: '#A78BFA' }}>
+                        <span className="h-2 w-2 rounded-full" style={{ background: MS_PURPLE }} />
+                        Microsoft Copilot
+                      </span>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {tableRows.map((row, i) => (
-                    <tr key={row.feature} className={`border-b border-border last:border-0 ${i % 2 === 0 ? 'bg-card' : 'bg-background'}`}>
-                      <td className="px-6 py-4 font-medium text-foreground">{row.feature}</td>
-                      <td className="px-6 py-4 text-foreground font-medium">{row.agentforce}</td>
-                      <td className="px-6 py-4 text-muted-foreground">{row.microsoft}</td>
+                    <tr key={row.feature} className="border-t transition-colors hover:bg-white/[0.02]" style={{ borderColor: 'rgba(255,255,255,0.05)', background: i % 2 === 0 ? 'rgba(255,255,255,0.015)' : 'transparent' }}>
+                      <td className="px-8 py-4 font-medium text-white/40 text-xs uppercase tracking-wider">{row.feature}</td>
+                      <td className="px-8 py-4 text-sm font-semibold text-white">{row.agentforce}</td>
+                      <td className="px-8 py-4 text-sm text-white/40">{row.microsoft}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -183,177 +171,141 @@ export default function Page() {
           </div>
         </section>
 
-        {/* ── ECOSYSTEM BREAKDOWN ── */}
-        <section className="py-20 border-b border-border bg-muted/20">
-          <div className="max-w-5xl mx-auto px-6">
-            <h2 className="font-display text-3xl font-bold tracking-tight mb-10 text-foreground">Ecosystem Deep Dive</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-card border border-border rounded-2xl p-7">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="h-9 w-9 rounded-xl flex items-center justify-center text-white font-bold text-sm" style={{ background: `linear-gradient(135deg, ${SF_BLUE} 0%, #0050C8 100%)` }}>AF</div>
-                  <h3 className="font-display text-xl font-bold text-foreground">Agentforce Ecosystem</h3>
+        {/* ── ECOSYSTEM DEEP DIVE ── */}
+        <section className="py-28 border-b border-border">
+          <div className="max-w-6xl mx-auto px-6">
+            <p className="text-sm font-mono font-semibold tracking-widest uppercase mb-3" style={{ color: SF_BLUE }}>Ecosystem Deep Dive</p>
+            <h2 className="font-display text-4xl md:text-5xl font-black tracking-tight mb-14 text-foreground leading-tight">Where Each Platform<br />Truly Excels</h2>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-16">
+              {/* Agentforce */}
+              <div className="rounded-3xl p-8 relative overflow-hidden group" style={{ background: 'linear-gradient(135deg, #050D1A 0%, #0A1A2E 100%)', border: `1px solid ${SF_BLUE}20` }}>
+                <div className="absolute top-0 right-0 w-64 h-64 pointer-events-none" style={{ background: `radial-gradient(circle at top right, ${SF_BLUE}12 0%, transparent 70%)` }} />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-7">
+                    <div className="h-10 w-10 rounded-xl flex items-center justify-center text-white text-sm font-black shadow-lg" style={{ background: `linear-gradient(135deg, ${SF_BLUE} 0%, #0070D2 100%)`, boxShadow: `0 6px 20px ${SF_BLUE}40` }}>AF</div>
+                    <div>
+                      <p className="font-display font-bold text-white text-xl">Agentforce</p>
+                      <p className="text-xs text-white/40 font-mono">Salesforce ecosystem</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-3.5 mb-6">
+                    {afFeatures.map(f => (
+                      <li key={f} className="flex items-start gap-3 text-sm text-white/60">
+                        <span className="shrink-0 mt-0.5 font-bold text-sm" style={{ color: SF_BLUE }}>→</span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-xs text-white/30 border-t pt-4" style={{ borderColor: `${SF_BLUE}15` }}>Best fit: Organisations with Salesforce as primary CRM and customer data platform.</p>
                 </div>
-                <ul className="space-y-3 text-sm text-muted-foreground">
-                  {[
-                    'Salesforce Sales Cloud — account, opportunity, lead management',
-                    'Service Cloud — case resolution, omni-channel support',
-                    'Marketing Cloud — campaign personalisation and journey automation',
-                    'Data Cloud — unified customer data across all touchpoints',
-                    'Slack — conversational agents embedded in workspace',
-                    'MuleSoft — connect to any external system or API',
-                  ].map(item => (
-                    <li key={item} className="flex items-start gap-2"><span style={{ color: SF_BLUE }} className="mt-0.5 shrink-0">→</span>{item}</li>
-                  ))}
-                </ul>
-                <p className="mt-5 text-xs text-muted-foreground border-t border-border pt-4">Best fit: Organisations with Salesforce as their primary CRM and customer data platform.</p>
               </div>
-              <div className="bg-card border border-border rounded-2xl p-7">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="h-9 w-9 rounded-xl flex items-center justify-center text-white font-bold text-sm bg-purple-600">MS</div>
-                  <h3 className="font-display text-xl font-bold text-foreground">Microsoft Copilot Ecosystem</h3>
+
+              {/* Microsoft */}
+              <div className="rounded-3xl p-8 relative overflow-hidden group" style={{ background: 'linear-gradient(135deg, #0D0918 0%, #130D24 100%)', border: `1px solid ${MS_PURPLE}20` }}>
+                <div className="absolute top-0 right-0 w-64 h-64 pointer-events-none" style={{ background: `radial-gradient(circle at top right, ${MS_PURPLE}10 0%, transparent 70%)` }} />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-7">
+                    <div className="h-10 w-10 rounded-xl flex items-center justify-center text-white text-sm font-black shadow-lg" style={{ background: `linear-gradient(135deg, ${MS_PURPLE} 0%, #A78BFA 100%)`, boxShadow: `0 6px 20px ${MS_PURPLE}40` }}>MS</div>
+                    <div>
+                      <p className="font-display font-bold text-white text-xl">Microsoft Copilot</p>
+                      <p className="text-xs text-white/40 font-mono">Microsoft ecosystem</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-3.5 mb-6">
+                    {msFeatures.map(f => (
+                      <li key={f} className="flex items-start gap-3 text-sm text-white/60">
+                        <span className="shrink-0 mt-0.5 font-bold text-sm" style={{ color: '#A78BFA' }}>→</span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-xs text-white/30 border-t pt-4" style={{ borderColor: `${MS_PURPLE}15` }}>Best fit: Organisations running Microsoft 365 for productivity and Dynamics 365 for CRM.</p>
                 </div>
-                <ul className="space-y-3 text-sm text-muted-foreground">
-                  {[
-                    'Microsoft 365 — Word, Excel, PowerPoint, Outlook, Teams',
-                    'Dynamics 365 — sales, customer service, field service',
-                    'SharePoint & OneDrive — document intelligence and retrieval',
-                    'Azure OpenAI Service — model infrastructure',
-                    'Power Platform — Power Automate, Power Apps integrations',
-                    'Copilot Studio — custom agent builder (low-code)',
-                  ].map(item => (
-                    <li key={item} className="flex items-start gap-2"><span className="text-purple-500 mt-0.5 shrink-0">→</span>{item}</li>
-                  ))}
-                </ul>
-                <p className="mt-5 text-xs text-muted-foreground border-t border-border pt-4">Best fit: Organisations running Microsoft 365 for productivity and Dynamics 365 for CRM.</p>
+              </div>
+            </div>
+
+            {/* Pricing comparison */}
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="rounded-2xl p-7 relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${SF_BLUE}08 0%, ${SF_BLUE}04 100%)`, border: `1px solid ${SF_BLUE}20` }}>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-2">Agentforce</p>
+                <div className="flex items-end gap-2 mb-2">
+                  <span className="font-display text-5xl font-black" style={{ background: `linear-gradient(135deg, ${SF_BLUE} 0%, #60CFFF 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>~$2</span>
+                  <span className="text-muted-foreground text-sm mb-1">/ conversation</span>
+                </div>
+                <p className="text-sm text-muted-foreground">Consumption-based — you pay for what agents actually do. Volume discounts at enterprise scale.</p>
+              </div>
+              <div className="rounded-2xl p-7 relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${MS_PURPLE}08 0%, ${MS_PURPLE}04 100%)`, border: `1px solid ${MS_PURPLE}20` }}>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-2">Microsoft Copilot for M365</p>
+                <div className="flex items-end gap-2 mb-2">
+                  <span className="font-display text-5xl font-black" style={{ background: `linear-gradient(135deg, ${MS_PURPLE} 0%, #A78BFA 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>$30</span>
+                  <span className="text-muted-foreground text-sm mb-1">/ user / month</span>
+                </div>
+                <p className="text-sm text-muted-foreground">Seat-based — flat cost regardless of usage. Predictable for broad productivity rollouts.</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── AUTONOMY COMPARISON ── */}
-        <section className="py-20 border-b border-border">
-          <div className="max-w-5xl mx-auto px-6">
-            <h2 className="font-display text-3xl font-bold tracking-tight mb-6 text-foreground">Agent Autonomy: How Each Platform Thinks</h2>
-            <div className="space-y-5 text-muted-foreground leading-relaxed mb-8">
-              <p>Both platforms can build agents, but their default mode of operation differs significantly. <strong className="text-foreground">Agentforce</strong> is designed from the ground up for autonomous execution — the Atlas Reasoning Engine&apos;s Observe-Plan-Act-Reflect loop enables agents to handle complex, multi-step workflows without waiting for human approval at each step. A Salesforce Service Cloud agent can take a new case, look up the account history, run a diagnostic Flow, resolve the issue, and close the case entirely on its own.</p>
-              <p><strong className="text-foreground">Microsoft Copilot</strong> is more commonly deployed as an assistant embedded in the applications people already use — Outlook, Teams, Word — where it helps humans do their work faster rather than executing workflows autonomously. Microsoft Copilot Studio can build autonomous agents, but the platform&apos;s default architecture leans toward assisted intelligence rather than fully autonomous action.</p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-5">
-              <div className="p-6 rounded-2xl border" style={{ borderColor: `${SF_BLUE}25`, background: `${SF_BLUE}06` }}>
-                <h3 className="font-semibold text-foreground mb-3">Agentforce strengths</h3>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  {['End-to-end autonomous case resolution', 'Multi-step pipeline and forecasting workflows', 'Proactive outreach triggers from CRM events', 'Atlas Reasoning Engine — 4-phase planning loop', 'Topics and Actions — declarative, auditable config'].map(item => (
-                    <li key={item} className="flex items-start gap-2"><span style={{ color: SF_BLUE }} className="shrink-0">✓</span>{item}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="p-6 rounded-2xl border border-purple-500/20 bg-purple-500/05">
-                <h3 className="font-semibold text-foreground mb-3">Microsoft Copilot strengths</h3>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  {['Deep Microsoft 365 productivity integration', 'Document intelligence across SharePoint', 'Meeting summaries and action items in Teams', 'Power Platform low-code automation canvas', 'Broad enterprise Microsoft licence coverage'].map(item => (
-                    <li key={item} className="flex items-start gap-2"><span className="text-purple-500 shrink-0">✓</span>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* ── DECISION FRAMEWORK (DARK) ── */}
+        <section className="py-28 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #050D1A 0%, #07111F 100%)' }}>
+          <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse 80% 50% at 50% 50%, rgba(0,161,224,0.06) 0%, transparent 70%)` }} />
+          <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
-        {/* ── PRICING ── */}
-        <section className="py-20 border-b border-border bg-muted/20">
-          <div className="max-w-5xl mx-auto px-6">
-            <h2 className="font-display text-3xl font-bold tracking-tight mb-6 text-foreground">Pricing Comparison</h2>
-            <p className="text-muted-foreground leading-relaxed mb-8">The two platforms use fundamentally different pricing models, which matters depending on your use pattern.</p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-card border border-border rounded-2xl p-6">
-                <h3 className="font-semibold text-foreground mb-1">Agentforce</h3>
-                <p className="text-3xl font-display font-black mb-3" style={{ color: SF_BLUE }}>~$2</p>
-                <p className="text-sm text-muted-foreground mb-4">per conversation · consumption-based</p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>→ You pay for what agents actually do</li>
-                  <li>→ Volume discounts at enterprise scale</li>
-                  <li>→ No seat cost for users interacting with agents</li>
-                  <li>→ Separate: Data Cloud, Einstein, MuleSoft licences</li>
-                </ul>
-              </div>
-              <div className="bg-card border border-border rounded-2xl p-6">
-                <h3 className="font-semibold text-foreground mb-1">Microsoft Copilot for M365</h3>
-                <p className="text-3xl font-display font-black mb-3 text-purple-500">$30</p>
-                <p className="text-sm text-muted-foreground mb-4">per user per month · seat-based</p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>→ Flat rate regardless of usage volume</li>
-                  <li>→ Requires M365 E3/E5 base licence</li>
-                  <li>→ Copilot Studio: additional per-message pricing</li>
-                  <li>→ Predictable cost for broad team rollouts</li>
-                </ul>
-              </div>
-            </div>
-            <div className="mt-6 p-5 rounded-2xl border border-border bg-card text-sm text-muted-foreground">
-              <strong className="text-foreground">When each model wins on cost:</strong> If you need agents handling thousands of automated conversations per month with no human in the loop, Agentforce&apos;s consumption model scales efficiently. If you need a broad AI assistant for every employee&apos;s daily productivity work in Microsoft 365, the per-seat model is simpler to budget.
-            </div>
-          </div>
-        </section>
+          <div className="max-w-6xl mx-auto px-6 relative z-10">
+            <p className="text-sm font-mono font-semibold tracking-widest uppercase mb-3" style={{ color: SF_BLUE }}>Decision Framework</p>
+            <h2 className="font-display text-4xl md:text-5xl font-black tracking-tight mb-14 text-white leading-tight">Which Platform<br />Is Right for You?</h2>
 
-        {/* ── DECISION FRAMEWORK ── */}
-        <section className="py-20 border-b border-border">
-          <div className="max-w-5xl mx-auto px-6">
-            <h2 className="font-display text-3xl font-bold tracking-tight mb-10 text-foreground">Decision Framework: Which Platform Is Right for You?</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-card border rounded-2xl p-7" style={{ borderColor: `${SF_BLUE}30` }}>
-                <div className="h-6 w-6 rounded-lg mb-4 flex items-center justify-center" style={{ background: `${SF_BLUE}15` }}>
-                  <span style={{ color: SF_BLUE }} className="text-xs font-bold">→</span>
-                </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-4">Choose Agentforce if…</h3>
-                <ul className="space-y-3 text-sm text-muted-foreground">
-                  {[
-                    'Your CRM is Salesforce (Sales Cloud, Service Cloud, etc.)',
-                    'You need autonomous multi-step workflow automation',
-                    'Customer data lives in Data Cloud or Salesforce',
-                    'Your support or sales teams are Salesforce-native',
-                    'You want per-conversation pricing at volume scale',
-                    'You have or plan MuleSoft for integration layer',
-                    'You need HIPAA, FedRAMP, or financial compliance on Salesforce',
-                  ].map(item => (
-                    <li key={item} className="flex items-start gap-2"><span style={{ color: SF_BLUE }} className="shrink-0 mt-0.5">✓</span>{item}</li>
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <div className="rounded-3xl p-8 relative overflow-hidden" style={{ background: 'rgba(0,161,224,0.04)', border: `1px solid ${SF_BLUE}20` }}>
+                <div className="absolute bottom-0 right-0 w-48 h-48 pointer-events-none" style={{ background: `radial-gradient(circle at bottom right, ${SF_BLUE}10 0%, transparent 70%)` }} />
+                <p className="text-xs font-mono font-semibold tracking-widest uppercase mb-4" style={{ color: SF_BLUE }}>Choose Agentforce if…</p>
+                <ul className="space-y-3.5">
+                  {chooseAF.map(item => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-white/60">
+                      <span className="h-5 w-5 rounded-full shrink-0 mt-0.5 flex items-center justify-center text-xs font-black" style={{ background: `${SF_BLUE}20`, color: SF_BLUE }}>✓</span>
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
-              <div className="bg-card border border-purple-500/20 rounded-2xl p-7">
-                <div className="h-6 w-6 rounded-lg mb-4 flex items-center justify-center bg-purple-500/15">
-                  <span className="text-purple-500 text-xs font-bold">→</span>
-                </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-4">Choose Microsoft Copilot if…</h3>
-                <ul className="space-y-3 text-sm text-muted-foreground">
-                  {[
-                    'Your CRM is Dynamics 365, not Salesforce',
-                    'Your team lives in Microsoft 365 (Teams, Outlook, Word)',
-                    'You want AI embedded in daily productivity tools',
-                    'SharePoint is your primary knowledge management system',
-                    'You have existing Azure investment and governance',
-                    'Power Platform is already in use for automation',
-                    'You need per-user flat-rate pricing for broad rollout',
-                  ].map(item => (
-                    <li key={item} className="flex items-start gap-2"><span className="text-purple-500 shrink-0 mt-0.5">✓</span>{item}</li>
+
+              <div className="rounded-3xl p-8 relative overflow-hidden" style={{ background: `rgba(124,58,237,0.04)`, border: `1px solid ${MS_PURPLE}20` }}>
+                <div className="absolute bottom-0 right-0 w-48 h-48 pointer-events-none" style={{ background: `radial-gradient(circle at bottom right, ${MS_PURPLE}10 0%, transparent 70%)` }} />
+                <p className="text-xs font-mono font-semibold tracking-widest uppercase mb-4" style={{ color: '#A78BFA' }}>Choose Microsoft Copilot if…</p>
+                <ul className="space-y-3.5">
+                  {chooseMS.map(item => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-white/60">
+                      <span className="h-5 w-5 rounded-full shrink-0 mt-0.5 flex items-center justify-center text-xs font-black" style={{ background: `${MS_PURPLE}20`, color: '#A78BFA' }}>✓</span>
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
             </div>
-            <div className="mt-6 p-5 rounded-2xl border border-border bg-muted/30 text-sm text-muted-foreground">
-              <strong className="text-foreground">Both ecosystems in play?</strong> Implement both and connect them via MuleSoft or Azure Integration Services. Agentforce handles CRM automation; Microsoft Copilot handles productivity augmentation. They complement, not compete.
+
+            <div className="rounded-2xl p-6 flex items-start gap-4" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
+              <div className="h-8 w-8 rounded-lg shrink-0 flex items-center justify-center mt-0.5" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                <span className="text-white/60 text-sm font-black">⇄</span>
+              </div>
+              <p className="text-sm text-white/50 leading-relaxed">
+                <strong className="text-white">Both ecosystems in play?</strong> Implement both and connect them — Agentforce handles CRM automation, Microsoft Copilot handles productivity augmentation. They complement each other via MuleSoft or Azure Integration Services.
+              </p>
             </div>
           </div>
         </section>
 
         {/* ── FAQ ── */}
-        <section className="py-20 border-b border-border bg-muted/20">
-          <div className="max-w-5xl mx-auto px-6">
+        <section className="py-28 border-b border-border">
+          <div className="max-w-6xl mx-auto px-6">
             <p className="text-sm font-mono font-semibold tracking-widest uppercase mb-3" style={{ color: SF_BLUE }}>FAQ</p>
-            <h2 className="font-display text-3xl font-bold tracking-tight mb-10 text-foreground">Common Questions</h2>
-            <div className="space-y-5">
+            <h2 className="font-display text-4xl md:text-5xl font-black tracking-tight mb-12 text-foreground">Common Questions</h2>
+            <div className="grid md:grid-cols-2 gap-4">
               {faqs.map(faq => (
-                <div key={faq.q} className="bg-card border border-border rounded-2xl p-6">
-                  <h3 className="font-semibold text-foreground mb-3">{faq.q}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                <div key={faq.q} className="group rounded-2xl p-7 bg-card border border-border hover:border-accent/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                  <div className="w-6 h-0.5 mb-4 rounded-full" style={{ background: `linear-gradient(90deg, ${SF_BLUE} 0%, transparent 100%)` }} />
+                  <h3 className="font-semibold text-foreground mb-3 text-sm leading-snug">{faq.q}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{faq.a}</p>
                 </div>
               ))}
             </div>
@@ -361,8 +313,8 @@ export default function Page() {
         </section>
 
         {/* ── RELATED ── */}
-        <section className="py-14 border-b border-border">
-          <div className="max-w-5xl mx-auto px-6">
+        <section className="py-16 border-b border-border">
+          <div className="max-w-6xl mx-auto px-6">
             <h2 className="font-display text-xl font-bold tracking-tight mb-6 text-foreground">Related Guides</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
               {[
@@ -370,12 +322,12 @@ export default function Page() {
                 { title: 'Agentforce Pricing Guide 2026', href: '/agentforce/pricing' },
                 { title: 'How Agentforce Works', href: '/agentforce/playbook/how-does-agentforce-work' },
                 { title: 'Agentforce FAQ', href: '/agentforce/faq' },
-                { title: 'Agentforce Services by Kovil AI', href: '/agentforce' },
+                { title: 'Agentforce Services Overview', href: '/agentforce' },
                 { title: 'Book a strategy call', href: '/book-a-call' },
               ].map(link => (
-                <Link key={link.href} href={link.href} className="group flex items-center gap-2 p-4 bg-card border border-border rounded-xl hover:border-accent/40 hover:shadow-md transition-all text-sm font-medium text-foreground">
+                <Link key={link.href} href={link.href} className="group flex items-center gap-2 p-4 bg-card border border-border rounded-xl hover:border-accent/40 hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm font-medium text-foreground">
                   <span className="flex-1">{link.title}</span>
-                  <ArrowRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground group-hover:text-accent transition-colors" />
+                  <ArrowRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground group-hover:text-accent group-hover:translate-x-0.5 transition-all" />
                 </Link>
               ))}
             </div>
@@ -383,15 +335,17 @@ export default function Page() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-20 relative overflow-hidden">
+        <section className="py-32 relative overflow-hidden">
           <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #050D1A 0%, #091526 60%, #0C1E38 100%)' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] pointer-events-none" style={{ background: `radial-gradient(ellipse, ${SF_BLUE}18 0%, transparent 70%)` }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] pointer-events-none" style={{ background: `radial-gradient(ellipse, ${SF_BLUE}20 0%, transparent 65%)` }} />
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(0,161,224,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,161,224,1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-            <p className="text-sm font-mono font-semibold tracking-widest uppercase mb-4" style={{ color: SF_BLUE }}>Agentforce Implementation · New York</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">Running Salesforce? Agentforce is the right call.</h2>
-            <p className="text-white/50 mb-8 max-w-2xl mx-auto leading-relaxed">Kovil AI deploys Agentforce inside Salesforce orgs end-to-end — from strategy through to production agents in fixed-price sprints. We&apos;ve helped Sales Cloud, Service Cloud, and Marketing Cloud customers get autonomous AI into production in 6–8 weeks.</p>
-            <Link href="/book-a-call" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white transition-all hover:-translate-y-0.5" style={{ background: SF_BLUE, boxShadow: `0 8px 32px ${SF_BLUE}45` }}>
-              Book a free Agentforce assessment <ArrowRight className="h-4 w-4" />
+            <p className="text-sm font-mono font-semibold tracking-widest uppercase mb-5" style={{ color: SF_BLUE }}>Agentforce Implementation · New York</p>
+            <h2 className="font-display text-4xl md:text-6xl font-black text-white tracking-tight mb-6 leading-tight">Running Salesforce?<br className="hidden md:block" /> Agentforce is the call.</h2>
+            <p className="text-white/40 mb-12 max-w-xl mx-auto leading-relaxed text-lg">Kovil AI deploys Agentforce inside Salesforce orgs end-to-end — fixed-price sprints, 6–8 weeks to production agents.</p>
+            <Link href="/book-a-call" className="inline-flex items-center gap-3 px-10 py-5 rounded-full font-bold text-white transition-all hover:-translate-y-1 hover:shadow-2xl text-base" style={{ background: `linear-gradient(135deg, ${SF_BLUE} 0%, #0070D2 100%)`, boxShadow: `0 10px 40px ${SF_BLUE}55` }}>
+              Book a free Agentforce assessment <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </section>
