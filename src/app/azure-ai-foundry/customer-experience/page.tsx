@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import SectionHubTemplate from '@/src/components/hub/SectionHubTemplate'
-import { Headphones, Sparkles, Globe } from 'lucide-react'
 import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 
 const AZURE = '#0078D4'
@@ -62,9 +61,9 @@ const data: SectionHubData = {
   headlineAccent: 'on Azure AI Foundry',
   description: 'AI agents that resolve customer queries autonomously, personalise at scale, and engage consistently across every channel — built on Azure OpenAI, Copilot Studio, and Azure AI Search.',
   cards: [
-    { href: '/azure-ai-foundry/customer-experience/ai-customer-service-agent', icon: Headphones, color: AZURE, title: 'AI Customer Service Agent', description: 'Resolve 70% of customer queries autonomously with Azure OpenAI-powered service agents — integrated into your CRM, knowledge base, and support channels.' },
-    { href: '/azure-ai-foundry/customer-experience/personalised-recommendation-agent', icon: Sparkles, color: '#F59E0B', title: 'Personalised Recommendation Agent', description: 'Real-time product and content recommendations using Azure OpenAI embeddings and vector search — personalised to individual user behaviour and preferences.' },
-    { href: '/azure-ai-foundry/customer-experience/omnichannel-engagement-agent', icon: Globe, color: '#34D399', title: 'Omnichannel Engagement Agent', description: 'Consistent AI engagement across Teams, web, email, and SMS channels using Microsoft Copilot Studio — meeting customers wherever they choose to interact.' },
+    { href: '/azure-ai-foundry/customer-experience/ai-customer-service-agent', icon: 'Headphones', color: AZURE, title: 'AI Customer Service Agent', description: 'Resolve 70% of customer queries autonomously with Azure OpenAI-powered service agents — integrated into your CRM, knowledge base, and support channels.' },
+    { href: '/azure-ai-foundry/customer-experience/personalised-recommendation-agent', icon: 'Sparkles', color: '#F59E0B', title: 'Personalised Recommendation Agent', description: 'Real-time product and content recommendations using Azure OpenAI embeddings and vector search — personalised to individual user behaviour and preferences.' },
+    { href: '/azure-ai-foundry/customer-experience/omnichannel-engagement-agent', icon: 'Globe', color: '#34D399', title: 'Omnichannel Engagement Agent', description: 'Consistent AI engagement across Teams, web, email, and SMS channels using Microsoft Copilot Studio — meeting customers wherever they choose to interact.' },
   ],
   ctaHeadline: 'Ready to improve your customer experience with AI?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the highest-impact use case and give you a fixed-price delivery plan.',

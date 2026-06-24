@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import SectionHubTemplate from '@/src/components/hub/SectionHubTemplate'
-import { Compass, Zap, Bot, Search, Database, Wrench } from 'lucide-react'
 import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 
 const G_BLUE = '#4285F4'
@@ -73,12 +72,12 @@ const data: SectionHubData = {
     { value: '2–4 wks', label: 'To production' },
   ],
   cards: [
-    { href: '/vertex-ai/services/vertex-ai-strategy-readiness', icon: Compass, color: G_BLUE, title: 'Vertex AI Strategy & Readiness', description: 'Enterprise AI readiness assessment and Vertex AI architecture planning — defining your data strategy, model selection, and deployment roadmap before you build.' },
-    { href: '/vertex-ai/services/gemini-integration', icon: Zap, color: G_RED, title: 'Gemini Integration', description: 'Integrate Gemini 1.5 Pro, Gemini Flash, and multimodal models into your enterprise applications via Vertex AI — with grounding, function calling, and production safety controls.' },
-    { href: '/vertex-ai/services/vertex-agent-builder', icon: Bot, color: G_BLUE, title: 'Vertex AI Agent Builder', description: 'Production multi-agent applications using Vertex AI Agent Builder and Gemini — orchestrating complex workflows with memory, tools, and grounding on Google Cloud.' },
-    { href: '/vertex-ai/services/vertex-ai-search-rag', icon: Search, color: '#F59E0B', title: 'Vertex AI Search & RAG', description: 'Enterprise search and retrieval-augmented generation using Vertex AI Search, Vector Search, and Gemini — making your data queryable in natural language.' },
-    { href: '/vertex-ai/services/bigquery-ml-data-agents', icon: Database, color: G_GREEN, title: 'BigQuery ML & Data Agents', description: 'AI agents grounded in your BigQuery data — natural language to SQL, automated analytics, and data intelligence agents powered by Gemini and BigQuery ML.' },
-    { href: '/vertex-ai/services/vertex-ai-rescue-optimisation', icon: Wrench, color: '#EF4444', title: 'Vertex AI Rescue & Optimisation', description: 'Inheriting a stalled or underperforming Vertex AI project? We audit, optimise, and deliver — covering latency, cost, hallucination rates, and observability.' },
+    { href: '/vertex-ai/services/vertex-ai-strategy-readiness', icon: 'Compass', color: G_BLUE, title: 'Vertex AI Strategy & Readiness', description: 'Enterprise AI readiness assessment and Vertex AI architecture planning — defining your data strategy, model selection, and deployment roadmap before you build.' },
+    { href: '/vertex-ai/services/gemini-integration', icon: 'Zap', color: G_RED, title: 'Gemini Integration', description: 'Integrate Gemini 1.5 Pro, Gemini Flash, and multimodal models into your enterprise applications via Vertex AI — with grounding, function calling, and production safety controls.' },
+    { href: '/vertex-ai/services/vertex-agent-builder', icon: 'Bot', color: G_BLUE, title: 'Vertex AI Agent Builder', description: 'Production multi-agent applications using Vertex AI Agent Builder and Gemini — orchestrating complex workflows with memory, tools, and grounding on Google Cloud.' },
+    { href: '/vertex-ai/services/vertex-ai-search-rag', icon: 'Search', color: '#F59E0B', title: 'Vertex AI Search & RAG', description: 'Enterprise search and retrieval-augmented generation using Vertex AI Search, Vector Search, and Gemini — making your data queryable in natural language.' },
+    { href: '/vertex-ai/services/bigquery-ml-data-agents', icon: 'Database', color: G_GREEN, title: 'BigQuery ML & Data Agents', description: 'AI agents grounded in your BigQuery data — natural language to SQL, automated analytics, and data intelligence agents powered by Gemini and BigQuery ML.' },
+    { href: '/vertex-ai/services/vertex-ai-rescue-optimisation', icon: 'Wrench', color: '#EF4444', title: 'Vertex AI Rescue & Optimisation', description: 'Inheriting a stalled or underperforming Vertex AI project? We audit, optimise, and deliver — covering latency, cost, hallucination rates, and observability.' },
   ],
   ctaHeadline: 'Ready to build on Vertex AI?',
   ctaBody: 'Book a free 30-minute architecture call. We will give you a concrete technical approach and a fixed-price delivery plan.',

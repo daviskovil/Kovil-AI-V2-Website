@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import SectionHubTemplate from '@/src/components/hub/SectionHubTemplate'
-import { Package, TrendingUp, Eye } from 'lucide-react'
 import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 
 const G_BLUE = '#4285F4'
@@ -64,9 +63,9 @@ const data: SectionHubData = {
   headlineAccent: 'on Vertex AI',
   description: 'AI agents that monitor and optimise your operations — supply chain visibility, predictive analytics over BigQuery, and computer vision quality control powered by Vertex AI and Gemini.',
   cards: [
-    { href: '/vertex-ai/operations/supply-chain-intelligence', icon: Package, color: G_BLUE, title: 'Supply Chain Intelligence Agent', description: 'End-to-end supply chain visibility and risk detection using Vertex AI and BigQuery — demand forecasting, disruption alerts, and supplier performance monitoring.' },
-    { href: '/vertex-ai/operations/predictive-analytics-agent', icon: TrendingUp, color: G_RED, title: 'Predictive Analytics Agent', description: 'Operational forecasting agents grounded in BigQuery data — churn prediction, demand sensing, and equipment failure forecasting using Vertex AI AutoML.' },
-    { href: '/vertex-ai/operations/quality-control-vision-agent', icon: Eye, color: G_GREEN, title: 'Quality Control Vision Agent', description: 'Computer vision quality inspection using Vertex AI Vision AI and Gemini multimodal — automated defect detection and visual inspection for manufacturing and logistics.' },
+    { href: '/vertex-ai/operations/supply-chain-intelligence', icon: 'Package', color: G_BLUE, title: 'Supply Chain Intelligence Agent', description: 'End-to-end supply chain visibility and risk detection using Vertex AI and BigQuery — demand forecasting, disruption alerts, and supplier performance monitoring.' },
+    { href: '/vertex-ai/operations/predictive-analytics-agent', icon: 'TrendingUp', color: G_RED, title: 'Predictive Analytics Agent', description: 'Operational forecasting agents grounded in BigQuery data — churn prediction, demand sensing, and equipment failure forecasting using Vertex AI AutoML.' },
+    { href: '/vertex-ai/operations/quality-control-vision-agent', icon: 'Eye', color: G_GREEN, title: 'Quality Control Vision Agent', description: 'Computer vision quality inspection using Vertex AI Vision AI and Gemini multimodal — automated defect detection and visual inspection for manufacturing and logistics.' },
   ],
   ctaHeadline: 'Ready to bring AI intelligence to your operations?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the right operational use case and give you a fixed-price delivery plan on Vertex AI.',

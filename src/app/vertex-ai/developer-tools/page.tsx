@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import SectionHubTemplate from '@/src/components/hub/SectionHubTemplate'
-import { Code2, GitBranch, Plug } from 'lucide-react'
 import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 
 const G_BLUE = '#4285F4'
@@ -64,9 +63,9 @@ const data: SectionHubData = {
   headlineAccent: 'on Vertex AI',
   description: 'AI agents that supercharge your engineering team — Gemini-powered code generation, Vertex AI Pipelines MLOps automation, and AI-driven API testing on Google Cloud.',
   cards: [
-    { href: '/vertex-ai/developer-tools/code-generation-agent', icon: Code2, color: G_BLUE, title: 'Code Generation Agent', description: 'Enterprise code generation and review using Gemini Code Assist and Vertex AI — trained on your codebase, documentation, and engineering standards for in-context completions.' },
-    { href: '/vertex-ai/developer-tools/mlops-pipeline-agent', icon: GitBranch, color: G_RED, title: 'MLOps Pipeline Agent', description: 'Automated model training, evaluation, deployment, and monitoring using Vertex AI Pipelines and Kubeflow — continuous delivery for your ML models.' },
-    { href: '/vertex-ai/developer-tools/api-testing-agent', icon: Plug, color: G_GREEN, title: 'API Testing Agent', description: 'AI-powered API test generation and regression testing using Gemini — automatically generating test cases from OpenAPI specs and catching breaking changes.' },
+    { href: '/vertex-ai/developer-tools/code-generation-agent', icon: 'Code2', color: G_BLUE, title: 'Code Generation Agent', description: 'Enterprise code generation and review using Gemini Code Assist and Vertex AI — trained on your codebase, documentation, and engineering standards for in-context completions.' },
+    { href: '/vertex-ai/developer-tools/mlops-pipeline-agent', icon: 'GitBranch', color: G_RED, title: 'MLOps Pipeline Agent', description: 'Automated model training, evaluation, deployment, and monitoring using Vertex AI Pipelines and Kubeflow — continuous delivery for your ML models.' },
+    { href: '/vertex-ai/developer-tools/api-testing-agent', icon: 'Plug', color: G_GREEN, title: 'API Testing Agent', description: 'AI-powered API test generation and regression testing using Gemini — automatically generating test cases from OpenAPI specs and catching breaking changes.' },
   ],
   ctaHeadline: 'Ready to accelerate your engineering team with Vertex AI?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the right developer tool use case and give you a fixed-price delivery plan.',

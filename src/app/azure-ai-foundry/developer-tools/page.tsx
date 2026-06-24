@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import SectionHubTemplate from '@/src/components/hub/SectionHubTemplate'
-import { Code2, Plug, GitBranch } from 'lucide-react'
 import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 
 const AZURE = '#0078D4'
@@ -62,9 +61,9 @@ const data: SectionHubData = {
   headlineAccent: 'on Azure AI Foundry',
   description: 'AI agents that accelerate your engineering team — from internal developer copilots trained on your codebase to automated API integration and MLOps pipeline management on Azure.',
   cards: [
-    { href: '/azure-ai-foundry/developer-tools/internal-developer-copilot', icon: Code2, color: AZURE, title: 'Internal Developer Copilot', description: 'GitHub Copilot-integrated internal developer assistant powered by Azure OpenAI and your internal codebase, documentation, and engineering standards.' },
-    { href: '/azure-ai-foundry/developer-tools/api-integration-agent', icon: Plug, color: '#8B5CF6', title: 'API Integration Agent', description: 'Automate API discovery, documentation, and integration testing using Azure API Management and OpenAPI specifications — reducing integration overhead.' },
-    { href: '/azure-ai-foundry/developer-tools/mlops-automation-agent', icon: GitBranch, color: '#34D399', title: 'MLOps Automation Agent', description: 'Automate model deployment, monitoring, and retraining pipelines with Azure Prompt Flow and MLflow — continuous delivery for your AI systems.' },
+    { href: '/azure-ai-foundry/developer-tools/internal-developer-copilot', icon: 'Code2', color: AZURE, title: 'Internal Developer Copilot', description: 'GitHub Copilot-integrated internal developer assistant powered by Azure OpenAI and your internal codebase, documentation, and engineering standards.' },
+    { href: '/azure-ai-foundry/developer-tools/api-integration-agent', icon: 'Plug', color: '#8B5CF6', title: 'API Integration Agent', description: 'Automate API discovery, documentation, and integration testing using Azure API Management and OpenAPI specifications — reducing integration overhead.' },
+    { href: '/azure-ai-foundry/developer-tools/mlops-automation-agent', icon: 'GitBranch', color: '#34D399', title: 'MLOps Automation Agent', description: 'Automate model deployment, monitoring, and retraining pipelines with Azure Prompt Flow and MLflow — continuous delivery for your AI systems.' },
   ],
   ctaHeadline: 'Ready to accelerate your engineering team with AI?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the right developer tool use case and give you a fixed-price delivery plan.',

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import SectionHubTemplate from '@/src/components/hub/SectionHubTemplate'
-import { Database, MessageSquare, FolderOpen, Zap, Settings, ClipboardList } from 'lucide-react'
 import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 
 const AZURE = '#0078D4'
@@ -65,12 +64,12 @@ const data: SectionHubData = {
   headlineAccent: 'Integrations',
   description: 'Connect Azure AI Foundry agents to your enterprise systems of record — Dynamics 365, Microsoft 365, SharePoint, Power Platform, SAP, and ServiceNow — for AI grounded in real operational data.',
   cards: [
-    { href: '/azure-ai-foundry/integrations/dynamics-365', icon: Database, color: AZURE, title: 'Azure AI Foundry + Dynamics 365', description: 'Connect Azure AI Foundry agents to Dynamics 365 CRM and ERP — giving agents real-time access to customer records, opportunities, cases, and finance data.' },
-    { href: '/azure-ai-foundry/integrations/microsoft-365-teams', icon: MessageSquare, color: '#0EA5E9', title: 'Azure AI Foundry + Microsoft 365 & Teams', description: 'Surface AI agents directly in Microsoft Teams, Outlook, and the Microsoft 365 productivity suite — meeting users where they already work.' },
-    { href: '/azure-ai-foundry/integrations/sharepoint', icon: FolderOpen, color: '#0078D4', title: 'Azure AI Search + SharePoint', description: 'Build AI knowledge bases over SharePoint document libraries using Azure AI Search and RAG — making internal documents queryable in natural language.' },
-    { href: '/azure-ai-foundry/integrations/power-platform', icon: Zap, color: '#8B5CF6', title: 'Azure AI Foundry + Power Platform', description: 'Embed Azure AI agents in Power Apps and Power Automate flows — extending AI capabilities to low-code business processes and citizen developers.' },
-    { href: '/azure-ai-foundry/integrations/sap', icon: Settings, color: '#F59E0B', title: 'Azure AI Foundry + SAP', description: 'Connect Azure AI Foundry to SAP S/4HANA and Business Suite — enabling AI-powered ERP automation, procurement intelligence, and process agents.' },
-    { href: '/azure-ai-foundry/integrations/servicenow', icon: ClipboardList, color: '#EF4444', title: 'Azure AI Foundry + ServiceNow', description: 'Automate ITSM workflows, deflect service desk tickets, and accelerate incident resolution with Azure AI agents integrated into the ServiceNow platform.' },
+    { href: '/azure-ai-foundry/integrations/dynamics-365', icon: 'Database', color: AZURE, title: 'Azure AI Foundry + Dynamics 365', description: 'Connect Azure AI Foundry agents to Dynamics 365 CRM and ERP — giving agents real-time access to customer records, opportunities, cases, and finance data.' },
+    { href: '/azure-ai-foundry/integrations/microsoft-365-teams', icon: 'MessageSquare', color: '#0EA5E9', title: 'Azure AI Foundry + Microsoft 365 & Teams', description: 'Surface AI agents directly in Microsoft Teams, Outlook, and the Microsoft 365 productivity suite — meeting users where they already work.' },
+    { href: '/azure-ai-foundry/integrations/sharepoint', icon: 'FolderOpen', color: AZURE, title: 'Azure AI Search + SharePoint', description: 'Build AI knowledge bases over SharePoint document libraries using Azure AI Search and RAG — making internal documents queryable in natural language.' },
+    { href: '/azure-ai-foundry/integrations/power-platform', icon: 'Zap', color: '#8B5CF6', title: 'Azure AI Foundry + Power Platform', description: 'Embed Azure AI agents in Power Apps and Power Automate flows — extending AI capabilities to low-code business processes and citizen developers.' },
+    { href: '/azure-ai-foundry/integrations/sap', icon: 'Settings', color: '#F59E0B', title: 'Azure AI Foundry + SAP', description: 'Connect Azure AI Foundry to SAP S/4HANA and Business Suite — enabling AI-powered ERP automation, procurement intelligence, and process agents.' },
+    { href: '/azure-ai-foundry/integrations/servicenow', icon: 'ClipboardList', color: '#EF4444', title: 'Azure AI Foundry + ServiceNow', description: 'Automate ITSM workflows, deflect service desk tickets, and accelerate incident resolution with Azure AI agents integrated into the ServiceNow platform.' },
   ],
   ctaHeadline: 'Need a system that isn\'t listed here?',
   ctaBody: 'We integrate Azure AI Foundry with any API-accessible enterprise system. Book a call and we will scope the integration.',

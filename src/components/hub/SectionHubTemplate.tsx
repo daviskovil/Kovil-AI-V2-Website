@@ -1,15 +1,60 @@
 'use client'
 
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import {
+  ArrowRight, Compass, Cpu, Zap, Bot, Search, Wrench, Settings, BarChart2,
+  ArrowLeftRight, Code2, Database, MessageSquare, FolderOpen, ClipboardList,
+  FileText, BookOpen, Headphones, Sparkles, Globe, Package, Shield, Plug,
+  GitBranch, TrendingUp, Eye, Building2, Heart, Factory, ShoppingCart,
+  Scale, DollarSign, Lock,
+} from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { motion } from "motion/react"
 import { Button } from "@/src/components/ui/button"
 import { openCalendly } from "@/src/lib/calendly"
 
+// Icon registry — maps string names to Lucide components
+// Server Components cannot pass functions as props to Client Components,
+// so hub pages pass an icon name string and we resolve it here.
+const ICON_MAP: Record<string, LucideIcon> = {
+  ArrowLeftRight,
+  BarChart2,
+  BookOpen,
+  Bot,
+  Building2,
+  ClipboardList,
+  Code2,
+  Compass,
+  Cpu,
+  Database,
+  DollarSign,
+  Eye,
+  Factory,
+  FileText,
+  FolderOpen,
+  GitBranch,
+  Globe,
+  Heart,
+  Headphones,
+  Lock,
+  MessageSquare,
+  Package,
+  Plug,
+  Scale,
+  Search,
+  Settings,
+  Shield,
+  ShoppingCart,
+  Sparkles,
+  TrendingUp,
+  Wrench,
+  Zap,
+}
+
 export interface HubCard {
   href: string
-  icon: LucideIcon
+  /** Name of a Lucide icon (e.g. "Compass"). Resolved internally to avoid passing functions to Client Component. */
+  icon: string
   color: string
   title: string
   description: string
@@ -103,47 +148,50 @@ export default function SectionHubTemplate({ data }: { data: SectionHubData }) {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.cards.map((card, i) => (
-              <motion.div
-                key={card.href}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-              >
-                <Link
-                  href={card.href}
-                  className="group flex flex-col bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300 h-full"
-                  style={{ borderLeftWidth: "4px", borderLeftColor: card.color }}
+            {data.cards.map((card, i) => {
+              const IconComponent = ICON_MAP[card.icon] ?? Settings
+              return (
+                <motion.div
+                  key={card.href}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
                 >
-                  <div
-                    className="h-10 w-10 rounded-lg flex items-center justify-center mb-4 shrink-0"
-                    style={{ background: `${card.color}15`, border: `1px solid ${card.color}30` }}
+                  <Link
+                    href={card.href}
+                    className="group flex flex-col bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300 h-full"
+                    style={{ borderLeftWidth: "4px", borderLeftColor: card.color }}
                   >
-                    <card.icon className="h-5 w-5" style={{ color: card.color }} />
-                  </div>
+                    <div
+                      className="h-10 w-10 rounded-lg flex items-center justify-center mb-4 shrink-0"
+                      style={{ background: `${card.color}15`, border: `1px solid ${card.color}30` }}
+                    >
+                      <IconComponent className="h-5 w-5" style={{ color: card.color }} />
+                    </div>
 
-                  {card.tag && (
-                    <span className="text-[10px] font-semibold uppercase tracking-widest mb-2" style={{ color: card.color }}>
-                      {card.tag}
-                    </span>
-                  )}
+                    {card.tag && (
+                      <span className="text-[10px] font-semibold uppercase tracking-widest mb-2" style={{ color: card.color }}>
+                        {card.tag}
+                      </span>
+                    )}
 
-                  <h2 className="font-display font-bold text-base mb-2 group-hover:text-accent transition-colors leading-snug">
-                    {card.title}
-                  </h2>
+                    <h2 className="font-display font-bold text-base mb-2 group-hover:text-accent transition-colors leading-snug">
+                      {card.title}
+                    </h2>
 
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{card.description}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">{card.description}</p>
 
-                  <div
-                    className="flex items-center gap-1.5 text-xs font-semibold mt-4 opacity-0 group-hover:opacity-100 transition-opacity"
-                    style={{ color: card.color }}
-                  >
-                    Learn more <ArrowRight className="h-3 w-3" />
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                    <div
+                      className="flex items-center gap-1.5 text-xs font-semibold mt-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                      style={{ color: card.color }}
+                    >
+                      Learn more <ArrowRight className="h-3 w-3" />
+                    </div>
+                  </Link>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>

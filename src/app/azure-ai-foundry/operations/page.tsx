@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import SectionHubTemplate from '@/src/components/hub/SectionHubTemplate'
-import { Wrench, Package, Shield } from 'lucide-react'
 import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 
 const AZURE = '#0078D4'
@@ -62,9 +61,9 @@ const data: SectionHubData = {
   headlineAccent: 'on Azure AI Foundry',
   description: 'AI agents that monitor, predict, and optimise your operational processes — connected to IoT data, supply chain systems, and compliance frameworks via Azure AI Foundry.',
   cards: [
-    { href: '/azure-ai-foundry/operations/predictive-maintenance-agent', icon: Wrench, color: '#F59E0B', title: 'Predictive Maintenance Agent', description: 'IoT-connected predictive maintenance using Azure IoT Hub, time-series data, and Azure OpenAI analysis — detecting failure signals before equipment goes down.' },
-    { href: '/azure-ai-foundry/operations/supply-chain-intelligence-agent', icon: Package, color: AZURE, title: 'Supply Chain Intelligence Agent', description: 'End-to-end supply chain visibility, demand forecasting, and risk detection using Azure OpenAI and Azure Data Factory — reducing disruption and overstocking.' },
-    { href: '/azure-ai-foundry/operations/compliance-monitoring-agent', icon: Shield, color: '#34D399', title: 'Compliance Monitoring Agent', description: 'Automated regulatory compliance monitoring using Azure Monitor, OpenAI analysis, and alert workflows — catching compliance gaps before they become violations.' },
+    { href: '/azure-ai-foundry/operations/predictive-maintenance-agent', icon: 'Wrench', color: '#F59E0B', title: 'Predictive Maintenance Agent', description: 'IoT-connected predictive maintenance using Azure IoT Hub, time-series data, and Azure OpenAI analysis — detecting failure signals before equipment goes down.' },
+    { href: '/azure-ai-foundry/operations/supply-chain-intelligence-agent', icon: 'Package', color: AZURE, title: 'Supply Chain Intelligence Agent', description: 'End-to-end supply chain visibility, demand forecasting, and risk detection using Azure OpenAI and Azure Data Factory — reducing disruption and overstocking.' },
+    { href: '/azure-ai-foundry/operations/compliance-monitoring-agent', icon: 'Shield', color: '#34D399', title: 'Compliance Monitoring Agent', description: 'Automated regulatory compliance monitoring using Azure Monitor, OpenAI analysis, and alert workflows — catching compliance gaps before they become violations.' },
   ],
   ctaHeadline: 'Ready to bring AI intelligence to your operations?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the right operational use case and give you a fixed-price delivery plan.',

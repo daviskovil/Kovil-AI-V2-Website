@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import SectionHubTemplate from '@/src/components/hub/SectionHubTemplate'
-import { FileText, BookOpen, Settings } from 'lucide-react'
 import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 
 const AZURE = '#0078D4'
@@ -62,9 +61,9 @@ const data: SectionHubData = {
   headlineAccent: 'on Azure AI Foundry',
   description: 'Production-ready AI agents for the highest-value enterprise automation patterns — document processing, knowledge management, and ERP process intelligence — all built on Azure AI Foundry.',
   cards: [
-    { href: '/azure-ai-foundry/enterprise/document-intelligence-agent', icon: FileText, color: AZURE, title: 'Document Intelligence Agent', description: 'Automated document extraction, classification, and processing using Azure AI Document Intelligence — handling invoices, contracts, forms, and unstructured documents at scale.' },
-    { href: '/azure-ai-foundry/enterprise/enterprise-knowledge-agent', icon: BookOpen, color: '#8B5CF6', title: 'Enterprise Knowledge Agent', description: 'Unified enterprise search and Q&A agent over SharePoint, Confluence, and internal knowledge bases — powered by Azure AI Search RAG and GPT-4o.' },
-    { href: '/azure-ai-foundry/enterprise/erp-process-agent', icon: Settings, color: '#34D399', title: 'ERP Process Automation Agent', description: 'Automate ERP approval workflows, data entry, and process monitoring with Azure AI connected to Dynamics 365 — reducing manual process overhead.' },
+    { href: '/azure-ai-foundry/enterprise/document-intelligence-agent', icon: 'FileText', color: AZURE, title: 'Document Intelligence Agent', description: 'Automated document extraction, classification, and processing using Azure AI Document Intelligence — handling invoices, contracts, forms, and unstructured documents at scale.' },
+    { href: '/azure-ai-foundry/enterprise/enterprise-knowledge-agent', icon: 'BookOpen', color: '#8B5CF6', title: 'Enterprise Knowledge Agent', description: 'Unified enterprise search and Q&A agent over SharePoint, Confluence, and internal knowledge bases — powered by Azure AI Search RAG and GPT-4o.' },
+    { href: '/azure-ai-foundry/enterprise/erp-process-agent', icon: 'Settings', color: '#34D399', title: 'ERP Process Automation Agent', description: 'Automate ERP approval workflows, data entry, and process monitoring with Azure AI connected to Dynamics 365 — reducing manual process overhead.' },
   ],
   ctaHeadline: 'Ready to automate your highest-volume enterprise process?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the right use case and give you a fixed-price delivery plan.',

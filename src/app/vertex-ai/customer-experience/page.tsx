@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import SectionHubTemplate from '@/src/components/hub/SectionHubTemplate'
-import { MessageSquare, Sparkles, Headphones } from 'lucide-react'
 import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 
 const G_BLUE = '#4285F4'
@@ -64,9 +63,9 @@ const data: SectionHubData = {
   headlineAccent: 'on Vertex AI',
   description: 'AI agents that transform customer interactions — conversational agents that understand intent, personalisation engines that predict needs, and contact centre AI that deflects volume at scale.',
   cards: [
-    { href: '/vertex-ai/customer-experience/conversational-ai-agent', icon: MessageSquare, color: G_BLUE, title: 'Conversational AI Agent', description: 'Omnichannel conversational agents built on Vertex AI Agent Builder and Dialogflow CX — resolving customer queries autonomously with Gemini-powered understanding.' },
-    { href: '/vertex-ai/customer-experience/personalisation-engine', icon: Sparkles, color: G_RED, title: 'Personalisation Engine', description: 'Real-time personalisation using Vertex AI Recommendations AI and BigQuery ML — serving the right product, content, or offer to each user at the right moment.' },
-    { href: '/vertex-ai/customer-experience/contact-centre-ai', icon: Headphones, color: G_GREEN, title: 'Contact Centre AI', description: 'Google Cloud Contact Centre AI (CCAI) implementation — Agent Assist, automated summarisation, and virtual agents that reduce call handling time and cost.' },
+    { href: '/vertex-ai/customer-experience/conversational-ai-agent', icon: 'MessageSquare', color: G_BLUE, title: 'Conversational AI Agent', description: 'Omnichannel conversational agents built on Vertex AI Agent Builder and Dialogflow CX — resolving customer queries autonomously with Gemini-powered understanding.' },
+    { href: '/vertex-ai/customer-experience/personalisation-engine', icon: 'Sparkles', color: G_RED, title: 'Personalisation Engine', description: 'Real-time personalisation using Vertex AI Recommendations AI and BigQuery ML — serving the right product, content, or offer to each user at the right moment.' },
+    { href: '/vertex-ai/customer-experience/contact-centre-ai', icon: 'Headphones', color: G_GREEN, title: 'Contact Centre AI', description: 'Google Cloud Contact Centre AI (CCAI) implementation — Agent Assist, automated summarisation, and virtual agents that reduce call handling time and cost.' },
   ],
   ctaHeadline: 'Ready to transform your customer experience with Vertex AI?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the right CX use case and give you a fixed-price delivery plan.',
