@@ -47,6 +47,20 @@ const serviceSchema = {
     name: 'Kovil AI',
     url: 'https://kovil.ai',
     logo: 'https://kovil.ai/kovil-logo-symbol-orange.webp',
+    telephone: '+16465359141',
+    sameAs: [
+      'https://www.linkedin.com/company/kovil-ai/',
+      'https://clutch.co/profile/kovil-ai',
+      'https://www.crunchbase.com/organization/kovil-ai',
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '734 Franklin Ave',
+      addressLocality: 'Garden City',
+      addressRegion: 'NY',
+      postalCode: '11530',
+      addressCountry: 'US',
+    },
   },
   serviceType: 'Salesforce Agentforce Sales Cloud Implementation',
   url: 'https://kovil.ai/agentforce/sales-cloud',
@@ -166,6 +180,14 @@ const webPageSchema = {
   description:
     'Production Agentforce Sales Cloud deployments — SDR agents, pipeline health monitors, and quote automation. Fixed-price 2–3 week sprints.',
   url: 'https://kovil.ai/agentforce/sales-cloud',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
   speakable: {
     '@type': 'SpeakableSpecification',
     cssSelector: ['h1', 'h2', 'h3', 'p'],

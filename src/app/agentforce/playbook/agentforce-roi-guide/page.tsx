@@ -55,7 +55,7 @@ const articleSchema = {
     '@type': 'WebPage',
     '@id': 'https://kovil.ai/agentforce/playbook/agentforce-roi-guide',
   },
-  image: 'https://kovil.ai/og-agentforce.png',
+  image: { '@type': 'ImageObject', url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630 },
 }
 
 const faqSchema = {
@@ -152,9 +152,17 @@ const webPageSchema = {
   description:
     'Complete Agentforce ROI guide — cost savings model, revenue uplift calculation, time-to-ROI analysis, and real deployment numbers from production.',
   url: 'https://kovil.ai/agentforce/playbook/agentforce-roi-guide',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
   speakable: {
     '@type': 'SpeakableSpecification',
-    cssSelector: ['h1', 'h2', 'p'],
+    cssSelector: ['h1', 'h2', 'h3', 'p'],
   },
 }
 

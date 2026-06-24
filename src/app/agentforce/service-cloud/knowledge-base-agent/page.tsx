@@ -53,11 +53,38 @@ const serviceSchema = {
     name: 'Kovil AI',
     url: 'https://kovil.ai',
     logo: 'https://kovil.ai/kovil-logo-symbol-orange.webp',
+    sameAs: [
+      'https://www.linkedin.com/company/kovil-ai/',
+      'https://clutch.co/profile/kovil-ai',
+      'https://www.crunchbase.com/organization/kovil-ai',
+    ],
   },
   serviceType: 'Salesforce Agentforce Implementation',
   url: 'https://kovil.ai/agentforce/service-cloud/knowledge-base-agent',
   areaServed: ['New York', 'United States', 'Worldwide'],
+  isPartOf: {
+    '@type': 'Service',
+    name: 'Agentforce for Service Cloud',
+    url: 'https://kovil.ai/agentforce/service-cloud',
+  },
   offers: { '@type': 'Offer', description: 'Fixed-price 3-week sprint with 2-week risk-free pilot' },
+}
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Agentforce Knowledge Base Agent — AI-Powered Article Surfacing & Gap Detection | Kovil AI',
+  description: 'Agentforce knowledge agent that surfaces relevant articles during case resolution, detects documentation gaps from unresolved cases, and drafts new articles from resolved case patterns.',
+  url: 'https://kovil.ai/agentforce/service-cloud/knowledge-base-agent',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', 'h2', 'h3', 'p'] },
 }
 
 const faqSchema = {
@@ -116,6 +143,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <KnowledgeBaseAgentPage />
     </>
   )

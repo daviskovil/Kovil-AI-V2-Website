@@ -175,6 +175,26 @@ const breadcrumbSchema = {
   ],
 }
 
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Agentforce Implementation Partner — Build & Deploy AI Agents | Kovil AI',
+  description: 'Kovil AI is a specialist Agentforce implementation partner in New York. We design, build, and deploy Salesforce Agentforce AI agents for Sales Cloud, Service Cloud, and Marketing Cloud — in fixed-price 2-week sprints.',
+  url: 'https://kovil.ai/agentforce',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', 'h2', 'h3', 'p'],
+  },
+}
+
 export default function Page() {
   return (
     <>
@@ -189,6 +209,10 @@ export default function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
       <AgentforcePage />
     </>

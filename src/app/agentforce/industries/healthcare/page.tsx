@@ -61,9 +61,18 @@ const serviceSchema = {
     name: 'Kovil AI',
     url: 'https://kovil.ai',
     logo: 'https://kovil.ai/kovil-logo-symbol-orange.webp',
+    telephone: '+16465359141',
+    sameAs: [
+      'https://www.linkedin.com/company/kovil-ai/',
+      'https://clutch.co/profile/kovil-ai',
+      'https://www.crunchbase.com/organization/kovil-ai',
+    ],
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'New York',
+      streetAddress: '734 Franklin Ave',
+      addressLocality: 'Garden City',
+      addressRegion: 'NY',
+      postalCode: '11530',
       addressCountry: 'US',
     },
   },
@@ -205,7 +214,8 @@ const breadcrumbSchema = {
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kovil.ai' },
     { '@type': 'ListItem', position: 2, name: 'Agentforce', item: 'https://kovil.ai/agentforce' },
-    { '@type': 'ListItem', position: 3, name: 'Healthcare & Life Sciences', item: 'https://kovil.ai/agentforce/industries/healthcare' },
+    { '@type': 'ListItem', position: 3, name: 'Industries', item: 'https://kovil.ai/agentforce/industries' },
+    { '@type': 'ListItem', position: 4, name: 'Healthcare & Life Sciences', item: 'https://kovil.ai/agentforce/industries/healthcare' },
   ],
 }
 
@@ -215,9 +225,17 @@ const webPageSchema = {
   name: 'Agentforce for Healthcare & Life Sciences | Kovil AI',
   description: 'Production Agentforce for healthcare — patient scheduling automation, prior authorization agents, care coordination, and billing inquiry resolution.',
   url: 'https://kovil.ai/agentforce/industries/healthcare',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
   speakable: {
     '@type': 'SpeakableSpecification',
-    cssSelector: ['h1', 'h2', '#use-cases', '#compliance', '#faq'],
+    cssSelector: ['h1', 'h2', 'h3', 'p'],
   },
 }
 

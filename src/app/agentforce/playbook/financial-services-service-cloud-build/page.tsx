@@ -58,10 +58,28 @@ const articleSchema = {
     name: 'Kovil AI',
     logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
   },
+  image: { '@type': 'ImageObject', url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630 },
   url: 'https://kovil.ai/agentforce/playbook/financial-services-service-cloud-build',
   mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://kovil.ai/agentforce/playbook/financial-services-service-cloud-build' },
   datePublished: '2026-04-01',
   dateModified: '2026-04-30',
+}
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'From 48-Hour Case Resolution to 4 Hours: An Agentforce Service Cloud Build | Kovil AI',
+  description: 'Real Agentforce financial services deployment walkthrough — FCA-regulated lending platform, MuleSoft LMS integration, Einstein Trust Layer configuration, and 68% autonomous resolution at 90 days.',
+  url: 'https://kovil.ai/agentforce/playbook/financial-services-service-cloud-build',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', 'h2', 'h3', 'p'] },
 }
 
 const faqSchema = {
@@ -136,6 +154,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <FinancialServicesServiceCloudPage />
     </>
   )

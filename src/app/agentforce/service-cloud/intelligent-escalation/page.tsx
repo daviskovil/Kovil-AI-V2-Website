@@ -53,11 +53,38 @@ const serviceSchema = {
     name: 'Kovil AI',
     url: 'https://kovil.ai',
     logo: 'https://kovil.ai/kovil-logo-symbol-orange.webp',
+    sameAs: [
+      'https://www.linkedin.com/company/kovil-ai/',
+      'https://clutch.co/profile/kovil-ai',
+      'https://www.crunchbase.com/organization/kovil-ai',
+    ],
   },
   serviceType: 'Salesforce Agentforce Implementation',
   url: 'https://kovil.ai/agentforce/service-cloud/intelligent-escalation',
   areaServed: ['New York', 'United States', 'Worldwide'],
+  isPartOf: {
+    '@type': 'Service',
+    name: 'Agentforce for Service Cloud',
+    url: 'https://kovil.ai/agentforce/service-cloud',
+  },
   offers: { '@type': 'Offer', description: 'Fixed-price 3-week sprint with 2-week risk-free pilot' },
+}
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Agentforce Intelligent Escalation — AI-Powered Case Routing & Context Pre-loading | Kovil AI',
+  description: 'Agentforce escalation agent that detects complexity, SLA risk, and sentiment — routing every case to the right human agent with full context pre-loaded and zero re-explanation needed.',
+  url: 'https://kovil.ai/agentforce/service-cloud/intelligent-escalation',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', 'h2', 'h3', 'p'] },
 }
 
 const faqSchema = {
@@ -116,6 +143,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <IntelligentEscalationPage />
     </>
   )

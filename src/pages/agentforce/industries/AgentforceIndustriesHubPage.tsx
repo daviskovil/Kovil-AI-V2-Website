@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react"
 import Link from "next/link"
-import { ArrowRight, Building2, Heart, Shield, ShoppingCart, Factory, Wifi } from "lucide-react"
+import { ArrowRight, Building2, Heart, Shield, ShoppingCart, Factory, Wifi, Scale, Home, Zap, Package, GraduationCap, Car, Landmark } from "lucide-react"
 import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
 
@@ -69,6 +69,76 @@ const industries = [
     useCases: ["Network outage support agent", "Billing dispute resolution", "Plan management agent", "Churn prevention agent"],
     compliance: "FCC · TCPA · CPNI · GDPR",
   },
+  {
+    slug: "legal-professional-services",
+    icon: Scale,
+    color: "#8B5CF6",
+    label: "Legal & Professional Services",
+    subtitle: "Law Firms · Consultancies · Advisory Firms",
+    desc: "Contract review agents, client intake automation, matter management, billing inquiry resolution, and compliance monitoring — with SRA, ABA, and client privilege guardrails.",
+    useCases: ["Contract review agent", "Client intake & onboarding", "Matter management agent", "Legal billing inquiry"],
+    compliance: "SRA · ABA · GDPR · Einstein Trust Layer",
+  },
+  {
+    slug: "real-estate",
+    icon: Home,
+    color: "#10B981",
+    label: "Real Estate",
+    subtitle: "Brokerages · Property Managers · REITs",
+    desc: "Property inquiry agents, lead qualification, tenant support automation, maintenance request handling, and lease renewal management — integrated with Yardi, AppFolio, and RealPage.",
+    useCases: ["Property inquiry agent", "Lead qualification agent", "Tenant support agent", "Lease renewal agent"],
+    compliance: "Fair Housing · GDPR · AML · Einstein Trust Layer",
+  },
+  {
+    slug: "energy-utilities",
+    icon: Zap,
+    color: "#F59E0B",
+    label: "Energy & Utilities",
+    subtitle: "Energy Companies · Utility Operators",
+    desc: "Outage management agents, billing inquiry resolution, smart meter query automation, new connection handling, and field service dispatch — with NERC CIP and OFGEM compliance.",
+    useCases: ["Outage management agent", "Billing inquiry agent", "Smart meter query agent", "Field service dispatch"],
+    compliance: "NERC CIP · OFGEM · GDPR · Einstein Trust Layer",
+  },
+  {
+    slug: "logistics-supply-chain",
+    icon: Package,
+    color: "#06B6D4",
+    label: "Logistics & Supply Chain",
+    subtitle: "3PLs · Freight Brokers · Logistics Providers",
+    desc: "Shipment tracking agents, freight quoting automation, returns and claims processing, carrier communication, and inventory alert management — integrated with MercuryGate, Oracle TMS, and Manhattan WMS.",
+    useCases: ["Shipment tracking agent", "Freight quoting agent", "Returns & claims agent", "Inventory alert agent"],
+    compliance: "GDPR · C-TPAT · AEO · Einstein Trust Layer",
+  },
+  {
+    slug: "education",
+    icon: GraduationCap,
+    color: "#EC4899",
+    label: "Education & Higher Ed",
+    subtitle: "Universities · Colleges · Higher Education",
+    desc: "Admissions inquiry agents, enrolment support, financial aid automation, student services, alumni engagement, and course advising — on Education Cloud with FERPA-safe guardrails.",
+    useCases: ["Admissions inquiry agent", "Financial aid agent", "Student support agent", "Alumni engagement agent"],
+    compliance: "FERPA · GDPR · CCPA · Einstein Trust Layer",
+  },
+  {
+    slug: "automotive",
+    icon: Car,
+    color: "#EF4444",
+    label: "Automotive",
+    subtitle: "OEMs · Dealer Groups · Aftermarket",
+    desc: "Dealer lead qualification, vehicle financing agents, service booking automation, recall and warranty handling, parts inquiry, and customer retention — on Automotive Cloud with NHTSA and FCA compliance.",
+    useCases: ["Dealer lead qualification", "Vehicle financing agent", "Service booking agent", "Recall & warranty agent"],
+    compliance: "NHTSA · FCA · GDPR · Einstein Trust Layer",
+  },
+  {
+    slug: "government-public-sector",
+    icon: Landmark,
+    color: "#64748B",
+    label: "Government & Public Sector",
+    subtitle: "Federal · State · Local Government Agencies",
+    desc: "Citizen service agents, permit processing automation, benefits eligibility, case management, records requests, and compliance monitoring — on Government Cloud with FedRAMP, FISMA, and ADA compliance.",
+    useCases: ["Citizen service agent", "Permit processing agent", "Benefits eligibility agent", "FOIA records agent"],
+    compliance: "FedRAMP · FISMA · ADA · Einstein Trust Layer",
+  },
 ]
 
 export default function AgentforceIndustriesHubPage() {
@@ -106,7 +176,7 @@ export default function AgentforceIndustriesHubPage() {
             </h1>
 
             <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-              Production Agentforce deployments across six regulated and high-volume industries — each with dedicated compliance guardrails, cloud integration patterns, and use cases proven in the field.
+              Production Agentforce deployments across thirteen regulated and high-volume industries — each with dedicated compliance guardrails, cloud integration patterns, and use cases proven in the field.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -128,7 +198,7 @@ export default function AgentforceIndustriesHubPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { value: "6", label: "industry verticals" },
+              { value: "13", label: "industry verticals" },
               { value: "68%", label: "avg autonomous resolution" },
               { value: "2–3 wks", label: "to production agent" },
               { value: "Fixed", label: "price, no hourly billing" },
@@ -220,7 +290,7 @@ export default function AgentforceIndustriesHubPage() {
               We deploy Agentforce across all sectors
             </h2>
             <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
-              The six industries above represent our deepest deployment patterns, but Agentforce works across any Salesforce-enabled organisation. Book a call — we&apos;ll scope the right use case for your sector.
+              The thirteen industries above represent our deepest deployment patterns, but Agentforce works across any Salesforce-enabled organisation. Book a call — we&apos;ll scope the right use case for your sector.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="accent" size="lg" className="rounded-full px-10" onClick={openCalendly}>

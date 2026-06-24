@@ -51,14 +51,41 @@ const serviceSchema = {
     name: 'Kovil AI',
     url: 'https://kovil.ai',
     logo: 'https://kovil.ai/kovil-logo-symbol-orange.webp',
+    sameAs: [
+      'https://www.linkedin.com/company/kovil-ai/',
+      'https://clutch.co/profile/kovil-ai',
+      'https://www.crunchbase.com/organization/kovil-ai',
+    ],
   },
   serviceType: 'Salesforce Agentforce Implementation',
   url: 'https://kovil.ai/agentforce/sales-cloud/sdr-agent',
   areaServed: ['New York', 'United States', 'Worldwide'],
+  isPartOf: {
+    '@type': 'Service',
+    name: 'Agentforce for Sales Cloud',
+    url: 'https://kovil.ai/agentforce/sales-cloud',
+  },
   offers: {
     '@type': 'Offer',
     description: 'Fixed-price 3-week sprint with 2-week risk-free pilot',
   },
+}
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Agentforce SDR Agent — Autonomous Lead Qualification & Outreach | Kovil AI',
+  description: 'Deploy an Agentforce SDR agent that qualifies inbound leads, sends AI-personalised outreach, handles objections, and books meetings autonomously 24/7 inside Salesforce Sales Cloud.',
+  url: 'https://kovil.ai/agentforce/sales-cloud/sdr-agent',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', 'h2', 'h3', 'p'] },
 }
 
 const faqSchema = {
@@ -117,6 +144,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <SDRAgentPage />
     </>
   )

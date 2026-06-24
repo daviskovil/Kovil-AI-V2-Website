@@ -60,7 +60,7 @@ const articleSchema = {
     '@type': 'WebPage',
     '@id': 'https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026',
   },
-  image: 'https://kovil.ai/og-agentforce.png',
+  image: { '@type': 'ImageObject', url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630 },
 }
 
 const faqSchema = {
@@ -157,9 +157,17 @@ const webPageSchema = {
   description:
     'Complete Agentforce pricing guide — per-conversation cost, Data Cloud licences, Einstein add-ons, MuleSoft, implementation cost, and total cost of ownership model.',
   url: 'https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
   speakable: {
     '@type': 'SpeakableSpecification',
-    cssSelector: ['h1', 'h2', '.prose-like p'],
+    cssSelector: ['h1', 'h2', 'h3', 'p'],
   },
 }
 

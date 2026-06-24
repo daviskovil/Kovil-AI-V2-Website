@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AgentforceRescueOptimisationPage from '@/src/pages/agentforce/services/AgentforceRescueOptimisationPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Rescue & Optimisation | Kovil AI Agentforce',
+  title: 'Agentforce Rescue & Optimisation | Kovil AI',
   description: 'Agentforce rescue service for failing deployments. We fix hallucinating agents, broken Trust Layer guardrails, and integration failures — measurable performance restored in 2 weeks.',
   alternates: { canonical: 'https://kovil.ai/agentforce/services/agentforce-rescue-optimisation' },
   keywords: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Agentforce Rescue & Optimisation | Kovil AI Agentforce',
+    title: 'Agentforce Rescue & Optimisation | Kovil AI',
     description: 'Agentforce rescue service for failing deployments. We fix hallucinating agents, broken Trust Layer guardrails, and integration failures — measurable performance restored in 2 weeks.',
     url: 'https://kovil.ai/agentforce/services/agentforce-rescue-optimisation',
     siteName: 'Kovil AI',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Agentforce Rescue & Optimisation | Kovil AI Agentforce',
+    title: 'Agentforce Rescue & Optimisation | Kovil AI',
     description: 'Agentforce rescue service for failing deployments. We fix hallucinating agents, broken Trust Layer guardrails, and integration failures — measurable performance restored in 2 weeks.',
     images: ['https://kovil.ai/og-agentforce.png'],
   },
@@ -51,11 +51,38 @@ const serviceSchema = {
     name: 'Kovil AI',
     url: 'https://kovil.ai',
     logo: 'https://kovil.ai/kovil-logo-symbol-orange.webp',
+    sameAs: [
+      'https://www.linkedin.com/company/kovil-ai/',
+      'https://clutch.co/profile/kovil-ai',
+      'https://www.crunchbase.com/organization/kovil-ai',
+    ],
   },
   serviceType: 'Salesforce Agentforce Implementation',
   url: 'https://kovil.ai/agentforce/services/agentforce-rescue-optimisation',
   areaServed: ['New York', 'United States', 'Worldwide'],
+  isPartOf: {
+    '@type': 'Service',
+    name: 'Agentforce Implementation Services',
+    url: 'https://kovil.ai/agentforce/services',
+  },
   offers: { '@type': 'Offer', description: 'Fixed-price engagement with clear deliverables and timelines' },
+}
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Agentforce Rescue & Optimisation | Kovil AI',
+  description: 'Agentforce rescue service for failing deployments. We fix hallucinating agents, broken Trust Layer guardrails, and integration failures — measurable performance restored in 2 weeks.',
+  url: 'https://kovil.ai/agentforce/services/agentforce-rescue-optimisation',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', 'h2', 'h3', 'p'] },
 }
 
 const faqSchema = {
@@ -122,6 +149,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <AgentforceRescueOptimisationPage />
     </>
   )

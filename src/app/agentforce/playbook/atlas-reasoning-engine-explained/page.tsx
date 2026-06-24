@@ -58,10 +58,28 @@ const articleSchema = {
     name: 'Kovil AI',
     logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
   },
+  image: { '@type': 'ImageObject', url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630 },
   url: 'https://kovil.ai/agentforce/playbook/atlas-reasoning-engine-explained',
   mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://kovil.ai/agentforce/playbook/atlas-reasoning-engine-explained' },
   datePublished: '2026-04-01',
   dateModified: '2026-04-30',
+}
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Atlas Reasoning Engine Explained: How Agentforce Agents Actually Think | Kovil AI',
+  description: 'A technical breakdown of the Salesforce Atlas Reasoning Engine — how Agentforce agents observe, plan, act, and reflect using hybrid LLM and deterministic routing to execute multi-step tasks.',
+  url: 'https://kovil.ai/agentforce/playbook/atlas-reasoning-engine-explained',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', 'h2', 'h3', 'p'] },
 }
 
 const faqSchema = {
@@ -144,6 +162,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <AtlasReasoningEnginePage />
     </>
   )

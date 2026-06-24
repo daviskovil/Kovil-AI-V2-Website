@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: 'Production Agentforce for telcos — network outage support agents, billing dispute resolution, plan management automation, and churn prevention agents. Communications Cloud · TCPA compliant · Fixed-price sprints.',
     url: 'https://kovil.ai/agentforce/industries/telecom',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630 }],
+    images: [{ url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630, alt: 'Agentforce for Telecommunications — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -178,7 +178,8 @@ const breadcrumbSchema = {
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kovil.ai' },
     { '@type': 'ListItem', position: 2, name: 'Agentforce', item: 'https://kovil.ai/agentforce' },
-    { '@type': 'ListItem', position: 3, name: 'Telecommunications', item: 'https://kovil.ai/agentforce/industries/telecom' },
+    { '@type': 'ListItem', position: 3, name: 'Industries', item: 'https://kovil.ai/agentforce/industries' },
+    { '@type': 'ListItem', position: 4, name: 'Telecommunications', item: 'https://kovil.ai/agentforce/industries/telecom' },
   ],
 }
 

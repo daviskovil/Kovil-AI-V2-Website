@@ -55,7 +55,7 @@ const articleSchema = {
     '@type': 'WebPage',
     '@id': 'https://kovil.ai/agentforce/playbook/how-does-agentforce-work',
   },
-  image: 'https://kovil.ai/og-agentforce.png',
+  image: { '@type': 'ImageObject', url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630 },
 }
 
 const faqSchema = {
@@ -152,6 +152,14 @@ const webPageSchema = {
   description:
     'Complete technical guide to how Salesforce Agentforce works — the Atlas Reasoning Engine four-phase loop, Topics and Actions, Einstein Trust Layer, and data grounding.',
   url: 'https://kovil.ai/agentforce/playbook/how-does-agentforce-work',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
   speakable: {
     '@type': 'SpeakableSpecification',
     cssSelector: ['h1', 'h2', 'h3', 'p'],

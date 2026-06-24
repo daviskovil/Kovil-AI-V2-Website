@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import MulesoftDataCloudIntegrationPage from '@/src/pages/agentforce/services/MulesoftDataCloudIntegrationPage'
 
 export const metadata: Metadata = {
-  title: 'MuleSoft & Data Cloud Integration | Kovil AI Agentforce',
+  title: 'MuleSoft & Data Cloud Integration | Kovil AI',
   description: 'MuleSoft Agentforce integration and Salesforce Data Cloud implementation. Connect agents to ERP, EHR, payments, and logistics with real-time data grounding across every enterprise system.',
   alternates: { canonical: 'https://kovil.ai/agentforce/services/mulesoft-data-cloud-integration' },
   keywords: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'MuleSoft & Data Cloud Integration | Kovil AI Agentforce',
+    title: 'MuleSoft & Data Cloud Integration | Kovil AI',
     description: 'MuleSoft Agentforce integration and Salesforce Data Cloud implementation. Connect agents to ERP, EHR, payments, and logistics with real-time data grounding across every enterprise system.',
     url: 'https://kovil.ai/agentforce/services/mulesoft-data-cloud-integration',
     siteName: 'Kovil AI',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MuleSoft & Data Cloud Integration | Kovil AI Agentforce',
+    title: 'MuleSoft & Data Cloud Integration | Kovil AI',
     description: 'MuleSoft Agentforce integration and Salesforce Data Cloud implementation. Connect agents to ERP, EHR, payments, and logistics with real-time data grounding across every enterprise system.',
     images: ['https://kovil.ai/og-agentforce.png'],
   },
@@ -51,11 +51,38 @@ const serviceSchema = {
     name: 'Kovil AI',
     url: 'https://kovil.ai',
     logo: 'https://kovil.ai/kovil-logo-symbol-orange.webp',
+    sameAs: [
+      'https://www.linkedin.com/company/kovil-ai/',
+      'https://clutch.co/profile/kovil-ai',
+      'https://www.crunchbase.com/organization/kovil-ai',
+    ],
   },
   serviceType: 'Salesforce Agentforce Implementation',
   url: 'https://kovil.ai/agentforce/services/mulesoft-data-cloud-integration',
   areaServed: ['New York', 'United States', 'Worldwide'],
+  isPartOf: {
+    '@type': 'Service',
+    name: 'Agentforce Implementation Services',
+    url: 'https://kovil.ai/agentforce/services',
+  },
   offers: { '@type': 'Offer', description: 'Fixed-price engagement with clear deliverables and timelines' },
+}
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'MuleSoft & Data Cloud Integration | Kovil AI',
+  description: 'MuleSoft Agentforce integration and Salesforce Data Cloud implementation. Connect agents to ERP, EHR, payments, and logistics with real-time data grounding across every enterprise system.',
+  url: 'https://kovil.ai/agentforce/services/mulesoft-data-cloud-integration',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', 'h2', 'h3', 'p'] },
 }
 
 const faqSchema = {
@@ -122,6 +149,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <MulesoftDataCloudIntegrationPage />
     </>
   )

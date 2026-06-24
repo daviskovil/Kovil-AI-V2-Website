@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: 'Production Agentforce for manufacturing — field service scheduling agents, warranty claim intake automation, dealer support, and preventive maintenance alerts. Manufacturing Cloud · Field Service · Fixed-price sprints.',
     url: 'https://kovil.ai/agentforce/industries/manufacturing',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630 }],
+    images: [{ url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630, alt: 'Agentforce for Manufacturing — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -178,7 +178,8 @@ const breadcrumbSchema = {
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kovil.ai' },
     { '@type': 'ListItem', position: 2, name: 'Agentforce', item: 'https://kovil.ai/agentforce' },
-    { '@type': 'ListItem', position: 3, name: 'Manufacturing', item: 'https://kovil.ai/agentforce/industries/manufacturing' },
+    { '@type': 'ListItem', position: 3, name: 'Industries', item: 'https://kovil.ai/agentforce/industries' },
+    { '@type': 'ListItem', position: 4, name: 'Manufacturing', item: 'https://kovil.ai/agentforce/industries/manufacturing' },
   ],
 }
 

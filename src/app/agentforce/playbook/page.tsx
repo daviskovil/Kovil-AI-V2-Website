@@ -75,11 +75,32 @@ const breadcrumbSchema = {
   ],
 }
 
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Agentforce Playbook: Implementation Guides & Technical Articles | Kovil AI',
+  description: 'Practitioner guides for Salesforce Agentforce — pricing breakdowns, ROI frameworks, Atlas Reasoning Engine deep dives, scoping checklists, and real deployment case studies.',
+  url: 'https://kovil.ai/agentforce/playbook',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', 'h2', 'h3', 'p'],
+  },
+}
+
 export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <AgentforcePlaybookHubPage />
     </>
   )
