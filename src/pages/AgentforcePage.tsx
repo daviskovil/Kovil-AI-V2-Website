@@ -1,14 +1,111 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import Link from "next/link"
-import { ArrowRight, ChevronDown, CheckCircle2, Shield, Database, Brain, Cpu, Zap, Users, Wrench, BarChart3, BookOpen, Download, Clock, FileText, AlertCircle } from "lucide-react"
+import { ArrowRight, ChevronDown, CheckCircle2, Shield, Database, Brain, Cpu, Zap, Users, Wrench, BarChart3, BookOpen, Download, Clock, FileText, AlertCircle, TrendingUp, Settings, Globe } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { openCalendly } from "../lib/calendly"
 
 // ── Salesforce / Agentforce brand colour (used inline only — no new CSS var) ──
 const SF_BLUE = "#00A1E0"
+
+// ── Agentforce Section Navigator Data ────────────────────────────────────────
+const agentforceNavSections = [
+  {
+    label: 'Services',
+    href: '/agentforce/services',
+    Icon: Wrench,
+    color: SF_BLUE,
+    items: [
+      { title: 'Strategy & Readiness', href: '/agentforce/services/agentforce-strategy-readiness' },
+      { title: 'Agent Design & Configuration', href: '/agentforce/services/agent-design-configuration' },
+      { title: 'Sales Cloud Deployment', href: '/agentforce/services/sales-cloud-agent-deployment' },
+      { title: 'Service Cloud Deployment', href: '/agentforce/services/service-cloud-agent-deployment' },
+      { title: 'MuleSoft & Data Cloud', href: '/agentforce/services/mulesoft-data-cloud-integration' },
+      { title: 'Rescue & Optimisation', href: '/agentforce/services/agentforce-rescue-optimisation' },
+    ],
+  },
+  {
+    label: 'Sales Cloud',
+    href: '/agentforce/sales-cloud',
+    Icon: TrendingUp,
+    color: '#0070D2',
+    items: [
+      { title: 'Agentforce SDR Agent', href: '/agentforce/sales-cloud/sdr-agent' },
+      { title: 'Pipeline Health Monitor', href: '/agentforce/sales-cloud/pipeline-health-monitor' },
+      { title: 'Quote & Proposal Agent', href: '/agentforce/sales-cloud/quote-proposal-agent' },
+    ],
+  },
+  {
+    label: 'Service Cloud',
+    href: '/agentforce/service-cloud',
+    Icon: Users,
+    color: '#5A5FCE',
+    items: [
+      { title: 'Autonomous Case Resolution', href: '/agentforce/service-cloud/autonomous-case-resolution' },
+      { title: 'Intelligent Escalation', href: '/agentforce/service-cloud/intelligent-escalation' },
+      { title: 'Knowledge Base Agent', href: '/agentforce/service-cloud/knowledge-base-agent' },
+    ],
+  },
+  {
+    label: 'Marketing Cloud',
+    href: '/agentforce/marketing-cloud',
+    Icon: BarChart3,
+    color: '#FF6900',
+    items: [
+      { title: 'Campaign Execution Agent', href: '/agentforce/marketing-cloud/campaign-execution-agent' },
+      { title: 'Lead Nurture Agent', href: '/agentforce/marketing-cloud/lead-nurture-agent' },
+      { title: 'Event & Webinar Agent', href: '/agentforce/marketing-cloud/event-webinar-agent' },
+    ],
+  },
+  {
+    label: 'Internal Operations',
+    href: '/agentforce/internal-operations',
+    Icon: Settings,
+    color: '#1B7F4F',
+    items: [
+      { title: 'HR Onboarding Agent', href: '/agentforce/internal-operations/hr-onboarding-agent' },
+      { title: 'Finance Approval Agent', href: '/agentforce/internal-operations/finance-approval-agent' },
+      { title: 'IT Helpdesk Agent', href: '/agentforce/internal-operations/it-helpdesk-agent' },
+    ],
+  },
+  {
+    label: 'Industries',
+    href: '/agentforce/industries',
+    Icon: Globe,
+    color: '#34D399',
+    items: [
+      { title: 'Financial Services', href: '/agentforce/industries/financial-services' },
+      { title: 'Healthcare', href: '/agentforce/industries/healthcare' },
+      { title: 'Insurance', href: '/agentforce/industries/insurance' },
+      { title: 'Retail & Ecommerce', href: '/agentforce/industries/retail-ecommerce' },
+      { title: 'Manufacturing', href: '/agentforce/industries/manufacturing' },
+      { title: 'Telecom', href: '/agentforce/industries/telecom' },
+      { title: 'Legal & Professional Services', href: '/agentforce/industries/legal-professional-services' },
+      { title: 'Logistics & Supply Chain', href: '/agentforce/industries/logistics-supply-chain' },
+      { title: 'Automotive', href: '/agentforce/industries/automotive' },
+      { title: 'Real Estate', href: '/agentforce/industries/real-estate' },
+      { title: 'Education', href: '/agentforce/industries/education' },
+      { title: 'Energy & Utilities', href: '/agentforce/industries/energy-utilities' },
+      { title: 'Government & Public Sector', href: '/agentforce/industries/government-public-sector' },
+    ],
+  },
+  {
+    label: 'Playbook',
+    href: '/agentforce/playbook',
+    Icon: BookOpen,
+    color: '#8B5CF6',
+    items: [
+      { title: 'Scope Your First Agent', href: '/agentforce/playbook/scope-your-first-agentforce-agent' },
+      { title: 'Atlas Reasoning Engine', href: '/agentforce/playbook/atlas-reasoning-engine-explained' },
+      { title: 'Pricing Guide 2026', href: '/agentforce/playbook/agentforce-pricing-guide-2026' },
+      { title: 'ROI Guide', href: '/agentforce/playbook/agentforce-roi-guide' },
+      { title: 'How Agentforce Works', href: '/agentforce/playbook/how-does-agentforce-work' },
+      { title: 'Financial Services Build', href: '/agentforce/playbook/financial-services-service-cloud-build' },
+    ],
+  },
+]
 
 // ── Corporate email blocklist ─────────────────────────────────────────────────
 const CONSUMER_DOMAINS = new Set([
@@ -381,9 +478,56 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
 export default function AgentforcePage() {
   const [activeTab, setActiveTab] = useState<Tab>("Sales Cloud")
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [showStickyNav, setShowStickyNav] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setShowStickyNav(window.scrollY > 480)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <main className="pt-20 bg-background min-h-screen">
+
+      {/* ── STICKY SECTION SUBNAV ── */}
+      <AnimatePresence>
+        {showStickyNav && (
+          <motion.div
+            initial={{ y: -44, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -44, opacity: 0 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            className="fixed left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
+            style={{ top: '80px' }}
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div className="h-10 flex items-center gap-0.5 overflow-x-auto scrollbar-none">
+                <span className="text-[11px] font-semibold shrink-0 mr-2 pr-2 border-r border-border hidden sm:block" style={{ color: SF_BLUE }}>
+                  Agentforce
+                </span>
+                {agentforceNavSections.map((sec) => (
+                  <Link
+                    key={sec.label}
+                    href={sec.href}
+                    className="shrink-0 px-3 py-1 rounded-full text-[11px] font-medium text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-colors whitespace-nowrap"
+                  >
+                    {sec.label}
+                  </Link>
+                ))}
+                <div className="ml-auto pl-3 shrink-0 hidden md:block">
+                  <button
+                    onClick={openCalendly}
+                    className="text-[11px] font-semibold px-3 py-1 rounded-full text-white transition-all"
+                    style={{ background: SF_BLUE }}
+                  >
+                    Book a call
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── SECTION 1 — HERO ── */}
       <section className="max-w-7xl mx-auto px-6 pt-10 pb-20">
@@ -437,6 +581,63 @@ export default function AgentforcePage() {
               className="w-full max-w-2xl object-contain drop-shadow-2xl scale-110"
             />
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── SECTION 1.5 — AGENTFORCE SECTION EXPLORER ── */}
+      <section className="border-t border-border bg-muted/20 py-10">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-7">
+            <div>
+              <p className="text-xs font-mono tracking-widest uppercase mb-1.5" style={{ color: SF_BLUE }}>Quick Navigation</p>
+              <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-foreground">Explore the Agentforce Section</h2>
+            </div>
+            <p className="text-xs text-muted-foreground sm:pb-0.5">7 sections · 45+ pages</p>
+          </div>
+
+          {/* 7-card grid: 1 col → 2 col → 4 col */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {agentforceNavSections.map((sec) => (
+              <div
+                key={sec.label}
+                className="bg-card border border-border rounded-2xl p-4 hover:shadow-md transition-all duration-200 group"
+              >
+                {/* Section header — links to hub page */}
+                <Link href={sec.href} className="flex items-center justify-between mb-3.5 group/head">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-7 w-7 rounded-lg flex items-center justify-center shrink-0" style={{ background: `${sec.color}18` }}>
+                      <sec.Icon className="h-3.5 w-3.5" style={{ color: sec.color }} />
+                    </div>
+                    <span className="text-sm font-bold text-foreground group-hover/head:text-accent transition-colors">{sec.label}</span>
+                  </div>
+                  <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-accent transition-colors shrink-0" />
+                </Link>
+
+                {/* Child page links — show up to 4, then "+N more" */}
+                <ul className="space-y-1.5">
+                  {sec.items.slice(0, 4).map(item => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="flex items-start gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors py-0.5 leading-snug"
+                      >
+                        <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ background: `${sec.color}60` }} />
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                  {sec.items.length > 4 && (
+                    <li className="pt-0.5">
+                      <Link href={sec.href} className="text-xs font-semibold flex items-center gap-1 hover:underline" style={{ color: sec.color }}>
+                        +{sec.items.length - 4} more <ArrowRight className="h-2.5 w-2.5" />
+                      </Link>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
