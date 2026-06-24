@@ -53,6 +53,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/intelligent-document-processing/human-resources`,                     lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     // ── Azure AI Foundry landing ───────────────────────────────────────────────
     { url: `${BASE_URL}/azure-ai-foundry`,                               lastModified: now,  changeFrequency: 'weekly',  priority: 0.9 },
+    // ── Azure AI Foundry section hub pages ────────────────────────────────────
+    { url: `${BASE_URL}/azure-ai-foundry/services`,          lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/industries`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/playbook`,          lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/compare`,           lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/integrations`,      lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/enterprise`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/customer-experience`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/operations`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/azure-ai-foundry/developer-tools`,   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     // ── Azure AI Foundry service pages ────────────────────────────────────────
     { url: `${BASE_URL}/azure-ai-foundry/services/azure-ai-foundry-strategy-readiness`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/azure-ai-foundry/services/ai-agent-design-build`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
@@ -158,6 +168,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/agentforce/internal-operations/it-helpdesk-agent`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     // ── Google Cloud Vertex AI landing ────────────────────────────────────────────
     { url: `${BASE_URL}/vertex-ai`,                                             lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
+    // ── Vertex AI section hub pages ───────────────────────────────────────────────
+    { url: `${BASE_URL}/vertex-ai/services`,          lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/playbook`,          lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/data-analytics`,    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/customer-experience`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/operations`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/vertex-ai/developer-tools`,   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     // ── Vertex AI service pages ───────────────────────────────────────────────────
     { url: `${BASE_URL}/vertex-ai/services/vertex-ai-strategy-readiness`,       lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/vertex-ai/services/gemini-integration`,                 lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
