@@ -100,6 +100,20 @@ export default function CaseStudyPage() {
           </div>
         </div>
 
+        {/* Engineers */}
+        {cs.engineers && cs.engineers.length > 0 && (
+          <div className="mb-6">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Engineers Used</p>
+            <div className="flex flex-wrap gap-2">
+              {cs.engineers.map((eng) => (
+                <span key={eng} className="text-xs font-medium text-accent border border-accent/30 bg-accent/5 px-2.5 py-1 rounded-full">
+                  {eng}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Tech stack */}
         <div className="mb-10">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Tech Stack</p>

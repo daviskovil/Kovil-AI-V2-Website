@@ -117,6 +117,17 @@ export default function CaseStudiesPage() {
                     ))}
                   </div>
 
+                  {/* Engineers */}
+                  {cs.engineers && cs.engineers.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {cs.engineers.map((eng) => (
+                        <span key={eng} className="text-xs text-accent/80 border border-accent/20 bg-accent/5 px-2 py-0.5 rounded-full">
+                          {eng}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
                   {/* Footer */}
                   <div className="flex items-center justify-between pt-4 border-t border-border">
                     <div className="flex gap-2">

@@ -24,6 +24,7 @@ export interface CaseStudy {
   published: string;
   metrics: Metric[];
   techStack: TechBadge[];
+  engineers: string[];
   quote?: string;
   quoteAuthor?: string;
   quoteRole?: string;
@@ -58,6 +59,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "AWS S3", color: "bg-orange-600" },
       { name: "PostgreSQL", color: "bg-blue-900" },
     ],
+    engineers: ['AI LLM Engineer', 'Backend Engineer', 'Frontend Engineer'],
     quote:
       "We were billing associates for work that AI can now do in eight minutes. The agent flags every non-standard clause before anyone opens the document — and it knows our positions because we trained it on our own precedents. This is the biggest change to how we work in twenty years.",
     quoteAuthor: "Managing Partner",
@@ -147,6 +149,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Prisma", color: "bg-teal-700" },
       { name: "TypeScript", color: "bg-blue-600" },
     ],
+    engineers: ['GCP Cloud Engineer', 'Document Classification AI Engineer', 'Frontend Engineer'],
     body: `
 <h2>The Business Context</h2>
 <p>In the secondary mortgage market, lenders originate loans and sell them to investors — either directly to takeout partners or through aggregators. Each sale requires a complete, verified document package: the right documents, correctly classified, with no missing or expired items. The entire process has historically been manual: staff sorting PDFs by hand, tracking checklist completion in spreadsheets, and managing exceptions over email.</p>
@@ -229,6 +232,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "REST APIs", color: "bg-slate-600" },
       { name: "AWS", color: "bg-orange-700" },
     ],
+    engineers: ['AI Automation Engineer', 'Backend Engineer'],
     body: `
 <h2>Introduction</h2>
 <p>Fintech lending platforms are increasingly dependent on API integrations, automated underwriting, and workflow orchestration to process deals faster and improve operational efficiency. However, many platforms face compounding challenges as they scale: integration fragility, manual data processing bottlenecks, and automation workflows that weren't designed for the volume demands of a growing business.</p>
@@ -306,6 +310,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Tailwind CSS", color: "bg-sky-600" },
       { name: "Vercel", color: "bg-slate-700" },
     ],
+    engineers: ['Full Stack Engineer', 'Backend Engineer', 'DevOps Engineer'],
     quote:
       "We needed a payment dashboard that could handle real transaction volume before our Series A close — and Kovil AI delivered it in less than three weeks. Clean code, PCI-compliant from day one, and a team that actually understood the regulatory constraints we were operating under.",
     quoteAuthor: "Sarah Chen",
@@ -379,6 +384,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Zapier", color: "bg-orange-500" },
       { name: "Webhooks", color: "bg-slate-600" },
     ],
+    engineers: ['AI Automation Engineer', 'Full Stack Engineer'],
     quote:
       "What used to take our ops team half a day now happens automatically before anyone even checks their email. The ROI was obvious within the first month — and the Kovil AI team was meticulous about documenting everything so we can maintain it ourselves.",
     quoteAuthor: "Marcus Webb",
@@ -445,6 +451,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Datadog", color: "bg-purple-700" },
       { name: "GitHub Actions", color: "bg-slate-700" },
     ],
+    engineers: ['Backend Engineer', 'DevOps Engineer'],
     quote:
       "We'd been living with production fires every week for over a year. Kovil AI came in, understood our codebase faster than anyone we'd hired full-time, and systematically eliminated the sources of instability. The monitoring setup alone was worth the retainer.",
     quoteAuthor: "Priya Nair",
@@ -511,6 +518,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "PostgreSQL", color: "bg-blue-900" },
       { name: "Twilio", color: "bg-red-600" },
     ],
+    engineers: ['AI Integration Engineer', 'Full Stack Engineer'],
     quote:
       "Our intake coordinators were spending more time on data entry than on patients. Kovil AI built something that actually works in a clinical environment — HIPAA-compliant, accurate, and fast. Our staff were converted believers within the first week.",
     quoteAuthor: "Dr. Anika Patel",
@@ -578,6 +586,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Mapbox GL", color: "bg-slate-700" },
       { name: "Railway", color: "bg-slate-600" },
     ],
+    engineers: ['Full Stack Engineer', 'AI Algorithm Engineer'],
     quote:
       "We had the idea, we had the problem, we had early customers who wanted to pay — we just needed something real to show investors. Kovil AI took our spec and turned it into a product that blew the room away. Three of our five seed investors said the demo was the deciding factor.",
     quoteAuthor: "James Okafor",
@@ -645,6 +654,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Stripe", color: "bg-purple-600" },
       { name: "AWS S3", color: "bg-orange-600" },
     ],
+    engineers: ['Full Stack Engineer', 'DevOps Engineer'],
     quote:
       "When our last engineer gave notice, I thought we were done. Kovil AI gave us a SLA, onboarded in a week, and hasn't missed a beat since. It's genuinely taken the technical anxiety off my plate entirely.",
     quoteAuthor: "Rachel Torres",
@@ -711,6 +721,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Shopify API", color: "bg-green-700" },
       { name: "Redis", color: "bg-red-600" },
     ],
+    engineers: ['AI LLM Engineer', 'Frontend Engineer'],
     quote:
       "We expected the chatbot to reduce tickets. We didn't expect it to actually improve satisfaction scores. Kovil AI built something that customers genuinely find helpful — not the frustrating bot-loop experience you get from most tools.",
     quoteAuthor: "Tyler Nguyen",
@@ -778,6 +789,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Recharts", color: "bg-blue-500" },
       { name: "PostgreSQL", color: "bg-blue-900" },
     ],
+    engineers: ['Full Stack Engineer', 'Frontend Engineer'],
     quote:
       "We'd been quoted 3 months by two other agencies. Kovil AI scoped it in a day, built it in 3 weeks, and the output was genuinely beautiful. Our first enterprise prospect said the product felt more polished than tools they'd been paying $500/month for.",
     quoteAuthor: "David Kim",
@@ -843,6 +855,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Redis", color: "bg-red-600" },
       { name: "Sentry", color: "bg-purple-700" },
     ],
+    engineers: ['Backend Engineer', 'DevOps Engineer'],
     quote:
       "Our platform was literally falling over during peak hours. Kovil AI diagnosed the root causes in the first week and had measurable improvements within a month. Our Lighthouse score went from 51 to 92 — our conversion rates followed.",
     quoteAuthor: "Sophie Laurent",
@@ -910,6 +923,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "n8n", color: "bg-orange-500" },
       { name: "Instantly", color: "bg-purple-700" },
     ],
+    engineers: ['AI Automation Engineer', 'Backend Engineer'],
     quote:
       "Our reps were researchers, not salespeople. Now they walk in knowing exactly who they're calling, why they should care, and with a personalised email already in the prospect's inbox. The pipeline tripled and nobody worked a longer day.",
     quoteAuthor: "Head of Sales",
@@ -985,6 +999,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "LinkedIn API", color: "bg-blue-600" },
       { name: "HubSpot Webhooks", color: "bg-orange-600" },
     ],
+    engineers: ['Full Stack AI Engineer', 'Frontend Engineer'],
     quote:
       "I used to send follow-ups two days after a meeting if I remembered. Now I'm sending personalised emails from the car park before I've driven away. The LinkedIn content alone has generated three inbound conversations this month.",
     quoteAuthor: "Senior Account Executive",
@@ -1053,6 +1068,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Playwright", color: "bg-slate-600" },
       { name: "Cron / n8n", color: "bg-orange-600" },
     ],
+    engineers: ['AI Automation Engineer', 'Full Stack Engineer'],
     quote:
       "We could see our clients ranking on page one of Google but disappearing entirely from AI answers. The GEO platform turned that into a measurable, trackable metric — and it became the foundation of an entirely new service line for the agency.",
     quoteAuthor: "Director of Strategy",
@@ -1122,6 +1138,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Redis", color: "bg-red-600" },
       { name: "OpenAI Whisper", color: "bg-teal-700" },
     ],
+    engineers: ['Full Stack AI Engineer', 'Front End Engineer', 'UI UX Designer'],
     quote:
       "I talk to Biscuit every morning before I do anything else. He remembers everything I have told him. I don't feel like I am starting from scratch every day — he knows me.",
     quoteAuthor: "Beta User, 78",
@@ -1203,6 +1220,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Pinecone", color: "bg-blue-600" },
       { name: "AWS S3", color: "bg-orange-600" },
     ],
+    engineers: ['Front End Engineer', 'AI LLM Engineer'],
     quote:
       "We had the inventory — what we didn't have was the information to make it discoverable. The AI cataloguing gave every part in our catalogue a human-readable identity. Our trade customers can now find parts in under 30 seconds that previously required a phone call.",
     quoteAuthor: "Head of E-Commerce",
@@ -1280,6 +1298,7 @@ export const caseStudies: CaseStudy[] = [
       { name: "Stripe", color: "bg-purple-700" },
       { name: "Supabase", color: "bg-green-600" },
     ],
+    engineers: ['Full Stack AI Engineer', 'Front End Engineer'],
     quote:
       "I reviewed a sample of sessions. The avatar is saying what I would say. It's citing examples I have actually used, making arguments I have actually made. The users who come in with serious business questions are getting serious answers — grounded in everything I have actually thought and written about those problems.",
     quoteAuthor: "Business Strategy Advisor",

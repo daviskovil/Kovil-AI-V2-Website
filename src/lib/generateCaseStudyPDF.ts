@@ -215,6 +215,35 @@ export async function generateCaseStudyPDF(cs: CaseStudy): Promise<void> {
   doc.line(ML, y, PW - MR, y)
   y += 7
 
+  // ── ENGINEERS ──────────────────────────────────────────────────────────────
+  if (cs.engineers && cs.engineers.length > 0) {
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(6.5)
+    doc.setTextColor(...ORANGE)
+    doc.text('ENGINEERS USED', ML, y)
+    y += 4
+
+    let ex = ML
+    cs.engineers.forEach(eng => {
+      const ew = doc.getTextWidth(eng) + 8
+      if (ex + ew > PW - MR) { ex = ML; y += 7 }
+      doc.setFillColor(0, 161, 224)   // SF_BLUE tint fill
+      doc.roundedRect(ex, y - 3.5, ew, 5.5, 1.5, 1.5, 'F')
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(6.5)
+      doc.setTextColor(...WHITE)
+      doc.text(eng, ex + 4, y + 0.5)
+      ex += ew + 3
+    })
+
+    y += 10
+
+    // Divider
+    doc.setDrawColor(...MGRAY)
+    doc.line(ML, y, PW - MR, y)
+    y += 7
+  }
+
   // ── TECH STACK ─────────────────────────────────────────────────────────────
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(6.5)
