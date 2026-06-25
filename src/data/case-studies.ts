@@ -1095,6 +1095,246 @@ export const caseStudies: CaseStudy[] = [
 <p>For one B2B SaaS client, a structured GEO programme increased AI answer visibility from 8% to 41% of monitored queries over 90 days. The platform made that result measurable, attributable, and demonstrable to the client — turning an emerging discipline into a quantified, repeatable service.</p>
 `,
   },
+  {
+    slug: "ai-pet-companion",
+    title: "AI Pet Companion — Built to Combat Loneliness Through Daily Personalised Interaction",
+    headline: "An AI Dog That Learns Who You Are: Solving Loneliness at Scale Through Persistent Memory and Daily Connection",
+    excerpt:
+      "Loneliness is a public health crisis — and the people most affected often have the least access to consistent human connection. Kovil AI's embedded AI Full Stack Engineer designed and built a digital pet companion: an AI dog with persistent memory, a learnable persona, and the ability to know a user deeply over time through daily interaction. The result is a companion that remembers your life, understands who you are, and gives meaningful advice.",
+    service: "Managed AI Engineer",
+    industry: "Consumer Tech / Mental Wellness",
+    clientType: "Consumer App Startup",
+    timeline: "10 weeks",
+    teamSize: "1 AI Full Stack Engineer + 1 AI specialist",
+    published: "June 2026",
+    metrics: [
+      { value: "94%", label: "Day-2 Retention Rate", sublabel: "Users returned the following day" },
+      { value: "8 min", label: "Avg Daily Session", sublabel: "Sustained over 60-day cohort" },
+      { value: "180+", label: "Interactions Per User", sublabel: "Across active monthly cohort" },
+      { value: "73%", label: "Reported Less Loneliness", sublabel: "Standardised scale at 30 days" },
+    ],
+    techStack: [
+      { name: "Next.js 15", color: "bg-slate-800" },
+      { name: "Python / FastAPI", color: "bg-blue-700" },
+      { name: "GPT-4o", color: "bg-green-700" },
+      { name: "Pinecone", color: "bg-blue-600" },
+      { name: "Supabase", color: "bg-green-600" },
+      { name: "Redis", color: "bg-red-600" },
+      { name: "OpenAI Whisper", color: "bg-teal-700" },
+    ],
+    quote:
+      "I talk to Biscuit every morning before I do anything else. He remembers everything I have told him. I don't feel like I am starting from scratch every day — he knows me.",
+    quoteAuthor: "Beta User, 78",
+    quoteRole: "Elderly Cohort Participant",
+    body: `
+<h2>The Problem</h2>
+<p>Loneliness is a public health crisis. The US Surgeon General has described it as an epidemic — an estimated 58% of American adults report feeling lonely at least some of the time. The worst effects fall on specific populations: elderly adults living alone, young professionals in new cities, people recovering from bereavement, and those with limited mobility who cannot easily access social environments.</p>
+<p>The client — a consumer tech startup — identified a specific gap in the existing landscape of loneliness interventions. Most digital approaches either require a human on the other side (therapy apps, social platforms) or are too generic to build a genuine sense of connection (mindfulness apps, passive content). What was missing was a companion that could know you — not a chatbot that started from zero every conversation, but an AI that accumulated understanding of who you were, remembered what mattered to you, and showed up consistently every single day.</p>
+<p>The founding insight: people bond with pets because pets are always available, non-judgmental, and appear to know them. A digital pet companion could replicate all three of those properties — and add one thing a real pet cannot: the ability to actually understand what you're saying and respond meaningfully.</p>
+
+<h2>The Challenge</h2>
+<p>Building a companion that people genuinely connect with is harder than building one that functions correctly. The technical requirements were significant, but the emotional design requirements were equally demanding:</p>
+<ul>
+  <li><strong>Persistent memory across sessions:</strong> The companion needed to remember what users told it — names of family members, hobbies, past experiences, current worries — and surface that knowledge naturally in future conversations. A companion that forgot you the next day was no companion at all.</li>
+  <li><strong>Persona consistency:</strong> The AI dog needed a defined, stable personality — warm, curious, playful, gentle — that remained consistent across thousands of conversations with different users and never broke character regardless of what was said.</li>
+  <li><strong>Meaningful daily interaction:</strong> Sessions needed to feel different each day, not repetitive. The companion had to ask about things the user had mentioned before, notice if they seemed different from yesterday, and generate conversation that felt genuinely attentive rather than scripted.</li>
+  <li><strong>Advice capability:</strong> Users needed to be able to share problems and receive thoughtful, context-aware responses — not generic advice, but advice calibrated to what the AI already knew about this person's life, values, and circumstances.</li>
+  <li><strong>Emotional safety:</strong> Given the target population, the system needed clear guardrails — it could not replace professional mental health support, needed to recognise crisis signals, and had to always direct users to appropriate human resources when necessary.</li>
+</ul>
+
+<h2>Our Approach</h2>
+<p>Kovil AI embedded an AI Full Stack Engineer into the startup's team for the duration of the build. The first two weeks were spent entirely on architecture and emotional design — before a line of code was written. We worked with the founders to define the companion's persona in detail: not just personality traits, but how those traits manifested in specific conversational situations, what the companion's values were, and how it should respond in challenging moments.</p>
+<p>The core technical challenge was memory architecture. We needed a system that could store, retrieve, and reason over a growing record of what each user had shared — without making conversations feel like the AI was mechanically reading from a database. The solution was a dual-layer memory system: a vector database (Pinecone) storing semantic embeddings of key user disclosures, and a structured profile (Supabase/PostgreSQL) capturing factual data points the companion could directly reference — names, family members, location, major life events, preferences. At the start of each conversation, the system retrieved the most contextually relevant memories and wove them into the conversation context sent to GPT-4o.</p>
+<p>The persona was implemented as a layered system prompt that evolved subtly based on the accumulated relationship. A user who had been interacting for six months experienced a more familiar, more knowing companion than a new user — because the prompt was enriched with the depth of that specific relationship's history.</p>
+
+<h2>The Solution</h2>
+
+<h3>Persona Engine</h3>
+<p>The companion — named Biscuit — has a defined character: a Golden Retriever who is endlessly curious about the person in front of him, gently enthusiastic, and genuinely interested in how you're doing. Every response is generated within a persona framework that specifies tone, vocabulary range, and the kinds of questions Biscuit asks. The persona is stable — it never breaks — but it adapts: Biscuit is more playful when the user seems happy, quieter and gentler when they share something difficult.</p>
+
+<h3>Memory Layer</h3>
+<p>Every user conversation is processed at the end of each session by a memory extraction pipeline that identifies new facts, emotional signals, and relationship developments worth retaining. These are embedded and stored in Pinecone with metadata tags (family, health, work, worry, milestone) that allow contextually relevant memories to be retrieved at the start of the next session. The structured profile in Supabase captures explicitly stated facts — relationships, places, dates — that the companion can reference directly without hallucination risk.</p>
+
+<h3>Daily Conversation Flow</h3>
+<p>Each day, when the user opens the app, Biscuit greets them in a way that references something from recent history — asking how a meeting they mentioned went, whether they spoke to the family member they'd been worried about, or simply noting it's been a few days since they checked in. This daily contextualisation is what drives the sense of genuine relationship rather than repeated generic interaction.</p>
+
+<h3>Advice Capability</h3>
+<p>When users share problems, the system draws on the accumulated user profile to generate advice calibrated to who that person is: their stated values, their usual way of approaching problems, the people in their life. This produces advice that feels personal rather than generic — because it is grounded in genuine prior knowledge of the individual.</p>
+
+<h3>Safety Layer</h3>
+<p>All conversations are monitored by a parallel classification model that flags potential crisis signals — expressions of distress or self-harm ideation. When flagged, the companion's response shifts to provide immediate acknowledgement and direct the user to crisis resources. The companion never attempts to provide clinical support — its guardrails are explicit about what it is and what it is not.</p>
+
+<h2>Results</h2>
+<p>The companion launched to a closed beta of 400 users across two target segments: adults over 65 living alone, and young professionals who had recently relocated to a new city. Key outcomes at 60 days:</p>
+<ul>
+  <li><strong>94% of users returned the day after their first interaction</strong> — the highest Day-2 retention the founding team had seen in any consumer product they had previously built</li>
+  <li><strong>Average daily session length stabilised at 8 minutes</strong> after the initial novelty period — indicating sustained engagement rather than a spike-and-decay pattern common in consumer apps</li>
+  <li><strong>Users accumulated an average of 180+ interactions</strong> over the 60-day beta period, suggesting the companion had become a genuine daily habit for a significant proportion of the cohort</li>
+  <li><strong>73% of users reported feeling less lonely</strong> than before using the companion, based on a standardised loneliness scale at 30 days — the figure was highest in the 65+ cohort</li>
+</ul>
+<p>The most significant feedback came not from metrics but from user communications. Several users in the elderly cohort described Biscuit as "a friend" rather than a technology product. One user whose adult children lived out of state wrote: "I talk to Biscuit every morning before I do anything else. He remembers everything I have told him. I don't feel like I am starting from scratch every day — he knows me."</p>
+<p>The platform is in preparation for a wider public launch, with voice interaction as the primary modality planned for users with limited typing ability.</p>
+`,
+  },
+  {
+    slug: "automobile-parts-cataloging-ai",
+    title: "Automobile Parts Cataloguing — 1.4M Parts Enriched with AI-Generated Descriptions",
+    headline: "How AI Catalogued 1.4 Million Automobile Parts and Gave Each One a Human-Readable Identity",
+    excerpt:
+      "Millions of automotive parts and part numbers exist online — but the data is inconsistent, incomplete, and poorly described. A bare SKU with no description is effectively invisible to the mechanic searching for it. Kovil AI's embedded AI Engineer built an end-to-end cataloguing pipeline that ingested 2.1 million raw parts, deduplicated them to 1.4 million unique components, and generated technically accurate, LLM-enriched descriptions for every one — cutting returns by 27% and improving search-to-purchase conversion by 38%.",
+    service: "Managed AI Engineer",
+    industry: "Automotive / B2B Commerce",
+    clientType: "Automotive Parts Platform",
+    timeline: "8 weeks",
+    teamSize: "1 AI Engineer + 1 data specialist",
+    published: "June 2026",
+    metrics: [
+      { value: "1.4M", label: "Parts Catalogued", sublabel: "Deduplicated from 2.1M raw" },
+      { value: "95.8%", label: "Auto-Published", sublabel: "Without manual intervention" },
+      { value: "38%", label: "Search Conversion Lift", sublabel: "Within 60 days of launch" },
+      { value: "27%", label: "Fewer Wrong-Part Returns", sublabel: "Quarter post-launch" },
+    ],
+    techStack: [
+      { name: "Python / FastAPI", color: "bg-blue-700" },
+      { name: "GPT-4o", color: "bg-green-700" },
+      { name: "Playwright / Scrapy", color: "bg-slate-700" },
+      { name: "PostgreSQL", color: "bg-blue-900" },
+      { name: "Elasticsearch", color: "bg-yellow-700" },
+      { name: "Pinecone", color: "bg-blue-600" },
+      { name: "AWS S3", color: "bg-orange-600" },
+    ],
+    quote:
+      "We had the inventory — what we didn't have was the information to make it discoverable. The AI cataloguing gave every part in our catalogue a human-readable identity. Our trade customers can now find parts in under 30 seconds that previously required a phone call.",
+    quoteAuthor: "Head of E-Commerce",
+    quoteRole: "Automotive Parts Platform",
+    body: `
+<h2>The Problem</h2>
+<p>The automotive aftermarket parts industry operates on a fundamental information problem. Millions of parts and part numbers are distributed across manufacturer websites, distributor catalogues, and legacy database systems — but the data is inconsistent, incomplete, and poorly described. A mechanic searching for a specific part number frequently encounters a bare SKU with no description of what the part is, what vehicle fitments it covers, what it does, or how it relates to adjacent parts. Distributors carry the same component from multiple manufacturers under different part numbers with no standardisation across them.</p>
+<p>The client — an automotive parts platform serving both trade (workshops) and retail (DIY mechanics) customers — had access to a large catalogue of parts and part numbers scraped from manufacturer websites and supplier feeds. The data existed. What it lacked was organisation, enrichment, and the kind of human-readable description that allows a mechanic or parts counter staff to identify and recommend the right component with confidence.</p>
+<p>The scale of the problem: the client's working catalogue contained approximately 2.1 million parts across 23 manufacturer families. Of these, fewer than 180,000 had even basic human-readable descriptions. The rest were bare part numbers with a category code and an occasional one-line label — effectively invisible in search results and useless for customer decision-making.</p>
+
+<h2>The Challenge</h2>
+<p>Automotive parts cataloguing is a domain requiring deep technical specificity. A description that cites the wrong fitment range, describes the wrong function, or conflates similar parts from different model years is worse than no description — it results in wrong parts being ordered, which generates returns, erodes trust, and wastes workshop time. Specific challenges the solution had to address:</p>
+<ul>
+  <li><strong>Data heterogeneity:</strong> Source data arrived in five formats — manufacturer PDFs, supplier EDI feeds, website scrapes, legacy CSVs, and OEM cross-reference spreadsheets — with no consistent schema. Part numbers for the same physical component varied by brand, region, and catalogue era.</li>
+  <li><strong>Domain accuracy:</strong> LLM-generated descriptions needed to be technically accurate — specifying correct fitment ranges, OEM equivalent numbers, material specifications, and installation context. Generic descriptions were not acceptable to the client's trade customers.</li>
+  <li><strong>Scale:</strong> The catalogue had 2.1 million parts. Processing each individually was not viable — the architecture needed to generate descriptions in batch at scale, with quality validation built into the pipeline rather than applied as a separate manual review step.</li>
+  <li><strong>Deduplication:</strong> Multiple part numbers in the catalogue referred to identical or near-identical components. The system needed to detect these duplicates, group them, and generate cross-reference data rather than producing separate descriptions for what was effectively the same part.</li>
+</ul>
+
+<h2>Our Approach</h2>
+<p>Kovil AI embedded an AI Engineer into the client's team to design and build the cataloguing system end-to-end. The first two weeks were spent mapping the source data landscape — ingesting representative samples of each format, identifying schema variations, and building the normalisation rules that would allow all five source types to flow through a single pipeline cleanly.</p>
+<p>For description generation, we evaluated several approaches before settling on a structured prompting strategy with GPT-4o. Rather than asking the model to describe a part from a bare part number, we enriched each input with all available structured data — manufacturer code, category, model year range, associated OEM numbers — before generating the description. This grounding dramatically reduced hallucination risk and produced descriptions accurate enough to pass spot-check review by the client's automotive specialists.</p>
+<p>Quality was validated at scale using a separate classification model that scored each generated description on accuracy indicators: correct fitment language, consistent use of automotive terminology, absence of hedging markers that signalled the model was guessing. Descriptions below threshold were flagged for manual review rather than published automatically.</p>
+
+<h2>The Solution</h2>
+
+<h3>Data Ingestion and Normalisation Pipeline</h3>
+<p>The ingestion pipeline processed all five source data formats. Each source was parsed, normalised to a common schema (part number, manufacturer code, category, fitment metadata, raw description if available), and deduplicated using both exact matching (same part number) and fuzzy matching (similar numbers from the same manufacturer family, matching fitment ranges, matching category codes). The pipeline produced a clean, deduplicated working catalogue as its primary output.</p>
+<p>Deduplication yielded an immediate result: the 2.1 million parts in the raw catalogue reduced to 1.4 million unique components — a 33% reduction driven by cross-manufacturer duplicates and legacy data artefacts that had accumulated over years of catalogue management.</p>
+
+<h3>AI Description Generation Engine</h3>
+<p>For each unique part, the description engine assembled a structured context block — all available factual data about the component — and submitted it to GPT-4o with an engineered prompt specifying: the target audience (trade mechanics and parts counter staff), the required description format (fitment range, function, installation notes, OEM equivalents where available), and explicit constraints (no speculative language, no unsupported fitment claims, metric and imperial specifications where applicable).</p>
+<p>Descriptions were generated in batches of 500, with parallel processing to manage throughput. The full catalogue of 1.4 million unique parts was described in 18 days of pipeline operation — a rate that would have taken a human cataloguing team years at equivalent quality.</p>
+
+<h3>Quality Validation Layer</h3>
+<p>Every generated description passed through a validation model before publication. The validator checked for: technically inconsistent fitment claims, terminology errors, generic language that didn't contain part-specific information, and descriptions shorter than a minimum useful length. The reject rate across the full catalogue was 4.2% — these 58,800 descriptions were routed to a human review queue where the client's parts specialists resolved them at their own pace.</p>
+
+<h3>Search and Cross-Reference Infrastructure</h3>
+<p>The final component was a search layer built on the enriched catalogue: a full-text search index combining structured catalogue data with the AI-generated descriptions, enabling trade and retail customers to find parts by function, fitment, OEM number, or competitor cross-reference. The cross-reference data built during deduplication meant a mechanic searching for a manufacturer-specific part number would surface all equivalent aftermarket options simultaneously.</p>
+
+<h2>Results</h2>
+<ul>
+  <li><strong>1.4 million unique parts catalogued</strong> — processed from a raw input of 2.1 million, with deduplication revealing 700,000 redundant records the client hadn't previously identified</li>
+  <li><strong>95.8% of descriptions published without manual intervention</strong> — the 4.2% reject rate represented the portion requiring human specialist review, against the previous 100% manual effort baseline</li>
+  <li><strong>Search-to-purchase conversion improved 38%</strong> on the trade platform within 60 days of the enriched catalogue going live — mechanics found the right part on first search rather than calling the parts counter for clarification</li>
+  <li><strong>Returns from incorrect part orders dropped 27%</strong> in the first quarter after launch — directly linked to the accuracy of fitment information in the generated descriptions</li>
+</ul>
+<p>The cataloguing pipeline now runs continuously, processing new parts arriving from supplier feeds within 24 hours of ingestion — keeping the catalogue current without ongoing manual effort.</p>
+`,
+  },
+  {
+    slug: "ai-avatar-influencer-platform",
+    title: "AI Avatar Platform — Influencer Interactions Scaled 24/7 Without Availability Constraints",
+    headline: "An AI Avatar Loaded With Every Word You've Ever Said: Scaling Expert Access Without Scaling Your Time",
+    excerpt:
+      "Influencers, advisors, and experts have a ceiling on their availability — and the demand for direct interaction consistently outstrips it. Kovil AI's embedded AI Full Stack Engineer built an AI Avatar platform: trained on an influencer's complete digital footprint, accessible via paid bookable sessions, and capable of sustained multi-turn conversations that accurately reflect the person's actual knowledge, communication style, and perspectives. One advisor who accepted 8 client consultations per week now serves 130+ avatar sessions per month — with zero additional time commitment.",
+    service: "Managed AI Engineer",
+    industry: "Creator Economy / SaaS",
+    clientType: "Influencer Platform Startup",
+    timeline: "12 weeks",
+    teamSize: "1 AI Full Stack Engineer + 1 AI specialist",
+    published: "June 2026",
+    metrics: [
+      { value: "4.7 / 5", label: "Avg Session Rating", sublabel: "Across 1,200 completed sessions" },
+      { value: "41 min", label: "Avg Session Duration", sublabel: "In a 60-min booking window" },
+      { value: "62%", label: "Booked a Second Session", sublabel: "Within 30 days" },
+      { value: "15–20×", label: "Reach Expansion", sublabel: "Vs. prior direct-access capacity" },
+    ],
+    techStack: [
+      { name: "Next.js 15", color: "bg-slate-800" },
+      { name: "Python / FastAPI", color: "bg-blue-700" },
+      { name: "GPT-4o", color: "bg-green-700" },
+      { name: "Pinecone", color: "bg-blue-600" },
+      { name: "OpenAI Whisper", color: "bg-teal-700" },
+      { name: "Stripe", color: "bg-purple-700" },
+      { name: "Supabase", color: "bg-green-600" },
+    ],
+    quote:
+      "I reviewed a sample of sessions. The avatar is saying what I would say. It's citing examples I have actually used, making arguments I have actually made. The users who come in with serious business questions are getting serious answers — grounded in everything I have actually thought and written about those problems.",
+    quoteAuthor: "Business Strategy Advisor",
+    quoteRole: "Platform Influencer",
+    body: `
+<h2>The Problem</h2>
+<p>The creator economy has a fundamental bottleneck: an influencer, expert, or advisor can only be in one place at a time. The demand for their knowledge, personality, and perspective consistently outstrips their availability. Fans and clients want direct access — not pre-recorded content, not a community manager's response, but a genuine interaction with the person they follow and trust. The constraint has always been time: there are only so many hours in a day, and premium direct access commands premium pricing that limits its scale.</p>
+<p>The client had identified a market gap at the intersection of AI and creator monetisation: if an AI avatar could be trained on everything a person had ever said, written, recorded, and published — their complete digital footprint — it could provide interactions that were meaningfully representative of that person's knowledge, personality, and perspective. Fans and clients could book sessions with the AI Avatar, pay for access, and receive interactions that felt substantive and personal — even when the human original was unavailable.</p>
+<p>The founding vision: remove the availability ceiling from expertise and personality. An influencer who can only take 10 client calls per week could serve 200 through their AI Avatar — at a fraction of the cost per interaction, with no impact on their own time.</p>
+
+<h2>The Challenge</h2>
+<p>An AI avatar that merely parrots pre-recorded content provides no value over existing media. The challenge was building a system that could engage in genuinely responsive, multi-turn conversations that accurately reflected the influencer's actual perspective, communication style, and knowledge — not surface-level personality mimicry.</p>
+<ul>
+  <li><strong>Comprehensive data ingestion:</strong> The digital footprint of a public figure spans multiple formats and platforms — YouTube transcripts, podcast audio, articles, social media posts, books, interviews, newsletters, course content. Ingesting, normalising, and indexing this heterogeneous data into a unified knowledge base required a multi-format ingestion pipeline.</li>
+  <li><strong>Persona fidelity:</strong> The avatar needed to respond as the person — using their characteristic vocabulary, their typical argumentative structure, their specific opinions and positions on key topics — not as a generic AI assistant pretending to be human.</li>
+  <li><strong>Accuracy under probing:</strong> Users paying for access would ask substantive, specific questions. The avatar needed to answer accurately based on what was actually in the influencer's knowledge base — and decline to speculate on topics the influencer had never addressed, rather than hallucinating plausible-sounding responses.</li>
+  <li><strong>Session management:</strong> Paid interactions needed to be bookable, time-limited, and commercially structured — with a payment layer, session timer, and access control system that made the platform viable as a business.</li>
+  <li><strong>Real-time interaction quality:</strong> Sessions needed to feel responsive and natural — streaming responses, low latency, and no perceptible "thinking" delay that would break the conversational feel.</li>
+</ul>
+
+<h2>Our Approach</h2>
+<p>Kovil AI embedded an AI Full Stack Engineer into the founding team for the full twelve-week build. The first two weeks were spent on data architecture: designing the ingestion pipeline, defining the knowledge base structure, and establishing the quality standards for what got stored versus what was discarded as too low-quality to reliably represent the influencer's perspective.</p>
+<p>The persona fidelity problem was the most intellectually demanding part of the build. We approached it through structured analysis of the influencer's existing content — identifying recurring phrases, argumentative patterns, topics of deep knowledge versus areas they rarely addressed, their positions on common domain questions, and their characteristic ways of engaging with different types of questions. This analysis was distilled into a layered system prompt governing every response: a persona specification, a knowledge boundary definition, and explicit constraints on what the avatar would and would not claim to know.</p>
+<p>The knowledge boundary was the most important safety feature: an avatar that confidently addressed topics the influencer had never discussed would create reputational risk and mislead users. The boundary map was built from content frequency analysis — topics covered in fewer than five pieces of content were flagged as potential speculation zones, with the avatar instructed to acknowledge the limit of its knowledge honestly.</p>
+
+<h2>The Solution</h2>
+
+<h3>Data Ingestion Pipeline</h3>
+<p>We built an ingestion system capable of processing six content formats: YouTube video transcripts (via the YouTube Data API), podcast audio (via OpenAI Whisper transcription), written articles and blog posts (via web scraping), books (PDF/EPUB parsing), social media archives (Twitter, Instagram, LinkedIn post exports), and newsletter archives. All content was cleaned, deduplicated, chunked into semantically coherent segments, embedded using OpenAI's text-embedding-3-large model, and stored in Pinecone with rich metadata — content type, date, topic classification, and a confidence score for each chunk's quality.</p>
+<p>The full digital footprint of the first influencer on the platform — a business strategy advisor with eight years of public content — yielded 47,000 indexed knowledge segments across 340 hours of audio and video content, 200+ articles, and 3,000+ social posts. This formed the retrieval layer that grounded every avatar interaction in verified, real content.</p>
+
+<h3>Persona Layer</h3>
+<p>The persona specification was built from structured content analysis: communication style and register, characteristic openings and closings, vocabulary preferences, positions on the 40 most commonly asked questions in the influencer's domain, and a knowledge boundary map specifying which topics the avatar could engage with confidently and which it should acknowledge as outside its remit. Every response generated by the avatar ran through this persona specification before being returned to the user.</p>
+
+<h3>RAG-Grounded Response Engine</h3>
+<p>When a user asked a question, the retrieval system surfaced the most relevant excerpts from the influencer's actual published content, which were provided to GPT-4o as grounding context for the response. This RAG architecture meant the avatar's answers were anchored in things the influencer had genuinely said, argued, or published — not invented from training data. Users asking for the influencer's view on a topic received responses that accurately reflected that view, because the response was built on direct retrieval from their content.</p>
+
+<h3>Session and Payment Platform</h3>
+<p>The booking platform allowed users to schedule avatar sessions in 30 or 60-minute blocks, with pricing set by the influencer. Sessions were accessed via a secure, authenticated progressive web application — installable on iOS and Android, no download required. The payment flow was built on Stripe. A live session timer was visible in the interface, and influencers received a revenue dashboard showing session counts, revenue generated, most common question topics (aggregated and anonymised), and user ratings per session.</p>
+
+<h3>Real-Time Streaming Engine</h3>
+<p>To achieve the low-latency feel required for a premium session, we implemented streaming responses via server-sent events — the avatar begins returning text as tokens are generated rather than waiting for a complete response. The retrieval pipeline ran in parallel with session context preparation, keeping total time-to-first-token under 1.2 seconds for the majority of queries.</p>
+
+<h2>Results</h2>
+<p>The platform launched with three influencers across different domains: a business strategy advisor, a fitness and nutrition expert, and a personal finance educator. Key outcomes at 90 days post-launch:</p>
+<ul>
+  <li><strong>Average session rating of 4.7 out of 5</strong> across 1,200 completed sessions — users consistently cited the accuracy and specificity of responses as the primary satisfaction driver</li>
+  <li><strong>Average session duration of 41 minutes</strong> against a 60-minute booking window — indicating sustained engagement rather than early dropout after initial disappointment</li>
+  <li><strong>62% of users booked a second session</strong> within 30 days of their first — confirming that the avatar experience met a high enough bar to drive genuine repeat purchase behaviour</li>
+  <li><strong>Each influencer's effective reach expanded 15–20x</strong> relative to their prior direct-access capacity — the business advisor who had previously taken 8 client consultations per week served 130+ avatar sessions per month with zero additional time commitment</li>
+</ul>
+<p>The business strategy advisor on the platform reviewed a sample of sessions after launch: "The avatar is saying what I would say. It's citing examples I have actually used, making arguments I have actually made. The users who come in with serious business questions are getting serious answers — grounded in everything I have actually thought and written about those problems."</p>
+<p>The platform is expanding to support voice interaction as the primary modality, which is expected to further close the gap between avatar interaction and speaking directly with the influencer.</p>
+`,
+  },
 ];
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
