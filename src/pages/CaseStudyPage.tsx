@@ -5,6 +5,56 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { getCaseStudy } from "../data/case-studies"
 
+// ── Icon SVGs for h2 headings ─────────────────────────────────────────────────
+
+function getH2Icon(heading: string): string {
+  const t = heading.toLowerCase()
+  const c = '#FF4F00'
+  const a = `width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.5rem;margin-bottom:3px;flex-shrink:0"`
+
+  if (/solution|built|what we|deliver|phase|engine|how it works/.test(t)) {
+    // Lightbulb
+    return `<svg ${a}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>`
+  } else if (/result|outcome|impact|metric|key metric/.test(t)) {
+    // Trending up
+    return `<svg ${a}><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`
+  } else if (/challenge|problem|pain|difficult/.test(t)) {
+    // Alert triangle
+    return `<svg ${a}><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`
+  } else if (/approach|method|strategy|how we/.test(t)) {
+    // Compass
+    return `<svg ${a}><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`
+  } else if (/situation|context|background|brief|introduction|client background|the context/.test(t)) {
+    // Info
+    return `<svg ${a}><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`
+  } else if (/technical|architect|infrastructure|stack|ingestion|pipeline/.test(t)) {
+    // Settings/cog
+    return `<svg ${a}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`
+  } else if (/who|user|serve|role|persona/.test(t)) {
+    // Users
+    return `<svg ${a}><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
+  } else {
+    // Default: chevron right
+    return `<svg ${a}><polyline points="9 18 15 12 9 6"/></svg>`
+  }
+}
+
+// ── Body preprocessing: em dash removal + h2 icon injection ──────────────────
+
+function processBody(html: string): string {
+  return html
+    // Remove em/en dashes
+    .replace(/—/g, ',')   // em dash —
+    .replace(/–/g, '-')   // en dash –
+    .replace(/&mdash;/g, ',')
+    .replace(/&ndash;/g, '-')
+    // Inject icon before h2 heading text
+    .replace(/<h2>([\s\S]*?)<\/h2>/g, (_match, inner) => {
+      const icon = getH2Icon(inner.trim())
+      return `<h2>${icon}${inner}</h2>`
+    })
+}
+
 export default function CaseStudyPage() {
   const params = useParams()
   const slug = params && typeof params.slug === 'string' ? params.slug : undefined
@@ -129,7 +179,7 @@ export default function CaseStudyPage() {
         {/* Body */}
         <div
           className="prose-content"
-          dangerouslySetInnerHTML={{ __html: cs.body }}
+          dangerouslySetInnerHTML={{ __html: processBody(cs.body) }}
         />
 
         {/* Internal CTA */}
