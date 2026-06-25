@@ -1098,9 +1098,9 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "ai-pet-companion",
     title: "AI Pet Companion — Built to Combat Loneliness Through Daily Personalised Interaction",
-    headline: "An AI Dog That Learns Who You Are: Solving Loneliness at Scale Through Persistent Memory and Daily Connection",
+    headline: "An AI Pet Companion Dog That Learns Who You Are: Solving Loneliness at Scale Through Persistent Memory and Daily Connection",
     excerpt:
-      "Loneliness is a public health crisis — and the people most affected often have the least access to consistent human connection. Kovil AI's embedded AI Full Stack Engineer designed and built a digital pet companion: an AI dog with persistent memory, a learnable persona, and the ability to know a user deeply over time through daily interaction. The result is a companion that remembers your life, understands who you are, and gives meaningful advice.",
+      "Loneliness is a public health crisis — and the people most affected often have the least access to consistent human connection. Kovil AI's embedded AI Full Stack Engineer designed and built a digital pet companion: an AI pet companion dog with persistent memory, a learnable persona, and the ability to know a user deeply over time through daily interaction. The result is a companion that remembers your life, understands who you are, and gives meaningful advice.",
     service: "Managed AI Engineer",
     industry: "Consumer Tech / Mental Wellness",
     clientType: "Consumer App Startup",
@@ -1136,7 +1136,7 @@ export const caseStudies: CaseStudy[] = [
 <p>Building a companion that people genuinely connect with is harder than building one that functions correctly. The technical requirements were significant, but the emotional design requirements were equally demanding:</p>
 <ul>
   <li><strong>Persistent memory across sessions:</strong> The companion needed to remember what users told it — names of family members, hobbies, past experiences, current worries — and surface that knowledge naturally in future conversations. A companion that forgot you the next day was no companion at all.</li>
-  <li><strong>Persona consistency:</strong> The AI dog needed a defined, stable personality — warm, curious, playful, gentle — that remained consistent across thousands of conversations with different users and never broke character regardless of what was said.</li>
+  <li><strong>Persona consistency:</strong> The AI pet companion dog needed a defined, stable personality — warm, curious, playful, gentle — that remained consistent across thousands of conversations with different users and never broke character regardless of what was said.</li>
   <li><strong>Meaningful daily interaction:</strong> Sessions needed to feel different each day, not repetitive. The companion had to ask about things the user had mentioned before, notice if they seemed different from yesterday, and generate conversation that felt genuinely attentive rather than scripted.</li>
   <li><strong>Advice capability:</strong> Users needed to be able to share problems and receive thoughtful, context-aware responses — not generic advice, but advice calibrated to what the AI already knew about this person's life, values, and circumstances.</li>
   <li><strong>Emotional safety:</strong> Given the target population, the system needed clear guardrails — it could not replace professional mental health support, needed to recognise crisis signals, and had to always direct users to appropriate human resources when necessary.</li>
