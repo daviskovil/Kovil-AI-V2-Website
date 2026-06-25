@@ -88,14 +88,16 @@ export default function CaseStudiesPage() {
                       {downloading === cs.slug ? (
                         <Loader2 className="h-4 w-4 text-accent animate-spin" />
                       ) : (
-                        <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
-                          {/* Page body with notched corner */}
-                          <path d="M2 1H13L19 7V22Q19 23 18 23H2Q1 23 1 22V2Q1 1 2 1Z" fill="white" stroke="#DC2626" strokeWidth="1.5"/>
-                          {/* Folded corner */}
-                          <path d="M13 1L19 7H13V1Z" fill="#FECACA" stroke="#DC2626" strokeWidth="1.5" strokeLinejoin="round"/>
-                          {/* PDF badge */}
-                          <rect x="2.5" y="15.5" width="15" height="6" rx="1.5" fill="#9CA3AF"/>
-                          <text x="10" y="20.5" textAnchor="middle" fontFamily="Arial,sans-serif" fontSize="5" fontWeight="bold" fill="white">PDF</text>
+                        <svg width="22" height="26" viewBox="0 0 22 26" fill="none">
+                          {/* Main red body */}
+                          <path d="M2.5 0H14L21.5 7.5V23.5Q21.5 26 19 26H3Q0.5 26 0.5 23.5V2.5Q0.5 0 2.5 0Z" fill="#C8201E"/>
+                          {/* Darker folded corner */}
+                          <path d="M14 0L21.5 7.5H14V0Z" fill="#9B1515"/>
+                          {/* Two white content lines */}
+                          <rect x="3.5" y="9" width="13" height="2.5" rx="1.25" fill="white"/>
+                          <rect x="3.5" y="13.5" width="13" height="2.5" rx="1.25" fill="white"/>
+                          {/* PDF label */}
+                          <text x="11" y="24.5" textAnchor="middle" fontFamily="Arial,sans-serif" fontSize="7.5" fontWeight="800" fill="white">PDF</text>
                         </svg>
                       )}
                     </button>
