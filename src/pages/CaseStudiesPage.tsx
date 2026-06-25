@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowRight, FileDown, Loader2 } from "lucide-react"
+import { ArrowRight, Loader2 } from "lucide-react"
 import { caseStudies, type CaseStudy } from "../data/case-studies"
 
 const serviceColors: Record<string, string> = {
@@ -83,15 +83,20 @@ export default function CaseStudiesPage() {
                       onClick={(e) => handleDownload(e, cs)}
                       disabled={downloading === cs.slug}
                       title="Download case study as PDF"
-                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border/60 hover:border-accent/50 hover:bg-accent/8 transition-all disabled:opacity-50 disabled:cursor-not-allowed group/dl"
+                      className="flex items-center justify-center p-1.5 rounded-lg border border-border/60 hover:border-red-500/40 hover:bg-red-500/5 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {downloading === cs.slug ? (
-                        <Loader2 className="h-3.5 w-3.5 text-accent animate-spin" />
+                        <Loader2 className="h-4 w-4 text-accent animate-spin" />
                       ) : (
-                        <>
-                          <FileDown className="h-3.5 w-3.5 text-muted-foreground group-hover/dl:text-accent transition-colors" />
-                          <span className="text-xs font-semibold text-muted-foreground group-hover/dl:text-accent transition-colors tracking-wide">PDF</span>
-                        </>
+                        <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
+                          {/* Page body with notched corner */}
+                          <path d="M2 1H13L19 7V22Q19 23 18 23H2Q1 23 1 22V2Q1 1 2 1Z" fill="white" stroke="#DC2626" strokeWidth="1.5"/>
+                          {/* Folded corner */}
+                          <path d="M13 1L19 7H13V1Z" fill="#FECACA" stroke="#DC2626" strokeWidth="1.5" strokeLinejoin="round"/>
+                          {/* PDF badge */}
+                          <rect x="2.5" y="15.5" width="15" height="6" rx="1.5" fill="#9CA3AF"/>
+                          <text x="10" y="20.5" textAnchor="middle" fontFamily="Arial,sans-serif" fontSize="5" fontWeight="bold" fill="white">PDF</text>
+                        </svg>
                       )}
                     </button>
                   </div>
