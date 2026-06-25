@@ -272,7 +272,7 @@ export default function AgentforcePricingGuidePage() {
 
       {/* Main: article + sticky TOC sidebar */}
       <div className="max-w-5xl mx-auto px-6 py-16">
-        <div className="lg:grid lg:grid-cols-[1fr_272px] lg:gap-14 lg:items-start">
+        <div className="lg:grid lg:grid-cols-[1fr_272px] lg:gap-14">
 
           {/* ── Article content ──────────────────────────────────────── */}
           <div>
