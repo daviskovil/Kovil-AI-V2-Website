@@ -312,38 +312,6 @@ export async function generateCaseStudyPDF(cs: CaseStudy): Promise<void> {
     }
   }
 
-  // ── QUOTE ──────────────────────────────────────────────────────────────────
-  if (cs.quote) {
-    guard(35)
-    y += 4
-
-    const quoteText = `"${cs.quote}"`
-    const qLines = doc.splitTextToSize(quoteText, CW - 10)
-
-    // Quote background
-    doc.setFillColor(248, 250, 252)
-    doc.roundedRect(ML, y - 4, CW, qLines.length * 5.5 + 14, 2, 2, 'F')
-
-    // Orange left accent
-    doc.setFillColor(...ORANGE)
-    doc.rect(ML, y - 4, 2.5, qLines.length * 5.5 + 14, 'F')
-
-    doc.setFont('helvetica', 'italic')
-    doc.setFontSize(9)
-    doc.setTextColor(...DARK)
-    doc.text(qLines, ML + 8, y + 2)
-    y += qLines.length * 5.5 + 6
-
-    if (cs.quoteAuthor) {
-      doc.setFont('helvetica', 'bold')
-      doc.setFontSize(7.5)
-      doc.setTextColor(...GRAY)
-      const attribution = `— ${cs.quoteAuthor}${cs.quoteRole ? `, ${cs.quoteRole}` : ''}`
-      doc.text(attribution, ML + 8, y)
-      y += 8
-    }
-  }
-
   // ── FOOTER (all pages) ─────────────────────────────────────────────────────
   const totalPages = (doc as any).internal.pages.length - 1
   for (let p = 1; p <= totalPages; p++) {

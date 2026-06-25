@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, Quote } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { getCaseStudy } from "../data/case-studies"
 
 export default function CaseStudyPage() {
@@ -125,18 +125,6 @@ export default function CaseStudyPage() {
             ))}
           </div>
         </div>
-
-        {/* Quote */}
-        {cs.quote && (
-          <blockquote className="mb-10 rounded-2xl border border-border bg-muted/30 p-6 lg:p-8">
-            <Quote className="h-6 w-6 text-accent mb-4" />
-            <p className="text-lg leading-relaxed font-medium text-foreground mb-4">"{cs.quote}"</p>
-            <footer className="text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">{cs.quoteAuthor}</span>
-              {cs.quoteRole && <span>, {cs.quoteRole}</span>}
-            </footer>
-          </blockquote>
-        )}
 
         {/* Body */}
         <div

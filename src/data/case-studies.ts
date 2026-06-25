@@ -60,10 +60,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "PostgreSQL", color: "bg-blue-900" },
     ],
     engineers: ['AI LLM Engineer', 'Backend Engineer', 'Frontend Engineer'],
-    quote:
-      "We were billing associates for work that AI can now do in eight minutes. The agent flags every non-standard clause before anyone opens the document — and it knows our positions because we trained it on our own precedents. This is the biggest change to how we work in twenty years.",
-    quoteAuthor: "Managing Partner",
-    quoteRole: "Corporate Practice Group",
     body: `
 <h2>The Situation</h2>
 <p>The client is a 60-attorney corporate law firm specialising in M&A, commercial contracts, and venture transactions. Their contract review process was high-cost and structurally inefficient in the way that's common across mid-size firms: associates performed the bulk of first-pass review — reading contracts against a mental model of the firm's standard positions — before escalating exceptions to senior attorneys for judgment calls.</p>
@@ -311,10 +307,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "Vercel", color: "bg-slate-700" },
     ],
     engineers: ['Full Stack Engineer', 'Backend Engineer', 'DevOps Engineer'],
-    quote:
-      "We needed a payment dashboard that could handle real transaction volume before our Series A close — and Kovil AI delivered it in less than three weeks. Clean code, PCI-compliant from day one, and a team that actually understood the regulatory constraints we were operating under.",
-    quoteAuthor: "Sarah Chen",
-    quoteRole: "CTO",
     body: `
 <h2>The Situation</h2>
 <p>the client had just closed a $4M pre-seed round and needed to demonstrate payment processing capability to enterprise prospects before their Series A pitch. Their existing prototype was a rough proof-of-concept — not something they could show to compliance-conscious buyers.</p>
@@ -385,10 +377,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "Webhooks", color: "bg-slate-600" },
     ],
     engineers: ['AI Automation Engineer', 'Full Stack Engineer'],
-    quote:
-      "What used to take our ops team half a day now happens automatically before anyone even checks their email. The ROI was obvious within the first month — and the Kovil AI team was meticulous about documenting everything so we can maintain it ourselves.",
-    quoteAuthor: "Marcus Webb",
-    quoteRole: "VP Engineering",
     body: `
 <h2>The Situation</h2>
 <p>the client sells B2B data infrastructure to mid-market companies. Like many companies at their stage, they'd built internal processes through a combination of Slack messages, email chains, and spreadsheets. It worked — until it didn't.</p>
@@ -452,10 +440,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "GitHub Actions", color: "bg-slate-700" },
     ],
     engineers: ['Backend Engineer', 'DevOps Engineer'],
-    quote:
-      "We'd been living with production fires every week for over a year. Kovil AI came in, understood our codebase faster than anyone we'd hired full-time, and systematically eliminated the sources of instability. The monitoring setup alone was worth the retainer.",
-    quoteAuthor: "Priya Nair",
-    quoteRole: "Founder & CEO",
     body: `
 <h2>The Situation</h2>
 <p>the platform had grown to 500,000 active users on the back of a fast-moving engineering team that prioritized feature velocity over code quality — a common and understandable trade-off at the growth stage. By the time they reached out to Kovil AI, the technical debt had compounded into a real business problem.</p>
@@ -519,10 +503,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "Twilio", color: "bg-red-600" },
     ],
     engineers: ['AI Integration Engineer', 'Full Stack Engineer'],
-    quote:
-      "Our intake coordinators were spending more time on data entry than on patients. Kovil AI built something that actually works in a clinical environment — HIPAA-compliant, accurate, and fast. Our staff were converted believers within the first week.",
-    quoteAuthor: "Dr. Anika Patel",
-    quoteRole: "Chief Medical Officer",
     body: `
 <h2>The Situation</h2>
 <p>the client operates a network of outpatient clinics and had recently raised their Series B on the strength of their patient engagement platform. Their technology was modern — but their intake process was stuck in 2010.</p>
@@ -587,10 +567,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "Railway", color: "bg-slate-600" },
     ],
     engineers: ['Full Stack Engineer', 'AI Algorithm Engineer'],
-    quote:
-      "We had the idea, we had the problem, we had early customers who wanted to pay — we just needed something real to show investors. Kovil AI took our spec and turned it into a product that blew the room away. Three of our five seed investors said the demo was the deciding factor.",
-    quoteAuthor: "James Okafor",
-    quoteRole: "CEO & Co-Founder",
     body: `
 <h2>The Situation</h2>
 <p>the client was built around a clear insight: mid-market logistics companies spend 20–35% more on fuel and driver time than necessary because their route planning is done manually in spreadsheets. The founders had 15 years of combined logistics operations experience and had already lined up three pilot customers. What they didn't have was a product.</p>
@@ -655,10 +631,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "AWS S3", color: "bg-orange-600" },
     ],
     engineers: ['Full Stack Engineer', 'DevOps Engineer'],
-    quote:
-      "When our last engineer gave notice, I thought we were done. Kovil AI gave us a SLA, onboarded in a week, and hasn't missed a beat since. It's genuinely taken the technical anxiety off my plate entirely.",
-    quoteAuthor: "Rachel Torres",
-    quoteRole: "CEO",
     body: `
 <h2>The Situation</h2>
 <p>the client provides practice management software to small law firms. In the span of 30 days, all three of their engineers departed — two to a well-funded competitor, one for a career change. The CEO, Rachel Torres, found herself running a software company with no software team and three production applications that 200+ law firms relied on every business day.</p>
@@ -722,10 +694,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "Redis", color: "bg-red-600" },
     ],
     engineers: ['AI LLM Engineer', 'Frontend Engineer'],
-    quote:
-      "We expected the chatbot to reduce tickets. We didn't expect it to actually improve satisfaction scores. Kovil AI built something that customers genuinely find helpful — not the frustrating bot-loop experience you get from most tools.",
-    quoteAuthor: "Tyler Nguyen",
-    quoteRole: "VP Customer Experience",
     body: `
 <h2>The Situation</h2>
 <p>the client operates 200+ home goods stores across North America, with a growing e-commerce business that had tripled in volume over the previous two years. Their 12-person customer support team was stretched to breaking point — handling over 500 tickets per day, the vast majority of which were the same 40 questions asked on repeat.</p>
@@ -790,10 +758,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "PostgreSQL", color: "bg-blue-900" },
     ],
     engineers: ['Full Stack Engineer', 'Frontend Engineer'],
-    quote:
-      "We'd been quoted 3 months by two other agencies. Kovil AI scoped it in a day, built it in 3 weeks, and the output was genuinely beautiful. Our first enterprise prospect said the product felt more polished than tools they'd been paying $500/month for.",
-    quoteAuthor: "David Kim",
-    quoteRole: "CEO",
     body: `
 <h2>The Situation</h2>
 <p>the client was building a data intelligence platform for commercial real estate investors — helping them evaluate acquisition targets faster by aggregating multiple property data sources into a single view. The founders had validated demand through interviews with 30+ investors and had a design spec ready.</p>
@@ -856,10 +820,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "Sentry", color: "bg-purple-700" },
     ],
     engineers: ['Backend Engineer', 'DevOps Engineer'],
-    quote:
-      "Our platform was literally falling over during peak hours. Kovil AI diagnosed the root causes in the first week and had measurable improvements within a month. Our Lighthouse score went from 51 to 92 — our conversion rates followed.",
-    quoteAuthor: "Sophie Laurent",
-    quoteRole: "CTO",
     body: `
 <h2>The Situation</h2>
 <p>the platform is a B2C platform offering interactive coding courses to self-taught developers. Over 18 months, their user base had grown from 8,000 to 65,000 monthly active users — impressive growth that their original infrastructure wasn't designed to handle.</p>
@@ -924,10 +884,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "Instantly", color: "bg-purple-700" },
     ],
     engineers: ['AI Automation Engineer', 'Backend Engineer'],
-    quote:
-      "Our reps were researchers, not salespeople. Now they walk in knowing exactly who they're calling, why they should care, and with a personalised email already in the prospect's inbox. The pipeline tripled and nobody worked a longer day.",
-    quoteAuthor: "Head of Sales",
-    quoteRole: "B2B Manufacturing Company",
     body: `
 <h2>The Situation</h2>
 <p>The client is a B2B manufacturing company with an 8-person field sales team selling to mid-market industrial buyers. Their sales process had a structural problem at the research stage: each rep was spending roughly 80% of their working day on prospect research, list building, manual CRM updates, and email drafting — leaving only 20% for actual selling activity.</p>
@@ -1000,10 +956,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "HubSpot Webhooks", color: "bg-orange-600" },
     ],
     engineers: ['Full Stack AI Engineer', 'Frontend Engineer'],
-    quote:
-      "I used to send follow-ups two days after a meeting if I remembered. Now I'm sending personalised emails from the car park before I've driven away. The LinkedIn content alone has generated three inbound conversations this month.",
-    quoteAuthor: "Senior Account Executive",
-    quoteRole: "Industrial B2B Sales",
     body: `
 <h2>The Brief</h2>
 <p>The client sells into industrial and manufacturing sectors — a relationship-driven environment where field reps spend most of their time on customer sites, not at desks. They came to Kovil AI with a specific problem: their reps were losing context between client visits, generic follow-up emails were damaging relationships they had spent months building, and valuable insight gathered in the field was never making it back into the business in a usable form.</p>
@@ -1069,10 +1021,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "Cron / n8n", color: "bg-orange-600" },
     ],
     engineers: ['AI Automation Engineer', 'Full Stack Engineer'],
-    quote:
-      "We could see our clients ranking on page one of Google but disappearing entirely from AI answers. The GEO platform turned that into a measurable, trackable metric — and it became the foundation of an entirely new service line for the agency.",
-    quoteAuthor: "Director of Strategy",
-    quoteRole: "Digital Marketing Agency",
     body: `
 <h2>The Context</h2>
 <p>Generative Engine Optimisation — GEO — has emerged as a critical discipline alongside traditional SEO. As AI-powered answers from ChatGPT, Perplexity, Google AI Overviews, and Gemini answer more search queries directly, whether a brand appears in those answers has become a real commercial concern for marketing teams. Brands with strong organic search rankings are finding they have little or no visibility in AI-generated responses to the same queries — and vice versa.</p>
@@ -1139,10 +1087,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "OpenAI Whisper", color: "bg-teal-700" },
     ],
     engineers: ['Full Stack AI Engineer', 'Front End Engineer', 'UI UX Designer'],
-    quote:
-      "I talk to Biscuit every morning before I do anything else. He remembers everything I have told him. I don't feel like I am starting from scratch every day — he knows me.",
-    quoteAuthor: "Beta User, 78",
-    quoteRole: "Elderly Cohort Participant",
     body: `
 <h2>The Problem</h2>
 <p>Loneliness is a public health crisis. The US Surgeon General has described it as an epidemic — an estimated 58% of American adults report feeling lonely at least some of the time. The worst effects fall on specific populations: elderly adults living alone, young professionals in new cities, people recovering from bereavement, and those with limited mobility who cannot easily access social environments.</p>
@@ -1221,10 +1165,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "AWS S3", color: "bg-orange-600" },
     ],
     engineers: ['Front End Engineer', 'AI LLM Engineer'],
-    quote:
-      "We had the inventory — what we didn't have was the information to make it discoverable. The AI cataloguing gave every part in our catalogue a human-readable identity. Our trade customers can now find parts in under 30 seconds that previously required a phone call.",
-    quoteAuthor: "Head of E-Commerce",
-    quoteRole: "Automotive Parts Platform",
     body: `
 <h2>The Problem</h2>
 <p>The automotive aftermarket parts industry operates on a fundamental information problem. Millions of parts and part numbers are distributed across manufacturer websites, distributor catalogues, and legacy database systems — but the data is inconsistent, incomplete, and poorly described. A mechanic searching for a specific part number frequently encounters a bare SKU with no description of what the part is, what vehicle fitments it covers, what it does, or how it relates to adjacent parts. Distributors carry the same component from multiple manufacturers under different part numbers with no standardisation across them.</p>
@@ -1299,10 +1239,6 @@ export const caseStudies: CaseStudy[] = [
       { name: "Supabase", color: "bg-green-600" },
     ],
     engineers: ['Full Stack AI Engineer', 'Front End Engineer'],
-    quote:
-      "I reviewed a sample of sessions. The avatar is saying what I would say. It's citing examples I have actually used, making arguments I have actually made. The users who come in with serious business questions are getting serious answers — grounded in everything I have actually thought and written about those problems.",
-    quoteAuthor: "Business Strategy Advisor",
-    quoteRole: "Platform Influencer",
     body: `
 <h2>The Problem</h2>
 <p>The creator economy has a fundamental bottleneck: an influencer, expert, or advisor can only be in one place at a time. The demand for their knowledge, personality, and perspective consistently outstrips their availability. Fans and clients want direct access — not pre-recorded content, not a community manager's response, but a genuine interaction with the person they follow and trust. The constraint has always been time: there are only so many hours in a day, and premium direct access commands premium pricing that limits its scale.</p>

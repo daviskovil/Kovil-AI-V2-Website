@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowRight, Download, Loader2 } from "lucide-react"
+import { ArrowRight, FileDown, Loader2 } from "lucide-react"
 import { caseStudies, type CaseStudy } from "../data/case-studies"
 
 const serviceColors: Record<string, string> = {
@@ -82,13 +82,16 @@ export default function CaseStudiesPage() {
                     <button
                       onClick={(e) => handleDownload(e, cs)}
                       disabled={downloading === cs.slug}
-                      title="Download as PDF"
-                      className="p-1.5 rounded-lg border border-border/60 hover:border-accent/50 hover:bg-accent/8 transition-all disabled:opacity-50 disabled:cursor-not-allowed group/dl"
+                      title="Download case study as PDF"
+                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border/60 hover:border-accent/50 hover:bg-accent/8 transition-all disabled:opacity-50 disabled:cursor-not-allowed group/dl"
                     >
                       {downloading === cs.slug ? (
                         <Loader2 className="h-3.5 w-3.5 text-accent animate-spin" />
                       ) : (
-                        <Download className="h-3.5 w-3.5 text-muted-foreground group-hover/dl:text-accent transition-colors" />
+                        <>
+                          <FileDown className="h-3.5 w-3.5 text-muted-foreground group-hover/dl:text-accent transition-colors" />
+                          <span className="text-xs font-semibold text-muted-foreground group-hover/dl:text-accent transition-colors tracking-wide">PDF</span>
+                        </>
                       )}
                     </button>
                   </div>
