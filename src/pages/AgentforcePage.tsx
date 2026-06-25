@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import Link from "next/link"
-import { ArrowRight, ChevronDown, CheckCircle2, Shield, Database, Brain, Cpu, Zap, Users, Wrench, BarChart3, BookOpen, Download, Clock, FileText, AlertCircle, TrendingUp, Settings, Globe } from "lucide-react"
+import { ArrowRight, ChevronDown, CheckCircle2, Shield, Database, Brain, Cpu, Zap, Users, Wrench, BarChart3, BookOpen, Download, Clock, FileText, AlertCircle, TrendingUp, Settings, Globe, Scale, HelpCircle, DollarSign } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { openCalendly } from "../lib/calendly"
 
@@ -103,6 +103,40 @@ const agentforceNavSections = [
       { title: 'ROI Guide', href: '/agentforce/playbook/agentforce-roi-guide' },
       { title: 'How Agentforce Works', href: '/agentforce/playbook/how-does-agentforce-work' },
       { title: 'Financial Services Build', href: '/agentforce/playbook/financial-services-service-cloud-build' },
+    ],
+  },
+  {
+    label: 'Compare',
+    href: '/agentforce/compare',
+    Icon: Scale,
+    color: '#F59E0B',
+    items: [
+      { title: 'vs Einstein Copilot', href: '/agentforce/compare/agentforce-vs-einstein-copilot' },
+      { title: 'vs Microsoft Copilot', href: '/agentforce/compare/agentforce-vs-microsoft-copilot' },
+    ],
+  },
+  {
+    label: 'FAQ',
+    href: '/agentforce/faq',
+    Icon: HelpCircle,
+    color: '#EC4899',
+    items: [
+      { title: 'What is Agentforce?', href: '/agentforce/faq' },
+      { title: 'Pricing & Licensing', href: '/agentforce/faq' },
+      { title: 'Technical Architecture', href: '/agentforce/faq' },
+      { title: 'Security & Compliance', href: '/agentforce/faq' },
+    ],
+  },
+  {
+    label: 'Pricing',
+    href: '/agentforce/pricing',
+    Icon: DollarSign,
+    color: '#06B6D4',
+    items: [
+      { title: '~$2 / conversation model', href: '/agentforce/pricing' },
+      { title: 'Volume discount tiers', href: '/agentforce/pricing' },
+      { title: 'Implementation costs', href: '/agentforce/pricing' },
+      { title: 'TCO vs alternatives', href: '/agentforce/pricing' },
     ],
   },
 ]
@@ -618,7 +652,7 @@ export default function AgentforcePage() {
               <p className="text-xs font-mono tracking-widest uppercase mb-2 font-semibold" style={{ color: SF_BLUE }}>Quick Navigation</p>
               <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-white">Explore the Agentforce Section</h2>
             </div>
-            <p className="text-xs text-white/25 sm:pb-1">7 sections · 45+ pages</p>
+            <p className="text-xs text-white/25 sm:pb-1">10 sections · 50+ pages</p>
           </div>
 
           {/* 7-card grid: 1 col → 2 col → 4 col */}
