@@ -109,8 +109,6 @@ def callout_box(text, S, bg=None, border_color=None):
     return t
 
 def score_row(label, q1, q2, q3, S):
-    header_style = ParagraphStyle('sh', fontName='Helvetica-Bold', fontSize=8,
-        textColor=WHITE, leading=10, alignment=TA_CENTER)
     row_style = ParagraphStyle('sr', fontName='Helvetica', fontSize=8.5,
         textColor=DARK, leading=12)
     check_style = ParagraphStyle('sc', fontName='Helvetica', fontSize=9,
@@ -119,7 +117,7 @@ def score_row(label, q1, q2, q3, S):
         [Paragraph(label, row_style),
          Paragraph('☐', check_style), Paragraph('☐', check_style), Paragraph('☐', check_style)]
     ]
-    t = Table(data, colWidths=[100*mm, 20*mm, 20*mm, 20*mm])
+    t = Table(data, colWidths=[120*mm, 15*mm, 15*mm, 15*mm])
     t.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,-1), colors.white),
         ('LINEBELOW', (0,0), (-1,-1), 0.3, MGRAY),
@@ -127,6 +125,7 @@ def score_row(label, q1, q2, q3, S):
         ('RIGHTPADDING', (0,0), (-1,-1), 4),
         ('TOPPADDING', (0,0), (-1,-1), 5),
         ('BOTTOMPADDING', (0,0), (-1,-1), 5),
+        ('ALIGN', (1,0), (-1,-1), 'CENTER'),
     ]))
     return t
 
@@ -297,11 +296,13 @@ def build_readiness_guide(path, S):
         ('Quota Configuration', 'Vertex AI has per-region quotas on model requests per minute and concurrent prediction requests. Production workloads require quota increase requests submitted 1–2 weeks before go-live.'),
         ('Region Selection', 'Choose your primary region before any deployment. Vertex AI has regional model availability variations — not all models are available in all regions. Data residency requirements (GDPR, HIPAA) must be satisfied at the region level.'),
     ]
-    for title, desc in env_items:
+    for i, (title, desc) in enumerate(env_items):
         story.append(KeepTogether([
             Paragraph(f'<b>{title}</b>', S['body']),
             Paragraph(desc, S['body']),
         ]))
+        if i < len(env_items) - 1:
+            story.append(divider())
     story.append(callout_box(
         '<b>Kovil AI environment audit:</b> Our Strategy & Readiness engagement includes a '
         'full GCP environment audit — reviewing project structure, IAM, networking, and quota '
@@ -329,12 +330,15 @@ def build_readiness_guide(path, S):
         ('Data Freshness', 'How frequently does your data change, and how quickly must agents reflect those changes? Vertex AI Search supports scheduled re-indexing and real-time updates via the data ingestion API. Your freshness requirements determine the indexing architecture.'),
         ('Data Access Control', 'In regulated industries, agents must only surface information the querying user is authorised to see. Vertex AI Search supports access control lists (ACLs) that map to IAM identities — but this must be configured deliberately. An agent without access control will happily surface restricted data to any user.'),
     ]
-    for title, desc in data_dims:
+    for i, (title, desc) in enumerate(data_dims):
         story.append(KeepTogether([
             Paragraph(f'<b>{title}</b>', S['body']),
             Paragraph(desc, S['body']),
         ]))
+        if i < len(data_dims) - 1:
+            story.append(divider())
 
+    story.append(divider())
     story.append(Paragraph('BigQuery as the data backbone', S['h2']))
     story.append(Paragraph(
         'Organisations with data already in BigQuery are in the strongest position for Vertex AI '
@@ -413,11 +417,13 @@ def build_readiness_guide(path, S):
         ('Data Residency', 'Vertex AI allows you to specify the region where data is processed and stored. GDPR Article 44 requirements and data sovereignty laws (UK, EU, India, Australia) must be satisfied at the region level. Choosing the wrong region at build time means a migration later.'),
         ('Einstein Trust Layer equivalent', 'Vertex AI does not have a branded safety layer like Salesforce, but provides equivalent controls: Responsible AI safety filters, custom model safety thresholds, output monitoring, and the ability to run PII detection (via DLP API) on all agent inputs and outputs before logging.'),
     ]
-    for title, desc in sec_items:
+    for i, (title, desc) in enumerate(sec_items):
         story.append(KeepTogether([
             Paragraph(f'<b>{title}</b>', S['body']),
             Paragraph(desc, S['body']),
         ]))
+        if i < len(sec_items) - 1:
+            story.append(divider())
     story.append(PageBreak())
 
     # ── CHAPTER 6: TEAM CAPABILITY ────────────────────────────────────────
@@ -506,10 +512,9 @@ def build_readiness_guide(path, S):
         ]),
     ]
 
-    # Header row
+    # Header row  — colWidths must match score_row: [120, 15, 15, 15] = 165mm
     hdr_data = [['Statement', '✓', '~', '✗']]
-    hdr_style = ParagraphStyle('hh', fontName='Helvetica-Bold', fontSize=8, textColor=WHITE)
-    hdr = Table(hdr_data, colWidths=[120*mm, 16*mm, 16*mm, 13*mm])
+    hdr = Table(hdr_data, colWidths=[120*mm, 15*mm, 15*mm, 15*mm])
     hdr.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,-1), NAVY),
         ('TEXTCOLOR', (0,0), (-1,-1), WHITE),
@@ -551,40 +556,45 @@ def build_readiness_guide(path, S):
         'recommended Vertex AI components.',
         S['body']))
 
+    _hdr_s = ParagraphStyle('stkhdr', fontName='Helvetica-Bold', fontSize=8,
+        textColor=WHITE, leading=11)
+    _bod_s = ParagraphStyle('stkbod', fontName='Helvetica', fontSize=8,
+        textColor=DARK, leading=11)
+    _bld_s = ParagraphStyle('stkbld', fontName='Helvetica-Bold', fontSize=8,
+        textColor=DARK, leading=11)
     stack_data = [
-        ['Use Case Type', 'Recommended Stack', 'Avoid'],
-        ['Customer-facing FAQ / service deflection',
-         'Agent Builder + Vertex AI Search (RAG) + Gemini Flash',
-         'Reasoning Engine (over-engineered for this pattern)'],
-        ['Complex multi-step internal agent\n(e.g. SDR research, ops automation)',
-         'Reasoning Engine + LangChain/LlamaIndex + Gemini Pro',
-         'Agent Builder (insufficient orchestration control)'],
-        ['Structured data analytics / prediction',
-         'BigQuery ML + Gemini in BigQuery + Looker',
-         'Vertex AI Search (wrong tool for structured data)'],
-        ['Document processing & extraction',
-         'Document AI + Vertex AI Search + Gemini Vision',
-         'BigQuery ML (wrong tool for unstructured docs)'],
-        ['Real-time personalisation',
-         'Vertex AI Matching Engine + Bigtable + Gemini embeddings',
-         'Vertex AI Search (latency too high for real-time rec)'],
-        ['MLOps / model lifecycle management',
-         'Vertex AI Pipelines + Model Registry + Model Monitoring',
-         'Custom orchestration (re-inventing managed infrastructure)'],
+        [Paragraph('Use Case Type', _hdr_s),
+         Paragraph('Recommended Stack', _hdr_s),
+         Paragraph('Avoid', _hdr_s)],
+        [Paragraph('Customer-facing FAQ / service deflection', _bld_s),
+         Paragraph('Agent Builder + Vertex AI Search (RAG) + Gemini Flash', _bod_s),
+         Paragraph('Reasoning Engine (over-engineered for this pattern)', _bod_s)],
+        [Paragraph('Complex multi-step internal agent (e.g. SDR research, ops automation)', _bld_s),
+         Paragraph('Reasoning Engine + LangChain/LlamaIndex + Gemini Pro', _bod_s),
+         Paragraph('Agent Builder (insufficient orchestration control)', _bod_s)],
+        [Paragraph('Structured data analytics / prediction', _bld_s),
+         Paragraph('BigQuery ML + Gemini in BigQuery + Looker', _bod_s),
+         Paragraph('Vertex AI Search (wrong tool for structured data)', _bod_s)],
+        [Paragraph('Document processing & extraction', _bld_s),
+         Paragraph('Document AI + Vertex AI Search + Gemini Vision', _bod_s),
+         Paragraph('BigQuery ML (wrong tool for unstructured docs)', _bod_s)],
+        [Paragraph('Real-time personalisation', _bld_s),
+         Paragraph('Vertex AI Matching Engine + Bigtable + Gemini embeddings', _bod_s),
+         Paragraph('Vertex AI Search (latency too high for real-time rec)', _bod_s)],
+        [Paragraph('MLOps / model lifecycle management', _bld_s),
+         Paragraph('Vertex AI Pipelines + Model Registry + Model Monitoring', _bod_s),
+         Paragraph('Custom orchestration (re-inventing managed infrastructure)', _bod_s)],
     ]
-    frame_t = Table(stack_data, colWidths=[45*mm, 75*mm, 45*mm], repeatRows=1)
+    frame_t = Table(stack_data, colWidths=[50*mm, 75*mm, 40*mm], repeatRows=1)
     frame_t.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), NAVY),
-        ('TEXTCOLOR', (0,0), (-1,0), WHITE),
-        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 8),
         ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, LGRAY]),
         ('GRID', (0,0), (-1,-1), 0.25, MGRAY),
         ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('TOPPADDING', (0,0), (-1,-1), 5),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 5),
+        ('TOPPADDING', (0,0), (-1,-1), 6),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 6),
         ('LEFTPADDING', (0,0), (-1,-1), 5),
+        ('RIGHTPADDING', (0,0), (-1,-1), 5),
     ]))
     story.append(frame_t)
     story.append(PageBreak())
@@ -595,35 +605,65 @@ def build_readiness_guide(path, S):
     story.append(divider(ORANGE))
     story.append(Paragraph(
         'Kovil AI is a specialist AI engineering firm that builds production Vertex AI agents '
-        'for enterprise organisations. We operate fixed-price only — you pay for a working '
-        'agent in production, not for hours.',
+        'for enterprise organisations. Every engagement is outcome-focused — we work alongside '
+        'your team from discovery through to a working agent in production.',
         S['body']))
 
-    services = [
-        ('Vertex AI Strategy & Readiness', '$12,000 fixed price', 'GCP environment audit, use case prioritisation, architecture blueprint, and vendor negotiation support. 2-week engagement, remote-first.'),
-        ('Pilot Agent Build', '$18,000–$35,000', 'One production agent, one use case, fully configured and deployed on Vertex AI in 2–3 weeks. Includes post-launch support.'),
-        ('Full Multi-Agent Programme', '$60,000–$180,000', 'Multiple agents, Reasoning Engine orchestration, Vertex AI Search RAG, BigQuery ML integration, and MLOps pipeline. 6–10 weeks.'),
+    story.append(Spacer(1, 4*mm))
+    story.append(Paragraph('How we work with you', S['h2']))
+
+    process_steps = [
+        ('01', 'Discovery Call',
+         'A free 45-minute call with a Kovil AI engineer. We learn about your organisation, '
+         'data landscape, and the use cases you have in mind. No sales pressure — this is '
+         'a technical conversation.'),
+        ('02', 'Scoping & Architecture',
+         'We review your GCP environment, data estate, and candidate use cases. Working with '
+         'your team, we define the agent architecture, integration points, data requirements, '
+         'and what "done" looks like — including measurable success criteria.'),
+        ('03', 'Statement of Work',
+         'A clear, written SOW covering scope, deliverables, milestones, timeline, and '
+         'acceptance criteria. Fixed scope, no ambiguity. You know exactly what you are '
+         'getting before any work begins.'),
+        ('04', 'Milestone-Based Delivery',
+         'We build in sprints tied to agreed milestones — environment setup, first agent '
+         'deployed to staging, evaluation results reviewed, production deployment. '
+         'You review and sign off at each milestone before we proceed.'),
+        ('05', 'Project Completion & Handover',
+         'Full documentation, runbooks, and a handover session with your engineering team. '
+         'We do not disappear at go-live — post-launch support is included in every '
+         'engagement so your team can maintain and evolve the agent with confidence.'),
     ]
-    for svc, price, desc in services:
-        data = [[
-            Paragraph(f'<b>{svc}</b>', S['h3']),
-            Paragraph(price, ParagraphStyle('pr', fontName='Helvetica-Bold', fontSize=11,
-                textColor=ORANGE, leading=14, alignment=TA_RIGHT))
+
+    _step_num_s = ParagraphStyle('sn', fontName='Helvetica-Bold', fontSize=16,
+        textColor=ORANGE, leading=20, alignment=TA_CENTER)
+    _step_title_s = ParagraphStyle('st', fontName='Helvetica-Bold', fontSize=10,
+        textColor=NAVY, leading=14)
+    _step_desc_s = ParagraphStyle('sd', fontName='Helvetica', fontSize=9,
+        textColor=GRAY, leading=13)
+
+    for i, (num, title, desc) in enumerate(process_steps):
+        row_data = [[
+            Paragraph(num, _step_num_s),
+            [Paragraph(title, _step_title_s), Spacer(1, 2*mm), Paragraph(desc, _step_desc_s)]
         ]]
-        t = Table(data, colWidths=[130*mm, 35*mm])
+        t = Table(row_data, colWidths=[16*mm, 149*mm])
         t.setStyle(TableStyle([
-            ('TOPPADDING', (0,0), (-1,-1), 10),
-            ('BOTTOMPADDING', (0,0), (-1,-1), 2),
+            ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+            ('TOPPADDING', (0,0), (-1,-1), 8),
+            ('BOTTOMPADDING', (0,0), (-1,-1), 8),
+            ('LEFTPADDING', (1,0), (1,-1), 10),
         ]))
         story.append(t)
-        story.append(Paragraph(desc, S['body']))
-        story.append(divider())
+        if i < len(process_steps) - 1:
+            story.append(divider())
 
-    story.append(Spacer(1, 6*mm))
+    story.append(Spacer(1, 8*mm))
     story.append(callout_box(
-        '<b>Book a readiness call:</b> 45-minute call with a Kovil AI engineer. We review '
-        'your scorecard results, identify the top 3 gaps, and recommend a path to your '
-        'first production Vertex AI agent. No cost, no obligation.\n\nkovi.ai  ·  Book at kovil.ai/engage/outcome-based-project',
+        '<b>Start with a Discovery Call:</b> 45 minutes, free, no obligation. '
+        'A Kovil AI engineer will review your Vertex AI readiness scorecard, '
+        'identify the top gaps, and outline what your first production agent could look like.\n\n'
+        'kovil.ai  ·  info@kovil.ai  ·  Book at kovil.ai/engage/outcome-based-project',
         S))
 
     # Build
