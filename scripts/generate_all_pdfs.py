@@ -81,12 +81,14 @@ def make_page_fn(doc_title, accent=None):
     return _fn
 
 # ── Cover helper ──────────────────────────────────────────────────────────────
+# Logo PIL dims: 559×186 px → aspect 3.005:1 → at 14mm tall = 42mm wide
+_LOGO_W_MM = 42 * mm
+_LOGO_H_MM = 14 * mm
+
 def cover_logo(accent=None):
-    """Returns flowable table that shows the logo + wordmark on the cover page."""
-    accent = accent or ORANGE
-    logo_reader = ImageReader(LOGO_PATH)
+    """Returns a small, left-aligned logo for the PDF cover page."""
     from reportlab.platypus import Image as RLImage
-    logo_img = RLImage(LOGO_PATH, width=40*mm, height=None)  # auto height
+    logo_img = RLImage(LOGO_PATH, width=_LOGO_W_MM, height=_LOGO_H_MM)
     logo_img.hAlign = 'LEFT'
     return logo_img
 
@@ -174,7 +176,7 @@ def agentforce_readiness(path, S):
 
     # ── Cover ────────────────────────────────────────────────────────────────
     story.append(cover_logo(SF_GREEN))
-    story.append(Spacer(1, 10*mm))
+    story.append(Spacer(1, 20*mm))
     story.append(Paragraph('EBOOK  ·  24 PAGES  ·  FREE DOWNLOAD',
         ParagraphStyle('tg', fontName='Helvetica-Bold', fontSize=7.5,
             textColor=SF_GREEN, leading=10, spaceAfter=8)))
@@ -190,7 +192,7 @@ def agentforce_readiness(path, S):
     story.append(pill_table(
         ['Salesforce', 'Agentforce', 'Einstein AI', 'Data Cloud', 'Apex'],
         [26*mm, 26*mm, 24*mm, 26*mm, 22*mm]))
-    story.append(Spacer(1, 12*mm))
+    story.append(Spacer(1, 55*mm))
     story.append(divider(SF_GREEN, 1.5))
     story.append(Paragraph('Produced by <b>Kovil AI Engineering Team</b>  ·  kovil.ai  ·  June 2026', S['small']))
     story.append(PageBreak())
@@ -496,7 +498,7 @@ def agentforce_whitepaper(path, S):
     story = []
 
     story.append(cover_logo(SF_GREEN))
-    story.append(Spacer(1, 10*mm))
+    story.append(Spacer(1, 20*mm))
     story.append(Paragraph('WHITEPAPER  ·  18 PAGES  ·  FREE DOWNLOAD',
         ParagraphStyle('tg', fontName='Helvetica-Bold', fontSize=7.5,
             textColor=SF_GREEN, leading=10, spaceAfter=8)))
@@ -511,7 +513,7 @@ def agentforce_whitepaper(path, S):
             textColor=GRAY, leading=18, spaceAfter=24)))
     story.append(pill_table(['Architecture', 'Atlas Engine', 'Einstein', 'MuleSoft', 'Apex'],
                              [28*mm, 28*mm, 22*mm, 24*mm, 20*mm]))
-    story.append(Spacer(1, 12*mm))
+    story.append(Spacer(1, 55*mm))
     story.append(divider(SF_GREEN, 1.5))
     story.append(Paragraph('Produced by <b>Kovil AI Engineering Team</b>  ·  kovil.ai  ·  June 2026', S['small']))
     story.append(PageBreak())
@@ -719,7 +721,7 @@ def azure_readiness(path, S):
     story = []
 
     story.append(cover_logo(AZURE))
-    story.append(Spacer(1, 10*mm))
+    story.append(Spacer(1, 20*mm))
     story.append(Paragraph('EBOOK  ·  28 PAGES  ·  FREE DOWNLOAD',
         ParagraphStyle('tg', fontName='Helvetica-Bold', fontSize=7.5,
             textColor=AZURE, leading=10, spaceAfter=8)))
@@ -735,7 +737,7 @@ def azure_readiness(path, S):
             textColor=GRAY, leading=18, spaceAfter=24)))
     story.append(pill_table(['Azure AI', 'Foundry', 'Copilot Studio', 'Semantic Kernel', 'Entra ID'],
                              [20*mm, 18*mm, 32*mm, 36*mm, 25*mm]))
-    story.append(Spacer(1, 12*mm))
+    story.append(Spacer(1, 55*mm))
     story.append(divider(AZURE, 1.5))
     story.append(Paragraph('Produced by <b>Kovil AI Engineering Team</b>  ·  kovil.ai  ·  June 2026', S['small']))
     story.append(PageBreak())
@@ -1044,7 +1046,7 @@ def azure_whitepaper(path, S):
     story = []
 
     story.append(cover_logo(AZURE))
-    story.append(Spacer(1, 10*mm))
+    story.append(Spacer(1, 20*mm))
     story.append(Paragraph('WHITEPAPER  ·  22 PAGES  ·  FREE DOWNLOAD',
         ParagraphStyle('tg', fontName='Helvetica-Bold', fontSize=7.5,
             textColor=AZURE, leading=10, spaceAfter=8)))
@@ -1059,7 +1061,7 @@ def azure_whitepaper(path, S):
             textColor=GRAY, leading=18, spaceAfter=24)))
     story.append(pill_table(['Architecture', 'Prompt Flow', 'Semantic Kernel', 'RAG', 'Entra ID'],
                              [28*mm, 28*mm, 38*mm, 16*mm, 25*mm]))
-    story.append(Spacer(1, 12*mm))
+    story.append(Spacer(1, 55*mm))
     story.append(divider(AZURE, 1.5))
     story.append(Paragraph('Produced by <b>Kovil AI Engineering Team</b>  ·  kovil.ai  ·  June 2026', S['small']))
     story.append(PageBreak())

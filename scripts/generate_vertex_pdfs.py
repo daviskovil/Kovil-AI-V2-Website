@@ -22,8 +22,8 @@ MGRAY   = colors.HexColor("#CBD5E1")
 GCP_BLUE= colors.HexColor("#4285F4")
 WHITE   = colors.white
 
-OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "public")
-LOGO_PATH  = os.path.join(os.path.dirname(__file__), "..", "public", "kovil-logo-dark.png")
+OUTPUT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "public"))
+LOGO_PATH  = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "public", "kovil-logo-dark.png"))
 
 # ── Styles ────────────────────────────────────────────────────────────────────
 def make_styles():
@@ -143,21 +143,24 @@ def build_readiness_guide(path, S):
     story = []
 
     # ── COVER ──────────────────────────────────────────────────────────────
-    story.append(RLImage(LOGO_PATH, width=40*mm, height=None))
-    story.append(Spacer(1, 14*mm))
+    # Logo: explicit h=14mm, w computed from PIL aspect ratio (559×186 → 42mm)
+    _logo_img = RLImage(LOGO_PATH, width=42*mm, height=14*mm)
+    _logo_img.hAlign = 'LEFT'
+    story.append(_logo_img)
+    story.append(Spacer(1, 20*mm))
     story.append(Paragraph('EBOOK  ·  26 PAGES  ·  FREE DOWNLOAD', ParagraphStyle(
         'tag', fontName='Helvetica-Bold', fontSize=7.5, textColor=GCP_BLUE,
-        leading=10, spaceAfter=8, letterSpacing=1.5)))
+        leading=10, spaceAfter=8)))
     story.append(Paragraph('The Vertex AI<br/>Readiness Guide', ParagraphStyle(
         'cover_h1', fontName='Helvetica-Bold', fontSize=34,
-        textColor=NAVY, leading=40, spaceAfter=10)))
+        textColor=NAVY, leading=42, spaceAfter=12)))
     story.append(Paragraph(
         'Is your organisation ready to build AI agents on Google Cloud? '
         'This guide covers the 5 readiness pillars — GCP environment, data estate, '
         'use case prioritisation, security posture, and team capability — with a '
         'self-assessment scorecard and Vertex AI stack selection framework.',
         ParagraphStyle('cover_sub', fontName='Helvetica', fontSize=13,
-            textColor=GRAY, leading=19, spaceAfter=24)))
+            textColor=GRAY, leading=20, spaceAfter=20)))
 
     # Pill badges
     pills_data = [['GCP', 'Vertex AI', 'Gemini', 'Agent Builder', 'Enterprise AI']]
@@ -174,8 +177,8 @@ def build_readiness_guide(path, S):
         ('ROUNDEDCORNERS', [10]),
     ]))
     story.append(pills)
-    story.append(Spacer(1, 12*mm))
-    story.append(divider(ORANGE, 1.5))
+    story.append(Spacer(1, 55*mm))
+    story.append(divider(GCP_BLUE, 1.5))
     story.append(Spacer(1, 4*mm))
     story.append(Paragraph('Produced by <b>Kovil AI Engineering Team</b>  ·  kovil.ai  ·  June 2026',
         S['small']))
@@ -626,7 +629,7 @@ def build_readiness_guide(path, S):
     # Build
     doc.build(story, onFirstPage=make_page_fn('Vertex AI Readiness Guide', 'EBOOK'),
               onLaterPages=make_page_fn('Vertex AI Readiness Guide', 'EBOOK'))
-    print(f"  ✓ Saved: {path}")
+    print(f"  OK  {path}")
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -642,21 +645,23 @@ def build_architecture_whitepaper(path, S):
     story = []
 
     # ── COVER ──────────────────────────────────────────────────────────────
-    story.append(RLImage(LOGO_PATH, width=40*mm, height=None))
-    story.append(Spacer(1, 14*mm))
+    _logo_wp = RLImage(LOGO_PATH, width=42*mm, height=14*mm)
+    _logo_wp.hAlign = 'LEFT'
+    story.append(_logo_wp)
+    story.append(Spacer(1, 20*mm))
     story.append(Paragraph('WHITEPAPER  ·  20 PAGES  ·  FREE DOWNLOAD', ParagraphStyle(
         'tag', fontName='Helvetica-Bold', fontSize=7.5, textColor=GCP_BLUE,
-        leading=10, spaceAfter=8, letterSpacing=1.5)))
-    story.append(Paragraph('GCP AI Agent Architecture<br/>Whitepaper', ParagraphStyle(
-        'cover_h1', fontName='Helvetica-Bold', fontSize=30,
-        textColor=NAVY, leading=38, spaceAfter=10)))
+        leading=10, spaceAfter=8)))
+    story.append(Paragraph('GCP AI Agent<br/>Architecture Whitepaper', ParagraphStyle(
+        'cover_h1', fontName='Helvetica-Bold', fontSize=32,
+        textColor=NAVY, leading=40, spaceAfter=12)))
     story.append(Paragraph(
         'A technical deep dive into the Vertex AI agent stack: Model Garden, '
         'Agent Builder vs Reasoning Engine, Vertex AI Search RAG pipelines, '
         'BigQuery ML integration patterns, VPC Service Controls configuration, '
         'and phased production rollout framework.',
         ParagraphStyle('cover_sub', fontName='Helvetica', fontSize=12,
-            textColor=GRAY, leading=18, spaceAfter=24)))
+            textColor=GRAY, leading=18, spaceAfter=20)))
 
     pills_data = [['Architecture', 'Vertex AI', 'Gemini', 'RAG', 'BigQuery ML', 'VPC']]
     pills = Table(pills_data, colWidths=[28*mm, 26*mm, 22*mm, 16*mm, 28*mm, 16*mm])
@@ -672,7 +677,7 @@ def build_architecture_whitepaper(path, S):
         ('ROUNDEDCORNERS', [10]),
     ]))
     story.append(pills)
-    story.append(Spacer(1, 12*mm))
+    story.append(Spacer(1, 58*mm))
     story.append(divider(GCP_BLUE, 1.5))
     story.append(Spacer(1, 4*mm))
     story.append(Paragraph('Produced by <b>Kovil AI Engineering Team</b>  ·  kovil.ai  ·  June 2026', S['small']))
@@ -993,7 +998,7 @@ def build_architecture_whitepaper(path, S):
 
     doc.build(story, onFirstPage=make_page_fn('GCP AI Agent Architecture Whitepaper', 'WHITEPAPER'),
               onLaterPages=make_page_fn('GCP AI Agent Architecture Whitepaper', 'WHITEPAPER'))
-    print(f"  ✓ Saved: {path}")
+    print(f"  OK  {path}")
 
 
 # ═════════════════════════════════════════════════════════════════════════════
