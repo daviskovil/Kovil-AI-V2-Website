@@ -362,32 +362,39 @@ def build_readiness_guide(path, S):
         S['body']))
 
     story.append(Paragraph('The use case selection framework', S['h2']))
+    _mhdr = ParagraphStyle('mhdr', fontName='Helvetica-Bold', fontSize=8,
+        textColor=WHITE, leading=11, alignment=TA_CENTER)
+    _mbld = ParagraphStyle('mbld', fontName='Helvetica-Bold', fontSize=8,
+        textColor=DARK, leading=11)
+    _mbod = ParagraphStyle('mbod', fontName='Helvetica', fontSize=8,
+        textColor=DARK, leading=11)
     matrix = [
-        ['Dimension', 'High Score (3)', 'Medium Score (2)', 'Low Score (1)'],
-        ['Data readiness', 'Data in GCS/BQ, clean, updated daily', 'Data in GCP, needs cleaning', 'Data outside GCP or poor quality'],
-        ['Query volume', '>5,000 queries/month on this use case', '500–5,000/month', '<500/month'],
-        ['Resolution clarity', 'Clear right/wrong answer (FAQ, lookup)', 'Semi-structured decision', 'Open-ended judgement call'],
-        ['Labour cost', 'High-cost manual process (>$200k/year)', 'Moderate cost ($50k–$200k)', 'Low-cost process (<$50k)'],
-        ['Risk tolerance', 'Low-risk, reversible actions', 'Medium risk with human review', 'High-risk or irreversible actions'],
-        ['Stakeholder buy-in', 'Executive sponsor identified', 'Department-level support', 'No clear owner'],
+        [Paragraph('Dimension', _mhdr), Paragraph('High Score (3)', _mhdr),
+         Paragraph('Medium Score (2)', _mhdr), Paragraph('Low Score (1)', _mhdr)],
+        [Paragraph('Data readiness', _mbld), Paragraph('Data in GCS/BQ, clean, updated daily', _mbod),
+         Paragraph('Data in GCP, needs cleaning', _mbod), Paragraph('Data outside GCP or poor quality', _mbod)],
+        [Paragraph('Query volume', _mbld), Paragraph('>5,000 queries/month on this use case', _mbod),
+         Paragraph('500–5,000/month', _mbod), Paragraph('<500/month', _mbod)],
+        [Paragraph('Resolution clarity', _mbld), Paragraph('Clear right/wrong answer (FAQ, lookup)', _mbod),
+         Paragraph('Semi-structured decision', _mbod), Paragraph('Open-ended judgement call', _mbod)],
+        [Paragraph('Labour cost', _mbld), Paragraph('High-cost manual process (>$200k/year)', _mbod),
+         Paragraph('Moderate cost ($50k–$200k)', _mbod), Paragraph('Low-cost process (<$50k)', _mbod)],
+        [Paragraph('Risk tolerance', _mbld), Paragraph('Low-risk, reversible actions', _mbod),
+         Paragraph('Medium risk with human review', _mbod), Paragraph('High-risk or irreversible actions', _mbod)],
+        [Paragraph('Stakeholder buy-in', _mbld), Paragraph('Executive sponsor identified', _mbod),
+         Paragraph('Department-level support', _mbod), Paragraph('No clear owner', _mbod)],
     ]
-    col_widths = [40*mm, 43*mm, 43*mm, 39*mm]
+    col_widths = [38*mm, 45*mm, 42*mm, 40*mm]
     t = Table(matrix, colWidths=col_widths, repeatRows=1)
     t.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), NAVY),
-        ('TEXTCOLOR', (0,0), (-1,0), WHITE),
-        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 8),
-        ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (0,-1), 8),
-        ('BACKGROUND', (0,1), (-1,-1), colors.white),
         ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, LGRAY]),
         ('GRID', (0,0), (-1,-1), 0.25, MGRAY),
         ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('TOPPADDING', (0,0), (-1,-1), 5),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 5),
+        ('TOPPADDING', (0,0), (-1,-1), 6),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 6),
         ('LEFTPADDING', (0,0), (-1,-1), 5),
-        ('ALIGN', (0,0), (-1,0), 'CENTER'),
+        ('RIGHTPADDING', (0,0), (-1,-1), 5),
     ]))
     story.append(t)
     story.append(Spacer(1, 4*mm))
