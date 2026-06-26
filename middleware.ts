@@ -1,10 +1,3 @@
-/**
- * middleware.ts — Edge middleware for permanent spam path suppression
- *
- * Returns HTTP 410 Gone for all legacy spam URL patterns.
- * Uses a broad matcher + runtime startsWith check (most reliable approach).
- */
-
 import { NextResponse, type NextRequest } from 'next/server'
 
 const SPAM_PREFIXES: string[] = [
@@ -49,19 +42,18 @@ export function middleware(request: NextRequest) {
       status: 410,
       headers: {
         'X-Robots-Tag': 'noindex, nofollow',
+        'X-Middleware-Hit': 'spam-410',
         'Cache-Control': 'public, max-age=31536000, immutable',
       },
     })
   }
 
-  return NextResponse.next()
+  // Pass through — but stamp a header so we can confirm middleware ran
+  const res = NextResponse.next()
+  res.headers.set('X-Middleware-Hit', 'pass')
+  return res
 }
 
 export const config = {
-  /*
-   * Exact pattern from Next.js docs — runs middleware on all paths except
-   * Next.js internals and favicon. Static assets (js/css/images) are excluded
-   * because they live under _next/static which this pattern already skips.
-   */
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/onlines/:path*'],
 }
