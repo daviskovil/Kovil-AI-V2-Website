@@ -398,6 +398,7 @@ function AccordionItem({ q, a, open, onToggle }: { q: string; a: string; open: b
 function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { resourceLabel: string; title: string; desc: string; buttonLabel: string; fileHref: string }) {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
+  const [company, setCompany] = useState("")
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState("")
@@ -410,6 +411,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
     setError("")
 
     if (!firstName.trim() || !lastName.trim()) { setError("Please enter your first and last name."); return }
+    if (!company.trim()) { setError("Please enter your company name."); return }
     if (!email.trim()) return
     if (!isCorporateEmail(email)) { setError("Please use your work email address."); return }
 
@@ -419,6 +421,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
 
     const leadData = {
       name: `${firstName.trim()} ${lastName.trim()}`,
+      company: company.trim(),
       email,
       engagement_type: "agentforce_download",
       project_description: `Downloaded: ${title}`,
@@ -487,7 +490,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
               required
               value={firstName}
               onChange={e => { setFirstName(e.target.value); setError("") }}
-              placeholder="First name"
+              placeholder="First name *"
               className={inputCls}
             />
             <input
@@ -495,17 +498,25 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
               required
               value={lastName}
               onChange={e => { setLastName(e.target.value); setError("") }}
-              placeholder="Last name"
+              placeholder="Last name *"
               className={inputCls}
             />
           </div>
+          <input
+            type="text"
+            required
+            value={company}
+            onChange={e => { setCompany(e.target.value); setError("") }}
+            placeholder="Company name *"
+            className={inputCls}
+          />
           <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="email"
               required
               value={email}
               onChange={e => { setEmail(e.target.value); setError("") }}
-              placeholder="you@company.com"
+              placeholder="Work email *"
               className={`${inputCls} flex-1`}
             />
             <Button type="submit" variant="accent" className="rounded-xl shrink-0" disabled={loading}>
@@ -1153,7 +1164,7 @@ export default function AgentforcePage() {
                 resourceLabel="eBook · 24 pages · PDF"
                 title="The Agentforce Readiness Guide"
                 desc="Is your Salesforce org ready for Agentforce? This guide covers the 5 readiness pillars — data quality, org architecture, use case prioritisation, team enablement, and governance — with a self-assessment scorecard included."
-                buttonLabel="Download free eBook"
+                buttonLabel="Download Free eBook"
                 fileHref="/agentforce-readiness-guide.pdf"
               />
             </motion.div>
@@ -1162,7 +1173,7 @@ export default function AgentforcePage() {
                 resourceLabel="Whitepaper · 18 pages · PDF"
                 title="Agentforce Implementation Whitepaper"
                 desc="Covers Agentforce 360 architecture, the Atlas Reasoning Engine, Einstein Trust Layer, MuleSoft integration patterns, and a phased rollout framework for enterprise."
-                buttonLabel="Download whitepaper"
+                buttonLabel="Download Free Whitepaper"
                 fileHref="/agentforce-implementation-whitepaper.pdf"
               />
             </motion.div>

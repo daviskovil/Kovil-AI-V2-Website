@@ -475,6 +475,7 @@ function AccordionItem({ q, a, open, onToggle }: { q: string; a: string; open: b
 function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { resourceLabel: string; title: string; desc: string; buttonLabel: string; fileHref: string }) {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
+  const [company, setCompany] = useState("")
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState("")
@@ -487,6 +488,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
     setError("")
 
     if (!firstName.trim() || !lastName.trim()) { setError("Please enter your first and last name."); return }
+    if (!company.trim()) { setError("Please enter your company name."); return }
     if (!email.trim()) return
     if (!isCorporateEmail(email)) { setError("Please use your work email address."); return }
 
@@ -496,6 +498,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
 
     const leadData = {
       name: `${firstName.trim()} ${lastName.trim()}`,
+      company: company.trim(),
       email,
       engagement_type: "azure_download",
       project_description: `Downloaded: ${title}`,
@@ -564,7 +567,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
               required
               value={firstName}
               onChange={e => { setFirstName(e.target.value); setError("") }}
-              placeholder="First name"
+              placeholder="First name *"
               className={inputCls}
             />
             <input
@@ -572,17 +575,25 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
               required
               value={lastName}
               onChange={e => { setLastName(e.target.value); setError("") }}
-              placeholder="Last name"
+              placeholder="Last name *"
               className={inputCls}
             />
           </div>
+          <input
+            type="text"
+            required
+            value={company}
+            onChange={e => { setCompany(e.target.value); setError("") }}
+            placeholder="Company name *"
+            className={inputCls}
+          />
           <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="email"
               required
               value={email}
               onChange={e => { setEmail(e.target.value); setError("") }}
-              placeholder="you@company.com"
+              placeholder="Work email *"
               className={`${inputCls} flex-1`}
             />
             <Button type="submit" variant="accent" className="rounded-xl shrink-0" disabled={loading}>
@@ -1087,7 +1098,7 @@ export default function AzureAIFoundryPage() {
                 resourceLabel="eBook · 28 pages · PDF"
                 title="The Azure AI Foundry Readiness Guide"
                 desc="Is your organisation ready to build AI agents on Azure? This guide covers the 5 readiness pillars — data estate, Azure environment, use case prioritisation, governance, and team capability — with a self-assessment scorecard for each."
-                buttonLabel="Download free eBook"
+                buttonLabel="Download Free eBook"
                 fileHref="/azure-ai-foundry-readiness-guide.pdf"
               />
             </motion.div>
@@ -1096,7 +1107,7 @@ export default function AzureAIFoundryPage() {
                 resourceLabel="Whitepaper · 22 pages · PDF"
                 title="Azure AI Foundry Architecture Whitepaper"
                 desc="A technical deep dive into Azure AI Foundry: Model Catalog, Prompt Flow LLMOps, Semantic Kernel orchestration patterns, Azure AI Search RAG pipelines, enterprise security configuration, and phased rollout framework."
-                buttonLabel="Download whitepaper"
+                buttonLabel="Download Free Whitepaper"
                 fileHref="/azure-ai-foundry-architecture-whitepaper.pdf"
               />
             </motion.div>

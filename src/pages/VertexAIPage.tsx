@@ -416,6 +416,7 @@ function AccordionItem({ q, a, open, onToggle }: { q: string; a: string; open: b
 function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { resourceLabel: string; title: string; desc: string; buttonLabel: string; fileHref: string }) {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
+  const [company, setCompany] = useState("")
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState("")
@@ -427,6 +428,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
     e.preventDefault()
     setError("")
     if (!firstName.trim() || !lastName.trim()) { setError("Please enter your first and last name."); return }
+    if (!company.trim()) { setError("Please enter your company name."); return }
     if (!email.trim()) return
     if (!isCorporateEmail(email)) { setError("Please use your work email address."); return }
     setLoading(true)
@@ -434,6 +436,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
     const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
     const leadData = {
       name: `${firstName.trim()} ${lastName.trim()}`,
+      company: company.trim(),
       email,
       engagement_type: "vertex_ai_download",
       project_description: `Downloaded: ${title}`,
@@ -497,7 +500,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
               required
               value={firstName}
               onChange={e => { setFirstName(e.target.value); setError("") }}
-              placeholder="First name"
+              placeholder="First name *"
               className={inputCls}
             />
             <input
@@ -505,17 +508,25 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
               required
               value={lastName}
               onChange={e => { setLastName(e.target.value); setError("") }}
-              placeholder="Last name"
+              placeholder="Last name *"
               className={inputCls}
             />
           </div>
+          <input
+            type="text"
+            required
+            value={company}
+            onChange={e => { setCompany(e.target.value); setError("") }}
+            placeholder="Company name *"
+            className={inputCls}
+          />
           <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="email"
               required
               value={email}
               onChange={e => { setEmail(e.target.value); setError("") }}
-              placeholder="you@company.com"
+              placeholder="Work email *"
               className={`${inputCls} flex-1`}
             />
             <Button type="submit" variant="accent" className="rounded-xl shrink-0" disabled={loading}>
@@ -1000,7 +1011,7 @@ export default function VertexAIPage() {
                 resourceLabel="eBook · 26 pages · PDF"
                 title="The Vertex AI Readiness Guide"
                 desc="Is your organisation ready to build AI agents on Google Cloud? This guide covers the 5 readiness pillars — GCP environment, data estate, use case prioritisation, security posture, and team capability — with a self-assessment scorecard and Vertex AI stack selection framework."
-                buttonLabel="Download free eBook"
+                buttonLabel="Download Free eBook"
                 fileHref="/vertex-ai-readiness-guide.pdf"
               />
             </motion.div>
@@ -1009,7 +1020,7 @@ export default function VertexAIPage() {
                 resourceLabel="Whitepaper · 20 pages · PDF"
                 title="GCP AI Agent Architecture Whitepaper"
                 desc="A technical deep dive into the Vertex AI agent stack: Model Garden, Agent Builder vs Reasoning Engine, Vertex AI Search RAG pipelines, BigQuery ML integration patterns, VPC Service Controls configuration, and phased production rollout framework."
-                buttonLabel="Download whitepaper"
+                buttonLabel="Download Free Whitepaper"
                 fileHref="/vertex-ai-architecture-whitepaper.pdf"
               />
             </motion.div>
