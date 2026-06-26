@@ -414,28 +414,31 @@ function AccordionItem({ q, a, open, onToggle }: { q: string; a: string; open: b
 // ── Download Card ─────────────────────────────────────────────────────────────
 
 function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { resourceLabel: string; title: string; desc: string; buttonLabel: string; fileHref: string }) {
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
 
+  const inputCls = "w-full px-4 py-2.5 rounded-xl border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError("")
+    if (!firstName.trim() || !lastName.trim()) { setError("Please enter your first and last name."); return }
     if (!email.trim()) return
-    if (!isCorporateEmail(email)) {
-      setError("Please use your work email address.")
-      return
-    }
+    if (!isCorporateEmail(email)) { setError("Please use your work email address."); return }
     setLoading(true)
     const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
     const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
     const leadData = {
-      name: "Resource Download",
+      name: `${firstName.trim()} ${lastName.trim()}`,
       email,
       engagement_type: "vertex_ai_download",
       project_description: `Downloaded: ${title}`,
       source: "vertex_ai_download",
+      resource_title: title,
     }
     try {
       await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
@@ -484,10 +487,28 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
       {submitted ? (
         <div className="flex items-center gap-2 text-sm font-medium text-accent bg-accent/10 rounded-xl px-4 py-3">
           <CheckCircle2 className="h-4 w-4 shrink-0" />
-          Your download has started — check your downloads folder.
+          Your download has started — check your email too.
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-3">
+          <div className="flex gap-3">
+            <input
+              type="text"
+              required
+              value={firstName}
+              onChange={e => { setFirstName(e.target.value); setError("") }}
+              placeholder="First name"
+              className={inputCls}
+            />
+            <input
+              type="text"
+              required
+              value={lastName}
+              onChange={e => { setLastName(e.target.value); setError("") }}
+              placeholder="Last name"
+              className={inputCls}
+            />
+          </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="email"
@@ -495,7 +516,7 @@ function DownloadCard({ resourceLabel, title, desc, buttonLabel, fileHref }: { r
               value={email}
               onChange={e => { setEmail(e.target.value); setError("") }}
               placeholder="you@company.com"
-              className="flex-1 px-4 py-2.5 rounded-xl border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+              className={`${inputCls} flex-1`}
             />
             <Button type="submit" variant="accent" className="rounded-xl shrink-0" disabled={loading}>
               <Download className="h-4 w-4 mr-2" />
