@@ -59,12 +59,9 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   /*
-   * Run on all requests EXCEPT Next.js internals and static assets.
-   * The runtime startsWith check above handles the actual spam filtering.
-   * This avoids brittle per-pattern matcher syntax (e.g. /adobe-:path* fails
-   * to match same-segment prefixes in path-to-regexp).
+   * Exact pattern from Next.js docs — runs middleware on all paths except
+   * Next.js internals and favicon. Static assets (js/css/images) are excluded
+   * because they live under _next/static which this pattern already skips.
    */
-  matcher: [
-    '/((?!_next/static|_next/image|favicon\\.ico|sitemap\\.xml|robots\\.txt|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|pdf|xml|txt|css|js|woff2?|ttf|eot)).*)',
-  ],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 }
