@@ -42,18 +42,16 @@ export function middleware(request: NextRequest) {
       status: 410,
       headers: {
         'X-Robots-Tag': 'noindex, nofollow',
-        'X-Middleware-Hit': 'spam-410',
         'Cache-Control': 'public, max-age=31536000, immutable',
       },
     })
   }
 
-  // Pass through — but stamp a header so we can confirm middleware ran
-  const res = NextResponse.next()
-  res.headers.set('X-Middleware-Hit', 'pass')
-  return res
+  return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/onlines/:path*'],
+  // Run on all paths except Next.js internals and static assets.
+  // Runtime startsWith check above handles the actual spam filtering.
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 }
