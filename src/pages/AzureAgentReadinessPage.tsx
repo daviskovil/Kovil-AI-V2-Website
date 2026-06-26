@@ -1002,8 +1002,9 @@ export default function AzureAgentReadinessPage() {
               <div className="kovil-azure-print-report hidden" style={{ fontFamily: 'system-ui, sans-serif', color: '#111' }}>
                 {/* Header */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px solid #0078D4', paddingBottom: 12, marginBottom: 20 }}>
-                  <div>
-                    <div style={{ fontWeight: 800, fontSize: 20, color: '#111' }}>Kovil AI</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/kovil-logo-dark.png" alt="Kovil AI" style={{ height: 26, width: 'auto', display: 'block' }} />
                     <div style={{ fontSize: 11, color: '#6b7280' }}>Azure AI Foundry Agent Deployment Readiness Report</div>
                   </div>
                   <div style={{ textAlign: 'right', fontSize: 11, color: '#6b7280' }}>

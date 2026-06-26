@@ -612,8 +612,9 @@ export default function AIReadinessPage() {
                 <div className="kovil-print-report hidden">
                   {/* Header */}
                   <div className="kovil-print-header">
-                    <div>
-                      <div style={{ fontWeight: 800, fontSize: 20, color: '#111' }}>Kovil AI</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/kovil-logo-dark.png" alt="Kovil AI" style={{ height: 28, width: 'auto', display: 'block' }} />
                       <div style={{ fontSize: 12, color: '#6b7280' }}>AI Readiness Report — Ad &amp; Marketing Agencies</div>
                     </div>
                     <div style={{ textAlign: 'right', fontSize: 12, color: '#6b7280' }}>
