@@ -10,3 +10,7 @@ coverage/
 
 .next/
 .claude/
+
+# GSC API credentials (OAuth — never commit)
+scripts/gsc_credentials.json
+scripts/gsc_token.json
