@@ -588,19 +588,18 @@ function SubmittedPage({ config, clientEmail, clientContactName, sessionId, answ
 // ── Priority badge ─────────────────────────────────────────────────────────────
 
 const PRIORITY_BADGE: Record<QuestionPriority, string> = {
-  'Must-have': 'bg-[#FF4F00] text-white font-bold',
-  Important: 'bg-amber-100 text-amber-800 border border-amber-300 font-semibold',
-  'Nice-to-have': 'bg-emerald-50 text-emerald-700 border border-emerald-300 font-medium',
+  'Must-have':   'bg-red-100    text-red-600    border border-red-200',
+  Important:     'bg-amber-100  text-amber-700  border border-amber-200',
+  'Nice-to-have':'bg-green-100  text-green-700  border border-green-200',
 }
 
 function PriorityBadge({ priority }: { priority: QuestionPriority }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] whitespace-nowrap ${PRIORITY_BADGE[priority]}`}>
-      <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
-        priority === 'Must-have' ? 'bg-white' :
-        priority === 'Important' ? 'bg-amber-500' : 'bg-emerald-500'
-      }`} />
+    <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap ${PRIORITY_BADGE[priority]}`}>
       {priority}
+      <svg className="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+      </svg>
     </span>
   )
 }
