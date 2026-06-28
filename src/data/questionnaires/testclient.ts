@@ -368,6 +368,14 @@ const testclient: DiscoveryConfig = {
       ],
     },
   ],
+
+  // ── Access credentials (password gate) ───────────────────────────────────
+  // Share these with the client when sending the questionnaire link.
+  // The password is verified server-side and NEVER reaches the browser bundle.
+  accessCredentials: {
+    uid: 'TESTCLIENT-2026',
+    password: 'discover2026',
+  },
 }
 
 export default testclient

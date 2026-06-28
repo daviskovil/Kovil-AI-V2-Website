@@ -20,6 +20,15 @@ export interface DiscoveryConfig {
   clientName: string
   projectTitle: string
   tabs: DiscoveryTab[]
+  /**
+   * Optional password gate. The `password` field is stripped in page.tsx before passing
+   * to the client bundle — auth is verified server-side via /api/discovery/auth.
+   * Only `uid` reaches the client (used as the localStorage auth token).
+   */
+  accessCredentials?: {
+    uid: string      // Shown to the client as their "Access ID"
+    password: string // Server-side only — NEVER sent to the client
+  }
 }
 
 /** File attached to a question's response */
