@@ -948,6 +948,9 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
   // Refs so serverSave always sees the latest email/name without stale closure issues
   const clientEmailRef = useRef('')
   const clientNameRef = useRef('')
+  // isDirtyRef: true only when the user has made changes not yet confirmed saved.
+  // Prevents any browser's background interval from overwriting a newer save.
+  const isDirtyRef = useRef(false)
 
   // ── Questionnaire state ─────────────────────────────────────────────────────
   const [activeTab, setActiveTab] = useState('all')
@@ -1082,20 +1085,29 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
           ...(clientNameRef.current ? { client_name: clientNameRef.current } : {}),
         }),
       })
-      setSaveStatus(res.ok ? 'saved' : 'error')
-      if (res.ok) setLastSavedAt(new Date())
+      if (res.ok) {
+        setSaveStatus('saved')
+        setLastSavedAt(new Date())
+        isDirtyRef.current = false  // confirmed saved — interval won't fire again until next change
+      } else {
+        setSaveStatus('error')
+      }
     } catch { setSaveStatus('error') }
   }, [slug])
 
   useEffect(() => {
     if (!sessionId) return
-    const iv = setInterval(() => serverSave(answers, sessionId), 30_000)
+    // Only save if the user has made changes — prevents any browser's interval
+    // from overwriting a newer save made on a different device.
+    const iv = setInterval(() => {
+      if (isDirtyRef.current) serverSave(answers, sessionId)
+    }, 30_000)
     return () => clearInterval(iv)
   }, [answers, sessionId, serverSave])
 
   useEffect(() => {
     const handleUnload = () => {
-      if (!sessionId) return
+      if (!sessionId || !isDirtyRef.current) return  // nothing to save
       navigator.sendBeacon('/api/discovery/autosave',
         new Blob([JSON.stringify({
           session_id: sessionId,
@@ -1122,6 +1134,7 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
     }
     setAnswers(next)
     localStorage.setItem(lsKey(slug, 'answers'), JSON.stringify(next))
+    isDirtyRef.current = true  // user made a change — enable autosave and beacon
     setSaveStatus('idle')
     setTimeout(() => serverSave(next, sessionId), 300)
   }
