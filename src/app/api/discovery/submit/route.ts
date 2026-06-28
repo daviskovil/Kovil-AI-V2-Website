@@ -47,16 +47,19 @@ export async function POST(req: NextRequest) {
     submitted_at: submittedAt,
   }
 
-  const dbRes = await fetch(`${SUPABASE_URL}/rest/v1/discovery_submissions`, {
-    method: 'POST',
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-      'Content-Type': 'application/json',
-      Prefer: 'resolution=merge-duplicates,return=minimal',
-    },
-    body: JSON.stringify(row),
-  })
+  const dbRes = await fetch(
+    `${SUPABASE_URL}/rest/v1/discovery_submissions?on_conflict=session_id`,
+    {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'resolution=merge-duplicates,return=minimal',
+      },
+      body: JSON.stringify(row),
+    }
+  )
 
   if (!dbRes.ok) {
     const detail = await dbRes.text()

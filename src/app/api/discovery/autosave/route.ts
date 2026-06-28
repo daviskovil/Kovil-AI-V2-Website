@@ -35,17 +35,21 @@ export async function POST(req: NextRequest) {
     updated_at: new Date().toISOString(),
   }
 
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/discovery_submissions`, {
-    method: 'POST',
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-      'Content-Type': 'application/json',
-      // Upsert: if session_id already exists, update the row
-      Prefer: 'resolution=merge-duplicates,return=minimal',
-    },
-    body: JSON.stringify(row),
-  })
+  // ?on_conflict=session_id tells PostgREST to use that column for upsert
+  // (default is primary key `id` which is auto-generated and wouldn't match)
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/discovery_submissions?on_conflict=session_id`,
+    {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'resolution=merge-duplicates,return=minimal',
+      },
+      body: JSON.stringify(row),
+    }
+  )
 
   if (!res.ok) {
     const detail = await res.text()
