@@ -248,8 +248,11 @@ function LoginGate({ config, onSuccess }: {
               <h1 className="font-display text-2xl font-bold text-[#0A0A0A] text-center mb-1">
                 Secure Access
               </h1>
-              <p className="text-sm text-gray-500 text-center mb-6 leading-relaxed">
+              <p className="text-sm text-gray-500 text-center leading-relaxed">
                 {config.projectTitle}
+              </p>
+              <p className="text-sm font-bold text-[#0A0A0A] text-center mb-6">
+                Discovery Questionnaire
               </p>
 
               <form onSubmit={handleLogin} className="space-y-4">
@@ -260,7 +263,7 @@ function LoginGate({ config, onSuccess }: {
                   <input
                     type="text" value={uid} onChange={e => setUid(e.target.value)}
                     placeholder="Enter your ID"
-                    autoComplete="username"
+                    autoComplete="off"
                     className="w-full border border-[#E5E2D9] rounded-lg px-4 py-2.5 text-sm text-[#0A0A0A] focus:outline-none focus:border-[#FF4F00] transition-colors font-mono"
                   />
                 </div>
