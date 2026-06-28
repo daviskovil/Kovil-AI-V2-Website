@@ -7,6 +7,7 @@ import type {
   DiscoveryAnswers,
   QuestionAnswer,
   QuestionPriority,
+  QuestionAttachment,
 } from '@/src/types/questionnaire'
 
 // ── Utilities ──────────────────────────────────────────────────────────────────
@@ -22,6 +23,12 @@ function lsKey(slug: string, suffix: string) {
 
 function emptyAnswer(): QuestionAnswer {
   return { response: '', notes: '' }
+}
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
 // ── Priority badge ─────────────────────────────────────────────────────────────
@@ -46,37 +53,49 @@ function PriorityBadge({ priority }: { priority: QuestionPriority }) {
 
 // ── Clickable answer cell ──────────────────────────────────────────────────────
 
-function AnswerCell({ value, placeholder, onClick }: {
+function AnswerCell({ value, placeholder, onClick, attachmentCount = 0 }: {
   value: string
   placeholder: string
   onClick: () => void
+  attachmentCount?: number
 }) {
   const isEmpty = !value.trim()
   return (
     <div
       onClick={onClick}
-      className={`min-h-[72px] rounded cursor-pointer transition-all duration-150 group relative ${
+      className={`min-h-[80px] rounded cursor-pointer transition-all duration-150 group relative ${
         isEmpty
           ? 'border border-dashed border-gray-300 bg-gray-50 hover:border-[#FF4F00] hover:bg-orange-50/20'
           : 'border border-[#E5E2D9] bg-white hover:border-[#FF4F00] hover:shadow-sm'
       }`}
     >
-      <div className="p-3 h-full flex items-start">
+      <div className="p-3 h-full flex flex-col gap-2">
         {isEmpty ? (
           <span className="text-xs text-gray-400 group-hover:text-[#FF4F00] transition-colors leading-relaxed">
             {placeholder}
           </span>
         ) : (
-          <div className="flex items-start justify-between gap-2 w-full">
-            <p className="text-sm text-[#0A0A0A] leading-relaxed whitespace-pre-wrap line-clamp-5 flex-1">
-              {value}
-            </p>
-            <svg className="w-3.5 h-3.5 text-gray-300 group-hover:text-[#FF4F00] flex-shrink-0 mt-0.5 transition-colors"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-            </svg>
-          </div>
+          <>
+            <div className="flex items-start justify-between gap-2 w-full">
+              <p className="text-sm text-[#0A0A0A] leading-relaxed whitespace-pre-wrap line-clamp-5 flex-1">
+                {value}
+              </p>
+              <svg className="w-3.5 h-3.5 text-gray-300 group-hover:text-[#FF4F00] flex-shrink-0 mt-0.5 transition-colors"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+            </div>
+            {attachmentCount > 0 && (
+              <div className="flex items-center gap-1 text-[11px] text-gray-400">
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                </svg>
+                {attachmentCount} attachment{attachmentCount > 1 ? 's' : ''}
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
@@ -85,17 +104,32 @@ function AnswerCell({ value, placeholder, onClick }: {
 
 // ── Popup editor ───────────────────────────────────────────────────────────────
 
-function EditorPopup({ questionId, field, questionText, initialValue, onSave, onClose }: {
+function EditorPopup({
+  questionId, field, questionText, initialValue, initialAttachments, sessionId, onSave, onClose,
+}: {
   questionId: string
   field: 'response' | 'notes'
   questionText: string
   initialValue: string
-  onSave: (value: string) => void
+  initialAttachments: QuestionAttachment[]
+  sessionId: string
+  onSave: (value: string, attachments: QuestionAttachment[]) => void
   onClose: () => void
 }) {
   const [value, setValue] = useState(initialValue)
   const [saved, setSaved] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  const [existingAttachments, setExistingAttachments] = useState<QuestionAttachment[]>(initialAttachments)
+  const [pendingFiles, setPendingFiles] = useState<File[]>([])
+  const [isDragOver, setIsDragOver] = useState(false)
+
   const taRef = useRef<HTMLTextAreaElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
+  // Track whether mousedown started on the overlay (backdrop), NOT inside the modal card.
+  // We only close if BOTH mousedown AND mouseup happened on the overlay — this prevents
+  // text selection drags inside the popup from accidentally closing it.
+  const mouseDownOnOverlay = useRef(false)
 
   useEffect(() => {
     const ta = taRef.current
@@ -103,6 +137,8 @@ function EditorPopup({ questionId, field, questionText, initialValue, onSave, on
     ta.focus()
     ta.setSelectionRange(ta.value.length, ta.value.length)
   }, [])
+
+  // ── Text toolbar helpers ───────────────────────────────────────────────────
 
   function insertAtCursor(text: string) {
     const ta = taRef.current
@@ -169,17 +205,10 @@ function EditorPopup({ questionId, field, questionText, initialValue, onSave, on
     }
   }
 
-  function handleSave() {
-    setSaved(true)
-    setTimeout(() => {
-      onSave(value)
-    }, 500)
-  }
-
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === 'Escape') { e.preventDefault(); onClose() }
-    if (e.key === 'Tab') { e.preventDefault(); handleSave() }
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); handleSave() }
+    if (e.key === 'Tab') { e.preventDefault(); void handleSave() }
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); void handleSave() }
     if ((e.ctrlKey || e.metaKey) && e.key === 'b') { e.preventDefault(); wrapBold() }
     if (e.key === 'Enter' && !e.shiftKey) {
       const ta = taRef.current!
@@ -195,17 +224,102 @@ function EditorPopup({ questionId, field, questionText, initialValue, onSave, on
     }
   }
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      onClick={e => { if (e.target === e.currentTarget) onClose() }}
-    >
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" onClick={onClose} />
+  // ── File upload helpers ────────────────────────────────────────────────────
 
+  function handleFileSelect(files: FileList | null) {
+    if (!files) return
+    const toAdd = Array.from(files).filter(f => {
+      if (f.size > 10 * 1024 * 1024) return false // 10 MB limit
+      return true
+    })
+    setPendingFiles(prev => [...prev, ...toAdd])
+    // Reset input so same file can be re-selected
+    if (fileInputRef.current) fileInputRef.current.value = ''
+  }
+
+  function removePending(idx: number) {
+    setPendingFiles(prev => prev.filter((_, i) => i !== idx))
+  }
+
+  function removeExisting(idx: number) {
+    setExistingAttachments(prev => prev.filter((_, i) => i !== idx))
+  }
+
+  // ── Save ───────────────────────────────────────────────────────────────────
+
+  async function handleSave() {
+    if (uploading || saved) return
+
+    let finalAttachments = [...existingAttachments]
+
+    // Upload pending files (response field only)
+    if (pendingFiles.length > 0 && field === 'response') {
+      setUploading(true)
+      for (const file of pendingFiles) {
+        const fd = new FormData()
+        fd.append('file', file)
+        fd.append('session_id', sessionId)
+        fd.append('question_id', questionId)
+        try {
+          const res = await fetch('/api/discovery/upload', { method: 'POST', body: fd })
+          if (res.ok) {
+            const data = await res.json() as { url: string; name: string; size: number; type: string }
+            finalAttachments.push({
+              name: data.name,
+              size: data.size,
+              type: data.type,
+              url: data.url,
+              uploadedAt: new Date().toISOString(),
+            })
+          }
+        } catch {
+          // Upload failed silently — file stays pending but we don't block save
+        }
+      }
+      setUploading(false)
+    }
+
+    setSaved(true)
+    setTimeout(() => onSave(value, finalAttachments), 500)
+  }
+
+  const hasFiles = field === 'response' && (existingAttachments.length > 0 || pendingFiles.length > 0)
+
+  return (
+    <div
+      ref={overlayRef}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      // POPUP FIX: Only close when mousedown AND mouseup both happen on the overlay backdrop.
+      // This prevents text-selection drags inside the popup from closing it.
+      onMouseDown={e => { mouseDownOnOverlay.current = e.target === overlayRef.current }}
+      onMouseUp={e => {
+        if (mouseDownOnOverlay.current && e.target === overlayRef.current) onClose()
+        mouseDownOnOverlay.current = false
+      }}
+    >
+      {/* Semi-transparent backdrop — no onClick handler */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+
+      {/* Modal card — stopPropagation on mousedown prevents overlay from tracking clicks inside here */}
       <div
         className="relative bg-white rounded-xl shadow-2xl w-full max-w-2xl flex flex-col border border-[#E5E2D9] overflow-hidden"
-        style={{ maxHeight: '82vh' }}
-        onClick={e => e.stopPropagation()}
+        style={{ maxHeight: '88vh' }}
+        onMouseDown={e => e.stopPropagation()}
+        onDragOver={e => { e.preventDefault(); if (field === 'response') setIsDragOver(true) }}
+        onDragLeave={() => setIsDragOver(false)}
+        onDrop={e => {
+          e.preventDefault()
+          setIsDragOver(false)
+          if (field === 'response') handleFileSelect(e.dataTransfer.files)
+        }}
       >
+        {/* Drag-over overlay */}
+        {isDragOver && (
+          <div className="absolute inset-0 z-10 bg-orange-50/90 border-2 border-dashed border-[#FF4F00] rounded-xl flex items-center justify-center pointer-events-none">
+            <p className="text-lg font-semibold text-[#FF4F00]">Drop files here</p>
+          </div>
+        )}
+
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-3.5 bg-[#0A0A0A]">
           <div className="flex items-center gap-3 min-w-0">
@@ -213,7 +327,7 @@ function EditorPopup({ questionId, field, questionText, initialValue, onSave, on
               {questionId}
             </span>
             <span className="text-sm font-semibold text-white capitalize">
-              {field === 'response' ? 'Response' : 'Notes / Follow-up'}
+              {field === 'response' ? 'Response' : 'Notes / Add anything'}
             </span>
           </div>
           <button onClick={onClose}
@@ -260,14 +374,106 @@ function EditorPopup({ questionId, field, questionText, initialValue, onSave, on
           placeholder={
             field === 'response'
               ? 'Type your response here…\n\nTip: Use the toolbar for bullet points or numbered lists.'
-              : 'Add optional notes, follow-up questions, or clarifications…'
+              : 'Add optional notes, follow-up questions, or any additional context…'
           }
           className="flex-1 px-5 py-4 resize-none text-sm text-[#0A0A0A] leading-relaxed focus:outline-none placeholder:text-gray-400"
-          style={{ minHeight: '200px', fontFamily: 'inherit' }}
+          style={{ minHeight: '180px', fontFamily: 'inherit' }}
         />
 
+        {/* File attachments — response field only */}
+        {field === 'response' && (
+          <div className="border-t border-[#E5E2D9] bg-[#FAF8F4] px-5 py-3">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-1.5">
+                <svg className="w-3.5 h-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                </svg>
+                <span className="text-xs font-semibold text-[#0A0A0A]">
+                  Attachments {hasFiles ? `(${existingAttachments.length + pendingFiles.length})` : ''}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="flex items-center gap-1.5 text-xs font-medium text-[#FF4F00] hover:text-[#e64600] transition-colors"
+              >
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+                Attach file
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                className="hidden"
+                onChange={e => handleFileSelect(e.target.files)}
+              />
+            </div>
+
+            {/* File list */}
+            {hasFiles ? (
+              <div className="space-y-1">
+                {existingAttachments.map((att, i) => (
+                  <div key={`ex-${i}`} className="flex items-center gap-2 bg-white border border-[#E5E2D9] rounded px-3 py-1.5">
+                    <svg className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <a href={att.url} target="_blank" rel="noreferrer"
+                      className="text-xs text-blue-600 hover:underline truncate flex-1 min-w-0" title={att.name}>
+                      {att.name}
+                    </a>
+                    <span className="text-[11px] text-gray-400 flex-shrink-0">{formatFileSize(att.size)}</span>
+                    <button onClick={() => removeExisting(i)}
+                      className="text-gray-300 hover:text-red-400 transition-colors text-base leading-none flex-shrink-0">
+                      ×
+                    </button>
+                  </div>
+                ))}
+                {pendingFiles.map((file, i) => (
+                  <div key={`pend-${i}`} className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded px-3 py-1.5">
+                    <svg className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span className="text-xs text-[#0A0A0A] truncate flex-1 min-w-0" title={file.name}>{file.name}</span>
+                    <span className="text-[11px] text-gray-400 flex-shrink-0">{formatFileSize(file.size)}</span>
+                    <span className="text-[10px] text-amber-600 flex-shrink-0">• uploads on save</span>
+                    <button onClick={() => removePending(i)}
+                      className="text-gray-300 hover:text-red-400 transition-colors text-base leading-none flex-shrink-0">
+                      ×
+                    </button>
+                  </div>
+                ))}
+                {/* Add more */}
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="w-full border border-dashed border-[#E5E2D9] rounded py-1.5 text-xs text-gray-400 hover:border-[#FF4F00] hover:text-[#FF4F00] transition-colors"
+                >
+                  + Add more files
+                </button>
+              </div>
+            ) : (
+              <div
+                className="border border-dashed border-[#E5E2D9] rounded-lg p-4 text-center cursor-pointer hover:border-[#FF4F00] hover:bg-orange-50/30 transition-colors"
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <svg className="w-5 h-5 text-gray-300 mx-auto mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                <p className="text-xs text-gray-400">Drop files here or <span className="text-[#FF4F00]">browse</span></p>
+                <p className="text-[10px] text-gray-300 mt-0.5">Max 10 MB per file</p>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Footer */}
-        <div className="flex items-center justify-between px-5 py-3 border-t border-[#E5E2D9] bg-[#FAF8F4]">
+        <div className="flex items-center justify-between px-5 py-3 border-t border-[#E5E2D9] bg-white">
           <span className="text-[11px] text-gray-400">
             Ctrl+Enter = save · Ctrl+B = bold · Esc = cancel
           </span>
@@ -277,30 +483,36 @@ function EditorPopup({ questionId, field, questionText, initialValue, onSave, on
               Cancel
             </button>
             <button
-              onClick={handleSave}
-              disabled={saved}
+              onClick={() => { void handleSave() }}
+              disabled={saved || uploading}
               className={`flex items-center gap-2 px-5 py-2 text-sm rounded-lg font-bold transition-all duration-200 ${
                 saved
                   ? 'bg-emerald-500 text-white scale-95'
+                  : uploading
+                  ? 'bg-amber-500 text-white cursor-wait'
                   : 'bg-[#FF4F00] text-white hover:bg-[#e64600]'
               }`}
             >
               {saved ? (
                 <>
-                  {/* Checkmark */}
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                   Saved!
                 </>
+              ) : uploading ? (
+                <>
+                  <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  Uploading…
+                </>
               ) : (
                 <>
-                  {/* Floppy disk save icon */}
+                  {/* Floppy disk icon */}
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                       d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
                   </svg>
-                  Save Response
+                  Save
                 </>
               )}
             </button>
@@ -383,15 +595,22 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
-  const [popup, setPopup] = useState<{ questionId: string; field: 'response' | 'notes'; questionText: string } | null>(null)
+  const [popup, setPopup] = useState<{
+    questionId: string
+    field: 'response' | 'notes'
+    questionText: string
+  } | null>(null)
   const [popupInitial, setPopupInitial] = useState('')
+  const [popupInitialAttachments, setPopupInitialAttachments] = useState<QuestionAttachment[]>([])
 
   const slug = config.clientSlug
   const allQuestions = config.tabs.flatMap(t => t.questions)
   const totalCount = allQuestions.length
   const answeredCount = allQuestions.filter(q => (answers[q.id]?.response ?? '').trim().length > 0).length
   const mustHaveTotal = allQuestions.filter(q => q.priority === 'Must-have').length
-  const mustHaveAnswered = allQuestions.filter(q => q.priority === 'Must-have' && (answers[q.id]?.response ?? '').trim().length > 0).length
+  const mustHaveAnswered = allQuestions.filter(
+    q => q.priority === 'Must-have' && (answers[q.id]?.response ?? '').trim().length > 0
+  ).length
   const pct = totalCount > 0 ? Math.round((answeredCount / totalCount) * 100) : 0
 
   // ── localStorage restore ────────────────────────────────────────────────────
@@ -402,8 +621,8 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
     setSessionId(id)
     try {
       const sa = localStorage.getItem(lsKey(slug, 'answers'))
-      if (sa) setAnswers(JSON.parse(sa))
-    } catch { /* ignore */ }
+      if (sa) setAnswers(JSON.parse(sa) as DiscoveryAnswers)
+    } catch { /* ignore corrupt data */ }
   }, [slug])
 
   // ── Server auto-save ────────────────────────────────────────────────────────
@@ -438,26 +657,41 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
   }, [answers, sessionId, slug])
 
   // ── Update answers ──────────────────────────────────────────────────────────
-  function updateAnswer(questionId: string, field: keyof QuestionAnswer, value: string) {
-    setAnswers(prev => {
-      const next = { ...prev, [questionId]: { ...(prev[questionId] ?? emptyAnswer()), [field]: value } }
-      localStorage.setItem(lsKey(slug, 'answers'), JSON.stringify(next))
-      return next
-    })
+  function updateAnswer(
+    questionId: string,
+    field: keyof QuestionAnswer,
+    value: string,
+    attachments?: QuestionAttachment[]
+  ) {
+    const existing = answers[questionId] ?? emptyAnswer()
+    const next: DiscoveryAnswers = {
+      ...answers,
+      [questionId]: {
+        ...existing,
+        [field]: value,
+        // Only overwrite attachments when explicitly provided (from response popup)
+        ...(attachments !== undefined ? { attachments } : {}),
+      },
+    }
+    setAnswers(next)
+    localStorage.setItem(lsKey(slug, 'answers'), JSON.stringify(next))
     setSaveStatus('idle')
-    // Trigger immediate server save on popup close
-    setTimeout(() => serverSave({ ...answers, [questionId]: { ...(answers[questionId] ?? emptyAnswer()), [field]: value } }, sessionId), 300)
+    setTimeout(() => serverSave(next, sessionId), 300)
   }
 
   function openPopup(questionId: string, field: 'response' | 'notes', questionText: string) {
     setPopupInitial(answers[questionId]?.[field] ?? '')
+    setPopupInitialAttachments(
+      field === 'response' ? (answers[questionId]?.attachments ?? []) : []
+    )
     setPopup({ questionId, field, questionText })
   }
 
   // ── Submit ──────────────────────────────────────────────────────────────────
   async function handleSubmit() {
     if (!sessionId) return
-    setSubmitting(true); setSubmitError(null)
+    setSubmitting(true)
+    setSubmitError(null)
     try {
       const res = await fetch('/api/discovery/submit', {
         method: 'POST',
@@ -472,7 +706,7 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
 
   const visibleTabs = activeTab === 'all' ? config.tabs : config.tabs.filter(t => t.id === activeTab)
 
-  // ── Thank-you ───────────────────────────────────────────────────────────────
+  // ── Thank-you screen ────────────────────────────────────────────────────────
   if (submitted) {
     return (
       <div className="min-h-screen bg-white flex flex-col items-center justify-center p-8">
@@ -521,8 +755,8 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
                   </td>
                   <td className="py-3.5 px-5">
                     <div className="flex items-center gap-3">
-                      <div className="flex-1 h-2 bg-[#EBE8E0] rounded-full overflow-hidden">
-                        <div className="h-full bg-[#FF4F00] rounded-full transition-all duration-500" style={{ width: `${p}%` }} />
+                      <div className="flex-1 h-2 bg-red-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full transition-all duration-500" style={{ width: `${p}%` }} />
                       </div>
                       <span className={`text-xs font-semibold w-8 text-right ${done === tab.questions.length ? 'text-emerald-600' : 'text-gray-500'}`}>{p}%</span>
                     </div>
@@ -540,8 +774,8 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
               </td>
               <td className="py-3.5 px-5">
                 <div className="flex items-center gap-3">
-                  <div className="flex-1 h-2 bg-[#EBE8E0] rounded-full overflow-hidden">
-                    <div className="h-full bg-[#FF4F00] rounded-full transition-all" style={{ width: `${pct}%` }} />
+                  <div className="flex-1 h-2 bg-red-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-emerald-500 rounded-full transition-all" style={{ width: `${pct}%` }} />
                   </div>
                   <span className={`text-xs font-bold w-8 text-right ${answeredCount === totalCount ? 'text-emerald-600' : 'text-[#FF4F00]'}`}>{pct}%</span>
                 </div>
@@ -560,30 +794,38 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
       {/* ── Sticky top block: nav + title bar + tabs ───────────────────────── */}
       <div className="flex-shrink-0 sticky top-0 z-30">
 
-        {/* 1. Black nav bar */}
-        <div className="bg-[#0A0A0A] border-b-2 border-[#FF4F00]">
-          <div className="flex items-center gap-4 px-5 h-12">
-            {/* Logo */}
-            <div className="flex items-center gap-2.5 flex-shrink-0">
-              <div className="w-8 h-8 rounded overflow-hidden border border-white/20 flex-shrink-0">
-                <Image src="/kovil-logo-symbol-orange.webp" alt="Kovil AI" width={32} height={32} className="object-cover" />
-              </div>
-              <span className="font-display font-bold text-base text-white tracking-tight">Kovil AI</span>
+        {/* 1. White nav bar with orange underline accent */}
+        <div className="bg-white border-b-2 border-[#FF4F00] shadow-sm">
+          <div className="flex items-center gap-4 px-5 h-13 py-2">
+            {/* Logo — dark (black) version for white background */}
+            <div className="flex items-center gap-0 flex-shrink-0">
+              <Image
+                src="/kovil-logo-dark.webp"
+                alt="Kovil AI"
+                width={120}
+                height={32}
+                className="h-8 w-auto object-contain"
+                priority
+              />
             </div>
 
-            <div className="w-px h-5 bg-white/20 flex-shrink-0" />
+            <div className="w-px h-5 bg-[#0A0A0A]/15 flex-shrink-0" />
 
             {/* Nav */}
             <nav className="flex items-center gap-1">
               <button onClick={() => setView('questions')}
                 className={`px-3.5 py-1.5 rounded text-sm font-semibold transition-colors ${
-                  view === 'questions' ? 'bg-[#FF4F00] text-white' : 'text-white/60 hover:text-white hover:bg-white/10'
+                  view === 'questions'
+                    ? 'bg-[#FF4F00] text-white'
+                    : 'text-[#0A0A0A]/60 hover:text-[#0A0A0A] hover:bg-[#0A0A0A]/8'
                 }`}>
                 Discovery Questionnaire
               </button>
               <button onClick={() => setView('tracker')}
                 className={`px-3.5 py-1.5 rounded text-sm font-medium transition-colors ${
-                  view === 'tracker' ? 'bg-[#FF4F00] text-white' : 'text-white/60 hover:text-white hover:bg-white/10'
+                  view === 'tracker'
+                    ? 'bg-[#FF4F00] text-white'
+                    : 'text-[#0A0A0A]/60 hover:text-[#0A0A0A] hover:bg-[#0A0A0A]/8'
                 }`}>
                 Completion Tracker
               </button>
@@ -591,12 +833,15 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
 
             <div className="flex-1" />
 
-            {/* Progress bar */}
+            {/* Green/red progress bar */}
             <div className="flex items-center gap-3 flex-shrink-0">
-              <div className="w-36 h-1.5 bg-white/20 rounded-full overflow-hidden">
-                <div className="h-full bg-[#FF4F00] rounded-full transition-all duration-500" style={{ width: `${pct}%` }} />
+              <div className="w-40 h-2 bg-red-200 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-emerald-500 rounded-full transition-all duration-500"
+                  style={{ width: `${pct}%` }}
+                />
               </div>
-              <span className="text-xs font-semibold text-white/70 whitespace-nowrap">
+              <span className="text-xs font-semibold text-[#0A0A0A]/60 whitespace-nowrap">
                 {answeredCount}/{totalCount} answered
               </span>
             </div>
@@ -606,7 +851,7 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
         {/* 2. White project title bar */}
         <div className="bg-white border-b border-[#E5E2D9] px-6 py-3 flex items-center justify-between gap-6">
           <div className="min-w-0">
-            <h1 className="font-display text-lg font-bold text-[#0A0A0A] leading-tight truncate">
+            <h1 className="font-display text-xl font-bold text-[#0A0A0A] leading-tight truncate">
               {config.projectTitle}
             </h1>
             <p className="text-sm text-gray-400 mt-0.5">{config.clientName}</p>
@@ -624,7 +869,7 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
               <span className="text-sm font-bold text-[#0A0A0A]">{answeredCount}/{totalCount}</span>
             </div>
             <div className="flex items-center gap-2 bg-[#FAF8F4] border border-[#E5E2D9] rounded-lg px-3 py-2">
-              <span className="text-sm font-bold text-[#FF4F00]">{pct}%</span>
+              <span className={`text-sm font-bold ${pct === 100 ? 'text-emerald-600' : 'text-[#FF4F00]'}`}>{pct}%</span>
               <span className="text-xs text-gray-500">complete</span>
             </div>
           </div>
@@ -654,18 +899,22 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
         {view === 'tracker' ? (
           <TrackerView />
         ) : (
-          <table className="w-full border-collapse" style={{ minWidth: '960px' }}>
+          <table className="w-full border-collapse" style={{ minWidth: '1100px' }}>
+
             {/* Column headers */}
             <thead>
               <tr className="bg-[#0A0A0A] text-white">
                 <th className="py-3 px-3 text-center w-10 text-xs font-bold uppercase tracking-wider border-r border-white/10">#</th>
                 <th className="py-3 px-3 text-left w-[76px] text-xs font-bold uppercase tracking-wider border-r border-white/10">ID</th>
-                <th className="py-3 px-4 text-left text-xs font-bold uppercase tracking-wider border-r border-white/10" style={{ width: '36%' }}>Question</th>
+                {/* Question: reduced from 36% → 25% */}
+                <th className="py-3 px-4 text-left text-xs font-bold uppercase tracking-wider border-r border-white/10" style={{ width: '25%' }}>Question</th>
                 <th className="py-3 px-3 text-center w-28 text-xs font-bold uppercase tracking-wider border-r border-white/10">Priority</th>
-                <th className="py-3 px-4 text-left text-xs font-bold uppercase tracking-wider border-r border-white/10" style={{ width: '26%' }}>
+                {/* Response: increased from 26% → 31% */}
+                <th className="py-3 px-4 text-left text-xs font-bold uppercase tracking-wider border-r border-white/10" style={{ width: '31%' }}>
                   Response <span className="normal-case font-normal text-white/40">(complete this)</span>
                 </th>
-                <th className="py-3 px-4 text-left text-xs font-bold uppercase tracking-wider">Notes / Follow-up</th>
+                {/* Notes heading updated */}
+                <th className="py-3 px-4 text-left text-xs font-bold uppercase tracking-wider">Notes / Add anything</th>
               </tr>
             </thead>
 
@@ -702,7 +951,7 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
                           className={`border-b border-[#E5E2D9] group transition-colors ${isDone ? 'bg-white' : 'bg-white hover:bg-orange-50/10'}`}
                         >
                           {/* # */}
-                          <td className="py-4 px-3 text-center align-top w-10 border-r border-[#F0EDE8]">
+                          <td className="py-5 px-3 text-center align-top w-10 border-r border-[#F0EDE8]">
                             {isDone ? (
                               <svg className="w-5 h-5 text-emerald-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -713,19 +962,19 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
                           </td>
 
                           {/* ID */}
-                          <td className="py-4 px-3 align-top w-[76px] border-r border-[#F0EDE8]">
+                          <td className="py-5 px-3 align-top w-[76px] border-r border-[#F0EDE8]">
                             <span className="inline-block text-[11px] font-mono font-bold text-gray-600 bg-[#EBE8E0] px-2 py-0.5 rounded whitespace-nowrap">
                               {q.id}
                             </span>
                           </td>
 
-                          {/* Question */}
-                          <td className="py-4 px-4 align-top border-r border-[#F0EDE8]" style={{ width: '36%' }}>
-                            <p className={`text-sm leading-relaxed ${isDone ? 'text-gray-500' : 'text-[#0A0A0A] font-medium'}`}>
+                          {/* Question — increased text size + weight */}
+                          <td className="py-5 px-4 align-top border-r border-[#F0EDE8]" style={{ width: '25%' }}>
+                            <p className={`text-[15px] leading-snug font-semibold ${isDone ? 'text-gray-500' : 'text-[#0A0A0A]'}`}>
                               {q.question}
                             </p>
                             <button onClick={() => setPurposeOpen(isExpanded ? null : q.id)}
-                              className="mt-1.5 flex items-center gap-1 text-[11px] text-[#FF4F00]/60 hover:text-[#FF4F00] transition-colors">
+                              className="mt-2 flex items-center gap-1 text-[11px] text-[#FF4F00]/60 hover:text-[#FF4F00] transition-colors">
                               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
@@ -742,21 +991,22 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
                           </td>
 
                           {/* Priority */}
-                          <td className="py-4 px-3 align-top text-center w-28 border-r border-[#F0EDE8]">
+                          <td className="py-5 px-3 align-top text-center w-28 border-r border-[#F0EDE8]">
                             <PriorityBadge priority={q.priority} />
                           </td>
 
                           {/* Response */}
-                          <td className="py-4 px-4 align-top border-r border-[#F0EDE8]" style={{ width: '26%' }}>
+                          <td className="py-5 px-4 align-top border-r border-[#F0EDE8]" style={{ width: '31%' }}>
                             <AnswerCell
                               value={answer.response}
                               placeholder="+ Click to add response…"
+                              attachmentCount={(answer.attachments ?? []).length}
                               onClick={() => openPopup(q.id, 'response', q.question)}
                             />
                           </td>
 
                           {/* Notes */}
-                          <td className="py-4 px-4 align-top">
+                          <td className="py-5 px-4 align-top">
                             <AnswerCell
                               value={answer.notes}
                               placeholder="+ Add notes…"
@@ -809,8 +1059,15 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
           field={popup.field}
           questionText={popup.questionText}
           initialValue={popupInitial}
-          onSave={value => {
-            updateAnswer(popup.questionId, popup.field, value)
+          initialAttachments={popupInitialAttachments}
+          sessionId={sessionId}
+          onSave={(value, attachments) => {
+            updateAnswer(
+              popup.questionId,
+              popup.field,
+              value,
+              popup.field === 'response' ? attachments : undefined
+            )
             setPopup(null)
           }}
           onClose={() => setPopup(null)}

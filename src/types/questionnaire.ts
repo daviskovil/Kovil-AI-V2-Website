@@ -22,10 +22,20 @@ export interface DiscoveryConfig {
   tabs: DiscoveryTab[]
 }
 
-/** Per-question answer: response text + optional notes */
+/** File attached to a question's response */
+export interface QuestionAttachment {
+  name: string
+  size: number
+  type: string
+  url: string
+  uploadedAt: string
+}
+
+/** Per-question answer: response text + optional notes + optional attachments */
 export interface QuestionAnswer {
   response: string
   notes: string
+  attachments?: QuestionAttachment[]
 }
 
 /** All saved answers keyed by question ID */
