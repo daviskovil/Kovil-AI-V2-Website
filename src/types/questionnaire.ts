@@ -45,6 +45,12 @@ export interface QuestionAnswer {
   response: string
   notes: string
   attachments?: QuestionAttachment[]
+  /**
+   * Epoch ms when this specific answer was last changed by the user.
+   * Used by the server to resolve conflicts: the answer with the higher _ts wins.
+   * Absent on data saved by older code versions (treated as 0 by the server).
+   */
+  _ts?: number
 }
 
 /** All saved answers keyed by question ID */

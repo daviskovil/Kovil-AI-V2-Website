@@ -1129,6 +1129,7 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
       [questionId]: {
         ...existing,
         [field]: value,
+        _ts: Date.now(),  // timestamp this change so server can resolve conflicts
         ...(attachments !== undefined ? { attachments } : {}),
       },
     }
