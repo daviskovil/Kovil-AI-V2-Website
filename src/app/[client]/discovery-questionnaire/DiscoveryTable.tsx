@@ -1183,6 +1183,20 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
 
   const visibleTabs = activeTab === 'all' ? config.tabs : config.tabs.filter(t => t.id === activeTab)
 
+  // ── Logout ──────────────────────────────────────────────────────────────────
+  function handleLogout() {
+    localStorage.removeItem(lsKey(slug, 'auth'))
+    localStorage.removeItem(lsKey(slug, 'email'))
+    localStorage.removeItem(lsKey(slug, 'name'))
+    localStorage.removeItem(lsKey(slug, 'answers'))
+    localStorage.removeItem(lsKey(slug, 'session'))
+    setIsAuthenticated(false)
+    setClientEmail('')
+    setClientContactName('')
+    setAnswers({})
+    setDbChecked(false)
+  }
+
   // ── Auth gate check ─────────────────────────────────────────────────────────
   if (!authChecked) return null // prevent flash
 
@@ -1348,6 +1362,33 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
                 <div className="h-full bg-emerald-500 rounded-full transition-all duration-500" style={{ width: `${pct}%` }} />
               </div>
               <span className="text-xs font-semibold text-[#0A0A0A]/60 whitespace-nowrap">{answeredCount}/{totalCount} answered</span>
+            </div>
+            {/* Divider + user avatar + sign out */}
+            <div className="w-px h-5 bg-[#0A0A0A]/15 flex-shrink-0 ml-1" />
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <div className="w-7 h-7 rounded-full bg-[#FF4F00] flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-xs font-bold">
+                  {((clientContactName || clientEmail || '?')[0] ?? '?').toUpperCase()}
+                </span>
+              </div>
+              {(clientContactName || clientEmail) && (
+                <div className="hidden sm:block leading-none">
+                  <p className="text-xs font-semibold text-[#0A0A0A]">{(clientContactName || clientEmail).split(' ')[0]}</p>
+                  <p className="text-[10px] text-gray-400 mt-0.5">{config.clientName}</p>
+                </div>
+              )}
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-[#FF4F00] transition-colors px-2 py-1 rounded hover:bg-[#FF4F00]/8"
+                title="Sign out"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                <span className="hidden sm:block">Sign out</span>
+              </button>
             </div>
           </div>
         </div>
