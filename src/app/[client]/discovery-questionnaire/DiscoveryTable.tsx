@@ -942,6 +942,7 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
   const [authChecked, setAuthChecked] = useState(false)     // prevents flash before localStorage read
   const [clientEmail, setClientEmail] = useState('')
   const [clientContactName, setClientContactName] = useState('')
+  const [dbLoading, setDbLoading] = useState(false)         // true while syncing from Supabase
 
   // ── Questionnaire state ─────────────────────────────────────────────────────
   const [activeTab, setActiveTab] = useState('all')
@@ -968,34 +969,85 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
   const mustHaveAnswered = allQuestions.filter(q => q.priority === 'Must-have' && (answers[q.id]?.response ?? '').trim().length > 0).length
   const pct = totalCount > 0 ? Math.round((answeredCount / totalCount) * 100) : 0
 
+  // ── Stable session ID from UID ────────────────────────────────────────────
+  // For auth-gated questionnaires, the session ID is derived from the UID so
+  // the same credentials always map to the same Supabase row in any browser.
+  function stableSessionId(uid: string) {
+    return `${slug}-${uid.toLowerCase().replace(/[^a-z0-9]/g, '-')}`
+  }
+
   // ── Bootstrap from localStorage ────────────────────────────────────────────
   useEffect(() => {
-    // Auth check
+    // Auth check — also capture uid for stable session ID
+    let uid = ''
     if (config.accessCredentials?.uid) {
-      const authed = localStorage.getItem(lsKey(slug, 'auth')) === config.accessCredentials.uid
-      setIsAuthenticated(authed)
+      const storedAuth = localStorage.getItem(lsKey(slug, 'auth'))
+      if (storedAuth === config.accessCredentials.uid) {
+        uid = storedAuth
+        setIsAuthenticated(true)
+      }
+      // else: isAuthenticated stays false → LoginGate will show
     } else {
       setIsAuthenticated(true) // no gate configured
     }
 
     // Restore email + name
-    const savedEmail = localStorage.getItem(lsKey(slug, 'email')) ?? ''
-    const savedName = localStorage.getItem(lsKey(slug, 'name')) ?? ''
-    setClientEmail(savedEmail)
-    setClientContactName(savedName)
+    setClientEmail(localStorage.getItem(lsKey(slug, 'email')) ?? '')
+    setClientContactName(localStorage.getItem(lsKey(slug, 'name')) ?? '')
 
-    // Restore session + answers
-    const stored = localStorage.getItem(lsKey(slug, 'session'))
-    const id = stored ?? generateSessionId()
-    if (!stored) localStorage.setItem(lsKey(slug, 'session'), id)
+    // Session ID: stable (derived from uid) if authenticated, else preserve stored or generate new
+    const storedId = localStorage.getItem(lsKey(slug, 'session'))
+    const id = uid
+      ? stableSessionId(uid)                             // same in every browser
+      : (storedId ?? generateSessionId())                // random, per-browser fallback
+    if (id !== storedId) localStorage.setItem(lsKey(slug, 'session'), id)
     setSessionId(id)
+
+    // Load local answers immediately (may be empty in a fresh browser — Supabase sync below)
     try {
       const sa = localStorage.getItem(lsKey(slug, 'answers'))
       if (sa) setAnswers(JSON.parse(sa) as DiscoveryAnswers)
     } catch { /* ignore */ }
 
     setAuthChecked(true)
-  }, [slug, config.accessCredentials?.uid])
+  }, [slug, config.accessCredentials?.uid]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Supabase sync — runs whenever auth + sessionId are established ──────────
+  // This is what makes cross-browser work: any browser with the right credentials
+  // fetches the saved answers from the server.
+  useEffect(() => {
+    if (!isAuthenticated || !sessionId) return
+
+    setDbLoading(true)
+    fetch('/api/discovery/load', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sessionId, client_slug: slug }),
+    })
+      .then(r => r.json())
+      .then((data: { answers: DiscoveryAnswers | null; source: string }) => {
+        if (data.answers && Object.keys(data.answers).length > 0) {
+          setAnswers(prev => {
+            // DB answers are source of truth; local fills any gaps not yet synced
+            const merged: DiscoveryAnswers = { ...prev }
+            for (const [qId, dbAns] of Object.entries(data.answers!)) {
+              if (dbAns.response?.trim() || dbAns.notes?.trim() || (dbAns.attachments?.length ?? 0) > 0) {
+                merged[qId] = dbAns  // DB wins when it has content
+              }
+            }
+            localStorage.setItem(lsKey(slug, 'answers'), JSON.stringify(merged))
+            return merged
+          })
+          // If this was a fallback recovery, immediately autosave with the stable ID
+          // so next time the exact-match query works in any browser
+          if (data.source === 'fallback') {
+            setTimeout(() => serverSave(data.answers as DiscoveryAnswers, sessionId), 500)
+          }
+        }
+      })
+      .catch(() => { /* non-fatal — local data is still shown */ })
+      .finally(() => setDbLoading(false))
+  }, [isAuthenticated, sessionId, slug]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Server auto-save ────────────────────────────────────────────────────────
   const serverSave = useCallback(async (currentAnswers: DiscoveryAnswers, sid: string) => {
@@ -1096,8 +1148,14 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
       <LoginGate
         config={config}
         onSuccess={() => {
-          // Store the UID as the auth token — if the UID changes, old tokens become invalid
-          localStorage.setItem(lsKey(slug, 'auth'), config.accessCredentials!.uid)
+          const uid = config.accessCredentials!.uid
+          // Store auth token
+          localStorage.setItem(lsKey(slug, 'auth'), uid)
+          // Set stable session ID immediately — the Supabase sync useEffect will
+          // pick this up and load saved answers from any previous browser session
+          const sid = stableSessionId(uid)
+          localStorage.setItem(lsKey(slug, 'session'), sid)
+          setSessionId(sid)
           setIsAuthenticated(true)
         }}
       />
@@ -1356,6 +1414,16 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
           </table>
         )}
       </div>
+
+      {/* ── DB sync banner — shown while loading saved responses from Supabase ── */}
+      {dbLoading && (
+        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+          <div className="bg-[#0A0A0A] text-white text-xs font-medium px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2.5">
+            <span className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin flex-shrink-0" />
+            Syncing your saved responses from the server…
+          </div>
+        </div>
+      )}
 
       {/* ── Bottom action bar ────────────────────────────────────────────────── */}
       {view === 'questions' && (
