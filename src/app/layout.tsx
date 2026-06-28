@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
 import Script from 'next/script'
+import { headers } from 'next/headers'
 import './globals.css'
 import Navbar from '@/src/components/Navbar'
 import Footer from '@/src/components/Footer'
@@ -26,13 +27,18 @@ export const metadata: Metadata = {
   description: 'Kovil AI is a managed AI engineering company. We embed vetted AI engineers into product teams, build fixed-price AI projects, and rescue failing AI applications.',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') ?? ''
+  // Standalone pages (e.g. client discovery questionnaire) opt out of the global chrome
+  const isStandalone = pathname.includes('/discovery-questionnaire')
+
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-white">
-        <Navbar />
+        {!isStandalone && <Navbar />}
         {children}
-        <Footer />
+        {!isStandalone && <Footer />}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-J2TXKBR1L0"
           strategy="afterInteractive"

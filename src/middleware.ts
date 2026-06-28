@@ -47,7 +47,11 @@ export function middleware(request: NextRequest) {
     })
   }
 
-  return NextResponse.next()
+  // Forward the pathname as a header so server layouts can read it
+  // (used to suppress the global Navbar/Footer on standalone pages)
+  const response = NextResponse.next()
+  response.headers.set('x-pathname', pathname)
+  return response
 }
 
 export const config = {
