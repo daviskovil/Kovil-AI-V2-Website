@@ -940,9 +940,14 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
   // ── Auth + onboarding state ─────────────────────────────────────────────────
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [authChecked, setAuthChecked] = useState(false)     // prevents flash before localStorage read
+  const [dbChecked, setDbChecked] = useState(false)         // true after initial Supabase load completes
   const [clientEmail, setClientEmail] = useState('')
   const [clientContactName, setClientContactName] = useState('')
   const [dbLoading, setDbLoading] = useState(false)         // true while syncing from Supabase
+
+  // Refs so serverSave always sees the latest email/name without stale closure issues
+  const clientEmailRef = useRef('')
+  const clientNameRef = useRef('')
 
   // ── Questionnaire state ─────────────────────────────────────────────────────
   const [activeTab, setActiveTab] = useState('all')
@@ -968,6 +973,10 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
   const mustHaveTotal = allQuestions.filter(q => q.priority === 'Must-have').length
   const mustHaveAnswered = allQuestions.filter(q => q.priority === 'Must-have' && (answers[q.id]?.response ?? '').trim().length > 0).length
   const pct = totalCount > 0 ? Math.round((answeredCount / totalCount) * 100) : 0
+
+  // Keep refs in sync with state so serverSave always has latest values
+  useEffect(() => { clientEmailRef.current = clientEmail }, [clientEmail])
+  useEffect(() => { clientNameRef.current = clientContactName }, [clientContactName])
 
   // ── Stable session ID from UID ────────────────────────────────────────────
   // For auth-gated questionnaires, the session ID is derived from the UID so
@@ -1013,8 +1022,8 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
   }, [slug, config.accessCredentials?.uid]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Supabase sync — runs whenever auth + sessionId are established ──────────
-  // This is what makes cross-browser work: any browser with the right credentials
-  // fetches the saved answers from the server.
+  // DB is the single source of truth. Any browser with the right credentials
+  // gets the canonical state from Supabase — no localStorage merging.
   useEffect(() => {
     if (!isAuthenticated || !sessionId) return
 
@@ -1025,28 +1034,35 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
       body: JSON.stringify({ session_id: sessionId, client_slug: slug }),
     })
       .then(r => r.json())
-      .then((data: { answers: DiscoveryAnswers | null; source: string }) => {
+      .then((data: { answers: DiscoveryAnswers | null; clientEmail?: string; clientName?: string; source: string }) => {
+        // Restore email/name from DB so any browser skips the email-entry screen
+        if (data.clientEmail && !clientEmailRef.current) {
+          setClientEmail(data.clientEmail)
+          clientEmailRef.current = data.clientEmail
+          localStorage.setItem(lsKey(slug, 'email'), data.clientEmail)
+        }
+        if (data.clientName && !clientNameRef.current) {
+          setClientContactName(data.clientName)
+          clientNameRef.current = data.clientName
+          localStorage.setItem(lsKey(slug, 'name'), data.clientName)
+        }
+
+        // DB completely replaces local state — it is the source of truth
         if (data.answers && Object.keys(data.answers).length > 0) {
-          setAnswers(prev => {
-            // DB answers are source of truth; local fills any gaps not yet synced
-            const merged: DiscoveryAnswers = { ...prev }
-            for (const [qId, dbAns] of Object.entries(data.answers!)) {
-              if (dbAns.response?.trim() || dbAns.notes?.trim() || (dbAns.attachments?.length ?? 0) > 0) {
-                merged[qId] = dbAns  // DB wins when it has content
-              }
-            }
-            localStorage.setItem(lsKey(slug, 'answers'), JSON.stringify(merged))
-            return merged
-          })
-          // If this was a fallback recovery, immediately autosave with the stable ID
-          // so next time the exact-match query works in any browser
+          setAnswers(data.answers)
+          localStorage.setItem(lsKey(slug, 'answers'), JSON.stringify(data.answers))
+
+          // If recovered via fallback, re-save under the stable ID immediately
           if (data.source === 'fallback') {
             setTimeout(() => serverSave(data.answers as DiscoveryAnswers, sessionId), 500)
           }
         }
       })
-      .catch(() => { /* non-fatal — local data is still shown */ })
-      .finally(() => setDbLoading(false))
+      .catch(() => { /* non-fatal — local data still shown */ })
+      .finally(() => {
+        setDbLoading(false)
+        setDbChecked(true)  // gate opens — email check now safe to evaluate
+      })
   }, [isAuthenticated, sessionId, slug]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Server auto-save ────────────────────────────────────────────────────────
@@ -1057,7 +1073,14 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
       const res = await fetch('/api/discovery/autosave', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ session_id: sid, client_slug: slug, answers: currentAnswers }),
+        body: JSON.stringify({
+          session_id: sid,
+          client_slug: slug,
+          answers: currentAnswers,
+          // Always include latest email/name via refs — DB is the source of truth
+          ...(clientEmailRef.current ? { client_email: clientEmailRef.current } : {}),
+          ...(clientNameRef.current ? { client_name: clientNameRef.current } : {}),
+        }),
       })
       setSaveStatus(res.ok ? 'saved' : 'error')
       if (res.ok) setLastSavedAt(new Date())
@@ -1074,7 +1097,13 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
     const handleUnload = () => {
       if (!sessionId) return
       navigator.sendBeacon('/api/discovery/autosave',
-        new Blob([JSON.stringify({ session_id: sessionId, client_slug: slug, answers })], { type: 'application/json' }))
+        new Blob([JSON.stringify({
+          session_id: sessionId,
+          client_slug: slug,
+          answers,
+          ...(clientEmailRef.current ? { client_email: clientEmailRef.current } : {}),
+          ...(clientNameRef.current ? { client_name: clientNameRef.current } : {}),
+        })], { type: 'application/json' }))
     }
     window.addEventListener('beforeunload', handleUnload)
     return () => window.removeEventListener('beforeunload', handleUnload)
@@ -1149,16 +1178,29 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
         config={config}
         onSuccess={() => {
           const uid = config.accessCredentials!.uid
-          // Store auth token
           localStorage.setItem(lsKey(slug, 'auth'), uid)
-          // Set stable session ID immediately — the Supabase sync useEffect will
-          // pick this up and load saved answers from any previous browser session
           const sid = stableSessionId(uid)
           localStorage.setItem(lsKey(slug, 'session'), sid)
           setSessionId(sid)
           setIsAuthenticated(true)
         }}
       />
+    )
+  }
+
+  // ── DB loading gate — wait for Supabase before showing email screen ─────────
+  // This ensures Safari/Firefox don't ask for email if it's already in the DB.
+  if (!dbChecked) {
+    return (
+      <div className="min-h-screen bg-[#FAF8F4] flex flex-col">
+        <KovilHeader />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="flex flex-col items-center gap-3">
+            <span className="w-8 h-8 border-2 border-[#FF4F00]/20 border-t-[#FF4F00] rounded-full animate-spin" />
+            <p className="text-sm text-gray-400">Loading your questionnaire…</p>
+          </div>
+        </div>
+      </div>
     )
   }
 
@@ -1172,8 +1214,13 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
         onComplete={(email, name) => {
           setClientEmail(email)
           setClientContactName(name)
+          // Update refs immediately so serverSave picks them up right away
+          clientEmailRef.current = email
+          clientNameRef.current = name
           localStorage.setItem(lsKey(slug, 'email'), email)
           localStorage.setItem(lsKey(slug, 'name'), name)
+          // Persist email/name to DB immediately — makes any browser skip this screen next time
+          setTimeout(() => serverSave(answers, sessionId), 100)
         }}
       />
     )

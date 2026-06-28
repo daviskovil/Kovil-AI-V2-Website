@@ -13,7 +13,7 @@ const SUPABASE_KEY =
  * Body: { session_id: string, client_slug: string, answers: Record<string, string> }
  */
 export async function POST(req: NextRequest) {
-  let body: { session_id?: string; client_slug?: string; answers?: unknown }
+  let body: { session_id?: string; client_slug?: string; answers?: unknown; client_email?: string; client_name?: string }
 
   try {
     body = await req.json()
@@ -21,19 +21,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
   }
 
-  const { session_id, client_slug, answers } = body
+  const { session_id, client_slug, answers, client_email, client_name } = body
 
   if (!session_id || !client_slug || !answers) {
     return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
   }
 
-  const row = {
+  const row: Record<string, unknown> = {
     session_id,
     client_slug,
     answers,
     completed: false,
     updated_at: new Date().toISOString(),
   }
+  if (client_email) row.client_email = client_email
+  if (client_name) row.client_name = client_name
 
   // ?on_conflict=session_id tells PostgREST to use that column for upsert
   // (default is primary key `id` which is auto-generated and wouldn't match)

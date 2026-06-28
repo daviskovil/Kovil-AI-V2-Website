@@ -18,7 +18,7 @@ const SUPABASE_KEY =
  *    that were saved with a random UUID before this fix was deployed)
  *
  * Body: { session_id: string, client_slug: string }
- * Returns: { answers: DiscoveryAnswers | null, source: 'exact' | 'fallback' | 'none' }
+ * Returns: { answers: DiscoveryAnswers | null, clientEmail: string, clientName: string, source: 'exact' | 'fallback' | 'none' }
  */
 
 function hasContent(answers: unknown): boolean {
@@ -51,13 +51,20 @@ export async function POST(req: NextRequest) {
       `${SUPABASE_URL}/rest/v1/discovery_submissions` +
       `?session_id=eq.${encodeURIComponent(session_id)}` +
       `&client_slug=eq.${encodeURIComponent(client_slug)}` +
-      `&select=answers,updated_at&limit=1`,
+      `&select=answers,client_email,client_name,updated_at&limit=1`,
       { headers }
     )
     if (exactRes.ok) {
-      const rows = await exactRes.json() as Array<{ answers: DiscoveryAnswers; updated_at: string }>
+      const rows = await exactRes.json() as Array<{
+        answers: DiscoveryAnswers; client_email: string | null; client_name: string | null; updated_at: string
+      }>
       if (rows.length > 0 && hasContent(rows[0].answers)) {
-        return NextResponse.json({ answers: rows[0].answers, source: 'exact' })
+        return NextResponse.json({
+          answers: rows[0].answers,
+          clientEmail: rows[0].client_email ?? '',
+          clientName: rows[0].client_name ?? '',
+          source: 'exact',
+        })
       }
     }
   } catch (e) {
@@ -70,23 +77,28 @@ export async function POST(req: NextRequest) {
     const fallbackRes = await fetch(
       `${SUPABASE_URL}/rest/v1/discovery_submissions` +
       `?client_slug=eq.${encodeURIComponent(client_slug)}` +
-      `&order=updated_at.desc&select=answers,session_id,updated_at&limit=5`,
+      `&order=updated_at.desc&select=answers,session_id,client_email,client_name,updated_at&limit=5`,
       { headers }
     )
     if (fallbackRes.ok) {
       const rows = await fallbackRes.json() as Array<{
-        answers: DiscoveryAnswers; session_id: string; updated_at: string
+        answers: DiscoveryAnswers; session_id: string; client_email: string | null; client_name: string | null; updated_at: string
       }>
       // Pick the first row that has actual answer content
       const best = rows.find(r => hasContent(r.answers))
       if (best) {
         console.log(`[load] fallback: recovered session ${best.session_id} updated ${best.updated_at}`)
-        return NextResponse.json({ answers: best.answers, source: 'fallback' })
+        return NextResponse.json({
+          answers: best.answers,
+          clientEmail: best.client_email ?? '',
+          clientName: best.client_name ?? '',
+          source: 'fallback',
+        })
       }
     }
   } catch (e) {
     console.error('[load] fallback query failed', e)
   }
 
-  return NextResponse.json({ answers: null, source: 'none' })
+  return NextResponse.json({ answers: null, clientEmail: '', clientName: '', source: 'none' })
 }
