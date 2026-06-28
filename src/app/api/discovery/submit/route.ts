@@ -5,14 +5,14 @@ const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const SUPABASE_KEY =
   process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-const NOTIFY_EMAIL = 'davis@kovil.ai'
+const ADMIN_EMAILS = ['davis@kovil.ai', 'sahdev@kovil.ai']
 
 /**
  * POST /api/discovery/submit
  *
  * 1. Upserts the submission as completed in Supabase
- * 2. Emails the full Q&A to davis@kovil.ai
- * 3. Emails a confirmation + next-steps to the client (if clientEmail provided)
+ * 2. Emails the full Q&A to davis@kovil.ai + sahdev@kovil.ai
+ * 3. Emails a confirmation + next-steps to the client (TO), with davis + sahdev CC'd
  *
  * Body: {
  *   session_id, client_slug,
@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
     },
     body: JSON.stringify({
       from: 'Kovil AI <noreply@kovil.ai>',
-      to: [NOTIFY_EMAIL],
+      to: ADMIN_EMAILS,
       subject: `Discovery Questionnaire Submitted — ${config.clientName}${clientEmail ? ` (${clientEmail})` : ''}`,
       html: adminHtml,
       ...(pdfBase64 ? { attachments: [{ filename: pdfFilename, content: pdfBase64 }] } : {}),
@@ -122,7 +122,8 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         from: 'Kovil AI <noreply@kovil.ai>',
         to: [clientEmail],
-        replyTo: NOTIFY_EMAIL,
+        cc: ADMIN_EMAILS,
+        replyTo: ADMIN_EMAILS[0],
         subject: `Your Discovery Questionnaire — ${config.projectTitle}`,
         html: customerHtml,
         ...(pdfBase64 ? { attachments: [{ filename: pdfFilename, content: pdfBase64 }] } : {}),
@@ -384,7 +385,7 @@ function buildCustomerEmailHtml(
       <!-- Questions -->
       <p style="margin:0;font-size:13px;color:#6B7280;line-height:1.6;">
         Questions before your call? Reply to this email or reach us directly at
-        <a href="mailto:davis@kovil.ai" style="color:#FF4F00;font-weight:500;">davis@kovil.ai</a>.
+        <a href="mailto:support@kovil.ai" style="color:#FF4F00;font-weight:500;">support@kovil.ai</a>.
         We look forward to working with you.
       </p>
       <p style="margin:16px 0 0;font-size:14px;color:#0A0A0A;font-weight:600;">The Kovil AI Team</p>

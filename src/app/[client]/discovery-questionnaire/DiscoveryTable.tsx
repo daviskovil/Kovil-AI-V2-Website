@@ -228,9 +228,10 @@ function LoginGate({ config, onSuccess }: {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF8F4] flex flex-col">
-      <KovilHeader />
-      <div className="flex-1 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-[#FAF8F4]">
+      {/* Full Kovil nav */}
+      <Navbar />
+      <div className="pt-24 flex items-center justify-center p-6 min-h-[calc(100vh-80px)]">
         <div className="w-full max-w-md">
           <div className="bg-white rounded-2xl border border-[#E5E2D9] shadow-sm overflow-hidden">
             {/* Orange top accent */}
@@ -258,7 +259,7 @@ function LoginGate({ config, onSuccess }: {
                   </label>
                   <input
                     type="text" value={uid} onChange={e => setUid(e.target.value)}
-                    placeholder="e.g. TESTCLIENT-2026"
+                    placeholder="Enter your ID"
                     autoComplete="username"
                     className="w-full border border-[#E5E2D9] rounded-lg px-4 py-2.5 text-sm text-[#0A0A0A] focus:outline-none focus:border-[#FF4F00] transition-colors font-mono"
                   />
@@ -296,8 +297,8 @@ function LoginGate({ config, onSuccess }: {
               <p className="mt-6 text-center text-xs text-gray-400 leading-relaxed">
                 Credentials provided by Kovil AI.<br />
                 Need help? Contact{' '}
-                <a href="mailto:davis@kovil.ai" className="text-[#FF4F00] hover:underline">
-                  davis@kovil.ai
+                <a href="mailto:support@kovil.ai" className="text-[#FF4F00] hover:underline">
+                  support@kovil.ai
                 </a>
               </p>
             </div>
@@ -519,8 +520,8 @@ function SubmittedPage({ config, clientEmail, clientContactName, sessionId, answ
               <div className="bg-[#FAF8F4] border border-[#E5E2D9] rounded-xl p-4 mb-7">
                 <p className="text-sm text-gray-600 leading-relaxed">
                   Questions before your call? Reach the Kovil AI team at{' '}
-                  <a href="mailto:davis@kovil.ai" className="text-[#FF4F00] font-semibold hover:underline">
-                    davis@kovil.ai
+                  <a href="mailto:support@kovil.ai" className="text-[#FF4F00] font-semibold hover:underline">
+                    support@kovil.ai
                   </a>{' '}
                   — we&apos;re happy to help.
                 </p>
