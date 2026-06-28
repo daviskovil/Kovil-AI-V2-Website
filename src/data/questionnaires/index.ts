@@ -1,5 +1,6 @@
 import type { DiscoveryConfig } from '@/src/types/questionnaire'
 import testclient from './testclient'
+import edg from './edg'
 
 /**
  * Registry of all client questionnaire configs.
@@ -11,6 +12,7 @@ import testclient from './testclient'
  */
 const questionnaires: Record<string, DiscoveryConfig> = {
   testclient,
+  edg,
 }
 
 export function getQuestionnaire(clientSlug: string): DiscoveryConfig | null {
