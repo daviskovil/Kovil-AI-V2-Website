@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
+import Navbar from '@/src/components/Navbar'
 import type {
   DiscoveryConfig,
   DiscoveryAnswers,
@@ -42,6 +43,151 @@ function KovilHeader() {
       </div>
     </header>
   )
+}
+
+// ── PDF generation ─────────────────────────────────────────────────────────────
+
+async function generateQuestionnairePDF(
+  config: DiscoveryConfig,
+  answers: DiscoveryAnswers,
+  clientEmail: string,
+  clientContactName: string,
+  sessionId: string,
+): Promise<string> {
+  const { jsPDF } = await import('jspdf')
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
+
+  const W = 210
+  const H = 297
+  const ml = 16   // left margin
+  const cw = W - ml * 2  // content width
+
+  let y = 0
+
+  function checkY(need: number) {
+    if (y + need > H - 22) { doc.addPage(); y = 16 }
+  }
+
+  // ── Cover header ─────────────────────────────────────────────────────────
+  doc.setFillColor(10, 10, 10)
+  doc.rect(0, 0, W, 22, 'F')
+  doc.setFillColor(255, 79, 0)
+  doc.rect(0, 22, W, 2, 'F')
+
+  doc.setFontSize(11); doc.setFont('helvetica', 'bold')
+  doc.setTextColor(255, 79, 0)
+  doc.text('Kovil', ml, 13)
+  doc.setTextColor(255, 255, 255)
+  doc.text(' AI', ml + doc.getTextWidth('Kovil'), 13)
+  doc.setFontSize(7.5); doc.setFont('helvetica', 'normal')
+  doc.setTextColor(160, 160, 160)
+  doc.text('DISCOVERY QUESTIONNAIRE · CONFIDENTIAL', W - ml, 14, { align: 'right' })
+
+  y = 32
+
+  // ── Title block ──────────────────────────────────────────────────────────
+  doc.setTextColor(10, 10, 10); doc.setFontSize(15); doc.setFont('helvetica', 'bold')
+  const titleLines = doc.splitTextToSize(config.projectTitle, cw) as string[]
+  doc.text(titleLines, ml, y); y += titleLines.length * 6.5 + 2
+
+  doc.setFontSize(9.5); doc.setFont('helvetica', 'normal'); doc.setTextColor(80, 80, 80)
+  doc.text(config.clientName, ml, y); y += 5
+  const contactLine = [clientContactName, clientEmail].filter(Boolean).join(' · ')
+  if (contactLine) { doc.text(contactLine, ml, y); y += 5 }
+  doc.text(
+    `Submitted: ${new Date().toLocaleDateString('en-US', { dateStyle: 'long' })} · Session: ${sessionId}`,
+    ml, y
+  ); y += 7
+
+  // ── Stats pill ───────────────────────────────────────────────────────────
+  const allQ = config.tabs.flatMap(t => t.questions)
+  const answeredCount = allQ.filter(q => (answers[q.id]?.response ?? '').trim().length > 0).length
+  const pct = Math.round((answeredCount / allQ.length) * 100)
+  doc.setFillColor(243, 240, 235); doc.roundedRect(ml, y, cw, 10, 2, 2, 'F')
+  doc.setFontSize(8.5); doc.setFont('helvetica', 'bold'); doc.setTextColor(10, 10, 10)
+  doc.text(`${answeredCount} / ${allQ.length} questions answered`, ml + 4, y + 7)
+  doc.setTextColor(255, 79, 0)
+  doc.text(`${pct}% completion rate`, W - ml - 4, y + 7, { align: 'right' })
+  y += 16
+
+  // ── Sections ─────────────────────────────────────────────────────────────
+  for (const tab of config.tabs) {
+    const hasAnswers = tab.questions.some(q => (answers[q.id]?.response ?? '').trim().length > 0)
+    if (!hasAnswers) continue
+
+    checkY(14)
+    doc.setFillColor(10, 10, 10); doc.rect(ml, y, cw, 9, 'F')
+    doc.setFillColor(255, 79, 0); doc.rect(ml, y, 3, 9, 'F')
+    doc.setFontSize(8); doc.setFont('helvetica', 'bold'); doc.setTextColor(255, 255, 255)
+    doc.text(tab.label.toUpperCase(), ml + 7, y + 6)
+    y += 13
+
+    for (const q of tab.questions) {
+      const ans = answers[q.id]
+      const response = ans?.response?.trim() ?? ''
+      const notes = ans?.notes?.trim() ?? ''
+      const attachments = ans?.attachments ?? []
+      if (!response && !notes) continue
+
+      checkY(20)
+      // ID + priority label
+      doc.setFontSize(7.5); doc.setFont('helvetica', 'bold'); doc.setTextColor(255, 79, 0)
+      doc.text(q.id, ml, y)
+      const idW = doc.getTextWidth(q.id)
+      doc.setTextColor(130, 130, 130); doc.setFont('helvetica', 'normal')
+      doc.text(` · ${q.priority}`, ml + idW, y)
+      y += 4.5
+
+      // Question text
+      doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(10, 10, 10)
+      const qLines = doc.splitTextToSize(q.question, cw) as string[]
+      checkY(qLines.length * 4.5 + 3)
+      doc.text(qLines, ml, y); y += qLines.length * 4.5 + 2
+
+      // Response
+      if (response) {
+        doc.setFontSize(8.5); doc.setFont('helvetica', 'normal'); doc.setTextColor(30, 30, 30)
+        const rLines = doc.splitTextToSize(response, cw - 3) as string[]
+        for (const line of rLines) { checkY(5); doc.text(line, ml + 2, y); y += 4.5 }
+        y += 1
+      }
+
+      // Notes
+      if (notes) {
+        doc.setFontSize(8); doc.setFont('helvetica', 'italic'); doc.setTextColor(100, 100, 100)
+        const nLines = doc.splitTextToSize(`Notes: ${notes}`, cw - 3) as string[]
+        checkY(nLines.length * 4 + 2)
+        doc.text(nLines, ml + 2, y); y += nLines.length * 4 + 2
+      }
+
+      // Attachments
+      if (attachments.length > 0) {
+        doc.setFontSize(7.5); doc.setFont('helvetica', 'normal'); doc.setTextColor(100, 100, 180)
+        for (const att of attachments) {
+          checkY(4.5); doc.text(`[attached] ${att.name}`, ml + 2, y); y += 4.5
+        }
+      }
+
+      y += 4
+      // Hairline separator
+      doc.setDrawColor(220, 218, 214); doc.setLineWidth(0.25)
+      doc.line(ml, y - 1.5, W - ml, y - 1.5)
+    }
+
+    y += 4
+  }
+
+  // ── Footer on every page ─────────────────────────────────────────────────
+  const pages = doc.getNumberOfPages()
+  for (let p = 1; p <= pages; p++) {
+    doc.setPage(p)
+    doc.setFillColor(10, 10, 10); doc.rect(0, H - 12, W, 12, 'F')
+    doc.setTextColor(140, 140, 140); doc.setFontSize(7); doc.setFont('helvetica', 'normal')
+    doc.text('Kovil AI · kovil.ai · Confidential', ml, H - 4)
+    doc.text(`Page ${p} of ${pages}`, W - ml, H - 4, { align: 'right' })
+  }
+
+  return doc.output('datauristring') as string
 }
 
 // ── Login gate ─────────────────────────────────────────────────────────────────
@@ -274,7 +420,7 @@ function WelcomeEmail({ config, totalQuestions, tabCount, onComplete }: {
 
 // ── Submitted / success screen ─────────────────────────────────────────────────
 
-function SubmittedPage({ config, clientEmail, clientContactName, sessionId, answeredCount, totalCount, onGoBack }: {
+function SubmittedPage({ config, clientEmail, clientContactName, sessionId, answeredCount, totalCount, onGoBack, onDownloadPDF }: {
   config: DiscoveryConfig
   clientEmail: string
   clientContactName: string
@@ -282,64 +428,73 @@ function SubmittedPage({ config, clientEmail, clientContactName, sessionId, answ
   answeredCount: number
   totalCount: number
   onGoBack: () => void
+  onDownloadPDF: () => Promise<void>
 }) {
+  const [pdfLoading, setPdfLoading] = useState(false)
   const pct = totalCount > 0 ? Math.round((answeredCount / totalCount) * 100) : 0
   const firstName = clientContactName ? clientContactName.split(' ')[0] : ''
 
-  return (
-    <div className="min-h-screen bg-[#FAF8F4] flex flex-col">
-      <KovilHeader />
+  async function handleDownload() {
+    setPdfLoading(true)
+    try { await onDownloadPDF() } finally { setPdfLoading(false) }
+  }
 
-      <div className="flex-1 py-10 px-6">
+  return (
+    <div className="min-h-screen bg-[#FAF8F4]">
+      {/* Full Kovil nav — customer can browse website from the thank-you page */}
+      <Navbar />
+
+      {/* pt-24 clears the fixed Kovil navbar (h-20 = 80px + extra breathing room) */}
+      <div className="pt-24 pb-12 px-6">
         <div className="max-w-2xl mx-auto space-y-4">
 
           {/* Main card */}
           <div className="bg-white rounded-2xl border border-[#E5E2D9] shadow-sm overflow-hidden">
             <div className="h-1.5 bg-[#FF4F00]" />
-            <div className="p-10 text-center">
+            <div className="p-8 md:p-10">
 
-              {/* Checkmark */}
-              <div className="w-20 h-20 rounded-full bg-emerald-50 border-4 border-emerald-100 flex items-center justify-center mx-auto mb-5">
-                <svg className="w-10 h-10 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                </svg>
+              {/* Checkmark + headline */}
+              <div className="text-center mb-7">
+                <div className="w-20 h-20 rounded-full bg-emerald-50 border-4 border-emerald-100 flex items-center justify-center mx-auto mb-5">
+                  <svg className="w-10 h-10 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h1 className="font-display text-3xl font-bold text-[#0A0A0A] mb-2">
+                  {firstName ? `Thank you, ${firstName}!` : 'Questionnaire Submitted!'}
+                </h1>
+                <p className="text-[#FF4F00] font-semibold text-sm leading-relaxed">
+                  {config.projectTitle}
+                </p>
+                {clientEmail && (
+                  <p className="text-sm text-gray-500 mt-2 leading-relaxed">
+                    A copy with your responses + PDF has been sent to{' '}
+                    <strong className="text-[#0A0A0A]">{clientEmail}</strong>
+                  </p>
+                )}
               </div>
 
-              <h1 className="font-display text-3xl font-bold text-[#0A0A0A] mb-2">
-                {firstName ? `Thank you, ${firstName}!` : 'Questionnaire Submitted!'}
-              </h1>
-              <p className="text-[#FF4F00] font-semibold text-sm mb-1 leading-relaxed">
-                {config.projectTitle}
-              </p>
-
-              {clientEmail && (
-                <p className="text-sm text-gray-500 mt-2 leading-relaxed">
-                  A confirmation with your responses has been sent to{' '}
-                  <strong className="text-[#0A0A0A]">{clientEmail}</strong>
-                </p>
-              )}
-
               {/* Divider */}
-              <div className="flex items-center gap-4 my-8">
+              <div className="flex items-center gap-4 mb-7">
                 <div className="flex-1 h-px bg-[#E5E2D9]" />
                 <span className="text-xs text-gray-400 uppercase tracking-widest font-semibold">What happens next</span>
                 <div className="flex-1 h-px bg-[#E5E2D9]" />
               </div>
 
               {/* 3-step next steps */}
-              <div className="text-left space-y-5">
+              <div className="text-left space-y-5 mb-8">
                 {[
                   {
                     n: 1,
                     color: 'bg-[#FF4F00]',
                     title: 'Review within 1–2 business days',
-                    body: 'Our team reviews your responses, aligns on project scope, and prepares thoughtful questions for your discovery call.',
+                    body: 'Our team reviews your responses, aligns on project scope, and prepares thoughtful follow-up questions ready for your discovery call.',
                   },
                   {
                     n: 2,
                     color: 'bg-[#0A0A0A]',
-                    title: 'Discovery Call',
-                    body: 'A focused 60-minute session to discuss your goals in depth, clarify requirements, and explore the right technical approach together.',
+                    title: 'Focused Discovery Call',
+                    body: 'A solution-focused 60-minute session where we explore your goals in depth, align on technical direction, and define the right approach for your project.',
                   },
                   {
                     n: 3,
@@ -361,26 +516,47 @@ function SubmittedPage({ config, clientEmail, clientContactName, sessionId, answ
               </div>
 
               {/* Contact box */}
-              <div className="mt-8 bg-[#FAF8F4] border border-[#E5E2D9] rounded-xl p-4">
+              <div className="bg-[#FAF8F4] border border-[#E5E2D9] rounded-xl p-4 mb-7">
                 <p className="text-sm text-gray-600 leading-relaxed">
                   Questions before your call? Reach the Kovil AI team at{' '}
                   <a href="mailto:davis@kovil.ai" className="text-[#FF4F00] font-semibold hover:underline">
                     davis@kovil.ai
                   </a>{' '}
-                  — we're happy to help.
+                  — we&apos;re happy to help.
                 </p>
               </div>
 
-              {/* Go back */}
-              <button
-                onClick={onGoBack}
-                className="mt-6 flex items-center gap-2 text-sm text-gray-400 hover:text-[#0A0A0A] transition-colors mx-auto group"
-              >
-                <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                Go back to review or add to your responses
-              </button>
+              {/* Action buttons */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                {/* Download PDF — primary */}
+                <button
+                  onClick={handleDownload}
+                  disabled={pdfLoading}
+                  className="flex items-center justify-center gap-2.5 bg-[#0A0A0A] hover:bg-[#1a1a1a] disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-bold px-6 py-3 rounded-xl transition-colors flex-1 sm:flex-none"
+                >
+                  {pdfLoading ? (
+                    <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Generating PDF…</>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 13h6M9 17h4M13 3v5a1 1 0 001 1h5" />
+                      </svg>
+                      Download My Responses (PDF)
+                    </>
+                  )}
+                </button>
+                {/* Edit / go back — secondary */}
+                <button
+                  onClick={onGoBack}
+                  className="flex items-center justify-center gap-2 border border-[#E5E2D9] bg-white hover:bg-[#FAF8F4] text-[#0A0A0A] text-sm font-semibold px-6 py-3 rounded-xl transition-colors group flex-1 sm:flex-none"
+                >
+                  <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  Edit or add to responses
+                </button>
+              </div>
             </div>
           </div>
 
@@ -875,16 +1051,32 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
   }
 
   // ── Submit ──────────────────────────────────────────────────────────────────
+  async function handleDownloadPDF() {
+    const dataUri = await generateQuestionnairePDF(config, answers, clientEmail, clientContactName, sessionId)
+    const a = document.createElement('a')
+    a.href = dataUri
+    a.download = `${slug}-discovery-questionnaire.pdf`
+    a.click()
+  }
+
   async function handleSubmit() {
     if (!sessionId) return
     setSubmitting(true); setSubmitError(null)
+
+    // Generate PDF for email attachment (non-fatal if it fails)
+    let pdfBase64 = ''
+    try {
+      const dataUri = await generateQuestionnairePDF(config, answers, clientEmail, clientContactName, sessionId)
+      pdfBase64 = dataUri.split(',')[1] ?? ''
+    } catch { /* PDF generation failure doesn't block submit */ }
+
     try {
       const res = await fetch('/api/discovery/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           session_id: sessionId, client_slug: slug, answers, config,
-          clientEmail, clientContactName,
+          clientEmail, clientContactName, pdfBase64,
         }),
       })
       if (res.ok) setSubmitted(true)
@@ -939,6 +1131,7 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
         answeredCount={answeredCount}
         totalCount={totalCount}
         onGoBack={() => setSubmitted(false)}
+        onDownloadPDF={handleDownloadPDF}
       />
     )
   }
@@ -1088,16 +1281,16 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
       <div className="flex-1 overflow-auto">
         {view === 'tracker' ? <TrackerView /> : (
           <table className="w-full border-collapse" style={{ minWidth: '1100px' }}>
-            <thead>
+            <thead className="sticky top-0 z-20">
               <tr className="bg-[#0A0A0A] text-white">
                 <th className="py-3 px-3 text-center w-10 text-xs font-bold uppercase tracking-wider border-r border-white/10">#</th>
                 <th className="py-3 px-3 text-left w-[76px] text-xs font-bold uppercase tracking-wider border-r border-white/10">ID</th>
                 <th className="py-3 px-4 text-left text-xs font-bold uppercase tracking-wider border-r border-white/10" style={{ width: '25%' }}>Question</th>
                 <th className="py-3 px-3 text-center w-28 text-xs font-bold uppercase tracking-wider border-r border-white/10">Priority</th>
-                <th className="py-3 px-4 text-left text-xs font-bold uppercase tracking-wider border-r border-white/10" style={{ width: '31%' }}>
+                <th className="py-3 px-4 text-left text-xs font-bold uppercase tracking-wider border-r border-white/10" style={{ width: '42%' }}>
                   Response <span className="normal-case font-normal text-white/40">(complete this)</span>
                 </th>
-                <th className="py-3 px-4 text-left text-xs font-bold uppercase tracking-wider">Notes / Add anything</th>
+                <th className="py-3 px-4 text-left text-xs font-bold uppercase tracking-wider" style={{ width: '12%' }}>Notes / Add anything</th>
               </tr>
             </thead>
             <tbody>
@@ -1143,7 +1336,7 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
                             <p className="mt-1.5 text-[11px] text-gray-400">Feeds → <span className="text-gray-500">{q.feedsDocument}</span></p>
                           </td>
                           <td className="py-5 px-3 align-top text-center w-28 border-r border-[#F0EDE8]"><PriorityBadge priority={q.priority} /></td>
-                          <td className="py-5 px-4 align-top border-r border-[#F0EDE8]" style={{ width: '31%' }}>
+                          <td className="py-5 px-4 align-top border-r border-[#F0EDE8]" style={{ width: '42%' }}>
                             <AnswerCell value={answer.response} placeholder="+ Click to add response…"
                               attachmentCount={(answer.attachments ?? []).length}
                               onClick={() => openPopup(q.id, 'response', q.question)} />

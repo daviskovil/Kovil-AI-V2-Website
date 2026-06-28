@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
     config?: DiscoveryConfig
     clientEmail?: string
     clientContactName?: string
+    pdfBase64?: string   // base64-encoded PDF for email attachment (generated client-side)
   }
 
   try {
@@ -36,7 +37,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
   }
 
-  const { session_id, client_slug, answers, config, clientEmail, clientContactName } = body
+  const { session_id, client_slug, answers, config, clientEmail, clientContactName, pdfBase64 } = body
 
   if (!session_id || !client_slug || !answers || !config) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
@@ -82,6 +83,8 @@ export async function POST(req: NextRequest) {
 
   const adminHtml = buildAdminEmailHtml(config, answers, session_id, submittedAt, clientEmail, clientContactName)
 
+  const pdfFilename = `${config.clientSlug}-discovery-questionnaire.pdf`
+
   const adminEmailRes = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -93,6 +96,7 @@ export async function POST(req: NextRequest) {
       to: [NOTIFY_EMAIL],
       subject: `Discovery Questionnaire Submitted — ${config.clientName}${clientEmail ? ` (${clientEmail})` : ''}`,
       html: adminHtml,
+      ...(pdfBase64 ? { attachments: [{ filename: pdfFilename, content: pdfBase64 }] } : {}),
     }),
   })
 
@@ -121,6 +125,7 @@ export async function POST(req: NextRequest) {
         replyTo: NOTIFY_EMAIL,
         subject: `Your Discovery Questionnaire — ${config.projectTitle}`,
         html: customerHtml,
+        ...(pdfBase64 ? { attachments: [{ filename: pdfFilename, content: pdfBase64 }] } : {}),
       }),
     })
 
@@ -343,8 +348,8 @@ function buildCustomerEmailHtml(
                 <div style="width:32px;height:32px;border-radius:50%;background:#0A0A0A;color:#fff;text-align:center;line-height:32px;font-size:13px;font-weight:700;">2</div>
               </td>
               <td style="vertical-align:top;padding-top:4px;">
-                <p style="margin:0 0 3px;font-size:14px;font-weight:600;color:#0A0A0A;">Discovery Call</p>
-                <p style="margin:0;font-size:13px;color:#6B7280;line-height:1.5;">A focused 60-minute session to discuss your goals, clarify requirements, and explore the technical approach.</p>
+                <p style="margin:0 0 3px;font-size:14px;font-weight:600;color:#0A0A0A;">Focused Discovery Call</p>
+                <p style="margin:0;font-size:13px;color:#6B7280;line-height:1.5;">A solution-focused 60-minute session to explore your goals, align on technical direction, and define the right approach for your project.</p>
               </td>
             </tr></table>
           </td>
