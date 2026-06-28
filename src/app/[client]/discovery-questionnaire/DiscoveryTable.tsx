@@ -1492,9 +1492,9 @@ export default function DiscoveryTable({ config }: { config: DiscoveryConfig }) 
                           <td className="py-5 px-4 align-top border-r border-[#F0EDE8]" style={{ width: '25%' }}>
                             <p className={`text-[15px] leading-snug font-semibold ${isDone ? 'text-gray-500' : 'text-[#0A0A0A]'}`}>{q.question}</p>
                             <button onClick={() => setPurposeOpen(isExpanded ? null : q.id)}
-                              className="mt-2 flex items-center gap-1 text-[11px] text-[#FF4F00]/60 hover:text-[#FF4F00] transition-colors">
-                              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                              {isExpanded ? 'Hide' : 'Why we ask'}
+                              className="mt-2.5 flex items-center gap-1.5 text-[11px] font-semibold text-[#FF4F00] hover:text-[#e64600] bg-orange-50 hover:bg-orange-100 border border-orange-200 px-2 py-1 rounded transition-colors">
+                              <svg className="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                              {isExpanded ? 'Hide purpose ↑' : 'Why we ask ↓'}
                             </button>
                             {isExpanded && <p className="mt-2 text-[11px] text-gray-500 italic leading-relaxed bg-amber-50 border border-amber-100 rounded px-3 py-2">{q.purpose}</p>}
                             <p className="mt-1.5 text-[11px] text-gray-400">Feeds → <span className="text-gray-500">{q.feedsDocument}</span></p>
