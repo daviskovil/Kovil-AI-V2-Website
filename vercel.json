@@ -1,4 +1,7 @@
 {
+  "crons": [
+    { "path": "/api/cron/crawl-site", "schedule": "0 3 * * 1" }
+  ],
   "redirects": [
     { "source": "/services",                    "destination": "/how-it-works",                 "permanent": true },
     { "source": "/services/ai-sprint",          "destination": "/engage/outcome-based-project", "permanent": true },

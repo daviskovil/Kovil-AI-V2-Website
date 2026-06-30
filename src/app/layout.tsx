@@ -5,6 +5,7 @@ import { headers } from 'next/headers'
 import './globals.css'
 import Navbar from '@/src/components/Navbar'
 import Footer from '@/src/components/Footer'
+import ShynaWidget from '@/src/components/shyna/ShynaWidget'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -39,6 +40,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {!isStandalone && <Navbar />}
         {children}
         {!isStandalone && <Footer />}
+        {!isStandalone && <ShynaWidget />}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-J2TXKBR1L0"
           strategy="afterInteractive"
