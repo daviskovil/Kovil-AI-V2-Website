@@ -230,6 +230,51 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/ai-workflow-automation-library/kyc-aml-identity-verification`,                    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/ai-workflow-automation-library/invoice-reconciliation-ai`,                        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/ai-workflow-automation-library/real-time-fraud-detection`,                        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // ── Phase 1: Dynamic hire role pages ─────────────────────────────────────
+    { url: `${BASE_URL}/hire/ai-engineer`,              lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/generative-ai-developer`,  lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/llm-engineer`,             lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/ml-engineer`,              lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/python-developer`,         lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/react-developer`,          lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/full-stack-developer`,     lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/devops-engineer`,          lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/cloud-engineer`,           lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/data-engineer`,            lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/qa-engineer`,              lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/cybersecurity-engineer`,   lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/software-engineer`,        lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/node-developer`,           lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/product-manager`,          lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    // ── Phase 2: Staff augmentation pillar pages ──────────────────────────────
+    { url: `${BASE_URL}/staff-augmentation`,            lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/ai-staff-augmentation`,         lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/it-staff-augmentation`,         lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/dedicated-ai-team`,             lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/dedicated-development-team`,    lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/managed-ai-engineering`,        lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    // ── Phase 3: Engagement model pages ──────────────────────────────────────
+    { url: `${BASE_URL}/fixed-price-ai-project`,        lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/outcome-based-ai-development`,  lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/ai-project-development`,        lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    // ── Phase 4: Technology pages ─────────────────────────────────────────────
+    { url: `${BASE_URL}/ai-agent-development`,          lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/rag-pipeline-development`,      lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/llm-development`,               lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/openai-integration`,            lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/langchain-developer`,           lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/generative-ai-development`,     lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    // ── Phase 5: Industry pages ───────────────────────────────────────────────
+    { url: `${BASE_URL}/ai-for-legal`,                  lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/ai-for-fintech`,                lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/ai-for-healthcare`,             lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/ai-for-ecommerce`,              lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/ai-for-logistics`,              lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    // ── Phase 6: Competitor alternative pages ─────────────────────────────────
+    { url: `${BASE_URL}/toptal-alternative`,            lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/turing-alternative`,            lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/andela-alternative`,            lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/upwork-alternative`,            lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
   ]
 
   // ── Blog posts (auto-generated from posts.ts) ──────────────────────────────
