@@ -1,0 +1,116 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>AI for Healthcare — Kovil AI Clinical AI and HIPAA-Compliant Automation</title>
+  <defs>
+    <linearGradient id="hc-bg" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#040E10"/>
+      <stop offset="100%" stop-color="#080A14"/>
+    </linearGradient>
+    <radialGradient id="hc-teal" cx="72%" cy="35%" r="50%">
+      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="hc-green" cx="55%" cy="75%" r="40%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cross-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF4F00" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FF4F00" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#hc-bg)"/>
+  <rect width="1200" height="630" fill="url(#hc-teal)"/>
+  <rect width="1200" height="630" fill="url(#hc-green)"/>
+
+  <!-- Dot grid -->
+  <g opacity="0.04" fill="white">
+    <circle cx="100" cy="100" r="1.5"/><circle cx="200" cy="100" r="1.5"/><circle cx="300" cy="100" r="1.5"/><circle cx="400" cy="100" r="1.5"/><circle cx="500" cy="100" r="1.5"/>
+    <circle cx="100" cy="200" r="1.5"/><circle cx="200" cy="200" r="1.5"/><circle cx="300" cy="200" r="1.5"/><circle cx="400" cy="200" r="1.5"/><circle cx="500" cy="200" r="1.5"/>
+    <circle cx="100" cy="300" r="1.5"/><circle cx="200" cy="300" r="1.5"/><circle cx="300" cy="300" r="1.5"/><circle cx="400" cy="300" r="1.5"/>
+    <circle cx="100" cy="400" r="1.5"/><circle cx="200" cy="400" r="1.5"/><circle cx="300" cy="400" r="1.5"/><circle cx="400" cy="400" r="1.5"/>
+    <circle cx="100" cy="500" r="1.5"/><circle cx="200" cy="500" r="1.5"/><circle cx="300" cy="500" r="1.5"/>
+  </g>
+
+  <!-- Orange left border -->
+  <rect x="0" y="0" width="6" height="630" fill="#FF4F00"/>
+
+  <!-- ===== LEFT TEXT CONTENT ===== -->
+  <rect x="40" y="48" width="98" height="28" rx="14" fill="#FF4F00"/>
+  <text x="89" y="67" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle" letter-spacing="1">KOVIL AI</text>
+
+  <text x="40" y="130" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="600" fill="#FF4F00" letter-spacing="4">AI FOR HEALTHCARE</text>
+
+  <text x="40" y="210" font-family="Georgia,'Times New Roman',serif" font-size="62" font-weight="700" fill="white">Clinical AI</text>
+  <text x="40" y="278" font-family="Georgia,'Times New Roman',serif" font-size="62" font-weight="700" fill="white">Built for</text>
+  <text x="40" y="346" font-family="Georgia,'Times New Roman',serif" font-size="62" font-weight="700" fill="#FF4F00">Production</text>
+
+  <text x="40" y="398" font-family="Arial,Helvetica,sans-serif" font-size="18" fill="#3A6060">HIPAA · EHR Integration · Medical Coding</text>
+
+  <rect x="40" y="435" width="168" height="90" rx="10" fill="#081818" stroke="#0E2828" stroke-width="1"/>
+  <text x="124" y="483" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="700" fill="#FF4F00" text-anchor="middle">95%</text>
+  <text x="124" y="507" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#3A6060" text-anchor="middle">Manual Entry Cut</text>
+
+  <rect x="226" y="435" width="185" height="90" rx="10" fill="#081818" stroke="#0E2828" stroke-width="1"/>
+  <text x="318" y="483" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="700" fill="white" text-anchor="middle">HIPAA</text>
+  <text x="318" y="507" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#3A6060" text-anchor="middle">Compliant by Design</text>
+
+  <!-- ===== RIGHT ILLUSTRATION: MEDICAL CROSS + ECG ===== -->
+
+  <!-- Large outer ring (behind cross) -->
+  <circle cx="860" cy="290" r="200" fill="none" stroke="#0E2828" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="860" cy="290" r="170" fill="none" stroke="#0E2828" stroke-width="1" opacity="0.4"/>
+  <!-- Cross glow -->
+  <ellipse cx="860" cy="290" rx="130" ry="130" fill="url(#cross-glow)"/>
+
+  <!-- Medical cross (large) -->
+  <!-- Horizontal bar -->
+  <rect x="720" y="240" width="280" height="100" rx="14" fill="#0C1E1E" stroke="#0E3030" stroke-width="2"/>
+  <rect x="724" y="244" width="272" height="92" rx="12" fill="#0A1818" stroke="#FF4F00" stroke-width="1.5" opacity="0.4"/>
+  <!-- Vertical bar -->
+  <rect x="810" y="150" width="100" height="280" rx="14" fill="#0C1E1E" stroke="#0E3030" stroke-width="2"/>
+  <rect x="814" y="154" width="92" height="272" rx="12" fill="#0A1818" stroke="#FF4F00" stroke-width="1.5" opacity="0.4"/>
+  <!-- Inner cross face (brighter) -->
+  <rect x="724" y="248" width="272" height="84" rx="10" fill="#0E2424"/>
+  <rect x="818" y="158" width="84" height="264" rx="10" fill="#0E2424"/>
+  <!-- Cross center highlight -->
+  <rect x="818" y="248" width="84" height="84" rx="8" fill="#102828"/>
+  <!-- Orange center cross marks -->
+  <line x1="860" y1="255" x2="860" y2="325" stroke="#FF4F00" stroke-width="2.5" opacity="0.5"/>
+  <line x1="826" y1="290" x2="896" y2="290" stroke="#FF4F00" stroke-width="2.5" opacity="0.5"/>
+  <!-- Corner indicator dots -->
+  <circle cx="860" cy="165" r="6" fill="#FF4F00" opacity="0.7"/>
+  <circle cx="860" cy="415" r="6" fill="#FF4F00" opacity="0.7"/>
+  <circle cx="726" cy="290" r="6" fill="#10B981" opacity="0.6"/>
+  <circle cx="994" cy="290" r="6" fill="#10B981" opacity="0.6"/>
+
+  <!-- ECG line (heartbeat) — runs across the cross center -->
+  <polyline
+    points="620,290 660,290 680,290 695,250 710,330 728,200 745,380 760,290 790,290 820,290 835,260 848,320 860,280 872,300 885,290 900,290 920,290 935,265 948,315 960,290 985,290 1010,290 1025,255 1040,325 1055,285 1070,295 1090,290 1130,290"
+    fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+
+  <!-- Data panel (lower right) -->
+  <rect x="980" y="400" width="175" height="150" rx="12" fill="#081818" stroke="#0E2828" stroke-width="1.5"/>
+  <text x="1000" y="425" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#3A6060" letter-spacing="1">PATIENT DATA</text>
+  <!-- Metric rows -->
+  <text x="1000" y="452" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#5A8888">Heart Rate</text>
+  <text x="1140" y="452" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#10B981" text-anchor="end">72 bpm</text>
+  <line x1="1000" y1="460" x2="1140" y2="460" stroke="#0E2828" stroke-width="1"/>
+  <text x="1000" y="480" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#5A8888">O2 Sat</text>
+  <text x="1140" y="480" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#06B6D4" text-anchor="end">98%</text>
+  <line x1="1000" y1="488" x2="1140" y2="488" stroke="#0E2828" stroke-width="1"/>
+  <text x="1000" y="508" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#5A8888">AI Coded</text>
+  <text x="1140" y="508" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#FF4F00" text-anchor="end">ICD-10 ✓</text>
+  <line x1="1000" y1="516" x2="1140" y2="516" stroke="#0E2828" stroke-width="1"/>
+  <rect x="1000" y="526" width="140" height="18" rx="4" fill="#FF4F00" opacity="0.15"/>
+  <text x="1070" y="539" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#FF4F00" text-anchor="middle" letter-spacing="1">HIPAA COMPLIANT</text>
+
+  <!-- Circuit nodes -->
+  <circle cx="614" cy="180" r="3.5" fill="#10B981" opacity="0.4"/>
+  <circle cx="575" cy="240" r="2.5" fill="#10B981" opacity="0.3"/>
+  <circle cx="608" cy="390" r="3" fill="#06B6D4" opacity="0.35"/>
+  <line x1="614" y1="180" x2="575" y2="240" stroke="#10B981" stroke-width="1" opacity="0.2"/>
+  <line x1="575" y1="240" x2="608" y2="390" stroke="#06B6D4" stroke-width="1" opacity="0.15"/>
+
+  <rect x="0" y="617" width="1200" height="13" fill="#FF4F00" opacity="0.1"/>
+</svg>
