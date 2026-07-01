@@ -75,6 +75,7 @@ export default function Footer() {
               <li><Link href="/hire" className="hover:text-accent transition-colors">Hire an AI Engineer</Link></li>
               <li><Link href="/ad-marketing-agencies" className="hover:text-accent transition-colors">Ad & Marketing Agencies</Link></li>
               <li><Link href="/ai-workflow-automation-library" className="hover:text-accent transition-colors">Workflow Library</Link></li>
+              <li><Link href="/sitemap" className="hover:text-accent transition-colors">Sitemap</Link></li>
             </ul>
           </div>
 
