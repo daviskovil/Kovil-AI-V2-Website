@@ -3355,6 +3355,713 @@ def make_hire_og():
     print(f"Saved: {out}")
 
 
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE B1: What Is AI Staff Augmentation
+# Visual: 3-column card comparison — Staff Aug vs Full Hire vs Outsourcing
+# ─────────────────────────────────────────────────────────────────────────────
+def make_ai_staff_aug_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (6, 10, 20), (18, 14, 28))
+    GREEN  = (16, 185, 129)
+    BLUE   = (59, 130, 246)
+    draw_circle_glow(img, 200, 260, 280, GREEN,  alpha_max=35)
+    draw_circle_glow(img, 600, 200, 260, ORANGE, alpha_max=30)
+    draw_circle_glow(img, 1000, 300, 280, BLUE,  alpha_max=35)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    models = [
+        {"name": "Staff Aug",     "tag": "Best Control",     "color": GREEN,  "x": 40,
+         "items": [("Direction", "You manage the work"), ("Speed", "Start in 24–48 hrs"),
+                   ("Scope", "Extend your team"), ("Risk", "2-week trial"), ("Cost", "Hourly / monthly")]},
+        {"name": "Full Hire",     "tag": "Permanent Fit",    "color": ORANGE, "x": 430,
+         "items": [("Direction", "You manage the work"), ("Speed", "3–6 month pipeline"),
+                   ("Scope", "Permanent role"), ("Risk", "No rollback option"), ("Cost", "$150k–$280k/yr")]},
+        {"name": "Outsourcing",   "tag": "Full Delegation",  "color": BLUE,   "x": 820,
+         "items": [("Direction", "Firm manages the work"), ("Speed", "2–4 week scoping"),
+                   ("Scope", "Defined output"), ("Risk", "Milestone-gated"), ("Cost", "Fixed or T&M")]},
+    ]
+
+    card_w, card_h, card_top = 340, 460, 90
+    title_f = ImageFont.truetype(FONT_BOLD, 38)
+    tag_f   = ImageFont.truetype(FONT_BOLD, 13)
+    item_kf = ImageFont.truetype(FONT_REGULAR, 14)
+    item_vf = ImageFont.truetype(FONT_BOLD, 15)
+
+    for m in models:
+        cx, col = m["x"], m["color"]
+        card = Image.new("RGBA", (card_w, card_h), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0,0,card_w,card_h], radius=14, fill=(*col, 20))
+        cd.rounded_rectangle([0,0,card_w,card_h], radius=14, outline=(*col, 85), width=1)
+        img.paste(card, (cx, card_top), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([cx, card_top, cx+card_w, card_top+5], radius=3, fill=col)
+        draw.text((cx+card_w//2, card_top+52), m["name"], font=title_f, fill=WHITE, anchor="mm")
+        tw = draw.textbbox((0,0), m["tag"], font=tag_f)[2] + 20
+        tx = cx + (card_w - tw) // 2
+        draw.rounded_rectangle([tx, card_top+70, tx+tw, card_top+92], radius=8, fill=(*col, 45))
+        draw.text((tx+tw//2, card_top+81), m["tag"], font=tag_f, fill=col, anchor="mm")
+        draw.line([cx+20, card_top+106, cx+card_w-20, card_top+106], fill=(255,255,255,20), width=1)
+        for i, (k, v) in enumerate(m["items"]):
+            y = card_top + 120 + i*58
+            draw.text((cx+22, y),    k, font=item_kf, fill=GREY_DIM)
+            draw.text((cx+22, y+20), v, font=item_vf, fill=WHITE)
+            if i < len(m["items"])-1:
+                draw.line([cx+16, y+48, cx+card_w-16, y+48], fill=(255,255,255,12), width=1)
+
+    foot_f = ImageFont.truetype(FONT_BOLD, 20)
+    draw.text((W//2, card_top+card_h+32), "Which talent model is right for your AI project?",
+              font=foot_f, fill=WHITE, anchor="mm")
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    img.save(os.path.join(OUT_DIR, "blog-what-is-ai-staff-augmentation.jpg"), "JPEG", quality=92)
+    print("Saved: blog-what-is-ai-staff-augmentation.jpg")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE B2: How to Hire an AI Engineer
+# Visual: Skills checklist on right, headline + stats on left
+# ─────────────────────────────────────────────────────────────────────────────
+def make_hire_ai_engineer_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (8, 8, 20), (20, 14, 30))
+    INDIGO = (99, 102, 241)
+    draw_circle_glow(img, 850, 280, 380, INDIGO, alpha_max=38)
+    draw_circle_glow(img, 120, 500, 220, ORANGE, alpha_max=28)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f   = ImageFont.truetype(FONT_BOLD, 50)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 18)
+    stat_f = ImageFont.truetype(FONT_BOLD, 32)
+    stat_s = ImageFont.truetype(FONT_REGULAR, 13)
+    skill_f= ImageFont.truetype(FONT_BOLD, 15)
+    skill_sf=ImageFont.truetype(FONT_REGULAR, 13)
+
+    pill = "HIRING GUIDE"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2] + 24
+    draw.rounded_rectangle([56, 58, 56+pw, 86], radius=14, fill=(*INDIGO, 50))
+    draw.text((56+pw//2, 72), pill, font=tag_f, fill=INDIGO, anchor="mm")
+    draw.text((56, 108), "How to Hire", font=h1_f, fill=WHITE)
+    draw.text((56, 162), "an AI Engineer", font=h1_f, fill=INDIGO)
+    draw.text((56, 225), "Skills · Vetting · Salary", font=sub_f, fill=GREY_DIM)
+
+    stats = [("3–6 mo", "full-time hire"), ("48 hrs", "staff aug start"), ("$180k+", "senior AI salary")]
+    sy = 278
+    for val, label in stats:
+        draw.text((56, sy), val, font=stat_f, fill=ORANGE)
+        draw.text((56, sy+38), label, font=stat_s, fill=GREY_DIM)
+        sy += 82
+
+    skills = [
+        (INDIGO, "Python + LLM APIs (OpenAI, Anthropic, Google)"),
+        (INDIGO, "RAG architecture + vector databases"),
+        ((16,185,129), "LangChain / LlamaIndex orchestration"),
+        ((16,185,129), "Prompt engineering + evaluation"),
+        (ORANGE, "Production deployment + monitoring"),
+        (ORANGE, "System design + latency optimisation"),
+    ]
+    cx, cy0 = 540, 70
+    cw, ch, cgap = 620, 68, 12
+    icon_f = ImageFont.truetype(FONT_BOLD, 16)
+
+    for i, (col, text) in enumerate(skills):
+        cy = cy0 + i*(ch+cgap)
+        card = Image.new("RGBA", (cw, ch), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0,0,cw,ch], radius=10, fill=(*col, 18))
+        cd.rounded_rectangle([0,0,cw,ch], radius=10, outline=(*col, 65), width=1)
+        img.paste(card, (cx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([cx, cy, cx+4, cy+ch], radius=2, fill=col)
+        draw.text((cx+26, cy+ch//2), "✓", font=icon_f, fill=col, anchor="lm")
+        draw.line([cx+48, cy+14, cx+48, cy+ch-14], fill=(*col, 40), width=1)
+        draw.text((cx+62, cy+ch//2), text, font=skill_f, fill=WHITE, anchor="lm")
+
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    img.save(os.path.join(OUT_DIR, "blog-how-to-hire-ai-engineer.jpg"), "JPEG", quality=92)
+    print("Saved: blog-how-to-hire-ai-engineer.jpg")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE B3: Staff Aug vs Outsourcing — VS split
+# ─────────────────────────────────────────────────────────────────────────────
+def make_staff_aug_vs_outsourcing_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (6, 12, 22), (18, 10, 26))
+    GREEN = (16, 185, 129)
+    BLUE  = (59, 130, 246)
+    draw_circle_glow(img, 220, 300, 320, GREEN, alpha_max=45)
+    draw_circle_glow(img, 980, 300, 320, BLUE,  alpha_max=45)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    sides = [
+        {"label": "Staff Aug",   "sub": "You manage the engineers",   "tag": "High Control",
+         "color": GREEN, "x": 60, "items": [
+             ("Direction",   "Your team leads the work"),
+             ("Speed",       "Start in 24–48 hours"),
+             ("Best for",    "Teams with AI leadership"),
+             ("Flexibility", "Scale up or down monthly"),
+             ("Risk model",  "2-week trial, no deposit"),
+         ]},
+        {"label": "Outsourcing", "sub": "Firm manages end-to-end",    "tag": "Full Delegation",
+         "color": BLUE,  "x": W-60-490, "items": [
+             ("Direction",   "External firm leads delivery"),
+             ("Speed",       "2–4 week scoping phase"),
+             ("Best for",    "Teams without AI leadership"),
+             ("Flexibility", "Scope-locked, milestone-gated"),
+             ("Risk model",  "Pay for outcomes, not hours"),
+         ]},
+    ]
+
+    col_w, col_top, col_h = 490, 90, 460
+    title_f = ImageFont.truetype(FONT_BOLD, 40)
+    sub_f   = ImageFont.truetype(FONT_REGULAR, 16)
+    tag_f   = ImageFont.truetype(FONT_BOLD, 13)
+    item_f  = ImageFont.truetype(FONT_BOLD, 15)
+    item_sf = ImageFont.truetype(FONT_REGULAR, 14)
+
+    for s in sides:
+        cx, col = s["x"], s["color"]
+        card = Image.new("RGBA", (col_w, col_h), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0,0,col_w,col_h], radius=14, fill=(*col, 18))
+        cd.rounded_rectangle([0,0,col_w,col_h], radius=14, outline=(*col, 85), width=1)
+        img.paste(card, (cx, col_top), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([cx, col_top, cx+col_w, col_top+5], radius=3, fill=col)
+        draw.text((cx+col_w//2, col_top+52), s["label"], font=title_f, fill=WHITE, anchor="mm")
+        draw.text((cx+col_w//2, col_top+86), s["sub"],   font=sub_f,   fill=GREY_DIM, anchor="mm")
+        tw = draw.textbbox((0,0), s["tag"], font=tag_f)[2]+20
+        tx = cx+(col_w-tw)//2
+        draw.rounded_rectangle([tx, col_top+106, tx+tw, col_top+128], radius=8, fill=(*col, 50))
+        draw.text((tx+tw//2, col_top+117), s["tag"], font=tag_f, fill=col, anchor="mm")
+        draw.line([cx+20, col_top+144, cx+col_w-20, col_top+144], fill=(255,255,255,20), width=1)
+        for i, (k, v) in enumerate(s["items"]):
+            y = col_top+160+i*56
+            draw.text((cx+28, y),    k, font=item_sf, fill=GREY_DIM)
+            draw.text((cx+28, y+20), v, font=item_f,  fill=WHITE)
+            if i < len(s["items"])-1:
+                draw.line([cx+20, y+48, cx+col_w-20, y+48], fill=(255,255,255,12), width=1)
+
+    cx_mid, cy_mid, vs_r = W//2, col_top+col_h//2, 38
+    vs_bg = Image.new("RGBA", (W,H), (0,0,0,0))
+    vd = ImageDraw.Draw(vs_bg)
+    vd.ellipse([cx_mid-vs_r, cy_mid-vs_r, cx_mid+vs_r, cy_mid+vs_r], fill=(*ORANGE, 220))
+    img.paste(vs_bg, mask=vs_bg)
+    draw = ImageDraw.Draw(img)
+    draw.text((cx_mid, cy_mid), "VS", font=ImageFont.truetype(FONT_BOLD, 26), fill=WHITE, anchor="mm")
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    img.save(os.path.join(OUT_DIR, "blog-staff-augmentation-vs-outsourcing.jpg"), "JPEG", quality=92)
+    print("Saved: blog-staff-augmentation-vs-outsourcing.jpg")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE B4: Fixed-Price vs Time-and-Materials — VS split
+# ─────────────────────────────────────────────────────────────────────────────
+def make_fixed_price_vs_tm_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (8, 10, 20), (20, 12, 28))
+    TEAL  = (20, 184, 166)
+    PURP  = (139, 92, 246)
+    draw_circle_glow(img, 220, 300, 320, TEAL,  alpha_max=45)
+    draw_circle_glow(img, 980, 300, 320, PURP,  alpha_max=45)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    sides = [
+        {"label": "Fixed-Price",  "sub": "Pay for outcomes",        "tag": "Predictable Cost",
+         "color": TEAL, "x": 60, "items": [
+             ("Risk",       "Firm absorbs overruns"),
+             ("Best for",   "Defined, bounded scopes"),
+             ("Payments",   "Milestone-gated"),
+             ("Scope",      "Locked upfront in writing"),
+             ("Timeline",   "Fixed delivery date"),
+         ]},
+        {"label": "Time & Materials", "sub": "Pay for hours",        "tag": "Maximum Flexibility",
+         "color": PURP,  "x": W-60-490, "items": [
+             ("Risk",       "Client absorbs overruns"),
+             ("Best for",   "Exploratory / research work"),
+             ("Payments",   "Weekly or monthly invoices"),
+             ("Scope",      "Evolves as you learn"),
+             ("Timeline",   "Open-ended"),
+         ]},
+    ]
+
+    col_w, col_top, col_h = 490, 90, 460
+    title_f = ImageFont.truetype(FONT_BOLD, 34)
+    sub_f   = ImageFont.truetype(FONT_REGULAR, 16)
+    tag_f   = ImageFont.truetype(FONT_BOLD, 13)
+    item_f  = ImageFont.truetype(FONT_BOLD, 15)
+    item_sf = ImageFont.truetype(FONT_REGULAR, 14)
+
+    for s in sides:
+        cx, col = s["x"], s["color"]
+        card = Image.new("RGBA", (col_w, col_h), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0,0,col_w,col_h], radius=14, fill=(*col, 18))
+        cd.rounded_rectangle([0,0,col_w,col_h], radius=14, outline=(*col, 85), width=1)
+        img.paste(card, (cx, col_top), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([cx, col_top, cx+col_w, col_top+5], radius=3, fill=col)
+        draw.text((cx+col_w//2, col_top+52), s["label"], font=title_f, fill=WHITE, anchor="mm")
+        draw.text((cx+col_w//2, col_top+86), s["sub"],   font=sub_f,   fill=GREY_DIM, anchor="mm")
+        tw = draw.textbbox((0,0), s["tag"], font=tag_f)[2]+20
+        tx = cx+(col_w-tw)//2
+        draw.rounded_rectangle([tx, col_top+106, tx+tw, col_top+128], radius=8, fill=(*col, 50))
+        draw.text((tx+tw//2, col_top+117), s["tag"], font=tag_f, fill=col, anchor="mm")
+        draw.line([cx+20, col_top+144, cx+col_w-20, col_top+144], fill=(255,255,255,20), width=1)
+        for i, (k, v) in enumerate(s["items"]):
+            y = col_top+160+i*56
+            draw.text((cx+28, y),    k, font=item_sf, fill=GREY_DIM)
+            draw.text((cx+28, y+20), v, font=item_f,  fill=WHITE)
+            if i < len(s["items"])-1:
+                draw.line([cx+20, y+48, cx+col_w-20, y+48], fill=(255,255,255,12), width=1)
+
+    cx_mid, cy_mid, vs_r = W//2, col_top+col_h//2, 38
+    vs_bg = Image.new("RGBA", (W,H), (0,0,0,0))
+    vd = ImageDraw.Draw(vs_bg)
+    vd.ellipse([cx_mid-vs_r, cy_mid-vs_r, cx_mid+vs_r, cy_mid+vs_r], fill=(*ORANGE, 220))
+    img.paste(vs_bg, mask=vs_bg)
+    draw = ImageDraw.Draw(img)
+    draw.text((cx_mid, cy_mid), "VS", font=ImageFont.truetype(FONT_BOLD, 26), fill=WHITE, anchor="mm")
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    img.save(os.path.join(OUT_DIR, "blog-fixed-price-vs-time-and-materials.jpg"), "JPEG", quality=92)
+    print("Saved: blog-fixed-price-vs-time-and-materials.jpg")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE B5: AI Engineer Cost in 2026 — salary bars by seniority
+# ─────────────────────────────────────────────────────────────────────────────
+def make_ai_engineer_cost_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (8, 8, 18), (22, 18, 32))
+    draw_circle_glow(img, 900, 150, 320, ORANGE, alpha_max=45)
+    draw_circle_glow(img, 100, 550, 240, (80, 60, 200), alpha_max=30)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=14)
+
+    bar_data = [
+        ("Junior AI Eng",    0.22, "$90k–$130k"),
+        ("Mid AI Eng",       0.40, "$130k–$180k"),
+        ("Senior AI Eng",    0.65, "$180k–$250k"),
+        ("Staff / Lead",     0.82, "$220k–$300k"),
+        ("Staff Aug (hr)",   0.45, "$55–$120/hr"),
+        ("Fixed-Price Proj", 0.55, "From $25k"),
+    ]
+    bar_x = 680
+    bar_y_start = 100
+    bar_height  = 28
+    bar_gap     = 22
+    bar_max_w   = 420
+    label_font  = ImageFont.truetype(FONT_REGULAR, 16)
+    val_font    = ImageFont.truetype(FONT_BOLD, 16)
+
+    for i, (label, pct, value) in enumerate(bar_data):
+        y = bar_y_start + i*(bar_height+bar_gap)
+        bw = int(bar_max_w*pct)
+        bar_color = (int(ORANGE[0]*0.6+229*0.4*pct), int(ORANGE[1]*0.4+80*0.6*(1-pct)), int(ORANGE[2]*(1-pct*0.5)))
+        draw.rounded_rectangle([bar_x, y, bar_x+bar_max_w, y+bar_height], radius=4, fill=(255,255,255,15))
+        draw.rounded_rectangle([bar_x, y, bar_x+bw, y+bar_height], radius=4, fill=ORANGE if pct>=0.8 else bar_color)
+        draw.text((bar_x-10, y+6), label, font=label_font, fill=GREY_LT, anchor="ra")
+        draw.text((bar_x+bar_max_w+10, y+6), value, font=val_font, fill=WHITE if pct>=0.8 else GREY_LT, anchor="la")
+
+    tag_f = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f  = ImageFont.truetype(FONT_BOLD, 50)
+    sub_f = ImageFont.truetype(FONT_REGULAR, 18)
+    pill = "HIRING"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2]+24
+    draw.rounded_rectangle([56, 72, 56+pw, 100], radius=15, fill=(*ORANGE, 50))
+    draw.text((56+pw//2, 86), pill, font=tag_f, fill=ORANGE, anchor="mm")
+    h1_lines = ["AI Engineer", "Cost in 2026", "Full Breakdown"]
+    y = 120
+    for line in h1_lines:
+        draw.text((56, y), line, font=h1_f, fill=WHITE)
+        y += 60
+    draw.text((56, y+8), "Salary · Staff Aug · Fixed-Price", font=sub_f, fill=GREY_DIM)
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    img.save(os.path.join(OUT_DIR, "blog-ai-engineer-cost.jpg"), "JPEG", quality=92)
+    print("Saved: blog-ai-engineer-cost.jpg")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE B6: IT Staff Augmentation Guide
+# Visual: IT roles hub-and-spoke around "Your Team" centre node
+# ─────────────────────────────────────────────────────────────────────────────
+def make_it_staff_aug_guide_image():
+    import math as _math
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (6, 8, 20), (18, 12, 28))
+    CYAN = (6, 182, 212)
+    draw_circle_glow(img, W//2, H//2+40, 380, CYAN, alpha_max=32)
+    draw_circle_glow(img, 80, 80, 180, ORANGE, alpha_max=22)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f   = ImageFont.truetype(FONT_BOLD, 44)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 17)
+    node_f = ImageFont.truetype(FONT_BOLD, 13)
+    hub_f  = ImageFont.truetype(FONT_BOLD, 17)
+
+    pill = "IT STAFF AUG"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2]+24
+    draw.rounded_rectangle([W//2-pw//2, 36, W//2+pw//2, 64], radius=14, fill=(*CYAN, 50))
+    draw.text((W//2, 50), pill, font=tag_f, fill=CYAN, anchor="mm")
+    draw.text((W//2, 100), "Scale Your IT Team", font=h1_f, fill=WHITE, anchor="mm")
+    draw.text((W//2, 148), "Add vetted engineers to your team in 24 hours",
+              font=sub_f, fill=GREY_DIM, anchor="mm")
+
+    cx, cy = W//2, 400
+    hub_r, spoke_r = 56, 200
+    nodes = [
+        ("AI Engineer",     (229,101,43),  270),
+        ("ML Engineer",     (16,185,129),  330),
+        ("DevOps Eng",      (59,130,246),   30),
+        ("Data Engineer",   (168,85,247),   90),
+        ("QA Engineer",     (245,158,11),  150),
+        ("Cloud Architect",  (239,68,68),  210),
+    ]
+    for name, col, angle_deg in nodes:
+        rad = _math.radians(angle_deg)
+        nx  = int(cx + spoke_r*_math.cos(rad))
+        ny  = int(cy + spoke_r*_math.sin(rad))
+        for s in range(8):
+            t0, t1 = s/8, (s+0.5)/8
+            draw.line([int(cx+(nx-cx)*t0), int(cy+(ny-cy)*t0),
+                       int(cx+(nx-cx)*t1), int(cy+(ny-cy)*t1)], fill=(*col, 70), width=2)
+        nr = 36
+        nc = Image.new("RGBA", (W,H), (0,0,0,0))
+        nd = ImageDraw.Draw(nc)
+        nd.ellipse([nx-nr, ny-nr, nx+nr, ny+nr], fill=(*col, 30))
+        nd.ellipse([nx-nr, ny-nr, nx+nr, ny+nr], outline=(*col, 120), width=2)
+        img.paste(nc, mask=nc)
+        draw = ImageDraw.Draw(img)
+        draw.text((nx, ny), name, font=node_f, fill=WHITE, anchor="mm")
+
+    hub_bg = Image.new("RGBA", (W,H), (0,0,0,0))
+    hd = ImageDraw.Draw(hub_bg)
+    hd.ellipse([cx-hub_r, cy-hub_r, cx+hub_r, cy+hub_r], fill=(*CYAN, 200))
+    hd.ellipse([cx-hub_r, cy-hub_r, cx+hub_r, cy+hub_r], outline=(*CYAN, 255), width=2)
+    img.paste(hub_bg, mask=hub_bg)
+    draw = ImageDraw.Draw(img)
+    draw.text((cx, cy-8), "Your", font=hub_f, fill=WHITE, anchor="mm")
+    draw.text((cx, cy+12), "Team", font=ImageFont.truetype(FONT_REGULAR, 14), fill=GREY_LT, anchor="mm")
+
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    img.save(os.path.join(OUT_DIR, "blog-it-staff-augmentation-guide.jpg"), "JPEG", quality=92)
+    print("Saved: blog-it-staff-augmentation-guide.jpg")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE B7: What Is a Dedicated AI Team — 5-role team composition
+# ─────────────────────────────────────────────────────────────────────────────
+def make_dedicated_ai_team_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (6, 10, 20), (18, 14, 30))
+    VIOLET = (124, 58, 237)
+    draw_circle_glow(img, 600, 220, 450, VIOLET, alpha_max=30)
+    draw_circle_glow(img, 100, 560, 200, ORANGE, alpha_max=25)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f   = ImageFont.truetype(FONT_BOLD, 44)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 19)
+    num_f  = ImageFont.truetype(FONT_BOLD, 13)
+    name_f = ImageFont.truetype(FONT_BOLD, 16)
+    stat_f = ImageFont.truetype(FONT_BOLD, 22)
+    stat_s = ImageFont.truetype(FONT_REGULAR, 13)
+
+    pill = "DEDICATED TEAM"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2]+24
+    draw.rounded_rectangle([W//2-pw//2, 38, W//2+pw//2, 66], radius=14, fill=(*VIOLET, 50))
+    draw.text((W//2, 52), pill, font=tag_f, fill=VIOLET, anchor="mm")
+    draw.text((W//2, 104), "The Dedicated AI Team", font=h1_f, fill=WHITE, anchor="mm")
+    draw.text((W//2, 150), "5 roles that work as one squad — embedded in your product",
+              font=sub_f, fill=GREY_DIM, anchor="mm")
+
+    roles = [
+        ("01", "AI Architect",        "Designs system, selects models",     (229,101,43)),
+        ("02", "AI/ML Engineer",      "Builds pipelines and models",         (16,185,129)),
+        ("03", "Backend Engineer",    "APIs, infra, data integrations",       (59,130,246)),
+        ("04", "QA / Eval Engineer",  "Evals, red-teaming, accuracy",        (168,85,247)),
+        ("05", "Engagement Manager",  "Owns delivery and communication",     (245,158,11)),
+    ]
+
+    n = len(roles)
+    box_w, box_h, gap = 200, 200, 14
+    total = n*box_w+(n-1)*gap
+    x0, y0 = (W-total)//2, 200
+
+    for i, (num, name, desc, col) in enumerate(roles):
+        bx = x0+i*(box_w+gap)
+        card = Image.new("RGBA", (box_w, box_h), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0,0,box_w,box_h], radius=12, fill=(*col, 22))
+        cd.rounded_rectangle([0,0,box_w,box_h], radius=12, outline=(*col, 90), width=1)
+        img.paste(card, (bx, y0), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([bx, y0, bx+box_w, y0+4], radius=2, fill=col)
+        draw.text((bx+box_w//2, y0+26), num,  font=num_f, fill=col,   anchor="mm")
+        draw.line([bx+20, y0+40, bx+box_w-20, y0+40], fill=(*col, 50), width=1)
+        for j, line in enumerate(name.split(" / ") if " / " in name else [name]):
+            draw.text((bx+box_w//2, y0+62+j*22), line, font=name_f, fill=WHITE, anchor="mm")
+        desc_f2 = ImageFont.truetype(FONT_REGULAR, 12)
+        for j, word_line in enumerate(wrap_text(desc, desc_f2, box_w-24, draw)):
+            draw.text((bx+box_w//2, y0+120+j*18), word_line, font=desc_f2, fill=GREY_DIM, anchor="mm")
+
+    stats = [("5 roles", "full squad"), ("48 hrs", "ramp-up time"), ("100%", "IP ownership")]
+    sy = y0+box_h+36
+    sw = W//len(stats)
+    for i, (val, label) in enumerate(stats):
+        sx = i*sw+sw//2
+        draw.text((sx, sy),    val,   font=stat_f, fill=ORANGE,   anchor="mm")
+        draw.text((sx, sy+30), label, font=stat_s,  fill=GREY_DIM, anchor="mm")
+
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    img.save(os.path.join(OUT_DIR, "blog-what-is-dedicated-ai-team.jpg"), "JPEG", quality=92)
+    print("Saved: blog-what-is-dedicated-ai-team.jpg")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE B8: Nearshore vs Offshore Staff Augmentation — VS split
+# ─────────────────────────────────────────────────────────────────────────────
+def make_nearshore_vs_offshore_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (6, 12, 22), (18, 10, 26))
+    TEAL = (20, 184, 166)
+    BLUE = (59, 130, 246)
+    draw_circle_glow(img, 220, 300, 320, TEAL, alpha_max=45)
+    draw_circle_glow(img, 980, 300, 320, BLUE, alpha_max=45)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    sides = [
+        {"label": "Nearshore",  "sub": "Same or adjacent timezone",  "tag": "Overlap-First",
+         "color": TEAL, "x": 60, "items": [
+             ("Timezones",  "1–4 hrs difference"),
+             ("Location",   "LatAm, Eastern Europe"),
+             ("Daily sync", "Full overlap possible"),
+             ("Cost delta", "10–25% vs US rates"),
+             ("Best for",   "Agile teams needing real-time collab"),
+         ]},
+        {"label": "Offshore",   "sub": "Significant timezone gap",   "tag": "Cost-First",
+         "color": BLUE,  "x": W-60-490, "items": [
+             ("Timezones",  "5–12 hrs difference"),
+             ("Location",   "India, SE Asia, Eastern Europe"),
+             ("Daily sync", "Async-first, 2–3 hr overlap"),
+             ("Cost delta", "30–60% vs US rates"),
+             ("Best for",   "Async-friendly, async teams"),
+         ]},
+    ]
+
+    col_w, col_top, col_h = 490, 90, 460
+    title_f = ImageFont.truetype(FONT_BOLD, 40)
+    sub_f   = ImageFont.truetype(FONT_REGULAR, 16)
+    tag_f   = ImageFont.truetype(FONT_BOLD, 13)
+    item_f  = ImageFont.truetype(FONT_BOLD, 15)
+    item_sf = ImageFont.truetype(FONT_REGULAR, 14)
+
+    for s in sides:
+        cx, col = s["x"], s["color"]
+        card = Image.new("RGBA", (col_w, col_h), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0,0,col_w,col_h], radius=14, fill=(*col, 18))
+        cd.rounded_rectangle([0,0,col_w,col_h], radius=14, outline=(*col, 85), width=1)
+        img.paste(card, (cx, col_top), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([cx, col_top, cx+col_w, col_top+5], radius=3, fill=col)
+        draw.text((cx+col_w//2, col_top+52), s["label"], font=title_f, fill=WHITE, anchor="mm")
+        draw.text((cx+col_w//2, col_top+86), s["sub"],   font=sub_f,   fill=GREY_DIM, anchor="mm")
+        tw = draw.textbbox((0,0), s["tag"], font=tag_f)[2]+20
+        tx = cx+(col_w-tw)//2
+        draw.rounded_rectangle([tx, col_top+106, tx+tw, col_top+128], radius=8, fill=(*col, 50))
+        draw.text((tx+tw//2, col_top+117), s["tag"], font=tag_f, fill=col, anchor="mm")
+        draw.line([cx+20, col_top+144, cx+col_w-20, col_top+144], fill=(255,255,255,20), width=1)
+        for i, (k, v) in enumerate(s["items"]):
+            y = col_top+160+i*56
+            draw.text((cx+28, y),    k, font=item_sf, fill=GREY_DIM)
+            draw.text((cx+28, y+20), v, font=item_f,  fill=WHITE)
+            if i < len(s["items"])-1:
+                draw.line([cx+20, y+48, cx+col_w-20, y+48], fill=(255,255,255,12), width=1)
+
+    cx_mid, cy_mid, vs_r = W//2, col_top+col_h//2, 38
+    vs_bg = Image.new("RGBA", (W,H), (0,0,0,0))
+    vd = ImageDraw.Draw(vs_bg)
+    vd.ellipse([cx_mid-vs_r, cy_mid-vs_r, cx_mid+vs_r, cy_mid+vs_r], fill=(*ORANGE, 220))
+    img.paste(vs_bg, mask=vs_bg)
+    draw = ImageDraw.Draw(img)
+    draw.text((cx_mid, cy_mid), "VS", font=ImageFont.truetype(FONT_BOLD, 26), fill=WHITE, anchor="mm")
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    img.save(os.path.join(OUT_DIR, "blog-nearshore-vs-offshore-staff-augmentation.jpg"), "JPEG", quality=92)
+    print("Saved: blog-nearshore-vs-offshore-staff-augmentation.jpg")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE B9: Signs Your AI Project Is Failing — warning cards
+# ─────────────────────────────────────────────────────────────────────────────
+def make_signs_ai_failing_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (14, 6, 6), (20, 10, 14))
+    RED   = (239, 68, 68)
+    AMBER = (245, 158, 11)
+    draw_circle_glow(img, 300, 200, 380, RED,   alpha_max=35)
+    draw_circle_glow(img, 950, 450, 300, AMBER, alpha_max=28)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=10)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f   = ImageFont.truetype(FONT_BOLD, 52)
+    num_f  = ImageFont.truetype(FONT_BOLD, 88)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 18)
+
+    pill = "AI ENGINEERING"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2]+24
+    draw.rounded_rectangle([56, 60, 56+pw, 88], radius=14, fill=(*RED, 40))
+    draw.text((56+pw//2, 74), pill, font=tag_f, fill=RED, anchor="mm")
+    draw.text((56, 110), "5 Signs", font=num_f, fill=(*RED, 200))
+    draw.text((56, 210), "Your AI Project", font=h1_f, fill=WHITE)
+    draw.text((56, 268), "Is Failing", font=h1_f, fill=RED)
+    draw.text((56, 332), "Catch these signals early before", font=sub_f, fill=GREY_DIM)
+    draw.text((56, 358), "they become expensive problems.", font=sub_f, fill=GREY_DIM)
+
+    signs = [
+        (RED,   "Accuracy hasn't improved in 3+ sprint cycles"),
+        (AMBER, "Demo works but production keeps hallucinating"),
+        (AMBER, "No evaluation framework — success is subjective"),
+        (RED,   "The team is debugging prompts, not the system"),
+        (ORANGE,"Stakeholders have stopped asking for updates"),
+    ]
+    cx, cy0 = 560, 80
+    cw, ch, cgap = 600, 80, 14
+    reason_f = ImageFont.truetype(FONT_BOLD, 17)
+    num2_f   = ImageFont.truetype(FONT_BOLD, 20)
+
+    for i, (col, text) in enumerate(signs):
+        cy = cy0+i*(ch+cgap)
+        card = Image.new("RGBA", (cw, ch), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0,0,cw,ch], radius=10, fill=(*col, 18))
+        cd.rounded_rectangle([0,0,cw,ch], radius=10, outline=(*col, 70), width=1)
+        img.paste(card, (cx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([cx, cy, cx+4, cy+ch], radius=2, fill=col)
+        draw.text((cx+34, cy+ch//2), f"#{i+1}", font=num2_f, fill=col, anchor="mm")
+        draw.line([cx+56, cy+16, cx+56, cy+ch-16], fill=(*col, 40), width=1)
+        draw.text((cx+74, cy+ch//2), text, font=reason_f, fill=WHITE, anchor="lm")
+
+    cta_f = ImageFont.truetype(FONT_REGULAR, 15)
+    draw.text((cx, cy0+len(signs)*(ch+cgap)+16),
+              "Kovil AI · AI Rescue & Production Engineering",
+              font=cta_f, fill=GREY_DIM)
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    img.save(os.path.join(OUT_DIR, "blog-signs-ai-project-failing.jpg"), "JPEG", quality=92)
+    print("Saved: blog-signs-ai-project-failing.jpg")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IMAGE B10: AI Staff Augmentation Guide 2026 — hiring timeline stages
+# ─────────────────────────────────────────────────────────────────────────────
+def make_ai_staff_aug_guide_image():
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (6, 14, 16), (16, 12, 26))
+    GREEN = (16, 185, 129)
+    draw_circle_glow(img, 600, 220, 450, GREEN,  alpha_max=28)
+    draw_circle_glow(img, 100, 550, 200, ORANGE, alpha_max=25)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    tag_f  = ImageFont.truetype(FONT_BOLD, 13)
+    h1_f   = ImageFont.truetype(FONT_BOLD, 52)
+    sub_f  = ImageFont.truetype(FONT_REGULAR, 18)
+    wk_f   = ImageFont.truetype(FONT_BOLD, 15)
+    item_f = ImageFont.truetype(FONT_REGULAR, 14)
+    stat_f = ImageFont.truetype(FONT_BOLD, 28)
+    stat_s = ImageFont.truetype(FONT_REGULAR, 13)
+
+    pill = "COMPLETE GUIDE 2026"
+    pw = draw.textbbox((0,0), pill, font=tag_f)[2]+24
+    draw.rounded_rectangle([W//2-pw//2, 38, W//2+pw//2, 66], radius=14, fill=(*GREEN, 50))
+    draw.text((W//2, 52), pill, font=tag_f, fill=GREEN, anchor="mm")
+    draw.text((W//2, 104), "AI Staff Augmentation", font=h1_f, fill=WHITE, anchor="mm")
+    draw.text((W//2, 158), "Vet · Hire · Scale in 2026",
+              font=sub_f, fill=GREY_DIM, anchor="mm")
+
+    stages = [
+        ("Step 1", "Brief & Match",      ["Define role", "Skill vetting", "48hr match"]),
+        ("Step 2", "Trial Period",        ["2-week trial", "Daily standups", "No risk"]),
+        ("Step 3", "Full Engagement",     ["Sprint delivery", "Code reviews", "Slack access"]),
+        ("Step 4", "Scale or Convert",    ["Add engineers", "Full-time offer", "IP transfer"]),
+    ]
+    n = len(stages)
+    bw, bh, gap = 248, 220, 20
+    tot = n*bw+(n-1)*gap
+    x0, y0 = (W-tot)//2, 198
+    cols = [GREEN, (99,102,241), (168,85,247), ORANGE]
+
+    for i, (wk, title, items) in enumerate(stages):
+        bx, col = x0+i*(bw+gap), cols[i]
+        card = Image.new("RGBA", (bw, bh), (0,0,0,0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0,0,bw,bh], radius=12, fill=(*col, 20))
+        cd.rounded_rectangle([0,0,bw,bh], radius=12, outline=(*col, 85), width=1)
+        img.paste(card, (bx, y0), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([bx, y0, bx+bw, y0+5], radius=3, fill=col)
+        draw.text((bx+bw//2, y0+26), wk,   font=wk_f, fill=col,   anchor="mm")
+        draw.text((bx+bw//2, y0+50), title, font=wk_f, fill=WHITE, anchor="mm")
+        draw.line([bx+16, y0+66, bx+bw-16, y0+66], fill=(255,255,255,20), width=1)
+        for j, item in enumerate(items):
+            iy = y0+82+j*42
+            tc = Image.new("RGBA", (W,H), (0,0,0,0))
+            td = ImageDraw.Draw(tc)
+            td.ellipse([bx+18, iy+1, bx+32, iy+15], fill=(*col, 60))
+            img.paste(tc, mask=tc)
+            draw = ImageDraw.Draw(img)
+            draw.text((bx+25, iy+8), "✓", font=ImageFont.truetype(FONT_BOLD, 10), fill=WHITE, anchor="mm")
+            draw.text((bx+40, iy+8), item, font=item_f, fill=GREY_LT, anchor="lm")
+        if i < n-1:
+            ax = bx+bw+gap//2
+            ay = y0+bh//2
+            draw.polygon([(ax-8, ay-6),(ax-8, ay+6),(ax+4, ay)], fill=GREY_DIM)
+
+    stats = [("48 hrs", "first engineer"), ("2 weeks", "risk-free trial"), ("Top 1%", "AI engineers")]
+    sy = y0+bh+36
+    sw = W//len(stats)
+    for i, (val, label) in enumerate(stats):
+        sx = i*sw+sw//2
+        draw.text((sx, sy),    val,   font=stat_f, fill=GREEN,    anchor="mm")
+        draw.text((sx, sy+36), label, font=stat_s,  fill=GREY_DIM, anchor="mm")
+
+    draw.rectangle([0, H-4, W, H], fill=ORANGE)
+    img = img.convert("RGB")
+    img.save(os.path.join(OUT_DIR, "blog-ai-staff-augmentation-guide-2026.jpg"), "JPEG", quality=92)
+    print("Saved: blog-ai-staff-augmentation-guide-2026.jpg")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -3387,4 +4094,14 @@ if __name__ == "__main__":
     make_azure_ai_foundry_og()
     make_vertex_ai_og()
     make_hire_og()
+    make_ai_staff_aug_image()
+    make_hire_ai_engineer_image()
+    make_staff_aug_vs_outsourcing_image()
+    make_fixed_price_vs_tm_image()
+    make_ai_engineer_cost_image()
+    make_it_staff_aug_guide_image()
+    make_dedicated_ai_team_image()
+    make_nearshore_vs_offshore_image()
+    make_signs_ai_failing_image()
+    make_ai_staff_aug_guide_image()
     print("Done.")
