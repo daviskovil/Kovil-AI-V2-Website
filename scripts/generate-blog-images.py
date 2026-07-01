@@ -4062,6 +4062,72 @@ def make_ai_staff_aug_guide_image():
     print("Saved: blog-ai-staff-augmentation-guide-2026.jpg")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# HIRE ROLE HERO IMAGE GENERATOR — shared function for all 15 hire pages
+# ─────────────────────────────────────────────────────────────────────────────
+def make_hire_role_image(slug, role_line1, role_line2, badge_text, accent, skills, stats):
+    """Generate a 1200x675 hero image for a /hire/[role] page."""
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (8, 8, 18), (18, 14, 28))
+
+    # Glows
+    draw_circle_glow(img, 860, 260, 360, accent, alpha_max=40)
+    draw_circle_glow(img, 80, 560, 200, ORANGE, alpha_max=22)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    badge_f  = ImageFont.truetype(FONT_BOLD,    12)
+    h1_f     = ImageFont.truetype(FONT_BOLD,    56)
+    stat_vf  = ImageFont.truetype(FONT_BOLD,    30)
+    stat_lf  = ImageFont.truetype(FONT_REGULAR, 12)
+    skill_f  = ImageFont.truetype(FONT_BOLD,    14)
+
+    bw = draw.textbbox((0, 0), badge_text, font=badge_f)[2] + 28
+    draw.rounded_rectangle([56, 54, 56 + bw, 80], radius=13, fill=(*accent, 45))
+    draw.rounded_rectangle([56, 54, 56 + bw, 80], radius=13, outline=(*accent, 100), width=1)
+    draw.text((56 + bw // 2, 67), badge_text, font=badge_f, fill=accent, anchor="mm")
+
+    draw.text((56, 100), role_line1, font=h1_f, fill=WHITE)
+    draw.text((56, 158), role_line2, font=h1_f, fill=accent)
+
+    draw.rounded_rectangle([56, 234, 310, 268], radius=8, fill=(*ORANGE, 220))
+    cta_f = ImageFont.truetype(FONT_BOLD, 14)
+    draw.text((183, 251), "Hire in 48 Hours  ->", font=cta_f, fill=WHITE, anchor="mm")
+
+    sx = 56
+    for val, label in stats:
+        draw.text((sx, 298), val, font=stat_vf, fill=ORANGE)
+        draw.text((sx, 334), label, font=stat_lf, fill=GREY_DIM)
+        sx += 148
+
+    brand_f = ImageFont.truetype(FONT_BOLD, 13)
+    draw.text((56, H - 40), "KOVIL AI", font=brand_f, fill=GREY_DIM)
+    draw.text((140, H - 40), "kovil.ai", font=brand_f, fill=(*accent, 180))
+
+    cx, cy0 = 500, 46
+    cw, ch, cgap = 660, 80, 11
+    for i, skill_text in enumerate(skills[:6]):
+        cy = cy0 + i * (ch + cgap)
+        card = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, cw, ch], radius=10, fill=(*accent, 16))
+        cd.rounded_rectangle([0, 0, cw, ch], radius=10, outline=(*accent, 60), width=1)
+        img.paste(card, (cx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([cx, cy + 8, cx + 3, cy + ch - 8], radius=2, fill=accent)
+        num_f = ImageFont.truetype(FONT_BOLD, 22)
+        draw.text((cx + 22, cy + ch // 2), f"{i+1:02d}", font=num_f, fill=(*accent, 100), anchor="lm")
+        draw.line([cx + 58, cy + 16, cx + 58, cy + ch - 16], fill=(*accent, 35), width=1)
+        draw.text((cx + 74, cy + ch // 2), skill_text, font=skill_f, fill=WHITE, anchor="lm")
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+    final = img.convert("RGB")
+    final.save(os.path.join(OUT_DIR, f"{slug}.jpg"),  "JPEG", quality=92)
+    final.save(os.path.join(OUT_DIR, f"{slug}.webp"), "WEBP", quality=90)
+    print(f"Saved: {slug}.jpg + .webp")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -4104,4 +4170,157 @@ if __name__ == "__main__":
     make_nearshore_vs_offshore_image()
     make_signs_ai_failing_image()
     make_ai_staff_aug_guide_image()
+
+    # ── Hire role page hero images ──────────────────────────────────────────────
+    make_hire_role_image(
+        slug="hire-ai-engineer",
+        role_line1="Hire Vetted",
+        role_line2="AI Engineers",
+        badge_text="MATCHED IN 48 HOURS",
+        accent=(99, 102, 241),   # indigo
+        skills=["LangChain / LangGraph", "RAG Pipelines", "LLM Fine-tuning",
+                "OpenAI / Anthropic APIs", "Vector DBs (Pinecone, Weaviate)", "FastAPI + Cloud Deploy"],
+        stats=[("48h", "Match time"), ("Top 1%", "Talent vetted"), ("14d", "First feature ships")],
+    )
+    make_hire_role_image(
+        slug="hire-generative-ai-developer",
+        role_line1="Hire GenAI",
+        role_line2="Developers",
+        badge_text="EXPERT GENAI ENGINEERS",
+        accent=(168, 85, 247),   # purple
+        skills=["GPT-4 / Claude / Gemini", "Prompt Engineering", "RAG Architecture",
+                "LlamaIndex / LangChain", "Hugging Face + PEFT", "LLM Evaluation (RAGAS)"],
+        stats=[("32x", "GenAI job growth"), ("$185K", "Senior GenAI salary"), ("74%", "Teams expanding")],
+    )
+    make_hire_role_image(
+        slug="hire-llm-engineer",
+        role_line1="Hire LLM",
+        role_line2="Engineers",
+        badge_text="LARGE LANGUAGE MODEL EXPERTS",
+        accent=(234, 88, 12),    # orange-red
+        skills=["Fine-tuning (LoRA / QLoRA)", "RLHF + Alignment", "RAG + Vector Search",
+                "LangChain / LangGraph", "Evaluation Pipelines", "LLMOps + Monitoring"],
+        stats=[("189%", "LLM job growth 2025"), ("$175K", "Senior LLM salary"), ("5-8 mo", "Avg hire time")],
+    )
+    make_hire_role_image(
+        slug="hire-ml-engineer",
+        role_line1="Hire ML",
+        role_line2="Engineers",
+        badge_text="PRODUCTION ML SPECIALISTS",
+        accent=(16, 185, 129),   # emerald
+        skills=["PyTorch / TensorFlow", "MLflow + Kubeflow", "AWS SageMaker", "Feature Stores",
+                "Computer Vision / NLP", "Data Pipelines + Drift Detection"],
+        stats=[("40%", "ML job growth 2027"), ("$155K", "Senior ML salary"), ("82%", "ML projects fail infra")],
+    )
+    make_hire_role_image(
+        slug="hire-python-developer",
+        role_line1="Hire Senior",
+        role_line2="Python Devs",
+        badge_text="AI-NATIVE PYTHON ENGINEERS",
+        accent=(251, 191, 36),   # amber
+        skills=["FastAPI / Django", "LangChain + OpenAI API", "Celery + Redis",
+                "SQLAlchemy / Pydantic", "AWS Lambda + Docker", "Pytest + CI/CD"],
+        stats=[("#1", "Language for AI engineering"), ("68%", "AI teams use Python"), ("3.5M+", "Job postings 2025")],
+    )
+    make_hire_role_image(
+        slug="hire-react-developer",
+        role_line1="Hire Senior",
+        role_line2="React Devs",
+        badge_text="NEXT.JS + TYPESCRIPT EXPERTS",
+        accent=(56, 189, 248),   # sky blue
+        skills=["React 18/19 + Next.js 15", "TypeScript (strict)", "Tailwind + Radix UI",
+                "Streaming LLM Interfaces", "Zustand + React Query", "Playwright E2E Testing"],
+        stats=[("41%", "Frontend jobs need React"), ("72%", "AI teams: frontend bottleneck"), ("$145K", "Senior React salary")],
+    )
+    make_hire_role_image(
+        slug="hire-full-stack-developer",
+        role_line1="Hire Full-Stack",
+        role_line2="Developers",
+        badge_text="END-TO-END AI BUILDERS",
+        accent=(52, 211, 153),   # teal
+        skills=["React / Next.js + TypeScript", "Python / FastAPI + Node.js", "PostgreSQL / Supabase",
+                "LangChain + OpenAI API", "Docker + Vercel / AWS", "Stripe + Auth + CI/CD"],
+        stats=[("1.6x", "Full-stack salary premium"), ("58%", "AI startups: full-stack scarce"), ("3-4 mo", "Avg hire time")],
+    )
+    make_hire_role_image(
+        slug="hire-devops-engineer",
+        role_line1="Hire DevOps",
+        role_line2="Engineers",
+        badge_text="CI/CD + CLOUD AUTOMATION",
+        accent=(239, 68, 68),    # red
+        skills=["Kubernetes + Helm", "Terraform / Pulumi IaC", "GitHub Actions + ArgoCD",
+                "AWS / GCP / Azure", "Prometheus + Grafana", "Secrets Management + IAM"],
+        stats=[("25%", "DevOps job growth 2028"), ("2-5x", "Deploy frequency gain"), ("$148K", "Senior DevOps salary")],
+    )
+    make_hire_role_image(
+        slug="hire-cloud-engineer",
+        role_line1="Hire Cloud",
+        role_line2="Engineers",
+        badge_text="AWS, GCP AND AZURE EXPERTS",
+        accent=(14, 165, 233),   # light blue
+        skills=["AWS / GCP / Azure", "Terraform + CloudFormation", "EKS / GKE / AKS",
+                "SageMaker / Vertex AI", "VPC + IAM Security", "Cloud Cost Optimisation"],
+        stats=[("$156K", "Senior cloud salary"), ("28%", "Cloud job growth"), ("94%", "AI teams cite cloud bottleneck")],
+    )
+    make_hire_role_image(
+        slug="hire-data-engineer",
+        role_line1="Hire Data",
+        role_line2="Engineers",
+        badge_text="PIPELINES BUILT FOR AI",
+        accent=(132, 204, 22),   # lime
+        skills=["Apache Spark + Kafka", "dbt + Airflow", "Snowflake / BigQuery",
+                "Feature Stores (Feast)", "Great Expectations", "Databricks + Delta Lake"],
+        stats=[("50%", "Data eng job growth"), ("$138K", "Senior data salary"), ("80%", "AI fails from bad data")],
+    )
+    make_hire_role_image(
+        slug="hire-qa-engineer",
+        role_line1="Hire QA",
+        role_line2="Engineers",
+        badge_text="AUTOMATION-FIRST TESTING",
+        accent=(250, 204, 21),   # yellow
+        skills=["Playwright + Cypress", "Pytest + Jest", "API + Contract Testing",
+                "k6 Performance Testing", "LLM Output Evaluation", "RAGAS + CI Integration"],
+        stats=[("$124K", "Senior QA salary"), ("3.5x", "ROI from automated QA"), ("50%", "Companies outsource QA")],
+    )
+    make_hire_role_image(
+        slug="hire-cybersecurity-engineer",
+        role_line1="Hire Security",
+        role_line2="Engineers",
+        badge_text="APPSEC + CLOUD SECURITY",
+        accent=(239, 68, 68),    # red
+        skills=["OWASP + Burp Suite", "AWS / GCP Security", "IAM + Vault Secrets",
+                "SAST / DAST Scanning", "Prompt Injection Defense", "SOC 2 / HIPAA / GDPR"],
+        stats=[("124%", "Security job growth 2025"), ("3.5M", "Global workforce gap"), ("$165K", "Senior security salary")],
+    )
+    make_hire_role_image(
+        slug="hire-software-engineer",
+        role_line1="Hire Remote",
+        role_line2="Software Engineers",
+        badge_text="VETTED REMOTE ENGINEERS",
+        accent=(99, 102, 241),   # indigo
+        skills=["Python / TypeScript / Go", "React + Node.js", "PostgreSQL + Redis",
+                "LLM API Integration", "Docker + AWS / GCP", "REST / GraphQL APIs"],
+        stats=[("25%", "Eng job growth 2028"), ("$158K", "Senior eng salary"), ("60%", "Tech teams now remote")],
+    )
+    make_hire_role_image(
+        slug="hire-node-developer",
+        role_line1="Hire Node.js",
+        role_line2="Developers",
+        badge_text="BACKEND API SPECIALISTS",
+        accent=(74, 222, 128),   # green
+        skills=["NestJS + Express", "TypeScript (strict)", "GraphQL + REST APIs",
+                "BullMQ + Redis Queues", "AWS Lambda + Serverless", "LLM Streaming APIs"],
+        stats=[("#2", "Backend language globally"), ("58%", "AI backends use Node/Python"), ("$135K", "Senior Node salary")],
+    )
+    make_hire_role_image(
+        slug="hire-product-manager",
+        role_line1="Hire Remote",
+        role_line2="Product Managers",
+        badge_text="AI PRODUCT SPECIALISTS",
+        accent=(168, 85, 247),   # purple
+        skills=["AI Product Roadmapping", "PRD + Spec Writing", "LLM Capability Assessment",
+                "Jira / Linear / Notion", "User Research + A/B Tests", "OKRs + Stakeholder Mgmt"],
+        stats=[("19%", "PM job growth 2028"), ("78%", "Strong PM cuts time-to-market"), ("$148K", "Senior PM salary")],
+    )
+
     print("Done.")
