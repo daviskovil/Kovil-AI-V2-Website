@@ -4488,4 +4488,73 @@ if __name__ == "__main__":
         stats=[("$1.3T", "GenAI market by 2032"), ("78%", "Fortune 500 piloting GenAI"), ("3-5x", "ROI in 12 months")],
     )
 
+
+    # ── Staff augmentation page hero images ───────────────────────────────────
+    make_tech_page_image(
+        slug="staff-aug-main",
+        line1="Staff",
+        line2="Augmentation",
+        badge_text="VETTED ENGINEERS - 48 HOURS",
+        accent=(255, 79, 0),
+        features=["Match in 48 Hours or Less", "Top 1% Pre-Vetted Talent",
+                  "AI, Full-Stack, DevOps, QA", "Scales Up or Down Monthly",
+                  "No Long-Term Hiring Commitment", "IP Protection + NDA Included"],
+        stats=[("48h", "Average match time"), ("3 days", "First PR merged"), ("94%", "Retention rate at 6 months")],
+    )
+    make_tech_page_image(
+        slug="staff-aug-ai",
+        line1="AI Staff",
+        line2="Augmentation",
+        badge_text="AI ENGINEERS - LLM - GENAI - MLOPS",
+        accent=(168, 85, 247),
+        features=["LLM Engineers (GPT-4 / Claude / Llama)", "GenAI Developers + Prompt Engineers",
+                  "RAG Pipeline Architects", "MLOps + AI Infrastructure",
+                  "AI Full-Stack (Frontend + LLM Backend)", "Senior + Staff Level Seniority"],
+        stats=[("$185K", "avg senior AI engineer salary"), ("6-9 mo", "typical in-house hire time"), ("48h", "Kovil AI match time")],
+    )
+    make_tech_page_image(
+        slug="staff-aug-it",
+        line1="IT Staff",
+        line2="Augmentation",
+        badge_text="ENGINEERS ACROSS YOUR ENTIRE STACK",
+        accent=(16, 185, 129),
+        features=["React + Next.js Frontend", "Python / Node.js / Go Backend",
+                  "DevOps: Kubernetes + Terraform + CI/CD", "Cloud: AWS, GCP, Azure",
+                  "QA + Automation Engineers", "Data Engineering + Analytics"],
+        stats=[("10 roles", "covered across the full stack"), ("5-10 days", "average IT match time"), ("3x", "faster than in-house hiring")],
+    )
+    make_tech_page_image(
+        slug="staff-aug-dedicated-ai",
+        line1="Dedicated",
+        line2="AI Team",
+        badge_text="FULL AI TEAM - OPERATIONAL IN 3 WEEKS",
+        accent=(99, 102, 241),
+        features=["AI Tech Lead (Required)", "2-3 AI Engineers (Required)",
+                  "QA / Eval Engineer (Required)", "AI Frontend Engineer (Optional)",
+                  "Embedded in Your Sprint Cycle", "Yours Exclusively - No Shared Resources"],
+        stats=[("3 wks", "team operational"), ("4-6x", "faster than in-house build"), ("87%", "on-time milestone delivery")],
+    )
+    make_tech_page_image(
+        slug="staff-aug-dedicated-dev",
+        line1="Dedicated",
+        line2="Development Team",
+        badge_text="TECH LEAD + ENGINEERS + DEVOPS + QA",
+        accent=(234, 88, 12),
+        features=["Tech Lead + Full-Stack Engineers", "DevOps + QA Included",
+                  "Bi-Weekly Sprints + Weekly Demos", "Operational in 2-3 Weeks",
+                  "CI/CD Pipeline from Day 1", "Architecture Documented from Sprint 2"],
+        stats=[("16 days", "avg to first contribution"), ("2 sprints", "to full velocity"), ("91%", "clients extend beyond initial term")],
+    )
+    make_tech_page_image(
+        slug="staff-aug-managed-ai",
+        line1="Managed AI",
+        line2="Engineering",
+        badge_text="AI OUTCOMES - ZERO MANAGEMENT OVERHEAD",
+        accent=(251, 191, 36),
+        features=["OKR-Based Quarterly AI Roadmap", "Kovil AI Manages the Entire Team",
+                  "Architecture + Technical Decisions Owned", "Monthly Business Review (MBR)",
+                  "Talent Scaling Without Recruitment", "Handover-Ready Documentation Always"],
+        stats=[("74%", "companies struggle to hire AI engineers"), ("6x", "faster first milestone vs in-house"), ("0 hrs", "of engineering management for you")],
+    )
+
     print("Done.")
