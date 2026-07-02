@@ -4128,6 +4128,68 @@ def make_hire_role_image(slug, role_line1, role_line2, badge_text, accent, skill
     print(f"Saved: {slug}.jpg + .webp")
 
 
+def make_tech_page_image(slug, line1, line2, badge_text, accent, features, stats):
+    """Generate a 1200x675 hero image for a technology service page."""
+    img = Image.new("RGBA", (W, H), DARK_BG)
+    draw = ImageDraw.Draw(img)
+    gradient_bg(draw, (8, 8, 18), (18, 14, 28))
+
+    draw_circle_glow(img, 860, 260, 360, accent, alpha_max=45)
+    draw_circle_glow(img, 80, 560, 200, ORANGE, alpha_max=25)
+    draw = ImageDraw.Draw(img)
+    draw_grid(draw, alpha=11)
+
+    badge_f  = ImageFont.truetype(FONT_BOLD,    12)
+    h1_f     = ImageFont.truetype(FONT_BOLD,    54)
+    stat_vf  = ImageFont.truetype(FONT_BOLD,    30)
+    stat_lf  = ImageFont.truetype(FONT_REGULAR, 12)
+    skill_f  = ImageFont.truetype(FONT_BOLD,    14)
+
+    bw = draw.textbbox((0, 0), badge_text, font=badge_f)[2] + 28
+    draw.rounded_rectangle([56, 54, 56 + bw, 80], radius=13, fill=(*accent, 45))
+    draw.rounded_rectangle([56, 54, 56 + bw, 80], radius=13, outline=(*accent, 100), width=1)
+    draw.text((56 + bw // 2, 67), badge_text, font=badge_f, fill=accent, anchor="mm")
+
+    draw.text((56, 100), line1, font=h1_f, fill=WHITE)
+    draw.text((56, 158), line2, font=h1_f, fill=accent)
+
+    draw.rounded_rectangle([56, 234, 340, 268], radius=8, fill=(*ORANGE, 220))
+    cta_f = ImageFont.truetype(FONT_BOLD, 14)
+    draw.text((198, 251), "Build with Kovil AI  ->", font=cta_f, fill=WHITE, anchor="mm")
+
+    sx = 56
+    for val, label in stats:
+        draw.text((sx, 298), val, font=stat_vf, fill=ORANGE)
+        draw.text((sx, 334), label, font=stat_lf, fill=GREY_DIM)
+        sx += 148
+
+    brand_f = ImageFont.truetype(FONT_BOLD, 13)
+    draw.text((56, H - 40), "KOVIL AI", font=brand_f, fill=GREY_DIM)
+    draw.text((140, H - 40), "kovil.ai", font=brand_f, fill=(*accent, 180))
+
+    cx, cy0 = 500, 46
+    cw, ch, cgap = 660, 80, 11
+    for i, feat_text in enumerate(features[:6]):
+        cy = cy0 + i * (ch + cgap)
+        card = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+        cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([0, 0, cw, ch], radius=10, fill=(*accent, 16))
+        cd.rounded_rectangle([0, 0, cw, ch], radius=10, outline=(*accent, 60), width=1)
+        img.paste(card, (cx, cy), mask=card)
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle([cx, cy + 8, cx + 3, cy + ch - 8], radius=2, fill=accent)
+        num_f = ImageFont.truetype(FONT_BOLD, 22)
+        draw.text((cx + 22, cy + ch // 2), f"{i+1:02d}", font=num_f, fill=(*accent, 100), anchor="lm")
+        draw.line([cx + 58, cy + 16, cx + 58, cy + ch - 16], fill=(*accent, 35), width=1)
+        draw.text((cx + 74, cy + ch // 2), feat_text, font=skill_f, fill=WHITE, anchor="lm")
+
+    draw.rectangle([0, H - 4, W, H], fill=ORANGE)
+    final = img.convert("RGB")
+    final.save(os.path.join(OUT_DIR, f"{slug}.jpg"),  "JPEG", quality=92)
+    final.save(os.path.join(OUT_DIR, f"{slug}.webp"), "WEBP", quality=90)
+    print(f"Saved: {slug}.jpg + .webp")
+
+
 if __name__ == "__main__":
     make_cost_image()
     make_llm_comparison_image()
@@ -4321,6 +4383,74 @@ if __name__ == "__main__":
         skills=["AI Product Roadmapping", "PRD + Spec Writing", "LLM Capability Assessment",
                 "Jira / Linear / Notion", "User Research + A/B Tests", "OKRs + Stakeholder Mgmt"],
         stats=[("19%", "PM job growth 2028"), ("78%", "Strong PM cuts time-to-market"), ("$148K", "Senior PM salary")],
+    )
+
+    # ── Technology page hero images ────────────────────────────────────────────
+    make_tech_page_image(
+        slug="tech-ai-agent-development",
+        line1="AI Agent",
+        line2="Development",
+        badge_text="LANGCHAIN · LANGGRAPH · AUTOGEN",
+        accent=(99, 102, 241),   # indigo
+        features=["Multi-Agent Orchestration (LangGraph)", "Tool Use + Function Calling",
+                  "RAG-Augmented Agents", "Human-in-the-Loop Workflows",
+                  "Agent Memory + State Management", "Production Monitoring (LangSmith)"],
+        stats=[("$10.4B", "AI agent market 2028"), ("81%", "Enterprises piloting agents"), ("40-70%", "Task time reduction")],
+    )
+    make_tech_page_image(
+        slug="tech-rag-pipeline",
+        line1="RAG Pipeline",
+        line2="Development",
+        badge_text="PINECONE · WEAVIATE · PGVECTOR",
+        accent=(16, 185, 129),   # emerald
+        features=["Hybrid Search (Semantic + BM25)", "Re-ranking (Cohere / Cross-Encoder)",
+                  "Chunking Strategy Optimisation", "RAGAS Evaluation Suite",
+                  "Multi-Source Document Ingestion", "LlamaIndex + LangChain Integration"],
+        stats=[("60-80%", "Hallucination reduction"), ("$4.4B", "RAG market 2028"), ("3x", "Accuracy with citations")],
+    )
+    make_tech_page_image(
+        slug="tech-llm-development",
+        line1="LLM",
+        line2="Development",
+        badge_text="GPT-4O · CLAUDE · LLAMA 3",
+        accent=(168, 85, 247),   # purple
+        features=["LLM API Integration (OpenAI / Anthropic)", "Prompt Engineering + Versioning",
+                  "Fine-Tuning (LoRA / QLoRA)", "LLM Evaluation Pipelines",
+                  "Private Model Hosting", "LLMOps + Cost Monitoring"],
+        stats=[("$200B+", "LLM market by 2030"), ("3x", "Faster with eval pipelines"), ("68%", "AI teams use Python + LLM")],
+    )
+    make_tech_page_image(
+        slug="tech-openai-integration",
+        line1="OpenAI",
+        line2="Integration",
+        badge_text="GPT-4O · EMBEDDINGS · ASSISTANTS",
+        accent=(16, 163, 127),   # teal
+        features=["GPT-4o Chat Completion API", "text-embedding-3-large for RAG",
+                  "OpenAI Assistants + Threads", "Function Calling + JSON Mode",
+                  "DALL-E 3 Image Generation", "Whisper Speech-to-Text"],
+        stats=[("3M+", "Developers on OpenAI API"), ("60%", "Start on OpenAI platform"), ("15x", "Cost diff GPT-4o vs mini")],
+    )
+    make_tech_page_image(
+        slug="tech-langchain-developer",
+        line1="LangChain",
+        line2="Development",
+        badge_text="LANGCHAIN · LANGGRAPH · LLAMAINDEX",
+        accent=(234, 88, 12),    # orange-red
+        features=["LCEL Chain Architecture", "LangGraph Multi-Agent Graphs",
+                  "LlamaIndex RAG Retrieval", "LangSmith Observability",
+                  "Async Streaming + Fallbacks", "Prompt Versioning + Eval"],
+        stats=[("73%", "LLM teams use LangChain"), ("6-10 wks", "Prototype to production"), ("4x", "Faster with re-ranking")],
+    )
+    make_tech_page_image(
+        slug="tech-generative-ai-development",
+        line1="Generative AI",
+        line2="Development",
+        badge_text="CHATBOTS · RAG · AGENTS · FINE-TUNING",
+        accent=(251, 191, 36),   # amber
+        features=["Enterprise AI Chatbots", "RAG Knowledge Systems",
+                  "Autonomous AI Agents", "LLM Fine-Tuning",
+                  "Document Intelligence + Extraction", "Image Generation Pipelines"],
+        stats=[("$1.3T", "GenAI market by 2032"), ("78%", "Fortune 500 piloting GenAI"), ("3-5x", "ROI in 12 months")],
     )
 
     print("Done.")
