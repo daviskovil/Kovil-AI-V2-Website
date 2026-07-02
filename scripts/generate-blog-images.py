@@ -4385,6 +4385,41 @@ if __name__ == "__main__":
         stats=[("19%", "PM job growth 2028"), ("78%", "Strong PM cuts time-to-market"), ("$148K", "Senior PM salary")],
     )
 
+    # ── Engagement model page hero images ─────────────────────────────────────
+    make_tech_page_image(
+        slug="engagement-fixed-price",
+        line1="Fixed-Price",
+        line2="AI Projects",
+        badge_text="DEFINED SCOPE - FIXED BUDGET - CLEAR DATE",
+        accent=(52, 211, 153),
+        features=["2-Week Discovery Sprint First", "Technical Spec Before Pricing",
+                  "Milestone-Based Payment Gates", "Change Order Process for Additions",
+                  "Risk Log + Architecture Diagram", "You Own All Code at Handover"],
+        stats=[("94%", "On-time delivery rate"), ("2 wks", "Discovery sprint"), ("67%", "Projects fail without locked scope")],
+    )
+    make_tech_page_image(
+        slug="engagement-outcome-based",
+        line1="Outcome-Based",
+        line2="AI Development",
+        badge_text="PAY FOR RESULTS - NOT HOURS",
+        accent=(168, 85, 247),
+        features=["Metric Definition Scoping (2 Wks)", "Base Fee + Performance Component",
+                  "Baseline Established Before Build", "30-90 Day Measurement Window",
+                  "Weekly Benchmark Progress Reports", "Performance Fee on Metric Hit"],
+        stats=[("82%", "AI fails without success metric"), ("3-5x", "Better incentive alignment"), ("60 days", "Typical measurement window")],
+    )
+    make_tech_page_image(
+        slug="engagement-ai-project",
+        line1="AI Project",
+        line2="Development",
+        badge_text="DISCOVERY - BUILD - EVALUATE - HANDOVER",
+        accent=(99, 102, 241),
+        features=["Discovery Sprint + Technical Spec", "Eval Harness from Day 1",
+                  "Chatbots, RAG, Agents, Fine-Tuning", "Weekly Client Demos",
+                  "Production Deployment + Monitoring", "Full Docs + Knowledge Transfer"],
+        stats=[("85%", "AI projects fail pre-production"), ("2 wks", "Discovery to spec"), ("4.4M", "Avg cost of failed AI project")],
+    )
+
     # ── Technology page hero images ────────────────────────────────────────────
     make_tech_page_image(
         slug="tech-ai-agent-development",
