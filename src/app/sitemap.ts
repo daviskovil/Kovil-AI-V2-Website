@@ -270,6 +270,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/ai-for-healthcare`,             lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/ai-for-ecommerce`,              lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/ai-for-logistics`,              lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    // ── Specialist hire pages ─────────────────────────────────────────────────
+    { url: `${BASE_URL}/hire-databricks-engineer`,      lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     // ── Phase 6: Competitor alternative pages ─────────────────────────────────
     { url: `${BASE_URL}/toptal-alternative`,            lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/turing-alternative`,            lastModified: now, changeFrequency: 'monthly', priority: 0.9 },

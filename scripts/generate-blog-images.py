@@ -4557,4 +4557,18 @@ if __name__ == "__main__":
         stats=[("74%", "companies struggle to hire AI engineers"), ("6x", "faster first milestone vs in-house"), ("0 hrs", "of engineering management for you")],
     )
 
+
+    # ── Databricks hire page hero image ───────────────────────────────────────
+    make_tech_page_image(
+        slug="hire-databricks-engineer",
+        line1="Databricks",
+        line2="Engineers",
+        badge_text="DELTA LAKE · UNITY CATALOG · MEDALLION ARCH",
+        accent=(37, 99, 235),    # blue — data engineering
+        features=["PySpark & Photon Engine Tuning", "Delta Lake ACID + Time Travel",
+                  "Unity Catalog Governance (ABAC)", "Medallion Architecture (Bronze/Silver/Gold)",
+                  "Databricks Asset Bundles CI/CD", "Cloud Lakehouse Migration (AWS/Azure/GCP)"],
+        stats=[("<10 days", "To first commit"), ("Top 3%", "Databricks talent"), ("48h", "Profiles matched")],
+    )
+
     print("Done.")
