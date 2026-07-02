@@ -94,6 +94,7 @@ const STATIC_SECTIONS: SitemapSection[] = [
       { label: 'Dedicated AI Team', href: '/dedicated-ai-team' },
       { label: 'Dedicated Development Team', href: '/dedicated-development-team' },
       { label: 'Managed AI Engineering', href: '/managed-ai-engineering' },
+      { label: 'Hire Databricks Engineers', href: '/hire-databricks-engineer' },
     ],
   },
   {
