@@ -67,6 +67,12 @@ const STATIC_SECTIONS: SitemapSection[] = [
         ],
       },
       {
+        title: 'Platform Specialists',
+        links: [
+          { label: 'Hire Databricks Engineers', href: '/hire-databricks-engineer' },
+        ],
+      },
+      {
         title: 'Engineering',
         links: [
           { label: 'Hire Python Developers', href: '/hire/python-developer' },
@@ -94,7 +100,6 @@ const STATIC_SECTIONS: SitemapSection[] = [
       { label: 'Dedicated AI Team', href: '/dedicated-ai-team' },
       { label: 'Dedicated Development Team', href: '/dedicated-development-team' },
       { label: 'Managed AI Engineering', href: '/managed-ai-engineering' },
-      { label: 'Hire Databricks Engineers', href: '/hire-databricks-engineer' },
     ],
   },
   {
