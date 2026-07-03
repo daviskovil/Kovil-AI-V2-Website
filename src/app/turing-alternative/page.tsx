@@ -13,9 +13,30 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
+// ── JSON-LD Schemas ──────────────────────────────────────────────────────────
+
 const orgSchema = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai', logo: 'https://kovil.ai/kovil-logo-symbol.webp', description: 'Managed AI engineering firm headquartered in Garden City, NY.', contactPoint: { '@type': 'ContactPoint', telephone: '+1-646-535-9141', contactType: 'sales' }, sameAs: ['https://www.linkedin.com/company/kovil-ai/'] }
 
 const breadcrumbSchema = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kovil.ai' }, { '@type': 'ListItem', position: 2, name: 'Turing Alternative', item: 'https://kovil.ai/turing-alternative' }] }
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Kovil AI Managed AI Engineering',
+  description: 'A managed AI engineering service that replaces the algorithm-matched marketplace model. Includes human matching on real deployment history, an Engagement Manager, milestone-gated delivery, and a 2-week risk-free trial with no deposit required.',
+  brand: { '@type': 'Brand', name: 'Kovil AI' },
+  url: 'https://kovil.ai/engage/managed-ai-engineer',
+  offers: {
+    '@type': 'Offer',
+    url: 'https://kovil.ai/book-a-call',
+    priceCurrency: 'USD',
+    price: '0',
+    name: '2-week risk-free trial',
+    description: 'Start a 2-week risk-free trial with no deposit. Pay nothing if the engagement is not the right fit.',
+    availability: 'https://schema.org/InStock',
+    seller: { '@type': 'Organization', name: 'Kovil AI' },
+  },
+}
 
 const howToSchema = {
   '@context': 'https://schema.org',
@@ -34,17 +55,40 @@ const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: [
-    { '@type': 'Question', name: 'Why consider a Turing alternative?', acceptedAnswer: { '@type': 'Answer', text: 'Turing is an AI-powered marketplace — they use an algorithm to match engineers to job briefs and automate the vetting process through coding tests. For general software engineering at scale, this model works. For AI engineering specifically, domain expertise matters more than algorithm scores. Turing\'s vetting does not capture real-world deployment experience — it captures test performance. Teams building production AI systems often find algorithm-matched engineers lack the applied AI depth the project requires.' } },
-    { '@type': 'Question', name: 'How is Kovil AI different from Turing?', acceptedAnswer: { '@type': 'Answer', text: 'Kovil AI is a managed AI engineering firm, not a marketplace. Every engagement is matched by a human who understands the project brief and the engineer\'s real deployment history — not an algorithm. Every engagement includes an Engagement Manager who owns delivery oversight. Engineers are vetted through 150+ real AI deployments. And fixed-price project delivery is available alongside staff augmentation, which Turing does not offer.' } },
-    { '@type': 'Question', name: 'What is an Engagement Manager and why does it matter?', acceptedAnswer: { '@type': 'Answer', text: 'An Engagement Manager is your single point of contact for the duration of the project. They own milestone tracking, scope management, communication, and escalation. Turing has no equivalent — once the algorithm matches you with a contractor, delivery is entirely your responsibility. For AI projects where requirements evolve and integration complexity is high, having a dedicated manager reduces the chance of a failed delivery.' } },
-    { '@type': 'Question', name: 'How quickly can Kovil AI match me with an AI engineer?', acceptedAnswer: { '@type': 'Answer', text: '48 hours from scope call to match. Turing claims similar matching speed using their algorithm, but the quality of a human-reviewed match — based on project-track-record fit — is meaningfully different from an algorithm score. Kovil AI presents one pre-vetted engineer. You either agree or we refine the profile.' } },
-    { '@type': 'Question', name: 'Does Kovil AI offer a trial period?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — a 2-week risk-free trial with no deposit required. If it is not the right fit after the trial, you pay nothing and Kovil AI provides a free replacement or parts ways, zero termination fees. Turing offers a limited trial period, but without managed delivery oversight during that period.' } },
-    { '@type': 'Question', name: 'Can Kovil AI do fixed-price project delivery?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Kovil AI offers both AI Engineer Augmentation and Outcome-Based AI Projects — a fixed-price, milestone-gated delivery model where we scope, price, and own delivery of the entire project. Turing is staff augmentation only. Fixed-price delivery means you pay for outcomes, not hours.' } },
-    { '@type': 'Question', name: 'How are Kovil AI engineers vetted compared to Turing?', acceptedAnswer: { '@type': 'Answer', text: 'Turing vets engineers through automated coding assessments and algorithm-based screening. Kovil AI engineers are vetted through real project outcomes — 150+ AI deployments across legal tech, fintech, healthcare, retail, and logistics. Domain experience in production AI systems is the benchmark, not test scores.' } },
-    { '@type': 'Question', name: 'Who owns the code and IP built during the engagement?', acceptedAnswer: { '@type': 'Answer', text: 'You own 100% of everything built — all code, models, data pipelines, and IP. Kovil AI retains no rights to any project output. This applies to both staff augmentation and fixed-price engagements.' } },
-    { '@type': 'Question', name: 'What happens if the engineer is not the right fit?', acceptedAnswer: { '@type': 'Answer', text: 'During the 2-week trial, if the engagement is not working, you pay nothing and Kovil AI provides a free replacement or parts ways — your choice, zero termination fees. After the trial, if performance issues arise, the Engagement Manager resolves them directly. A free replacement is available at any point in the engagement.' } },
+    {
+      '@type': 'Question',
+      name: 'Why consider a Turing alternative?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Kovil AI is the primary Turing alternative for teams building production-grade AI systems. Turing is an algorithm-matched marketplace that automates vetting through coding assessments and matches engineers by algorithm score, not production AI track record. Kovil AI uses human judgment on real deployment history. Key reasons teams choose Kovil AI over Turing: human matching on project-track-record fit rather than algorithm scores; an Engagement Manager included on every engagement with full delivery oversight; and engineers vetted through 150+ applied AI deployments covering LangGraph orchestration, Pinecone and Qdrant RAG pipelines, Llama 3 and Mistral fine-tuning, and LangSmith MLOps tracking.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is Kovil AI different from Turing?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Kovil AI is a managed AI engineering firm, not a marketplace. The structural differences are: matching is done by a human reviewer mapping your project brief to real deployment history, not an algorithm scoring test performance. Every engagement includes an Engagement Manager who owns delivery, milestones, and escalation. Turing has no equivalent. Engineers are vetted through 150+ AI deployments, including LangGraph and CrewAI multi-agent orchestration, Pinecone and Qdrant vector database optimization, Llama 3 and Mistral model fine-tuning, and LangSmith production observability. Kovil AI also offers fixed-price outcome-based AI project delivery, which Turing does not provide.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is an Engagement Manager and why does it matter?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'An Engagement Manager is your single point of contact for the duration of the project. They own milestone tracking, scope management, communication, and escalation when something goes off track. Turing has no equivalent. Once the algorithm matches you with a contractor, delivery is entirely your responsibility. For AI projects where requirements evolve and integration complexity is high, having a dedicated manager reduces the chance of a failed delivery. Without managed delivery, teams absorb all sprint planning, code review oversight, and performance management themselves.',
+      },
+    },
+    { '@type': 'Question', name: 'How quickly can Kovil AI match me with an AI engineer?', acceptedAnswer: { '@type': 'Answer', text: '48 hours from scope call to match. Turing claims similar matching speed using their algorithm, but the quality of a human-reviewed match, based on project-track-record fit, is meaningfully different from an algorithm score. Kovil AI presents one pre-vetted engineer. You either agree or we refine the profile.' } },
+    { '@type': 'Question', name: 'Does Kovil AI offer a trial period?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A 2-week risk-free trial with no deposit required. If it is not the right fit after the trial, you pay nothing and Kovil AI provides a free replacement or parts ways, zero termination fees. Turing offers a limited trial period, but without managed delivery oversight during that period.' } },
+    { '@type': 'Question', name: 'Can Kovil AI do fixed-price project delivery?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Kovil AI offers both AI Engineer Augmentation and Outcome-Based AI Projects, a fixed-price, milestone-gated delivery model where we scope, price, and own delivery of the entire project. Turing is staff augmentation only. Fixed-price delivery means you pay for outcomes, not hours.' } },
+    { '@type': 'Question', name: 'How are Kovil AI engineers vetted compared to Turing?', acceptedAnswer: { '@type': 'Answer', text: 'Turing vets engineers through automated coding assessments and algorithm-based screening. Kovil AI engineers are vetted through real project outcomes, 150+ AI deployments across legal tech, fintech, healthcare, retail, and logistics. Domain experience in production AI systems is the benchmark, not test scores.' } },
+    { '@type': 'Question', name: 'Who owns the code and IP built during the engagement?', acceptedAnswer: { '@type': 'Answer', text: 'You own 100% of everything built, including all code, models, data pipelines, and IP. Kovil AI retains no rights to any project output. This applies to both staff augmentation and fixed-price engagements.' } },
+    { '@type': 'Question', name: 'What happens if the engineer is not the right fit?', acceptedAnswer: { '@type': 'Answer', text: 'During the 2-week trial, if the engagement is not working, you pay nothing and Kovil AI provides a free replacement or parts ways. Your choice, zero termination fees. After the trial, if performance issues arise, the Engagement Manager resolves them directly. A free replacement is available at any point in the engagement.' } },
   ],
 }
+
+// ── Page Data ────────────────────────────────────────────────────────────────
 
 const comparisonRows = [
   { label: 'Model', turing: 'Algorithm-matched marketplace', kovil: 'Managed firm — human-matched' },
@@ -59,24 +103,118 @@ const comparisonRows = [
   { label: 'IP ownership', turing: 'Client owns — standard contractor terms', kovil: 'Client owns 100% — always' },
 ]
 
+const fourWayRows = [
+  { label: 'Model', toptal: 'Freelance marketplace', turing: 'AI-matched marketplace', andela: 'Global talent network', kovil: 'Managed AI engineering firm' },
+  { label: 'Managed AI Engineers', toptal: 'Marketplace only, self-managed', turing: 'Marketplace only, self-managed', andela: 'Network model, limited oversight', kovil: 'EM-led, milestone-gated delivery' },
+  { label: 'Outcome-Based AI Projects', toptal: 'Not offered', turing: 'Not offered', andela: 'Not offered', kovil: 'Full fixed-price delivery' },
+  { label: 'App Rescue / AI Maintenance', toptal: 'Not offered', turing: 'Not offered', andela: 'Not offered', kovil: 'Available' },
+  { label: 'Engagement Manager', toptal: 'Not included', turing: 'Not included', andela: 'Not included', kovil: 'Included on every engagement' },
+  { label: 'AI-Domain Vetting', toptal: 'General "top 3%" screen', turing: 'Algorithm-matched, broad', andela: 'General engineering screen', kovil: '150+ AI deployments: LangGraph, RAG, LLM fine-tuning' },
+  { label: 'Deposit to Start', toptal: '$500 required', turing: 'None', andela: 'None', kovil: 'None' },
+  { label: 'Milestone-Gated Delivery', toptal: 'No', turing: 'No', andela: 'No', kovil: 'Yes, client-approved phases' },
+  { label: 'Matching Speed', toptal: '1–2 weeks', turing: '24–48 hours (algorithm)', andela: '1–2 weeks', kovil: '48 hours, one match' },
+  { label: 'Trial Period', toptal: '14-day money-back', turing: 'No standard trial', andela: 'Limited', kovil: '2-week risk-free, keep work done' },
+]
+
 const painPoints = [
-  { title: 'Algorithm matching is not domain expertise matching', body: 'Turing\'s platform uses an AI algorithm to match engineers to job briefs based on skill tags, test scores, and profile data. This works for general software engineering roles where requirements are well-defined. For AI engineering — RAG pipelines, LLM fine-tuning, agent frameworks, production MLOps — the mismatch risk is high. An engineer who scores well on a coding assessment may have never shipped a production AI system. Kovil AI matches on project-track-record, not algorithm scores.' },
-  { title: 'No delivery management after the match', body: 'Turing\'s model stops at matching. Once you have a contractor, all delivery management — sprint planning, scope negotiation, code review oversight, performance management — is on you. For product teams building AI systems without a dedicated technical lead, this is a significant overhead. Kovil AI\'s Engagement Manager is accountable to the project from day one: they own milestones, escalation, and communication throughout.' },
-  { title: 'Test-based vetting does not capture applied AI depth', body: 'Turing\'s automated vetting screens for coding fundamentals and language proficiency. These are necessary conditions for a good engineer, but not sufficient for applied AI work. Building a production RAG system, fine-tuning an LLM, or architecting a multi-agent workflow requires judgment that comes from doing it in production, not from passing a timed test. Kovil AI\'s 150+ deployment history is the vetting bar.' },
-  { title: 'Time and materials billing with no outcome accountability', body: 'Turing is a time-and-materials marketplace. Hours are billed, outcomes are not guaranteed. If the project takes twice as long as estimated, the cost doubles and the accountability rests with you. Kovil AI\'s Engagement Manager actively manages scope and timeline. For teams that need a defined outcome by a defined date, fixed-price delivery is also available — a model Turing does not offer.' },
+  {
+    title: 'Algorithm matching is not domain expertise matching',
+    body: 'Turing\'s platform uses an AI algorithm to match engineers to job briefs based on skill tags, test scores, and profile data. This works for general software engineering roles where requirements are well-defined. For AI engineering — building LangGraph or CrewAI multi-agent orchestration systems, optimizing Pinecone or Qdrant vector databases, fine-tuning open-weight models like Llama 3 or Mistral, and tracking production experiments via LangSmith — the mismatch risk is high. An engineer who scores well on a coding assessment may have never shipped a production AI system. Kovil AI matches on project-track-record, not algorithm scores.',
+  },
+  {
+    title: 'No delivery management after the match',
+    body: 'Turing\'s model stops at matching. Once you have a contractor, all delivery management — sprint planning, scope negotiation, code review oversight, performance management — is on you. For product teams building AI systems without a dedicated technical lead, this is a significant overhead. Kovil AI\'s Engagement Manager is accountable to the project from day one: they own milestones, escalation, and communication throughout.',
+  },
+  {
+    title: 'Test-based vetting does not capture applied AI depth',
+    body: 'Turing\'s automated vetting screens for coding fundamentals and language proficiency. These are necessary conditions for a good engineer, but not sufficient for applied AI work. Building a production RAG pipeline with Pinecone or Qdrant, fine-tuning a Llama 3 or Mistral model, architecting a LangGraph multi-agent workflow, or instrumenting LangSmith for production observability requires judgment that comes from doing it in production, not from passing a timed coding test. Kovil AI\'s 150+ deployment history is the vetting bar.',
+  },
+  {
+    title: 'Time and materials billing with no outcome accountability',
+    body: 'Turing is a time-and-materials marketplace. Hours are billed, outcomes are not guaranteed. If the project takes twice as long as estimated, the cost doubles and the accountability rests with you. Kovil AI\'s Engagement Manager actively manages scope and timeline. For teams that need a defined outcome by a defined date, fixed-price delivery is also available — a model Turing does not offer.',
+  },
+]
+
+type RichFaq = { name: string; summary: string; bullets?: string[] }
+
+const visibleFaqs: RichFaq[] = [
+  {
+    name: 'Why consider a Turing alternative?',
+    summary: 'Kovil AI is the primary Turing alternative for teams building production-grade AI systems. Turing automates vetting through coding assessments and matches by algorithm score, not production AI track record. Kovil AI uses human judgment on real deployment history.',
+    bullets: [
+      'Human Matching: Kovil AI reviews your project brief and matches on real deployment history. Turing\'s algorithm scores test performance, not production AI experience.',
+      'Engagement Management included: A dedicated manager owns delivery oversight on every engagement. Turing has no equivalent role.',
+      'Domain-Specific AI Vetting: Engineers are matched through 150+ applied AI deployments, not automated coding assessments.',
+    ],
+  },
+  {
+    name: 'How is Kovil AI different from Turing?',
+    summary: 'Kovil AI is a managed AI engineering firm, not a marketplace. The structural differences are:',
+    bullets: [
+      'Human matching on real deployment history: Kovil AI maps your brief to project-track-record fit, covering LangGraph and CrewAI orchestration, Pinecone and Qdrant RAG, Llama 3 and Mistral fine-tuning, and LangSmith MLOps. Turing\'s algorithm uses test scores.',
+      'Engagement Manager included: every engagement has a dedicated manager for delivery, milestones, and escalation. Turing has no equivalent.',
+      'Fixed-price project delivery: Kovil AI offers outcome-based AI projects with milestone accountability. Turing is time-and-materials only.',
+      '2-week risk-free trial, no deposit: trial starts after a 30-minute scope call with no financial commitment.',
+    ],
+  },
+  {
+    name: 'What is an Engagement Manager and why does it matter?',
+    summary: 'An Engagement Manager is your single point of contact for the duration of the project. They own milestone tracking, scope management, communication, and escalation. Turing has no equivalent.',
+    bullets: [
+      'Without managed delivery, teams absorb all sprint planning, code review oversight, and performance management themselves — on top of their existing product and business responsibilities.',
+      'Kovil AI\'s Engagement Manager is accountable to the project from day one, surfacing issues before they become failures.',
+      'For AI projects where requirements evolve and integration complexity is high, a dedicated manager significantly reduces the chance of a failed delivery.',
+    ],
+  },
+  {
+    name: 'How quickly can Kovil AI match me with an AI engineer?',
+    summary: '48 hours from scope call to match. Turing claims similar matching speed using their algorithm, but the quality of a human-reviewed match, based on project-track-record fit, is meaningfully different from an algorithm score. Kovil AI presents one pre-vetted engineer. You either agree or we refine the profile.',
+  },
+  {
+    name: 'Does Kovil AI offer a trial period?',
+    summary: 'Yes. A 2-week risk-free trial with no deposit required. If it is not the right fit after the trial, you pay nothing and Kovil AI provides a free replacement or parts ways, zero termination fees. Turing offers a limited trial period, but without managed delivery oversight during that period.',
+  },
+  {
+    name: 'Can Kovil AI do fixed-price project delivery?',
+    summary: 'Yes. Kovil AI offers both AI Engineer Augmentation and Outcome-Based AI Projects, a fixed-price, milestone-gated delivery model where we scope, price, and own delivery of the entire project. Turing is staff augmentation only. Fixed-price delivery means you pay for outcomes, not hours.',
+  },
+  {
+    name: 'How are Kovil AI engineers vetted compared to Turing?',
+    summary: 'Turing vets engineers through automated coding assessments and algorithm-based screening. Kovil AI engineers are vetted through real project outcomes, 150+ AI deployments across legal tech, fintech, healthcare, retail, and logistics. Domain experience in production AI systems is the benchmark, not test scores.',
+  },
+  {
+    name: 'Who owns the code and IP built during the engagement?',
+    summary: 'You own 100% of everything built, including all code, models, data pipelines, and IP. Kovil AI retains no rights to any project output. This applies to both staff augmentation and fixed-price engagements.',
+  },
+  {
+    name: 'What happens if the engineer is not the right fit?',
+    summary: 'During the 2-week trial, if the engagement is not working, you pay nothing and Kovil AI provides a free replacement or parts ways. Your choice, zero termination fees. After the trial, if performance issues arise, the Engagement Manager resolves them directly. A free replacement is available at any point in the engagement.',
+  },
 ]
 
 const personas = [
-  { title: 'Teams who got a strong test-passer but a weak AI deployer', body: 'Algorithm-matched engineers often pass technical screens but lack the applied intuition that comes from building production AI systems. Teams that found this gap on Turing engagements switch to Kovil AI for project-track-record vetting.' },
-  { title: 'Product managers who cannot afford to manage delivery themselves', body: 'If your PM is running the engagement without a technical lead, a marketplace model puts delivery management on someone who is already context-switching across product, design, and stakeholder work. Kovil AI\'s Engagement Manager absorbs that overhead.' },
-  { title: 'Companies that need a fixed outcome, not an open-ended engagement', body: 'Turing\'s time-and-materials model creates cost and timeline unpredictability. Kovil AI\'s fixed-price project delivery scopes and prices the outcome upfront. You know what you are getting and when.' },
+  {
+    title: 'Finding That Algorithm-Matched Engineers Lack Production AI Experience',
+    body: 'Algorithm-matched engineers often pass technical screens but lack the applied intuition that comes from building production AI systems. Teams that found this gap on Turing engagements switch to Kovil AI for project-track-record vetting.',
+  },
+  {
+    title: 'Running AI Projects Without a Dedicated Engineering Manager or Tech Lead',
+    body: 'If your PM is running the engagement without a technical lead, a marketplace model puts delivery management on someone who is already context-switching across product, design, and stakeholder work. Kovil AI\'s Engagement Manager absorbs that overhead.',
+  },
+  {
+    title: 'Teams that need a fixed outcome, not an open-ended engagement',
+    body: 'Turing\'s time-and-materials model creates cost and timeline unpredictability. Kovil AI\'s fixed-price project delivery scopes and prices the outcome upfront. You know what you are getting and when.',
+  },
 ]
+
+// ── Page ─────────────────────────────────────────────────────────────────────
 
 export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <main className="pt-20">
@@ -90,7 +228,7 @@ export default function Page() {
                 Turing Alternative — Human-Matched AI Engineering, Engagement Manager Included
               </h1>
               <p className="text-[#A09A91] text-lg md:text-xl leading-relaxed mb-10 font-sans">
-                Turing uses an algorithm to match engineers and automated tests to vet them. Kovil AI uses human judgment — matching on real deployment history, assigning an Engagement Manager, and starting your 2-week trial with no deposit and no lock-in.
+                Turing uses an algorithm to match engineers and automated tests to vet them. Kovil AI uses human judgment, matching on real deployment history, assigning an Engagement Manager, and starting your 2-week trial with no deposit and no lock-in.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/book-a-call" className="inline-flex items-center justify-center gap-2 bg-[#FF4F00] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#e64600] transition-colors font-sans">
@@ -154,7 +292,7 @@ export default function Page() {
           </div>
         </section>
 
-        {/* Comparison table */}
+        {/* Kovil AI vs Turing 2-way comparison */}
         <section className="py-20 bg-[#FAF8F4]">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0A0A0A] mb-4">Kovil AI vs Turing — full comparison</h2>
@@ -251,6 +389,40 @@ export default function Page() {
           </div>
         </section>
 
+        {/* 4-way comparison: Toptal vs Turing vs Andela vs Kovil AI */}
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">Toptal vs Turing vs Andela vs Kovil AI</h2>
+            <p className="text-[#A09A91] font-sans text-lg leading-relaxed mb-10 max-w-3xl">
+              How the four most-compared AI engineering options stack up across service model, delivery accountability, and AI-domain depth.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full border border-[#1E1E1E] rounded-2xl overflow-hidden text-sm font-sans">
+                <thead>
+                  <tr className="bg-[#111111]">
+                    <th className="p-4 text-left text-[#A09A91] font-semibold w-1/5"></th>
+                    <th className="p-4 text-left text-[#A09A91] font-semibold">Toptal</th>
+                    <th className="p-4 text-left text-[#A09A91] font-semibold">Turing</th>
+                    <th className="p-4 text-left text-[#A09A91] font-semibold">Andela</th>
+                    <th className="p-4 text-left text-[#FF4F00] font-semibold">Kovil AI</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {fourWayRows.map((row, i) => (
+                    <tr key={i} className={i % 2 === 0 ? 'bg-[#0A0A0A]' : 'bg-[#111111]'}>
+                      <td className="p-4 font-semibold text-white border-t border-[#1E1E1E]">{row.label}</td>
+                      <td className="p-4 text-[#6B7280] border-t border-[#1E1E1E]">{row.toptal}</td>
+                      <td className="p-4 text-[#6B7280] border-t border-[#1E1E1E]">{row.turing}</td>
+                      <td className="p-4 text-[#6B7280] border-t border-[#1E1E1E]">{row.andela}</td>
+                      <td className="p-4 text-white font-semibold border-t border-[#1E1E1E]">{row.kovil}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
         {/* Case study callout */}
         <section className="py-20 bg-[#FAF8F4]">
           <div className="max-w-6xl mx-auto px-6">
@@ -260,7 +432,7 @@ export default function Page() {
                 <p className="text-[#FF4F00] text-xs font-semibold uppercase tracking-widest mb-3 font-sans">Case study — LegalTech</p>
                 <h3 className="font-display text-xl font-bold mb-4">Zero downtime after entire dev team departed</h3>
                 <p className="text-[#A09A91] font-sans leading-relaxed text-sm mb-6">
-                  A legal tech firm lost their entire engineering team. Kovil AI matched a senior AI engineer in 48 hours and stabilized three production applications in five days — maintaining 100% SLA for 200+ law firm users throughout.
+                  A legal tech firm lost their entire engineering team. Kovil AI matched a senior AI engineer in 48 hours and stabilized three production applications in five days, maintaining 100% SLA for 200+ law firm users throughout.
                 </p>
                 <Link href="/case-studies/legal-tech-maintenance" className="inline-flex items-center gap-2 text-white font-semibold hover:text-[#FF4F00] transition-colors font-sans text-sm">
                   Read the case study <ArrowRight className="w-4 h-4" />
@@ -270,7 +442,7 @@ export default function Page() {
                 <p className="text-[#FF4F00] text-xs font-semibold uppercase tracking-widest mb-3 font-sans">Case study — FinTech</p>
                 <h3 className="font-display text-xl font-bold mb-4">Payment dashboard shipped in 18 days</h3>
                 <p className="text-[#A09A91] font-sans leading-relaxed text-sm mb-6">
-                  A FinTech startup needed a production-ready payment dashboard built to a hard deadline. Kovil AI scoped, staffed, and delivered under a fixed-price engagement — live in 18 days with zero scope overrun.
+                  A FinTech startup needed a production-ready payment dashboard built to a hard deadline. Kovil AI scoped, staffed, and delivered under a fixed-price engagement, live in 18 days with zero scope overrun.
                 </p>
                 <Link href="/case-studies/fintech-payment-dashboard" className="inline-flex items-center gap-2 text-white font-semibold hover:text-[#FF4F00] transition-colors font-sans text-sm">
                   Read the case study <ArrowRight className="w-4 h-4" />
@@ -280,15 +452,25 @@ export default function Page() {
           </div>
         </section>
 
-        {/* FAQ */}
+        {/* FAQ — Answer-First + Bulleted Evidence for top 3 */}
         <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0A0A0A] mb-12">Frequently asked questions</h2>
             <div className="divide-y divide-[#E5E2D9] max-w-3xl">
-              {faqSchema.mainEntity.map((faq, i) => (
+              {visibleFaqs.map((faq, i) => (
                 <div key={i} className="py-8">
                   <h3 className="font-display text-lg font-bold text-[#0A0A0A] mb-3">{faq.name}</h3>
-                  <p className="text-[#6B7280] font-sans leading-relaxed">{faq.acceptedAnswer.text}</p>
+                  <p className="text-[#6B7280] font-sans leading-relaxed mb-4">{faq.summary}</p>
+                  {faq.bullets && (
+                    <ul className="space-y-2">
+                      {faq.bullets.map((bullet, j) => (
+                        <li key={j} className="flex gap-3 items-start">
+                          <CheckCircle2 className="w-4 h-4 text-[#FF4F00] flex-shrink-0 mt-0.5" />
+                          <span className="text-[#4B4B4B] font-sans text-sm leading-relaxed">{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               ))}
             </div>
