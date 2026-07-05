@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AutomotiveAgentforcePage from '@/src/pages/agentforce/industries/AutomotiveAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Automotive | Kovil AI',
+  title: 'Agentforce for Automotive',
   description: 'Production Agentforce for automotive OEMs, dealer groups, and fleet operators — dealer lead qualification, vehicle financing agents, service booking automation, recall management, and customer retention. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/automotive' },
   keywords: [

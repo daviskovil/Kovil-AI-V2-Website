@@ -7,7 +7,7 @@ const G_RED = '#EA4335'
 const G_GREEN = '#34A853'
 
 export const metadata: Metadata = {
-  title: 'Vertex AI Data & Analytics Agents — BigQuery, Document AI, Enterprise Search | Kovil AI',
+  title: 'Vertex AI Data & Analytics Agents — BigQuery, Document AI, Enterprise Search',
   description: 'Data and analytics AI agents on Vertex AI — BigQuery intelligent agents, Document AI pipelines, and enterprise search agents. Fixed-price production deployments on Google Cloud.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/data-analytics' },
   keywords: ['vertex ai bigquery agent', 'bigquery intelligent agent', 'vertex ai document ai pipeline', 'google cloud enterprise search agent', 'vertex ai data analytics', 'bigquery ml gemini', 'vertex ai search agent', 'document ai vertex ai', 'google cloud data ai agents'],

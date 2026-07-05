@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import OmnichannelEngagementAgentPage from '@/src/pages/azure-ai-foundry/customer-experience/OmnichannelEngagementAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Omnichannel Engagement Agent — Teams, Web & Email on Azure | Kovil AI',
+  title: 'Omnichannel Engagement Agent — Teams, Web & Email on Azure',
   description: 'Unified AI engagement agent across Teams, web chat, and email built on Azure AI Foundry. Consistent brand voice, live Dynamics 365 context, zero conversation loss on channel handoff.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/customer-experience/omnichannel-engagement-agent' },
   keywords: ['omnichannel AI agent Azure', 'Azure AI Teams chatbot', 'Copilot Studio omnichannel', 'Dynamics 365 AI agent', 'Azure Communication Services AI', 'unified customer engagement AI', 'Azure AI Foundry omnichannel', 'multi-channel AI Azure', 'Teams web email AI agent', 'Azure Service Bus messaging AI', 'customer engagement automation', 'omnichannel bot Azure', 'brand voice AI Azure', 'Microsoft Teams AI agent', 'Kovil AI Azure', 'omnichannel customer service'],

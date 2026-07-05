@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CreativeBriefPage from '@/src/pages/ai-workflow-automation-library/CreativeBriefPage'
 
 export const metadata: Metadata = {
-  title: 'AI Creative Brief Generator — GPT-4o Workflow | Kovil AI',
+  title: 'AI Creative Brief Generator — GPT-4o Workflow',
   description: 'See how Kovil AI automates creative brief generation: Typeform intake → Notion brand context → GPT-4o writes the brief → Slack approval gate → Gmail delivery. Under 45 seconds, zero copy-paste.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/ai-creative-brief-generator' },
   robots: { index: true, follow: true },

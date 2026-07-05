@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = getHireRole(role)
   if (!data) return {}
   return {
-    title: `${data.metaTitle} | Kovil AI`,
+    title: data.metaTitle,
     description: data.metaDescription,
     keywords: data.keywords,
     openGraph: {

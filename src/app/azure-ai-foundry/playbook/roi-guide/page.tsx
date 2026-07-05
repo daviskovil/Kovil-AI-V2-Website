@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureROIGuidePage from '@/src/pages/azure-ai-foundry/playbook/AzureROIGuidePage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry ROI Guide: How to Build a Business Case That Holds Up | Kovil AI',
+  title: 'Azure AI Foundry ROI Guide: How to Build a Business Case That Holds Up',
   description: 'How to build a defensible Azure AI ROI model. The 4 ROI levers, calculation methodology with worked example, realistic timelines, failure modes, and executive buy-in template.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/playbook/roi-guide' },
   keywords: ['Azure AI ROI', 'AI business case', 'Azure AI Foundry ROI', 'AI ROI calculation', 'enterprise AI ROI', 'Azure AI payback period', 'AI automation ROI', 'Azure AI business case template', 'AI ROI methodology', 'Azure OpenAI ROI', 'AI agent ROI', 'AI investment return', 'Azure AI value', 'AI cost benefit analysis', 'Kovil AI Azure playbook', 'enterprise AI business case'],

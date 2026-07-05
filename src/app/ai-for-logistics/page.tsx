@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { ArrowRight, MapPin, BarChart2, Truck, Activity, Package, FileText } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'AI for Logistics | Supply Chain AI & Route Optimization | Kovil AI',
+  title: 'AI for Logistics | Supply Chain AI & Route Optimization',
   description: 'AI development for logistics, supply chain, and transportation. Route optimization, demand forecasting, carrier selection, supply chain visibility, warehouse automation, and documentation AI. $2M seed round secured on logistics MVP.',
   keywords: ['AI for logistics', 'supply chain AI', 'route optimization AI', 'logistics AI development', 'demand forecasting logistics', 'warehouse automation AI', 'freight AI'],
   openGraph: {

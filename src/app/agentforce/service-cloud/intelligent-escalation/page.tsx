@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import IntelligentEscalationPage from '@/src/pages/agentforce/service-cloud/IntelligentEscalationPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Intelligent Escalation — AI-Powered Case Routing & Context Pre-loading | Kovil AI',
+  title: 'Agentforce Intelligent Escalation — AI-Powered Case Routing & Context Pre-loading',
   description: 'Agentforce escalation agent that detects complexity, SLA risk, and sentiment — routing every case to the right human agent with full context pre-loaded and zero re-explanation needed.',
   alternates: { canonical: 'https://kovil.ai/agentforce/service-cloud/intelligent-escalation' },
   keywords: [

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import MultiChannelInboundPage from '@/src/pages/ai-workflow-automation-library/MultiChannelInboundPage'
 
 export const metadata: Metadata = {
-  title: 'Multi-Channel Inbound Dispatching — AI Workflow | Kovil AI',
+  title: 'Multi-Channel Inbound Dispatching — AI Workflow',
   description: 'See how Kovil AI builds a unified AI dispatcher: Instagram DMs, WhatsApp, and email piped into GPT-4o → intent classified → FAQs auto-answered → leads qualified → meetings booked into Calendly automatically.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/multi-channel-inbound-dispatching' },
   robots: { index: true, follow: true },

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import FinancialServicesAgentforcePage from '@/src/pages/agentforce/industries/FinancialServicesAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Financial Services & Banking | Kovil AI',
+  title: 'Agentforce for Financial Services & Banking',
   description: 'Production Agentforce implementations for banks, lenders, and wealth managers — KYC onboarding automation, loan servicing case resolution, compliance monitoring agents, and investment advisory support. Financial Services Cloud · Einstein Trust Layer · Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/financial-services' },
   keywords: [

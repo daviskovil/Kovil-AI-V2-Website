@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AICustomerServiceAgentPage from '@/src/pages/azure-ai-foundry/customer-experience/AICustomerServiceAgentPage'
 
 export const metadata: Metadata = {
-  title: 'AI Customer Service Agent — Resolve 70% of Queries on Azure | Kovil AI',
+  title: 'AI Customer Service Agent — Resolve 70% of Queries on Azure',
   description: 'Azure AI Foundry customer service agent that autonomously resolves 70%+ of support queries using GPT-4o, Azure AI Search, and Copilot Studio — deployed in Teams and web chat.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/customer-experience/ai-customer-service-agent' },
   keywords: ['Azure AI customer service', 'AI support agent Azure', 'Azure OpenAI customer service', 'Copilot Studio customer support', 'Azure AI Foundry support agent', 'autonomous customer service AI', 'GPT-4o support agent', 'Azure AI Search customer service', 'customer service automation Azure', 'AI contact centre Azure', 'Microsoft AI customer service', 'Teams customer service bot', 'Azure customer support automation', 'AI self-service portal', 'Kovil AI Azure', 'customer service AI agent'],

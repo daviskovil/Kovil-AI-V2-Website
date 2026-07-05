@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import PersonalisedRecommendationAgentPage from '@/src/pages/azure-ai-foundry/customer-experience/PersonalisedRecommendationAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Personalised Recommendation Agent — Azure OpenAI Embeddings & Vector Search | Kovil AI',
+  title: 'Personalised Recommendation Agent — Azure OpenAI Embeddings & Vector Search',
   description: 'Real-time personalisation agent built on Azure OpenAI embeddings and Azure AI Search vector search. Increases conversion by 28% and average order value by 19%.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/customer-experience/personalised-recommendation-agent' },
   keywords: ['Azure AI recommendation engine', 'personalisation AI Azure', 'Azure OpenAI embeddings recommendations', 'Azure AI Search vector recommendations', 'real-time personalisation Azure', 'e-commerce AI recommendations', 'Azure AI Foundry recommendations', 'semantic product recommendations', 'AI recommendation system Azure', 'vector search recommendations', 'Azure Cosmos DB recommendations', 'personalisation engine Azure', 'product recommendation AI', 'Azure Event Hubs personalisation', 'Kovil AI Azure', 'recommendation agent Azure'],

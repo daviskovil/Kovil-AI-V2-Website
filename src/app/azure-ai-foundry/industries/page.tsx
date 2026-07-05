@@ -5,7 +5,7 @@ import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 const AZURE = '#0078D4'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry by Industry — Financial Services, Healthcare & More | Kovil AI',
+  title: 'Azure AI Foundry by Industry — Financial Services, Healthcare & More',
   description: 'Industry-specific Azure AI Foundry implementations — financial services, healthcare, insurance, legal, manufacturing, and retail. Fixed-price production deployments.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/industries' },
   keywords: ['azure ai foundry financial services', 'azure ai healthcare', 'azure ai insurance', 'azure ai legal', 'azure ai manufacturing', 'azure ai retail', 'azure openai industry', 'azure ai foundry industry', 'azure ai banking', 'azure ai life sciences'],

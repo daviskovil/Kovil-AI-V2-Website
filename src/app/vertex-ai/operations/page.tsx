@@ -7,7 +7,7 @@ const G_RED = '#EA4335'
 const G_GREEN = '#34A853'
 
 export const metadata: Metadata = {
-  title: 'Vertex AI Operations Intelligence Agents — Supply Chain, Predictive Analytics & Quality Control | Kovil AI',
+  title: 'Vertex AI Operations Intelligence Agents — Supply Chain, Predictive Analytics & Quality Control',
   description: 'Operations intelligence agents on Vertex AI — supply chain intelligence, predictive analytics, and computer vision quality control. Fixed-price Google Cloud production deployments.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/operations' },
   keywords: ['vertex ai supply chain intelligence', 'vertex ai predictive analytics agent', 'vertex ai quality control vision', 'google cloud operations ai', 'vertex ai computer vision', 'bigquery predictive analytics', 'vertex ai operations agent', 'google cloud supply chain ai', 'vertex ai vision ai quality'],

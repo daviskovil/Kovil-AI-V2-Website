@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AgentforceServicesHubPage from '@/src/pages/agentforce/services/AgentforceServicesHubPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Implementation Services — Strategy, Design, Deployment & Integration | Kovil AI',
+  title: 'Agentforce Implementation Services — Strategy, Design, Deployment & Integration',
   description: 'Fixed-price Agentforce implementation services — strategy & readiness, agent design & configuration, Sales Cloud deployment, Service Cloud deployment, MuleSoft integration, and rescue & optimisation.',
   alternates: { canonical: 'https://kovil.ai/agentforce/services' },
   keywords: [

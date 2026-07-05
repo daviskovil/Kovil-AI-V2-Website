@@ -7,7 +7,7 @@ const G_RED = '#EA4335'
 const G_GREEN = '#34A853'
 
 export const metadata: Metadata = {
-  title: 'Vertex AI Customer Experience Agents — Conversational AI, Personalisation & Contact Centre | Kovil AI',
+  title: 'Vertex AI Customer Experience Agents — Conversational AI, Personalisation & Contact Centre',
   description: 'Customer experience AI agents on Vertex AI — conversational AI agents, personalisation engines, and contact centre AI. Resolve 70%+ of queries autonomously. Fixed-price Google Cloud deployments.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/customer-experience' },
   keywords: ['vertex ai conversational agent', 'vertex ai personalisation engine', 'google cloud contact centre ai', 'vertex ai customer experience', 'dialogflow cx vertex ai', 'gemini customer service agent', 'google cloud cx agent', 'vertex ai recommendation engine', 'google ccai vertex ai'],

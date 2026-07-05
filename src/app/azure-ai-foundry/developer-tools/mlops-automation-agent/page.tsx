@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import MLOpsAutomationAgentPage from '@/src/pages/azure-ai-foundry/developer-tools/MLOpsAutomationAgentPage'
 
 export const metadata: Metadata = {
-  title: 'MLOps Automation Agent — Azure Prompt Flow & Model Monitoring | Kovil AI',
+  title: 'MLOps Automation Agent — Azure Prompt Flow & Model Monitoring',
   description: 'AI agent that automates prompt evaluation, deployment gating, and drift detection using Azure Prompt Flow and Azure Machine Learning. Ship AI faster with zero-regression CI/CD.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/developer-tools/mlops-automation-agent' },
   keywords: ['MLOps automation Azure', 'Azure Prompt Flow MLOps', 'Azure Machine Learning automation', 'AI deployment gating Azure', 'prompt evaluation automation', 'model drift detection Azure', 'Azure AI Foundry MLOps', 'LLMOps Azure', 'AI CI/CD Azure DevOps', 'Azure ML pipeline automation', 'AI model monitoring Azure', 'prompt regression testing', 'Azure AI evaluation automation', 'LLM deployment Azure', 'Kovil AI Azure', 'MLOps developer tools Azure'],

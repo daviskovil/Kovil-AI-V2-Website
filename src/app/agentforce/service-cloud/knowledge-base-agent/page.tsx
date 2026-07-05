@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import KnowledgeBaseAgentPage from '@/src/pages/agentforce/service-cloud/KnowledgeBaseAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Knowledge Base Agent — AI-Powered Article Surfacing & Gap Detection | Kovil AI',
+  title: 'Agentforce Knowledge Base Agent — AI-Powered Article Surfacing & Gap Detection',
   description: 'Agentforce knowledge agent that surfaces relevant articles during case resolution, detects documentation gaps from unresolved cases, and drafts new articles from resolved case patterns.',
   alternates: { canonical: 'https://kovil.ai/agentforce/service-cloud/knowledge-base-agent' },
   keywords: [

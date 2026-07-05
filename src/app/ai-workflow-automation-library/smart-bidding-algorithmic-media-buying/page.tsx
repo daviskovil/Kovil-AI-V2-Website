@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import SmartBiddingPage from '@/src/pages/ai-workflow-automation-library/SmartBiddingPage'
 
 export const metadata: Metadata = {
-  title: 'Smart Bidding & Algorithmic Media Buying | Kovil AI',
+  title: 'Smart Bidding & Algorithmic Media Buying',
   description: 'See how Kovil AI builds a smart bidding system: deep-funnel conversion events → Meta + Google algorithm training → n8n pulls CPA data every 4 hours → GPT-4o anomaly alerts → Looker Studio dashboard. Average ROAS improvement +40%.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/smart-bidding-algorithmic-media-buying' },
   robots: { index: true, follow: true },

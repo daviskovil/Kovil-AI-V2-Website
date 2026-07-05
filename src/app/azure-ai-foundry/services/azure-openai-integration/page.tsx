@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureOpenAIIntegrationPage from '@/src/pages/azure-ai-foundry/services/AzureOpenAIIntegrationPage'
 
 export const metadata: Metadata = {
-  title: 'Azure OpenAI Integration | Kovil AI Azure AI Foundry',
+  title: 'Azure OpenAI Integration — Azure AI Foundry',
   description: 'Enterprise Azure OpenAI integration with Managed Identity, Private Endpoints, Content Safety, and token cost monitoring. Production-ready in 14 days.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/services/azure-openai-integration' },
   keywords: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Azure OpenAI Integration | Kovil AI Azure AI Foundry',
+    title: 'Azure OpenAI Integration — Azure AI Foundry',
     description: 'Enterprise Azure OpenAI integration with Managed Identity, Private Endpoints, Content Safety, and token cost monitoring. Production-ready in 14 days.',
     url: 'https://kovil.ai/azure-ai-foundry/services/azure-openai-integration',
     siteName: 'Kovil AI',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Azure OpenAI Integration | Kovil AI Azure AI Foundry',
+    title: 'Azure OpenAI Integration — Azure AI Foundry',
     description: 'Enterprise Azure OpenAI integration with Managed Identity, Private Endpoints, Content Safety, and token cost monitoring. Production-ready in 14 days.',
     images: ['https://kovil.ai/og-azure-ai-foundry.png'],
   },

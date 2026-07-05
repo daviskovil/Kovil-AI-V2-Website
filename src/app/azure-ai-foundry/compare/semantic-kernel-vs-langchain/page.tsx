@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import SemanticKernelVsLangChainPage from '@/src/pages/azure-ai-foundry/compare/SemanticKernelVsLangChainPage'
 
 export const metadata: Metadata = {
-  title: 'Semantic Kernel vs LangChain — Enterprise AI Framework Comparison | Kovil AI',
+  title: 'Semantic Kernel vs LangChain — Enterprise AI Framework Comparison',
   description: 'Semantic Kernel vs LangChain: which AI orchestration framework is right for enterprise? Azure-native vs Python-native, Managed Identity, enterprise support, and real-world architecture guidance.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/compare/semantic-kernel-vs-langchain' },
   keywords: ['Semantic Kernel vs LangChain', 'Semantic Kernel enterprise', 'LangChain enterprise comparison', 'AI orchestration framework enterprise', 'Semantic Kernel Azure', 'LangChain Azure OpenAI', 'Managed Identity LangChain', 'Semantic Kernel .NET', 'LangGraph vs Semantic Kernel', 'AI agent orchestration SDK', 'Azure AI Foundry framework', 'Kovil AI Semantic Kernel'],

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureAIFoundryStrategyReadinessPage from '@/src/pages/azure-ai-foundry/services/AzureAIFoundryStrategyReadinessPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry Strategy & Readiness | Kovil AI Azure AI Foundry',
+  title: 'Azure AI Foundry Strategy & Readiness — Azure AI Foundry',
   description: 'Azure AI Foundry readiness assessment and AI strategy consulting. Audit your Azure environment, map highest-ROI opportunities, and receive a production-ready architecture blueprint in 10 days.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/services/azure-ai-foundry-strategy-readiness' },
   keywords: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Azure AI Foundry Strategy & Readiness | Kovil AI Azure AI Foundry',
+    title: 'Azure AI Foundry Strategy & Readiness — Azure AI Foundry',
     description: 'Azure AI Foundry readiness assessment and AI strategy consulting. Audit your Azure environment, map highest-ROI opportunities, and receive a production-ready architecture blueprint in 10 days.',
     url: 'https://kovil.ai/azure-ai-foundry/services/azure-ai-foundry-strategy-readiness',
     siteName: 'Kovil AI',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Azure AI Foundry Strategy & Readiness | Kovil AI Azure AI Foundry',
+    title: 'Azure AI Foundry Strategy & Readiness — Azure AI Foundry',
     description: 'Azure AI Foundry readiness assessment and AI strategy consulting. Audit your Azure environment, map highest-ROI opportunities, and receive a production-ready architecture blueprint in 10 days.',
     images: ['https://kovil.ai/og-azure-ai-foundry.png'],
   },

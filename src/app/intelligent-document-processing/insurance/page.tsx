@@ -3,10 +3,13 @@ import InsurancePage from '@/src/pages/idp/InsurancePage'
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Insurance Claims Processing Automation & IDP | Kovil AI',
-  description: 'Production IDP pipelines for insurance — claims processing automation, FNOL data extraction, medical bill parsing, prior authorisation, and underwriting document processing. HIPAA · SOC 2 · Fixed-price sprints, 2–4 weeks.',
+  title: 'Insurance Document Automation & Claims Processing IDP',
+  description: 'Insurance document automation built for production — claims processing, FNOL data extraction, medical bill parsing, prior authorisation, and underwriting document processing. HIPAA · SOC 2 · Fixed-price sprints, 2–4 weeks.',
   alternates: { canonical: 'https://kovil.ai/intelligent-document-processing/insurance' },
   keywords: [
+    'insurance document automation',
+    'document automation for insurance',
+    'health insurance document automation',
     'insurance claims processing automation',
     'insurance document processing',
     'FNOL automation',
@@ -30,16 +33,16 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Insurance Claims Processing Automation & IDP | Kovil AI',
-    description: 'Production IDP pipelines for insurance — claims processing automation, FNOL extraction, medical bill parsing, prior authorisation, and fraud detection. HIPAA · SOC 2 · Fixed-price sprints.',
+    title: 'Insurance Document Automation & Claims Processing IDP | Kovil AI',
+    description: 'Insurance document automation in production — claims processing, FNOL extraction, medical bill parsing, prior authorisation, and fraud detection. HIPAA · SOC 2 · Fixed-price sprints.',
     url: 'https://kovil.ai/intelligent-document-processing/insurance',
     siteName: 'Kovil AI',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Insurance Claims Processing Automation & IDP — Kovil AI' }],
+    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Insurance Document Automation & Claims Processing IDP — Kovil AI' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Insurance Claims Processing Automation & IDP | Kovil AI',
-    description: 'Claims processing automation, FNOL extraction, prior authorisation, and insurance fraud detection. Fixed-price sprints for insurers.',
+    title: 'Insurance Document Automation & Claims Processing IDP | Kovil AI',
+    description: 'Insurance document automation — claims processing, FNOL extraction, prior authorisation, and fraud detection. Fixed-price sprints for insurers.',
     images: ['https://kovil.ai/og-image.png'],
   },
 }
@@ -48,8 +51,8 @@ export const metadata: Metadata = {
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Insurance Claims Processing Automation & IDP',
-  description: 'Kovil AI designs, builds, and deploys production Intelligent Document Processing (IDP) pipelines for insurance — covering claims processing automation, FNOL data extraction, medical bill parsing, repair estimate processing, prior authorisation automation, underwriting document processing, and insurance fraud detection.',
+  name: 'Insurance Document Automation & Claims Processing IDP',
+  description: 'Kovil AI designs, builds, and deploys production insurance document automation and Intelligent Document Processing (IDP) pipelines — covering claims processing automation, FNOL data extraction, medical bill parsing, repair estimate processing, prior authorisation automation, underwriting document processing, and insurance fraud detection.',
   datePublished: '2026-06-17',
   dateModified: '2026-06-17',
   provider: {
@@ -189,8 +192,8 @@ const breadcrumbSchema = {
 const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'Insurance Claims Processing Automation & IDP | Kovil AI',
-  description: 'Production IDP pipelines for insurance — claims processing automation, FNOL data extraction, medical bill parsing, prior authorisation, and underwriting document processing.',
+  name: 'Insurance Document Automation & Claims Processing IDP | Kovil AI',
+  description: 'Insurance document automation and production IDP pipelines — claims processing automation, FNOL data extraction, medical bill parsing, prior authorisation, and underwriting document processing.',
   url: 'https://kovil.ai/intelligent-document-processing/insurance',
   datePublished: '2026-06-17',
   dateModified: '2026-06-17',

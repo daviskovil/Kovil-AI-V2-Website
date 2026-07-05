@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'OpenAI Integration | GPT-4 API Integration Experts | Kovil AI',
+  title: 'OpenAI Integration | GPT-4 API Integration Experts',
   description: 'Kovil AI integrates OpenAI GPT-4, embeddings, DALL-E, and Whisper into production applications. Streaming, fine-tuning, assistants API. Fixed-price delivery.',
   keywords: ['OpenAI integration', 'GPT-4 API integration', 'OpenAI developer', 'ChatGPT API integration', 'OpenAI API service'],
   openGraph: {

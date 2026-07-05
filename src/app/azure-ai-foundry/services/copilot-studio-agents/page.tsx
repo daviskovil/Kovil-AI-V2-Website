@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CopilotStudioAgentsPage from '@/src/pages/azure-ai-foundry/services/CopilotStudioAgentsPage'
 
 export const metadata: Metadata = {
-  title: 'Copilot Studio Agents | Kovil AI Azure AI Foundry',
+  title: 'Copilot Studio Agents — Azure AI Foundry',
   description: 'Build and deploy Microsoft Copilot Studio agents inside Microsoft Teams, grounded in Azure AI Search, SharePoint, and Dynamics 365. Live in 14 days.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/services/copilot-studio-agents' },
   keywords: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Copilot Studio Agents | Kovil AI Azure AI Foundry',
+    title: 'Copilot Studio Agents — Azure AI Foundry',
     description: 'Build and deploy Microsoft Copilot Studio agents inside Microsoft Teams, grounded in Azure AI Search, SharePoint, and Dynamics 365. Live in 14 days.',
     url: 'https://kovil.ai/azure-ai-foundry/services/copilot-studio-agents',
     siteName: 'Kovil AI',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Copilot Studio Agents | Kovil AI Azure AI Foundry',
+    title: 'Copilot Studio Agents — Azure AI Foundry',
     description: 'Build and deploy Microsoft Copilot Studio agents inside Microsoft Teams, grounded in Azure AI Search, SharePoint, and Dynamics 365. Live in 14 days.',
     images: ['https://kovil.ai/og-azure-ai-foundry.png'],
   },

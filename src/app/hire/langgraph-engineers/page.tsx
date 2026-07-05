@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import LangGraphEngineersPage from '@/src/pages/hire/LangGraphEngineersPage'
 
 export const metadata: Metadata = {
-  title: 'Hire LangGraph Engineers — Stateful Agent Graphs, Matched in 48 Hours | Kovil AI',
+  title: 'Hire LangGraph Engineers — Stateful Agent Graphs, Matched in 48 Hours',
   description: 'Hire vetted LangGraph engineers embedded in your team in 48 hours. Stateful agent graphs, RAG pipelines, multi-agent orchestration, human-in-the-loop workflows. 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/hire/langgraph-engineers' },
   keywords: [

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import NLPEngineersPage from '@/src/pages/hire/NLPEngineersPage'
 
 export const metadata: Metadata = {
-  title: 'Hire an NLP Engineer — Matched in 48 Hours | Kovil AI',
+  title: 'Hire an NLP Engineer — Matched in 48 Hours',
   description: 'Hire a vetted NLP engineer in 48 hours. Sentiment analysis, NER, text classification, document intelligence, conversational AI. Engagement Manager oversight, 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/hire/nlp-engineers' },
   keywords: [

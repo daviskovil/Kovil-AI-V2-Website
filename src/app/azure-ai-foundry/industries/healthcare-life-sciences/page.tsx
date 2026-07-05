@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import HealthcareAzurePage from '@/src/pages/azure-ai-foundry/industries/HealthcareAzurePage'
 
 export const metadata: Metadata = {
-  title: 'AI Agents for Healthcare & Life Sciences — HIPAA-Ready Azure AI | Kovil AI',
+  title: 'AI Agents for Healthcare & Life Sciences — HIPAA-Ready Azure AI',
   description: 'HIPAA-aligned AI agents for healthcare built on Azure. Automate prior authorisation, clinical documentation, EHR data extraction, patient intake, and discharge planning. Azure Health Data Services.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/industries/healthcare-life-sciences' },
   keywords: ['AI agents healthcare Azure', 'HIPAA AI Azure', 'prior authorisation automation AI', 'clinical documentation AI Azure', 'EHR data extraction Azure', 'Azure Health Data Services AI', 'patient intake automation Azure', 'healthcare AI compliance', 'Azure OpenAI healthcare', 'FHIR AI integration', 'Azure AI Document Intelligence healthcare', 'discharge planning AI', 'clinical trial matching AI', 'Kovil AI healthcare', 'Azure AI Foundry healthcare'],

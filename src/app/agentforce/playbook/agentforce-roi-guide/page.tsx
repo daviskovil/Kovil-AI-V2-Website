@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AgentforceROIGuidePage from '@/src/pages/agentforce/playbook/AgentforceROIGuidePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce ROI Guide: How to Build the Business Case | Kovil AI',
+  title: 'Agentforce ROI Guide: How to Build the Business Case',
   description:
     'Complete Agentforce ROI guide — cost savings model, revenue uplift calculation, time-to-ROI analysis, and real deployment numbers. Build a board-ready Agentforce business case with proven frameworks.',
   alternates: { canonical: 'https://kovil.ai/agentforce/playbook/agentforce-roi-guide' },

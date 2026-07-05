@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureAISearchRAGPage from '@/src/pages/azure-ai-foundry/services/AzureAISearchRAGPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Search & RAG Pipeline | Kovil AI Azure AI Foundry',
+  title: 'Azure AI Search & RAG Pipeline — Azure AI Foundry',
   description: 'Build a production-grade RAG pipeline on Azure AI Search with vector + hybrid search, semantic ranking, Entra ID access control, and hallucination guardrails. Delivered in 14 days.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/services/azure-ai-search-rag' },
   keywords: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Azure AI Search & RAG Pipeline | Kovil AI Azure AI Foundry',
+    title: 'Azure AI Search & RAG Pipeline — Azure AI Foundry',
     description: 'Build a production-grade RAG pipeline on Azure AI Search with vector + hybrid search, semantic ranking, Entra ID access control, and hallucination guardrails. Delivered in 14 days.',
     url: 'https://kovil.ai/azure-ai-foundry/services/azure-ai-search-rag',
     siteName: 'Kovil AI',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Azure AI Search & RAG Pipeline | Kovil AI Azure AI Foundry',
+    title: 'Azure AI Search & RAG Pipeline — Azure AI Foundry',
     description: 'Build a production-grade RAG pipeline on Azure AI Search with vector + hybrid search, semantic ranking, Entra ID access control, and hallucination guardrails. Delivered in 14 days.',
     images: ['https://kovil.ai/og-azure-ai-foundry.png'],
   },

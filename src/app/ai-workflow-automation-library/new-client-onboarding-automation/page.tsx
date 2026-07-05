@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import ClientOnboardingPage from '@/src/pages/ai-workflow-automation-library/ClientOnboardingPage'
 
 export const metadata: Metadata = {
-  title: 'Client Onboarding Automation — HubSpot + n8n | Kovil AI',
+  title: 'Client Onboarding Automation — HubSpot + n8n',
   description: 'Deal Won in HubSpot triggers DocuSign, Stripe invoice, onboarding form, Notion workspace, Slack channel and Calendly kickoff — all automatically. 3 days → 2 hours.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/new-client-onboarding-automation' },
   robots: { index: true, follow: true },

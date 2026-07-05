@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import ManufacturingAzurePage from '@/src/pages/azure-ai-foundry/industries/ManufacturingAzurePage'
 
 export const metadata: Metadata = {
-  title: 'AI Agents for Manufacturing & Supply Chain — Azure IoT & ML | Kovil AI',
+  title: 'AI Agents for Manufacturing & Supply Chain — Azure IoT & ML',
   description: 'AI agents for manufacturing built on Azure. Predictive maintenance, quality control vision, supply chain intelligence, and production scheduling. Azure IoT Hub, Azure ML, and Azure Digital Twins.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/industries/manufacturing-supply-chain' },
   keywords: ['AI agents manufacturing Azure', 'predictive maintenance Azure AI', 'quality control AI Azure', 'supply chain intelligence Azure', 'Azure IoT Hub AI', 'Azure Digital Twins manufacturing', 'Azure Machine Learning predictive maintenance', 'production scheduling AI Azure', 'equipment anomaly detection Azure', 'supplier risk monitoring AI', 'Azure AI Vision quality control', 'manufacturing AI automation', 'Kovil AI manufacturing', 'Azure AI Foundry manufacturing', 'industrial AI Azure'],

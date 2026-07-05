@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Dedicated AI Development Team | Pre-Formed AI Engineering Pod | Kovil AI',
+  title: 'Dedicated AI Development Team | Pre-Formed AI Engineering Pod',
   description: 'Hire a dedicated AI development team from Kovil AI: AI tech lead, engineers, and QA assigned exclusively to your project. Faster than building in-house. Cohesive from day one.',
   keywords: ['dedicated AI development team', 'dedicated AI team', 'dedicated AI engineering team', 'hire AI team', 'AI development team', 'AI team as a service', 'AI pod for hire', 'dedicated AI developers'],
   openGraph: {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import InternalOperationsHubPage from '@/src/pages/agentforce/internal-operations/InternalOperationsHubPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Internal Operations — HR, Finance & IT Agents | Kovil AI',
+  title: 'Agentforce for Internal Operations — HR, Finance & IT Agents',
   description: 'Production Agentforce internal operations agents — HR onboarding automation, finance approval routing, and IT helpdesk resolution. Deployed inside Salesforce with Einstein Trust Layer. Fixed-price 2–3 week sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/internal-operations' },
   keywords: [

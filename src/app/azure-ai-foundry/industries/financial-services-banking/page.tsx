@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import FinancialServicesAzurePage from '@/src/pages/azure-ai-foundry/industries/FinancialServicesAzurePage'
 
 export const metadata: Metadata = {
-  title: 'AI Agents for Financial Services & Banking — Azure AI Foundry | Kovil AI',
+  title: 'AI Agents for Financial Services & Banking — Azure AI Foundry',
   description: 'AI agents for financial services built on Azure. Automate KYC/AML document processing, fraud detection, regulatory compliance monitoring, and loan underwriting. Full audit trail. Entra ID governance.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/industries/financial-services-banking' },
   keywords: ['AI agents financial services Azure', 'Azure AI banking automation', 'KYC AML automation Azure', 'fraud detection Azure AI', 'regulatory compliance AI Azure', 'loan underwriting automation Azure', 'trade surveillance AI', 'Azure OpenAI financial services', 'Azure AI Document Intelligence banking', 'financial services AI compliance', 'Azure AI Foundry banking', 'Kovil AI financial services', 'credit underwriting AI Azure', 'AML compliance automation', 'Azure AI fraud prevention'],

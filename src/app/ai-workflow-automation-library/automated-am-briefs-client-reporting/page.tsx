@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AMBriefReportingPage from '@/src/pages/ai-workflow-automation-library/AMBriefReportingPage'
 
 export const metadata: Metadata = {
-  title: 'Automated AM Briefs & Client Reporting | Kovil AI',
+  title: 'Automated AM Briefs & Client Reporting',
   description: 'See how Kovil AI automates weekly client reporting and daily AM briefs: GA4 + ad platform data → GPT-4o drafts narratives → Google Slides report built automatically → Gmail to client, Slack brief to each Account Manager.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/automated-am-briefs-client-reporting' },
   robots: { index: true, follow: true },

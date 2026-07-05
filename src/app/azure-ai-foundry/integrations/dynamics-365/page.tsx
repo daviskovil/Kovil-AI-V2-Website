@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureDynamics365Page from '@/src/pages/azure-ai-foundry/integrations/AzureDynamics365Page'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry + Dynamics 365 Integration | Kovil AI',
+  title: 'Azure AI Foundry + Dynamics 365 Integration',
   description: 'Build AI agents that act on your Dynamics 365 CRM and ERP data. Lead scoring, service triage, ERP automation, and more — powered by Azure OpenAI and Dataverse connectors.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/integrations/dynamics-365' },
   keywords: ['Azure AI Foundry Dynamics 365', 'Dynamics 365 AI agent', 'Azure OpenAI CRM integration', 'Dataverse AI agent', 'Dynamics 365 automation', 'Azure AI Dynamics 365 ERP', 'Semantic Kernel Dynamics 365', 'Copilot Studio Dynamics 365', 'D365 lead scoring AI', 'D365 service agent', 'Azure API Management Dynamics 365', 'CRM AI automation', 'Dynamics 365 copilot', 'Azure AI Foundry CRM', 'Kovil AI Dynamics 365'],

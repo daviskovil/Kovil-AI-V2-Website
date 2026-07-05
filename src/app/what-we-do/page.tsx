@@ -42,7 +42,7 @@ const breadcrumb = {
 }
 
 export const metadata: Metadata = {
-  title: 'What We Do — AI Engineering, Operations & Talent | Kovil AI',
+  title: 'What We Do — AI Engineering, Operations & Talent',
   description: 'Kovil AI builds, operates, and staffs AI systems. Managed AI engineers, outcome-based projects, app rescue, AI operations monitoring, and specialist AI talent — all milestone-gated with zero delivery risk.',
   alternates: { canonical: 'https://kovil.ai/what-we-do' },
   openGraph: {

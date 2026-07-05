@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import DocumentAIPipelinePage from '@/src/pages/vertex-ai/data-analytics/DocumentAIPipelinePage'
 
 export const metadata: Metadata = {
-  title: 'Document AI Pipeline — Automated Document Extraction on GCP | Kovil AI',
+  title: 'Document AI Pipeline — Automated Document Extraction on GCP',
   description: 'Automated extraction and classification of invoices, contracts, and compliance documents using Google Cloud Document AI and Gemini — structured output to your ERP or data lake.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/data-analytics/document-ai-pipeline' },
   keywords: ['Document AI pipeline', 'Google Cloud Document AI', 'document extraction AI', 'invoice processing AI', 'contract extraction GCP', 'Gemini document processing', 'Vertex AI document classification', 'intelligent document processing GCP', 'Document AI Gemini integration', 'automated document extraction', 'GCP document intelligence', 'Vertex AI document pipeline'],

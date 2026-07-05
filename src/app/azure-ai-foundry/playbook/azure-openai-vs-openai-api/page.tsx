@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureOpenAIVsOpenAIPage from '@/src/pages/azure-ai-foundry/playbook/AzureOpenAIVsOpenAIPage'
 
 export const metadata: Metadata = {
-  title: 'Azure OpenAI vs OpenAI API — Enterprise Comparison Guide | Kovil AI',
+  title: 'Azure OpenAI vs OpenAI API — Enterprise Comparison Guide',
   description: 'Detailed comparison of Azure OpenAI Service vs OpenAI API for enterprise deployments. Authentication, content filtering, private networking, compliance, and total cost analysis.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/playbook/azure-openai-vs-openai-api' },
   keywords: ['Azure OpenAI vs OpenAI API', 'Azure OpenAI enterprise', 'OpenAI API comparison Azure', 'Azure OpenAI compliance', 'Azure OpenAI private networking', 'Azure OpenAI vs OpenAI difference', 'enterprise OpenAI Azure', 'Azure OpenAI HIPAA SOC2', 'Azure OpenAI data residency', 'OpenAI API security comparison', 'Azure OpenAI authentication', 'Azure OpenAI content filtering', 'Azure OpenAI pricing vs OpenAI', 'enterprise LLM Azure', 'Kovil AI Azure playbook', 'Azure OpenAI Foundry guide'],

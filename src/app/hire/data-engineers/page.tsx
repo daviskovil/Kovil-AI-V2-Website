@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import DataEngineersPage from '@/src/pages/hire/DataEngineersPage'
 
 export const metadata: Metadata = {
-  title: 'Hire a Data Engineer — Matched in 48 Hours | Kovil AI',
+  title: 'Hire a Data Engineer — Matched in 48 Hours',
   description: 'Hire a vetted data engineer in 48 hours. Data pipelines, warehouses, real-time streaming, ML feature stores, dbt, Spark, Kafka. Engagement Manager oversight, 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/hire/data-engineers' },
   keywords: [

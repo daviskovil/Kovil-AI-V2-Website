@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureServiceNowPage from '@/src/pages/azure-ai-foundry/integrations/AzureServiceNowPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry + ServiceNow Integration | Kovil AI',
+  title: 'Azure AI Foundry + ServiceNow Integration',
   description: 'AI agents that triage, resolve, and close ServiceNow incidents before humans touch them. Azure OpenAI + ServiceNow REST API — 74% tickets auto-resolved, 4.2 min avg resolution time.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/integrations/servicenow' },
   keywords: ['Azure AI ServiceNow integration', 'ServiceNow AI agent', 'Azure OpenAI ServiceNow', 'ServiceNow incident triage AI', 'ServiceNow automation AI', 'Azure AI Search ServiceNow KB', 'Semantic Kernel ServiceNow', 'ITSM AI automation', 'ServiceNow REST API Azure', 'Azure API Management ServiceNow', 'IT helpdesk AI agent', 'ServiceNow SLA prediction AI', 'change management AI ServiceNow', 'Kovil AI ServiceNow', 'AI ticket resolution'],

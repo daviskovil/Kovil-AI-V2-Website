@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import PipelineHealthMonitorPage from '@/src/pages/agentforce/sales-cloud/PipelineHealthMonitorPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Pipeline Health Monitor — Stall Detection & Deal Risk AI | Kovil AI',
+  title: 'Agentforce Pipeline Health Monitor — Stall Detection & Deal Risk AI',
   description: 'Agentforce pipeline health monitor that scans every open opportunity 24/7, detects stall signals before deals slip, auto-drafts rep follow-ups, and alerts on deal risk inside Salesforce Sales Cloud.',
   alternates: { canonical: 'https://kovil.ai/agentforce/sales-cloud/pipeline-health-monitor' },
   keywords: [

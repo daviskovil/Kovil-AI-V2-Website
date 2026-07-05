@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import HybridContentPage from '@/src/pages/ai-workflow-automation-library/HybridContentPage'
 
 export const metadata: Metadata = {
-  title: 'SERP-First Hybrid Content Generation | Kovil AI',
+  title: 'SERP-First Hybrid Content Generation',
   description: 'See how Kovil AI builds a hybrid content pipeline: target keyword → Perplexity maps top 10 SERP → information gap analysis → brand-voice GPT-4o draft → 15-minute human review → CMS publish. 90% drafting time saved.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/deep-serp-first-hybrid-content-generation' },
   robots: { index: true, follow: true },

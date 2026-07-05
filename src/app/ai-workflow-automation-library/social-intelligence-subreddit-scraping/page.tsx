@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import SocialIntelligencePage from '@/src/pages/ai-workflow-automation-library/SocialIntelligencePage'
 
 export const metadata: Metadata = {
-  title: 'Social Intelligence & Subreddit Scraping | Kovil AI',
+  title: 'Social Intelligence & Subreddit Scraping',
   description: 'See how Kovil AI builds a social intelligence system: monitor Reddit + LinkedIn + forums every 30 minutes → Claude 3.5 scores relevance on 3 axes → high-signal posts + pre-drafted replies → human approval dashboard → publish. 10x signal-to-noise ratio.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/social-intelligence-subreddit-scraping' },
   robots: { index: true, follow: true },

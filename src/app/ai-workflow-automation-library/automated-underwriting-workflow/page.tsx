@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AutomatedUnderwritingPage from '@/src/pages/ai-workflow-automation-library/AutomatedUnderwritingPage'
 
 export const metadata: Metadata = {
-  title: 'Automated Underwriting Workflow — FinTech AI | Kovil AI',
+  title: 'Automated Underwriting Workflow — FinTech AI',
   description: 'Automate credit underwriting with AI-driven risk scoring, bureau data integration, and decision engine logic. Reduce manual review time by 70% and approve qualified borrowers in minutes.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/automated-underwriting-workflow' },
   openGraph: {

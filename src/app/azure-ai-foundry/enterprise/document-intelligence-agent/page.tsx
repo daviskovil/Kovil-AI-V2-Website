@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import DocumentIntelligenceAgentPage from '@/src/pages/azure-ai-foundry/enterprise/DocumentIntelligenceAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Document Intelligence Agent — Automated Document Processing | Kovil AI',
+  title: 'Azure AI Document Intelligence Agent — Automated Document Processing',
   description: 'AI agent built on Azure AI Document Intelligence and GPT-4o that processes contracts, invoices, and compliance docs automatically — extracting, classifying, and routing structured data.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/enterprise/document-intelligence-agent' },
   keywords: ['Azure AI Document Intelligence', 'document processing automation', 'Azure OpenAI document extraction', 'contract extraction AI', 'invoice processing Azure', 'AI document classification', 'Azure form recognizer agent', 'enterprise document AI', 'document automation Azure', 'GPT-4o document processing', 'Azure AI Foundry document agent', 'intelligent document processing', 'IDP Azure', 'automated contract review', 'Azure AI document automation', 'Kovil AI Azure'],

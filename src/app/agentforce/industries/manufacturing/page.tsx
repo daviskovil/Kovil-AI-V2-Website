@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import ManufacturingAgentforcePage from '@/src/pages/agentforce/industries/ManufacturingAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Manufacturing | Kovil AI',
+  title: 'Agentforce for Manufacturing',
   description: 'Production Agentforce for manufacturing — field service scheduling agents, warranty claim intake automation, dealer support, and preventive maintenance alerts. Manufacturing Cloud · Field Service · Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/manufacturing' },
   keywords: [

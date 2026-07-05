@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import RetailPersonalisationVertexBuildPage from '@/src/pages/vertex-ai/playbook/RetailPersonalisationVertexAIBuildPage'
 
 export const metadata: Metadata = {
-  title: 'From 6-Hour Manual Content Review to 17 Minutes: Vertex AI Build Case Study | Kovil AI',
+  title: 'From 6-Hour Manual Content Review to 17 Minutes: Vertex AI Build Case Study',
   description: 'Step-by-step walkthrough of a content intelligence deployment — Gemini Vision integration, Vertex AI Search, content tagging pipeline, and GCP security configuration for a global streaming platform.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/playbook/retail-personalisation-vertex-ai-build' },
   keywords: ['Vertex AI content intelligence', 'Gemini Vision content tagging', 'Vertex AI Search streaming', 'Recommendations AI GCP', 'content personalisation Vertex AI', 'Gemini 2.0 Flash Vision case study', 'BigQuery content metadata', 'GCP streaming platform AI', 'Vertex AI personalisation', 'content discovery AI', 'Kovil AI Vertex AI case study', 'GCP media AI pipeline', 'Pub Sub content pipeline', 'Cloud Run AI agent'],

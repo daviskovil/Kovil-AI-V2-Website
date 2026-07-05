@@ -2,13 +2,16 @@ import type { Metadata } from 'next'
 import AgentforcePricingGuidePage from '@/src/pages/agentforce/playbook/AgentforcePricingGuidePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Pricing Guide 2026: Full Cost Breakdown | Kovil AI',
+  title: 'Agentforce Pricing 2026: $2 Per Conversation + Real Total Cost',
   description:
-    'Complete Agentforce pricing guide — per-conversation cost, Data Cloud licences, Einstein add-ons, MuleSoft, implementation cost, and total cost of ownership model. What Salesforce Agentforce actually costs in 2026.',
+    'Salesforce Agentforce official pricing 2026: $2 per conversation — but that is not the real cost. Full breakdown of Data Cloud licences, Einstein add-ons, MuleSoft, implementation cost, and total cost of ownership.',
   alternates: { canonical: 'https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026' },
   keywords: [
     'agentforce pricing',
     'salesforce agentforce pricing',
+    'agentforce $2 per conversation',
+    'salesforce agentforce pricing official 2026',
+    'agentforce pricing per conversation',
     'how much does agentforce cost',
     'agentforce cost',
     'agentforce licence cost',
@@ -25,18 +28,18 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'article',
-    title: 'Agentforce Pricing Guide 2026: Full Cost Breakdown | Kovil AI',
+    title: 'Agentforce Pricing 2026: $2 Per Conversation + Real Total Cost | Kovil AI',
     description:
-      'Complete Agentforce pricing breakdown — per-conversation cost, Data Cloud licences, Einstein add-ons, MuleSoft, implementation cost, and total cost of ownership.',
+      'Salesforce Agentforce official pricing 2026: $2 per conversation — but that is not the real cost. Data Cloud, Einstein add-ons, MuleSoft, implementation, and TCO breakdown.',
     url: 'https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026',
     siteName: 'Kovil AI',
     images: [{ url: 'https://kovil.ai/og-agentforce.png', width: 1200, height: 630, alt: 'Kovil AI Agentforce Pricing Guide' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Agentforce Pricing Guide 2026: Full Cost Breakdown | Kovil AI',
+    title: 'Agentforce Pricing 2026: $2 Per Conversation + Real Total Cost | Kovil AI',
     description:
-      'Complete Agentforce pricing breakdown — per-conversation cost, Data Cloud licences, Einstein add-ons, MuleSoft, implementation cost, and total cost of ownership.',
+      'Salesforce Agentforce official pricing 2026: $2 per conversation — but that is not the real cost. Data Cloud, Einstein add-ons, MuleSoft, implementation, and TCO breakdown.',
     images: ['https://kovil.ai/og-agentforce.png'],
   },
 }

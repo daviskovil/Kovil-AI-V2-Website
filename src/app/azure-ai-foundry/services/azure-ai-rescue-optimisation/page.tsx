@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureAIRescueOptimisationPage from '@/src/pages/azure-ai-foundry/services/AzureAIRescueOptimisationPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Rescue & Optimisation | Kovil AI Azure AI Foundry',
+  title: 'Azure AI Rescue & Optimisation — Azure AI Foundry',
   description: 'Fix underperforming Azure AI deployments. We diagnose hallucinations, reduce token costs, improve latency, and close security gaps in 14 days.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/services/azure-ai-rescue-optimisation' },
   keywords: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Azure AI Rescue & Optimisation | Kovil AI Azure AI Foundry',
+    title: 'Azure AI Rescue & Optimisation — Azure AI Foundry',
     description: 'Fix underperforming Azure AI deployments. We diagnose hallucinations, reduce token costs, improve latency, and close security gaps in 14 days.',
     url: 'https://kovil.ai/azure-ai-foundry/services/azure-ai-rescue-optimisation',
     siteName: 'Kovil AI',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Azure AI Rescue & Optimisation | Kovil AI Azure AI Foundry',
+    title: 'Azure AI Rescue & Optimisation — Azure AI Foundry',
     description: 'Fix underperforming Azure AI deployments. We diagnose hallucinations, reduce token costs, improve latency, and close security gaps in 14 days.',
     images: ['https://kovil.ai/og-azure-ai-foundry.png'],
   },

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import VoiceAIAgentsPage from '@/src/pages/ai-workflow-automation-library/VoiceAIAgentsPage'
 
 export const metadata: Metadata = {
-  title: 'White-Label Voice AI Agents — Twilio + GPT-4o | Kovil AI',
+  title: 'White-Label Voice AI Agents — Twilio + GPT-4o',
   description: 'See how Kovil AI builds conversational voice AI agents: Twilio inbound → ElevenLabs voice → GPT-4o intent detection → Google Calendar booking → HubSpot CRM. Resellable 24/7 coverage for SMB clients.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/white-label-voice-ai-agents' },
   robots: { index: true, follow: true },

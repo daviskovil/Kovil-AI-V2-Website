@@ -5,7 +5,7 @@ import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 const AZURE = '#0078D4'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry Enterprise Automation Agents | Kovil AI',
+  title: 'Azure AI Foundry Enterprise Automation Agents',
   description: 'Enterprise automation agents on Azure AI Foundry — document intelligence, enterprise knowledge search, and ERP process automation. Fixed-price production deployments.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/enterprise' },
   keywords: ['azure ai enterprise automation', 'azure document intelligence agent', 'azure enterprise knowledge agent', 'azure ai erp automation', 'azure ai foundry enterprise', 'azure openai enterprise agent', 'azure ai document processing', 'azure ai search enterprise knowledge', 'azure ai dynamics erp agent'],

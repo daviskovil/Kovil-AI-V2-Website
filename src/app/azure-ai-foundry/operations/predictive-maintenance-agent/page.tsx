@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import PredictiveMaintenanceAgentPage from '@/src/pages/azure-ai-foundry/operations/PredictiveMaintenanceAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Predictive Maintenance Agent — Azure IoT Hub & OpenAI | Kovil AI',
+  title: 'Predictive Maintenance Agent — Azure IoT Hub & OpenAI',
   description: 'AI agent that monitors IoT sensor streams via Azure IoT Hub, detects equipment anomalies with GPT-4o, and triggers work orders before failures occur. 73% downtime reduction.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/operations/predictive-maintenance-agent' },
   keywords: ['predictive maintenance AI Azure', 'Azure IoT Hub AI agent', 'Azure OpenAI anomaly detection', 'equipment failure prediction AI', 'Azure Stream Analytics AI', 'IoT predictive maintenance', 'Azure Digital Twins maintenance', 'AI work order automation', 'industrial AI Azure', 'Azure AI Foundry maintenance', 'asset monitoring AI', 'CMMS AI integration', 'Azure AI IoT', 'manufacturing AI Azure', 'Kovil AI Azure', 'predictive maintenance automation'],

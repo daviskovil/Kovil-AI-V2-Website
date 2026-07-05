@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import RealTimeFraudPage from '@/src/pages/ai-workflow-automation-library/RealTimeFraudPage'
 
 export const metadata: Metadata = {
-  title: 'Real-Time Fraud Detection — FinTech AI Pipeline | Kovil AI',
+  title: 'Real-Time Fraud Detection — FinTech AI Pipeline',
   description: 'ML-powered real-time fraud detection with sub-80ms decision latency. XGBoost scoring, configurable rule engine, SHAP explainability, analyst queue, and PCI-DSS compliant audit logging.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/real-time-fraud-detection' },
   openGraph: {

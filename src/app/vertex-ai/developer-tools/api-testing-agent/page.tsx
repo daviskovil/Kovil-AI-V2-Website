@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import APITestingAgentPage from '@/src/pages/vertex-ai/developer-tools/APITestingAgentPage'
 
 export const metadata: Metadata = {
-  title: 'API Testing & Documentation Agent — Gemini-Powered QA on GCP | Kovil AI',
+  title: 'API Testing & Documentation Agent — Gemini-Powered QA on GCP',
   description: 'AI agent that generates, runs, and maintains API tests using Gemini — produces OpenAPI documentation, detects regressions, and flags contract violations automatically on Google Cloud.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/developer-tools/api-testing-agent' },
   keywords: ['API testing agent GCP', 'Gemini API testing', 'AI API test generation', 'Vertex AI QA agent', 'automated API testing GCP', 'Gemini OpenAPI documentation', 'Google Cloud API testing', 'AI contract testing', 'Vertex AI developer tools', 'API regression detection AI', 'GCP QA automation agent', 'Gemini API documentation generator'],

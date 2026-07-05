@@ -3,7 +3,7 @@ import AgentforcePlaybookHubPage from '@/src/pages/agentforce/playbook/Agentforc
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Agentforce Playbook: Implementation Guides & Technical Articles | Kovil AI',
+  title: 'Agentforce Playbook: Implementation Guides & Technical Articles',
   description: 'Practitioner guides for Salesforce Agentforce — pricing breakdowns, ROI frameworks, Atlas Reasoning Engine deep dives, scoping checklists, and real deployment case studies. Written by engineers who ship Agentforce in production.',
   alternates: { canonical: 'https://kovil.ai/agentforce/playbook' },
   keywords: [

@@ -37,7 +37,7 @@ const breadcrumb = {
 }
 
 export const metadata: Metadata = {
-  title: 'How It Works — Managed AI Engineering Process | Kovil AI',
+  title: 'How It Works — Managed AI Engineering Process',
   description: 'How Kovil AI delivers managed AI engineering. Our three-step process: match, build, deliver — milestone-gated with zero delivery risk.',
   alternates: { canonical: 'https://kovil.ai/how-it-works' },
   openGraph: {

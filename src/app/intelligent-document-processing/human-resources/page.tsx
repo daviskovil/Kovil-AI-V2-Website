@@ -3,7 +3,7 @@ import HumanResourcesPage from '@/src/pages/idp/HumanResourcesPage'
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'HR Document Processing & People Operations Automation | Kovil AI',
+  title: 'HR Document Processing & People Operations Automation',
   description: 'Production IDP pipelines for human resources — resume and CV parsing, I-9 and onboarding document automation, background check processing, benefits enrolment, performance document management, and compliance certification tracking. EEOC · GDPR · SOC 2 · Fixed-price sprints, 2–4 weeks.',
   alternates: { canonical: 'https://kovil.ai/intelligent-document-processing/human-resources' },
   keywords: [

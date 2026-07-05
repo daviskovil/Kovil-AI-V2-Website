@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import BrowserAutomationPage from '@/src/pages/ai-workflow-automation-library/BrowserAutomationPage'
 
 export const metadata: Metadata = {
-  title: 'No-API Browser Automation for Enterprise | Kovil AI',
+  title: 'No-API Browser Automation for Enterprise',
   description: 'See how Kovil AI builds browser-based automation for legacy enterprise systems: Twin.so cloud browser navigates the UI like a human → GPT-4o Vision reads the screen → AI extracts and writes data → full Slack audit log. Zero API access needed.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/browser-based-no-api-automation-legacy-enterprise' },
   robots: { index: true, follow: true },

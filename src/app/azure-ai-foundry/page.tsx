@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureAIFoundryPage from '@/src/pages/AzureAIFoundryPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry Implementation Partner — Build AI Agents on Azure | Kovil AI',
+  title: 'Azure AI Foundry Implementation Partner — Build AI Agents on Azure',
   description: 'Kovil AI builds production AI agents on Azure AI Foundry (formerly Azure AI Studio) — Azure OpenAI, Semantic Kernel, Copilot Studio, Azure AI Search RAG. Fixed-price sprints. 2-week risk-free pilot. New York & Austin.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry' },
   keywords: [

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import APIIntegrationAgentPage from '@/src/pages/azure-ai-foundry/developer-tools/APIIntegrationAgentPage'
 
 export const metadata: Metadata = {
-  title: 'API Integration Agent — Azure APIM & OpenAPI Auto-Gen | Kovil AI',
+  title: 'API Integration Agent — Azure APIM & OpenAPI Auto-Gen',
   description: 'AI agent that reads OpenAPI specs, generates integration code, and publishes APIs to Azure API Management. Cut API integration time from days to hours. Built on Azure AI Foundry.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/developer-tools/api-integration-agent' },
   keywords: ['API integration agent Azure', 'Azure APIM AI automation', 'OpenAPI code generation AI', 'Azure API Management AI', 'API auto-generation Azure OpenAI', 'Azure AI Foundry API tools', 'developer automation AI Azure', 'API documentation AI', 'Azure Logic Apps AI integration', 'OpenAPI spec AI agent', 'API testing AI Azure', 'Azure Function AI generation', 'integration agent Azure', 'API mesh AI Azure', 'Kovil AI Azure', 'API automation developer tools'],

@@ -7,7 +7,7 @@ const BASE = 'https://kovil.ai'
 const CANONICAL = `${BASE}/agentforce/compare/agentforce-vs-einstein-copilot`
 
 export const metadata: Metadata = {
-  title: 'Agentforce vs Einstein Copilot: Key Differences, What Changed & Migration Guide | Kovil AI',
+  title: 'Agentforce vs Einstein Copilot: Key Differences, What Changed & Migration Guide',
   description: 'Einstein Copilot was replaced by Agentforce in October 2024. This guide explains the architectural differences — Atlas Reasoning Engine vs prompt chains, autonomous agents vs co-pilot — and what you need to do to migrate.',
   alternates: { canonical: CANONICAL },
   keywords: ['agentforce vs einstein copilot','einstein copilot vs agentforce','difference between agentforce and einstein copilot','agentforce einstein copilot migration','what replaced einstein copilot','einstein copilot deprecated','agentforce vs copilot salesforce','salesforce einstein copilot upgrade agentforce','atlas reasoning engine vs einstein copilot','migrate einstein copilot to agentforce'],

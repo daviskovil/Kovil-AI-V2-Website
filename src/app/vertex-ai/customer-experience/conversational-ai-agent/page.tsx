@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import ConversationalAIAgentPage from '@/src/pages/vertex-ai/customer-experience/ConversationalAIAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Conversational AI Agent — Gemini-Powered Customer Agent on GCP | Kovil AI',
+  title: 'Conversational AI Agent — Gemini-Powered Customer Agent on GCP',
   description: 'Production customer-facing AI agent built on Vertex AI Agent Builder — Gemini-powered, grounded in your product and policy knowledge, with seamless human handoff and CRM context.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/customer-experience/conversational-ai-agent' },
   keywords: ['conversational AI agent GCP', 'Vertex AI conversational agent', 'Gemini customer service agent', 'Vertex AI Agent Builder customer', 'Google Cloud chatbot', 'enterprise conversational AI GCP', 'Dialogflow CX Gemini', 'AI customer service agent GCP', 'Vertex AI customer experience', 'Gemini-powered chatbot enterprise', 'GCP customer service agent', 'Vertex AI contact centre'],

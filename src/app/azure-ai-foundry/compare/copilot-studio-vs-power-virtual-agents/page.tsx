@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CopilotVsPVAPage from '@/src/pages/azure-ai-foundry/compare/CopilotVsPVAPage'
 
 export const metadata: Metadata = {
-  title: 'Copilot Studio vs Power Virtual Agents — What Changed & Migration Guide | Kovil AI',
+  title: 'Copilot Studio vs Power Virtual Agents — What Changed & Migration Guide',
   description: 'Power Virtual Agents was rebranded to Copilot Studio in 2023. Here is what actually changed technically — GPT-4o grounding, Semantic Kernel, Azure AI Search — and what it means for your PVA bots.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/compare/copilot-studio-vs-power-virtual-agents' },
   keywords: ['Copilot Studio vs Power Virtual Agents', 'PVA vs Copilot Studio', 'Power Virtual Agents rebranded', 'Microsoft Copilot Studio migration', 'PVA to Copilot Studio migration', 'Copilot Studio GPT-4o', 'Power Virtual Agents Azure AI', 'Semantic Kernel Copilot Studio', 'Copilot Studio Azure AI Search', 'PVA generative answers', 'Copilot Studio Teams deployment', 'Kovil AI Copilot Studio'],

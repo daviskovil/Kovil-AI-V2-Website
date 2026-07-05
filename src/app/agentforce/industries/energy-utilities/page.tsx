@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import EnergyUtilitiesAgentforcePage from '@/src/pages/agentforce/industries/EnergyUtilitiesAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Energy & Utilities | Kovil AI',
+  title: 'Agentforce for Energy & Utilities',
   description: 'Production Agentforce for energy companies and utilities — outage management agents, billing inquiry resolution, smart meter query automation, new connection handling, and field service dispatch. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/energy-utilities' },
   keywords: [

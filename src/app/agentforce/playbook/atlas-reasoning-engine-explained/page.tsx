@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AtlasReasoningEnginePage from '@/src/pages/agentforce/playbook/AtlasReasoningEnginePage'
 
 export const metadata: Metadata = {
-  title: 'Atlas Reasoning Engine Explained: How Agentforce Agents Actually Think | Kovil AI',
+  title: 'Atlas Reasoning Engine Explained: How Agentforce Agents Actually Think',
   description: 'A technical breakdown of the Salesforce Atlas Reasoning Engine — how Agentforce agents observe, plan, act, and reflect using hybrid LLM and deterministic routing to execute multi-step tasks.',
   alternates: { canonical: 'https://kovil.ai/agentforce/playbook/atlas-reasoning-engine-explained' },
   keywords: [

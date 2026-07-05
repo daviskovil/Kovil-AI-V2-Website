@@ -5,7 +5,7 @@ import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 const AZURE = '#0078D4'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry Services — Strategy, Build & Integration | Kovil AI',
+  title: 'Azure AI Foundry Services — Strategy, Build & Integration',
   description: 'Expert Azure AI Foundry services — strategy & readiness, AI agent design, Azure OpenAI integration, Copilot Studio, Azure AI Search RAG, and rescue sprints. Fixed-price.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/services' },
   keywords: ['azure ai foundry services', 'azure openai integration service', 'copilot studio implementation', 'azure ai agent builder', 'azure ai search rag service', 'azure ai strategy', 'azure ai consulting', 'azure ai foundry implementation', 'azure openai consulting', 'azure ai agent service'],

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import LegalProfServicesAzurePage from '@/src/pages/azure-ai-foundry/industries/LegalProfServicesAzurePage'
 
 export const metadata: Metadata = {
-  title: 'AI Agents for Legal & Professional Services — Azure AI Foundry | Kovil AI',
+  title: 'AI Agents for Legal & Professional Services — Azure AI Foundry',
   description: 'AI agents for law firms and professional services built on Azure. Contract review automation, legal research, matter management, client intake, billing analysis. 83% contract review time saved.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/industries/legal-professional-services' },
   keywords: ['AI agents legal services Azure', 'contract review AI Azure', 'legal research automation AI', 'matter management AI', 'Azure AI Document Intelligence legal', 'Azure OpenAI law firm', 'legal AI compliance', 'contract extraction AI', 'billing analysis AI Azure', 'regulatory monitoring AI legal', 'client intake automation AI', 'Azure AI Search legal', 'law firm AI automation', 'Kovil AI legal', 'Azure AI Foundry legal services'],

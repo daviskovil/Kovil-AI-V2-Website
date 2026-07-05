@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import InsuranceAzurePage from '@/src/pages/azure-ai-foundry/industries/InsuranceAzurePage'
 
 export const metadata: Metadata = {
-  title: 'AI Agents for Insurance — Claims to Compliance on Azure | Kovil AI',
+  title: 'AI Agents for Insurance — Claims to Compliance on Azure',
   description: 'AI agents for insurance built on Azure. Automate claims triage, underwriting, fraud detection, policy servicing, and regulatory filing. 71% claims auto-triaged. 64% fraud detection improvement.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/industries/insurance' },
   keywords: ['AI agents insurance Azure', 'claims automation AI Azure', 'underwriting automation AI', 'insurance fraud detection Azure', 'policy servicing chatbot Azure', 'regulatory filing automation insurance', 'Azure OpenAI insurance', 'Azure AI Document Intelligence insurance', 'Azure Machine Learning insurance', 'claims triage AI', 'renewal propensity scoring AI', 'insurance AI compliance', 'FNOL automation AI', 'Kovil AI insurance', 'Azure AI Foundry insurance'],

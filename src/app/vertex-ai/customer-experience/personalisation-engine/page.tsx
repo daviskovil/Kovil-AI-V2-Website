@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import PersonalisationEnginePage from '@/src/pages/vertex-ai/customer-experience/PersonalisationEnginePage'
 
 export const metadata: Metadata = {
-  title: 'Personalisation Engine — Real-Time AI Recommendations on GCP | Kovil AI',
+  title: 'Personalisation Engine — Real-Time AI Recommendations on GCP',
   description: 'Real-time recommendation and personalisation using Gemini embeddings and user signal pipelines on Google Cloud — surface the right product, content, or offer at the right moment, at scale.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/customer-experience/personalisation-engine' },
   keywords: ['personalisation engine GCP', 'Vertex AI recommendations', 'Gemini embeddings personalisation', 'Google Cloud recommendation engine', 'real-time personalisation AI', 'Vertex AI personalisation', 'GCP recommendation system', 'Gemini embedding recommendations', 'AI personalisation platform GCP', 'Vertex AI customer personalisation', 'Google Cloud product recommendations', 'Bigtable recommendations GCP'],

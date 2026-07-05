@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: cs.keywords,
     openGraph: {
       type: 'article',
-      title: cs.metaTitle,
+      title: `${cs.metaTitle} | Kovil AI`,
       description: cs.metaDescription,
       url: `https://kovil.ai/agentforce/case-studies/${cs.slug}`,
       siteName: 'Kovil AI',
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     twitter: {
       card: 'summary_large_image',
-      title: cs.metaTitle,
+      title: `${cs.metaTitle} | Kovil AI`,
       description: cs.metaDescription,
       images: ['https://kovil.ai/og-agentforce.png'],
     },

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import TelecomAgentforcePage from '@/src/pages/agentforce/industries/TelecomAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Telecommunications | Kovil AI',
+  title: 'Agentforce for Telecommunications',
   description: 'Production Agentforce for telcos — network outage support agents, billing dispute resolution, plan management automation, and churn prevention agents. Communications Cloud · TCPA compliant · Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/telecom' },
   keywords: [

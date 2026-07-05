@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AgentDesignConfigurationPage from '@/src/pages/agentforce/services/AgentDesignConfigurationPage'
 
 export const metadata: Metadata = {
-  title: 'Agent Design & Configuration | Kovil AI',
+  title: 'Agent Design & Configuration',
   description: 'Agentforce agent design service using Agent Builder, Prompt Builder, and Flow. Topics, Actions, Instructions, and Trust Layer configured precisely to your business logic.',
   alternates: { canonical: 'https://kovil.ai/agentforce/services/agent-design-configuration' },
   keywords: [

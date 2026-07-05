@@ -3,7 +3,7 @@ import BankingFinancialServicesPage from '@/src/pages/idp/BankingFinancialServic
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Financial Data Extraction & KYC Automation for Banking | Kovil AI',
+  title: 'Financial Data Extraction & KYC Automation for Banking',
   description: 'Production IDP pipelines for banking — KYC automation, automated mortgage processing, bank statement parsing, credit underwriting, and loan document processing. Fixed-price sprints, 2–4 weeks.',
   alternates: { canonical: 'https://kovil.ai/intelligent-document-processing/banking-financial-services' },
   keywords: [

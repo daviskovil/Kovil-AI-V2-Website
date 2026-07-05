@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import LoanDocumentClassifierPage from '@/src/pages/ai-workflow-automation-library/LoanDocumentClassifierPage'
 
 export const metadata: Metadata = {
-  title: 'AI Loan Document Classifier — FinTech Workflow | Kovil AI',
+  title: 'AI Loan Document Classifier — FinTech Workflow',
   description: 'Automate loan document intake with GPT-4o Vision. Classify document types, extract key fields, check completeness, and notify underwriters in under 60 seconds. Build in 2–3 weeks.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/ai-loan-document-classifier' },
   openGraph: {

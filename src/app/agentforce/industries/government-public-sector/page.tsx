@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import GovernmentPublicSectorAgentforcePage from '@/src/pages/agentforce/industries/GovernmentPublicSectorAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Government & Public Sector | Kovil AI',
+  title: 'Agentforce for Government & Public Sector',
   description: 'Production Agentforce for government agencies and public sector organisations — citizen service agents, permit processing automation, benefits eligibility, case management, records requests, and compliance monitoring. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/government-public-sector' },
   keywords: [

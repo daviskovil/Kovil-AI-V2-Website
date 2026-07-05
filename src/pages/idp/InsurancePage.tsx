@@ -310,8 +310,8 @@ export default function InsurancePage() {
             </p>
 
             <h1 className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-[1.05] text-balance mb-3">
-              Insurance Claims Processing{" "}
-              <span className="text-accent">&amp; AI Document Automation</span>
+              Insurance Document Automation{" "}
+              <span className="text-accent">&amp; AI Claims Processing</span>
             </h1>
             <p className="text-xl font-semibold text-foreground/60 mb-5">
               FNOL automation, claims document extraction, and prior authorisation — production pipelines for P&amp;C, health, and life insurers.

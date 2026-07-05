@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import VideosPipelinesPage from '@/src/pages/ai-workflow-automation-library/VideosPipelinesPage'
 
 export const metadata: Metadata = {
-  title: 'ComfyUI & Runway Video Pipelines — AI Workflow | Kovil AI',
+  title: 'ComfyUI & Runway Video Pipelines — AI Workflow',
   description: 'See how Kovil AI builds generative commercial video pipelines: creative brief → ComfyUI generates 50 product photos in 20 min → Runway Gen-3 motion ads → Google Veo 60-sec commercials → ElevenLabs multilingual dub + lip-sync → Frame.io delivery.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/comfyui-runway-commercial-video-pipelines' },
   robots: { index: true, follow: true },

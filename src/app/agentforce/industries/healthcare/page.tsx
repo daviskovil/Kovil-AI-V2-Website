@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import HealthcareAgentforcePage from '@/src/pages/agentforce/industries/HealthcareAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Healthcare & Life Sciences | Kovil AI',
+  title: 'Agentforce for Healthcare & Life Sciences',
   description: 'Production Agentforce for healthcare — patient scheduling automation, prior authorization agents, care coordination, and billing inquiry resolution. Health Cloud · HIPAA · Einstein Trust Layer · Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/healthcare' },
   keywords: [

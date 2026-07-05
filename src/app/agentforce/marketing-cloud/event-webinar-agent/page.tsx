@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import EventWebinarAgentPage from '@/src/pages/agentforce/marketing-cloud/EventWebinarAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Event & Webinar Agent — Automated Registration, Reminders & Lead Scoring | Kovil AI',
+  title: 'Agentforce Event & Webinar Agent — Automated Registration, Reminders & Lead Scoring',
   description: 'Deploy an Agentforce Event & Webinar Agent that automates registration, personalised reminders, live attendance tracking, post-event follow-up, and intent-gated sales handoff.',
   alternates: { canonical: 'https://kovil.ai/agentforce/marketing-cloud/event-webinar-agent' },
   keywords: [

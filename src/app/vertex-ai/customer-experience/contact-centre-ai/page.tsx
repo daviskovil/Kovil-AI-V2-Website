@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import ContactCentreAIPage from '@/src/pages/vertex-ai/customer-experience/ContactCentreAIPage'
 
 export const metadata: Metadata = {
-  title: 'Contact Centre AI — Vertex AI & CCAI Implementation | Kovil AI',
+  title: 'Contact Centre AI — Vertex AI & CCAI Implementation',
   description: 'AI agents that handle 60–80% of contact centre queries autonomously — integrated with your CRM, knowledge base, and escalation workflows via Google Cloud CCAI and Vertex AI.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/customer-experience/contact-centre-ai' },
   keywords: ['contact centre AI GCP', 'Google Cloud CCAI', 'Vertex AI contact centre', 'CCAI implementation', 'AI contact centre agent', 'Dialogflow CX contact centre', 'Google Cloud contact centre', 'AI call centre automation GCP', 'Vertex AI CCAI partner', 'contact centre automation AI', 'CCAI Gemini integration', 'Google CCAI implementation partner'],

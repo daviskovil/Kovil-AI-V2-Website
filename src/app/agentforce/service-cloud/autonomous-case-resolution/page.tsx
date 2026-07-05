@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AutonomousCaseResolutionPage from '@/src/pages/agentforce/service-cloud/AutonomousCaseResolutionPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Autonomous Case Resolution — AI-Powered L1/L2 Support | Kovil AI',
+  title: 'Agentforce Autonomous Case Resolution — AI-Powered L1/L2 Support',
   description: 'Agentforce case resolution agent that autonomously handles Tier 1 & Tier 2 support — refunds, order status, rescheduling — with 65%+ resolution rates and live Salesforce account context.',
   alternates: { canonical: 'https://kovil.ai/agentforce/service-cloud/autonomous-case-resolution' },
   keywords: [

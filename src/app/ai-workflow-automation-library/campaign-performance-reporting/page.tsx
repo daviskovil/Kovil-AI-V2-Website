@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CampaignReportingPage from '@/src/pages/ai-workflow-automation-library/CampaignReportingPage'
 
 export const metadata: Metadata = {
-  title: 'Campaign Reporting Automation — n8n + GPT-4o | Kovil AI',
+  title: 'Campaign Reporting Automation — n8n + GPT-4o',
   description: 'See how Kovil AI automates weekly campaign reporting: n8n pulls live data from Meta, Google Ads & LinkedIn, GPT-4o writes the narrative, Google Slides builds the deck, Gmail emails the client — every Monday at 8am.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/campaign-performance-reporting' },
   robots: { index: true, follow: true },

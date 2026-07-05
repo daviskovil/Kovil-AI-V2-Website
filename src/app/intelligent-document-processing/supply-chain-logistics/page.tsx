@@ -3,7 +3,7 @@ import SupplyChainLogisticsPage from '@/src/pages/idp/SupplyChainLogisticsPage'
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Supply Chain Document Processing & Logistics AI Automation | Kovil AI',
+  title: 'Supply Chain Document Processing & Logistics AI Automation',
   description: 'Production IDP pipelines for supply chain and logistics — accounts payable automation, 3-way invoice matching, customs and trade compliance, freight document processing, supplier onboarding, and trade finance. C-TPAT · OFAC · SOC 2 · Fixed-price sprints, 2–4 weeks.',
   alternates: { canonical: 'https://kovil.ai/intelligent-document-processing/supply-chain-logistics' },
   keywords: [

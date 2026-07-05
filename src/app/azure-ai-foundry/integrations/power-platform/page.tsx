@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzurePowerPlatformPage from '@/src/pages/azure-ai-foundry/integrations/AzurePowerPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry + Power Platform Integration | Kovil AI',
+  title: 'Azure AI Foundry + Power Platform Integration',
   description: 'AI-powered automation across every business process with Power Automate, Copilot Studio, and Azure OpenAI. 900+ connectors, document processing, approval workflows, and embedded AI in Power Apps.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/integrations/power-platform' },
   keywords: ['Azure AI Power Platform', 'Power Automate AI', 'Copilot Studio Power Platform', 'Azure OpenAI Power Automate', 'Power Apps AI', 'Dataverse AI integration', 'Power Platform AI automation', 'AI document processing Power Automate', 'Power BI AI narration', 'Azure AI Document Intelligence Power Automate', 'no-code AI automation Azure', 'Power Platform Copilot', 'Kovil AI Power Platform', 'business process AI Azure', 'enterprise automation low-code'],

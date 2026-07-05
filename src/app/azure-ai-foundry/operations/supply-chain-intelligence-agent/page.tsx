@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import SupplyChainIntelligenceAgentPage from '@/src/pages/azure-ai-foundry/operations/SupplyChainIntelligenceAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Supply Chain Intelligence Agent — Azure OpenAI & Data Factory | Kovil AI',
+  title: 'Supply Chain Intelligence Agent — Azure OpenAI & Data Factory',
   description: 'Real-time supply chain risk analysis agent built on Azure OpenAI and Azure Data Factory. Surfaces risks 48 hours earlier. 62% fewer unplanned stockouts.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/operations/supply-chain-intelligence-agent' },
   keywords: ['supply chain AI Azure', 'Azure OpenAI supply chain', 'supply chain risk analysis AI', 'Azure Data Factory supply chain', 'supply chain intelligence agent', 'procurement AI Azure', 'supplier risk AI', 'Azure Synapse supply chain', 'logistics AI Azure', 'supply chain disruption AI', 'demand forecasting AI Azure', 'Azure AI Foundry operations', 'supply chain automation', 'procurement intelligence AI', 'Kovil AI Azure', 'operations AI agent'],

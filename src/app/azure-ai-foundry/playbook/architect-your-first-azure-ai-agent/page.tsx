@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import ArchitectYourFirstAzureAgentPage from '@/src/pages/azure-ai-foundry/playbook/ArchitectYourFirstAzureAgentPage'
 
 export const metadata: Metadata = {
-  title: 'How to Architect Your First Azure AI Agent — 14-Question Checklist | Kovil AI',
+  title: 'How to Architect Your First Azure AI Agent — 14-Question Checklist',
   description: 'Step-by-step architecture guide for your first Azure AI agent. 14-question readiness checklist, orchestration framework comparison (Semantic Kernel vs Prompt Flow vs AutoGen), and Azure component decisions.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/playbook/architect-your-first-azure-ai-agent' },
   keywords: ['Azure AI agent architecture', 'how to build Azure AI agent', 'Semantic Kernel vs Prompt Flow', 'Azure AI agent checklist', 'Azure OpenAI agent design', 'AI agent orchestration Azure', 'Azure AI Foundry architecture guide', 'first Azure AI agent guide', 'Azure agent design decisions', 'AI agent readiness checklist', 'Semantic Kernel architecture', 'Azure AI agent tutorial', 'LLM agent architecture Azure', 'multi-agent Azure design', 'Kovil AI Azure playbook', 'Azure AI architecture decisions'],

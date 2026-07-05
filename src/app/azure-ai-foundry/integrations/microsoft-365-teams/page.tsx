@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureM365TeamsPage from '@/src/pages/azure-ai-foundry/integrations/AzureM365TeamsPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry + Microsoft 365 & Teams Integration | Kovil AI',
+  title: 'Azure AI Foundry + Microsoft 365 & Teams Integration',
   description: 'Deploy AI agents inside Teams, Outlook, and Office apps via Microsoft Graph API and Copilot Studio. Meeting summarisation, email triage, IT helpdesk — where employees already work.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/integrations/microsoft-365-teams' },
   keywords: ['Azure AI Microsoft 365', 'Teams AI agent', 'Copilot Studio Teams', 'Microsoft Graph API AI', 'M365 AI integration', 'Azure OpenAI Teams bot', 'Teams meeting summarisation AI', 'Outlook email triage AI', 'IT helpdesk Teams bot', 'SharePoint RAG Teams', 'Azure AI Foundry M365', 'Microsoft 365 Copilot extension', 'Teams adaptive cards AI', 'Kovil AI Microsoft 365', 'workplace AI agent'],

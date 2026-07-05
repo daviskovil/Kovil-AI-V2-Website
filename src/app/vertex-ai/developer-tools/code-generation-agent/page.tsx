@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CodeGenerationAgentPage from '@/src/pages/vertex-ai/developer-tools/CodeGenerationAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Code Generation Agent — Gemini Code Internal Developer Copilot | Kovil AI',
+  title: 'Code Generation Agent — Gemini Code Internal Developer Copilot',
   description: 'Internal developer copilot powered by Gemini Code on Vertex AI — trained on your codebase, architecture docs, and runbooks, deployed in your IDE and developer portals on Google Cloud.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/developer-tools/code-generation-agent' },
   keywords: ['code generation agent GCP', 'Gemini Code AI', 'developer copilot Vertex AI', 'internal developer copilot GCP', 'Gemini Code developer tool', 'Vertex AI code assistant', 'Google Cloud AI code generation', 'enterprise code copilot GCP', 'Gemini codebase search', 'Vertex AI developer agent', 'Code Gemma enterprise', 'GCP developer tools AI'],

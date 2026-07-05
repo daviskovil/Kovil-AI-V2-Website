@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import MLOpsPipelineAgentPage from '@/src/pages/vertex-ai/developer-tools/MLOpsPipelineAgentPage'
 
 export const metadata: Metadata = {
-  title: 'MLOps Pipeline Agent — Vertex AI Pipelines Automation | Kovil AI',
+  title: 'MLOps Pipeline Agent — Vertex AI Pipelines Automation',
   description: 'Automates model evaluation, deployment gating, and retraining triggers on Vertex AI Pipelines — with Gemini monitoring and explaining model performance changes on Google Cloud.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/developer-tools/mlops-pipeline-agent' },
   keywords: ['MLOps pipeline agent GCP', 'Vertex AI Pipelines', 'MLOps automation GCP', 'Vertex AI model monitoring', 'Gemini MLOps', 'Google Cloud MLOps', 'Vertex AI retraining automation', 'ML pipeline automation GCP', 'Vertex AI model deployment', 'MLOps Vertex AI partner', 'GCP ML pipeline agent', 'Vertex AI CI/CD ML'],

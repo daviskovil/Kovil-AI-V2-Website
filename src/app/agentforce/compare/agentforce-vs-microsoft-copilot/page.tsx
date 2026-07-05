@@ -8,7 +8,7 @@ const BASE = 'https://kovil.ai'
 const CANONICAL = `${BASE}/agentforce/compare/agentforce-vs-microsoft-copilot`
 
 export const metadata: Metadata = {
-  title: 'Agentforce vs Microsoft Copilot: 2026 Comparison — Which AI Agent Platform Wins? | Kovil AI',
+  title: 'Agentforce vs Microsoft Copilot: 2026 Comparison — Which AI Agent Platform Wins?',
   description: 'Agentforce vs Microsoft Copilot compared across ecosystem, CRM integration, autonomy, pricing and security. Agentforce works best for Salesforce-native orgs; Microsoft Copilot for Microsoft 365/Dynamics shops.',
   alternates: { canonical: CANONICAL },
   keywords: ['agentforce vs microsoft copilot','salesforce agentforce vs microsoft copilot','agentforce vs copilot comparison','microsoft copilot vs salesforce agentforce','agentforce or microsoft copilot which is better','salesforce ai vs microsoft ai','agentforce vs m365 copilot','agentforce vs dynamics 365 copilot','best ai agent for salesforce','agentforce microsoft comparison 2026'],

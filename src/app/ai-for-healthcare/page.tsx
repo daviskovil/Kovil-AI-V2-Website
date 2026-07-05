@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { ArrowRight, ClipboardList, FileText, Shield, Activity, Users, Brain } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'AI for Healthcare | Clinical AI Development & Healthcare Automation | Kovil AI',
+  title: 'AI for Healthcare | Clinical AI Development & Healthcare Automation',
   description: 'Healthcare AI development for clinical teams, health systems, and digital health companies. Patient intake automation, clinical documentation, medical coding AI, EHR integration, and prior auth workflows. 95% manual entry eliminated in production.',
   keywords: ['AI for healthcare', 'healthcare AI development', 'clinical AI', 'medical AI', 'EHR integration AI', 'prior authorization AI', 'clinical documentation AI', 'HIPAA AI'],
   openGraph: {

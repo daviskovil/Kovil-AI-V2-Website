@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureVsVertexAIPage from '@/src/pages/azure-ai-foundry/compare/AzureVsVertexAIPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry vs Google Vertex AI — Enterprise Platform Comparison | Kovil AI',
+  title: 'Azure AI Foundry vs Google Vertex AI — Enterprise Platform Comparison',
   description: 'Azure AI Foundry vs Google Vertex AI: a detailed enterprise comparison of identity, M365 vs Workspace integration, compliance, Gemini vs GPT-4o, and which platform fits your data estate.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/compare/vs-google-vertex-ai' },
   keywords: ['Azure AI Foundry vs Google Vertex AI', 'Azure AI vs Vertex AI', 'Vertex AI enterprise comparison', 'Azure OpenAI vs Gemini', 'Google Vertex AI vs Azure', 'enterprise AI platform comparison', 'Gemini vs GPT-4o enterprise', 'BigQuery AI vs Azure AI Search', 'M365 vs Google Workspace AI', 'Managed Identity vs GCP IAM', 'Kovil AI Azure Foundry'],

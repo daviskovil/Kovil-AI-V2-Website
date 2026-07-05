@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureVsAgentforcePage from '@/src/pages/azure-ai-foundry/compare/AzureVsAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry vs Salesforce Agentforce — AI Agent Platform Comparison | Kovil AI',
+  title: 'Azure AI Foundry vs Salesforce Agentforce — AI Agent Platform Comparison',
   description: 'Azure AI Foundry vs Salesforce Agentforce: which AI agent platform is right for your org? CRM-native AI vs enterprise infrastructure AI — a detailed comparison with honest verdict.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/compare/vs-agentforce' },
   keywords: ['Azure AI Foundry vs Agentforce', 'Azure AI vs Salesforce Agentforce', 'Agentforce enterprise comparison', 'Salesforce AI agents vs Azure', 'Einstein AI vs Azure OpenAI', 'enterprise AI agent platform', 'CRM AI vs enterprise AI', 'Agentforce vs Microsoft Copilot', 'Azure AI Foundry Salesforce integration', 'AI agents enterprise comparison', 'Kovil AI Azure Foundry'],

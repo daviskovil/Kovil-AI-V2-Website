@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import FinanceApprovalAgentPage from '@/src/pages/agentforce/internal-operations/FinanceApprovalAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Finance Approval Agent — Automated Invoice & Expense Approvals | Kovil AI',
+  title: 'Agentforce Finance Approval Agent — Automated Invoice & Expense Approvals',
   description: 'Agentforce finance approval agent that validates invoices against policy, routes to the right approver, chases SLA breaches, and posts approved transactions to ERP automatically.',
   alternates: { canonical: 'https://kovil.ai/agentforce/internal-operations/finance-approval-agent' },
   keywords: [

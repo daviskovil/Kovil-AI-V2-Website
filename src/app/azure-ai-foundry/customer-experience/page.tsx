@@ -5,7 +5,7 @@ import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 const AZURE = '#0078D4'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry Customer Experience Agents | Kovil AI',
+  title: 'Azure AI Foundry Customer Experience Agents',
   description: 'Customer experience AI agents on Azure AI Foundry — AI customer service, personalised recommendations, and omnichannel engagement. Resolve 70%+ of queries autonomously. Fixed-price deployments.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/customer-experience' },
   keywords: ['azure ai customer service agent', 'azure ai personalised recommendation', 'azure ai omnichannel agent', 'azure openai customer experience', 'azure ai contact centre', 'copilot studio customer service', 'azure ai foundry cx', 'azure ai customer engagement', 'azure openai recommendation engine'],

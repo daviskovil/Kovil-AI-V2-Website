@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import InsuranceAgentforcePage from '@/src/pages/agentforce/industries/InsuranceAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Insurance | Kovil AI',
+  title: 'Agentforce for Insurance',
   description: 'Production Agentforce for insurance — FNOL claims intake automation, policy renewal agents, underwriting triage, and broker support. Financial Services Cloud · NAIC compliant · Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/insurance' },
   keywords: [

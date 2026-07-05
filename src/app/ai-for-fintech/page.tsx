@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { ArrowRight, CreditCard, Shield, FileText, Users, BarChart2, AlertTriangle } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'AI for FinTech | Financial Services AI Development | Kovil AI',
+  title: 'AI for FinTech | Financial Services AI Development',
   description: 'AI development for fintech, banking, and financial services. Payment intelligence, fraud detection, KYC/AML automation, loan origination AI, and regulatory compliance systems built for production. Shipped in 18 days.',
   keywords: ['AI for fintech', 'fintech AI development', 'financial services AI', 'fraud detection AI', 'KYC AML automation', 'payment AI', 'loan origination AI'],
   openGraph: {

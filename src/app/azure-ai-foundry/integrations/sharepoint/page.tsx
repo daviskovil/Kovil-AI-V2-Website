@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AzureSharePointPage from '@/src/pages/azure-ai-foundry/integrations/AzureSharePointPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Search + SharePoint: AI Knowledge Base Integration | Kovil AI',
+  title: 'Azure AI Search + SharePoint: AI Knowledge Base Integration',
   description: 'Turn your SharePoint document library into a permission-aware AI knowledge base. Azure AI Search indexes SharePoint natively with Entra ID security trimming and real-time vector search.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/integrations/sharepoint' },
   keywords: ['Azure AI Search SharePoint', 'SharePoint RAG', 'SharePoint knowledge base AI', 'Azure AI Foundry SharePoint', 'SharePoint vector search', 'Entra ID permission-aware retrieval', 'SharePoint AI agent', 'SharePoint document indexing Azure', 'Azure AI Search indexer SharePoint', 'Semantic Kernel SharePoint', 'Copilot Studio SharePoint', 'SharePoint AI search', 'enterprise knowledge base AI', 'Kovil AI SharePoint', 'document retrieval AI'],

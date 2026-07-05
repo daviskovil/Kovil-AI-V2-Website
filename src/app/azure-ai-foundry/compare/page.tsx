@@ -5,7 +5,7 @@ import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 const AZURE = '#0078D4'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry Comparisons — Platform & Framework Guides | Kovil AI',
+  title: 'Azure AI Foundry Comparisons — Platform & Framework Guides',
   description: 'Unbiased comparisons of Azure AI Foundry vs AWS Bedrock, Google Vertex AI, and Salesforce Agentforce — plus Copilot Studio vs Power Virtual Agents and Semantic Kernel vs LangChain.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/compare' },
   keywords: ['azure ai foundry vs aws bedrock', 'azure ai foundry vs google vertex ai', 'azure ai foundry vs agentforce', 'copilot studio vs power virtual agents', 'semantic kernel vs langchain', 'azure ai comparison', 'enterprise ai platform comparison 2026', 'azure openai comparison', 'azure ai foundry alternative'],

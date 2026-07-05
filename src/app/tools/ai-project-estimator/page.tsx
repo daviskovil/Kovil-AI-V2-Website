@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AiProjectEstimatorPage from '@/src/pages/AiProjectEstimatorPage'
 
 export const metadata: Metadata = {
-  title: 'AI Project Cost Estimator — Free Instant Estimate | Kovil AI',
+  title: 'AI Project Cost Estimator — Free Instant Estimate',
   description: 'How much does an AI project cost? Answer 5 quick questions and get an instant cost range, timeline, tech stack recommendation, and risk flags — powered by Gemini AI. Free, no sign-up.',
   keywords: ['AI project cost', 'AI project cost estimator', 'how much does AI cost', 'AI development cost', 'AI project budget', 'AI project timeline', 'AI cost calculator', 'Kovil AI'],
   alternates: { canonical: 'https://kovil.ai/tools/ai-project-estimator' },

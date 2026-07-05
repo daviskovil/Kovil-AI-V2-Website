@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import RealEstateAgentforcePage from '@/src/pages/agentforce/industries/RealEstateAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Real Estate | Kovil AI',
+  title: 'Agentforce for Real Estate',
   description: 'Production Agentforce for real estate firms and property managers — property inquiry agents, lead qualification, tenant support automation, maintenance request handling, and lease renewal management. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/real-estate' },
   keywords: [

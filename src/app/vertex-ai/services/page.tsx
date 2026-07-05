@@ -7,7 +7,7 @@ const G_RED = '#EA4335'
 const G_GREEN = '#34A853'
 
 export const metadata: Metadata = {
-  title: 'Google Vertex AI Services — Strategy, Gemini Integration & Agent Builder | Kovil AI',
+  title: 'Google Vertex AI Services — Strategy, Gemini Integration & Agent Builder',
   description: 'Expert Vertex AI services — strategy & readiness, Gemini integration, Vertex AI Agent Builder, AI Search & RAG, BigQuery ML agents, and Vertex AI rescue. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/services' },
   keywords: ['vertex ai services', 'gemini integration service', 'vertex ai agent builder', 'vertex ai search rag', 'bigquery ml agents', 'vertex ai strategy', 'google cloud ai services', 'vertex ai consulting', 'gemini api integration', 'vertex ai implementation'],

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import EnterpriseSearchAgentPage from '@/src/pages/vertex-ai/data-analytics/EnterpriseSearchAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Enterprise Search Agent — Unified GCP Search with Vertex AI | Kovil AI',
+  title: 'Enterprise Search Agent — Unified GCP Search with Vertex AI',
   description: 'Cross-repository enterprise search built on Vertex AI Search — unified semantic search across GCS, BigQuery, databases, and APIs with access control and Gemini-powered answer generation.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/data-analytics/enterprise-search-agent' },
   keywords: ['enterprise search agent', 'Vertex AI Search', 'enterprise RAG GCP', 'Google Cloud enterprise search', 'Vertex AI Search implementation', 'semantic search GCP', 'AI enterprise search', 'Gemini enterprise search', 'RAG pipeline Vertex AI', 'unified enterprise search', 'GCS BigQuery search agent', 'Vertex AI Search partner'],

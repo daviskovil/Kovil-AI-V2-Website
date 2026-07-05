@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import LegalProfessionalServicesAgentforcePage from '@/src/pages/agentforce/industries/LegalProfessionalServicesAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Legal & Professional Services | Kovil AI',
+  title: 'Agentforce for Legal & Professional Services',
   description: 'Production Agentforce for law firms, consultancies, and professional services — contract review automation, client intake agents, matter management, billing inquiry resolution. Einstein Trust Layer · Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/legal-professional-services' },
   keywords: [

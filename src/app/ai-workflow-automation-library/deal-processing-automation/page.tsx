@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import DealProcessingPage from '@/src/pages/ai-workflow-automation-library/DealProcessingPage'
 
 export const metadata: Metadata = {
-  title: 'Deal Processing Automation — FinTech AI | Kovil AI',
+  title: 'Deal Processing Automation — FinTech AI',
   description: 'Automate deal processing from CRM stage change to signed contract. AI scoring, compliance gates, contract generation, and DocuSign e-signature — all triggered automatically from Salesforce or HubSpot.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/deal-processing-automation' },
   openGraph: {

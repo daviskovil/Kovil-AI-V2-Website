@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'LLM Development | Large Language Model Integration and Fine-Tuning | Kovil AI',
+  title: 'LLM Development | Large Language Model Integration and Fine-Tuning',
   description: 'Kovil AI integrates, fine-tunes, and deploys large language models for enterprise. GPT-4, Claude, Gemini, Llama 3. LLMOps, evaluation, and production-grade deployment.',
   keywords: ['LLM development', 'large language model integration', 'LLM fine-tuning', 'LLM deployment', 'enterprise LLM'],
   openGraph: {

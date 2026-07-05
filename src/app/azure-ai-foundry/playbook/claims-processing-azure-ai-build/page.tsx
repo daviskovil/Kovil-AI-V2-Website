@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import ClaimsProcessingAzureBuildPage from '@/src/pages/azure-ai-foundry/playbook/ClaimsProcessingAzureBuildPage'
 
 export const metadata: Metadata = {
-  title: 'Claims Processing AI Agent on Azure — Insurance Case Study | Kovil AI',
+  title: 'Claims Processing AI Agent on Azure — Insurance Case Study',
   description: 'How Kovil AI built an insurance claims processing agent on Azure AI Foundry. Week-by-week build breakdown, architecture decisions, results (74% faster processing), and lessons learned.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/playbook/claims-processing-azure-ai-build' },
   keywords: ['insurance claims AI Azure', 'claims processing automation AI', 'Azure AI insurance', 'insurance AI agent case study', 'claims automation Azure OpenAI', 'Azure AI Foundry insurance', 'claims processing agent build', 'insurance document AI Azure', 'AI claims adjudication Azure', 'Azure Document Intelligence insurance', 'insurance AI case study', 'claims processing 74% faster', 'insurance automation Azure', 'AI claims review Azure', 'Kovil AI Azure playbook', 'claims AI build guide'],

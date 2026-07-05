@@ -42,7 +42,7 @@ const breadcrumb = {
 }
 
 export const metadata: Metadata = {
-  title: 'AI Engineering for FinTech & Financial Services | Kovil AI',
+  title: 'AI Engineering for FinTech & Financial Services',
   description: 'Kovil AI embeds vetted AI engineers into FinTech companies. Build compliant fraud detection, KYC automation, underwriting AI, and financial workflow systems — 48hr match, 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/fintech' },
   openGraph: {

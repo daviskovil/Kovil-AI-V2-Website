@@ -7,7 +7,7 @@ const G_RED = '#EA4335'
 const G_GREEN = '#34A853'
 
 export const metadata: Metadata = {
-  title: 'Vertex AI Developer Tools — Code Generation, MLOps & API Testing Agents | Kovil AI',
+  title: 'Vertex AI Developer Tools — Code Generation, MLOps & API Testing Agents',
   description: 'AI developer tools on Vertex AI — code generation agents, MLOps pipeline automation, and API testing agents. Fixed-price production deployments for engineering teams on Google Cloud.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/developer-tools' },
   keywords: ['vertex ai code generation agent', 'vertex ai mlops pipeline', 'vertex ai api testing agent', 'google cloud developer ai', 'gemini code generation', 'vertex ai mlops automation', 'google cloud ai developer tools', 'vertex ai devops automation', 'gemini code assist enterprise'],

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import InternalDeveloperCopilotPage from '@/src/pages/azure-ai-foundry/developer-tools/InternalDeveloperCopilotPage'
 
 export const metadata: Metadata = {
-  title: 'Internal Developer Copilot — Azure OpenAI & GitHub Copilot | Kovil AI',
+  title: 'Internal Developer Copilot — Azure OpenAI & GitHub Copilot',
   description: 'AI developer copilot trained on your internal codebase, APIs, and runbooks. Built on Azure OpenAI and GitHub Copilot extensibility. 40% faster onboarding. 30% fewer support tickets.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/developer-tools/internal-developer-copilot' },
   keywords: ['internal developer copilot Azure', 'GitHub Copilot Azure OpenAI', 'Azure AI developer tools', 'codebase AI assistant', 'internal knowledge AI Azure', 'developer productivity AI', 'Azure AI Foundry developer tools', 'GitHub Copilot extension Azure', 'custom copilot codebase', 'Azure DevOps AI assistant', 'developer onboarding AI', 'internal API documentation AI', 'Azure OpenAI code assistant', 'codebase RAG Azure', 'Kovil AI Azure', 'developer copilot enterprise'],

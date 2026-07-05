@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import EducationAgentforcePage from '@/src/pages/agentforce/industries/EducationAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Education & Higher Education | Kovil AI',
+  title: 'Agentforce for Education & Higher Education',
   description: 'Production Agentforce for universities, colleges, and education providers — admissions inquiry agents, enrolment support, financial aid automation, student support, alumni engagement, and course advising. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/education' },
   keywords: [

@@ -5,7 +5,7 @@ import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 const AZURE = '#0078D4'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry Developer Tools & Agents | Kovil AI',
+  title: 'Azure AI Foundry Developer Tools & Agents',
   description: 'AI developer tools on Azure AI Foundry — internal developer copilot, API integration agent, and MLOps automation. Fixed-price production deployments for engineering teams.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/developer-tools' },
   keywords: ['azure ai developer copilot', 'azure openai developer tools', 'azure ai api integration agent', 'azure mlops automation', 'azure prompt flow mlops', 'internal developer ai azure', 'azure ai foundry developer', 'github copilot azure openai', 'azure apim ai agent', 'azure ai ml pipeline automation'],

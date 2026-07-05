@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import RetailEcommerceAzurePage from '@/src/pages/azure-ai-foundry/industries/RetailEcommerceAzurePage'
 
 export const metadata: Metadata = {
-  title: 'AI Agents for Retail & eCommerce — Azure AI Foundry | Kovil AI',
+  title: 'AI Agents for Retail & eCommerce — Azure AI Foundry',
   description: 'AI agents for retail and eCommerce built on Azure. Personalised product recommendations, customer service automation, demand forecasting, visual search, and returns processing. 38% conversion lift.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/industries/retail-ecommerce' },
   keywords: ['AI agents retail Azure', 'eCommerce AI automation Azure', 'product recommendation AI Azure', 'retail customer service AI', 'demand forecasting AI Azure', 'visual search Azure AI', 'returns automation AI', 'Azure OpenAI retail', 'Azure AI Search eCommerce', 'personalisation AI Azure', 'Azure Machine Learning retail', 'Cosmos DB eCommerce AI', 'Copilot Studio retail', 'Kovil AI retail', 'Azure AI Foundry eCommerce'],

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import SupplyChainIntelligencePage from '@/src/pages/vertex-ai/operations/SupplyChainIntelligencePage'
 
 export const metadata: Metadata = {
-  title: 'Supply Chain Intelligence Agent — BigQuery ML & Gemini on GCP | Kovil AI',
+  title: 'Supply Chain Intelligence Agent — BigQuery ML & Gemini on GCP',
   description: 'Real-time supply chain risk analysis using BigQuery ML and Gemini — ingests supplier, logistics, and demand data, surfaces risks, and recommends re-routing autonomously on Google Cloud.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/operations/supply-chain-intelligence' },
   keywords: ['supply chain AI GCP', 'supply chain intelligence Vertex AI', 'BigQuery ML supply chain', 'Gemini supply chain risk', 'Google Cloud supply chain agent', 'AI supply chain analytics', 'Vertex AI operations agent', 'supply chain disruption AI', 'GCP supply chain optimisation', 'supply chain risk AI agent', 'BigQuery supply chain intelligence', 'Google Cloud operations AI'],

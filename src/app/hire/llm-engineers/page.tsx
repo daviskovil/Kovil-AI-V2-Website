@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import LLMEngineersPage from '@/src/pages/hire/LLMEngineersPage'
 
 export const metadata: Metadata = {
-  title: 'Hire an LLM Engineer — Matched in 48 Hours | Kovil AI',
+  title: 'Hire an LLM Engineer — Matched in 48 Hours',
   description: 'Hire a vetted LLM engineer in 48 hours. RAG systems, fine-tuning, AI agents, LLM API integration, LLMOps. Engagement Manager oversight, 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/hire/llm-engineers' },
   keywords: [

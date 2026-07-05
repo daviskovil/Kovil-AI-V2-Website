@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import QuoteProposalAgentPage from '@/src/pages/agentforce/sales-cloud/QuoteProposalAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Quote & Proposal Agent — Automated CPQ & Proposal Generation | Kovil AI',
+  title: 'Agentforce Quote & Proposal Agent — Automated CPQ & Proposal Generation',
   description: 'Agentforce CPQ agent that auto-drafts personalised proposals from live Salesforce CPQ data, routes through approval, and delivers via DocuSign — from proposal stage to signed in under 4 hours.',
   alternates: { canonical: 'https://kovil.ai/agentforce/sales-cloud/quote-proposal-agent' },
   keywords: [

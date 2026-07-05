@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import HireHubPage from '@/src/pages/hire/HireHubPage'
 
 export const metadata: Metadata = {
-  title: 'Hire a Specialist AI Engineer — Matched in 48 Hours | Kovil AI',
+  title: 'Hire a Specialist AI Engineer — Matched in 48 Hours',
   description: 'Hire vetted Tier-1 specialist AI engineers in 48 hours. Computer vision, machine learning, LLM, NLP, and data engineering. Engagement Manager oversight, 2-week risk-free trial, 100% IP ownership.',
   alternates: { canonical: 'https://kovil.ai/hire' },
   keywords: [

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import LogisticsSupplyChainAgentforcePage from '@/src/pages/agentforce/industries/LogisticsSupplyChainAgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Logistics & Supply Chain | Kovil AI',
+  title: 'Agentforce for Logistics & Supply Chain',
   description: 'Production Agentforce for logistics companies and supply chain operators — shipment tracking agents, freight quoting automation, returns and claims resolution, carrier communication, and inventory alerting. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/logistics-supply-chain' },
   keywords: [

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import N8NAutomationExpertsPage from '@/src/pages/hire/N8NAutomationExpertsPage'
 
 export const metadata: Metadata = {
-  title: 'Hire n8n Automation Experts — AI Workflow Automation, Matched in 48 Hours | Kovil AI',
+  title: 'Hire n8n Automation Experts — AI Workflow Automation, Matched in 48 Hours',
   description: 'Hire vetted n8n automation experts embedded in your team in 48 hours. Workflow automation, AI-powered pipelines, API integrations, custom nodes, self-hosted n8n. 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/hire/n8n-automation-experts' },
   keywords: [
