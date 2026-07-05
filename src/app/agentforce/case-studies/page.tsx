@@ -44,12 +44,7 @@ const listingSchema = {
   description:
     'A collection of Agentforce case studies and capability spotlights from Kovil AI, covering Service Cloud automation, Data Cloud deployments, WhatsApp integrations, and Atlas Reasoning Engine implementations.',
   url: 'https://kovil.ai/agentforce/case-studies',
-  publisher: {
-    '@type': 'Organization',
-    name: 'Kovil AI',
-    url: 'https://kovil.ai',
-    logo: 'https://kovil.ai/kovil-logo-symbol-orange.webp',
-  },
+  publisher: { '@type': 'Organization', name: 'Kovil AI', url: 'https://kovil.ai', logo: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
 }
 
 const breadcrumbSchema = {
@@ -62,61 +57,54 @@ const breadcrumbSchema = {
   ],
 }
 
-const industryColors: Record<string, string> = {
-  'Telecommunications': 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-  'Insurance / Healthcare': 'bg-green-500/20 text-green-300 border-green-500/30',
-  'Education / EdTech': 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-  'Hospitality / Hotels': 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
-  'Real Estate': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
-  'Real Estate / PropTech': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
-  'Staffing & Recruiting / HR': 'bg-pink-500/20 text-pink-300 border-pink-500/30',
-  'Enterprise Technology / Professional Services': 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
-  'Cross-Industry': 'bg-gray-500/20 text-gray-300 border-gray-500/30',
-  'Field Sales / Real Estate / Enterprise Sales': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+// Subtle color accent per industry — used only for the tag border/text
+const industryAccent: Record<string, { border: string; text: string }> = {
+  'Telecommunications':                          { border: 'rgba(96,165,250,0.4)',  text: '#93c5fd' },
+  'Insurance / Healthcare':                      { border: 'rgba(52,211,153,0.4)',  text: '#6ee7b7' },
+  'Education / EdTech':                          { border: 'rgba(167,139,250,0.4)', text: '#c4b5fd' },
+  'Hospitality / Hotels':                        { border: 'rgba(251,191,36,0.4)',  text: '#fde68a' },
+  'Real Estate':                                 { border: 'rgba(255,79,0,0.4)',    text: '#fdba74' },
+  'Real Estate / PropTech':                      { border: 'rgba(255,79,0,0.4)',    text: '#fdba74' },
+  'Staffing & Recruiting / HR':                  { border: 'rgba(249,168,212,0.4)', text: '#f9a8d4' },
+  'Enterprise Technology / Professional Services':{ border: 'rgba(103,232,249,0.4)', text: '#67e8f9' },
+  'Cross-Industry':                              { border: 'rgba(156,163,175,0.4)', text: '#d1d5db' },
+  'Field Sales / Real Estate / Enterprise Sales':{ border: 'rgba(255,79,0,0.4)',    text: '#fdba74' },
 }
+
+const cardStyle = {
+  background: 'linear-gradient(160deg, #161616 0%, #111111 100%)',
+  border: '1px solid rgba(255,255,255,0.07)',
+  boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
+}
+
+const cardHoverClass =
+  'group block rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,79,0,0.3)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,79,0,0.15)]'
 
 export default function AgentforceCaseStudiesPage() {
   const caseStudies = agentforceCaseStudies.filter((cs) => cs.type === 'case-study')
-  const spotlights = agentforceCaseStudies.filter((cs) => cs.type === 'capability-spotlight')
+  const spotlights  = agentforceCaseStudies.filter((cs) => cs.type === 'capability-spotlight')
+
+  const featured = caseStudies[0]
+  const rest     = caseStudies.slice(1)
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listingSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <main>
+      <main style={{ background: '#0A0A0A' }}>
         {/* ── HERO ──────────────────────────────────────────────────────────── */}
-        <section
-          className="relative min-h-[520px] flex flex-col justify-center overflow-hidden pt-28 pb-20"
-          style={{ background: '#0A0A0A' }}
-        >
-          {/* Radial glow */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                'radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255,79,0,0.18) 0%, transparent 70%)',
-            }}
-          />
-          {/* Grid pattern */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-[0.04]"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)',
-              backgroundSize: '60px 60px',
-            }}
-          />
+        <section className="relative min-h-[520px] flex flex-col justify-center overflow-hidden pt-28 pb-20">
+          <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255,79,0,0.18) 0%, transparent 70%)' }} />
+          <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
           <div className="relative max-w-6xl mx-auto px-6 text-center">
-            {/* Breadcrumb */}
-            <nav className="flex items-center justify-center gap-2 text-sm text-[#888] mb-8">
+            <nav className="flex items-center justify-center gap-2 text-sm text-[#555] mb-8">
               <Link href="/agentforce" className="hover:text-[#FF4F00] transition-colors">Agentforce</Link>
               <span>/</span>
-              <span className="text-[#FAF8F4]">Case Studies</span>
+              <span className="text-[#999]">Case Studies</span>
             </nav>
 
-            {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#FF4F00]/30 bg-[#FF4F00]/10 text-[#FF4F00] text-sm font-medium mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF4F00] animate-pulse" />
               Agentforce in Production
@@ -126,12 +114,11 @@ export default function AgentforceCaseStudiesPage() {
               Real Deployments.<br />
               <span className="text-[#FF4F00]">Measured Outcomes.</span>
             </h1>
-            <p className="text-lg lg:text-xl text-[#888] max-w-3xl mx-auto leading-relaxed mb-10">
+            <p className="text-lg lg:text-xl text-[#666] max-w-3xl mx-auto leading-relaxed mb-10">
               Every engagement below is a production Agentforce deployment. From Service Cloud automation in telecom to Atlas Reasoning Engine across five enterprise systems, these are the outcomes that matter.
             </p>
 
-            {/* Stats bar */}
-            <div className="flex flex-wrap items-center justify-center gap-8 mt-4">
+            <div className="flex flex-wrap items-center justify-center gap-10 mt-4">
               {[
                 { value: '8', label: 'Case Studies' },
                 { value: '6', label: 'Capability Spotlights' },
@@ -140,130 +127,226 @@ export default function AgentforceCaseStudiesPage() {
               ].map((s) => (
                 <div key={s.label} className="text-center">
                   <div className="text-3xl font-black text-[#FF4F00]">{s.value}</div>
-                  <div className="text-xs text-[#888] uppercase tracking-wider mt-1">{s.label}</div>
+                  <div className="text-xs text-[#555] uppercase tracking-widest mt-1">{s.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── CASE STUDIES GRID ─────────────────────────────────────────────── */}
-        <section className="bg-[#FAF8F4] py-20">
+        {/* ── CASE STUDIES ──────────────────────────────────────────────────── */}
+        <section className="py-20 border-t border-white/[0.05]">
           <div className="max-w-6xl mx-auto px-6">
-            <div className="mb-12">
-              <h2 className="text-3xl font-black text-[#0A0A0A] mb-3">Case Studies</h2>
-              <p className="text-[#4B4B4B] max-w-2xl">
-                Production Agentforce deployments with documented outcomes, no theoretical results.
-              </p>
+            {/* Section label */}
+            <div className="flex items-center gap-4 mb-12">
+              <div className="h-px flex-1 bg-white/[0.06]" />
+              <span className="text-xs font-bold uppercase tracking-widest text-[#555]">Case Studies</span>
+              <div className="h-px flex-1 bg-white/[0.06]" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-              {caseStudies.map((cs) => (
-                <Link
-                  key={cs.slug}
-                  href={`/agentforce/case-studies/${cs.slug}`}
-                  className="group block bg-white border border-[#E5E2D9] rounded-2xl overflow-hidden hover:border-[#FF4F00]/40 hover:shadow-xl transition-all duration-300"
-                >
-                  {/* Card header */}
-                  <div className="p-6 pb-4 border-b border-[#E5E2D9]">
-                    <div className="flex items-start justify-between gap-3 mb-4">
+            {/* FEATURED CARD — full width, horizontal layout */}
+            {featured && (
+              <Link
+                href={`/agentforce/case-studies/${featured.slug}`}
+                className={`${cardHoverClass} flex flex-col lg:flex-row mb-6`}
+                style={cardStyle}
+              >
+                {/* Left: info */}
+                <div className="flex-1 p-8 lg:p-10 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-3 mb-6">
                       <span
-                        className={`inline-block text-xs font-semibold px-3 py-1 rounded-full border ${
-                          industryColors[cs.industry] ?? 'bg-gray-100 text-gray-600 border-gray-200'
-                        }`}
+                        className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full"
+                        style={{
+                          border: `1px solid ${industryAccent[featured.industry]?.border ?? 'rgba(255,255,255,0.15)'}`,
+                          color: industryAccent[featured.industry]?.text ?? '#aaa',
+                          background: 'rgba(255,255,255,0.03)',
+                        }}
                       >
-                        {cs.industry}
+                        {featured.industry}
                       </span>
-                      <span className="text-xs text-[#888] shrink-0">{cs.published}</span>
+                      <span className="text-xs text-[#444]">{featured.published}</span>
                     </div>
-                    <h3 className="text-lg font-bold text-[#0A0A0A] leading-snug group-hover:text-[#FF4F00] transition-colors">
-                      {cs.headline}
-                    </h3>
+                    <h2 className="text-xl lg:text-2xl font-black text-white leading-snug mb-4 group-hover:text-[#FF4F00] transition-colors duration-300">
+                      {featured.headline}
+                    </h2>
+                    <p className="text-[#555] text-sm leading-relaxed line-clamp-2 mb-6">
+                      {featured.subheadline}
+                    </p>
                   </div>
-
-                  {/* Hero metric */}
-                  {cs.metrics[0] && (
-                    <div
-                      className="px-6 py-5"
-                      style={{
-                        background: 'linear-gradient(135deg, #0A0A0A 0%, #111 100%)',
-                      }}
-                    >
-                      <div className="flex items-baseline gap-3">
-                        <span className="text-4xl font-black text-[#FF4F00]" style={{ textShadow: '0 0 30px rgba(255,79,0,0.4)' }}>
-                          {cs.metrics[0].value}
-                        </span>
-                        <div>
-                          <div className="text-white text-sm font-semibold">{cs.metrics[0].label}</div>
-                          {cs.metrics[0].sublabel && (
-                            <div className="text-[#888] text-xs">{cs.metrics[0].sublabel}</div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Tags and CTA */}
-                  <div className="p-6 pt-4">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {cs.tags.slice(0, 3).map((tag) => (
-                        <span key={tag} className="text-xs px-2.5 py-1 bg-[#FAF8F4] border border-[#E5E2D9] rounded-full text-[#4B4B4B]">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex items-center text-[#FF4F00] text-sm font-semibold group-hover:gap-2 gap-1 transition-all">
-                      Read case study
-                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── CAPABILITY SPOTLIGHTS GRID ────────────────────────────────────── */}
-        <section className="bg-white py-20 border-t border-[#E5E2D9]">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="mb-12">
-              <h2 className="text-3xl font-black text-[#0A0A0A] mb-3">Capability Spotlights</h2>
-              <p className="text-[#4B4B4B] max-w-2xl">
-                Deep dives into specific Agentforce capabilities, what they do, how they work, and when to use them.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {spotlights.map((cs) => (
-                <Link
-                  key={cs.slug}
-                  href={`/agentforce/case-studies/${cs.slug}`}
-                  className="group block bg-[#FAF8F4] border border-[#E5E2D9] rounded-2xl p-6 hover:border-[#FF4F00]/40 hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="flex items-start justify-between gap-2 mb-4">
-                    <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-[#FF4F00]/10 text-[#FF4F00] border border-[#FF4F00]/20">
-                      Capability Spotlight
-                    </span>
-                    <span className="text-xs text-[#888] shrink-0">{cs.published}</span>
-                  </div>
-                  <h3 className="text-base font-bold text-[#0A0A0A] leading-snug mb-3 group-hover:text-[#FF4F00] transition-colors">
-                    {cs.headline}
-                  </h3>
-                  <p className="text-sm text-[#4B4B4B] leading-relaxed mb-4 line-clamp-3">
-                    {cs.excerpt}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {cs.tags.slice(0, 2).map((tag) => (
-                      <span key={tag} className="text-xs px-2 py-0.5 bg-white border border-[#E5E2D9] rounded-full text-[#4B4B4B]">
+                  <div className="flex flex-wrap gap-2">
+                    {featured.tags.slice(0, 4).map((tag) => (
+                      <span key={tag} className="text-[11px] px-2.5 py-1 rounded-full text-[#555] border border-white/[0.07]">
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <div className="flex items-center text-[#FF4F00] text-sm font-semibold group-hover:gap-2 gap-1 transition-all">
+                </div>
+
+                {/* Right: stats grid */}
+                <div
+                  className="lg:w-80 shrink-0 border-t lg:border-t-0 lg:border-l border-white/[0.06] p-8 grid grid-cols-2 gap-px"
+                  style={{ background: 'rgba(255,79,0,0.03)' }}
+                >
+                  {featured.metrics.map((m, i) => (
+                    <div key={i} className="p-4 flex flex-col justify-center" style={{ borderRight: i % 2 === 0 ? '1px solid rgba(255,255,255,0.05)' : 'none', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
+                      <div className="text-2xl lg:text-3xl font-black text-[#FF4F00] mb-1" style={{ textShadow: '0 0 20px rgba(255,79,0,0.4)' }}>
+                        {m.value}
+                      </div>
+                      <div className="text-white text-[10px] font-semibold uppercase tracking-wide leading-tight">{m.label}</div>
+                      {m.sublabel && <div className="text-[#444] text-[10px] mt-0.5 leading-snug">{m.sublabel}</div>}
+                    </div>
+                  ))}
+                </div>
+              </Link>
+            )}
+
+            {/* Remaining case study cards — 2-col grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {rest.map((cs) => {
+                const accent = industryAccent[cs.industry] ?? { border: 'rgba(255,255,255,0.15)', text: '#aaa' }
+                return (
+                  <Link
+                    key={cs.slug}
+                    href={`/agentforce/case-studies/${cs.slug}`}
+                    className={`${cardHoverClass} flex flex-col`}
+                    style={cardStyle}
+                  >
+                    {/* Top: industry + date */}
+                    <div className="px-6 pt-6 pb-4 flex items-center justify-between">
+                      <span
+                        className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full"
+                        style={{ border: `1px solid ${accent.border}`, color: accent.text, background: 'rgba(255,255,255,0.02)' }}
+                      >
+                        {cs.industry}
+                      </span>
+                      <span className="text-[11px] text-[#444]">{cs.published}</span>
+                    </div>
+
+                    {/* Metric hero */}
+                    <div className="px-6 pb-5 relative">
+                      {/* Subtle radial glow behind number */}
+                      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 80% at 0% 50%, rgba(255,79,0,0.06) 0%, transparent 70%)' }} />
+                      <div className="relative">
+                        <div
+                          className="text-5xl lg:text-6xl font-black text-[#FF4F00] leading-none mb-1"
+                          style={{ textShadow: '0 0 40px rgba(255,79,0,0.5)' }}
+                        >
+                          {cs.metrics[0]?.value}
+                        </div>
+                        <div className="text-white text-xs font-semibold uppercase tracking-wider">{cs.metrics[0]?.label}</div>
+                        {cs.metrics[0]?.sublabel && (
+                          <div className="text-[#444] text-xs mt-0.5">{cs.metrics[0].sublabel}</div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="mx-6 h-px bg-white/[0.06]" />
+
+                    {/* Headline + other metrics */}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h3 className="text-base font-bold text-white leading-snug mb-5 group-hover:text-[#FF4F00] transition-colors duration-300">
+                        {cs.headline}
+                      </h3>
+
+                      {/* Secondary metrics as small chips */}
+                      {cs.metrics.length > 1 && (
+                        <div className="flex flex-wrap gap-2 mb-5">
+                          {cs.metrics.slice(1, 4).map((m, i) => (
+                            <span
+                              key={i}
+                              className="inline-flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-full"
+                              style={{ background: 'rgba(255,79,0,0.07)', border: '1px solid rgba(255,79,0,0.15)', color: '#FF4F00' }}
+                            >
+                              <span className="font-black">{m.value}</span>
+                              <span className="text-[#888] font-normal">{m.label}</span>
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
+                        {cs.tags.slice(0, 3).map((tag) => (
+                          <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full text-[#444] border border-white/[0.06]">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* CTA */}
+                      <div className="flex items-center gap-1.5 text-[#FF4F00] text-sm font-semibold group-hover:gap-3 transition-all duration-200">
+                        Read case study
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ── CAPABILITY SPOTLIGHTS ─────────────────────────────────────────── */}
+        <section className="py-20 border-t border-white/[0.05]">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="flex items-center gap-4 mb-12">
+              <div className="h-px flex-1 bg-white/[0.06]" />
+              <span className="text-xs font-bold uppercase tracking-widest text-[#555]">Capability Spotlights</span>
+              <div className="h-px flex-1 bg-white/[0.06]" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {spotlights.map((cs) => (
+                <Link
+                  key={cs.slug}
+                  href={`/agentforce/case-studies/${cs.slug}`}
+                  className={`${cardHoverClass} flex flex-col p-6`}
+                  style={{
+                    background: 'linear-gradient(160deg, #141414 0%, #0f0f0f 100%)',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    boxShadow: '0 4px 24px rgba(0,0,0,0.3)',
+                  }}
+                >
+                  {/* Spotlight badge */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span
+                      className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full"
+                      style={{ border: '1px solid rgba(255,79,0,0.3)', color: '#FF4F00', background: 'rgba(255,79,0,0.06)' }}
+                    >
+                      Capability
+                    </span>
+                    <span className="text-[11px] text-[#3a3a3a]">{cs.published}</span>
+                  </div>
+
+                  {/* Metric callout */}
+                  <div className="mb-4">
+                    <div className="text-3xl font-black text-[#FF4F00] mb-0.5" style={{ textShadow: '0 0 24px rgba(255,79,0,0.4)' }}>
+                      {cs.metrics[0]?.value}
+                    </div>
+                    <div className="text-white text-[11px] font-semibold uppercase tracking-wide">{cs.metrics[0]?.label}</div>
+                  </div>
+
+                  <div className="h-px bg-white/[0.05] mb-4" />
+
+                  <h3 className="text-sm font-bold text-white leading-snug mb-3 group-hover:text-[#FF4F00] transition-colors duration-300 flex-1">
+                    {cs.headline}
+                  </h3>
+
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {cs.tags.slice(0, 2).map((tag) => (
+                      <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full text-[#3a3a3a] border border-white/[0.05]">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-1.5 text-[#FF4F00] text-xs font-semibold group-hover:gap-2.5 transition-all duration-200">
                     Explore capability
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
@@ -274,24 +357,24 @@ export default function AgentforceCaseStudiesPage() {
         </section>
 
         {/* ── CTA ───────────────────────────────────────────────────────────── */}
-        <section className="bg-[#0A0A0A] py-20">
+        <section className="py-24 border-t border-white/[0.05]">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <h2 className="text-3xl lg:text-4xl font-black text-white mb-5">
               Ready to build your own Agentforce success story?
             </h2>
-            <p className="text-[#888] text-lg mb-8">
+            <p className="text-[#555] text-lg mb-10 leading-relaxed">
               Every engagement starts with a discovery call to map your highest-ROI Agentforce use case. Fixed-price delivery. 2-week risk-free pilot.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/book-a-call"
-                className="inline-flex items-center justify-center px-8 py-4 bg-[#FF4F00] text-white font-bold rounded-xl hover:bg-[#e64500] transition-colors"
+                className="inline-flex items-center justify-center px-8 py-4 bg-[#FF4F00] text-white font-bold rounded-xl hover:bg-[#e64500] transition-colors shadow-lg shadow-orange-900/20"
               >
                 Book a Discovery Call
               </Link>
               <Link
                 href="/agentforce"
-                className="inline-flex items-center justify-center px-8 py-4 border border-[#333] text-white font-semibold rounded-xl hover:border-[#FF4F00]/50 transition-colors"
+                className="inline-flex items-center justify-center px-8 py-4 border border-white/10 text-white font-semibold rounded-xl hover:border-[#FF4F00]/40 transition-colors"
               >
                 Explore Agentforce Services
               </Link>
