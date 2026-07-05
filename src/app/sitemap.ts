@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { posts } from '@/src/data/posts'
 import { caseStudies } from '@/src/data/case-studies'
+import { agentforceCaseStudies } from '@/src/data/agentforce-case-studies'
 
 const BASE_URL = 'https://kovil.ai'
 
@@ -172,6 +173,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/agentforce/compare/agentforce-vs-microsoft-copilot`,      lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/agentforce/faq`,                                           lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/agentforce/pricing`,                                       lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    // ── Agentforce case studies hub ───────────────────────────────────────────
+    { url: `${BASE_URL}/agentforce/case-studies`,                                  lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
     // ── Google Cloud Vertex AI landing ────────────────────────────────────────────
     { url: `${BASE_URL}/vertex-ai`,                                             lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
     // ── Vertex AI section hub pages ───────────────────────────────────────────────
@@ -295,5 +298,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...blogPages, ...caseStudyPages]
+  // ── Agentforce case studies (auto-generated from agentforce-case-studies.ts) ──
+  const agentforceCaseStudyPages: MetadataRoute.Sitemap = agentforceCaseStudies.map((cs) => ({
+    url: `${BASE_URL}/agentforce/case-studies/${cs.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+
+  return [...staticPages, ...blogPages, ...caseStudyPages, ...agentforceCaseStudyPages]
 }
