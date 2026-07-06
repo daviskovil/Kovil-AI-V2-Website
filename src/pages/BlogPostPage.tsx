@@ -26,7 +26,7 @@ const CTA_MAP: Record<string, CtaConfig> = {
     headline: 'Looking to automate workflows inside your business?',
     body: 'We help businesses replace hours of manual, repetitive work with AI-powered automations — whether that\'s connecting your tools with n8n, Make, or building something fully custom. Let\'s figure out what\'s possible for your team.',
     defaultGoal: 'project',
-    primary: { text: 'Talk to Us →', href: '/contact' },
+    primary: { text: 'Book a Call →', href: '/book-a-call' },
     secondary: { text: 'See Our Work', href: '/case-studies' },
   },
   'rag-vs-fine-tuning': {

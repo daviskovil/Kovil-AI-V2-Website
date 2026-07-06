@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { posts } from '@/src/data/posts'
 import { caseStudies } from '@/src/data/case-studies'
+import { agentforceCaseStudies } from '@/src/data/agentforce-case-studies'
 import SitemapClient from './SitemapClient'
 
 export const metadata: Metadata = {
@@ -13,5 +14,6 @@ export const metadata: Metadata = {
 export default function SitemapPage() {
   const blogLinks = posts.map(p => ({ label: p.title, href: `/blog/${p.slug}` }))
   const caseStudyLinks = caseStudies.map(cs => ({ label: cs.title, href: `/case-studies/${cs.slug}` }))
-  return <SitemapClient blogLinks={blogLinks} caseStudyLinks={caseStudyLinks} />
+  const agentforceCaseStudyLinks = agentforceCaseStudies.map(cs => ({ label: cs.headline, href: `/agentforce/case-studies/${cs.slug}` }))
+  return <SitemapClient blogLinks={blogLinks} caseStudyLinks={caseStudyLinks} agentforceCaseStudyLinks={agentforceCaseStudyLinks} />
 }

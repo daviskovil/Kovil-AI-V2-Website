@@ -501,9 +501,10 @@ function countLinks(s: SitemapSection): number {
 interface Props {
   blogLinks: SitemapLink[]
   caseStudyLinks: SitemapLink[]
+  agentforceCaseStudyLinks: SitemapLink[]
 }
 
-export default function SitemapClient({ blogLinks, caseStudyLinks }: Props) {
+export default function SitemapClient({ blogLinks, caseStudyLinks, agentforceCaseStudyLinks }: Props) {
   const [query, setQuery] = useState('')
   const [activeId, setActiveId] = useState<string>('')
   const [showBackToTop, setShowBackToTop] = useState(false)
@@ -518,6 +519,15 @@ export default function SitemapClient({ blogLinks, caseStudyLinks }: Props) {
       links: [
         { label: 'All Case Studies', href: '/case-studies' },
         ...caseStudyLinks,
+      ],
+    },
+    {
+      id: 'agentforce-case-studies',
+      title: 'Agentforce Case Studies',
+      color: '#0ea5e9',
+      links: [
+        { label: 'All Agentforce Case Studies', href: '/agentforce/case-studies' },
+        ...agentforceCaseStudyLinks,
       ],
     },
     {
