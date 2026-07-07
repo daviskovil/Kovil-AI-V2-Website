@@ -1,18 +1,36 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { calendlyTrackingParams, attributionForAnalytics } from '@/src/lib/attribution'
 
-const EMBED_URL =
+const BASE_EMBED_URL =
   'https://calendly.com/kovil-ai/talent?embed_type=Inline&embed_domain=kovil.ai&hide_gdpr_banner=1&background_color=ffffff&text_color=111111&primary_color=FF4F00'
+
+type GtagFn = (...args: unknown[]) => void
+function fireGtag(event: string, params?: Record<string, unknown>) {
+  if (typeof window !== 'undefined' && typeof (window as unknown as { gtag?: GtagFn }).gtag === 'function') {
+    ;(window as unknown as { gtag: GtagFn }).gtag('event', event, params ?? {})
+  }
+}
 
 export default function BookACallPage() {
   const router = useRouter()
+  // Build the embed URL on the client so we can append attribution (needs
+  // window/referrer/localStorage). Starts null → we render once it's ready to
+  // avoid remounting the iframe when the src changes.
+  const [embedUrl, setEmbedUrl] = useState<string | null>(null)
 
-  // Detect Calendly booking completion and redirect to confirmation page
+  useEffect(() => {
+    const params = new URLSearchParams(calendlyTrackingParams())
+    setEmbedUrl(`${BASE_EMBED_URL}&${params.toString()}`)
+  }, [])
+
+  // Detect Calendly booking completion → log conversion, then redirect
   useEffect(() => {
     function handleMessage(e: MessageEvent) {
       if (e.data?.event === 'calendly.event_scheduled') {
+        fireGtag('book_call', { method: 'calendly_embed', ...attributionForAnalytics() })
         router.push('/meeting-confirmed')
       }
     }
@@ -33,13 +51,15 @@ export default function BookACallPage() {
 
       {/* Calendly inline embed */}
       <div className="w-full max-w-5xl mx-auto" style={{ minHeight: '700px' }}>
-        <iframe
-          src={EMBED_URL}
-          title="Book a call with Kovil AI"
-          className="w-full border-0"
-          style={{ height: '700px' }}
-          loading="lazy"
-        />
+        {embedUrl && (
+          <iframe
+            src={embedUrl}
+            title="Book a call with Kovil AI"
+            className="w-full border-0"
+            style={{ height: '700px' }}
+            loading="lazy"
+          />
+        )}
       </div>
 
     </div>

@@ -6,6 +6,7 @@ import './globals.css'
 import Navbar from '@/src/components/Navbar'
 import Footer from '@/src/components/Footer'
 import ShynaWidget from '@/src/components/shyna/ShynaWidget'
+import AttributionTracker from '@/src/components/AttributionTracker'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -37,6 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-white">
+        <AttributionTracker />
         {!isStandalone && <Navbar />}
         {children}
         {!isStandalone && <Footer />}
