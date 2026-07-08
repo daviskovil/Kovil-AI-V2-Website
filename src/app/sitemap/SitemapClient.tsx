@@ -45,6 +45,8 @@ const STATIC_SECTIONS: SitemapSection[] = [
       {
         title: 'AI & ML Specialists',
         links: [
+          { label: 'Hire AI Agent Developers', href: '/hire/ai-agent-developer' },
+          { label: 'Hire Claude Code Engineers', href: '/hire/claude-code-engineer' },
           { label: 'Hire AI Engineers', href: '/hire/ai-engineer' },
           { label: 'Hire Generative AI Developers', href: '/hire/generative-ai-developer' },
           { label: 'Hire LLM Engineers', href: '/hire/llm-engineer' },
