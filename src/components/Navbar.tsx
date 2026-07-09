@@ -81,6 +81,14 @@ const exploreLinks = [
   },
 ]
 
+const hireLink = {
+  to: "/hire",
+  icon: Users,
+  label: "Hire an AI Engineer",
+  desc: "Vetted specialist AI engineers, matched in 48 hours.",
+  color: "#FF4F00",
+}
+
 function ResourcesDropdown() {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -204,7 +212,8 @@ function ExploreDropdown() {
     pathname.startsWith("/agentforce") ||
     pathname.startsWith("/azure-ai-foundry") ||
     pathname.startsWith("/vertex-ai") ||
-    pathname.startsWith("/intelligent-document-processing")
+    pathname.startsWith("/intelligent-document-processing") ||
+    pathname.startsWith("/hire")
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -257,6 +266,23 @@ function ExploreDropdown() {
                 </Link>
               )
             })}
+
+            <div className="my-1 border-t border-border" />
+            <Link
+              href={hireLink.to}
+              className={`flex items-start gap-3 px-4 py-3 rounded-xl transition-colors group ${pathname.startsWith("/hire") ? "bg-accent/8 text-foreground" : "hover:bg-muted/50"}`}
+            >
+              <div
+                className="h-8 w-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 transition-colors"
+                style={{ backgroundColor: `${hireLink.color}22` }}
+              >
+                <hireLink.icon className="h-4 w-4" style={{ color: hireLink.color }} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-foreground leading-snug">{hireLink.label}</p>
+                <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{hireLink.desc}</p>
+              </div>
+            </Link>
           </div>
         </div>
       )}
@@ -364,7 +390,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
         <div>
           <button
             onClick={() => setExploreOpen((o) => !o)}
-            className={`flex items-center justify-between w-full h-12 px-3 rounded-xl text-base font-medium transition-colors ${(pathname.startsWith("/agentforce") || pathname.startsWith("/azure-ai-foundry") || pathname.startsWith("/vertex-ai") || pathname.startsWith("/intelligent-document-processing")) ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
+            className={`flex items-center justify-between w-full h-12 px-3 rounded-xl text-base font-medium transition-colors ${(pathname.startsWith("/agentforce") || pathname.startsWith("/azure-ai-foundry") || pathname.startsWith("/vertex-ai") || pathname.startsWith("/intelligent-document-processing") || pathname.startsWith("/hire")) ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
           >
             Explore
             <ChevronRight className={`h-4 w-4 transition-transform duration-200 ${exploreOpen ? "rotate-90" : ""}`} />
@@ -393,6 +419,24 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
                   </Link>
                 )
               })}
+
+              <div className="my-1 border-t border-border" />
+              <Link
+                href={hireLink.to}
+                onClick={onClose}
+                className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-colors ${pathname.startsWith("/hire") ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/40"}`}
+              >
+                <div
+                  className="h-7 w-7 rounded-lg flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: `${hireLink.color}22` }}
+                >
+                  <hireLink.icon className="h-3.5 w-3.5" style={{ color: hireLink.color }} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold leading-snug">{hireLink.label}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{hireLink.desc}</p>
+                </div>
+              </Link>
             </div>
           )}
         </div>
