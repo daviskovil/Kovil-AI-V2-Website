@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  background: #0B0D18;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
+}
+
+/* ── Dot grid ── */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.09) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* ── Radial colour washes ── */
+.wash-left {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 55% 65% at 18% 55%, rgba(255,79,0,0.13) 0%, transparent 70%);
+}
+.wash-right {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 70% at 88% 45%, rgba(30,40,90,0.55) 0%, transparent 65%);
+}
+
+/* ── Root layout ── */
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: 1200px;
+  height: 630px;
+  padding: 48px 56px 44px 56px;
+  display: flex;
+  gap: 52px;
+}
+
+/* ═══════════ LEFT COLUMN ═══════════ */
+.left {
+  flex: 0 0 515px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo */
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.logo .dot-ai {
+  color: #FF4F00;
+}
+
+/* Orange accent bar */
+.accent-bar {
+  width: 110px;
+  height: 13px;
+  border-radius: 999px;
+  background: #FF4F00;
+  margin-bottom: 34px;
+}
+
+/* Headline */
+.headline {
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -2.5px;
+  color: #fff;
+  margin-bottom: 22px;
+}
+.headline .hl-orange {
+  color: #FF4F00;
+}
+
+/* Sub-headline */
+.sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.55;
+  margin-bottom: 4px;
+}
+
+/* Dot separator row */
+.meta-row {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.35);
+}
+.meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255,79,0,0.6);
+}
+
+/* Bottom pill row */
+.pills {
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.01em;
+}
+.pill-orange {
+  background: rgba(255,79,0,0.14);
+  border-color: rgba(255,79,0,0.45);
+  color: rgba(255,140,80,0.9);
+}
+
+/* ═══════════ RIGHT COLUMN ═══════════ */
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding-top: 4px;
+}
+
+/* Domain card */
+.card {
+  flex: 1;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.075);
+  border-radius: 14px;
+  padding: 0 20px 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Coloured left accent bar */
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 3.5px;
+  border-radius: 0 3px 3px 0;
+}
+.card.c-orange::before  { background: #FF4F00; }
+.card.c-blue::before    { background: #3B82F6; }
+.card.c-purple::before  { background: #A855F7; }
+.card.c-green::before   { background: #10B981; }
+
+/* Card subtle right gradient to give depth */
+.card::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0; width: 80px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.012));
+  pointer-events: none;
+}
+
+.card-body {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 7px;
+  letter-spacing: -0.2px;
+}
+
+.card-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.ctag {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.35);
+  padding: 3px 9px;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+/* Large number watermark */
+.card-num {
+  font-size: 30px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.08);
+  flex-shrink: 0;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+}
+</style>
+</head>
+<body>
+
+<!-- Background layers -->
+<div class="grid-bg"></div>
+<div class="wash-left"></div>
+<div class="wash-right"></div>
+
+<div class="wrap">
+
+  <!-- ── LEFT ── -->
+  <div class="left">
+    <div class="logo">KOVIL<span class="dot-ai">.ai</span></div>
+    <div class="accent-bar"></div>
+
+    <div class="headline">
+      Make.com<br>
+      <span class="hl-orange">Experts.</span>
+    </div>
+
+    <div class="sub">
+      Vetted Tier-1 Make.com experts embedded in<br>
+      your team — workflow automation at scale.
+    </div>
+
+    <div class="meta-row">
+      <span>SaaS Integrations</span>
+      <div class="meta-dot"></div>
+      <span>No-code AI</span>
+      <div class="meta-dot"></div>
+      <span>Custom Apps</span>
+      <div class="meta-dot"></div>
+      <span>48h Match</span>
+    </div>
+
+    <div class="pills">
+      <div class="pill pill-orange">2-Week Trial</div>
+      <div class="pill">Make.com</div>
+      <div class="pill">AI Pipelines</div>
+    </div>
+  </div>
+
+  <!-- ── RIGHT ── -->
+  <div class="right">
+
+    <div class="card c-orange">
+      <div class="card-body">
+        <div class="card-title">SaaS Integrations</div>
+        <div class="card-tags">
+          <span class="ctag">HubSpot</span>
+          <span class="ctag">Stripe</span>
+          <span class="ctag">Slack</span>
+          <span class="ctag">Salesforce</span>
+          <span class="ctag">REST APIs</span>
+        </div>
+      </div>
+      <div class="card-num">1</div>
+    </div>
+
+    <div class="card c-blue">
+      <div class="card-body">
+        <div class="card-title">Scenario Design</div>
+        <div class="card-tags">
+          <span class="ctag">Routers</span>
+          <span class="ctag">Filters</span>
+          <span class="ctag">Iterators</span>
+          <span class="ctag">Aggregators</span>
+          <span class="ctag">Error Handlers</span>
+        </div>
+      </div>
+      <div class="card-num">2</div>
+    </div>
+
+    <div class="card c-purple">
+      <div class="card-body">
+        <div class="card-title">AI-Powered Workflows</div>
+        <div class="card-tags">
+          <span class="ctag">GPT-4 / Claude</span>
+          <span class="ctag">Pinecone / Vector DB</span>
+          <span class="ctag">Data Extraction</span>
+        </div>
+      </div>
+      <div class="card-num">3</div>
+    </div>
+
+    <div class="card c-green">
+      <div class="card-body">
+        <div class="card-title">Custom App Development</div>
+        <div class="card-tags">
+          <span class="ctag">Make.com Private Apps</span>
+          <span class="ctag">API Wrappers</span>
+          <span class="ctag">JSON Configurations</span>
+        </div>
+      </div>
+      <div class="card-num">4</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

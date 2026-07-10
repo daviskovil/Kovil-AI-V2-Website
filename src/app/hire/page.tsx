@@ -65,6 +65,9 @@ const serviceSchema = {
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire LangGraph Engineers', url: 'https://kovil.ai/hire/langgraph-engineers' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire AutoGen Developers', url: 'https://kovil.ai/hire/autogen-developers' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire n8n Automation Experts', url: 'https://kovil.ai/hire/n8n-automation-experts' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire Make.com Automation Experts', url: 'https://kovil.ai/hire/make-automation-experts' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire Voiceflow Developers', url: 'https://kovil.ai/hire/voiceflow-developers' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire LlamaIndex Engineers', url: 'https://kovil.ai/hire/llamaindex-engineers' } },
     ],
   },
 }

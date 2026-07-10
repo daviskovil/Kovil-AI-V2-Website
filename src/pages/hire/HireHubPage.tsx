@@ -97,6 +97,24 @@ const specialists = [
     tags: ["Automation", "AI Pipelines", "Custom Nodes", "Self-Hosted"],
     chip: "bg-teal-500/10 text-teal-500",
   },
+  {
+    slug: "make-automation-experts", icon: Workflow, title: "Make.com Automation Experts", isNew: true,
+    desc: "Custom Make.com scenarios, complex SaaS integrations, webhook routers, error handling, and AI-enabled automation pipelines.",
+    tags: ["Make.com", "SaaS Integration", "Webhooks", "No-Code AI"],
+    chip: "bg-sky-500/10 text-sky-500",
+  },
+  {
+    slug: "voiceflow-developers", icon: Bot, title: "Voiceflow Developers", isNew: true,
+    desc: "Voiceflow conversational agents, custom API and knowledge base integrations, dynamic support routing, and CRM handoffs.",
+    tags: ["Voiceflow", "Chatbots", "Voice Agents", "API Handoff"],
+    chip: "bg-violet-500/10 text-violet-500",
+  },
+  {
+    slug: "llamaindex-engineers", icon: Database, title: "LlamaIndex Engineers", isNew: true,
+    desc: "Advanced RAG pipelines, LLM data ingestion, metadata filtering, hierarchical node parsing, and custom vector search connectors.",
+    tags: ["Advanced RAG", "Data Ingestion", "LlamaIndex", "Vector Search"],
+    chip: "bg-emerald-500/10 text-emerald-500",
+  },
 ]
 
 // ── Full engineering team (compact) ──────────────────────────────────────────
