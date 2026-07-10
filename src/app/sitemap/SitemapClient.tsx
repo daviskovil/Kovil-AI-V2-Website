@@ -51,6 +51,7 @@ const STATIC_SECTIONS: SitemapSection[] = [
           { label: 'Hire Generative AI Developers', href: '/hire/generative-ai-developer' },
           { label: 'Hire LLM Engineers', href: '/hire/llm-engineer' },
           { label: 'Hire LLM Engineers (Specialist)', href: '/hire/llm-engineers' },
+          { label: 'Hire LlamaIndex Engineers', href: '/hire/llamaindex-engineers' },
           { label: 'Hire ML Engineers', href: '/hire/ml-engineer' },
           { label: 'Hire Machine Learning Engineers', href: '/hire/machine-learning-engineers' },
           { label: 'Hire Computer Vision Engineers', href: '/hire/computer-vision-engineers' },
@@ -66,6 +67,8 @@ const STATIC_SECTIONS: SitemapSection[] = [
           { label: 'Hire LangGraph Engineers', href: '/hire/langgraph-engineers' },
           { label: 'Hire AutoGen Developers', href: '/hire/autogen-developers' },
           { label: 'Hire n8n Automation Experts', href: '/hire/n8n-automation-experts' },
+          { label: 'Hire Make.com Automation Experts', href: '/hire/make-automation-experts' },
+          { label: 'Hire Voiceflow Developers', href: '/hire/voiceflow-developers' },
         ],
       },
       {
