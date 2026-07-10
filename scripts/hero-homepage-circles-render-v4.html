@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Kovil AI 3D Workspace Hero Render</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 900px; height: 900px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.wrap {
+  width: 900px; height: 900px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ─── 3D Scene Wrapper ─── */
+.scene-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene-3d {
+  position: relative;
+  width: 800px;
+  height: 800px;
+  transform: perspective(2000px) rotateX(26deg) rotateY(-22deg) rotateZ(5deg);
+  transform-style: preserve-3d;
+}
+
+/* ─── Glow Washes behind cards ─── */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.18;
+  pointer-events: none;
+}
+.glow-orange {
+  width: 350px; height: 350px;
+  background: #FF4F00;
+  top: 100px; left: 80px;
+}
+.glow-blue {
+  width: 350px; height: 350px;
+  background: #3B82F6;
+  bottom: 120px; right: 80px;
+}
+
+/* ─── Perspective Grid ─── */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(10, 10, 10, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center;
+  transform: translateZ(-50px);
+  mask-image: radial-gradient(circle, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle, black 40%, transparent 80%);
+}
+
+/* ─── Glass Cards ─── */
+.glass-card {
+  position: absolute;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(10, 10, 10, 0.07);
+  box-shadow: 
+    0 35px 80px -15px rgba(10, 10, 10, 0.14),
+    0 10px 30px -10px rgba(10, 10, 10, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+/* CARD 1: Main Agent Terminal (left, floats high) */
+.terminal-card {
+  width: 420px;
+  height: 330px;
+  left: 30px;
+  top: 180px;
+  transform: translateZ(90px);
+}
+
+.terminal-header {
+  height: 44px;
+  background: rgba(10, 10, 10, 0.03);
+  border-bottom: 1px solid rgba(10, 10, 10, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+}
+
+.window-dots {
+  display: flex;
+  gap: 6px;
+}
+.dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.dot-red { background: #FF5F56; }
+.dot-yellow { background: #FFBD2E; }
+.dot-green { background: #27C93F; }
+
+.terminal-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6B7280;
+}
+
+.terminal-body {
+  padding: 20px 24px;
+  font-family: 'Fira Code', monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #1F2937;
+}
+
+.code-line {
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+.code-keyword { color: #A855F7; font-weight: 600; }
+.code-method { color: #2563EB; }
+.code-string { color: #FF4F00; }
+.code-comment { color: #9CA3AF; }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-top: 14px;
+}
+.pulse-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+}
+
+/* CARD 2: Analytics Chart (top-right, floats medium) */
+.chart-card {
+  width: 320px;
+  height: 230px;
+  right: 20px;
+  top: 120px;
+  transform: translateZ(50px);
+  padding: 24px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.metric-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: #0A0A0A;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.metric-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6B7280;
+  margin-top: 4px;
+}
+
+.chart-badge-tag {
+  background: rgba(255, 79, 0, 0.1);
+  color: #FF4F00;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* CARD 3: Workflow Orchestrator nodes (bottom-right, floats low) */
+.orchestrator-card {
+  width: 350px;
+  height: 290px;
+  right: 50px;
+  bottom: 120px;
+  transform: translateZ(70px);
+  padding: 24px;
+}
+
+.card-title-lg {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0A0A0A;
+  margin-bottom: 20px;
+}
+
+.node-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(10, 10, 10, 0.02);
+  border: 1px solid rgba(10, 10, 10, 0.04);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+.step-number {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: #FF4F00;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-details {
+  flex: 1;
+}
+.step-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #0A0A0A;
+}
+.step-sub {
+  font-size: 11px;
+  color: #6B7280;
+}
+
+.step-status {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #3B82F6;
+  box-shadow: 0 0 6px #3B82F6;
+}
+.step-status.completed {
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+}
+
+/* ─── Extra floating 3D elements (lasers, nodes) ─── */
+.node-point {
+  position: absolute;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #FF4F00;
+  box-shadow: 0 0 16px #FF4F00;
+  transform: translateZ(110px);
+}
+.np-1 { top: 120px; left: 420px; }
+.np-2 { bottom: 200px; left: 160px; background: #3B82F6; box-shadow: 0 0 16px #3B82F6; }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="scene-container">
+    <div class="scene-3d">
+      
+      <!-- Background perspective elements -->
+      <div class="glow glow-orange"></div>
+      <div class="glow glow-blue"></div>
+      <div class="grid-overlay"></div>
+
+      <!-- Connecting lasers behind cards -->
+      <svg class="connections-svg" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; transform:translateZ(-10px);" viewBox="0 0 800 800" fill="none">
+        <defs>
+          <linearGradient id="laser-grad" x1="100" y1="180" x2="600" y2="500" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FF4F00" stop-opacity="0.6" />
+            <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.6" />
+            <stop offset="100%" stop-color="#10B981" stop-opacity="0.1" />
+          </linearGradient>
+        </defs>
+        <path d="M 120 280 C 300 150, 480 320, 600 230" stroke="url(#laser-grad)" stroke-width="2" />
+        <path d="M 280 500 C 400 420, 520 540, 620 420" stroke="url(#laser-grad)" stroke-width="1.5" stroke-dasharray="4, 4" />
+      </svg>
+
+      <!-- ─── CARD 1: Main Agent Terminal ─── -->
+      <div class="glass-card terminal-card">
+        <div class="terminal-header">
+          <div class="window-dots">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <div class="terminal-title">AI AGENT EXECUTION</div>
+          <div></div>
+        </div>
+        <div class="terminal-body">
+          <div class="code-line"><span class="code-comment">// Initialize Enterprise Agent Flow</span></div>
+          <div class="code-line"><span class="code-keyword">const</span> agent = <span class="code-keyword">new</span> <span class="code-method">KovilAgent</span>({</div>
+          <div class="code-line">&nbsp;&nbsp;role: <span class="code-string">"Orchestrator"</span>,</div>
+          <div class="code-line">&nbsp;&nbsp;engine: <span class="code-string">"Claude-3.5-Sonnet"</span></div>
+          <div class="code-line">});</div>
+          <div class="code-line"></div>
+          <div class="code-line"><span class="code-keyword">await</span> agent.<span class="code-method">run</span>([<span class="code-string">"ingest"</span>, <span class="code-string">"optimize"</span>]);</div>
+          <div class="code-line"><span class="code-comment">// Output: Vector indexing completed</span></div>
+          
+          <div class="status-badge">
+            <div class="pulse-dot"></div>
+            ACTIVE AGENT EMBEDDED
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── CARD 2: Analytics Chart ─── -->
+      <div class="glass-card chart-card">
+        <div class="chart-header">
+          <div class="metric-label">AI Delivery Speed</div>
+          <div class="chart-badge-tag">Fastest Match</div>
+        </div>
+        <div class="metric-value">48 Hours</div>
+        <div class="metric-label" style="margin-top: 18px; margin-bottom: 6px;">Success Rate</div>
+        <!-- Simple line graph representation -->
+        <svg width="270" height="40" viewBox="0 0 270 40" fill="none">
+          <path d="M0 35 Q 40 10, 80 25 T 160 5 T 240 15 L 270 10" stroke="#FF4F00" stroke-width="2.5" stroke-linecap="round" />
+          <path d="M0 35 Q 40 10, 80 25 T 160 5 T 240 15 L 270 10 L 270 40 L 0 40 Z" fill="rgba(255,79,0,0.05)" />
+        </svg>
+      </div>
+
+      <!-- ─── CARD 3: Workflow Orchestrator ─── -->
+      <div class="glass-card orchestrator-card">
+        <h3 class="card-title-lg">Agentic Workspace</h3>
+        <div class="node-flow">
+          <div class="flow-step">
+            <div class="step-number">01</div>
+            <div class="step-details">
+              <div class="step-title">Ingest Data Sources</div>
+              <div class="step-sub">LlamaIndex PDF parsing</div>
+            </div>
+            <div class="step-status completed"></div>
+          </div>
+          <div class="flow-step">
+            <div class="step-number">02</div>
+            <div class="step-details">
+              <div class="step-title">Orchestrate Sprints</div>
+              <div class="step-sub">LangGraph Multi-Agent</div>
+            </div>
+            <div class="step-status completed"></div>
+          </div>
+          <div class="flow-step">
+            <div class="step-number">03</div>
+            <div class="step-details">
+              <div class="step-title">API Integration</div>
+              <div class="step-sub">Make.com Webhook Sync</div>
+            </div>
+            <div class="step-status"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Node Points -->
+      <div class="node-point np-1"></div>
+      <div class="node-point np-2"></div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
