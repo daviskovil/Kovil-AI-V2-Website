@@ -34,10 +34,23 @@ const SPAM_PREFIXES: string[] = [
   '/weaverse-ai',
 ]
 
+/**
+ * Directory-style prefixes (e.g. '/onlines/') must also catch the bare path
+ * without a trailing slash (e.g. '/onlines'), which otherwise falls through
+ * to Next.js's normal 404 instead of returning 410.
+ */
+function isSpamPath(pathname: string): boolean {
+  return SPAM_PREFIXES.some(p => {
+    if (pathname.startsWith(p)) return true
+    if (p.endsWith('/') && pathname === p.slice(0, -1)) return true
+    return false
+  })
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  if (SPAM_PREFIXES.some(p => pathname.startsWith(p))) {
+  if (isSpamPath(pathname)) {
     return new NextResponse(null, {
       status: 410,
       headers: {
