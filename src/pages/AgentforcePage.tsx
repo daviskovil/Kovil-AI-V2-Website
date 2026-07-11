@@ -623,9 +623,9 @@ export default function AgentforcePage() {
                 <Button variant="accent" size="lg" className="text-base h-12 px-8 rounded-full shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5 transition-all duration-200" onClick={openCalendly}>
                   Start my Agentforce build <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-                <Link href="#downloads">
+                <Link href="/agentforce/case-studies">
                   <Button variant="outline" size="lg" className="text-base h-12 px-8 rounded-full hover:-translate-y-0.5 transition-all duration-200">
-                    Download the Readiness Guide
+                    Go to Agentforce Case Studies
                   </Button>
                 </Link>
               </div>
