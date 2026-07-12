@@ -159,11 +159,11 @@ def fetch_all_pages(service) -> list[str]:
     start_row = 0
     page = 1
 
-    print(f"\n  Querying GSC Search Analytics API ({START_DATE} → {END_DATE})")
+    print(f"\n  Querying GSC Search Analytics API ({START_DATE} -> {END_DATE})")
     print(f"  Site: {SITE_URL}")
 
     while True:
-        print(f"  Page {page}: rows {start_row:,} – {start_row + ROW_LIMIT - 1:,} ...", end=" ", flush=True)
+        print(f"  Page {page}: rows {start_row:,} - {start_row + ROW_LIMIT - 1:,} ...", end=" ", flush=True)
 
         try:
             response = service.searchanalytics().query(
@@ -224,7 +224,7 @@ def merge_existing_sitemap(spam_urls: set[str]) -> set[str]:
             url = (loc.text or "").strip()
             if url and is_spam(url):
                 spam_urls.add(url)
-        print(f"  Merged existing sitemap → {len(spam_urls):,} total unique spam URLs")
+        print(f"  Merged existing sitemap -> {len(spam_urls):,} total unique spam URLs")
     except Exception:
         pass
     return spam_urls
@@ -264,9 +264,9 @@ def main():
     print("  NEXT STEPS:")
     print("  1. git add public/trash-cleanup-sitemap.xml && git commit && git push")
     print("  2. Verify live: https://kovil.ai/trash-cleanup-sitemap.xml")
-    print("  3. GSC → Sitemaps → Add: https://kovil.ai/trash-cleanup-sitemap.xml → Submit")
+    print("  3. GSC -> Sitemaps -> Add: https://kovil.ai/trash-cleanup-sitemap.xml -> Submit")
     print("  4. Monitor Coverage report over 2-4 weeks")
-    print("  5. Once indexed spam ≈ 0: delete file, remove from GSC, clean up robots.ts")
+    print("  5. Once indexed spam ~ 0: delete file, remove from GSC, clean up robots.ts")
     print()
 
 
