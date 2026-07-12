@@ -105,6 +105,12 @@ export default function robots(): MetadataRoute.Robots {
     (entry) => entry.url.replace(BASE_URL, '') || '/'
   )
 
+  // Expand directory-style spam patterns to allow the slashless variant too,
+  // so Google can crawl both /onlines/ and /onlines to hit the 410 responses.
+  const expandedSpamPatterns = spamPatterns.flatMap((p) =>
+    p.endsWith('/') ? [p, p.slice(0, -1)] : [p]
+  )
+
   return {
     rules: [
       {
@@ -113,7 +119,7 @@ export default function robots(): MetadataRoute.Robots {
           ...sitemapPaths,
           ...legacyRedirectSources,
           // Spam paths returning 410 — must be crawlable for deindexing to work
-          ...spamPatterns,
+          ...expandedSpamPatterns,
           // Next.js assets (JS/CSS needed for page rendering)
           '/_next/static/',
           '/_next/image',
