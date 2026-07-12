@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Vertex AI Flat Vector Diagram Render</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Outfit:wght@500;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 900px; height: 900px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.wrap {
+  width: 900px; height: 900px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.scene-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diagram-area {
+  position: relative;
+  width: 900px;
+  height: 900px;
+}
+
+/* GCP Core Flat Colors */
+:root {
+  --g-blue: #4285F4;
+  --g-green: #34A853;
+  --g-red: #EA4335;
+  --g-yellow: #FBBC04;
+  --g-yellow-dark: #C48F00;
+}
+
+/* ─── Connectors SVG ─── */
+.orbit-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ─── Node Wrapper ─── */
+.node-wrap {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 5;
+}
+
+/* ─── Circle Container ─── */
+.circle-container {
+  position: relative;
+}
+
+/* ─── Circle styling ─── */
+.circle {
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+/* ─── Outside label below circle ─── */
+.label-outside {
+  margin-top: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: -0.015em;
+}
+
+/* ─── Center Core Hub ─── */
+.center-core-wrap {
+  position: absolute;
+  left: 340px;
+  top: 340px;
+  width: 220px;
+  height: 220px;
+  z-index: 10;
+}
+
+.center-core {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: var(--g-blue);
+  border: 4px solid #1A73E8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+  color: #FFFFFF;
+}
+
+.core-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 6px;
+}
+
+.core-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+
+.core-sub {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+/* ─── Node-Specific Colors ─── */
+.bg-blue { background: var(--g-blue); }
+.text-blue { color: var(--g-blue); }
+
+.bg-green { background: var(--g-green); }
+.text-green { color: var(--g-green); }
+
+.bg-red { background: var(--g-red); }
+.text-red { color: var(--g-red); }
+
+.bg-yellow { background: var(--g-yellow); color: #202124; }
+.text-yellow { color: var(--g-yellow-dark); }
+
+/* ─── Inner Orbit Placements (r=200, size=116) ─── */
+.node-gemini {
+  left: 392px; top: 192px;
+}
+.node-gemini .circle { width: 116px; height: 116px; font-size: 16.5px; }
+
+.node-agentbuilder {
+  left: 592px; top: 392px;
+}
+.node-agentbuilder .circle { width: 116px; height: 116px; font-size: 15px; line-height: 1.2; }
+
+.node-search {
+  left: 392px; top: 592px;
+}
+.node-search .circle { width: 116px; height: 116px; font-size: 15px; line-height: 1.2; }
+
+.node-reasoning {
+  left: 192px; top: 392px;
+}
+.node-reasoning .circle { width: 116px; height: 116px; font-size: 15px; line-height: 1.2; }
+
+
+/* ─── Outer Orbit Placements (r=330, size=106) ─── */
+.node-bigquery {
+  left: 630px; top: 164px;
+}
+.node-bigquery .circle { width: 106px; height: 106px; font-size: 14px; line-height: 1.2; }
+
+.node-storage {
+  left: 630px; top: 630px;
+}
+.node-storage .circle { width: 106px; height: 106px; font-size: 13.5px; line-height: 1.2; }
+
+.node-document {
+  left: 164px; top: 630px;
+}
+.node-document .circle { width: 106px; height: 106px; font-size: 14px; line-height: 1.2; }
+
+.node-workbench {
+  left: 164px; top: 164px;
+}
+.node-workbench .circle { width: 106px; height: 106px; font-size: 14px; line-height: 1.2; }
+
+
+/* ─── Orbits & Layer Text Labels ─── */
+.layer-label {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.label-build {
+  top: 45px;
+  color: var(--g-green);
+  opacity: 0.85;
+}
+.label-core {
+  top: 110px;
+  color: var(--g-blue);
+  opacity: 0.85;
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="scene-container">
+    <div class="diagram-area">
+      
+      <!-- Connectors SVG -->
+      <svg class="orbit-svg" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Dashed Orbits -->
+        <circle cx="450" cy="450" r="200" stroke="#7F868D" stroke-width="2.5" stroke-dasharray="6 6" />
+        <circle cx="450" cy="450" r="330" stroke="#9AA0A6" stroke-width="2.5" stroke-dasharray="8 8" />
+
+        <!-- Radial Spokes linking inner ring to core -->
+        <line x1="450" y1="340" x2="450" y2="308" stroke="#7F868D" stroke-width="2.5" />
+        <line x1="450" y1="560" x2="450" y2="592" stroke="#7F868D" stroke-width="2.5" />
+        <line x1="340" y1="450" x2="308" y2="450" stroke="#7F868D" stroke-width="2.5" />
+        <line x1="560" y1="450" x2="592" y2="450" stroke="#7F868D" stroke-width="2.5" />
+      </svg>
+
+      <!-- Section Labels -->
+      <div class="layer-label label-build">BUILD LAYER</div>
+      <div class="layer-label label-core">CORE PLATFORM</div>
+
+      <!-- ─── Center Core Hub ─── -->
+      <div class="center-core-wrap">
+        <div class="circle-container">
+          <div class="center-core">
+            <div class="core-badge">VERTEX AI</div>
+            <h1 class="core-title">Platform Hub</h1>
+            <div class="core-sub">Gemini 2.0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Inner Orbit Nodes ─── -->
+      
+      <!-- Gemini (Top) -->
+      <div class="node-wrap node-gemini">
+        <div class="circle-container">
+          <div class="circle bg-blue">Gemini</div>
+        </div>
+        <div class="label-outside text-blue">Gemini 2.0</div>
+      </div>
+
+      <!-- Agent Builder (Right) -->
+      <div class="node-wrap node-agentbuilder">
+        <div class="circle-container">
+          <div class="circle bg-green">Agent<br>Builder</div>
+        </div>
+        <div class="label-outside text-green">Agent Builder</div>
+      </div>
+
+      <!-- Vertex AI Search (Bottom) -->
+      <div class="node-wrap node-search">
+        <div class="circle-container">
+          <div class="circle bg-red">Vertex AI<br>Search</div>
+        </div>
+        <div class="label-outside text-red">Vertex AI Search</div>
+      </div>
+
+      <!-- Reasoning Engine (Left) -->
+      <div class="node-wrap node-reasoning">
+        <div class="circle-container">
+          <div class="circle bg-yellow">Reasoning<br>Engine</div>
+        </div>
+        <div class="label-outside text-yellow">Reasoning Engine</div>
+      </div>
+
+      <!-- ─── Outer Orbit Nodes ─── -->
+      
+      <!-- BigQuery ML (Top-Right) -->
+      <div class="node-wrap node-bigquery">
+        <div class="circle-container">
+          <div class="circle bg-blue">BigQuery<br>ML</div>
+        </div>
+        <div class="label-outside text-blue">BigQuery ML</div>
+      </div>
+
+      <!-- Cloud Storage (Bottom-Right) -->
+      <div class="node-wrap node-storage">
+        <div class="circle-container">
+          <div class="circle bg-green">Cloud<br>Storage</div>
+        </div>
+        <div class="label-outside text-green">Cloud Storage</div>
+      </div>
+
+      <!-- Document AI (Bottom-Left) -->
+      <div class="node-wrap node-document">
+        <div class="circle-container">
+          <div class="circle bg-red">Document<br>AI</div>
+        </div>
+        <div class="label-outside text-red">Document AI</div>
+      </div>
+
+      <!-- Workbench (Top-Left) -->
+      <div class="node-wrap node-workbench">
+        <div class="circle-container">
+          <div class="circle bg-yellow">Work-<br>bench</div>
+        </div>
+        <div class="label-outside text-yellow">Workbench</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

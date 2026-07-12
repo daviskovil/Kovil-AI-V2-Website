@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react"
+import Image from "next/image"
 import { motion, AnimatePresence } from "motion/react"
 import Link from "next/link"
 import {
@@ -602,8 +603,14 @@ export default function VertexAIPage() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="hidden md:flex items-center justify-center"
           >
-            <div className="w-full max-w-md select-none">
-              <GCPOrbitalDiagram />
+            <div className="w-full max-w-lg select-none relative h-[500px] w-[500px]">
+              <Image
+                src="/vertex-ai-hero-flat-2d-v4.png"
+                alt="Google Cloud Vertex AI platform diagram showing Gemini, Agent Builder, Vertex AI Search, and Reasoning Engine orbiting the core platform"
+                fill
+                className="object-contain object-center"
+                priority
+              />
             </div>
           </motion.div>
         </div>
