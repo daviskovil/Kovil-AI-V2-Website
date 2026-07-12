@@ -987,6 +987,67 @@ export const hireRoles: HireRoleData[] = [
     ],
     serviceSchema: { '@type': 'Service', name: 'Hire Remote Product Managers', provider: { '@type': 'Organization', name: 'Kovil AI' }, description: 'Experienced remote product managers for AI products and distributed engineering teams.', serviceType: 'Product Management Staffing', areaServed: 'Worldwide' },
   },
+
+  // ─── Prompt Engineer ────────────────────────────────────────────────────────
+  {
+    slug: 'prompt-engineer',
+    roleName: 'Prompt Engineer',
+    roleNamePlural: 'Prompt Engineers',
+    metaTitle: 'Hire Prompt Engineers | Vetted Generative AI Experts',
+    metaDescription: 'Hire pre-vetted Prompt Engineers through Kovil AI. Experts in prompt optimization, LLM evaluation, context window optimization, and model routing. 2-week risk-free trial.',
+    keywords: ['hire prompt engineer', 'vetted prompt engineers', 'prompt engineering staff augmentation', 'LLM prompt optimizer'],
+    heroHeadline: 'Hire Vetted Prompt Engineers, Ready in 48 Hours',
+    heroSubheadline: 'Stop wasting tokens on sub-optimal LLM outputs. Kovil AI connects you with elite prompt engineers to optimize system instructions, reduce latency, and build robust evaluation pipelines.',
+    heroImage: '/hire-prompt-engineer.webp',
+    roleDefinition: 'A prompt engineer designs, optimizes, and evaluates inputs for Large Language Models to ensure reliable, high-quality, and cost-effective outputs in production systems. In 2026, this goes beyond simple chat styling to include structured system instructions, context window engineering, few-shot demonstration selection, LLM evaluation metrics (RAGAS, Promptfoo), and automated prompt optimization pipelines.',
+    marketStats: [
+      { value: '3.5x', label: 'Average reduction in API token costs through optimized system prompt context styling' },
+      { value: '48 hrs', label: 'Match time for a vetted, production-grade prompt engineer' },
+      { value: '92%', label: 'Of production AI projects report prompt reliability and evaluation as their top bottleneck' },
+    ],
+    whatYouGet: [
+      'Pre-vetted Prompt Engineers from the top 1%, screened for semantic understanding, context window packing, and model routing',
+      'An Engagement Manager paired to every engineer, auditing code and prompt versions daily',
+      'Evaluation-first focus, establishing rigorous prompt testing benchmarks before shipping changes',
+      '2-week risk-free trial with free rematching at no cost if the fit is not right',
+      'Start fast: matched in 24-48 hours, first optimized prompt sets delivered in week one',
+      'Zero termination fees and full scaling flexibility as your project needs evolve',
+    ],
+    skills: ['Prompt Engineering', 'LLM Evaluation', 'System Instructions', 'Few-shot Learning', 'JSON Mode / Structured Outputs', 'Promptfoo', 'RAGAS', 'LangSmith', 'Phoenix Evaluation', 'vLLM Optimization', 'Token Cost Control', 'Model Routing', 'Python', 'TypeScript'],
+    vettingCriteria: [
+      { title: 'Structured Output Challenge', desc: 'Design prompts to force a variety of frontier LLMs to reliably output complex, deeply nested JSON objects without schema errors.' },
+      { title: 'Evaluation Benchmark Build', desc: 'Given a set of user inputs and expected outputs, construct an automated evaluation pipeline using Promptfoo to measure accuracy, drift, and latency.' },
+      { title: 'Token & Cost Optimisation', desc: 'Audit a bloated prompt with poor formatting. Restructure it using context compaction and few-shot examples to reduce input tokens by 40% while preserving performance.' },
+      { title: 'Security & Jailbreak Vetting', desc: 'Stress-test prompts against common jailbreak methods, prompt injection attacks, and system instruction extraction techniques.' },
+    ],
+    salaryTable: [
+      { level: 'Junior Prompt Engineer', usSalary: '$85,000 - $105,000', hireTimeline: '2-3 months', demand: 'High' },
+      { level: 'Mid Prompt Engineer', usSalary: '$115,000 - $140,000', hireTimeline: '2-4 months', demand: 'Very High' },
+      { level: 'Senior Prompt Engineer', usSalary: '$150,000 - $180,000', hireTimeline: '3-5 months', demand: 'Critical' },
+      { level: 'Lead / Principal Prompt Optimizer', usSalary: '$190,000 - $230,000', hireTimeline: '4-7 months', demand: 'Critical' },
+    ],
+    comparisonRows: [
+      { dimension: 'Time to first commit', kovil: '48 hrs matched, first prompt optimizations shipped in week one', fullTime: '3-6 months to hire, then weeks of internal onboarding', freelancer: '1-2 weeks, but high risk of low-quality or copy-pasted prompts' },
+      { dimension: 'Vetting methodology', kovil: 'Structured output tests + automated evaluation challenges + prompt security vetting', fullTime: 'General developer interviews that miss LLM-specific prompt dynamics', freelancer: 'Self-proclaimed portfolio review' },
+      { dimension: 'Cost efficiency', kovil: 'Optimized prompts reduce token bills and API latency immediately', fullTime: 'High fixed overhead, hard to verify prompt ROI', freelancer: 'Varying rates, zero accountability for model output quality' },
+      { dimension: 'Trial & risk protection', kovil: '2-week risk-free trial, free rematching, zero termination fees', fullTime: 'Heavy severance, lost progress, and hiring pipeline restart', freelancer: 'No guarantee or security if prompts fail under edge cases' },
+    ],
+    relatedCaseStudy: {
+      industry: 'SaaS / Customer Support',
+      headline: 'RAG Prompt Optimization Reduces Hallucinations by 94%',
+      stat1: '94% Fewer Hallucinations',
+      stat2: '42% Input Token Cost Reduction',
+      url: '/case-studies/support-agent-hallucination-remediation',
+    },
+    faqs: [
+      { question: 'Why hire a dedicated prompt engineer?', answer: 'Prompt engineering is more than just writing text instructions. A dedicated prompt engineer builds rigorous evaluation pipelines, runs automated optimization sweeps, structures outputs reliably (JSON schemas), and optimizes context windows to reduce API costs by up to 50%.' },
+      { question: 'How quickly can I match with a prompt engineer?', answer: 'Usually within 24-48 hours. Your engineer can begin analyzing and optimizing your existing prompts in their first week.' },
+      { question: 'Do prompt engineers write code?', answer: 'Yes. Our prompt engineers are skilled software developers (Python/TypeScript) who write evaluation scripts, set up continuous integration tests for prompts (using tools like Promptfoo), and integrate models directly into your application codebase.' },
+      { question: 'How do you vet prompt engineers?', answer: 'We run applicants through a timed structured output challenge, a prompt security stress-test, a context compaction exercise, and a review of past evaluation systems they have deployed to production.' },
+      { question: 'Is there a risk-free trial period?', answer: 'Yes. Every engagement includes a 2-week risk-free trial. If the fit isn\'t right, we rematch you immediately at no cost.' },
+    ],
+    serviceSchema: { '@type': 'Service', name: 'Hire Prompt Engineers', provider: { '@type': 'Organization', name: 'Kovil AI' }, description: 'Pre-vetted prompt engineers and LLM optimization specialists for staff augmentation or consulting.', serviceType: 'AI Engineering Staffing', areaServed: 'Worldwide' },
+  },
 ]
 
 export function getHireRole(slug: string): HireRoleData | undefined {

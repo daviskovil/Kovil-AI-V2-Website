@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/`,                                  lastModified: now,          changeFrequency: 'weekly',  priority: 1.0 },
     { url: `${BASE_URL}/what-we-do`,                        lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/ai-consulting-firm`,                 lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/how-it-works`,                      lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/engage/managed-ai-engineer`,             lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/engage/outcome-based-project`,           lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
@@ -241,6 +242,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ── Phase 1: Dynamic hire role pages ─────────────────────────────────────
     { url: `${BASE_URL}/hire/ai-engineer`,              lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/generative-ai-developer`,  lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/prompt-engineer`,          lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/llm-engineer`,             lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/ml-engineer`,              lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/python-developer`,         lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
