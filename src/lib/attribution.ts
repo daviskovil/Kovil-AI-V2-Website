@@ -128,7 +128,7 @@ export function calendlyTrackingParams(): Record<string, string> {
     utm_source: clip(last.source),
     utm_medium: clip(last.medium),
     utm_campaign: clip(last.campaign || first.source), // first-touch source when no explicit campaign
-    utm_content: clip(last.landingPage), // page the booking was launched from
+    utm_content: clip(first.landingPage), // the very first page this browser ever opened on the site
     utm_term: clip(last.referrer || 'none'), // referring host of this session
   }
 }
