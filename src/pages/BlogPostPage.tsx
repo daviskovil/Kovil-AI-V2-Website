@@ -692,7 +692,9 @@ export default function BlogPostPage() {
 
               {/* Body — split to inject mid-article CTA after 2nd paragraph */}
               <div className="prose-content" dangerouslySetInnerHTML={{ __html: bodyTop }} />
-              <MidBlogCta cta={cta} />
+              {!['n8n-vs-zapier-vs-power-automate', 'gpt-4o-vs-claude-vs-gemini'].includes(post.slug) && (
+                <MidBlogCta cta={cta} />
+              )}
               <div className="prose-content" dangerouslySetInnerHTML={{ __html: bodyBottom }} />
 
               {/* Related Services — internal linking for SEO */}
