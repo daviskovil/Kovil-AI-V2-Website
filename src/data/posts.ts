@@ -1560,12 +1560,15 @@ export const posts: Post[] = [
 <p style="color:#6b7280;font-size:0.875rem;margin-top:0.75rem;margin-bottom:0;">If none of those descriptions fit neatly, read on. The reality has more nuance.</p>
 </div>
 
-<div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:1.5rem 2rem;margin:2rem 0;display:flex;flex-direction:column;gap:0.75rem;">
-  <p style="font-size:0.75rem;font-weight:700;color:#ea580c;text-transform:uppercase;letter-spacing:0.05em;margin:0;">Hire Automation Experts</p>
-  <p style="color:#374151;margin:0;font-size:0.95rem;line-height:1.6;">Need vetted experts to deploy and manage your automation workflows? Kovil AI connects you with Tier-1 specialists in 48 hours with a 2-week risk-free trial.</p>
-  <div style="display:flex;gap:1rem;margin-top:0.5rem;flex-wrap:wrap;">
-    <a href="/hire/n8n-automation-experts" style="color:#ea580c;font-weight:600;text-decoration:none;font-size:0.9rem;">→ Hire n8n Experts</a>
-    <a href="/hire/make-automation-experts" style="color:#ea580c;font-weight:600;text-decoration:none;font-size:0.9rem;">→ Hire Make.com Experts</a>
+<div style="background:#111827;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.5rem 2rem;margin:2rem 0;display:flex;flex-direction:column;gap:0.75rem;position:relative;">
+  <div style="position:absolute;inset:0;opacity:0.04;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:32px 32px;pointer-events:none;"></div>
+  <div style="position:relative;z-index:1;">
+    <p style="font-size:0.75rem;font-weight:700;color:#ea580c;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 0.5rem 0;">Hire Automation Experts</p>
+    <p style="color:rgba(255,255,255,0.80);margin:0 0 1.25rem 0;font-size:0.9rem;line-height:1.6;max-width:32rem;">Need vetted experts to deploy and manage your automation workflows? Kovil AI connects you with Tier-1 specialists in 48 hours with a 2-week risk-free trial.</p>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <a href="/hire/n8n-automation-experts" style="display:inline-flex;align-items:center;background:#ea580c;color:#ffffff;font-weight:600;font-size:0.8rem;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;transition:opacity 0.2s;">Hire n8n Experts</a>
+      <a href="/hire/make-automation-experts" style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.1);color:#ffffff;font-weight:600;font-size:0.8rem;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;transition:opacity 0.2s;">Hire Make.com Experts</a>
+    </div>
   </div>
 </div>
 
@@ -2591,12 +2594,15 @@ export const posts: Post[] = [
   
   <p>This guide cuts through the marketing language and gives you an honest comparison based on real-world production deployments — with clear verdicts for each type of business application.</p>
 
-  <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:1.5rem 2rem;margin:2rem 0;display:flex;flex-direction:column;gap:0.75rem;">
-    <p style="font-size:0.75rem;font-weight:700;color:#ea580c;text-transform:uppercase;letter-spacing:0.05em;margin:0;">Build with Vetted AI Engineers</p>
-    <p style="color:#374151;margin:0;font-size:0.95rem;line-height:1.6;">Need help choosing the right AI model architecture or building custom RAG pipelines? Kovil AI connects you with Tier-1 LLM specialists to build production-grade systems in weeks.</p>
-    <div style="display:flex;gap:1rem;margin-top:0.5rem;flex-wrap:wrap;">
-      <a href="/hire/llm-engineers" style="color:#ea580c;font-weight:600;text-decoration:none;font-size:0.9rem;">→ Hire LLM Engineers</a>
-      <a href="/engage/managed-ai-engineer" style="color:#ea580c;font-weight:600;text-decoration:none;font-size:0.9rem;">→ Explore Managed AI Engagement</a>
+  <div style="background:#111827;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.5rem 2rem;margin:2rem 0;display:flex;flex-direction:column;gap:0.75rem;position:relative;">
+    <div style="position:absolute;inset:0;opacity:0.04;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:32px 32px;pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;">
+      <p style="font-size:0.75rem;font-weight:700;color:#ea580c;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 0.5rem 0;">Build with Vetted AI Engineers</p>
+      <p style="color:rgba(255,255,255,0.80);margin:0 0 1.25rem 0;font-size:0.9rem;line-height:1.6;max-width:32rem;">Need help choosing the right AI model architecture or building custom RAG pipelines? Kovil AI connects you with Tier-1 LLM specialists to build production-grade systems in weeks.</p>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="/hire/llm-engineers" style="display:inline-flex;align-items:center;background:#ea580c;color:#ffffff;font-weight:600;font-size:0.8rem;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;transition:opacity 0.2s;">Hire LLM Engineers</a>
+        <a href="/engage/managed-ai-engineer" style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.1);color:#ffffff;font-weight:600;font-size:0.8rem;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;transition:opacity 0.2s;">Explore Managed AI Engagement</a>
+      </div>
     </div>
   </div>
   
