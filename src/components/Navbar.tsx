@@ -52,6 +52,13 @@ const resourceLinks = [
 
 const exploreLinks = [
   {
+    to: "/ai-consulting-firm",
+    icon: Globe,
+    label: "AI Consulting Services",
+    desc: "Enterprise strategy, architecture, and scoping.",
+    color: "#EA580C",
+  },
+  {
     to: "/agentforce",
     icon: Zap,
     label: "Salesforce Agentforce",
