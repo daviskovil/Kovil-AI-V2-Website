@@ -4262,7 +4262,17 @@ if __name__ == "__main__":
         accent=(234, 88, 12),    # orange-red
         skills=["Fine-tuning (LoRA / QLoRA)", "RLHF + Alignment", "RAG + Vector Search",
                 "LangChain / LangGraph", "Evaluation Pipelines", "LLMOps + Monitoring"],
-        stats=[("189%", "LLM job growth 2025"), ("$175K", "Senior LLM salary"), ("5-8 mo", "Avg hire time")],
+        stats=[("189%", "LLM job growth 2025"), ("< 48h", "Average match time"), ("5-8 mo", "Avg hire time")],
+    )
+    make_hire_role_image(
+        slug="hire-prompt-engineer",
+        role_line1="Hire Prompt",
+        role_line2="Engineers",
+        badge_text="VETTED GENERATIVE AI EXPERTS",
+        accent=(234, 179, 8),    # yellow
+        skills=["Prompt Tuning & Optimization", "LLM Evals (Promptfoo, RAGAS)", "Context Window Engineering",
+                "Structured JSON Outputs", "Model Routing & Cost Control", "Jailbreak & Injection Defense"],
+        stats=[("3.5x", "Token cost reduction"), ("92%", "Cite eval bottleneck"), ("< 48h", "Average match time")],
     )
     make_hire_role_image(
         slug="hire-ml-engineer",

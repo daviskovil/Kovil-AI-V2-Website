@@ -998,7 +998,7 @@ export const hireRoles: HireRoleData[] = [
     keywords: ['hire prompt engineer', 'vetted prompt engineers', 'prompt engineering staff augmentation', 'LLM prompt optimizer'],
     heroHeadline: 'Hire Vetted Prompt Engineers, Ready in 48 Hours',
     heroSubheadline: 'Stop wasting tokens on sub-optimal LLM outputs. Kovil AI connects you with elite prompt engineers to optimize system instructions, reduce latency, and build robust evaluation pipelines.',
-    heroImage: '/hire-prompt-engineer.png',
+    heroImage: '/hire-prompt-engineer.webp',
     roleDefinition: 'A prompt engineer designs, optimizes, and evaluates inputs for Large Language Models to ensure reliable, high-quality, and cost-effective outputs in production systems. In 2026, this goes beyond simple chat styling to include structured system instructions, context window engineering, few-shot demonstration selection, LLM evaluation metrics (RAGAS, Promptfoo), and automated prompt optimization pipelines.',
     marketStats: [
       { value: '3.5x', label: 'Average reduction in API token costs through optimized system prompt context styling' },
