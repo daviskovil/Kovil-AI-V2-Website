@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import {
@@ -24,114 +25,203 @@ function HireCTA({ label, size = "lg", className = "" }: { label: string; size?:
 
 // ── Specialist role cards (rich) ─────────────────────────────────────────────
 
-const specialists = [
+const allSpecialists = [
   {
     slug: "ai-agent-developer", icon: Bot, title: "AI Agent Developers", isNew: true,
     desc: "Autonomous agents, custom tool & API integration, multi-agent orchestration, RAG and memory — production agentic systems, not prototypes.",
     tags: ["Autonomous Agents", "Tool Use", "Multi-Agent", "Evals"],
     chip: "bg-accent/10 text-accent",
+    category: "AI & Agents",
   },
   {
     slug: "claude-code-engineer", icon: Terminal, title: "Claude Code Engineers", isNew: true,
     desc: "Engineers fluent in Anthropic's Claude Code toolchain — ship at agentic velocity, run large migrations, build MCP tooling, enable your team.",
     tags: ["Agentic Coding", "MCP Tooling", "Migrations", "Team Enablement"],
     chip: "bg-violet-500/10 text-violet-500",
+    category: "AI & Agents",
   },
   {
-    slug: "llm-engineers", icon: MessageSquare, title: "LLM Engineers",
+    slug: "llm-engineer", icon: MessageSquare, title: "LLM Engineers",
     desc: "RAG systems, LLM fine-tuning, prompt engineering, LLM API integration, and LLMOps. Claude, GPT, Llama, and Mistral in production.",
     tags: ["RAG Systems", "Fine-Tuning", "LLMOps", "LLM APIs"],
     chip: "bg-orange-500/10 text-orange-500",
+    category: "AI & Agents",
+  },
+  {
+    slug: "ai-engineer", icon: Bot, title: "AI Engineers",
+    desc: "Broad AI implementation, model integration, custom agents, and end-to-end cognitive solutions.",
+    tags: ["AI Apps", "Model Integration", "Cognitive Systems", "APIs"],
+    chip: "bg-orange-500/10 text-orange-500",
+    category: "AI & Agents",
+  },
+  {
+    slug: "prompt-engineer", icon: MessageSquare, title: "Prompt Engineers",
+    desc: "System prompts, context engineering, LLM cost & latency optimization, and automated evaluation.",
+    tags: ["Prompt Tuning", "LLM Evals", "Cost Compaction", "RAGAS"],
+    chip: "bg-yellow-500/10 text-yellow-500",
+    category: "AI & Agents",
   },
   {
     slug: "machine-learning-engineers", icon: Brain, title: "Machine Learning Engineers",
     desc: "Predictive models, recommendation systems, NLP pipelines, time series, and MLOps. From experiment to reliable production.",
     tags: ["Predictive ML", "Recommendations", "MLOps", "Time Series"],
     chip: "bg-purple-500/10 text-purple-500",
+    category: "AI & Agents",
   },
   {
     slug: "computer-vision-engineers", icon: Eye, title: "Computer Vision Engineers",
     desc: "Object detection, image classification, video analytics, OCR, medical imaging, and edge AI. YOLO, Detectron2, PyTorch, OpenCV.",
     tags: ["Object Detection", "Video Analytics", "OCR", "Edge AI"],
     chip: "bg-blue-500/10 text-blue-500",
+    category: "AI & Agents",
   },
   {
     slug: "nlp-engineers", icon: FileText, title: "NLP Engineers",
     desc: "Sentiment analysis, NER, text classification, document intelligence, conversational AI, and summarisation. Hugging Face, spaCy, BERT.",
     tags: ["Sentiment", "NER", "Document AI", "Dialogue Systems"],
     chip: "bg-emerald-500/10 text-emerald-500",
+    category: "AI & Agents",
   },
   {
     slug: "generative-ai-developer", icon: Sparkles, title: "Generative AI Developers",
     desc: "Custom generative applications — text, image, audio, and code generation, diffusion pipelines, and multimodal AI products built for scale.",
     tags: ["GenAI Apps", "Diffusion", "Multimodal", "Content Gen"],
     chip: "bg-pink-500/10 text-pink-500",
-  },
-  {
-    slug: "data-engineers", icon: Database, title: "Data Engineers",
-    desc: "Data pipelines, warehouses, real-time streaming, ML feature stores, and data quality. dbt, Spark, Kafka, Snowflake, BigQuery.",
-    tags: ["Pipelines", "Warehousing", "Streaming", "Feature Stores"],
-    chip: "bg-cyan-500/10 text-cyan-500",
+    category: "AI & Agents",
   },
   {
     slug: "langgraph-engineers", icon: GitBranch, title: "LangGraph Engineers",
     desc: "Stateful agent graphs, advanced RAG, multi-agent orchestration, human-in-the-loop workflows, and LangSmith observability.",
     tags: ["Stateful Graphs", "Advanced RAG", "HITL", "LangSmith"],
     chip: "bg-indigo-500/10 text-indigo-500",
+    category: "Frameworks & Automation",
   },
   {
     slug: "crewai-developers", icon: Users, title: "CrewAI Developers",
     desc: "Role-based multi-agent systems, crew orchestration, tool integration, and production CrewAI deployment — agents that collaborate.",
     tags: ["Multi-Agent", "Crew Roles", "Tool Use", "Production"],
     chip: "bg-rose-500/10 text-rose-500",
+    category: "Frameworks & Automation",
   },
   {
     slug: "autogen-developers", icon: Boxes, title: "AutoGen Developers",
     desc: "Conversational multi-agent systems, code-executing agents, GroupChat orchestration, and production AutoGen with safety controls.",
     tags: ["Conversational", "Code Execution", "GroupChat", "Sandbox"],
     chip: "bg-amber-500/10 text-amber-500",
+    category: "Frameworks & Automation",
   },
   {
     slug: "n8n-automation-experts", icon: Workflow, title: "n8n Automation Experts",
     desc: "Workflow automation, AI-powered n8n pipelines, API integrations, custom nodes, and self-hosted n8n built for production reliability.",
     tags: ["Automation", "AI Pipelines", "Custom Nodes", "Self-Hosted"],
     chip: "bg-teal-500/10 text-teal-500",
+    category: "Frameworks & Automation",
   },
   {
     slug: "make-automation-experts", icon: Workflow, title: "Make.com Automation Experts", isNew: true,
     desc: "Custom Make.com scenarios, complex SaaS integrations, webhook routers, error handling, and AI-enabled automation pipelines.",
     tags: ["Make.com", "SaaS Integration", "Webhooks", "No-Code AI"],
     chip: "bg-sky-500/10 text-sky-500",
+    category: "Frameworks & Automation",
   },
   {
     slug: "voiceflow-developers", icon: Bot, title: "Voiceflow Developers", isNew: true,
     desc: "Voiceflow conversational agents, custom API and knowledge base integrations, dynamic support routing, and CRM handoffs.",
     tags: ["Voiceflow", "Chatbots", "Voice Agents", "API Handoff"],
     chip: "bg-violet-500/10 text-violet-500",
+    category: "Frameworks & Automation",
   },
   {
     slug: "llamaindex-engineers", icon: Database, title: "LlamaIndex Engineers", isNew: true,
     desc: "Advanced RAG pipelines, LLM data ingestion, metadata filtering, hierarchical node parsing, and custom vector search connectors.",
     tags: ["Advanced RAG", "Data Ingestion", "LlamaIndex", "Vector Search"],
     chip: "bg-emerald-500/10 text-emerald-500",
+    category: "Frameworks & Automation",
   },
-]
-
-// ── Full engineering team (compact) ──────────────────────────────────────────
-
-const engineeringRoles = [
-  { href: "/hire/ai-engineer",           icon: Bot,           label: "AI Engineers" },
-  { href: "/hire/software-engineer",     icon: Code2,         label: "Software Engineers" },
-  { href: "/hire/full-stack-developer",  icon: Boxes,         label: "Full-Stack Developers" },
-  { href: "/hire/python-developer",      icon: Code2,         label: "Python Developers" },
-  { href: "/hire/react-developer",       icon: Code2,         label: "React Developers" },
-  { href: "/hire/node-developer",        icon: Server,        label: "Node.js Developers" },
-  { href: "/hire/devops-engineer",       icon: Repeat2,       label: "DevOps Engineers" },
-  { href: "/hire/cloud-engineer",        icon: Cloud,         label: "Cloud Engineers" },
-  { href: "/hire/qa-engineer",           icon: Bug,           label: "QA Engineers" },
-  { href: "/hire/cybersecurity-engineer",icon: Lock,          label: "Cybersecurity Engineers" },
-  { href: "/hire/product-manager",       icon: ClipboardList, label: "Product Managers" },
-  { href: "/hire-databricks-engineer",   icon: Database,      label: "Databricks Engineers" },
+  {
+    slug: "data-engineers", icon: Database, title: "Data Engineers",
+    desc: "Data pipelines, warehouses, real-time streaming, ML feature stores, and data quality. dbt, Spark, Kafka, Snowflake, BigQuery.",
+    tags: ["Pipelines", "Warehousing", "Streaming", "Feature Stores"],
+    chip: "bg-cyan-500/10 text-cyan-500",
+    category: "Engineering & Product",
+  },
+  {
+    slug: "software-engineer", icon: Code2, title: "Software Engineers",
+    desc: "Custom software development, clean system architecture, algorithms, and backend systems.",
+    tags: ["System Design", "Core Coding", "Algorithms", "APIs"],
+    chip: "bg-zinc-500/10 text-zinc-500",
+    category: "Engineering & Product",
+  },
+  {
+    slug: "full-stack-developer", icon: Boxes, title: "Full-Stack Developers",
+    desc: "AI-native end-to-end builders who own the entire stack, from frontend UI to database schema.",
+    tags: ["React", "Python", "Node.js", "Supabase"],
+    chip: "bg-red-500/10 text-red-500",
+    category: "Engineering & Product",
+  },
+  {
+    slug: "python-developer", icon: Code2, title: "Python Developers",
+    desc: "AI/ML backend services, FastAPI/Django, data pipelines, scraping, and high-performance server logic.",
+    tags: ["FastAPI", "Django", "Asyncio", "Data Pipelines"],
+    chip: "bg-blue-500/10 text-blue-500",
+    category: "Engineering & Product",
+  },
+  {
+    slug: "react-developer", icon: Code2, title: "React Developers",
+    desc: "TypeScript-first Next.js developers specializing in interactive AI streaming response UIs and dashboards.",
+    tags: ["Next.js", "TypeScript", "Zustand", "Tailwind CSS"],
+    chip: "bg-cyan-500/10 text-cyan-500",
+    category: "Engineering & Product",
+  },
+  {
+    slug: "node-developer", icon: Server, title: "Node.js Developers",
+    desc: "Scalable backend services, async job queues for LLM tasks, microservices, and serverless edge functions.",
+    tags: ["Express", "NestJS", "TypeScript", "Serverless"],
+    chip: "bg-green-500/10 text-green-500",
+    category: "Engineering & Product",
+  },
+  {
+    slug: "devops-engineer", icon: Repeat2, title: "DevOps Engineers",
+    desc: "CI/CD pipeline automation, infrastructure-as-code, model hosting, and cloud resource management.",
+    tags: ["Kubernetes", "Docker", "AWS/GCP/Azure", "Terraform"],
+    chip: "bg-fuchsia-500/10 text-fuchsia-500",
+    category: "Engineering & Product",
+  },
+  {
+    slug: "cloud-engineer", icon: Cloud, title: "Cloud Engineers",
+    desc: "Cloud architecture, serverless deployment, distributed datastores, and cloud security compliance.",
+    tags: ["AWS", "Azure", "GCP", "Serverless"],
+    chip: "bg-sky-500/10 text-sky-500",
+    category: "Engineering & Product",
+  },
+  {
+    slug: "qa-engineer", icon: Bug, title: "QA Engineers",
+    desc: "Automated test suites, end-to-end regression testing, performance validation, and security auditing.",
+    tags: ["Playwright", "Cypress", "Automation", "CI/CD Integration"],
+    chip: "bg-rose-500/10 text-rose-500",
+    category: "Engineering & Product",
+  },
+  {
+    slug: "cybersecurity-engineer", icon: Lock, title: "Cybersecurity Engineers",
+    desc: "Security architecture, vulnerability scanning, pen testing, compliance (SOC2/GDPR), and threat modeling.",
+    tags: ["SecOps", "Pen Testing", "SOC2 Compliance", "Jailbreak Defense"],
+    chip: "bg-red-600/10 text-red-600",
+    category: "Engineering & Product",
+  },
+  {
+    slug: "product-manager", icon: ClipboardList, title: "Product Managers",
+    desc: "Product roadmap ownership, user research, agile execution, and bridging business goals with AI engineering.",
+    tags: ["Agile/Scrum", "PRD Writing", "User Research", "Metrics"],
+    chip: "bg-emerald-600/10 text-emerald-600",
+    category: "Engineering & Product",
+  },
+  {
+    slug: "databricks-engineer", icon: Database, title: "Databricks Engineers", href: "/hire-databricks-engineer",
+    desc: "Large-scale data lakehouses, Delta Lake pipelines, Spark optimization, and MLflow model registries.",
+    tags: ["Databricks", "Apache Spark", "Delta Lake", "MLflow"],
+    chip: "bg-amber-600/10 text-amber-600",
+    category: "Engineering & Product",
+  },
 ]
 
 // ── Why Kovil ────────────────────────────────────────────────────────────────
@@ -147,7 +237,33 @@ const whyItems = [
 
 // ── Component ────────────────────────────────────────────────────────────────
 
+const CARDS_PER_PAGE = 12
+
 export default function HireHubPage() {
+  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [currentPage, setCurrentPage] = useState(1)
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  const handleCategoryChange = (cat: string) => {
+    setSelectedCategory(cat)
+    setCurrentPage(1)
+  }
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
+  const filteredSpecialists = selectedCategory === "All"
+    ? allSpecialists
+    : allSpecialists.filter(s => s.category === selectedCategory)
+
+  const totalPages = Math.ceil(filteredSpecialists.length / CARDS_PER_PAGE)
+  const startIndex = (currentPage - 1) * CARDS_PER_PAGE
+  const displayedSpecialists = filteredSpecialists.slice(startIndex, startIndex + CARDS_PER_PAGE)
+
   return (
     <div className="min-h-screen bg-background text-foreground">
 
@@ -193,28 +309,47 @@ export default function HireHubPage() {
       </section>
 
       {/* ── Specialist Cards ────────────────────────────────────────────────── */}
-      <section className="py-16 px-6">
+      <section className="py-16 px-6 scroll-mt-20" ref={sectionRef}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Choose Your AI Specialist</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
+            <p className="text-muted-foreground max-w-xl mx-auto mb-8">
               Every role is a dedicated specialist — not a generalist wearing multiple hats. Pick the domain that matches your project.
             </p>
+
+            {/* Category Tabs */}
+            <div className="flex flex-wrap justify-center gap-2 mb-4">
+              {["All", "AI & Agents", "Frameworks & Automation", "Engineering & Product"].map((cat) => {
+                const isActive = selectedCategory === cat
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => handleCategoryChange(cat)}
+                    className={`px-5 py-2 rounded-full text-sm font-semibold transition-all border ${
+                      isActive
+                        ? "bg-accent border-accent text-white shadow-md shadow-accent/15"
+                        : "bg-background border-border text-muted-foreground hover:text-foreground hover:border-accent/40"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                )
+              })}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {specialists.map((role, i) => {
+            {displayedSpecialists.map((role, i) => {
               const Icon = role.icon
               return (
                 <motion.div
                   key={role.slug}
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: (i % 3) * 0.06 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: (i % 3) * 0.05 }}
                 >
                   <Link
-                    href={`/hire/${role.slug}`}
+                    href={role.href || `/hire/${role.slug}`}
                     className="group relative flex flex-col h-full rounded-2xl border border-border bg-muted/20 hover:bg-muted/40 hover:border-accent/40 transition-all duration-200 overflow-hidden hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/5"
                   >
                     <div className="absolute top-0 left-0 right-0 h-0.5 bg-accent/20 group-hover:bg-accent/60 transition-colors" />
@@ -248,44 +383,47 @@ export default function HireHubPage() {
               )
             })}
           </div>
-        </div>
-      </section>
 
-      {/* ── Complete the Team ───────────────────────────────────────────────── */}
-      <section className="py-16 px-6 bg-muted/20 border-y border-border">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Complete Your Engineering Team</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Beyond AI specialists, hire the full-stack, platform, and product talent to ship — all vetted, all matched in 48 hours.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {engineeringRoles.map((role, i) => {
-              const Icon = role.icon
-              return (
-                <motion.div
-                  key={role.href}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: (i % 4) * 0.05 }}
-                >
-                  <Link
-                    href={role.href}
-                    className="group flex items-center gap-3 rounded-xl border border-border bg-background hover:border-accent/40 hover:bg-muted/40 transition-all p-4 h-full"
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-12">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+                disabled={currentPage === 1}
+                className="border-border text-foreground hover:bg-muted/40 disabled:opacity-40"
+              >
+                Previous
+              </Button>
+              {Array.from({ length: totalPages }).map((_, i) => {
+                const page = i + 1
+                const isActive = page === currentPage
+                return (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`w-9 h-9 rounded-xl text-sm font-semibold transition-all ${
+                      isActive
+                        ? "bg-accent border-accent text-white shadow-lg shadow-accent/25"
+                        : "border border-border text-foreground hover:bg-muted/40 bg-background"
+                    }`}
                   >
-                    <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
-                      <Icon className="h-4 w-4 text-accent" />
-                    </div>
-                    <span className="text-sm font-semibold group-hover:text-accent transition-colors flex-1 leading-tight">{role.label}</span>
-                    <ArrowRight className="h-4 w-4 text-muted-foreground/50 group-hover:text-accent group-hover:translate-x-0.5 transition-all shrink-0" />
-                  </Link>
-                </motion.div>
-              )
-            })}
-          </div>
+                    {page}
+                  </button>
+                )
+              })}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className="border-border text-foreground hover:bg-muted/40 disabled:opacity-40"
+              >
+                Next
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 

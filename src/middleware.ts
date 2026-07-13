@@ -18,6 +18,7 @@ const LEGACY_REDIRECT_SOURCES = new Set([
   '/llm-fine-tuning-guide',
   '/scaling-your-saas-with-offshore-full-stack-developers-a-guide-to-rapid-growth',
   '/llm-engineers',
+  '/hire/llm-engineers',
   '/hire-fintech-developers',
   '/hire-machine-learning-engineer-offshore-at-low-cost',
   '/hire-ai-software-development-talent-offshore',

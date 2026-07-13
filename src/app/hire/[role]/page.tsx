@@ -334,48 +334,6 @@ export default async function HireRolePage({ params }: Props) {
 
         <div className="border-t border-[#E5E2D9]" />
 
-        {/* ── SALARY TABLE ── */}
-        <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="mb-10">
-              <p className="text-[#FF4F00] text-xs font-bold uppercase tracking-widest mb-3 font-sans">Market Data 2026</p>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0A0A0A] mb-4">
-                {data.roleName} Salaries and Hiring Reality
-              </h2>
-              <p className="text-[#6B7280] text-lg font-sans max-w-2xl">
-                Understanding the full-time hiring market puts the staff augmentation model in context.
-              </p>
-            </div>
-            <div className="overflow-x-auto rounded-2xl border border-[#E5E2D9]">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-[#FAF8F4] border-b border-[#E5E2D9]">
-                    <th className="px-6 py-4 text-left font-bold text-[#0A0A0A] font-sans">Level</th>
-                    <th className="px-6 py-4 text-left font-bold text-[#0A0A0A] font-sans">US Annual Salary</th>
-                    <th className="px-6 py-4 text-left font-bold text-[#0A0A0A] font-sans">Full-Time Hire Timeline</th>
-                    <th className="px-6 py-4 text-left font-bold text-[#0A0A0A] font-sans">Talent Demand</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#F3F4F6]">
-                  {data.salaryTable.map((row, i) => (
-                    <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-[#FAFAFA]'}>
-                      <td className="px-6 py-4 font-semibold text-[#0A0A0A] font-sans">{row.level}</td>
-                      <td className="px-6 py-4 text-[#0A0A0A] font-mono font-medium">{row.usSalary}</td>
-                      <td className="px-6 py-4 text-[#6B7280] font-sans">{row.hireTimeline}</td>
-                      <td className="px-6 py-4"><DemandBadge level={row.demand} /></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-3 text-xs text-[#9CA3AF] font-sans">
-              Salary data sourced from LinkedIn Salary, Glassdoor, and Levels.fyi (2025-2026). Total employment cost including benefits and overhead typically adds 25-35% to base salary.
-            </p>
-          </div>
-        </section>
-
-        <div className="border-t border-[#E5E2D9]" />
-
         {/* ── COMPARISON TABLE ── */}
         <section className="py-20 bg-[#FAF8F4]">
           <div className="max-w-6xl mx-auto px-6">

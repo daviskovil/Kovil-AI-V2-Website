@@ -99,7 +99,7 @@ const platforms = [
 ]
 
 const hireRoles = [
-  { icon: Brain, label: "LLM Engineers", slug: "/hire/llm-engineers", desc: "Prompt engineering, fine-tuning, RAG" },
+  { icon: Brain, label: "LLM Engineers", slug: "/hire/llm-engineer", desc: "Prompt engineering, fine-tuning, RAG" },
   { icon: Network, label: "ML Engineers", slug: "/hire/machine-learning-engineers", desc: "Training, evaluation, MLOps" },
   { icon: Eye, label: "Computer Vision", slug: "/hire/computer-vision-engineers", desc: "Detection, segmentation, pipelines" },
   { icon: Code2, label: "NLP Engineers", slug: "/hire/nlp-engineers", desc: "Classification, extraction, NER" },

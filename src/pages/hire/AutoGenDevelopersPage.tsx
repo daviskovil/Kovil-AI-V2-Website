@@ -372,7 +372,7 @@ export default function AutoGenDevelopersPage() {
           {[
             { href: "/hire/crewai-developers",   label: "Hire CrewAI Developers",  desc: "Multi-agent orchestration and role-based agent systems" },
             { href: "/hire/langgraph-engineers",  label: "Hire LangGraph Engineers", desc: "Stateful agent graphs and complex workflow control" },
-            { href: "/hire/llm-engineers",        label: "Hire LLM Engineers",       desc: "RAG, fine-tuning, AI agents, LLMOps" },
+            { href: "/hire/llm-engineer",         label: "Hire LLM Engineers",       desc: "RAG, fine-tuning, AI agents, LLMOps" },
           ].map((link) => (
             <Link
               key={link.href}

@@ -2600,7 +2600,7 @@ export const posts: Post[] = [
       <p style="font-size:0.75rem;font-weight:700;color:#ea580c;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 0.5rem 0;">Build with Vetted AI Engineers</p>
       <p style="color:rgba(255,255,255,0.80);margin:0 0 1.25rem 0;font-size:0.9rem;line-height:1.6;max-width:32rem;">Need help choosing the right AI model architecture or building custom RAG pipelines? Kovil AI connects you with Tier-1 LLM specialists to build production-grade systems in weeks.</p>
       <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
-        <a href="/hire/llm-engineers" style="display:inline-flex;align-items:center;background:#ea580c;color:#ffffff;font-weight:600;font-size:0.8rem;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;transition:opacity 0.2s;">Hire LLM Engineers</a>
+        <a href="/hire/llm-engineer" style="display:inline-flex;align-items:center;background:#ea580c;color:#ffffff;font-weight:600;font-size:0.8rem;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;transition:opacity 0.2s;">Hire LLM Engineers</a>
         <a href="/engage/managed-ai-engineer" style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.1);color:#ffffff;font-weight:600;font-size:0.8rem;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;transition:opacity 0.2s;">Explore Managed AI Engagement</a>
       </div>
     </div>
@@ -3581,9 +3581,9 @@ export const posts: Post[] = [
 <div style="background:#111827;border-radius:1rem;padding:2rem;margin:2.5rem 0;border:1px solid #374151;">
   <p style="color:#f97316;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin:0 0 0.75rem 0;">Kovil AI · Build AI Agents</p>
   <h3 style="color:white;font-size:1.25rem;font-weight:700;margin:0 0 0.75rem 0;line-height:1.3;">Need engineers who have shipped production AI agents before?</h3>
-  <p style="color:rgba(255,255,255,0.6);font-size:0.875rem;line-height:1.6;margin:0 0 1.25rem 0;">Kovil AI's engineers have built production AI agent systems across CrewAI, LangGraph, and AutoGen — with async architecture, state persistence, observability, and guardrails included from day one. Matched in 48 hours, 2-week risk-free trial.</p>
+  <p style="color:rgba(255,255,255,0.6);font-size:0.875rem;line-height:1.6;margin:0 0 1.25rem 0;">Kovil AI\'s engineers have built production AI agent systems across CrewAI, LangGraph, and AutoGen — with async architecture, state persistence, observability, and guardrails included from day one. Matched in 48 hours, 2-week risk-free trial.</p>
   <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
-    <a href="/hire/llm-engineers" style="display:inline-block;background:#FF4F00;color:white;font-weight:600;font-size:0.875rem;padding:0.625rem 1.25rem;border-radius:0.5rem;text-decoration:none;">Hire an LLM Engineer →</a>
+    <a href="/hire/llm-engineer" style="display:inline-block;background:#FF4F00;color:white;font-weight:600;font-size:0.875rem;padding:0.625rem 1.25rem;border-radius:0.5rem;text-decoration:none;">Hire an LLM Engineer →</a>
     <a href="/engage/outcome-based-project" style="display:inline-block;background:rgba(255,255,255,0.1);color:white;font-weight:600;font-size:0.875rem;padding:0.625rem 1.25rem;border-radius:0.5rem;text-decoration:none;">Scope a Fixed-Price Build</a>
   </div>
 </div>
@@ -3689,7 +3689,7 @@ export const posts: Post[] = [
 
 <p><strong>Phase 3: Operational maturity (ongoing).</strong> Monitor continuously against baselines. Run monthly optimisation sprints — prompt tuning, cost reduction, retrieval improvements. Maintain data pipelines and retrieval index freshness. Manage model version upgrades. Produce compliance reports for regulated industries. Evaluate and extend agent capabilities as trust is established. Objective: maintain quality, reduce costs, and build the performance track record that justifies expanding the agent's autonomy level and scope over time.</p>
 
-<p>If your team is ready to build but needs experienced AI engineers, Kovil AI has <a href="/hire/llm-engineers">LLM engineers</a>, <a href="/hire/crewai-developers">CrewAI specialists</a>, and <a href="/hire/langgraph-engineers">LangGraph engineers</a> available within 48 hours — all with production experience, not just prototyping backgrounds. If you have agents already running and want an honest picture of their health, the <a href="/ai-operations">free AI audit</a> takes 30 minutes and gives you the three most important things to fix. Either way, the right time to invest in production-grade AI operations is before the first user complaint, not after.</p>
+<p>If your team is ready to build but needs experienced AI engineers, Kovil AI has <a href="/hire/llm-engineer">LLM engineers</a>, <a href="/hire/crewai-developers">CrewAI specialists</a>, and <a href="/hire/langgraph-engineers">LangGraph engineers</a> available within 48 hours — all with production experience, not just prototyping backgrounds. If you have agents already running and want an honest picture of their health, the <a href="/ai-operations">free AI audit</a> takes 30 minutes and gives you the three most important things to fix. Either way, the right time to invest in production-grade AI operations is before the first user complaint, not after.</p>
     `,
     faqs: [
       {

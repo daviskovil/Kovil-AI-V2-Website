@@ -53,6 +53,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/hire/llm-engineers',
+        destination: '/hire/llm-engineer',
+        permanent: true,
+      },
+      {
+        source: '/hire/llm-engineers/',
+        destination: '/hire/llm-engineer',
+        permanent: true,
+      },
+      {
         source: '/hire-fintech-developers',
         destination: '/engage/managed-ai-engineer',
         permanent: true,

@@ -245,12 +245,12 @@ type RelatedLink = { label: string; href: string; desc: string }
 
 const RELATED_LINKS_MAP: Record<string, RelatedLink[]> = {
   'rag-vs-fine-tuning': [
-    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Vetted engineers with RAG & fine-tuning experience' },
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineer', desc: 'Vetted engineers with RAG & fine-tuning experience' },
     { label: 'Hire ML Engineers', href: '/hire/machine-learning-engineers', desc: 'Fine-tuning, MLOps & model training specialists' },
     { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'Ship a RAG or ML build at a fixed price' },
   ],
   'ai-agents-vs-chatbots': [
-    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Production LLM & chatbot specialists' },
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineer', desc: 'Production LLM & chatbot specialists' },
     { label: 'Hire CrewAI Developers', href: '/hire/crewai-developers', desc: 'Multi-agent AI systems with CrewAI' },
     { label: 'Hire LangGraph Engineers', href: '/hire/langgraph-engineers', desc: 'Stateful AI agent pipelines with LangGraph' },
   ],
@@ -290,7 +290,7 @@ const RELATED_LINKS_MAP: Record<string, RelatedLink[]> = {
     { label: 'Case Studies', href: '/case-studies', desc: 'Real AI builds with real costs and outcomes' },
   ],
   'llm-chatbot-for-business': [
-    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Vetted engineers who build production LLM systems' },
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineer', desc: 'Vetted engineers who build production LLM systems' },
     { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'Get your chatbot built at a fixed price' },
     { label: 'Intelligent Document Processing', href: '/intelligent-document-processing', desc: 'AI for document extraction & classification' },
   ],
@@ -302,7 +302,7 @@ const RELATED_LINKS_MAP: Record<string, RelatedLink[]> = {
   'gpt-4o-vs-claude-vs-gemini': [
     { label: 'Azure AI Foundry', href: '/azure-ai-foundry', desc: 'Build on Azure OpenAI — GPT-4o on Microsoft infrastructure' },
     { label: 'Google Vertex AI', href: '/vertex-ai', desc: 'Build on Gemini and Google Cloud AI' },
-    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Engineers who work across all three platforms' },
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineer', desc: 'Engineers who work across all three platforms' },
   ],
   'how-much-does-an-ai-project-cost': [
     { label: 'Fixed-Price AI Project', href: '/engage/outcome-based-project', desc: 'Know your price before you commit' },
@@ -310,7 +310,7 @@ const RELATED_LINKS_MAP: Record<string, RelatedLink[]> = {
     { label: 'How It Works', href: '/how-it-works', desc: 'Our process explained end to end' },
   ],
   'what-is-a-vector-database': [
-    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'RAG, embeddings & vector search specialists' },
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineer', desc: 'RAG, embeddings & vector search specialists' },
     { label: 'Hire Data Engineers', href: '/hire/data-engineers', desc: 'Pipeline and infrastructure engineers' },
     { label: 'Intelligent Document Processing', href: '/intelligent-document-processing', desc: 'AI extraction powered by vector search' },
   ],
@@ -340,7 +340,7 @@ const RELATED_LINKS_MAP: Record<string, RelatedLink[]> = {
     { label: 'Hire AutoGen Developers', href: '/hire/autogen-developers', desc: 'Microsoft AutoGen multi-agent specialists' },
   ],
   'how-to-reduce-llm-api-costs': [
-    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Engineers who design cost-efficient LLM architectures' },
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineer', desc: 'Engineers who design cost-efficient LLM architectures' },
     { label: 'AI Operations', href: '/ai-operations', desc: 'Token cost optimisation as a managed service' },
     { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Embed a cost-focused AI engineer in your team' },
   ],
@@ -360,7 +360,7 @@ const RELATED_LINKS_MAP: Record<string, RelatedLink[]> = {
     { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Embed an ML engineer to own your model health' },
   ],
   'reduce-ai-token-costs': [
-    { label: 'Hire LLM Engineers', href: '/hire/llm-engineers', desc: 'Architects who design cost-efficient LLM systems' },
+    { label: 'Hire LLM Engineers', href: '/hire/llm-engineer', desc: 'Architects who design cost-efficient LLM systems' },
     { label: 'AI Operations', href: '/ai-operations', desc: 'Token cost tracking & optimisation, managed' },
     { label: 'Managed AI Engineer', href: '/engage/managed-ai-engineer', desc: 'Ongoing AI engineering — cost efficiency included' },
   ],

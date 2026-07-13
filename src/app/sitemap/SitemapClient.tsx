@@ -50,7 +50,6 @@ const STATIC_SECTIONS: SitemapSection[] = [
           { label: 'Hire AI Engineers', href: '/hire/ai-engineer' },
           { label: 'Hire Generative AI Developers', href: '/hire/generative-ai-developer' },
           { label: 'Hire LLM Engineers', href: '/hire/llm-engineer' },
-          { label: 'Hire LLM Engineers (Specialist)', href: '/hire/llm-engineers' },
           { label: 'Hire Prompt Engineers', href: '/hire/prompt-engineer' },
           { label: 'Hire LlamaIndex Engineers', href: '/hire/llamaindex-engineers' },
           { label: 'Hire ML Engineers', href: '/hire/ml-engineer' },

@@ -58,7 +58,7 @@ const serviceSchema = {
     itemListElement: [
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire Computer Vision Engineers', url: 'https://kovil.ai/hire/computer-vision-engineers' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire Machine Learning Engineers', url: 'https://kovil.ai/hire/machine-learning-engineers' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire LLM Engineers', url: 'https://kovil.ai/hire/llm-engineers' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire LLM Engineers', url: 'https://kovil.ai/hire/llm-engineer' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire NLP Engineers', url: 'https://kovil.ai/hire/nlp-engineers' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire Data Engineers', url: 'https://kovil.ai/hire/data-engineers' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hire CrewAI Developers', url: 'https://kovil.ai/hire/crewai-developers' } },

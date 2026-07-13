@@ -367,7 +367,7 @@ export default function LlamaIndexEngineersPage() {
         <div className="grid sm:grid-cols-3 gap-4">
           {[
             { href: "/hire/langgraph-engineers",  label: "Hire LangGraph Engineers",  desc: "Stateful agent graphs, advanced RAG, LangSmith observability" },
-            { href: "/hire/llm-engineers",        label: "Hire LLM Engineers",        desc: "RAG systems, fine-tuning, system prompts, LLMOps" },
+            { href: "/hire/llm-engineer",         label: "Hire LLM Engineers",        desc: "RAG systems, fine-tuning, system prompts, LLMOps" },
             { href: "/engage/managed-ai-engineer", label: "Managed AI Engineer",       desc: "Embedded AI engineer for any AI task" },
           ].map((link) => (
             <Link

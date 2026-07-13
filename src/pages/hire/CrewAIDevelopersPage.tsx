@@ -371,7 +371,7 @@ export default function CrewAIDevelopersPage() {
         <div className="grid sm:grid-cols-3 gap-4">
           {[
             { href: "/hire/langgraph-engineers",      label: "Hire LangGraph Engineers",  desc: "Graph-based agent workflows and stateful AI systems" },
-            { href: "/hire/llm-engineers",            label: "Hire LLM Engineers",         desc: "RAG, fine-tuning, AI agents, LLMOps" },
+            { href: "/hire/llm-engineer",             label: "Hire LLM Engineers",         desc: "RAG, fine-tuning, AI agents, LLMOps" },
             { href: "/engage/managed-ai-engineer",    label: "Managed AI Engineer",        desc: "Embedded AI engineer for any AI task" },
           ].map((link) => (
             <Link

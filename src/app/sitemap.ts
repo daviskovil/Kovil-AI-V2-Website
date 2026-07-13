@@ -20,7 +20,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/hire`,                                   lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/computer-vision-engineers`,         lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/machine-learning-engineers`,        lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${BASE_URL}/hire/llm-engineers`,                     lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/nlp-engineers`,                     lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/data-engineers`,                    lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/crewai-developers`,                 lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },

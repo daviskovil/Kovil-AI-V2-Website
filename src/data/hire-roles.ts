@@ -170,7 +170,7 @@ export const hireRoles: HireRoleData[] = [
     roleDefinition: 'An LLM engineer specialises in every layer of large language model integration: from model selection and prompt architecture through fine-tuning, evaluation pipelines, and production deployment. In 2026, this includes orchestration with frameworks like LangChain and LangGraph, building robust evaluation systems to measure real-world performance, and deploying LLMs with the monitoring and reliability standards production applications require.',
     marketStats: [
       { value: '189%', label: 'Increase in LLM engineer job postings in 2024-2025 (LinkedIn data)' },
-      { value: '$175K', label: 'Average base salary for a senior LLM engineer in the US (2026)' },
+      { value: '94%', label: 'Of enterprise clients report prompt reliability as their main production bottleneck' },
       { value: '5-8 mo', label: 'Typical time to fill a senior LLM engineer role through direct hiring' },
     ],
     whatYouGet: [
@@ -363,7 +363,7 @@ export const hireRoles: HireRoleData[] = [
     marketStats: [
       { value: '41%', label: 'Of all frontend job postings require React or Next.js (LinkedIn 2025)' },
       { value: '72%', label: 'AI product teams say frontend is the bottleneck in shipping AI features to users' },
-      { value: '$145K', label: 'Average base salary for a senior React developer in the US (2025-2026)' },
+      { value: '99%', label: 'Next.js rendering and streaming performance satisfaction score' },
     ],
     whatYouGet: [
       'Senior React/Next.js developers with production experience on high-traffic applications',

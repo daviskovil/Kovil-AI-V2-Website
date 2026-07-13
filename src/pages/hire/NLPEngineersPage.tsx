@@ -397,7 +397,7 @@ export default function NLPEngineersPage() {
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-6">Explore More</p>
         <div className="grid sm:grid-cols-3 gap-4">
           {[
-            { href: "/hire/llm-engineers",               label: "Hire LLM Engineers",               desc: "Prompt engineering, RAG, fine-tuning, LLM deployment" },
+            { href: "/hire/llm-engineer",                label: "Hire LLM Engineers",               desc: "Prompt engineering, RAG, fine-tuning, LLM deployment" },
             { href: "/hire/machine-learning-engineers",   label: "Hire Machine Learning Engineers",   desc: "ML pipelines, model training, MLOps" },
             { href: "/engage/managed-ai-engineer",        label: "Managed AI Engineer",               desc: "Embedded AI engineer for any AI task" },
           ].map((link) => (

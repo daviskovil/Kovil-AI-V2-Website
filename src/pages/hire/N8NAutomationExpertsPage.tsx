@@ -370,7 +370,7 @@ export default function N8NAutomationExpertsPage() {
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-6">Explore More</p>
         <div className="grid sm:grid-cols-3 gap-4">
           {[
-            { href: "/hire/llm-engineers",    label: "Hire LLM Engineers",    desc: "RAG, fine-tuning, AI agents, LLMOps" },
+            { href: "/hire/llm-engineer",     label: "Hire LLM Engineers",    desc: "RAG, fine-tuning, AI agents, LLMOps" },
             { href: "/hire/crewai-developers", label: "Hire CrewAI Developers", desc: "Multi-agent orchestration and role-based agent systems" },
             { href: "/engage/managed-ai-engineer", label: "Managed AI Engineer", desc: "Embedded AI engineer for any AI task" },
           ].map((link) => (
