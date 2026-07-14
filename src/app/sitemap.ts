@@ -48,6 +48,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/ai-workflow-automation-library`,                 lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/agentforce`,                                      lastModified: now,  changeFrequency: 'weekly',  priority: 0.9 },
     { url: `${BASE_URL}/shopify`,                                         lastModified: now,  changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${BASE_URL}/shopify/hire-ai-agent-developer`,                 lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/shopify/ai-agentic-commerce`,                     lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/shopify/ai-toolkit-integration`,                 lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/shopify/custom-sidekick-actions`,                 lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/shopify/ecommerce-automation-solutions`,         lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/ai-operations`,                                   lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/apply-as-it-recruiter`,                           lastModified: now,  changeFrequency: 'monthly', priority: 0.6 },
     // ── Intelligent Document Processing ──────────────────────────────────────
