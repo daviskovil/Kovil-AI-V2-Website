@@ -6,9 +6,8 @@ import Link from "next/link"
 import {
   ArrowRight, Bot, Sparkles, Terminal, Database, MessageSquare,
   Workflow, ShoppingBag, LineChart, ShieldCheck, Clock, Repeat2,
-  Zap, CheckCircle2, ChevronRight, Calculator, Sliders, Settings,
-  Eye, Users, Boxes, Code2, Server, Cloud, Bug, Lock, ClipboardList,
-  FileText, X, Check
+  CheckCircle2, ChevronRight, ChevronDown, Calculator, Sliders, Settings,
+  Users, Boxes, Code2, FileText, X, Check
 } from "lucide-react"
 import { OnboardingModal } from "../../components/OnboardingModal"
 import { Button } from "../../components/ui/button"
@@ -159,11 +158,18 @@ const consoleLogs = {
   ]
 }
 
+const heroStats = [
+  { stat: "< 48h",   label: "Time to match" },
+  { stat: "Top 1%",  label: "Engineer tier" },
+  { stat: "2 weeks", label: "Risk-free trial" },
+  { stat: "100%",    label: "IP ownership" },
+]
+
 export default function ShopifyHubPage() {
   // Console state
   const [activeConsoleTab, setActiveConsoleTab] = useState<'manager' | 'design' | 'communication'>('manager')
   const [visibleLogs, setVisibleLogs] = useState<any[]>([])
-  
+
   // Categorized index state
   const [selectedCategory, setSelectedCategory] = useState("Services & Integrations")
   const [currentPage, setCurrentPage] = useState(1)
@@ -192,7 +198,7 @@ export default function ShopifyHubPage() {
 
   // Blueprint & FAQ State
   const [activeBlueprintId, setActiveBlueprintId] = useState<'repricer' | 'marketing' | 'inventory'>('repricer')
-  const [expandedFaqId, setExpandedFaqId] = useState<number | null>(null)
+  const [expandedFaqId, setExpandedFaqId] = useState<number | null>(0)
 
   // Simulated log typewriter animation
   useEffect(() => {
@@ -214,7 +220,7 @@ export default function ShopifyHubPage() {
   // Estimator logic (Average rate: $6k per agent)
   const calculateEstimate = () => {
     let teamSize = "1 Embedded AI Developer"
-    
+
     if (skuRange === 2 || orderRange === 2) {
       teamSize = "1 Lead AI Engineer + 1 DevOps/Data Engineer"
     }
@@ -263,118 +269,125 @@ export default function ShopifyHubPage() {
     <div className="min-h-screen bg-background text-foreground">
 
       {/* ── Hero Section with Live Agent Simulation ──────────────────────────── */}
-      <section className="relative pt-24 pb-20 px-6 overflow-hidden border-b border-border">
+      <section className="relative pt-16 pb-20 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent pointer-events-none" />
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Hero Left Column */}
-          <div className="lg:col-span-6 space-y-6">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-accent bg-accent/10 border border-accent/20 px-4 py-1.5 rounded-full">
-              <ShoppingBag className="h-3.5 w-3.5" /> Autonomous E-Commerce
-            </span>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
-              Deploy Custom AI Agent Networks to Run Your <span className="text-accent">Shopify Store.</span>
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Vetted Tier-1 AI engineers embedded in your team in 48 hours. Integrate custom Model Context Protocol (MCP) servers, autonomous customer support agents, and design-to-comms workflows that execute tasks—not just answer questions.
-            </p>
+        <div className="max-w-6xl mx-auto">
 
-            <div className="flex flex-wrap gap-4 pt-2">
-              <ShopifyCTA label="Get E-Commerce Scoping Brief" className="px-8" />
-              <Button size="lg" variant="outline" asChild>
-                <Link href="#blueprint-index">See All 15 Blueprints</Link>
-              </Button>
-            </div>
+          <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
+            <Link href="/" className="hover:text-accent transition-colors">Home</Link>
+            <span>/</span>
+            <span className="text-foreground">Shopify</span>
+          </nav>
 
-            <div className="flex items-center gap-6 pt-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-accent" /> 2-Week Trial
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-accent" /> Matched in 48h
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-accent" /> 100% IP Ownership
-              </div>
-            </div>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-          {/* Hero Right Column - Interactive Terminal Console */}
-          <div className="lg:col-span-6">
-            <div className="rounded-2xl border border-border bg-slate-950/80 shadow-2xl overflow-hidden backdrop-blur-md">
-              {/* Window Header */}
-              <div className="bg-slate-900 px-4 py-3 flex items-center justify-between border-b border-white/5">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                  <span className="text-xs text-white/40 font-mono ml-2">shopify_agent_console.log</span>
-                </div>
-                <span className="text-[10px] uppercase font-bold text-accent tracking-wider font-mono">Live Simulation</span>
+            {/* Hero Left Column */}
+            <div className="lg:col-span-6 space-y-6">
+              <span className="inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-widest text-accent bg-accent/10 border border-accent/20 px-4 py-1.5 rounded-full">
+                <ShoppingBag className="h-3.5 w-3.5" /> Autonomous E-Commerce
+              </span>
+              <h1 className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-[1.05] text-balance">
+                Deploy Custom AI Agent Networks to Run Your <span className="text-accent">Shopify Store.</span>
+              </h1>
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-xl">
+                Vetted Tier-1 AI engineers embedded in your team in 48 hours. Integrate custom Model Context Protocol (MCP) servers, autonomous customer support agents, and design-to-comms workflows that execute tasks — not just answer questions.
+              </p>
+
+              <div className="flex flex-wrap gap-4 pt-2">
+                <ShopifyCTA label="Get E-Commerce Scoping Brief" className="px-8 h-12 text-base rounded-full" />
+                <Button size="lg" variant="outline" className="h-12 rounded-full" asChild>
+                  <Link href="#blueprint-index">See All 15 Blueprints</Link>
+                </Button>
               </div>
 
-              {/* Console Tabs */}
-              <div className="grid grid-cols-3 text-center text-xs font-mono border-b border-white/5 bg-slate-950">
-                {(['manager', 'design', 'communication'] as const).map(tab => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveConsoleTab(tab)}
-                    className={`py-3 transition-colors ${
-                      activeConsoleTab === tab
-                        ? "text-accent bg-slate-900 border-b border-accent font-semibold"
-                        : "text-white/40 hover:text-white/70"
-                    }`}
-                  >
-                    {tab.toUpperCase()} AGENT
-                  </button>
+              {/* Stat row */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 mt-2 border-t border-border">
+                {heroStats.map((s) => (
+                  <div key={s.label}>
+                    <p className="font-display font-black text-2xl text-accent">{s.stat}</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest mt-1">{s.label}</p>
+                  </div>
                 ))}
               </div>
+            </div>
 
-              {/* Console Terminal Screen */}
-              <div className="p-5 min-h-[260px] bg-slate-950 font-mono text-xs leading-relaxed space-y-3 overflow-y-auto">
-                <AnimatePresence mode="popLayout">
-                  {visibleLogs.filter(Boolean).map((log, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0 }}
-                      className="flex items-start gap-3"
-                    >
-                      <span className="text-white/30 shrink-0">[{log.time}]</span>
-                      <span className={`shrink-0 uppercase font-bold text-[10px] px-1.5 py-0.5 rounded ${
-                        log.type === "system" ? "bg-white/10 text-white/70" :
-                        log.type === "manager" ? "bg-accent/20 text-accent border border-accent/30" :
-                        log.type === "design" ? "bg-violet-500/20 text-violet-400 border border-violet-500/30" :
-                        "bg-teal-500/20 text-teal-400 border border-teal-500/30"
-                      }`}>
-                        {log.type}
-                      </span>
-                      <span className="text-white/80">{log.text}</span>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-                {visibleLogs.length < consoleLogs[activeConsoleTab].length && (
-                  <div className="flex items-center gap-1.5 text-accent animate-pulse font-bold mt-2">
-                    <span className="w-1.5 h-3 bg-accent inline-block" /> Running process...
+            {/* Hero Right Column - Interactive Terminal Console */}
+            <div className="lg:col-span-6">
+              <div className="rounded-2xl border border-border bg-slate-950 shadow-2xl overflow-hidden">
+                {/* Window Header */}
+                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between border-b border-white/5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                    <span className="text-xs text-white/40 font-mono ml-2">shopify_agent_console.log</span>
                   </div>
-                )}
+                  <span className="text-[10px] uppercase font-bold text-accent tracking-wider font-mono">Live Simulation</span>
+                </div>
+
+                {/* Console Tabs */}
+                <div className="grid grid-cols-3 text-center text-xs font-mono border-b border-white/5 bg-slate-950">
+                  {(['manager', 'design', 'communication'] as const).map(tab => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveConsoleTab(tab)}
+                      className={`py-3 transition-colors ${
+                        activeConsoleTab === tab
+                          ? "text-accent bg-slate-900 border-b border-accent font-semibold"
+                          : "text-white/40 hover:text-white/70"
+                      }`}
+                    >
+                      {tab.toUpperCase()} AGENT
+                    </button>
+                  ))}
+                </div>
+
+                {/* Console Terminal Screen */}
+                <div className="p-5 min-h-[260px] bg-slate-950 font-mono text-xs leading-relaxed space-y-3 overflow-y-auto">
+                  <AnimatePresence mode="popLayout">
+                    {visibleLogs.filter(Boolean).map((log, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="flex items-start gap-3"
+                      >
+                        <span className="text-white/30 shrink-0">[{log.time}]</span>
+                        <span className={`shrink-0 uppercase font-bold text-[10px] px-1.5 py-0.5 rounded ${
+                          log.type === "system" ? "bg-white/10 text-white/70" :
+                          log.type === "manager" ? "bg-accent/20 text-accent border border-accent/30" :
+                          log.type === "design" ? "bg-violet-500/20 text-violet-400 border border-violet-500/30" :
+                          "bg-teal-500/20 text-teal-400 border border-teal-500/30"
+                        }`}>
+                          {log.type}
+                        </span>
+                        <span className="text-white/80">{log.text}</span>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                  {visibleLogs.length < consoleLogs[activeConsoleTab].length && (
+                    <div className="flex items-center gap-1.5 text-accent animate-pulse font-bold mt-2">
+                      <span className="w-1.5 h-3 bg-accent inline-block" /> Running process...
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </section>
 
-      {/* ── Partner Logo Marquee ─────────────────────────────────────────────── */}
-      <section className="py-8 border-b border-border bg-muted/10">
-        <div className="max-w-6xl mx-auto px-6 flex flex-wrap justify-between items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all">
-          <span className="text-sm font-bold tracking-wider font-mono">SHOPIFY PLUS</span>
-          <span className="text-sm font-bold tracking-wider font-mono">N8N.IO</span>
-          <span className="text-sm font-bold tracking-wider font-mono">MAKE.COM</span>
-          <span className="text-sm font-bold tracking-wider font-mono">KLAVIYO</span>
-          <span className="text-sm font-bold tracking-wider font-mono">STRIPE</span>
-          <span className="text-sm font-bold tracking-wider font-mono">RECHARGE</span>
+      {/* ── Partner / Stack Marquee ──────────────────────────────────────────── */}
+      <section className="py-10 border-y border-border bg-muted/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-6">Built to work with your stack</p>
+          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-4 opacity-70">
+            {["Shopify Plus", "n8n.io", "Make.com", "Klaviyo", "Stripe", "Recharge"].map((name) => (
+              <span key={name} className="text-base font-display font-bold tracking-tight text-foreground/70">{name}</span>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -382,11 +395,11 @@ export default function ShopifyHubPage() {
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="rounded-3xl border border-border bg-muted/20 overflow-hidden grid grid-cols-1 lg:grid-cols-12">
-            
+
             {/* Case Study Left Column */}
-            <div className="lg:col-span-7 p-8 md:p-12 space-y-6 flex flex-col justify-center">
-              <span className="text-xs font-bold uppercase tracking-widest text-accent">D2C Case Study</span>
-              <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+            <div className="lg:col-span-6 p-8 md:p-12 space-y-6 flex flex-col justify-center">
+              <span className="text-sm font-semibold uppercase tracking-widest text-accent">D2C Case Study</span>
+              <h2 className="font-display font-bold text-3xl md:text-4xl tracking-tight leading-tight">
                 How We Built a 3-Agent Autonomous Team for a Cosmetics Brand
               </h2>
               <p className="text-muted-foreground leading-relaxed">
@@ -396,21 +409,21 @@ export default function ShopifyHubPage() {
               {/* Stats Grid */}
               <div className="grid grid-cols-3 gap-6 pt-4 border-t border-border">
                 <div>
-                  <div className="text-3xl font-extrabold text-accent">-82%</div>
+                  <div className="font-display font-black text-2xl md:text-3xl text-accent">-82%</div>
                   <div className="text-xs text-muted-foreground mt-1">Support Ticket Deflection</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-extrabold text-accent">+14%</div>
+                  <div className="font-display font-black text-2xl md:text-3xl text-accent">+14%</div>
                   <div className="text-xs text-muted-foreground mt-1">Cart Recovery Conversions</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-extrabold text-accent">0 hrs</div>
+                  <div className="font-display font-black text-2xl md:text-3xl text-accent">0 hrs</div>
                   <div className="text-xs text-muted-foreground mt-1">Manual Content Production</div>
                 </div>
               </div>
 
               <div className="pt-2">
-                <Button variant="outline" asChild>
+                <Button variant="outline" className="rounded-full" asChild>
                   <Link href="/book-a-call?ref=shopify-cosmetics-case-scoping">
                     Read the Technical Case Study <ChevronRight className="ml-1 h-4 w-4" />
                   </Link>
@@ -418,12 +431,12 @@ export default function ShopifyHubPage() {
               </div>
             </div>
 
-            {/* Case Study Right Column - Image Mockup */}
-            <div className="lg:col-span-5 flex items-center justify-center p-4 min-h-[380px] relative mix-blend-multiply">
+            {/* Case Study Right Column - Dashboard visual */}
+            <div className="lg:col-span-6 bg-slate-950 min-h-[380px] relative overflow-hidden">
               <img
-                src="/shopify-cosmetics-dashboard-fullbleed.png"
-                alt="Shopify Cosmetics AI Agent Case Study Dashboard"
-                className="object-contain max-w-full h-auto max-h-[360px]"
+                src="/shopify-cosmetics-case-study.png"
+                alt="Live analytics dashboard showing revenue, orders, and AI agent activity for a Shopify cosmetics store"
+                className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
 
@@ -434,19 +447,20 @@ export default function ShopifyHubPage() {
       {/* ── System Architecture Section ──────────────────────────────────────── */}
       <section className="py-20 px-6 border-y border-border bg-muted/20">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Architecture Visual */}
-          <div className="lg:col-span-6 flex justify-center mix-blend-multiply">
+          <div className="lg:col-span-6 rounded-2xl overflow-hidden bg-slate-950 border border-border relative aspect-square">
             <img
-              src="/shopify-agent-simple-flow.png"
-              alt="Shopify AI Agent Workflow Flowchart"
-              className="object-contain max-w-full h-auto max-h-[350px]"
+              src="/shopify-agent-architecture.png"
+              alt="Diagram of the custom AI agent architecture connecting the Shopify Admin API, vector database, and LLM providers via the Model Context Protocol"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
 
           {/* Architecture Explainer */}
           <div className="lg:col-span-6 space-y-6">
-            <h2 className="text-3xl font-bold tracking-tight">
+            <p className="text-sm font-semibold uppercase tracking-widest text-accent">Under the Hood</p>
+            <h2 className="font-display font-bold text-3xl tracking-tight">
               Standard Integration Hubs Sync. Kovil AI Agents Perform.
             </h2>
             <p className="text-muted-foreground leading-relaxed">
@@ -460,12 +474,12 @@ export default function ShopifyHubPage() {
                 { title: "Human-in-the-Loop Slack Controls", desc: "Setting up safety triggers so that pricing overrides or email launches are held in review until approved by your managers." }
               ].map((item, idx) => (
                 <div key={idx} className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 text-accent font-bold font-mono text-xs">
+                  <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 text-accent font-bold text-xs">
                     0{idx + 1}
                   </div>
                   <div>
                     <h3 className="font-semibold text-sm">{item.title}</h3>
-                    <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{item.desc}</p>
+                    <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -478,11 +492,11 @@ export default function ShopifyHubPage() {
       {/* ── 15 Categorized Sub-Page Index Grid ────────────────────────────────── */}
       <section id="blueprint-index" className="py-20 px-6 scroll-mt-20" ref={sectionRef}>
         <div className="max-w-6xl mx-auto">
-          
+
           <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold">Shopify AI Integration Index</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
-              Every card below represents a specialized Shopify integration capability. Explore specific services, retail vertical solutions, or download our ready-to-deploy workflow library blueprints.
+            <h2 className="font-display font-bold text-3xl md:text-4xl tracking-tight">Shopify AI Integration Index</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Every card below represents a specialized Shopify integration capability. Explore specific services, retail vertical solutions, or ready-to-deploy workflow blueprints.
             </p>
 
             {/* Category Tabs */}
@@ -493,7 +507,7 @@ export default function ShopifyHubPage() {
                   <button
                     key={cat}
                     onClick={() => handleCategoryChange(cat)}
-                    className={`px-5 py-2 rounded-full text-xs font-semibold transition-all border ${
+                    className={`px-5 py-2 rounded-full text-sm font-semibold transition-all border ${
                       isActive
                         ? "bg-accent border-accent text-white shadow-md shadow-accent/15"
                         : "bg-background border-border text-muted-foreground hover:text-foreground hover:border-accent/40"
@@ -523,29 +537,29 @@ export default function ShopifyHubPage() {
                   >
                     <div className="absolute top-0 left-0 right-0 h-0.5 bg-accent/20 group-hover:bg-accent/60 transition-colors" />
                     <div className="p-6 flex flex-col flex-1">
-                      
+
                       <div className="flex items-start justify-between mb-4">
                         <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
                           <Icon className="h-5 w-5" />
                         </div>
                         {selectedCategory === "Workflow Blueprints" && (
-                          <span className="text-[9px] font-mono font-bold tracking-wider uppercase text-accent bg-accent/10 border border-accent/20 px-2 py-0.5 rounded">Blueprint</span>
+                          <span className="text-[10px] font-bold tracking-wider uppercase text-accent bg-accent/10 border border-accent/20 px-2 py-0.5 rounded-full">Blueprint</span>
                         )}
                       </div>
 
                       <h3 className="text-base font-bold mb-2 group-hover:text-accent transition-colors leading-tight">{page.title}</h3>
-                      <p className="text-xs text-muted-foreground mb-4 flex-1 leading-relaxed">{page.desc}</p>
+                      <p className="text-sm text-muted-foreground mb-4 flex-1 leading-relaxed">{page.desc}</p>
 
-                      <div className="flex flex-wrap gap-1 mb-4">
+                      <div className="flex flex-wrap gap-1.5 mb-4">
                         {page.tags.map(tag => (
-                          <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full bg-background border border-border text-muted-foreground">
+                          <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-background border border-border text-muted-foreground">
                             {tag}
                           </span>
                         ))}
                       </div>
 
-                      <div className="flex items-center text-xs font-semibold text-accent mt-auto pt-1 gap-1">
-                        Book Scoping Brief <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      <div className="flex items-center text-sm font-semibold text-accent mt-auto pt-1 gap-1">
+                        Book Scoping Brief <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
                       </div>
                     </div>
                   </Link>
@@ -599,22 +613,22 @@ export default function ShopifyHubPage() {
       </section>
 
       {/* ── Project Cost & Resource Estimator ────────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-muted/20">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12 space-y-2">
-            <h2 className="text-3xl font-bold flex items-center justify-center gap-2">
+            <h2 className="font-display font-bold text-3xl tracking-tight flex items-center justify-center gap-2">
               <Calculator className="h-7 w-7 text-accent" /> Shopify Project Estimator
             </h2>
-            <p className="text-muted-foreground text-sm max-w-xl mx-auto">
+            <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
               Select your Shopify store's attributes and desired agent configurations to dynamically calculate engineering workload, recommended staffing, and implementation budgets.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-            
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+
             {/* Estimator Controls (Left Column) */}
             <div className="lg:col-span-7 border border-border bg-background rounded-2xl p-6 md:p-8 space-y-8 flex flex-col justify-between">
-              
+
               {/* Slider 1: SKU Catalog Size */}
               <div className="space-y-3">
                 <div className="flex justify-between items-center text-sm font-semibold">
@@ -632,10 +646,10 @@ export default function ShopifyHubPage() {
                   onChange={e => setSkuRange(parseInt(e.target.value))}
                   className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-accent"
                 />
-                <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
-                  <span>SMALL CATALOG</span>
-                  <span>MID-SIZED BRAND</span>
-                  <span>ENTERPRISE SKU VOLUME</span>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Small catalog</span>
+                  <span>Mid-sized brand</span>
+                  <span>Enterprise SKU volume</span>
                 </div>
               </div>
 
@@ -656,10 +670,10 @@ export default function ShopifyHubPage() {
                   onChange={e => setOrderRange(parseInt(e.target.value))}
                   className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-accent"
                 />
-                <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
-                  <span>UNDER 1,000</span>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Under 1,000</span>
                   <span>1,000 – 10,000</span>
-                  <span>OVER 10,000 (PLUS)</span>
+                  <span>Over 10,000 (Plus)</span>
                 </div>
               </div>
 
@@ -689,7 +703,7 @@ export default function ShopifyHubPage() {
                         }`}
                       >
                         <Icon className={`h-4 w-4 shrink-0 ${isSelected ? "text-accent" : ""}`} />
-                        <span className="text-xs leading-snug">{agent.label}</span>
+                        <span className="text-sm leading-snug">{agent.label}</span>
                       </button>
                     )
                   })}
@@ -701,35 +715,35 @@ export default function ShopifyHubPage() {
             {/* Estimator Outputs (Right Column) */}
             <div className="lg:col-span-5 border border-border bg-muted/20 rounded-2xl p-6 md:p-8 flex flex-col justify-between text-center relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-accent" />
-              
+
               <div className="space-y-6 my-auto">
                 <div className="space-y-1">
-                  <span className="text-xs uppercase font-bold text-muted-foreground font-mono">Estimated Cost Budget</span>
-                  <div className="text-3xl md:text-4xl font-extrabold text-accent tracking-tight">{estimateResult.cost}</div>
+                  <span className="text-xs uppercase font-bold text-muted-foreground tracking-widest">Estimated Cost Budget</span>
+                  <div className="font-display font-black text-3xl md:text-4xl text-accent tracking-tight">{estimateResult.cost}</div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 border-y border-border py-6 text-left text-xs font-mono">
+                <div className="grid grid-cols-2 gap-4 border-y border-border py-6 text-left">
                   <div>
-                    <div className="text-muted-foreground uppercase text-[10px] font-bold mb-1">Timeline</div>
+                    <div className="text-muted-foreground uppercase text-xs font-bold mb-1">Timeline</div>
                     <div className="text-foreground font-semibold text-sm">{estimateResult.timeline}</div>
                   </div>
                   <div>
-                    <div className="text-muted-foreground uppercase text-[10px] font-bold mb-1">Workload</div>
+                    <div className="text-muted-foreground uppercase text-xs font-bold mb-1">Workload</div>
                     <div className="text-foreground font-semibold text-sm">{estimateResult.hours} Eng Hours</div>
                   </div>
                 </div>
 
                 <div className="text-left space-y-1 bg-background border border-border p-4 rounded-xl">
-                  <div className="text-[10px] text-muted-foreground uppercase font-bold font-mono">Recommended Resourcing</div>
-                  <div className="text-xs font-semibold text-foreground flex items-center gap-2">
+                  <div className="text-xs text-muted-foreground uppercase font-bold">Recommended Resourcing</div>
+                  <div className="text-sm font-semibold text-foreground flex items-center gap-2">
                     <Bot className="h-4 w-4 text-accent shrink-0" /> {estimateResult.team}
                   </div>
                 </div>
               </div>
 
               <div className="pt-6">
-                <ShopifyCTA label="Reserve Embedded Resources" className="w-full" />
-                <p className="text-[10px] text-muted-foreground mt-2 font-mono">2-week risk-free trial applies to all embedded engineer placements.</p>
+                <ShopifyCTA label="Reserve Embedded Resources" className="w-full rounded-full" />
+                <p className="text-xs text-muted-foreground mt-2">2-week risk-free trial applies to all embedded engineer placements.</p>
               </div>
 
             </div>
@@ -741,24 +755,24 @@ export default function ShopifyHubPage() {
       {/* ── E-Commerce ROI Calculator Section ────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-5xl mx-auto">
-          
+
           <div className="text-center mb-12 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-accent">Value Realisation</span>
-            <h2 className="text-3xl font-bold flex items-center justify-center gap-2">
+            <span className="text-sm font-semibold uppercase tracking-widest text-accent">Value Realisation</span>
+            <h2 className="font-display font-bold text-3xl tracking-tight flex items-center justify-center gap-2">
               <Sliders className="h-7 w-7 text-accent" /> Shopify AI Agent ROI Calculator
             </h2>
-            <p className="text-muted-foreground text-sm max-w-xl mx-auto">
+            <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
               Simulate your shop's operations to calculate the value AI agents create. Toggle through the tabs to customize your business scenarios and review cumulative savings.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-            
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+
             {/* ROI Inputs (Left Column) */}
             <div className="lg:col-span-7 border border-border bg-muted/10 rounded-2xl p-6 md:p-8 space-y-8 flex flex-col justify-between">
-              
+
               {/* ROI Situation Tabs */}
-              <div className="flex border-b border-border text-xs font-mono mb-4 overflow-x-auto gap-2">
+              <div className="flex border-b border-border text-sm mb-4 overflow-x-auto gap-2">
                 {[
                   { id: 'support', label: 'Customer Support' },
                   { id: 'design', label: 'Design & Creative' },
@@ -768,7 +782,7 @@ export default function ShopifyHubPage() {
                   <button
                     key={tab.id}
                     onClick={() => setRoiTab(tab.id as any)}
-                    className={`pb-2 pr-4 transition-colors font-semibold uppercase whitespace-nowrap ${
+                    className={`pb-2 pr-4 transition-colors font-semibold whitespace-nowrap ${
                       roiTab === tab.id ? "text-accent border-b-2 border-accent" : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
@@ -794,7 +808,7 @@ export default function ShopifyHubPage() {
                       onChange={e => setMonthlyTickets(parseInt(e.target.value))}
                       className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-accent"
                     />
-                    <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>100</span>
                       <span>2,500</span>
                       <span>5,000</span>
@@ -815,7 +829,7 @@ export default function ShopifyHubPage() {
                       onChange={e => setCsAgentSalary(parseInt(e.target.value))}
                       className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-accent"
                     />
-                    <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>$1,500</span>
                       <span>$3,750</span>
                       <span>$6,000</span>
@@ -841,10 +855,10 @@ export default function ShopifyHubPage() {
                       onChange={e => setAssetsNeeded(parseInt(e.target.value))}
                       className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-accent"
                     />
-                    <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
-                      <span>5 ASSETS</span>
-                      <span>27 ASSETS</span>
-                      <span>50 ASSETS</span>
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <span>5 assets</span>
+                      <span>27 assets</span>
+                      <span>50 assets</span>
                     </div>
                   </div>
 
@@ -862,10 +876,10 @@ export default function ShopifyHubPage() {
                       onChange={e => setDesignerRate(parseInt(e.target.value))}
                       className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-accent"
                     />
-                    <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
-                      <span>$25/HR</span>
-                      <span>$62/HR</span>
-                      <span>$100/HR</span>
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <span>$25/hr</span>
+                      <span>$62/hr</span>
+                      <span>$100/hr</span>
                     </div>
                   </div>
                 </div>
@@ -888,10 +902,10 @@ export default function ShopifyHubPage() {
                       onChange={e => setCampaignsCount(parseInt(e.target.value))}
                       className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-accent"
                     />
-                    <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
-                      <span>2 CAMPAIGNS</span>
-                      <span>11 CAMPAIGNS</span>
-                      <span>20 CAMPAIGNS</span>
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <span>2 campaigns</span>
+                      <span>11 campaigns</span>
+                      <span>20 campaigns</span>
                     </div>
                   </div>
 
@@ -909,10 +923,10 @@ export default function ShopifyHubPage() {
                       onChange={e => setCopywriterRate(parseInt(e.target.value))}
                       className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-accent"
                     />
-                    <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
-                      <span>$30/HR</span>
-                      <span>$75/HR</span>
-                      <span>$120/HR</span>
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <span>$30/hr</span>
+                      <span>$75/hr</span>
+                      <span>$120/hr</span>
                     </div>
                   </div>
                 </div>
@@ -935,7 +949,7 @@ export default function ShopifyHubPage() {
                       onChange={e => setMonthlyRevenue(parseInt(e.target.value))}
                       className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-accent"
                     />
-                    <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>$5,000</span>
                       <span>$250,000</span>
                       <span>$500,000</span>
@@ -956,7 +970,7 @@ export default function ShopifyHubPage() {
                       onChange={e => setAbandonmentRate(parseInt(e.target.value))}
                       className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-accent"
                     />
-                    <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>5%</span>
                       <span>15%</span>
                       <span>25%</span>
@@ -973,7 +987,7 @@ export default function ShopifyHubPage() {
               const designSaved = Math.round(assetsNeeded * 3 * designerRate)
               const marketingSaved = Math.round(campaignsCount * 5 * copywriterRate)
               const revenueRecovered = Math.round(monthlyRevenue * (abandonmentRate / 100) * 0.45)
-              
+
               const totalMonthlySavings = payrollSaved + designSaved + marketingSaved + revenueRecovered
               const paybackPeriod = estimateResult.costRaw === 0
                 ? 0
@@ -982,17 +996,17 @@ export default function ShopifyHubPage() {
               return (
                 <div className="lg:col-span-5 border border-border bg-muted/20 rounded-2xl p-6 md:p-8 flex flex-col justify-between text-center relative overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-1 bg-accent" />
-                  
+
                   <div className="space-y-6 my-auto">
                     <div className="space-y-1">
-                      <span className="text-xs uppercase font-bold text-muted-foreground font-mono">Cumulative Monthly Value Created</span>
-                      <div className="text-3xl md:text-4xl font-extrabold text-accent tracking-tight">
+                      <span className="text-xs uppercase font-bold text-muted-foreground tracking-widest">Cumulative Monthly Value Created</span>
+                      <div className="font-display font-black text-3xl md:text-4xl text-accent tracking-tight">
                         ${totalMonthlySavings.toLocaleString()}/mo
                       </div>
                     </div>
 
                     {/* Breakdown details */}
-                    <div className="border-y border-border py-4 text-left text-[11px] font-mono space-y-2">
+                    <div className="border-y border-border py-4 text-left text-sm space-y-2">
                       <div className="flex justify-between text-muted-foreground">
                         <span>CS Ticket Deflection (80%):</span>
                         <span className="text-foreground font-semibold">${payrollSaved.toLocaleString()}/mo</span>
@@ -1012,8 +1026,8 @@ export default function ShopifyHubPage() {
                     </div>
 
                     <div className="text-left space-y-1 bg-background border border-border p-4 rounded-xl">
-                      <div className="text-[10px] text-muted-foreground uppercase font-bold font-mono">Break-Even / Payback Timeline</div>
-                      <div className="text-xs font-semibold text-foreground flex items-center gap-2">
+                      <div className="text-xs text-muted-foreground uppercase font-bold">Break-Even / Payback Timeline</div>
+                      <div className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <Clock className="h-4 w-4 text-accent shrink-0" />
                         {estimateResult.costRaw === 0 ? (
                           <span className="text-muted-foreground">Select agents in estimator above</span>
@@ -1025,8 +1039,8 @@ export default function ShopifyHubPage() {
                   </div>
 
                   <div className="pt-6">
-                    <ShopifyCTA label="Claim E-Commerce ROI" className="w-full" />
-                    <p className="text-[10px] text-muted-foreground mt-2 font-mono">Cumulative calculation tracks value across support, creative assets, copywriting, and recovered sales.</p>
+                    <ShopifyCTA label="Claim E-Commerce ROI" className="w-full rounded-full" />
+                    <p className="text-xs text-muted-foreground mt-2">Cumulative calculation tracks value across support, creative assets, copywriting, and recovered sales.</p>
                   </div>
 
                 </div>
@@ -1038,13 +1052,13 @@ export default function ShopifyHubPage() {
       </section>
 
       {/* ── AI Workflow Blueprints Section ─────────────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-muted/20">
         <div className="max-w-5xl mx-auto space-y-12">
-          
+
           <div className="text-center space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Agent Logic</span>
-            <h2 className="text-3xl font-bold tracking-tight">AI Workflow Blueprints</h2>
-            <p className="text-muted-foreground text-sm max-w-xl mx-auto">
+            <span className="text-sm font-semibold uppercase tracking-widest text-accent">Agent Logic</span>
+            <h2 className="font-display font-bold text-3xl tracking-tight">AI Workflow Blueprints</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
               Inspect the exact multi-turn execution loops our agents use to coordinate store operations. Toggle through the blueprints to view the steps.
             </p>
           </div>
@@ -1062,13 +1076,13 @@ export default function ShopifyHubPage() {
                 <button
                   key={bp.id}
                   onClick={() => setActiveBlueprintId(bp.id as any)}
-                  className={`flex items-center gap-2 px-5 py-3 rounded-full text-xs font-mono transition-all border ${
+                  className={`flex items-center gap-2 px-5 py-3 rounded-full text-sm transition-all border font-semibold ${
                     isActive
                       ? "bg-accent border-accent text-white shadow-lg shadow-accent/20"
                       : "bg-background border-border text-muted-foreground hover:bg-muted/30"
                   }`}
                 >
-                  <Icon className="h-3.5 w-3.5" />
+                  <Icon className="h-4 w-4" />
                   {bp.label}
                 </button>
               )
@@ -1077,16 +1091,16 @@ export default function ShopifyHubPage() {
 
           {/* Blueprint Detail Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-background border border-border rounded-3xl p-6 md:p-10 shadow-sm">
-            
+
             {/* Left Panel: Description */}
             <div className="lg:col-span-5 space-y-6">
               {activeBlueprintId === 'repricer' && (
                 <div className="space-y-4">
-                  <h3 className="text-xl font-bold text-accent">Competitor Repricing Autopilot</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <h3 className="font-display font-bold text-xl text-accent">Competitor Repricing Autopilot</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Protects margins and captures revenue leaks by continuously monitoring competitor pricing. Designed specifically for stores operating in hyper-competitive retail niches.
                   </p>
-                  <ul className="text-xs space-y-2.5 font-mono text-muted-foreground">
+                  <ul className="text-sm space-y-2.5 text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" /> Scrapes pricing hourly via semantic crawlers.
                     </li>
@@ -1102,11 +1116,11 @@ export default function ShopifyHubPage() {
 
               {activeBlueprintId === 'marketing' && (
                 <div className="space-y-4">
-                  <h3 className="text-xl font-bold text-accent">Creative & Ad Copy Pipeline</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <h3 className="font-display font-bold text-xl text-accent">Creative & Ad Copy Pipeline</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Automates asset generation and campaign building. The design agent matches product details with prompt guides to generate high-converting banner designs.
                   </p>
-                  <ul className="text-xs space-y-2.5 font-mono text-muted-foreground">
+                  <ul className="text-sm space-y-2.5 text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" /> Parses product inventory changes instantly.
                     </li>
@@ -1122,11 +1136,11 @@ export default function ShopifyHubPage() {
 
               {activeBlueprintId === 'inventory' && (
                 <div className="space-y-4">
-                  <h3 className="text-xl font-bold text-accent">Inventory & PO Autopilot</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <h3 className="font-display font-bold text-xl text-accent">Inventory & PO Autopilot</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Prevents stockouts and automates purchasing loops. Monitors catalog inventory levels and sales velocity to alert managers in Slack for stock replenishments.
                   </p>
-                  <ul className="text-xs space-y-2.5 font-mono text-muted-foreground">
+                  <ul className="text-sm space-y-2.5 text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" /> Computes depletion velocity and schedules POs.
                     </li>
@@ -1139,23 +1153,23 @@ export default function ShopifyHubPage() {
                   </ul>
                 </div>
               )}
-              
+
               <div className="pt-2">
-                <ShopifyCTA label="Deploy this Blueprint" size="sm" />
+                <ShopifyCTA label="Deploy this Blueprint" size="sm" className="rounded-full" />
               </div>
             </div>
 
             {/* Right Panel: Interactive Workflow Flowchart */}
-            <div className="lg:col-span-7 bg-muted/10 border border-border/80 rounded-2xl p-6 flex flex-col justify-center min-h-[300px] relative">
-              <div className="absolute top-3 left-4 text-[10px] uppercase font-bold text-muted-foreground font-mono">Live Schematic Pipeline</div>
-              
+            <div className="lg:col-span-7 bg-muted/20 border border-border rounded-2xl p-6 flex flex-col justify-center min-h-[300px] relative">
+              <div className="absolute top-3 left-4 text-xs font-bold uppercase tracking-widest text-muted-foreground">Live Schematic Pipeline</div>
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center mt-4">
-                
+
                 {/* Step 1 Card */}
                 <div className="bg-background border border-border rounded-xl p-4 text-center space-y-2 shadow-sm">
                   <div className="mx-auto w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-xs">1</div>
-                  <div className="text-[10px] uppercase font-bold font-mono text-muted-foreground">Trigger Input</div>
-                  <div className="text-[11px] font-semibold leading-tight">
+                  <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">Trigger Input</div>
+                  <div className="text-sm font-semibold leading-tight">
                     {activeBlueprintId === 'repricer' && "Competitor Price Drop"}
                     {activeBlueprintId === 'marketing' && "New Catalog Ingestion"}
                     {activeBlueprintId === 'inventory' && "SKU Depot Depletion"}
@@ -1163,11 +1177,11 @@ export default function ShopifyHubPage() {
                 </div>
 
                 {/* Step 2 Card */}
-                <div className="bg-background border border-border rounded-xl p-4 text-center space-y-2 shadow-sm border-accent/30 relative">
-                  <div className="absolute -top-1.5 -right-1.5 bg-accent text-[8px] text-white px-1.5 py-0.5 rounded-full font-mono uppercase font-bold tracking-wider">AI AGENT</div>
+                <div className="bg-background border border-accent/30 rounded-xl p-4 text-center space-y-2 shadow-sm relative">
+                  <div className="absolute -top-1.5 -right-1.5 bg-accent text-[9px] text-white px-1.5 py-0.5 rounded-full uppercase font-bold tracking-wider">AI Agent</div>
                   <div className="mx-auto w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-xs">2</div>
-                  <div className="text-[10px] uppercase font-bold font-mono text-muted-foreground">Custom Agent</div>
-                  <div className="text-[11px] font-semibold leading-tight">
+                  <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">Custom Agent</div>
+                  <div className="text-sm font-semibold leading-tight">
                     {activeBlueprintId === 'repricer' && "LLM Margin Valuation"}
                     {activeBlueprintId === 'marketing' && "Content Designer Agent"}
                     {activeBlueprintId === 'inventory' && "PO Generation Brain"}
@@ -1177,8 +1191,8 @@ export default function ShopifyHubPage() {
                 {/* Step 3 Card */}
                 <div className="bg-background border border-border rounded-xl p-4 text-center space-y-2 shadow-sm">
                   <div className="mx-auto w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-xs">3</div>
-                  <div className="text-[10px] uppercase font-bold font-mono text-muted-foreground">Shopify Action</div>
-                  <div className="text-[11px] font-semibold leading-tight">
+                  <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">Shopify Action</div>
+                  <div className="text-sm font-semibold leading-tight">
                     {activeBlueprintId === 'repricer' && "Shopify Price Sync"}
                     {activeBlueprintId === 'marketing' && "Klaviyo Draft Upload"}
                     {activeBlueprintId === 'inventory' && "Slack Manager Review"}
@@ -1188,7 +1202,7 @@ export default function ShopifyHubPage() {
               </div>
 
               {/* Loop back arrow trace */}
-              <div className="text-center mt-6 text-[10px] text-muted-foreground font-mono flex items-center justify-center gap-1.5">
+              <div className="text-center mt-6 text-xs text-muted-foreground flex items-center justify-center gap-1.5">
                 <Repeat2 className="h-3.5 w-3.5 text-accent animate-spin" style={{ animationDuration: '3s' }} /> Custom deployment looping 24/7. Self-healing exceptions.
               </div>
 
@@ -1202,58 +1216,56 @@ export default function ShopifyHubPage() {
       {/* ── Kovil AI vs Standard Apps Comparison Section ──────────────────────── */}
       <section className="py-20 px-6 bg-background">
         <div className="max-w-5xl mx-auto space-y-12">
-          
+
           <div className="text-center space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-accent font-mono">App Comparison</span>
-            <h2 className="text-3xl font-bold tracking-tight">Kovil AI Custom Agents vs. Standard Apps</h2>
-            <p className="text-muted-foreground text-sm max-w-xl mx-auto">
+            <span className="text-sm font-semibold uppercase tracking-widest text-accent">App Comparison</span>
+            <h2 className="font-display font-bold text-3xl tracking-tight">Kovil AI Custom Agents vs. Standard Apps</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
               Compare custom-built large language model agents against standard, hard-coded e-commerce automation plugins.
             </p>
           </div>
 
           <div className="border border-border rounded-3xl overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full text-left border-collapse min-w-[720px]">
                 <thead>
-                  <tr className="border-b border-border bg-muted/10 text-xs font-mono uppercase text-muted-foreground">
+                  <tr className="border-b border-border bg-muted/20 text-xs uppercase text-muted-foreground">
                     <th className="p-4 md:p-6 font-bold">Capability</th>
                     <th className="p-4 md:p-6 font-bold">Standard Shopify Apps</th>
                     <th className="p-4 md:p-6 font-bold text-accent">Kovil AI Custom Agents</th>
                   </tr>
                 </thead>
-                <tbody className="text-xs divide-y divide-border">
+                <tbody className="text-sm divide-y divide-border">
                   {[
                     {
                       feat: "Operational Flexibility",
                       app: "Requires static rules and webhook setups. Breaks if catalog attributes change.",
                       kovil: "Autonomous reasoning. Reads descriptions semantically to update parameters.",
-                      kovilCheck: true
                     },
                     {
                       feat: "Catalog Search & RAG",
                       app: "Exact-match keyword string search. Zero context mapping.",
                       kovil: "Dedicated Model Context Protocol connections. Fast vector search index.",
-                      kovilCheck: true
                     },
                     {
                       feat: "Exception Handling",
                       app: "Fails silently. Halts processing on schema variations.",
                       kovil: "Self-healing error loops. Agent self-corrects based on error messages.",
-                      kovilCheck: true
                     },
                     {
                       feat: "Data Privacy & Compliance",
                       app: "Customer logs and tokens stored on shared, multi-tenant databases.",
                       kovil: "Private instance, secure tokens, and direct model integrations.",
-                      kovilCheck: true
                     }
                   ].map((row, idx) => (
-                    <tr key={idx} className="hover:bg-muted/5 transition-colors">
-                      <td className="p-4 md:p-6 font-bold text-foreground">{row.feat}</td>
-                      <td className="p-4 md:p-6 text-muted-foreground flex items-start gap-2">
-                        <X className="h-4 w-4 text-red-500 shrink-0 mt-0.5" /> {row.app}
+                    <tr key={idx} className="hover:bg-muted/10 transition-colors">
+                      <td className="p-4 md:p-6 font-bold text-foreground align-top">{row.feat}</td>
+                      <td className="p-4 md:p-6 text-muted-foreground align-top">
+                        <div className="flex items-start gap-2">
+                          <X className="h-4 w-4 text-red-500 shrink-0 mt-0.5" /> {row.app}
+                        </div>
                       </td>
-                      <td className="p-4 md:p-6 text-foreground font-semibold bg-accent/5 border-x border-accent/15">
+                      <td className="p-4 md:p-6 text-foreground font-medium bg-accent/5 border-x border-accent/15 align-top">
                         <div className="flex items-start gap-2">
                           <Check className="h-4 w-4 text-accent shrink-0 mt-0.5" />
                           <span>{row.kovil}</span>
@@ -1270,13 +1282,13 @@ export default function ShopifyHubPage() {
       </section>
 
       {/* ── Native Integrations Logo Grid Section ────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-muted/20">
         <div className="max-w-5xl mx-auto space-y-12">
-          
+
           <div className="text-center space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Compatibility</span>
-            <h2 className="text-3xl font-bold tracking-tight">App Store & Tech Stack Integrations</h2>
-            <p className="text-muted-foreground text-sm max-w-xl mx-auto">
+            <span className="text-sm font-semibold uppercase tracking-widest text-accent">Compatibility</span>
+            <h2 className="font-display font-bold text-3xl tracking-tight">App Store & Tech Stack Integrations</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
               Our custom agents connect directly with the customer support helpdesks, marketing systems, and logistics software you already use.
             </p>
           </div>
@@ -1294,13 +1306,13 @@ export default function ShopifyHubPage() {
             ].map((item, idx) => {
               const Icon = item.icon
               return (
-                <div key={idx} className="bg-background border border-border rounded-2xl p-5 hover:-translate-y-1 transition-all duration-300 shadow-sm flex flex-col justify-between">
+                <div key={idx} className="bg-background border border-border rounded-2xl p-5 hover:-translate-y-0.5 hover:border-accent/40 transition-all duration-200 flex flex-col justify-between">
                   <div className="space-y-3">
-                    <div className="w-8 h-8 rounded-xl bg-accent/5 border border-accent/10 flex items-center justify-center text-accent">
+                    <div className="w-9 h-9 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
                       <Icon className="h-4 w-4" />
                     </div>
-                    <h3 className="font-semibold text-xs text-foreground">{item.title}</h3>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed">{item.desc}</p>
+                    <h3 className="font-semibold text-sm text-foreground">{item.title}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               )
@@ -1313,16 +1325,16 @@ export default function ShopifyHubPage() {
       {/* ── FAQ Accordion Section ────────────────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-3xl mx-auto space-y-12">
-          
+
           <div className="text-center space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Got Questions?</span>
-            <h2 className="text-3xl font-bold tracking-tight">Frequently Asked Questions</h2>
-            <p className="text-muted-foreground text-sm max-w-xl mx-auto">
+            <span className="text-sm font-semibold uppercase tracking-widest text-accent">Got Questions?</span>
+            <h2 className="font-display font-bold text-3xl tracking-tight">Frequently Asked Questions</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
               Everything you need to know about our custom Shopify AI agent setups, secure access, and token structures.
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {[
               {
                 q: "How securely do custom agents access my Shopify database?",
@@ -1343,13 +1355,14 @@ export default function ShopifyHubPage() {
             ].map((item, idx) => {
               const isOpen = expandedFaqId === idx
               return (
-                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-muted/10">
+                <div key={idx} className="border border-border rounded-xl overflow-hidden bg-muted/10">
                   <button
                     onClick={() => setExpandedFaqId(isOpen ? null : idx)}
-                    className="w-full text-left p-5 flex items-center justify-between text-xs font-semibold hover:bg-muted/20 transition-all font-mono"
+                    className="w-full text-left px-6 py-4 flex items-center justify-between gap-4 hover:bg-muted/20 transition-colors"
+                    aria-expanded={isOpen}
                   >
-                    <span>{item.q}</span>
-                    <ChevronRight className={`h-4 w-4 text-accent transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`} />
+                    <span className="text-base font-semibold">{item.q}</span>
+                    <ChevronDown className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
                   <AnimatePresence initial={false}>
                     {isOpen && (
@@ -1360,7 +1373,7 @@ export default function ShopifyHubPage() {
                         transition={{ duration: 0.25 }}
                         className="overflow-hidden"
                       >
-                        <div className="p-5 pt-0 text-xs text-muted-foreground leading-relaxed border-t border-border/40 bg-background/50 font-sans">
+                        <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed border-t border-border pt-4">
                           {item.a}
                         </div>
                       </motion.div>
@@ -1375,22 +1388,21 @@ export default function ShopifyHubPage() {
       </section>
 
       {/* ── High-Converting CTA Banner ───────────────────────────────────────── */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto rounded-3xl bg-foreground text-background p-10 md:p-14 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-transparent pointer-events-none" />
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            Not Sure How to Interface AI with Your Catalog?
-          </h2>
-          <p className="text-background/60 max-w-xl mx-auto mb-8 leading-relaxed text-sm">
-            Book a 30-minute scoping call with a Kovil AI Delivery Lead. We'll map your Shopify Admin schemas, vector constraints, and custom agents, with a shortlist of engineers ready within 48 hours.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <ShopifyCTA label="Book Scoping Call" className="bg-accent hover:bg-accent/90 text-white rounded-full px-8" />
-            <Button size="lg" variant="outline" className="border-background/20 text-background hover:bg-background/10 rounded-full" asChild>
+      <section className="max-w-7xl mx-auto px-6 pb-24 pt-4">
+        <div className="rounded-2xl bg-foreground text-background p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+            <h2 className="font-display font-bold text-3xl md:text-4xl mb-3">Not Sure How to Interface AI with Your Catalog?</h2>
+            <p className="text-background/60 text-base max-w-xl">
+              Book a 30-minute scoping call with a Kovil AI Delivery Lead. We'll map your Shopify Admin schemas, vector constraints, and custom agents, with a shortlist of engineers ready within 48 hours.
+            </p>
+            <p className="text-background/40 text-xs mt-4">No upfront scoping fees. 2-week risk-free trial on placements.</p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+            <ShopifyCTA label="Book Scoping Call" className="rounded-full px-8 h-12 text-base whitespace-nowrap" />
+            <Button size="lg" variant="outline" className="border-background/20 text-background hover:bg-background/10 rounded-full h-12" asChild>
               <Link href="/book-a-call">Talk to a Lead</Link>
             </Button>
           </div>
-          <p className="text-[10px] text-background/40 mt-4 font-mono">No upfront scoping fees. 2-week risk-free trial on placements.</p>
         </div>
       </section>
 
