@@ -57,3 +57,17 @@ This project-scoped agent memory file defines the strict structure and research 
 *   **Matrix 6 (Advanced Hiring & Competitor Alternatives):** 50 Pages (e.g. `/hire/llama-fine-tuning-expert`)
 *   **Matrix 7 (Rescue & Audit Services):** 30 Pages (e.g. `/engage/ai-token-cost-audit`)
 *   **Matrix 8 (Technical Deep-Dive Blogs):** 70 Pages (e.g. `/blog/llm-semantic-caching-for-production-latency`)
+
+## Google Search Console (GSC) Indexation Cleanup (July 2026 Update)
+
+*   **Status:** Active Pruning Mode.
+*   **The Issue:** Legacy spam URLs (primarily starting with `/onlines/`, `/shop/`, `/product/`, etc. from the previous domain owner) had inflated Google's index.
+*   **Index metrics (as of 15 July 2026):**
+    *   **Indexed Pages:** 5.74k (needs to drop to < 1,000, matching the core ~319 pages).
+    *   **Not Indexed Pages:** 651k (large spam footprint discovered and bypassed).
+    *   **Indexed, though blocked by robots.txt Warnings:** 752 (validation in progress).
+*   **The Solution Deployed:**
+    *   **robots.txt Refactor:** Allowed full crawling of all paths (`Allow: /`) and disallowed only internals (`/_next/`, `/api/`, `/monitoring`) and parameter strings (`/*?*`). This enables Googlebot to crawl deleted pages to see their removal signals rather than keeping them blocked and cached.
+    *   **Server-Side Pruning:** Next.js middleware returns `410 Gone` with a `noindex` tag for all non-sitemap URLs.
+    *   **Sitemaps:** Primary sitemap (`/sitemap.xml` with 319 core pages) and cleanup sitemap (`/trash-cleanup-sitemap.xml` with 13,243 spam URLs) are registered.
+*   **Monitoring Timeline:** Allow 4–8 weeks for the index to drop down to ~319 pages. Once indexed spam is ≈ 0, remove the sitemap from GSC, delete the sitemap code file, and update `robots.ts` to remove the trash sitemap reference.
