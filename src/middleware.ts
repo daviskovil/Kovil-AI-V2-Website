@@ -85,6 +85,12 @@ function isGonePath(pathname: string): boolean {
     return false
   }
 
+  // 3b. Next.js file-convention image routes (opengraph-image, twitter-image, icon)
+  // render with an extensionless pathname, so they'd otherwise fall through to 410.
+  if (/\/(opengraph-image|twitter-image|icon|apple-icon)(-\d+)?$/.test(pathname)) {
+    return false
+  }
+
   // 4. Normalize the path (strip trailing slash)
   const normalizedPath = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname
 
