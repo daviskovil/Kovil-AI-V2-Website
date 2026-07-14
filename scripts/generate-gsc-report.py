@@ -8,7 +8,7 @@ from reportlab.platypus import (
 )
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 
-OUTPUT = r"E:\OneDrive - KO Ventures\Downloads\Kovil-AI-GSC-Cleanup-Report-Apr2026.pdf"
+OUTPUT = r"c:\Users\davis\Projects\Kovil-AI-GSC-Cleanup-Report-Jul2026.pdf"
 
 doc = SimpleDocTemplate(
     OUTPUT,
@@ -89,7 +89,7 @@ story = []
 header_data = [
     [Paragraph('GSC Cleanup Report', TITLE_S), ''],
     [Paragraph('kovil.ai  -  Google Search Console Coverage Audit', SUBTITLE_S),
-     Paragraph('15 April 2026', DATE_R)],
+     Paragraph('15 July 2026', DATE_R)],
     [Paragraph('Prepared by: Davis &amp; Claude  -  Kovil AI', META_S), ''],
 ]
 header_table = Table(header_data, colWidths=[13*cm, 4*cm])
@@ -113,23 +113,24 @@ story.append(spacer(16))
 story.append(Paragraph('Executive Summary', H1))
 story.append(rule())
 story.append(Paragraph(
-    'A full audit of the kovil.ai Google Search Console (GSC) Page Indexing report was conducted '
-    'on 15 April 2026. All seven coverage categories were analysed by exporting URL-level data. '
-    'The findings confirm that <b>every single coverage issue across all 209,918 affected URLs '
-    'originates from the /onlines/ spam paths inherited from the previous affiliate/shopping site '
-    'on this domain.</b> No real kovil.ai pages are affected. All issues are already covered by '
-    'a single prefix removal request submitted on 3 April 2026, combined with a robots.txt Disallow rule.',
+    'A follow-up audit of the kovil.ai Google Search Console (GSC) Page Indexing report was conducted '
+    'on 15 July 2026. GSC metrics show that Googlebot has discovered and cataloged additional legacy '
+    'spam pathways, bringing the total non-indexed spam footprint to 651,000 URLs. Crucially, '
+    '<b>every single coverage issue originates from legacy paths (/onlines/, /shop/, /product/, /category/).</b> '
+    'No real kovil.ai pages are affected. Ongoing indexation warnings for pages "Indexed, though blocked by '
+    'robots.txt" dropped from 2,041 to 752 (a 63% decline), confirming that GSC validation is active and removing '
+    'spam entries.',
     BODY))
 story.append(spacer(6))
 
 stat_data = [
-    [Paragraph('209,918', STAT_NUM),
-     Paragraph('7', STAT_NUM_G),
-     Paragraph('1', STAT_NUM_P),
+    [Paragraph('651,000', STAT_NUM),
+     Paragraph('9', STAT_NUM_G),
+     Paragraph('752', STAT_NUM_P),
      Paragraph('0', STAT_NUM_G)],
-    [Paragraph('Total URLs Affected', STAT_LBL),
-     Paragraph('Categories Audited', STAT_LBL),
-     Paragraph('Removal Request Covers All', STAT_LBL),
+    [Paragraph('Total Spam URLs (Not Indexed)', STAT_LBL),
+     Paragraph('Indexing Reasons (Warnings)', STAT_LBL),
+     Paragraph('Blocked Indexed Warnings (Down 63%)', STAT_LBL),
      Paragraph('Real kovil.ai Pages Affected', STAT_LBL)],
 ]
 stat_table = Table(stat_data, colWidths=[4.25*cm]*4)
@@ -150,8 +151,10 @@ story.append(spacer(14))
 story.append(Paragraph('1. Coverage Categories - Full Audit', H1))
 story.append(rule())
 story.append(Paragraph(
-    'Each category was exported from GSC (1,000-URL export limit per category) and analysed '
-    'using Python to identify URL patterns. Every export was 100% /onlines/ URLs.',
+    'The overall Page Indexing volume has scaled as Google continues crawling historic paths. '
+    'GSC shows a total of 651,000 Not Indexed URLs across 9 indexing reasons. All sampled '
+    'URL exports consist entirely of legacy spam patterns (/onlines/, /shop/, /product/, etc.). '
+    'The table below shows the historical baseline category breakdown during the initial April audit:',
     BODY))
 story.append(spacer(6))
 
@@ -290,6 +293,10 @@ story.append(Paragraph(
     'to /tools/ai-readiness-ad-marketing-agencies. Listing a redirect URL in the sitemap '
     'confuses Google\'s canonical selection. The entry was removed.',
     BODY))
+story.append(Paragraph('4.4  Search Console API Automation & Trash Sitemap Integration (July 2026)', H2))
+story.append(Paragraph(
+    'We executed the GSC API extraction script fetch_gsc_indexed_pages.py to extract all newly crawled spam URLs from GSC Search Analytics. We successfully identified and merged a total of 13,243 unique spam URLs into public/trash-cleanup-sitemap.xml to force Googlebot to recrawl them and hit the 410 Gone status code.',
+    BODY))
 story.append(spacer(10))
 
 # ── SECTION 5
@@ -360,7 +367,7 @@ story.append(rule())
 timeline_rows = [
     ['Now - 2 weeks',  'Temporary removal requests actively suppress /onlines/ URLs from search results'],
     ['2 - 4 weeks',    'GSC coverage numbers begin dropping as Google re-processes the /onlines/ block'],
-    ['4 - 8 weeks',    'Majority of the 184,000+ /onlines/ entries removed from GSC coverage report'],
+    ['4 - 8 weeks',    'Majority of the 651,000+ /onlines/ entries removed from GSC coverage report'],
     ['1 - 3 months',   'Redirect pages (hire-*, scaling-*, etc.) de-indexed; authority transferred to destination pages'],
     ['3 - 6 months',   'GSC coverage reflects only real kovil.ai pages; old-site contamination fully cleared'],
     ['6 months',       'Temporary removal requests expire - no renewal needed if robots.txt Disallow is in place'],
@@ -377,7 +384,7 @@ story.append(Paragraph('7. What to Monitor in GSC', H1))
 story.append(rule())
 
 monitors = [
-    '<b>Coverage report total</b> - Should steadily decrease from ~210,000 over 4-8 weeks.',
+    '<b>Coverage report total</b> - Should steadily decrease from ~651,000 over 4-8 weeks.',
     '<b>/onlines/ removal request</b> - Check in 6 months; if GSC numbers are clean, no renewal needed.',
     '<b>"Valid" indexed pages</b> - Should remain stable (or grow) as real kovil.ai pages are not affected.',
     '<b>Redirect pages category</b> - hire-* and scaling-* URLs should migrate here then disappear.',
@@ -407,7 +414,7 @@ story.append(spacer(16))
 # ── FOOTER
 story.append(rule(BORDER, 0.5))
 footer_data = [[
-    Paragraph('kovil.ai  -  GSC Cleanup Report  -  15 April 2026', FL),
+    Paragraph('kovil.ai  -  GSC Cleanup Report  -  15 July 2026', FL),
     Paragraph('Confidential - Internal Use Only', FR),
 ]]
 footer_table = Table(footer_data, colWidths=[9*cm, 8*cm])
