@@ -10,6 +10,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
+import { ShopifyProofCarousel, type Slide } from "@/src/components/ShopifyProofCarousel"
 
 function ShopifyCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
   return (
@@ -26,6 +27,54 @@ const heroStats = [
   { stat: "500K",  label: "SKUs indexed, sub-second" },
   { stat: "0",     label: "Out-of-stock suggestions" },
   { stat: "2 wks", label: "To first live index" },
+]
+
+const proofSlides: Slide[] = [
+  {
+    tag: "D2C Case Study",
+    title: "A high-SKU brand was losing conversions to exact-keyword search.",
+    desc: "Kovil AI replaced the brand's default keyword search with a semantic vector index, so shoppers describing what they wanted in plain language actually found it — instead of getting zero results for a reasonable query.",
+    stats: [
+      { value: "+19%", label: "Search conversion" },
+      { value: "500K", label: "SKUs indexed" },
+    ],
+  },
+  {
+    tag: "Under the Hood",
+    title: "Catalog changes sync to the vector index in under two seconds.",
+    desc: "Shopify Admin webhooks trigger incremental re-embedding on every product create, update, or stock change, so the semantic index never drifts from what's actually live on the storefront.",
+    stats: [
+      { value: "<2s", label: "Catalog sync" },
+      { value: "pgvector", label: "Search backend" },
+    ],
+  },
+  {
+    tag: "Multi-Agent Handoff",
+    title: "A Semantic Matcher hands off to a Merchandising Ranker, then a Cross-Sell Agent.",
+    desc: "The Semantic Matcher resolves the initial query, the Ranker reorders results using conversion-signal weighting, and the Cross-Sell Agent proposes cart-context bundles — three specialized passes, one seamless result.",
+    stats: [
+      { value: "3", label: "Agents in the loop" },
+      { value: "+7%", label: "AOV via cross-sell" },
+    ],
+  },
+  {
+    tag: "Safety Controls",
+    title: "Every suggestion is grounded in the real catalog and real stock.",
+    desc: "Recommendations are constrained strictly to embeddings generated from actual product data, then filtered against live inventory before display — no invented products, no out-of-stock frustration.",
+    stats: [
+      { value: "0", label: "Out-of-stock suggestions" },
+      { value: "100%", label: "Catalog-grounded" },
+    ],
+  },
+  {
+    tag: "Outcome",
+    title: "Higher search conversion, a self-improving ranker, zero hallucinated results.",
+    desc: "The semantic layer now handles both search and merchandising, improving automatically as more purchase data accrues — no manual relevance re-tuning required.",
+    stats: [
+      { value: "+19%", label: "Search Conversion" },
+      { value: "500K", label: "SKUs Indexed" },
+    ],
+  },
 ]
 
 const useCases = [
@@ -181,8 +230,14 @@ export default function AiProductRecommendationsPage() {
         </div>
       </section>
 
+      <ShopifyProofCarousel
+        heading="How one high-SKU catalog boosted conversion with semantic search."
+        subheading="A real deployment, walked step by step — from webhook-driven index sync to a multi-agent ranking handoff to the stock-filtering that keeps every result purchasable."
+        slides={proofSlides}
+      />
+
       {/* Pipeline */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">How It Works</p>
@@ -204,7 +259,7 @@ export default function AiProductRecommendationsPage() {
       </section>
 
       {/* Trust */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Reliability</p>
@@ -228,7 +283,7 @@ export default function AiProductRecommendationsPage() {
       </section>
 
       {/* Stack */}
-      <section className="py-16 px-6 bg-background">
+      <section className="py-16 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-6">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono mb-2">Compatibility</p>
@@ -243,7 +298,7 @@ export default function AiProductRecommendationsPage() {
       </section>
 
       {/* Comparison */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-5xl mx-auto space-y-10">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Keyword Search vs. Semantic Search</p>
@@ -277,7 +332,7 @@ export default function AiProductRecommendationsPage() {
       </section>
 
       {/* FAQs */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-3xl mx-auto space-y-12">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">FAQ</p>
@@ -288,7 +343,7 @@ export default function AiProductRecommendationsPage() {
             {faqs.map((item, idx) => {
               const isOpen = openFaq === idx
               return (
-                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-muted/5">
+                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-background">
                   <button onClick={() => setOpenFaq(isOpen ? null : idx)} className="w-full text-left p-5 flex items-center justify-between text-sm font-semibold hover:bg-muted/20 transition-all">
                     <span>{item.q}</span>
                     <ChevronDown className={`h-4 w-4 text-accent transition-transform duration-300 shrink-0 ml-4 ${isOpen ? 'rotate-180' : ''}`} />

@@ -10,7 +10,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
-import { ShopifyProofCarousel } from "@/src/components/ShopifyProofCarousel"
+import { ShopifyProofCarousel, type Slide } from "@/src/components/ShopifyProofCarousel"
 
 function ShopifyCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
   return (
@@ -27,6 +27,54 @@ const heroStats = [
   { stat: "<5s",    label: "Shade match response" },
   { stat: "0",      label: "Photos retained post-scan" },
   { stat: "2 wks",  label: "To first live agent" },
+]
+
+const proofSlides: Slide[] = [
+  {
+    tag: "D2C Case Study",
+    title: "A cosmetics brand needed automated content and retention — without extra headcount.",
+    desc: "Kovil AI designed an integrated agent network on top of the brand's existing Shopify store, automating retention campaigns and supplier spec-sheet ingestion end to end.",
+    stats: [
+      { value: "–82%", label: "Support tickets deflected" },
+      { value: "0 hrs", label: "Manual content production" },
+    ],
+  },
+  {
+    tag: "Under the Hood",
+    title: "Agents get native Shopify tools via the Model Context Protocol.",
+    desc: "Instead of a flat data export, a custom MCP server lets the agents query product descriptions, live inventory levels, and order state directly — and reason over them, not just read them.",
+    stats: [
+      { value: "MCP", label: "Native tool access" },
+      { value: "Live", label: "Inventory + order state" },
+    ],
+  },
+  {
+    tag: "LangGraph Orchestration",
+    title: "A Manager Agent coordinates the Design and Communication agents.",
+    desc: "The Manager triggers the Design Agent to generate a campaign banner from a supplier spec sheet, then routes the finished asset to the Communication Agent to draft the marketing email — one workflow, no hand-offs between tools.",
+    stats: [
+      { value: "3", label: "Agents in the loop" },
+      { value: "+14%", label: "Cart recovery conversions" },
+    ],
+  },
+  {
+    tag: "Safety Controls",
+    title: "Every price change or send waits for a human in Slack.",
+    desc: "Pricing overrides and campaign launches are held for review and routed to the merchant as a Slack approval request — the agents act, but nothing ships without sign-off.",
+    stats: [
+      { value: "100%", label: "Actions reviewed before send" },
+      { value: "24–48h", label: "Approval turnaround" },
+    ],
+  },
+  {
+    tag: "Outcome",
+    title: "One store, one integrated agent team, measurable results.",
+    desc: "Fewer tickets reaching a human, more recovered carts, and zero manual hours spent on recurring content — all running on the store's existing stack.",
+    stats: [
+      { value: "–82%", label: "Ticket deflection" },
+      { value: "+14%", label: "Cart recovery" },
+    ],
+  },
 ]
 
 const useCases = [
@@ -186,7 +234,11 @@ export default function BeautyCosmeticsAiPage() {
         </div>
       </section>
 
-      <ShopifyProofCarousel />
+      <ShopifyProofCarousel
+        heading="How one cosmetics brand put agents to work."
+        subheading="A real deployment, walked step by step — from native store tools to multi-agent handoffs to the human check before anything ships."
+        slides={proofSlides}
+      />
 
       {/* Pipeline */}
       <section className="py-20 px-6 border-t border-border bg-muted/10">

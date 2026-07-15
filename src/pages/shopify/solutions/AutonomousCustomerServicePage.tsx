@@ -10,6 +10,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
+import { ShopifyProofCarousel, type Slide } from "@/src/components/ShopifyProofCarousel"
 
 function ShopifyCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
   return (
@@ -26,6 +27,54 @@ const heroStats = [
   { stat: "<30s",  label: "Avg. first response" },
   { stat: "24/7",  label: "Coverage, every channel" },
   { stat: "2 wks", label: "To first live agent" },
+]
+
+const proofSlides: Slide[] = [
+  {
+    tag: "D2C Case Study",
+    title: "A brand's support inbox was drowning in \"where's my order\" tickets.",
+    desc: "Kovil AI deployed an order-tracking agent grounded in live Shopify and carrier data, resolving the highest-volume query autonomously and freeing the human team for the tickets that actually needed judgment.",
+    stats: [
+      { value: "70%+", label: "Tickets resolved autonomously" },
+      { value: "<30s", label: "First response time" },
+    ],
+  },
+  {
+    tag: "Under the Hood",
+    title: "The agent reads live order and carrier data through Gorgias and Shopify Admin.",
+    desc: "Instead of scripted responses, the agent pulls real order status, shipping data, and account history before drafting any reply, so every answer reflects what's actually happening with that order.",
+    stats: [
+      { value: "Gorgias", label: "Native integration" },
+      { value: "Live", label: "Order + carrier data" },
+    ],
+  },
+  {
+    tag: "Multi-Agent Handoff",
+    title: "A Tracking Agent hands off to a Returns Agent, then an Escalation Agent.",
+    desc: "The Tracking Agent resolves status queries, the Returns Agent processes eligible refunds within policy, and the Escalation Agent screens every ticket for risk — routing anything flagged straight to a human.",
+    stats: [
+      { value: "3", label: "Agents in the loop" },
+      { value: "<48h", label: "Returns processed" },
+    ],
+  },
+  {
+    tag: "Safety Controls",
+    title: "Risky tickets never reach an automated resolution.",
+    desc: "Sentiment and chargeback-threat detection routes any high-risk ticket instantly to a human manager in Slack, and refund actions stay capped at a configurable dollar threshold no matter what.",
+    stats: [
+      { value: "100%", label: "Risky tickets escalated" },
+      { value: "<$100", label: "Auto-approval ceiling" },
+    ],
+  },
+  {
+    tag: "Outcome",
+    title: "Faster answers, fewer escalations reaching a human, full audit trail.",
+    desc: "The support team now spends its time on genuinely complex or sensitive cases, while routine tickets resolve in under 30 seconds around the clock.",
+    stats: [
+      { value: "70%+", label: "Tickets Resolved" },
+      { value: "<30s", label: "First Response" },
+    ],
+  },
 ]
 
 const useCases = [
@@ -182,8 +231,14 @@ export default function AutonomousCustomerServicePage() {
         </div>
       </section>
 
+      <ShopifyProofCarousel
+        heading="How one support team resolved 70% of tickets without adding headcount."
+        subheading="A real deployment, walked step by step — from live order grounding to a multi-agent triage handoff to the risk screen that keeps every risky ticket in human hands."
+        slides={proofSlides}
+      />
+
       {/* Pipeline */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">How It Works</p>
@@ -205,7 +260,7 @@ export default function AutonomousCustomerServicePage() {
       </section>
 
       {/* Trust */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Safety & Access Controls</p>
@@ -229,7 +284,7 @@ export default function AutonomousCustomerServicePage() {
       </section>
 
       {/* Stack */}
-      <section className="py-16 px-6 bg-background">
+      <section className="py-16 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-6">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono mb-2">Compatibility</p>
@@ -244,7 +299,7 @@ export default function AutonomousCustomerServicePage() {
       </section>
 
       {/* Comparison */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-5xl mx-auto space-y-10">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Chatbot vs. Support Agent</p>
@@ -278,7 +333,7 @@ export default function AutonomousCustomerServicePage() {
       </section>
 
       {/* FAQs */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-3xl mx-auto space-y-12">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">FAQ</p>
@@ -289,7 +344,7 @@ export default function AutonomousCustomerServicePage() {
             {faqs.map((item, idx) => {
               const isOpen = openFaq === idx
               return (
-                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-muted/5">
+                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-background">
                   <button onClick={() => setOpenFaq(isOpen ? null : idx)} className="w-full text-left p-5 flex items-center justify-between text-sm font-semibold hover:bg-muted/20 transition-all">
                     <span>{item.q}</span>
                     <ChevronDown className={`h-4 w-4 text-accent transition-transform duration-300 shrink-0 ml-4 ${isOpen ? 'rotate-180' : ''}`} />

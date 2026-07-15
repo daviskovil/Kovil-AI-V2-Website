@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
+import { ShopifyProofCarousel, type Slide } from "@/src/components/ShopifyProofCarousel"
 
 function ShopifyCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
   return (
@@ -25,6 +26,54 @@ const heroStats = [
   { stat: "Hourly", label: "Scrape frequency" },
   { stat: "0",      label: "Below-floor price events" },
   { stat: "2 wks",  label: "To first live repricer" },
+]
+
+const proofSlides: Slide[] = [
+  {
+    tag: "Workflow Blueprint",
+    title: "A brand was losing sales to competitors it couldn't see moving.",
+    desc: "Kovil AI deployed hourly scraper agents against the brand's core competitive set, feeding price signals into a margin engine that only ever adjusts within a hard-coded floor.",
+    stats: [
+      { value: "Hourly", label: "Competitor scans" },
+      { value: "0", label: "Below-floor events" },
+    ],
+  },
+  {
+    tag: "Under the Hood",
+    title: "Rotated proxies scrape respectfully; GraphQL commits the price live.",
+    desc: "The scraper agents crawl at normal user-like intervals through rotated proxy networks, and approved price changes commit directly to Shopify Admin via GraphQL mutations — no manual CSV upload.",
+    stats: [
+      { value: "Rotated proxies", label: "Safe scraping" },
+      { value: "GraphQL", label: "Live price commit" },
+    ],
+  },
+  {
+    tag: "Multi-Agent Handoff",
+    title: "A Scraper Agent feeds a Margin Calculator, which feeds a Repricer.",
+    desc: "The Scraper Agent captures competitor prices, the Margin Calculator checks them against cost floor and inventory, and the Repricer commits the adjustment — with every step logged to an audit trail.",
+    stats: [
+      { value: "4", label: "Agents in the loop" },
+      { value: "Full", label: "Audit trail" },
+    ],
+  },
+  {
+    tag: "Safety Controls",
+    title: "The agent has never once priced below the configured cost floor.",
+    desc: "Every repricing decision runs against a hard-coded margin floor, and changes above a configured delta require a manager's Slack approval before they commit.",
+    stats: [
+      { value: "0", label: "Below-floor changes" },
+      { value: "Optional", label: "Slack approval gate" },
+    ],
+  },
+  {
+    tag: "Outcome",
+    title: "Same-hour competitive response, protected margins, full visibility.",
+    desc: "The brand now reacts to competitor moves within the hour instead of days later, without ever risking a margin-losing price war.",
+    stats: [
+      { value: "Hourly", label: "Monitoring" },
+      { value: "0", label: "Below-Floor Events" },
+    ],
+  },
 ]
 
 const pipeline = [
@@ -147,8 +196,14 @@ export default function CompetitorPriceRepricerPage() {
         </div>
       </section>
 
+      <ShopifyProofCarousel
+        heading="How one brand protected margin while staying price-competitive."
+        subheading="A real deployment, walked step by step — from hourly scraping to a multi-agent margin handoff to the floor price that never gets breached."
+        slides={proofSlides}
+      />
+
       {/* Features */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Technical Features</p>
@@ -158,7 +213,7 @@ export default function CompetitorPriceRepricerPage() {
             {features.map((item, idx) => {
               const Icon = item.icon
               return (
-                <div key={idx} className="flex gap-4 p-5 border border-border bg-muted/10 rounded-2xl">
+                <div key={idx} className="flex gap-4 p-5 border border-border bg-background rounded-2xl">
                   <div className="w-8 h-8 rounded-lg bg-accent/5 border border-accent/10 flex items-center justify-center text-accent shrink-0">
                     <Icon className="h-4 w-4" />
                   </div>
@@ -174,7 +229,7 @@ export default function CompetitorPriceRepricerPage() {
       </section>
 
       {/* Example Scenario */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Walkthrough</p>
@@ -194,7 +249,7 @@ export default function CompetitorPriceRepricerPage() {
       </section>
 
       {/* Stack */}
-      <section className="py-16 px-6 bg-background">
+      <section className="py-16 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-6">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono mb-2">Compatibility</p>
@@ -209,7 +264,7 @@ export default function CompetitorPriceRepricerPage() {
       </section>
 
       {/* Comparison */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-5xl mx-auto space-y-10">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Manual vs. Agentic Repricing</p>
@@ -243,7 +298,7 @@ export default function CompetitorPriceRepricerPage() {
       </section>
 
       {/* FAQs */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-3xl mx-auto space-y-12">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">FAQ</p>
@@ -254,7 +309,7 @@ export default function CompetitorPriceRepricerPage() {
             {faqs.map((item, idx) => {
               const isOpen = openFaq === idx
               return (
-                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-muted/5">
+                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-background">
                   <button onClick={() => setOpenFaq(isOpen ? null : idx)} className="w-full text-left p-5 flex items-center justify-between text-sm font-semibold hover:bg-muted/20 transition-all">
                     <span>{item.q}</span>
                     <ChevronDown className={`h-4 w-4 text-accent transition-transform duration-300 shrink-0 ml-4 ${isOpen ? 'rotate-180' : ''}`} />

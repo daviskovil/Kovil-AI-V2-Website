@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
+import { ShopifyProofCarousel, type Slide } from "@/src/components/ShopifyProofCarousel"
 
 function ShopifyCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
   return (
@@ -25,6 +26,54 @@ const heroStats = [
   { stat: "95%+",   label: "Field extraction accuracy" },
   { stat: "0",      label: "Live publishes without review" },
   { stat: "2 wks",  label: "To first live pipeline" },
+]
+
+const proofSlides: Slide[] = [
+  {
+    tag: "Workflow Blueprint",
+    title: "A team spent a full day per new product line typing supplier data by hand.",
+    desc: "Kovil AI built an enrichment pipeline that parses a supplier's raw spec sheet, drafts SEO-optimized copy, and creates the product as a Shopify draft — turning a day of data entry into minutes of review.",
+    stats: [
+      { value: "5,000", label: "Sheets/hour" },
+      { value: "95%+", label: "Extraction accuracy" },
+    ],
+  },
+  {
+    tag: "Under the Hood",
+    title: "Vision models read PDFs, Excel tables, even scanned sheets.",
+    desc: "Instead of a rigid template importer, the parsing agent handles wildly inconsistent supplier formats, normalizing dimensions, materials, and pricing into one strict schema before anything is written.",
+    stats: [
+      { value: "PDF+Excel", label: "Format-agnostic" },
+      { value: "SEO", label: "Auto-optimized copy" },
+    ],
+  },
+  {
+    tag: "Multi-Agent Handoff",
+    title: "A Parser Agent hands off to a Copywriter, then a Schema Validator.",
+    desc: "The Parser extracts raw fields, the Copywriter drafts brand-voice-aligned titles and descriptions, and the Schema Validator checks everything before the Draft Publisher creates the Shopify listing.",
+    stats: [
+      { value: "4", label: "Agents in the loop" },
+      { value: "Draft-only", label: "Publish safety" },
+    ],
+  },
+  {
+    tag: "Safety Controls",
+    title: "Nothing goes live without a merchandiser's one-click review.",
+    desc: "Every enriched product is created as a Shopify draft, never published automatically, and copy is checked against the brand's style guide before it ever reaches a reviewer's queue.",
+    stats: [
+      { value: "0", label: "Live publishes w/o review" },
+      { value: "100%", label: "Brand-voice aligned" },
+    ],
+  },
+  {
+    tag: "Outcome",
+    title: "A day of manual entry becomes minutes of one-click review.",
+    desc: "New supplier catalogs onboard in a single sitting instead of a week of data entry, with consistent SEO copy and zero schema errors reaching the live storefront.",
+    stats: [
+      { value: "5,000", label: "Sheets/Hour" },
+      { value: "95%+", label: "Accuracy" },
+    ],
+  },
 ]
 
 const pipeline = [
@@ -147,8 +196,14 @@ export default function SpecSheetEnricherPage() {
         </div>
       </section>
 
+      <ShopifyProofCarousel
+        heading="How one brand turned a 40-item spec sheet into a same-day catalog."
+        subheading="A real deployment, walked step by step — from format-agnostic parsing to a multi-agent copywriting handoff to the draft-only publish gate that protects the storefront."
+        slides={proofSlides}
+      />
+
       {/* Features */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Technical Features</p>
@@ -158,7 +213,7 @@ export default function SpecSheetEnricherPage() {
             {features.map((item, idx) => {
               const Icon = item.icon
               return (
-                <div key={idx} className="flex gap-4 p-5 border border-border bg-muted/10 rounded-2xl">
+                <div key={idx} className="flex gap-4 p-5 border border-border bg-background rounded-2xl">
                   <div className="w-8 h-8 rounded-lg bg-accent/5 border border-accent/10 flex items-center justify-center text-accent shrink-0">
                     <Icon className="h-4 w-4" />
                   </div>
@@ -174,7 +229,7 @@ export default function SpecSheetEnricherPage() {
       </section>
 
       {/* Example Scenario */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Walkthrough</p>
@@ -194,7 +249,7 @@ export default function SpecSheetEnricherPage() {
       </section>
 
       {/* Stack */}
-      <section className="py-16 px-6 bg-background">
+      <section className="py-16 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-6">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono mb-2">Compatibility</p>
@@ -209,7 +264,7 @@ export default function SpecSheetEnricherPage() {
       </section>
 
       {/* Comparison */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-5xl mx-auto space-y-10">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Manual Entry vs. Enrichment Agent</p>
@@ -243,7 +298,7 @@ export default function SpecSheetEnricherPage() {
       </section>
 
       {/* FAQs */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-3xl mx-auto space-y-12">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">FAQ</p>
@@ -254,7 +309,7 @@ export default function SpecSheetEnricherPage() {
             {faqs.map((item, idx) => {
               const isOpen = openFaq === idx
               return (
-                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-muted/5">
+                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-background">
                   <button onClick={() => setOpenFaq(isOpen ? null : idx)} className="w-full text-left p-5 flex items-center justify-between text-sm font-semibold hover:bg-muted/20 transition-all">
                     <span>{item.q}</span>
                     <ChevronDown className={`h-4 w-4 text-accent transition-transform duration-300 shrink-0 ml-4 ${isOpen ? 'rotate-180' : ''}`} />

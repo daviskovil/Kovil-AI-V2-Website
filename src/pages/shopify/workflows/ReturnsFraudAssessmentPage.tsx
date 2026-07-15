@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
+import { ShopifyProofCarousel, type Slide } from "@/src/components/ShopifyProofCarousel"
 
 function ShopifyCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
   return (
@@ -25,6 +26,54 @@ const heroStats = [
   { stat: "<$100",  label: "Auto-approval threshold" },
   { stat: "24/7",   label: "Photo audit coverage" },
   { stat: "2 wks",  label: "To first live auditor" },
+]
+
+const proofSlides: Slide[] = [
+  {
+    tag: "Workflow Blueprint",
+    title: "A brand's returns team was buried under manual photo review.",
+    desc: "Kovil AI deployed a vision-model auditor that compares return photos against catalog reference images automatically, cutting average processing time from a week down to two days.",
+    stats: [
+      { value: "48hrs", label: "Avg. processing time" },
+      { value: "5-7 days", label: "Previous turnaround" },
+    ],
+  },
+  {
+    tag: "Under the Hood",
+    title: "A vision-language model checks tags, damage state, and item match.",
+    desc: "The auditor cross-references submitted photos with the original catalog image, flagging inconsistencies in damage description or tag authenticity before any risk score is calculated.",
+    stats: [
+      { value: "Vision model", label: "Photo audit" },
+      { value: "Cross-order", label: "Pattern detection" },
+    ],
+  },
+  {
+    tag: "Multi-Agent Handoff",
+    title: "A Photo Auditor feeds a Risk Scorer, which feeds the Router.",
+    desc: "The Photo Auditor analyzes the images, the Risk Scorer weighs that result against purchase and return history, and the Router either auto-approves or escalates — with every decision logged.",
+    stats: [
+      { value: "4", label: "Agents in the loop" },
+      { value: "Full", label: "Audit trail" },
+    ],
+  },
+  {
+    tag: "Safety Controls",
+    title: "Flagged and high-value cases always land with a human.",
+    desc: "Only returns under a configurable dollar threshold with a clean history are auto-approved; anything else routes to a reviewer with the photo comparison pre-analyzed for a fast decision.",
+    stats: [
+      { value: "100%", label: "Flagged cases reviewed" },
+      { value: "Consistent", label: "Scoring criteria" },
+    ],
+  },
+  {
+    tag: "Outcome",
+    title: "Faster processing, fewer fraudulent approvals, no honest customer friction.",
+    desc: "Legitimate returns clear in under 48 hours while the reviewer team's time goes only to the cases that genuinely need a second look.",
+    stats: [
+      { value: "48hrs", label: "Avg. Processing" },
+      { value: "24/7", label: "Photo Audit Coverage" },
+    ],
+  },
 ]
 
 const pipeline = [
@@ -147,8 +196,14 @@ export default function ReturnsFraudAssessmentPage() {
         </div>
       </section>
 
+      <ShopifyProofCarousel
+        heading="How one brand cut returns fraud without slowing down honest customers."
+        subheading="A real deployment, walked step by step — from vision-model photo auditing to a multi-agent risk-scoring handoff to the human review that catches what the model flags."
+        slides={proofSlides}
+      />
+
       {/* Features */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Technical Features</p>
@@ -158,7 +213,7 @@ export default function ReturnsFraudAssessmentPage() {
             {features.map((item, idx) => {
               const Icon = item.icon
               return (
-                <div key={idx} className="flex gap-4 p-5 border border-border bg-muted/10 rounded-2xl">
+                <div key={idx} className="flex gap-4 p-5 border border-border bg-background rounded-2xl">
                   <div className="w-8 h-8 rounded-lg bg-accent/5 border border-accent/10 flex items-center justify-center text-accent shrink-0">
                     <Icon className="h-4 w-4" />
                   </div>
@@ -174,7 +229,7 @@ export default function ReturnsFraudAssessmentPage() {
       </section>
 
       {/* Example Scenario */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Walkthrough</p>
@@ -194,7 +249,7 @@ export default function ReturnsFraudAssessmentPage() {
       </section>
 
       {/* Stack */}
-      <section className="py-16 px-6 bg-background">
+      <section className="py-16 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-6">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono mb-2">Compatibility</p>
@@ -209,7 +264,7 @@ export default function ReturnsFraudAssessmentPage() {
       </section>
 
       {/* Comparison */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-5xl mx-auto space-y-10">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Manual Review vs. Auditor Agent</p>
@@ -243,7 +298,7 @@ export default function ReturnsFraudAssessmentPage() {
       </section>
 
       {/* FAQs */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-3xl mx-auto space-y-12">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">FAQ</p>
@@ -254,7 +309,7 @@ export default function ReturnsFraudAssessmentPage() {
             {faqs.map((item, idx) => {
               const isOpen = openFaq === idx
               return (
-                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-muted/5">
+                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-background">
                   <button onClick={() => setOpenFaq(isOpen ? null : idx)} className="w-full text-left p-5 flex items-center justify-between text-sm font-semibold hover:bg-muted/20 transition-all">
                     <span>{item.q}</span>
                     <ChevronDown className={`h-4 w-4 text-accent transition-transform duration-300 shrink-0 ml-4 ${isOpen ? 'rotate-180' : ''}`} />

@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
+import { ShopifyProofCarousel, type Slide } from "@/src/components/ShopifyProofCarousel"
 
 function ShopifyCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
   return (
@@ -25,6 +26,54 @@ const heroStats = [
   { stat: "<500ms", label: "Node-to-node latency" },
   { stat: "24/7",   label: "Self-hosted uptime" },
   { stat: "2 wks",  label: "To first production flow" },
+]
+
+const proofSlides: Slide[] = [
+  {
+    tag: "Workflow Blueprint",
+    title: "A team was paying premium Zapier tiers just to keep up with order volume.",
+    desc: "Kovil AI replaced the brand's Zapier automations with a self-hosted n8n pipeline, moving webhook-triggered logic onto infrastructure the team owns outright — at zero additional cost per execution.",
+    stats: [
+      { value: "$0", label: "Per-execution cost" },
+      { value: "<500ms", label: "Node latency" },
+    ],
+  },
+  {
+    tag: "Under the Hood",
+    title: "Every webhook is HMAC-validated before a reasoning agent ever sees it.",
+    desc: "The payload is checked against its signature, standardized into a consistent schema, then handed to an OpenAI or Claude reasoning node that decides which tool to call — not a fixed if/then chain.",
+    stats: [
+      { value: "n8n", label: "Self-hosted" },
+      { value: "LangGraph", label: "Agent orchestration" },
+    ],
+  },
+  {
+    tag: "Multi-Agent Handoff",
+    title: "A Manager node routes to the Reasoning Agent, then the Tool Executor.",
+    desc: "The Manager node classifies the incoming event, the Reasoning Agent formulates the action, and the Tool Executor commits the result to Supabase or Shopify — with a Slack notification on anything flagged for review.",
+    stats: [
+      { value: "4", label: "Pipeline nodes" },
+      { value: "Auto", label: "Retry on failure" },
+    ],
+  },
+  {
+    tag: "Safety Controls",
+    title: "Every workflow change ships through a pull request, not a live edit.",
+    desc: "Workflow definitions export as JSON and live in Git, so changes get reviewed like application code, and a bad update rolls back with one command instead of a scramble in the n8n UI.",
+    stats: [
+      { value: "100%", label: "Version-controlled" },
+      { value: "Auto", label: "Exponential backoff" },
+    ],
+  },
+  {
+    tag: "Outcome",
+    title: "Zero execution fees, sub-second latency, a pipeline the team actually owns.",
+    desc: "The workflows run 24/7 on the team's own infrastructure, reviewable in Git, with no per-run billing surprise at the end of the month.",
+    stats: [
+      { value: "$0", label: "Execution Cost" },
+      { value: "24/7", label: "Uptime" },
+    ],
+  },
 ]
 
 const pipeline = [
@@ -147,8 +196,14 @@ export default function N8nShopifySyncPage() {
         </div>
       </section>
 
+      <ShopifyProofCarousel
+        heading="How one team replaced Zapier with a self-hosted agentic pipeline."
+        subheading="A real deployment, walked step by step — from HMAC-validated webhook intake to a multi-node agent handoff to the Git-reviewed workflow changes that keep it safe."
+        slides={proofSlides}
+      />
+
       {/* Technical Features */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Technical Features</p>
@@ -158,7 +213,7 @@ export default function N8nShopifySyncPage() {
             {features.map((item, idx) => {
               const Icon = item.icon
               return (
-                <div key={idx} className="flex gap-4 p-5 border border-border bg-muted/10 rounded-2xl">
+                <div key={idx} className="flex gap-4 p-5 border border-border bg-background rounded-2xl">
                   <div className="w-8 h-8 rounded-lg bg-accent/5 border border-accent/10 flex items-center justify-center text-accent shrink-0">
                     <Icon className="h-4 w-4" />
                   </div>
@@ -174,7 +229,7 @@ export default function N8nShopifySyncPage() {
       </section>
 
       {/* Example Scenario */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Walkthrough</p>
@@ -194,7 +249,7 @@ export default function N8nShopifySyncPage() {
       </section>
 
       {/* Stack */}
-      <section className="py-16 px-6 bg-background">
+      <section className="py-16 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-6">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono mb-2">Compatibility</p>
@@ -209,7 +264,7 @@ export default function N8nShopifySyncPage() {
       </section>
 
       {/* Comparison */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-5xl mx-auto space-y-10">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">n8n vs. Zapier/Make</p>
@@ -243,7 +298,7 @@ export default function N8nShopifySyncPage() {
       </section>
 
       {/* FAQs */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-3xl mx-auto space-y-12">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">FAQ</p>
@@ -254,7 +309,7 @@ export default function N8nShopifySyncPage() {
             {faqs.map((item, idx) => {
               const isOpen = openFaq === idx
               return (
-                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-muted/5">
+                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-background">
                   <button onClick={() => setOpenFaq(isOpen ? null : idx)} className="w-full text-left p-5 flex items-center justify-between text-sm font-semibold hover:bg-muted/20 transition-all">
                     <span>{item.q}</span>
                     <ChevronDown className={`h-4 w-4 text-accent transition-transform duration-300 shrink-0 ml-4 ${isOpen ? 'rotate-180' : ''}`} />

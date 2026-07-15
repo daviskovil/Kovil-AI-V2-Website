@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
+import { ShopifyProofCarousel, type Slide } from "@/src/components/ShopifyProofCarousel"
 
 function ShopifyCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
   return (
@@ -25,6 +26,54 @@ const heroStats = [
   { stat: "98%",   label: "WhatsApp open rate" },
   { stat: "100%",  label: "Opt-in only outreach" },
   { stat: "2 wks", label: "To first live flow" },
+]
+
+const proofSlides: Slide[] = [
+  {
+    tag: "Workflow Blueprint",
+    title: "A brand's recovery emails were getting buried in the inbox.",
+    desc: "Kovil AI moved cart recovery onto WhatsApp, where messages actually get opened — combined with a conversational agent that can answer real product questions instead of just repeating the cart contents.",
+    stats: [
+      { value: "+18%", label: "Cart recovery lift" },
+      { value: "98%", label: "WhatsApp open rate" },
+    ],
+  },
+  {
+    tag: "Under the Hood",
+    title: "Built on the official Twilio and Meta WhatsApp Business API.",
+    desc: "No unofficial workarounds — the integration runs through Twilio and Meta's official gateways for reliable delivery, with multi-turn conversation memory so customers can ask follow-up questions naturally.",
+    stats: [
+      { value: "Official API", label: "Twilio/Meta" },
+      { value: "Multi-turn", label: "Conversation memory" },
+    ],
+  },
+  {
+    tag: "Multi-Agent Handoff",
+    title: "A Trigger Agent hands off to an Offer Generator, then a Conversational Agent.",
+    desc: "The Trigger Agent detects abandonment, the Offer Generator builds the personalized discount and image, and the Conversational Agent handles the back-and-forth before generating a one-tap checkout link.",
+    stats: [
+      { value: "4", label: "Agents in the loop" },
+      { value: "One-tap", label: "Checkout link" },
+    ],
+  },
+  {
+    tag: "Safety Controls",
+    title: "Every message goes only to customers who explicitly opted in.",
+    desc: "Recovery messages send strictly to users who opted in to WhatsApp alerts at checkout, with TCPA and GDPR consent rules enforced automatically before any send.",
+    stats: [
+      { value: "100%", label: "Opt-in verified" },
+      { value: "TCPA/GDPR", label: "Compliant outreach" },
+    ],
+  },
+  {
+    tag: "Outcome",
+    title: "Higher open rates, real answers, one-tap recovery.",
+    desc: "Customers get their sizing question answered in the same thread where they abandoned, then check out without ever leaving the conversation.",
+    stats: [
+      { value: "+18%", label: "Cart Recovery" },
+      { value: "98%", label: "Open Rate" },
+    ],
+  },
 ]
 
 const pipeline = [
@@ -147,8 +196,14 @@ export default function WhatsappAgenticMarketingPage() {
         </div>
       </section>
 
+      <ShopifyProofCarousel
+        heading="How one brand recovered abandoned carts inside a WhatsApp thread."
+        subheading="A real deployment, walked step by step — from official Business API messaging to a multi-agent conversation handoff to the opt-in check that keeps every send compliant."
+        slides={proofSlides}
+      />
+
       {/* Features */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Technical Features</p>
@@ -158,7 +213,7 @@ export default function WhatsappAgenticMarketingPage() {
             {features.map((item, idx) => {
               const Icon = item.icon
               return (
-                <div key={idx} className="flex gap-4 p-5 border border-border bg-muted/10 rounded-2xl">
+                <div key={idx} className="flex gap-4 p-5 border border-border bg-background rounded-2xl">
                   <div className="w-8 h-8 rounded-lg bg-accent/5 border border-accent/10 flex items-center justify-center text-accent shrink-0">
                     <Icon className="h-4 w-4" />
                   </div>
@@ -174,7 +229,7 @@ export default function WhatsappAgenticMarketingPage() {
       </section>
 
       {/* Example Scenario */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Walkthrough</p>
@@ -194,7 +249,7 @@ export default function WhatsappAgenticMarketingPage() {
       </section>
 
       {/* Stack */}
-      <section className="py-16 px-6 bg-background">
+      <section className="py-16 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-6">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono mb-2">Compatibility</p>
@@ -209,7 +264,7 @@ export default function WhatsappAgenticMarketingPage() {
       </section>
 
       {/* Comparison */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-5xl mx-auto space-y-10">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Email vs. WhatsApp Recovery</p>
@@ -243,7 +298,7 @@ export default function WhatsappAgenticMarketingPage() {
       </section>
 
       {/* FAQs */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-3xl mx-auto space-y-12">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">FAQ</p>
@@ -254,7 +309,7 @@ export default function WhatsappAgenticMarketingPage() {
             {faqs.map((item, idx) => {
               const isOpen = openFaq === idx
               return (
-                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-muted/5">
+                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-background">
                   <button onClick={() => setOpenFaq(isOpen ? null : idx)} className="w-full text-left p-5 flex items-center justify-between text-sm font-semibold hover:bg-muted/20 transition-all">
                     <span>{item.q}</span>
                     <ChevronDown className={`h-4 w-4 text-accent transition-transform duration-300 shrink-0 ml-4 ${isOpen ? 'rotate-180' : ''}`} />

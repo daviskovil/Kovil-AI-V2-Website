@@ -10,6 +10,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
+import { ShopifyProofCarousel, type Slide } from "@/src/components/ShopifyProofCarousel"
 
 function ShopifyCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
   return (
@@ -26,6 +27,54 @@ const heroStats = [
   { stat: "500+",  label: "SKUs per size profile" },
   { stat: "0",     label: "Theme code changes" },
   { stat: "2 wks", label: "To first live agent" },
+]
+
+const proofSlides: Slide[] = [
+  {
+    tag: "D2C Case Study",
+    title: "An apparel brand was losing margin to size-related returns.",
+    desc: "Kovil AI built a per-item fit estimator on top of the brand's existing size charts, replacing a generic S/M/L guide with a model that accounts for fabric stretch, cut, and category before a customer ever checks out.",
+    stats: [
+      { value: "-28%", label: "Size-related returns" },
+      { value: "+11%", label: "Average order value" },
+    ],
+  },
+  {
+    tag: "Under the Hood",
+    title: "Fit logic reads live size charts and stock through the Shopify Storefront API.",
+    desc: "Instead of a static PDF size guide, the agent queries per-item chart data and current variant availability directly, so every recommendation reflects what's actually on the shelf.",
+    stats: [
+      { value: "500+", label: "SKUs per size profile" },
+      { value: "Live", label: "Stock-checked variants" },
+    ],
+  },
+  {
+    tag: "Multi-Agent Handoff",
+    title: "A Fit Agent hands off to an Outfit Orchestrator, then a Bundle Checkout Agent.",
+    desc: "Once a size is confirmed, the Outfit Orchestrator proposes coordinated pieces, and the Bundle Checkout Agent assembles every size and color into one draft cart — no manual re-entry between steps.",
+    stats: [
+      { value: "3", label: "Agents in the loop" },
+      { value: "+9%", label: "Outfit attach rate" },
+    ],
+  },
+  {
+    tag: "Safety Controls",
+    title: "Size chart changes never ship without a merchandiser's sign-off.",
+    desc: "The returns-aware learning loop flags chronically mis-sized SKUs for review, but no chart is updated automatically — a human confirms every adjustment before it goes live.",
+    stats: [
+      { value: "100%", label: "Chart changes reviewed" },
+      { value: "Weekly", label: "Accuracy report" },
+    ],
+  },
+  {
+    tag: "Outcome",
+    title: "Fewer wrong-size returns, more coordinated purchases, zero theme rewrites.",
+    desc: "The fit agent runs alongside the existing storefront, lowering returns while lifting basket size — without a single line of theme code touched.",
+    stats: [
+      { value: "-28%", label: "Size Returns" },
+      { value: "+11%", label: "Average Order Value" },
+    ],
+  },
 ]
 
 const useCases = [
@@ -182,8 +231,14 @@ export default function FashionApparelSizingPage() {
         </div>
       </section>
 
+      <ShopifyProofCarousel
+        heading="How one apparel brand cut size-related returns."
+        subheading="A real deployment, walked step by step — from per-item fit modeling to a multi-agent outfit handoff to the merchandiser check before any chart changes."
+        slides={proofSlides}
+      />
+
       {/* Pipeline */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">How It Works</p>
@@ -205,7 +260,7 @@ export default function FashionApparelSizingPage() {
       </section>
 
       {/* Trust */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Reliability</p>
@@ -229,7 +284,7 @@ export default function FashionApparelSizingPage() {
       </section>
 
       {/* Stack */}
-      <section className="py-16 px-6 bg-background">
+      <section className="py-16 px-6 border-t border-border bg-muted/10">
         <div className="max-w-6xl mx-auto space-y-6">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono mb-2">Compatibility</p>
@@ -244,7 +299,7 @@ export default function FashionApparelSizingPage() {
       </section>
 
       {/* Comparison */}
-      <section className="py-20 px-6 border-t border-border bg-muted/10">
+      <section className="py-20 px-6 border-t border-border bg-background">
         <div className="max-w-5xl mx-auto space-y-10">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">Size Guide vs. Fit Agent</p>
@@ -278,7 +333,7 @@ export default function FashionApparelSizingPage() {
       </section>
 
       {/* FAQs */}
-      <section className="py-20 px-6 bg-background">
+      <section className="py-20 px-6 border-t border-border bg-muted/10">
         <div className="max-w-3xl mx-auto space-y-12">
           <div className="text-center space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-accent font-mono">FAQ</p>
@@ -289,7 +344,7 @@ export default function FashionApparelSizingPage() {
             {faqs.map((item, idx) => {
               const isOpen = openFaq === idx
               return (
-                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-muted/5">
+                <div key={idx} className="border border-border rounded-2xl overflow-hidden bg-background">
                   <button onClick={() => setOpenFaq(isOpen ? null : idx)} className="w-full text-left p-5 flex items-center justify-between text-sm font-semibold hover:bg-muted/20 transition-all">
                     <span>{item.q}</span>
                     <ChevronDown className={`h-4 w-4 text-accent transition-transform duration-300 shrink-0 ml-4 ${isOpen ? 'rotate-180' : ''}`} />
