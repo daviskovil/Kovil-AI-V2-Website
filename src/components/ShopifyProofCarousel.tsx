@@ -58,17 +58,16 @@ const CARD_WIDTH = 672 // 640px card + 16px padding each side
 
 export function ShopifyProofCarousel() {
   const [active, setActive] = useState(0)
-  const [paused, setPaused] = useState(false)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
-      setActive(prev => (paused ? prev : (prev + 1) % SLIDES.length))
+      setActive(prev => (prev + 1) % SLIDES.length)
     }, 4500)
     return () => {
       if (timerRef.current) clearInterval(timerRef.current)
     }
-  }, [paused])
+  }, [])
 
   const goTo = (i: number) => {
     const n = SLIDES.length
@@ -89,11 +88,7 @@ export function ShopifyProofCarousel() {
         </p>
       </div>
 
-      <div
-        className="relative max-w-6xl mx-auto mt-14"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
+      <div className="relative max-w-6xl mx-auto mt-14">
         <div className="overflow-hidden py-5">
           <motion.div
             className="flex items-stretch"
