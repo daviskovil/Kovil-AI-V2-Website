@@ -1,8 +1,33 @@
 import { GoogleGenAI } from '@google/genai'
+import { buildSiteDirectoryText, type SitemapSection } from '@/src/data/site-directory'
+import { posts } from '@/src/data/posts'
+import { caseStudies } from '@/src/data/case-studies'
+import { agentforceCaseStudies } from '@/src/data/agentforce-case-studies'
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! })
 
 const BOOKING_LINK = process.env.CAL_BOOKING_LINK ?? 'https://kovil.ai/book'
+
+// Full directory of every page on kovil.ai (mirrors the human-facing /sitemap
+// page), computed once at module load and injected into every system prompt
+// so Shyna can link to the exact right page instead of defaulting to a
+// generic answer or the case studies hub.
+const DYNAMIC_DIRECTORY_SECTIONS: SitemapSection[] = [
+  {
+    id: 'blog', title: 'Blog Posts', color: '',
+    links: posts.map(p => ({ label: p.title, href: `/blog/${p.slug}` })),
+  },
+  {
+    id: 'case-studies', title: 'Case Studies', color: '',
+    links: caseStudies.map(cs => ({ label: cs.title, href: `/case-studies/${cs.slug}` })),
+  },
+  {
+    id: 'agentforce-case-studies', title: 'Agentforce Case Studies', color: '',
+    links: agentforceCaseStudies.map(cs => ({ label: cs.headline, href: `/agentforce/case-studies/${cs.slug}` })),
+  },
+]
+
+const SITE_DIRECTORY_TEXT = buildSiteDirectoryText(DYNAMIC_DIRECTORY_SECTIONS)
 
 const SYSTEM_PROMPT = `
 You are Shyna, an AI assistant for Kovil AI (kovil.ai).
@@ -52,6 +77,10 @@ Individual case studies (link when asked about a specific outcome or industry):
 - Law firm contract review, 78% faster: https://kovil.ai/case-studies/law-firm-contract-review-ai
 - AI-powered lead generation: https://kovil.ai/case-studies/ai-powered-lead-generation
 
+SITE DIRECTORY (every page currently on kovil.ai, organized by category — the same list shown on https://kovil.ai/sitemap):
+
+${SITE_DIRECTORY_TEXT}
+
 Tone: Punchy and direct. One or two sentences per point. Never use bullet lists unless the visitor explicitly asks for a breakdown.
 
 RULES:
@@ -63,7 +92,8 @@ RULES:
 6. Never use em dashes. Use commas, periods, or new sentences instead.
 7. When a visitor signals intent to move forward (asks about next steps, pricing, or says they are ready to start), ask for their name first. Then gather email, company, and project description one at a time across the conversation.
 8. Identify yourself as an AI assistant for Kovil AI if directly asked.
-9. When asked to see examples, case studies, or past work, respond in 1 to 2 sentences and share the case studies page link. Do not describe individual case studies in prose unless the visitor specifically asks about one.
+9. When asked to see examples, case studies, or past work in general (no specific topic named), respond in 1 to 2 sentences and share the case studies page link. Do not describe individual case studies in prose unless the visitor specifically asks about one.
+10. Before answering any question about a specific service, technology, industry, or topic, check the SITE DIRECTORY above for the single most specific matching page and link to it directly instead of a generic hub page or the case studies link. For example, a question about Shopify beauty brands should link the beauty-cosmetics-ai-agents page, not the Shopify hub or case studies. Only fall back to a general answer, the case studies page, or offering a call if genuinely nothing in the directory matches what the visitor is asking about.
 `.trim()
 
 export type GeminiMessage = {
