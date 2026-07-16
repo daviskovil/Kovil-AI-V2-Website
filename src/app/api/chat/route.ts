@@ -3,6 +3,7 @@ import { supabase } from '@/src/lib/supabase'
 import { retrieveChunks } from '@/src/lib/shyna/crawl'
 import { buildContents, chat } from '@/src/lib/shyna/gemini'
 import { checkRateLimit } from '@/src/lib/shyna/rate-limit'
+import { sendNewConversationEmail } from '@/src/lib/shyna/notify'
 
 export const maxDuration = 60
 
@@ -49,6 +50,7 @@ export async function POST(req: NextRequest) {
   try {
     // Resolve or create session
     let sessionId = incomingSessionId
+    let isNewSession = false
 
     if (sessionId) {
       const { data: existing } = await supabase
@@ -67,6 +69,7 @@ export async function POST(req: NextRequest) {
         .single()
       if (error || !newSession) throw new Error('Failed to create session')
       sessionId = newSession.id
+      isNewSession = true
     }
 
     // Enforce session message cap
@@ -110,6 +113,20 @@ export async function POST(req: NextRequest) {
     // Call Gemini
     const contents = buildContents(historyRows ?? [], kbContext, message.trim())
     const reply = await chat(contents)
+
+    // Notify the team the moment a new conversation starts. Awaited (not
+    // fire-and-forget) because Vercel can terminate the function as soon as
+    // the response is sent, which would silently drop an unawaited email
+    // send. sendNewConversationEmail swallows its own errors, so a failure
+    // here never breaks the chat response.
+    if (isNewSession) {
+      await sendNewConversationEmail({
+        sessionId,
+        sourcePage: sourcePage ?? null,
+        firstMessage: message.trim(),
+        firstReply: reply,
+      })
+    }
 
     // Persist user message then assistant reply (sequential for ordering)
     await supabase
