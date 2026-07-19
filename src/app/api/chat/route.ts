@@ -72,6 +72,14 @@ export async function POST(req: NextRequest) {
       isNewSession = true
     }
 
+    // sessionId is always set by this point (either resolved above or just
+    // created), but the two branches above are enough separate reassignments
+    // that TypeScript can't prove it — this explicit guard narrows it to
+    // `string` for the rest of the function.
+    if (!sessionId) {
+      throw new Error('Session ID resolution failed')
+    }
+
     // Enforce session message cap
     const { count } = await supabase
       .from('chat_messages')
