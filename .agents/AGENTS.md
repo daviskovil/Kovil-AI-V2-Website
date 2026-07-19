@@ -62,10 +62,11 @@ This project-scoped agent memory file defines the strict structure and research 
 
 *   **Status:** Active Pruning Mode.
 *   **The Issue:** Legacy spam URLs (primarily starting with `/onlines/`, `/shop/`, `/product/`, etc. from the previous domain owner) had inflated Google's index.
-*   **Index metrics (as of 15 July 2026):**
-    *   **Indexed Pages:** 5.74k (needs to drop to < 1,000, matching the core ~319 pages).
-    *   **Not Indexed Pages:** 651k (large spam footprint discovered and bypassed).
-    *   **Indexed, though blocked by robots.txt Warnings:** 752 (validation in progress).
+*   **Index metrics timeline:**
+    *   **15 July 2026 (Baseline):** 5.74k indexed, 651k not indexed, 752 blocked warnings. (Cleanup sitemaps registered, robots.txt crawled allowed).
+    *   **19 July 2026 (Current check):** 5.74k indexed, 651k not indexed, 752 blocked warnings. (No change yet due to GSC dashboard update delay and initial crawl queue latency).
+    *   **Next Scheduled Check:** 22–23 July 2026 (Expect first signs of validation warning drops and total index decline).
+    *   **Final Target:** < 1,000 indexed pages (exactly matching the whitelist sitemap, currently at 319 core pages).
 *   **The Solution Deployed:**
     *   **robots.txt Refactor:** Allowed full crawling of all paths (`Allow: /`) and disallowed only internals (`/_next/`, `/api/`, `/monitoring`) and parameter strings (`/*?*`). This enables Googlebot to crawl deleted pages to see their removal signals rather than keeping them blocked and cached.
     *   **Server-Side Pruning:** Next.js middleware returns `410 Gone` with a `noindex` tag for all non-sitemap URLs.
