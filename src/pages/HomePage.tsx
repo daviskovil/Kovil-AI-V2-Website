@@ -57,6 +57,28 @@ const HOME_SCHEMA = [
   }
 ]
 
+const WEBPAGE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Kovil AI — We Build AI Agents for Enterprises",
+  "description": "We build and deploy AI agents for enterprises — fixed price, fixed timeline, zero delivery risk. Managed AI engineers, outcome-based projects, and AI agent rescue.",
+  "url": "https://kovil.ai/",
+  "datePublished": "2026-01-15",
+  "dateModified": "2026-07-23",
+  "inLanguage": "en-US",
+  "isPartOf": { "@type": "WebSite", "name": "Kovil AI", "url": "https://kovil.ai" },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", "#faq h3"]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kovil AI",
+    "url": "https://kovil.ai",
+    "logo": { "@type": "ImageObject", "url": "https://kovil.ai/kovil-logo-symbol.png" }
+  }
+}
+
 const HOWTO_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "HowTo",
@@ -240,6 +262,7 @@ export default function HomePage() {
   return (
     <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_SCHEMA) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBPAGE_SCHEMA) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(HOWTO_SCHEMA) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
     <main className="pt-20">
@@ -757,7 +780,7 @@ export default function HomePage() {
       <CaseStudyCarousel />
 
       {/* FAQ Section */}
-      <section className="py-24 max-w-4xl mx-auto px-6">
+      <section id="faq" className="py-24 max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-3">FAQ</p>
           <h2 className="text-3xl md:text-4xl font-display font-bold tracking-tight">Frequently Asked Questions</h2>

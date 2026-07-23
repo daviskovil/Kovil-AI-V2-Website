@@ -1,0 +1,38 @@
+# Kovil AI
+
+> Kovil AI is a managed AI engineering firm that embeds vetted Tier-1 AI engineers into enterprise teams. It offers fixed-price AI project delivery, scalable AI team augmentation, and AI app rescue — all milestone-gated with zero delivery risk. Engineers are matched within 24–48 hours and typically ship a first feature within 14 days.
+
+Kovil AI builds and deploys AI agents, LLM-powered chatbots, RAG pipelines, workflow automations, and custom AI integrations for enterprises across fintech, healthcare, e-commerce, logistics, and more.
+
+## Company
+- [Home](https://kovil.ai/): Overview of Kovil AI's services and engagement models
+- [About](https://kovil.ai/about): Company background
+- [How It Works](https://kovil.ai/how-it-works): The engagement process, from intake to shipped feature
+- [What We Do](https://kovil.ai/what-we-do): Service breakdown
+- [FAQ](https://kovil.ai/frequently-asked-questions): Frequently asked questions
+- [Case Studies](https://kovil.ai/case-studies): Real client deployments and results
+- [Contact](https://kovil.ai/contact): Get in touch
+- [Book a Call](https://kovil.ai/book-a-call): Schedule a consultation
+
+## Engagement Models
+- Managed AI Engineer: embed a vetted AI engineer into an existing team, scale up or down as needed
+- Outcome-Based AI Projects: fixed-scope, fixed-timeline AI product builds from scratch
+- AI Reliability & App Rescue: audit, fix, and maintain failing AI agents, hallucinating RAG pipelines, or unfinished AI-built apps
+
+## Hire by Role
+- [All Hire Pages](https://kovil.ai/hire): Hub for hiring AI, ML, and automation specialists (AI agent developers, LLM engineers, prompt engineers, ML engineers, data engineers, and more)
+
+## AI Platforms & Technologies
+- [Agentforce](https://kovil.ai/agentforce): Salesforce Agentforce deployment services
+- [Azure AI Foundry](https://kovil.ai/azure-ai-foundry): Microsoft Azure AI implementation services
+- [Google Vertex AI](https://kovil.ai/vertex-ai): Google Vertex AI implementation services
+- [Intelligent Document Processing](https://kovil.ai/intelligent-document-processing): Vision LLM document classification, extraction, and HITL validation
+- [Shopify AI Solutions](https://kovil.ai/shopify): AI agents for e-commerce (recommendations, customer service, fraud, marketing)
+- [AI Workflow Automation Library](https://kovil.ai/ai-workflow-automation-library): Pre-built workflow automation patterns
+
+## Full Site Directory
+- [Sitemap](https://kovil.ai/sitemap): Complete, categorized list of every page on kovil.ai
+
+## Contact
+- Email: info@kovil.ai
+- LinkedIn: https://www.linkedin.com/company/kovil-ai/
