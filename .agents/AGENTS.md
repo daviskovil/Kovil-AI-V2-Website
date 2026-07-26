@@ -63,8 +63,8 @@ This project-scoped agent memory file defines the strict structure and research 
 *   **Status:** Active Pruning Mode.
 *   **The Issue:** Legacy spam URLs (primarily starting with `/onlines/`, `/shop/`, `/product/`, etc. from the previous domain owner) had inflated Google's index.
 *   **Index metrics timeline:** Detailed check logs are maintained in [.agents/GSC_CLEANUP_HISTORY.md](file:///c:/Users/davis/Projects/Kovil-AI-V2-Website/.agents/GSC_CLEANUP_HISTORY.md).
-    *   **Baseline (15 & 19 July 2026):** 5.74k indexed, 651k not indexed, 752 blocked warnings.
-    *   **Next Scheduled Check:** 22–23 July 2026.
+    *   **Baseline (15, 19, & 26 July 2026):** 5.74k indexed, 651k not indexed, 752 blocked warnings.
+    *   **Next Scheduled Check:** Early August 2026.
     *   **Final Target:** < 1,000 indexed pages (matching core ~319 whitelist pages).
 *   **The Solution Deployed:**
     *   **robots.txt Refactor:** Allowed full crawling of all paths (`Allow: /`) and disallowed only internals (`/_next/`, `/api/`, `/monitoring`) and parameter strings (`/*?*`). This enables Googlebot to crawl deleted pages to see their removal signals rather than keeping them blocked and cached.
