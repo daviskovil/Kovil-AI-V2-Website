@@ -27,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/hire/autogen-developers`,                lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/n8n-automation-experts`,            lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/ai-agent-developer`,                lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/hire/forward-deployed-engineer`,         lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/claude-code-engineer`,              lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/make-automation-experts`,            lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/hire/voiceflow-developers`,               lastModified: now,          changeFrequency: 'monthly', priority: 0.9 },

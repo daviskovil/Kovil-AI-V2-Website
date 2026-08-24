@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  background: #0A0A0A;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
+}
+
+.top-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 8px;
+  background: #FF4F00;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,79,0,0.22) 0%, rgba(255,79,0,0.07) 55%, transparent 75%);
+}
+.circle-1 { width: 620px; height: 620px; right: -160px; top: -80px; }
+.circle-2 { width: 480px; height: 480px; right: -40px; bottom: -180px; background: radial-gradient(circle, rgba(255,79,0,0.15) 0%, rgba(255,79,0,0.04) 55%, transparent 75%); }
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: 1200px;
+  height: 630px;
+  padding: 64px 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #FF4F00;
+  margin-bottom: 22px;
+}
+
+.headline {
+  font-size: 58px;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+  color: #fff;
+  margin-bottom: 26px;
+  max-width: 700px;
+}
+.headline .hl-orange { color: #FF4F00; }
+
+.sub {
+  font-size: 21px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+  max-width: 620px;
+  margin-bottom: auto;
+}
+
+.divider {
+  width: 90px;
+  height: 4px;
+  border-radius: 999px;
+  background: #FF4F00;
+  margin-bottom: 24px;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.logo .dot-ai { color: #FF4F00; }
+
+.tagline {
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+<div class="circle circle-1"></div>
+<div class="circle circle-2"></div>
+
+<div class="wrap">
+  <div class="eyebrow">HIRE &middot; AI ENGINEERING</div>
+
+  <div class="headline">
+    Hire Forward<br>
+    <span class="hl-orange">Deployed Engineers.</span>
+  </div>
+
+  <div class="sub">
+    Senior engineers embedded in your team — building and shipping AI directly against real customer workflows.
+  </div>
+
+  <div>
+    <div class="divider"></div>
+    <div class="logo">KOVIL<span class="dot-ai">.ai</span></div>
+    <div class="tagline">Matched in 48 hours &middot; 2-week risk-free trial &middot; 100% IP yours</div>
+  </div>
+</div>
+
+</body>
+</html>

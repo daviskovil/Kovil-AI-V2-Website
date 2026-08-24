@@ -34,6 +34,13 @@ const allSpecialists = [
     category: "AI & Agents",
   },
   {
+    slug: "forward-deployed-engineer", icon: Users, title: "Forward Deployed Engineers", isNew: true,
+    desc: "Senior engineers embedded directly with your team — building, integrating, and shipping AI against your real systems and workflows, not a demo.",
+    tags: ["Embedded Delivery", "Systems Integration", "Rapid Prototyping", "Production Hardening"],
+    chip: "bg-lime-500/10 text-lime-500",
+    category: "AI & Agents",
+  },
+  {
     slug: "claude-code-engineer", icon: Terminal, title: "Claude Code Engineers", isNew: true,
     desc: "Engineers fluent in Anthropic's Claude Code toolchain — ship at agentic velocity, run large migrations, build MCP tooling, enable your team.",
     tags: ["Agentic Coding", "MCP Tooling", "Migrations", "Team Enablement"],
