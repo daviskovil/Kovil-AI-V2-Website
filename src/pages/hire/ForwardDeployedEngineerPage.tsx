@@ -103,7 +103,7 @@ function FAQ({ items }: { items: typeof faqs }) {
             onClick={() => setOpen(open === i ? null : i)}
             aria-expanded={open === i}
           >
-            <span className="font-semibold text-base pr-4">{item.q}</span>
+            <h3 className="font-semibold text-base pr-4">{item.q}</h3>
             <ChevronDown className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`} />
           </button>
           {open === i && (
@@ -163,6 +163,19 @@ export default function ForwardDeployedEngineerPage() {
               <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Definition — explicit, citable answer for "what is a forward
+          deployed engineer" queries, independent of the FAQ prose */}
+      <section id="definition" className="border-t border-border bg-muted/10">
+        <div className="max-w-7xl mx-auto px-6 py-14">
+          <div className="max-w-3xl">
+            <h2 className="font-display font-bold text-2xl lg:text-3xl mb-4">What Is a Forward Deployed Engineer?</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              A <strong className="text-foreground">Forward Deployed Engineer (FDE)</strong> is a senior engineer embedded directly with a customer's team — on-site or tightly integrated remotely — who builds, integrates, and iterates software against that customer's real, specific workflows and systems, rather than building generic product features from a distance. The role was popularized by Palantir and is now widely used by AI-native companies to move enterprise AI deployments from pilot to production.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -399,7 +412,7 @@ export default function ForwardDeployedEngineerPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-muted/20 border-y border-border py-20">
+      <section id="faq" className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">FAQ</p>
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Frequently Asked Questions About Hiring a Forward Deployed Engineer</h2>
