@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ChevronDown, Users, Rocket, Shield, BookOpen, FileText, Workflow, Menu, X, ChevronRight, Zap, Cloud, Globe } from "lucide-react"
+import { ChevronDown, Users, Rocket, Shield, BookOpen, FileText, Workflow, Menu, X, ChevronRight, Zap, Cloud, Globe, ShoppingBag } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { OnboardingModal } from "@/src/components/OnboardingModal"
 import { openCalendly } from "@/src/lib/calendly"
@@ -85,6 +85,13 @@ const exploreLinks = [
     label: "Document AI & IDP",
     desc: "Intelligent document processing pipelines.",
     color: "#F97316",
+  },
+  {
+    to: "/shopify",
+    icon: ShoppingBag,
+    label: "Shopify AI Solutions",
+    desc: "AI agents built for Shopify stores.",
+    color: "#95BF47",
   },
 ]
 
@@ -220,6 +227,7 @@ function ExploreDropdown() {
     pathname.startsWith("/azure-ai-foundry") ||
     pathname.startsWith("/vertex-ai") ||
     pathname.startsWith("/intelligent-document-processing") ||
+    pathname.startsWith("/shopify") ||
     pathname.startsWith("/hire")
 
   useEffect(() => {
@@ -397,7 +405,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
         <div>
           <button
             onClick={() => setExploreOpen((o) => !o)}
-            className={`flex items-center justify-between w-full h-12 px-3 rounded-xl text-base font-medium transition-colors ${(pathname.startsWith("/agentforce") || pathname.startsWith("/azure-ai-foundry") || pathname.startsWith("/vertex-ai") || pathname.startsWith("/intelligent-document-processing") || pathname.startsWith("/hire")) ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
+            className={`flex items-center justify-between w-full h-12 px-3 rounded-xl text-base font-medium transition-colors ${(pathname.startsWith("/agentforce") || pathname.startsWith("/azure-ai-foundry") || pathname.startsWith("/vertex-ai") || pathname.startsWith("/intelligent-document-processing") || pathname.startsWith("/shopify") || pathname.startsWith("/hire")) ? "bg-accent/10 text-accent font-semibold" : "text-foreground hover:bg-muted/40"}`}
           >
             Explore
             <ChevronRight className={`h-4 w-4 transition-transform duration-200 ${exploreOpen ? "rotate-90" : ""}`} />
