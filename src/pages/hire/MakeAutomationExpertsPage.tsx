@@ -110,7 +110,7 @@ function FAQ({ items }: { items: typeof faqs }) {
             onClick={() => setOpen(open === i ? null : i)}
             aria-expanded={open === i}
           >
-            <span className="font-semibold text-base pr-4">{item.q}</span>
+            <h3 className="font-semibold text-base pr-4">{item.q}</h3>
             <ChevronDown className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`} />
           </button>
           {open === i && (
@@ -162,6 +162,19 @@ export default function MakeAutomationExpertsPage() {
               <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Definition — explicit, citable answer for "what is a Make.com
+          automation expert" queries, independent of the FAQ prose */}
+      <section id="definition" className="border-t border-border bg-muted/10">
+        <div className="max-w-7xl mx-auto px-6 py-14">
+          <div className="max-w-3xl">
+            <h2 className="font-display font-bold text-2xl lg:text-3xl mb-4">What Is a Make.com Automation Expert?</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              A <strong className="text-foreground">Make.com Automation Expert</strong> is an engineer who designs and builds workflow automations on Make.com (formerly Integromat), a visual platform that connects apps, APIs, and databases through drag-and-drop scenarios. They build advanced scenarios using routers, iterators, aggregators, filters, and raw HTTP calls — from simple cross-app syncs to complex, multi-route business logic with embedded AI decision steps, custom database updates, and error-handling pathways. The role spans scenario architecture, SaaS integration, custom Make app development, and production hardening.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -351,7 +364,7 @@ export default function MakeAutomationExpertsPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-muted/20 border-y border-border py-20">
+      <section id="faq" className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">FAQ</p>
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Frequently Asked Questions About Hiring Make.com Experts</h2>

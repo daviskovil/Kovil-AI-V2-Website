@@ -114,7 +114,7 @@ function FAQ({ items }: { items: typeof faqs }) {
             onClick={() => setOpen(open === i ? null : i)}
             aria-expanded={open === i}
           >
-            <span className="font-semibold text-base pr-4">{item.q}</span>
+            <h3 className="font-semibold text-base pr-4">{item.q}</h3>
             <ChevronDown className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`} />
           </button>
           {open === i && (
@@ -166,6 +166,19 @@ export default function MachineLearningEngineersPage() {
               <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Definition — explicit, citable answer for "what is a machine
+          learning engineer" queries, independent of the FAQ prose */}
+      <section id="definition" className="border-t border-border bg-muted/10">
+        <div className="max-w-7xl mx-auto px-6 py-14">
+          <div className="max-w-3xl">
+            <h2 className="font-display font-bold text-2xl lg:text-3xl mb-4">What Is a Machine Learning Engineer?</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              A <strong className="text-foreground">Machine Learning Engineer</strong> designs, builds, and deploys ML systems that make predictions or decisions from data. They work across the full ML lifecycle — problem framing, data pipeline design, feature engineering, model training and evaluation, deployment, and production monitoring. Unlike data scientists, who focus on analysis and experimentation, ML engineers focus on building reliable, scalable ML systems in production, spanning predictive models, recommendation systems, NLP pipelines, LLM fine-tuning, and the MLOps infrastructure that keeps models running.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -355,7 +368,7 @@ export default function MachineLearningEngineersPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-muted/20 border-y border-border py-20">
+      <section id="faq" className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">FAQ</p>
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Frequently Asked Questions About Hiring Machine Learning Engineers</h2>

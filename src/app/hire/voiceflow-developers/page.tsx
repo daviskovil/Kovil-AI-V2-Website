@@ -46,6 +46,43 @@ const serviceSchema = {
   offers: { '@type': 'Offer', description: '2-week risk-free trial. Matched in 48 hours. No lock-in contracts.', url: 'https://kovil.ai/hire/voiceflow-developers' },
 }
 
+// DefinedTerm — gives answer engines and LLMs a clean, unambiguous
+// definition to lift for "what is a Voiceflow developer" queries,
+// independent of the FAQ prose.
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Voiceflow Developer',
+  description: 'A Voiceflow Developer is an engineer who designs and builds conversational AI agents on Voiceflow, a visual platform for chat and voice channels that combines LLM prompts, structured conversation maps, variables, and API requests. They build autonomous customer support agents, AI scheduling bots, and voice-controlled IVRs that read and write data to external databases and hand off to human reps when needed. The role covers conversation design, intent training, custom API integration, and omnichannel deployment across web, WhatsApp, and voice.',
+  inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'Kovil AI Hiring Glossary', url: 'https://kovil.ai/hire' },
+  url: 'https://kovil.ai/hire/voiceflow-developers',
+}
+
+// WebPage + Speakable — mirrors the pattern used on kovil.ai/ and the
+// other newer service pages: dateModified for freshness signals,
+// speakable for voice/AEO surfaces.
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Hire Voiceflow Developers — Conversational AI Agents, Matched in 48 Hours',
+  description: 'Hire vetted Voiceflow developers embedded in your team in 48 hours. Conversational AI agent design, support chatbots, voice agents, custom API integrations, dynamic fallbacks.',
+  url: 'https://kovil.ai/hire/voiceflow-developers',
+  datePublished: '2026-07-10',
+  dateModified: '2026-08-24',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '#definition p', '#faq h3'],
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+}
+
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
@@ -82,6 +119,8 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />

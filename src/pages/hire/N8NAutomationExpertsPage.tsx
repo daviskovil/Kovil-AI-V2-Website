@@ -114,7 +114,7 @@ function FAQ({ items }: { items: typeof faqs }) {
             onClick={() => setOpen(open === i ? null : i)}
             aria-expanded={open === i}
           >
-            <span className="font-semibold text-base pr-4">{item.q}</span>
+            <h3 className="font-semibold text-base pr-4">{item.q}</h3>
             <ChevronDown className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`} />
           </button>
           {open === i && (
@@ -166,6 +166,19 @@ export default function N8NAutomationExpertsPage() {
               <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Definition — explicit, citable answer for "what is an n8n
+          automation expert" queries, independent of the FAQ prose */}
+      <section id="definition" className="border-t border-border bg-muted/10">
+        <div className="max-w-7xl mx-auto px-6 py-14">
+          <div className="max-w-3xl">
+            <h2 className="font-display font-bold text-2xl lg:text-3xl mb-4">What Is an n8n Automation Expert?</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              An <strong className="text-foreground">n8n Automation Expert</strong> is an engineer who designs and builds workflow automations on n8n, an open-source, node-based platform that connects apps, APIs, and services and can be self-hosted for full data control. They build automation pipelines ranging from simple two-step integrations to complex multi-branch workflows with AI steps, error handling, sub-workflows, and custom nodes for tools n8n doesn't natively support. The role covers self-hosted infrastructure setup, custom node development, and production-grade workflow deployment.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -355,7 +368,7 @@ export default function N8NAutomationExpertsPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-muted/20 border-y border-border py-20">
+      <section id="faq" className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">FAQ</p>
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Frequently Asked Questions About Hiring n8n Experts</h2>

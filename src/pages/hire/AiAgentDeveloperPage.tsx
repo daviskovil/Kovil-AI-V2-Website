@@ -103,7 +103,7 @@ function FAQ({ items }: { items: typeof faqs }) {
             onClick={() => setOpen(open === i ? null : i)}
             aria-expanded={open === i}
           >
-            <span className="font-semibold text-base pr-4">{item.q}</span>
+            <h3 className="font-semibold text-base pr-4">{item.q}</h3>
             <ChevronDown className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`} />
           </button>
           {open === i && (
@@ -163,6 +163,19 @@ export default function AiAgentDeveloperPage() {
               <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Definition — explicit, citable answer for "what is an ai agent
+          developer" queries, independent of the FAQ prose */}
+      <section id="definition" className="border-t border-border bg-muted/10">
+        <div className="max-w-7xl mx-auto px-6 py-14">
+          <div className="max-w-3xl">
+            <h2 className="font-display font-bold text-2xl lg:text-3xl mb-4">What Is an AI Agent Developer?</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              An <strong className="text-foreground">AI agent developer</strong> designs and builds software agents that reason, use tools, and act autonomously to complete tasks. Unlike a chatbot that only replies with text, an agent can plan a multi-step task, call APIs and tools, query databases, retrieve knowledge, remember context, and take real actions in production systems. The role spans agent architecture, tool and function-calling integration, retrieval and memory, multi-agent orchestration, evaluation, guardrails, and production deployment.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -405,7 +418,7 @@ export default function AiAgentDeveloperPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-muted/20 border-y border-border py-20">
+      <section id="faq" className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">FAQ</p>
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Frequently Asked Questions About Hiring AI Agent Developers</h2>

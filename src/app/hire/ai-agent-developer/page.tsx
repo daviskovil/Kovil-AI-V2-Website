@@ -55,6 +55,43 @@ const serviceSchema = {
   offers: { '@type': 'Offer', description: '2-week risk-free trial. Matched in 48 hours. No lock-in. 100% IP ownership.', url: 'https://kovil.ai/hire/ai-agent-developer' },
 }
 
+// DefinedTerm — gives answer engines and LLMs a clean, standalone
+// definition to lift for "what is an ai agent developer" queries,
+// independent of the FAQ prose.
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'AI Agent Developer',
+  description: 'An AI agent developer designs and builds software agents that reason, use tools, and act autonomously to complete tasks — planning multi-step work, calling APIs and tools, querying databases, retrieving knowledge, remembering context, and taking real actions in production systems, rather than just replying with text like a chatbot.',
+  inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'Kovil AI Hiring Glossary', url: 'https://kovil.ai/hire' },
+  url: 'https://kovil.ai/hire/ai-agent-developer',
+}
+
+// WebPage + Speakable — mirrors the pattern used on kovil.ai/ and
+// /hire/forward-deployed-engineer: dateModified for freshness signals,
+// speakable for voice/AEO surfaces.
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Hire AI Agent Developers — Vetted, Senior, in 48 Hours',
+  description: 'Hire vetted AI agent developers through Kovil AI. Senior engineers who build autonomous agents, custom tool integrations, multi-agent systems, and production agentic architectures.',
+  url: 'https://kovil.ai/hire/ai-agent-developer',
+  datePublished: '2026-07-08',
+  dateModified: '2026-08-24',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '#definition p', '#faq h3'],
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+}
+
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
@@ -96,6 +133,8 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />

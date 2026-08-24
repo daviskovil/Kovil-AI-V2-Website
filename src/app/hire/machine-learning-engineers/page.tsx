@@ -47,6 +47,43 @@ const serviceSchema = {
   offers: { '@type': 'Offer', description: '2-week risk-free trial. Matched in 48 hours. No lock-in contracts.', url: 'https://kovil.ai/hire/machine-learning-engineers' },
 }
 
+// DefinedTerm — gives answer engines and LLMs a clean, unambiguous
+// definition to lift for "what is a machine learning engineer" queries,
+// independent of the FAQ prose.
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Machine Learning Engineer',
+  description: 'A Machine Learning Engineer designs, builds, and deploys ML systems that make predictions or decisions from data. They work across the full ML lifecycle — problem framing, data pipeline design, feature engineering, model training and evaluation, deployment, and production monitoring. Unlike data scientists, who focus on analysis and experimentation, ML engineers focus on building reliable, scalable ML systems in production, spanning predictive models, recommendation systems, NLP pipelines, LLM fine-tuning, and the MLOps infrastructure that keeps models running.',
+  inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'Kovil AI Hiring Glossary', url: 'https://kovil.ai/hire' },
+  url: 'https://kovil.ai/hire/machine-learning-engineers',
+}
+
+// WebPage + Speakable — mirrors the pattern used on kovil.ai/ and the
+// other newer service pages: dateModified for freshness signals,
+// speakable for voice/AEO surfaces.
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Hire a Machine Learning Engineer — Matched in 48 Hours',
+  description: 'Hire a vetted machine learning engineer embedded in your team in 48 hours. Predictive ML, recommendation systems, NLP, LLM fine-tuning, MLOps. Engagement Manager oversight, 2-week risk-free trial.',
+  url: 'https://kovil.ai/hire/machine-learning-engineers',
+  datePublished: '2026-04-17',
+  dateModified: '2026-08-24',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '#definition p', '#faq h3'],
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+}
+
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
@@ -86,6 +123,8 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />

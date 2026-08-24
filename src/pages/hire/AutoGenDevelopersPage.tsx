@@ -114,7 +114,7 @@ function FAQ({ items }: { items: typeof faqs }) {
             onClick={() => setOpen(open === i ? null : i)}
             aria-expanded={open === i}
           >
-            <span className="font-semibold text-base pr-4">{item.q}</span>
+            <h3 className="font-semibold text-base pr-4">{item.q}</h3>
             <ChevronDown className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`} />
           </button>
           {open === i && (
@@ -166,6 +166,19 @@ export default function AutoGenDevelopersPage() {
               <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Definition — explicit, citable answer for "what is an
+          AutoGen developer" queries, independent of the FAQ prose */}
+      <section id="definition" className="border-t border-border bg-muted/10">
+        <div className="max-w-7xl mx-auto px-6 py-14">
+          <div className="max-w-3xl">
+            <h2 className="font-display font-bold text-2xl lg:text-3xl mb-4">What Is an AutoGen Developer?</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              An <strong className="text-foreground">AutoGen developer</strong> builds on Microsoft's open-source AutoGen framework for conversational multi-agent AI, where multiple agents message each other, critique each other's outputs, and execute code to iteratively solve problems. They design agent conversation systems — defining agent roles, configuring code execution environments with Docker sandboxing for safety, orchestrating GroupChats, and deploying production-grade AutoGen pipelines rather than one-off prototypes.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -355,7 +368,7 @@ export default function AutoGenDevelopersPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-muted/20 border-y border-border py-20">
+      <section id="faq" className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">FAQ</p>
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Frequently Asked Questions About Hiring AutoGen Developers</h2>

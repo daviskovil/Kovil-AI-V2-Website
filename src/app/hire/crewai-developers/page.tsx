@@ -90,6 +90,43 @@ const serviceSchema = {
   },
 }
 
+// DefinedTerm — gives answer engines and LLMs a clean, unambiguous
+// definition to lift for "what is a CrewAI developer" queries,
+// independent of the FAQ prose.
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'CrewAI Developer',
+  description: 'CrewAI is an open-source multi-agent framework built on top of LangChain that enables teams of AI agents to collaborate on complex tasks, each with a defined role, goal, and backstory. A CrewAI developer designs and builds these agent systems — defining roles, orchestrating task flows, integrating tools, and deploying crews that run reliably in production for use cases like research pipelines, content workflows, and data analysis.',
+  inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'Kovil AI Hiring Glossary', url: 'https://kovil.ai/hire' },
+  url: 'https://kovil.ai/hire/crewai-developers',
+}
+
+// WebPage + Speakable — mirrors the pattern used on kovil.ai/ and the
+// other newer service pages: dateModified for freshness signals,
+// speakable for voice/AEO surfaces.
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Hire CrewAI Developers — Multi-Agent Systems, Matched in 48 Hours',
+  description: 'Hire vetted CrewAI developers embedded in your team in 48 hours. Multi-agent orchestration, role-based agent systems, tool integration, production deployment.',
+  url: 'https://kovil.ai/hire/crewai-developers',
+  datePublished: '2026-04-18',
+  dateModified: '2026-08-24',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '#definition p', '#faq h3'],
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+}
+
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
@@ -203,6 +240,8 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />

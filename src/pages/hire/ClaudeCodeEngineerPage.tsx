@@ -112,7 +112,7 @@ function FAQ({ items }: { items: typeof faqs }) {
             onClick={() => setOpen(open === i ? null : i)}
             aria-expanded={open === i}
           >
-            <span className="font-semibold text-base pr-4">{item.q}</span>
+            <h3 className="font-semibold text-base pr-4">{item.q}</h3>
             <ChevronDown className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`} />
           </button>
           {open === i && (
@@ -174,6 +174,19 @@ export default function ClaudeCodeEngineerPage() {
           ))}
         </div>
         <p className="text-xs text-muted-foreground/60 mt-4">*Throughput uplift varies by task and codebase; agentic coding excels on well-scoped, verifiable work.</p>
+      </section>
+
+      {/* Definition — explicit, citable answer for "what is a Claude
+          Code engineer" queries, independent of the FAQ prose */}
+      <section id="definition" className="border-t border-border bg-muted/10">
+        <div className="max-w-7xl mx-auto px-6 py-14">
+          <div className="max-w-3xl">
+            <h2 className="font-display font-bold text-2xl lg:text-3xl mb-4">What Is a Claude Code Engineer?</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              A <strong className="text-foreground">Claude Code engineer</strong> is a software engineer fluent in Anthropic's Claude Code — an agentic coding tool that works in the terminal and IDE, understands an entire codebase, and can plan and execute multi-file changes, run tests, and iterate autonomously under the engineer's direction. They combine strong software-engineering fundamentals with the judgment to scope work for the agent, verify its output, and know when to trust it and when to intervene — the difference between a fast demo and reliable, production-grade software.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* What is Claude Code — AEO definition block */}
@@ -401,7 +414,7 @@ export default function ClaudeCodeEngineerPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-muted/20 border-y border-border py-20">
+      <section id="faq" className="bg-muted/20 border-y border-border py-20">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">FAQ</p>
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">Frequently Asked Questions About Hiring Claude Code Engineers</h2>

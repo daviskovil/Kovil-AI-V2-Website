@@ -99,11 +99,50 @@ export default async function HireRolePage({ params }: Props) {
     })),
   }
 
+  // DefinedTerm — gives answer engines and LLMs a clean, standalone
+  // definition to lift for "what is a/an {role}" queries, independent
+  // of the FAQ prose. Reuses the same roleDefinition shown on-page.
+  const definedTermSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTerm',
+    name: data.roleName,
+    description: data.roleDefinition,
+    inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'Kovil AI Hiring Glossary', url: 'https://kovil.ai/hire' },
+    url: `https://kovil.ai/hire/${role}`,
+  }
+
+  // WebPage + Speakable — mirrors the pattern used on kovil.ai/ and the
+  // custom hire pages (e.g. /hire/forward-deployed-engineer): dateModified
+  // for freshness signals, speakable for voice/AEO surfaces.
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: data.metaTitle,
+    description: data.metaDescription,
+    url: `https://kovil.ai/hire/${role}`,
+    datePublished: '2026-06-30',
+    dateModified: '2026-08-24',
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '#definition p', '#faq h3'],
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Kovil AI',
+      url: 'https://kovil.ai',
+      logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol.webp' },
+    },
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <main className="pt-20">
@@ -198,7 +237,7 @@ export default async function HireRolePage({ params }: Props) {
         </section>
 
         {/* ── ROLE DEFINITION ── */}
-        <section className="py-20 bg-[#FAF8F4]">
+        <section id="definition" className="py-20 bg-[#FAF8F4]">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid lg:grid-cols-5 gap-12 items-start">
               <div className="lg:col-span-3">
@@ -443,7 +482,7 @@ export default async function HireRolePage({ params }: Props) {
         </section>
 
         {/* ── FAQ ── */}
-        <section className="py-20 bg-[#FAF8F4] border-t border-[#E5E2D9]">
+        <section id="faq" className="py-20 bg-[#FAF8F4] border-t border-[#E5E2D9]">
           <div className="max-w-6xl mx-auto px-6">
             <div className="mb-10">
               <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0A0A0A] mb-4">

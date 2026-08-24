@@ -47,6 +47,43 @@ const serviceSchema = {
   offers: { '@type': 'Offer', description: '2-week risk-free trial. Matched in 48 hours. No lock-in contracts.', url: 'https://kovil.ai/hire/n8n-automation-experts' },
 }
 
+// DefinedTerm — gives answer engines and LLMs a clean, unambiguous
+// definition to lift for "what is an n8n automation expert" queries,
+// independent of the FAQ prose.
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'n8n Automation Expert',
+  description: 'An n8n Automation Expert is an engineer who designs and builds workflow automations on n8n, an open-source, node-based platform that connects apps, APIs, and services and can be self-hosted for full data control. They build automation pipelines ranging from simple two-step integrations to complex multi-branch workflows with AI steps, error handling, sub-workflows, and custom nodes for tools n8n doesn’t natively support. The role covers self-hosted infrastructure setup, custom node development, and production-grade workflow deployment.',
+  inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'Kovil AI Hiring Glossary', url: 'https://kovil.ai/hire' },
+  url: 'https://kovil.ai/hire/n8n-automation-experts',
+}
+
+// WebPage + Speakable — mirrors the pattern used on kovil.ai/ and the
+// other newer service pages: dateModified for freshness signals,
+// speakable for voice/AEO surfaces.
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Hire n8n Automation Experts — AI Workflow Automation, Matched in 48 Hours',
+  description: 'Hire vetted n8n automation experts embedded in your team in 48 hours. Workflow automation, AI-powered pipelines, API integrations, custom nodes, self-hosted n8n.',
+  url: 'https://kovil.ai/hire/n8n-automation-experts',
+  datePublished: '2026-04-18',
+  dateModified: '2026-08-24',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '#definition p', '#faq h3'],
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+}
+
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
@@ -83,6 +120,8 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />

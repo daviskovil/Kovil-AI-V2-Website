@@ -47,6 +47,43 @@ const serviceSchema = {
   offers: { '@type': 'Offer', description: '2-week risk-free trial. Matched in 48 hours. No lock-in contracts.', url: 'https://kovil.ai/hire/computer-vision-engineers' },
 }
 
+// DefinedTerm — gives answer engines and LLMs a clean, unambiguous
+// definition to lift for "what is a computer vision engineer" queries,
+// independent of the FAQ prose.
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Computer Vision Engineer',
+  description: 'A Computer Vision Engineer builds systems that enable machines to interpret and understand visual data — images and video. They design, train, and deploy models for tasks such as object detection, image classification, segmentation, facial recognition, OCR, and video analytics, using frameworks like PyTorch, TensorFlow, OpenCV, and YOLO. The role covers the full pipeline from data annotation through model training to edge or cloud deployment, with deep knowledge of convolutional architectures and visual model optimisation.',
+  inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'Kovil AI Hiring Glossary', url: 'https://kovil.ai/hire' },
+  url: 'https://kovil.ai/hire/computer-vision-engineers',
+}
+
+// WebPage + Speakable — mirrors the pattern used on kovil.ai/ and the
+// other newer service pages: dateModified for freshness signals,
+// speakable for voice/AEO surfaces.
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Hire a Computer Vision Developer — Matched in 48 Hours',
+  description: 'Hire a vetted computer vision engineer embedded in your team in 48 hours. Object detection, video analytics, medical imaging, OCR, edge AI. Engagement Manager oversight, 2-week risk-free trial.',
+  url: 'https://kovil.ai/hire/computer-vision-engineers',
+  datePublished: '2026-04-17',
+  dateModified: '2026-08-24',
+  inLanguage: 'en-US',
+  isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '#definition p', '#faq h3'],
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kovil AI',
+    url: 'https://kovil.ai',
+    logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo-symbol-orange.webp' },
+  },
+}
+
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
@@ -86,6 +123,8 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
