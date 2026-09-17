@@ -4,16 +4,12 @@ import Link from 'next/link'
 import {
   ArrowRight, Building2, DollarSign, ShoppingCart, MessageSquare,
   ClipboardList, GitBranch, Headphones, Code2, Package, Bot, Users,
-  TrendingUp, Flame,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import { Button } from '@/src/components/ui/button'
 import { openCalendly } from '@/src/lib/calendly'
-import {
-  PLATFORM_GROUPS, getPlatformsByGroup, LTV_RANK,
-  type Platform, type TalentDemand,
-} from '@/src/data/platforms'
+import { PLATFORM_GROUPS, getPlatformsByGroup, type Platform } from '@/src/data/platforms'
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Building2, DollarSign, ShoppingCart, MessageSquare, ClipboardList, GitBranch, Headphones, Code2, Package,
@@ -21,49 +17,6 @@ const ICON_MAP: Record<string, LucideIcon> = {
 
 const TOTAL_PLATFORMS = PLATFORM_GROUPS.reduce((sum, g) => sum + getPlatformsByGroup(g.id).length, 0)
 const TOTAL_ROLES = new Set(PLATFORM_GROUPS.flatMap((g) => getPlatformsByGroup(g.id).flatMap((p) => p.roles))).size
-
-// ── Talent demand badge styling — surfaces the resourcing signal per platform ──
-const DEMAND_STYLE: Record<TalentDemand, { bg: string; text: string; border: string; icon?: LucideIcon }> = {
-  'Critically High': { bg: '#FF4F00', text: '#FFFFFF', border: '#FF4F00', icon: Flame },
-  'Constant': { bg: '#FF4F00', text: '#FFFFFF', border: '#FF4F00', icon: Flame },
-  'Very High': { bg: '#FF4F0014', text: '#FF4F00', border: '#FF4F0035' },
-  'Growing Fast': { bg: '#F59E0B14', text: '#B45309', border: '#F59E0B35', icon: TrendingUp },
-  'High': { bg: '#0A0A0A0A', text: '#374151', border: '#0A0A0A1A' },
-  'Moderate-High': { bg: '#0A0A0A08', text: '#6B7280', border: '#0A0A0A14' },
-  'Moderate': { bg: '#0A0A0A05', text: '#9CA3AF', border: '#0A0A0A0F' },
-}
-
-function DemandBadge({ demand }: { demand: TalentDemand }) {
-  const style = DEMAND_STYLE[demand]
-  const Icon = style.icon
-  return (
-    <span
-      className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide px-2 py-1 rounded-full whitespace-nowrap"
-      style={{ background: style.bg, color: style.text, border: `1px solid ${style.border}` }}
-    >
-      {Icon && <Icon className="h-2.5 w-2.5" />}
-      {demand} demand
-    </span>
-  )
-}
-
-function LtvMeter({ ltv }: { ltv: Platform['ltv'] }) {
-  const rank = LTV_RANK[ltv]
-  return (
-    <div className="flex items-center gap-1.5 shrink-0" title={`${ltv} customer LTV`}>
-      <div className="flex items-center gap-0.5">
-        {[1, 2, 3, 4].map((i) => (
-          <span
-            key={i}
-            className="h-1.5 w-1.5 rounded-full"
-            style={{ background: i <= rank ? '#FF4F00' : '#0A0A0A14' }}
-          />
-        ))}
-      </div>
-      <span className="text-[10px] text-muted-foreground font-medium whitespace-nowrap">{ltv} LTV</span>
-    </div>
-  )
-}
 
 function monogram(name: string): string {
   const primary = name.split(' (')[0]
@@ -91,8 +44,8 @@ function PlatformCard({ platform, color }: { platform: Platform; color: string }
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-1.5 mb-4">
-        {platform.roles.slice(0, 2).map((role) => (
+      <div className="flex flex-wrap gap-1.5">
+        {platform.roles.map((role) => (
           <span
             key={role}
             className="inline-flex items-center text-[10px] font-medium text-foreground/70 bg-muted px-2 py-1 rounded-md leading-none"
@@ -100,11 +53,6 @@ function PlatformCard({ platform, color }: { platform: Platform; color: string }
             {role}
           </span>
         ))}
-      </div>
-
-      <div className="flex items-center justify-between gap-2 pt-3 border-t border-border/60">
-        <DemandBadge demand={platform.demand} />
-        <LtvMeter ltv={platform.ltv} />
       </div>
     </div>
   )
