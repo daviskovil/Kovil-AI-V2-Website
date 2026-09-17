@@ -3,7 +3,7 @@ import N8nShopifySyncPage from '@/src/pages/shopify/workflows/N8nShopifySyncPage
 
 export const metadata: Metadata = {
   title: 'n8n Shopify Agentic Sync Setup & Integration',
-  description: 'Self-hosted n8n workflows connecting Shopify webhooks with OpenAI/Claude reasoning agents, CrewAI blocks, and Supabase tables — at zero per-execution cost. Live in 2 weeks.',
+  description: 'Self-hosted n8n workflows connecting Shopify webhooks with OpenAI/Claude agents and Supabase tables — at zero per-execution cost. Live in 2 weeks.',
   alternates: { canonical: 'https://kovil.ai/shopify/workflows/n8n-shopify-agentic-sync' },
   keywords: [
     'n8n shopify automation',

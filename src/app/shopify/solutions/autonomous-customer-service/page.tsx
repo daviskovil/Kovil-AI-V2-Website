@@ -3,7 +3,7 @@ import AutonomousCustomerServicePage from '@/src/pages/shopify/solutions/Autonom
 
 export const metadata: Metadata = {
   title: 'Autonomous Customer Service AI Agents for Shopify',
-  description: 'Support agents with read/write API access to order tracking, address correction, and return authorization — resolving 70%+ of tickets while risky cases escalate to a human. Live in 2 weeks.',
+  description: 'Support agents with read/write API access to order tracking, address correction, and returns — resolving 70%+ of tickets, risky cases escalate to a human.',
   alternates: { canonical: 'https://kovil.ai/shopify/solutions/autonomous-customer-service' },
   keywords: [
     'shopify ai customer service',

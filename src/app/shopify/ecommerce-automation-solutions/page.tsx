@@ -3,7 +3,7 @@ import ShopifyEcommerceAutomationPage from '@/src/pages/shopify/ShopifyEcommerce
 
 export const metadata: Metadata = {
   title: 'Shopify AI E-Commerce Automation Systems',
-  description: 'Enterprise-tier e-commerce AI automation workflows. Deploy custom autonomous systems for returns fraud verification, supplier catalog enrichment, multi-warehouse fulfillment, and omnichannel marketing sync.',
+  description: 'Enterprise-tier Shopify AI automation — returns fraud verification, supplier catalog enrichment, multi-warehouse fulfillment, and omnichannel marketing sync.',
   alternates: { canonical: 'https://kovil.ai/shopify/ecommerce-automation-solutions' },
   keywords: [
     'shopify ecommerce automation',

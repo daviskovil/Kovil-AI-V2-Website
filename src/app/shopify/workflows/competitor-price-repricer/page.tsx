@@ -3,7 +3,7 @@ import CompetitorPriceRepricerPage from '@/src/pages/shopify/workflows/Competito
 
 export const metadata: Metadata = {
   title: 'AI Competitor Price Scraper & Dynamic Repricer',
-  description: 'Automated scraper agents that monitor competitor storefronts hourly and adjust Shopify variant pricing dynamically within protected margin floors. Live in 2 weeks, risk-free trial.',
+  description: 'Automated scraper agents that monitor competitor storefronts hourly and adjust Shopify pricing dynamically within protected margin floors. Risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/shopify/workflows/competitor-price-repricer' },
   keywords: [
     'competitor price scraper shopify',

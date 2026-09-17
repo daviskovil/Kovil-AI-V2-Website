@@ -3,7 +3,7 @@ import BeautyCosmeticsAiPage from '@/src/pages/shopify/solutions/BeautyCosmetics
 
 export const metadata: Metadata = {
   title: 'Beauty & Cosmetics AI Agents for Shopify',
-  description: 'Deploy custom conversational beauty agents for skin profiles, vision-model shade matching, and full routine bundling — with zero photo retention. Live in 2 weeks, risk-free trial.',
+  description: 'Custom conversational beauty agents for skin profiles, vision-model shade matching, and routine bundling — with zero photo retention. Live in 2 weeks.',
   alternates: { canonical: 'https://kovil.ai/shopify/solutions/beauty-cosmetics-ai-agents' },
   keywords: [
     'beauty ai agent shopify',

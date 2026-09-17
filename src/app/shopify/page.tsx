@@ -3,7 +3,7 @@ import ShopifyHubPage from '@/src/pages/shopify/ShopifyHubPage'
 
 export const metadata: Metadata = {
   title: 'Shopify AI Agent Integration & E-Commerce Automation',
-  description: 'Deploy custom autonomous AI agent networks on Shopify. Integrate Model Context Protocol (MCP) servers, semantic product recommendation RAG, and multi-agent workflows for e-commerce. Matched in 48 hours, 2-week risk-free trial.',
+  description: 'Deploy custom autonomous AI agent networks on Shopify — MCP servers, semantic RAG, and multi-agent workflows. Matched in 48 hours, 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/shopify' },
   keywords: [
     'shopify ai agent',

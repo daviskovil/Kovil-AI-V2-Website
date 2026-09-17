@@ -3,7 +3,7 @@ import ShopifyAiToolkitPage from '@/src/pages/shopify/ShopifyAiToolkitPage'
 
 export const metadata: Metadata = {
   title: 'Shopify AI Toolkit & MCP Server Integrations',
-  description: 'Integrate your storefront with the official Shopify AI Toolkit and custom Model Context Protocol (MCP) servers. Semantically connect catalogs and order pipelines to LLMs with sub-50ms response times.',
+  description: 'Integrate your storefront with the Shopify AI Toolkit and custom MCP servers — semantically connecting catalogs and orders to LLMs with sub-50ms response times.',
   alternates: { canonical: 'https://kovil.ai/shopify/ai-toolkit-integration' },
   keywords: [
     'shopify ai toolkit',

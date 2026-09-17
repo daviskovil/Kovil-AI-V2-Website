@@ -3,7 +3,7 @@ import ReturnsFraudAssessmentPage from '@/src/pages/shopify/workflows/ReturnsFra
 
 export const metadata: Metadata = {
   title: 'Autonomous Returns Fraud Assessment & Auditing Agent',
-  description: 'Returns auditor agents that check customer history, cross-reference item photos with vision models, and flag risk before processing refunds. 48-hour average processing. Live in 2 weeks.',
+  description: 'Returns auditor agents that check customer history and cross-reference photos with vision models to flag risk before refunds. 48-hour avg processing.',
   alternates: { canonical: 'https://kovil.ai/shopify/workflows/returns-fraud-assessment' },
   keywords: [
     'returns fraud detection shopify',

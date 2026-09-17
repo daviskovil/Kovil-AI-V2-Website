@@ -3,7 +3,7 @@ import ShopifyAgenticCommercePage from '@/src/pages/shopify/ShopifyAgenticCommer
 
 export const metadata: Metadata = {
   title: 'Shopify Agentic Commerce Solutions & Consulting',
-  description: 'Design and deploy custom multi-agent networks (Manager, Design, Comms, and Repricing agents) tailored for high-volume Shopify stores. LangGraph orchestration, human-in-the-loop controls, sprint-delivered with 2-week risk-free trial.',
+  description: 'Design and deploy custom multi-agent networks for high-volume Shopify stores — LangGraph orchestration, human-in-the-loop controls, 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/shopify/ai-agentic-commerce' },
   keywords: [
     'shopify agentic commerce',

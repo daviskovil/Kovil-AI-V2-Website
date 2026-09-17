@@ -3,7 +3,7 @@ import HireShopifyAgentDeveloperPage from '@/src/pages/shopify/HireShopifyAgentD
 
 export const metadata: Metadata = {
   title: 'Hire Shopify AI Agent Developers',
-  description: 'Hire senior AI developers vetted for Shopify Admin API integrations, LangGraph multi-agent orchestration, MCP servers, and RAG catalog search. Matched in 48 hours, 100% IP ownership, 2-week risk-free trial.',
+  description: 'Hire senior AI developers vetted for Shopify Admin API, LangGraph orchestration, MCP servers, and RAG search. Matched in 48 hours, 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/shopify/hire-ai-agent-developer' },
   keywords: [
     'hire shopify ai developer',

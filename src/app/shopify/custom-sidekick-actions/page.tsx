@@ -3,7 +3,7 @@ import ShopifySidekickActionsPage from '@/src/pages/shopify/ShopifySidekickActio
 
 export const metadata: Metadata = {
   title: 'Custom Shopify Sidekick Actions & Assistant Overrides',
-  description: 'Extend the default Shopify Sidekick assistant with custom action hooks, vector database RAG layers, and secure legacy ERP synchronization. Turn Sidekick into a conversational dashboard for your whole stack.',
+  description: 'Extend Shopify Sidekick with custom action hooks, vector RAG layers, and secure legacy ERP sync — turning it into a conversational dashboard for your stack.',
   alternates: { canonical: 'https://kovil.ai/shopify/custom-sidekick-actions' },
   keywords: [
     'shopify sidekick custom actions',

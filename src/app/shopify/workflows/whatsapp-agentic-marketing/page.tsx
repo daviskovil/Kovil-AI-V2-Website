@@ -3,7 +3,7 @@ import WhatsappAgenticMarketingPage from '@/src/pages/shopify/workflows/Whatsapp
 
 export const metadata: Metadata = {
   title: 'WhatsApp Agentic Marketing & Checkout Recovery',
-  description: 'Conversational WhatsApp agents that recover abandoned checkouts, answer real sizing/product questions in-thread, and hand off a one-tap checkout link. 98% open rate. Live in 2 weeks.',
+  description: 'Conversational WhatsApp agents that recover abandoned checkouts, answer sizing/product questions in-thread, and hand off checkout links. 98% open rate.',
   alternates: { canonical: 'https://kovil.ai/shopify/workflows/whatsapp-agentic-marketing' },
   keywords: [
     'shopify whatsapp automation',

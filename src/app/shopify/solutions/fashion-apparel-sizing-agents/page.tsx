@@ -3,7 +3,7 @@ import FashionApparelSizingPage from '@/src/pages/shopify/solutions/FashionAppar
 
 export const metadata: Metadata = {
   title: 'Fashion & Apparel Sizing AI Agents for Shopify',
-  description: 'Custom sizing and outfit recommendation agents that size per item (not a generic S/M/L guide), build visual outfit bundles, and cut size-related returns. Live in 2 weeks, risk-free trial.',
+  description: 'Custom sizing and outfit agents that size per item (not generic S/M/L), build visual outfit bundles, and cut size-related returns. Live in 2 weeks.',
   alternates: { canonical: 'https://kovil.ai/shopify/solutions/fashion-apparel-sizing-agents' },
   keywords: [
     'fashion ai sizing agent',
