@@ -168,6 +168,14 @@ export const STATIC_SECTIONS: SitemapSection[] = [
     ],
   },
   {
+    id: 'platforms',
+    title: 'Platform Integrations',
+    color: '#F59E0B',
+    links: [
+      { label: 'Platforms Hub', href: '/platforms' },
+    ],
+  },
+  {
     id: 'agentforce',
     title: 'Agentforce',
     color: '#0ea5e9',
