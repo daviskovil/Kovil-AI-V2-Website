@@ -195,43 +195,87 @@ function Cell({ value }: { value: string }) {
   return <span className="text-muted-foreground">{value}</span>
 }
 
+const cloudChips = [
+  { label: 'Sales Cloud', color: '#00A1E0' },
+  { label: 'Service Cloud', color: '#FF4F00' },
+  { label: 'Marketing Cloud', color: '#00A1E0' },
+  { label: 'Data Cloud', color: '#FF4F00' },
+]
+
 function HeroGraphic() {
   return (
-    <div className="relative rounded-3xl border border-[#00A1E0]/20 bg-gradient-to-br from-[#00A1E0]/[0.06] to-accent/[0.05] p-8 overflow-hidden">
-      <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-[#00A1E0]/10 blur-2xl" />
-      <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-accent/10 blur-2xl" />
-      <div className="relative flex flex-col gap-4">
-        <div className="flex items-center gap-3 bg-background/80 backdrop-blur rounded-2xl border border-border p-4">
-          <div className="h-11 w-11 rounded-xl bg-[#00A1E0]/12 border border-[#00A1E0]/30 flex items-center justify-center shrink-0">
-            <Cloud className="h-5 w-5 text-[#00A1E0]" />
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="relative rounded-3xl p-8 md:p-9 overflow-hidden"
+      style={{ background: 'linear-gradient(160deg, #061826 0%, #0A0F16 55%, #0A0A0D 100%)' }}
+    >
+      {/* Ambient glow + texture */}
+      <div className="absolute -top-16 -right-16 h-56 w-56 rounded-full blur-3xl" style={{ background: '#00A1E033' }} />
+      <div className="absolute -bottom-16 -left-16 h-56 w-56 rounded-full blur-3xl" style={{ background: '#FF4F0022' }} />
+      <div
+        className="absolute inset-0 opacity-[0.07]"
+        style={{ backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)', backgroundSize: '18px 18px', color: '#FFFFFF' }}
+      />
+
+      <div className="relative flex flex-col gap-6">
+        {/* Live badge */}
+        <div className="flex items-center gap-2 self-start rounded-full bg-white/5 border border-white/10 px-3 py-1.5">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: '#4ADE80' }} />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ background: '#4ADE80' }} />
+          </span>
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-white/60">Live on Salesforce</span>
+        </div>
+
+        {/* Central platform node */}
+        <div className="flex flex-col items-center text-center py-2">
+          <div className="relative mb-4">
+            <div className="absolute inset-0 rounded-full blur-xl" style={{ background: '#00A1E0', opacity: 0.4 }} />
+            <div
+              className="relative h-16 w-16 rounded-2xl flex items-center justify-center shadow-lg"
+              style={{ background: 'linear-gradient(135deg, #00A1E0, #0077A8)' }}
+            >
+              <Cloud className="h-8 w-8 text-white" />
+            </div>
           </div>
-          <div>
-            <p className="font-display font-bold text-sm">Salesforce Platform</p>
-            <p className="text-xs text-muted-foreground">Sales · Service · Marketing · Data Cloud</p>
+          <p className="font-display font-bold text-white text-lg">Salesforce Platform</p>
+          <div className="flex flex-wrap items-center justify-center gap-1.5 mt-3">
+            {cloudChips.map((c) => (
+              <span key={c.label} className="inline-flex items-center gap-1.5 text-[11px] font-medium text-white/70 bg-white/5 border border-white/10 rounded-full px-2.5 py-1">
+                <span className="h-1.5 w-1.5 rounded-full" style={{ background: c.color }} />
+                {c.label}
+              </span>
+            ))}
           </div>
         </div>
-        <div className="flex items-center gap-3 pl-6">
-          <div className="h-6 w-px bg-border" />
-          <ArrowRight className="h-3.5 w-3.5 text-muted-foreground rotate-90" />
+
+        {/* Animated connector */}
+        <div className="relative h-8 flex items-center justify-center">
+          <div className="h-full w-px" style={{ background: 'linear-gradient(to bottom, #ffffff30, transparent)' }} />
+          <div className="absolute top-0 h-1.5 w-1.5 rounded-full bg-white/80 animate-bounce" />
         </div>
+
+        {/* Destination cards */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-background/80 backdrop-blur rounded-2xl border border-accent/25 p-4">
-            <div className="h-9 w-9 rounded-lg bg-accent/12 border border-accent/30 flex items-center justify-center mb-3">
-              <Bot className="h-4 w-4 text-accent" />
+          <div className="rounded-2xl p-4 shadow-lg" style={{ background: 'linear-gradient(160deg, #2A1408 0%, #150A05 100%)', border: '1px solid #FF4F0040' }}>
+            <div className="h-10 w-10 rounded-xl flex items-center justify-center mb-3 shadow-md" style={{ background: 'linear-gradient(135deg, #FF4F00, #C43D00)' }}>
+              <Bot className="h-5 w-5 text-white" />
             </div>
-            <p className="font-display font-bold text-sm mb-1">Agentforce AI</p>
-            <p className="text-xs text-muted-foreground">Autonomous agents, live in weeks</p>
+            <p className="font-display font-bold text-sm text-white mb-1">Agentforce AI</p>
+            <p className="text-xs text-white/50 leading-snug">Autonomous agents, live in weeks</p>
           </div>
-          <div className="bg-background/80 backdrop-blur rounded-2xl border border-[#00A1E0]/25 p-4">
-            <div className="h-9 w-9 rounded-lg bg-[#00A1E0]/12 border border-[#00A1E0]/30 flex items-center justify-center mb-3">
-              <Users className="h-4 w-4 text-[#00A1E0]" />
+          <div className="rounded-2xl p-4 shadow-lg" style={{ background: 'linear-gradient(160deg, #06222E 0%, #051318 100%)', border: '1px solid #00A1E040' }}>
+            <div className="h-10 w-10 rounded-xl flex items-center justify-center mb-3 shadow-md" style={{ background: 'linear-gradient(135deg, #00A1E0, #0077A8)' }}>
+              <Users className="h-5 w-5 text-white" />
             </div>
-            <p className="font-display font-bold text-sm mb-1">Specialist Talent</p>
-            <p className="text-xs text-muted-foreground">Admins, devs, architects</p>
+            <p className="font-display font-bold text-sm text-white mb-1">Specialist Talent</p>
+            <p className="text-xs text-white/50 leading-snug">Admins, devs, architects</p>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
