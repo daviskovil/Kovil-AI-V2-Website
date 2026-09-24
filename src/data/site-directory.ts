@@ -173,6 +173,7 @@ export const STATIC_SECTIONS: SitemapSection[] = [
     color: '#F59E0B',
     links: [
       { label: 'Platforms Hub', href: '/platforms' },
+      { label: 'Salesforce', href: '/platforms/salesforce' },
     ],
   },
   {

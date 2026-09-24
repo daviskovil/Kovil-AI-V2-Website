@@ -76,6 +76,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/shopify/workflows/loyalty-vip-offer-generation`,    lastModified: now,  changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/ai-operations`,                                   lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/platforms`,                                       lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/platforms/salesforce`,                            lastModified: now,  changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE_URL}/apply-as-it-recruiter`,                           lastModified: now,  changeFrequency: 'monthly', priority: 0.6 },
     // ── Intelligent Document Processing ──────────────────────────────────────
     { url: `${BASE_URL}/intelligent-document-processing`,                                      lastModified: now, changeFrequency: 'monthly', priority: 0.9 },

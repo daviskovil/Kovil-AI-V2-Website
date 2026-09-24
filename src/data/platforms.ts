@@ -45,10 +45,12 @@ export interface Platform {
   demand: TalentDemand
   ltv: LtvTier
   roles: string[]
+  /** Set once a dedicated /platforms/[slug] page exists — makes the hub card a link. */
+  href?: string
 }
 
 export const platforms: Platform[] = [
-  { slug: 'salesforce', name: 'Salesforce', category: 'CRM & Enterprise Cloud', group: 'crm-sales', adoption: 'High to Massive', demand: 'Critically High', ltv: 'Ultra-High', roles: ['Salesforce Developers (Apex/LWC)', 'Admins', 'Architects'] },
+  { slug: 'salesforce', name: 'Salesforce', category: 'CRM & Enterprise Cloud', group: 'crm-sales', adoption: 'High to Massive', demand: 'Critically High', ltv: 'Ultra-High', roles: ['Salesforce Developers (Apex/LWC)', 'Admins', 'Architects', 'Agentforce Specialists'], href: '/platforms/salesforce' },
   { slug: 'hubspot', name: 'HubSpot', category: 'CRM & Marketing Automation', group: 'crm-sales', adoption: 'Massive', demand: 'Critically High', ltv: 'Ultra-High', roles: ['HubSpot Developers', 'Solutions Architects', 'Admins'] },
   { slug: 'pipedrive', name: 'Pipedrive', category: 'SMB Sales CRM', group: 'crm-sales', adoption: 'Massive', demand: 'Moderate', ltv: 'Moderate-High', roles: ['CRM Implementation Experts', 'Zapier/Make Automation Devs'] },
   { slug: 'freshworks', name: 'Freshworks', category: 'CRM & IT Helpdesk', group: 'crm-sales', adoption: 'Massive', demand: 'High', ltv: 'High', roles: ['Freshdesk/Freshservice Admins', 'Freshworks Developers'] },

@@ -26,9 +26,12 @@ function monogram(name: string): string {
 }
 
 function PlatformCard({ platform, color }: { platform: Platform; color: string }) {
+  const Wrapper = platform.href ? Link : 'div'
+  const wrapperProps = platform.href ? { href: platform.href } : {}
   return (
-    <div
-      className="group bg-card border border-border rounded-2xl p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+    <Wrapper
+      {...(wrapperProps as any)}
+      className="group bg-card border border-border rounded-2xl p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 block"
       style={{ borderTopWidth: '3px', borderTopColor: color }}
     >
       <div className="flex items-start gap-3 mb-4">
@@ -39,7 +42,10 @@ function PlatformCard({ platform, color }: { platform: Platform; color: string }
           {monogram(platform.name)}
         </div>
         <div className="min-w-0">
-          <h3 className="font-display font-bold text-sm leading-snug">{platform.name}</h3>
+          <h3 className="font-display font-bold text-sm leading-snug flex items-center gap-1.5">
+            {platform.name}
+            {platform.href && <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all text-accent" />}
+          </h3>
           <p className="text-xs text-muted-foreground leading-relaxed mt-0.5">{platform.category}</p>
         </div>
       </div>
@@ -54,7 +60,7 @@ function PlatformCard({ platform, color }: { platform: Platform; color: string }
           </span>
         ))}
       </div>
-    </div>
+    </Wrapper>
   )
 }
 
