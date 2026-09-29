@@ -51,9 +51,9 @@ export interface Platform {
 
 export const platforms: Platform[] = [
   { slug: 'salesforce', name: 'Salesforce', category: 'CRM & Enterprise Cloud', group: 'crm-sales', adoption: 'High to Massive', demand: 'Critically High', ltv: 'Ultra-High', roles: ['Salesforce Developers (Apex/LWC)', 'Admins', 'Architects', 'Agentforce Specialists'], href: '/platforms/salesforce' },
-  { slug: 'hubspot', name: 'HubSpot', category: 'CRM & Marketing Automation', group: 'crm-sales', adoption: 'Massive', demand: 'Critically High', ltv: 'Ultra-High', roles: ['HubSpot Developers', 'Solutions Architects', 'Admins'] },
-  { slug: 'pipedrive', name: 'Pipedrive', category: 'SMB Sales CRM', group: 'crm-sales', adoption: 'Massive', demand: 'Moderate', ltv: 'Moderate-High', roles: ['CRM Implementation Experts', 'Zapier/Make Automation Devs'] },
-  { slug: 'freshworks', name: 'Freshworks', category: 'CRM & IT Helpdesk', group: 'crm-sales', adoption: 'Massive', demand: 'High', ltv: 'High', roles: ['Freshdesk/Freshservice Admins', 'Freshworks Developers'] },
+  { slug: 'hubspot', name: 'HubSpot', category: 'CRM & Marketing Automation', group: 'crm-sales', adoption: 'Massive', demand: 'Critically High', ltv: 'Ultra-High', roles: ['HubSpot Developers', 'Solutions Architects', 'Admins'], href: '/platforms/hubspot' },
+  { slug: 'pipedrive', name: 'Pipedrive', category: 'SMB Sales CRM', group: 'crm-sales', adoption: 'Massive', demand: 'Moderate', ltv: 'Moderate-High', roles: ['CRM Implementation Experts', 'Zapier/Make Automation Devs'], href: '/platforms/pipedrive' },
+  { slug: 'freshworks', name: 'Freshworks', category: 'CRM & IT Helpdesk', group: 'crm-sales', adoption: 'Massive', demand: 'High', ltv: 'High', roles: ['Freshdesk/Freshservice Admins', 'Freshworks Developers'], href: '/platforms/freshworks' },
 
   { slug: 'microsoft-dynamics-365', name: 'Microsoft Dynamics 365', category: 'ERP & CRM', group: 'erp-financials', adoption: 'High', demand: 'High', ltv: 'Very High', roles: ['D365 Developers (X++)', 'Functional Consultants', 'Power Platform Devs'] },
   { slug: 'netsuite', name: 'NetSuite (Oracle)', category: 'Cloud ERP & Financials', group: 'erp-financials', adoption: 'High — go-to for scaling SMBs', demand: 'Very High', ltv: 'Very High', roles: ['NetSuite Developers (SuiteScript)', 'ERP Consultants'] },

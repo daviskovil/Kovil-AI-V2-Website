@@ -174,6 +174,9 @@ export const STATIC_SECTIONS: SitemapSection[] = [
     links: [
       { label: 'Platforms Hub', href: '/platforms' },
       { label: 'Salesforce', href: '/platforms/salesforce' },
+      { label: 'HubSpot', href: '/platforms/hubspot' },
+      { label: 'Pipedrive', href: '/platforms/pipedrive' },
+      { label: 'Freshworks', href: '/platforms/freshworks' },
     ],
   },
   {
