@@ -101,7 +101,7 @@ export default function PlatformsHubPage() {
             </p>
 
             <Button variant="accent" size="lg" className="rounded-full px-8" onClick={openCalendly}>
-              Book a scoping call <ArrowRight className="ml-2 h-4 w-4" />
+              Hire a Platform AI Expert <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </motion.div>
         </div>

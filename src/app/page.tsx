@@ -30,15 +30,13 @@ export const metadata: Metadata = {
   openGraph: {
     url: 'https://kovil.ai/',
     type: 'website',
-    title: 'Kovil AI — We Build AI Agents for Enterprises',
-    description: 'We build and deploy AI agents for enterprises — fixed price, fixed timeline, zero delivery risk. Managed AI engineers, outcome-based projects, and AI agent rescue. Ship your first agent in weeks.',
-    images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Kovil AI — We Build AI Agents for Enterprises' }],
+    title: 'Kovil AI — Platform AI Experts for Enterprise AI Agents',
+    description: 'Integrate autonomous AI agents into your existing platforms and workflows — Salesforce, HubSpot, Shopify, and 30+ enterprise tools. Fixed price, zero delivery risk.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kovil AI — We Build AI Agents for Enterprises',
-    description: 'We build and deploy AI agents for enterprises — fixed price, fixed timeline, zero delivery risk. Ship your first agent in weeks.',
-    images: ['https://kovil.ai/og-image.png'],
+    title: 'Kovil AI — Platform AI Experts for Enterprise AI Agents',
+    description: 'Integrate autonomous AI agents into your existing platforms and workflows — Salesforce, HubSpot, Shopify, and 30+ enterprise tools.',
   },
 }
 
