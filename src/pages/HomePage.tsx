@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "motion/react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2, Check, X, Rocket, LifeBuoy, ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2, Check, X, Rocket, LifeBuoy, ChevronLeft, ChevronRight, Star } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { OnboardingModal } from "../components/OnboardingModal"
 import { caseStudies } from "../data/case-studies"
@@ -139,6 +139,83 @@ const FAQ_SCHEMA = {
   ]
 }
 
+
+const TESTIMONIALS = [
+  {
+    name: "Paul",
+    initials: "PA",
+    location: "US",
+    date: "Aug 27, 2026",
+    title: "We've been working with the Kovil team...",
+    body: "We've been working with the Kovil team for about 6 months and have had a very positive experience. They are able to quickly source candidates and connect us with great talent. Would recommend them.",
+    avatarColor: "bg-violet-100 text-violet-700",
+  },
+  {
+    name: "Hall Charter",
+    initials: "HC",
+    location: "US",
+    date: "May 6, 2026",
+    title: "Kovil are top notch!",
+    body: "I have been working with Kovil for several months now and am very impressed with their talent and management/oversight. It's been a pleasure to work with them for our fast paced AI startup software development needs.",
+    avatarColor: "bg-accent/15 text-accent",
+  },
+  {
+    name: "Victor",
+    initials: "VI",
+    location: "US",
+    date: "Apr 30, 2026",
+    title: "The easiest way to hire overseas",
+    body: "Kovil found us a talented software engineer for 25% of what we'd pay in the US. They handle payments, timesheets, and general oversight. Sahdev (the founder) has been especially helpful. We will definitely return for our next hire.",
+    avatarColor: "bg-green-100 text-green-700",
+  },
+]
+
+function TestimonialsSection() {
+  return (
+    <section className="py-24 max-w-7xl mx-auto px-6 border-t border-border">
+      <div className="text-center max-w-2xl mx-auto mb-16">
+        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-3">Reviews</p>
+        <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight mb-6 text-balance">
+          What Our Clients Say
+        </h2>
+        <div className="flex items-center justify-center gap-2">
+          <div className="flex gap-0.5">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Star key={i} className="h-5 w-5 fill-[#00b67a] text-[#00b67a]" />
+            ))}
+          </div>
+          <span className="text-sm font-medium text-muted-foreground">5.0 on Trustpilot</span>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-8">
+        {TESTIMONIALS.map((t) => (
+          <div key={t.name} className="bg-background border border-border rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+            <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#00b67a] bg-[#00b67a]/10 px-2.5 py-1 rounded-full mb-5 w-fit">
+              Verified Trustpilot Review
+            </div>
+            <div className="flex gap-0.5 mb-5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-4 w-4 fill-[#00b67a] text-[#00b67a]" />
+              ))}
+            </div>
+            <h3 className="font-display font-bold text-lg mb-3 leading-snug">{t.title}</h3>
+            <p className="text-muted-foreground leading-relaxed mb-8 flex-1">{t.body}</p>
+            <div className="flex items-center gap-3 pt-6 border-t border-border">
+              <div className={`h-10 w-10 rounded-full flex items-center justify-center font-bold text-sm shrink-0 ${t.avatarColor}`}>
+                {t.initials}
+              </div>
+              <div>
+                <div className="font-semibold text-sm">{t.name}</div>
+                <div className="text-xs text-muted-foreground">{t.location} · {t.date}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
 
 function CaseStudyCarousel() {
   const [current, setCurrent] = useState(0)
@@ -778,6 +855,9 @@ export default function HomePage() {
 
       {/* Case Studies Carousel */}
       <CaseStudyCarousel />
+
+      {/* Testimonials */}
+      <TestimonialsSection />
 
       {/* FAQ Section */}
       <section id="faq" className="py-24 max-w-4xl mx-auto px-6">
