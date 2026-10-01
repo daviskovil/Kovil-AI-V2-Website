@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from "motion/react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { ArrowRight, Bot, Code2, ShieldCheck, Sparkles, Users, Zap, CheckCircle2, Check, X, Rocket, LifeBuoy, ChevronLeft, ChevronRight, Star } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { OnboardingModal } from "../components/OnboardingModal"
@@ -184,7 +183,17 @@ function TestimonialsSection() {
               <Star key={i} className="h-5 w-5 fill-[#00b67a] text-[#00b67a]" />
             ))}
           </div>
-          <span className="text-sm font-medium text-muted-foreground">5.0 on Trustpilot</span>
+          <span className="text-sm font-medium text-muted-foreground">
+            5.0 on{" "}
+            <a
+              href="https://www.trustpilot.com/review/kovil.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-foreground hover:text-accent transition-colors underline underline-offset-2"
+            >
+              Trustpilot
+            </a>
+          </span>
         </div>
       </div>
 
@@ -214,6 +223,121 @@ function TestimonialsSection() {
         ))}
       </div>
     </section>
+  )
+}
+
+const PLATFORM_RING: { name: string; label: string; src: string }[] = [
+  { name: "Salesforce", label: "Salesforce", src: "/logo-salesforce.webp" },
+  { name: "HubSpot", label: "HubSpot", src: "/logo-hubspot.png" },
+  { name: "Microsoft Dynamics 365", label: "Dynamics 365", src: "/logo-dynamics-365.png" },
+  { name: "NetSuite", label: "NetSuite", src: "/logo-netsuite.webp" },
+  { name: "QuickBooks", label: "QuickBooks", src: "/logo-quickbooks.png" },
+  { name: "Xero", label: "Xero", src: "/logo-xero.png" },
+  { name: "Shopify", label: "Shopify", src: "/logo-shopify.webp" },
+  { name: "Klaviyo", label: "Klaviyo", src: "/logo-klaviyo.png" },
+  { name: "Atlassian", label: "Atlassian", src: "/logo-atlassian.webp" },
+]
+
+function PlatformLogoRing() {
+  const SIZE = 620
+  const CENTER = SIZE / 2
+  const ORBIT_R = 210
+  const BADGE = 64
+  const LABEL_W = 96
+
+  const positions = PLATFORM_RING.map((p, i) => {
+    const angle = (360 / PLATFORM_RING.length) * i - 90
+    const rad = (angle * Math.PI) / 180
+    return { ...p, x: CENTER + Math.cos(rad) * ORBIT_R, y: CENTER + Math.sin(rad) * ORBIT_R }
+  })
+
+  return (
+    <div className="relative mx-auto" style={{ height: SIZE, width: SIZE }}>
+      {/* Ambient glow */}
+      <div className="absolute -top-8 -left-8 h-72 w-72 rounded-full blur-3xl" style={{ background: "#FF4F0014" }} />
+      <div className="absolute -bottom-8 -right-4 h-72 w-72 rounded-full blur-3xl" style={{ background: "#FF4F0010" }} />
+
+      {/* Orbit ring + spokes */}
+      <svg className="absolute inset-0 h-full w-full" viewBox={`0 0 ${SIZE} ${SIZE}`}>
+        <circle cx={CENTER} cy={CENTER} r={ORBIT_R} fill="none" stroke="#FF4F00" strokeOpacity={0.16} strokeWidth={1.5} strokeDasharray="3 8" strokeLinecap="round" />
+        {positions.map((pos) => (
+          <line key={pos.name} x1={CENTER} y1={CENTER} x2={pos.x} y2={pos.y} stroke="#FF4F00" strokeOpacity={0.14} strokeWidth={1.5} />
+        ))}
+      </svg>
+
+      {/* Center hub */}
+      <div className="absolute" style={{ left: CENTER - 100, top: CENTER - 100, height: 200, width: 200 }}>
+        {/* Pulsing outer glow halo */}
+        <motion.div
+          animate={{ scale: [1, 1.1, 1], opacity: [0.55, 0.85, 0.55] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -inset-7 rounded-full blur-2xl"
+          style={{ background: "radial-gradient(circle, #FF4F0066 0%, #FF4F0026 45%, transparent 72%)" }}
+        />
+
+        {/* Dashed orbit ring */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="absolute -inset-3 rounded-full border border-dashed"
+          style={{ borderColor: "#FF4F0055" }}
+        />
+
+        {/* Glossy orb */}
+        <motion.div
+          initial={{ scale: 0.85, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="relative h-full w-full rounded-full flex flex-col items-center justify-center overflow-hidden"
+          style={{
+            background: "radial-gradient(circle at 32% 26%, #3d3d44 0%, #1c1c20 42%, #08080a 100%)",
+            boxShadow:
+              "0 0 0 1px rgba(255,255,255,0.1), 0 0 0 6px rgba(255,79,0,0.12), 0 30px 70px -12px rgba(255,79,0,0.55), inset 0 2px 24px rgba(255,255,255,0.08), inset 0 -18px 32px rgba(0,0,0,0.55)",
+          }}
+        >
+          {/* Top sheen highlight */}
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 h-24 w-40 rounded-full blur-xl" style={{ background: "rgba(255,255,255,0.1)" }} />
+          {/* Subtle dot texture */}
+          <div
+            className="absolute inset-0 opacity-[0.06]"
+            style={{ backgroundImage: "radial-gradient(white 1px, transparent 1px)", backgroundSize: "10px 10px" }}
+          />
+
+          <span className="relative text-white/60 text-[11px] font-semibold tracking-[0.25em] uppercase mb-1">Platform</span>
+          <span
+            className="relative font-display font-black text-5xl leading-none mb-1"
+            style={{ color: "#FF8A4C", textShadow: "0 0 28px rgba(255,79,0,0.85), 0 0 56px rgba(255,79,0,0.45)" }}
+          >
+            AI
+          </span>
+          <span className="relative text-white/90 text-xs font-semibold tracking-[0.25em] uppercase">Experts</span>
+        </motion.div>
+      </div>
+
+      {/* Logo badges + labels */}
+      {positions.map((pos, i) => (
+        <motion.div
+          key={pos.name}
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.3 + i * 0.05 }}
+          className="absolute flex flex-col items-center"
+          style={{ left: pos.x - LABEL_W / 2, top: pos.y - BADGE / 2, width: LABEL_W }}
+        >
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            className="rounded-2xl bg-white flex items-center justify-center border border-black/5 shrink-0"
+            style={{ height: BADGE, width: BADGE, boxShadow: "0 10px 30px -8px rgba(10,10,13,0.18)" }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={pos.src} alt={pos.name} className="h-9 w-9 object-contain" />
+          </motion.div>
+          <span className="mt-2 text-[11px] font-semibold text-foreground/70 text-center leading-tight">
+            {pos.label}
+          </span>
+        </motion.div>
+      ))}
+    </div>
   )
 }
 
@@ -345,15 +469,15 @@ export default function HomePage() {
     <main className="pt-20">
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 pt-6 pb-16 lg:pt-10 lg:pb-24 overflow-hidden">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div className="relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative z-10 min-w-0">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-balance leading-[1.05]"
+              className="text-4xl sm:text-5xl lg:text-4xl xl:text-5xl font-display font-bold tracking-tight text-balance leading-[1.1]"
             >
-              We Deploy AI Agents for Enterprises, <br/><span className="text-accent">Built By Elite AI Engineers</span>
+              <span className="text-accent">Integrate Autonomous AI Agents</span><br/>Into Your Existing Platforms and Workflows
             </motion.h1>
 
             <motion.p
@@ -362,7 +486,7 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mt-6 text-xl text-muted-foreground max-w-lg leading-relaxed"
             >
-              Managed AI implementation with zero delivery risk. Access elite engineers for fixed-price sprints or scalable team augmentation.
+              Managed AI implementation with zero delivery risk — specialists across Salesforce, HubSpot, Shopify, and 30+ enterprise platforms.
             </motion.p>
 
             <motion.ul
@@ -389,33 +513,40 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="mt-10 flex flex-col items-start gap-3"
             >
-              <OnboardingModal>
-                <Button
-                  variant="accent"
-                  size="lg"
-                  className="text-lg h-14 px-8 rounded-full shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all"
-                >
-                  Build Your AI Agent <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </OnboardingModal>
+              <div className="flex flex-wrap items-center gap-3">
+                <OnboardingModal>
+                  <Button
+                    variant="accent"
+                    size="lg"
+                    className="text-lg h-14 px-8 rounded-full shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all"
+                  >
+                    Build Your AI Agent <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </OnboardingModal>
+                <Link href="/platforms">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="text-lg h-14 px-8 rounded-full bg-background"
+                  >
+                    Hire Platform AI Experts
+                  </Button>
+                </Link>
+              </div>
               <span className="text-sm text-muted-foreground font-medium px-4">Fixed price, outcome based AI Builds</span>
             </motion.div>
           </div>
 
-          {/* Hero Visual — Services Diagram */}
+          {/* Hero Visual — Platform Logo Ring */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="relative hidden lg:block h-[660px] w-full self-center"
+            className="relative hidden lg:flex items-center justify-center h-[560px] xl:h-[660px] w-full self-center"
           >
-            <Image
-              src="/hero-homepage-circles-v3.png"
-              alt="Kovil AI service model: Outcome Based AI Projects, AI Engineer Augmentation, App Rescue & Support"
-              fill
-              className="object-contain object-center"
-              priority
-            />
+            <div className="scale-75 xl:scale-90 2xl:scale-100 origin-center">
+              <PlatformLogoRing />
+            </div>
           </motion.div>
         </div>
       </section>
@@ -571,6 +702,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials */}
+      <TestimonialsSection />
 
       {/* Process */}
       <section className="py-24 max-w-7xl mx-auto px-6">
@@ -855,9 +989,6 @@ export default function HomePage() {
 
       {/* Case Studies Carousel */}
       <CaseStudyCarousel />
-
-      {/* Testimonials */}
-      <TestimonialsSection />
 
       {/* FAQ Section */}
       <section id="faq" className="py-24 max-w-4xl mx-auto px-6">
