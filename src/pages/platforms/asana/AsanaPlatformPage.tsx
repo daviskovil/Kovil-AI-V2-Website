@@ -9,6 +9,7 @@ import {
   Search, ListTodo, Calendar, Network,
 } from 'lucide-react'
 import { Button } from '@/src/components/ui/button'
+import { PlatformLogoBadge } from '@/src/components/platforms/PlatformLogo'
 import { openCalendly } from '@/src/lib/calendly'
 
 // ── Brand ─────────────────────────────────────────────────────────────────────
@@ -204,12 +205,12 @@ function HeroGraphic() {
         <div className="flex flex-col items-center text-center py-2">
           <div className="relative mb-4">
             <div className="absolute inset-0 rounded-full blur-xl" style={{ background: AS, opacity: 0.4 }} />
-            <div
+            <PlatformLogoBadge slug="asana" fallback={<div
               className="relative h-16 w-16 rounded-2xl flex items-center justify-center shadow-lg"
               style={{ background: `linear-gradient(135deg, ${AS}, #B33F3F)` }}
             >
               <ListTodo className="h-8 w-8 text-white" />
-            </div>
+            </div>} />
           </div>
           <p className="font-display font-bold text-white text-lg">Asana</p>
           <div className="flex flex-wrap items-center justify-center gap-1.5 mt-3">

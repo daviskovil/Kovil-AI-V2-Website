@@ -80,22 +80,22 @@ export const platforms: Platform[] = [
   { slug: 'wrike', name: 'Wrike', category: 'Enterprise Work Management', group: 'work-management', adoption: 'High', demand: 'High', ltv: 'High', roles: ['Wrike Implementation Consultants', 'Automation Experts'], href: '/platforms/wrike' },
   { slug: 'smartsheet', name: 'Smartsheet', category: 'Collaborative Work Management', group: 'work-management', adoption: 'High', demand: 'High', ltv: 'High', roles: ['Smartsheet Solutions Architects', 'Automation/API Developers'], href: '/platforms/smartsheet' },
 
-  { slug: 'uipath', name: 'UiPath', category: 'Robotic Process Automation (RPA)', group: 'automation-integration', adoption: 'Medium-High', demand: 'High', ltv: 'High', roles: ['RPA Developers', 'UiPath Solution Architects'] },
-  { slug: 'mulesoft', name: 'MuleSoft', category: 'Integration Platform (iPaaS)', group: 'automation-integration', adoption: 'Medium-High', demand: 'Critically High', ltv: 'Ultra-High', roles: ['Integration Engineers', 'API Developers'] },
-  { slug: 'boomi', name: 'Boomi', category: 'Integration Platform (iPaaS)', group: 'automation-integration', adoption: 'High', demand: 'High', ltv: 'Very High', roles: ['Dell Boomi Integration Developers', 'Cloud Architects'] },
+  { slug: 'uipath', name: 'UiPath', category: 'Robotic Process Automation (RPA)', group: 'automation-integration', adoption: 'Medium-High', demand: 'High', ltv: 'High', roles: ['RPA Developers', 'UiPath Solution Architects'], href: '/platforms/uipath' },
+  { slug: 'mulesoft', name: 'MuleSoft', category: 'Integration Platform (iPaaS)', group: 'automation-integration', adoption: 'Medium-High', demand: 'Critically High', ltv: 'Ultra-High', roles: ['Integration Engineers', 'API Developers'], href: '/platforms/mulesoft' },
+  { slug: 'boomi', name: 'Boomi', category: 'Integration Platform (iPaaS)', group: 'automation-integration', adoption: 'High', demand: 'High', ltv: 'Very High', roles: ['Dell Boomi Integration Developers', 'Cloud Architects'], href: '/platforms/boomi' },
 
-  { slug: 'servicenow', name: 'ServiceNow', category: 'ITSM & Enterprise Operations', group: 'support-service', adoption: 'Medium-High', demand: 'Critically High', ltv: 'Ultra-High', roles: ['ServiceNow Developers', 'ITSM Consultants', 'Architects'] },
-  { slug: 'zendesk', name: 'Zendesk', category: 'Customer Support & Helpdesk', group: 'support-service', adoption: 'High', demand: 'Moderate-High', ltv: 'High', roles: ['Zendesk Admins', 'Support Workflow Devs'] },
+  { slug: 'servicenow', name: 'ServiceNow', category: 'ITSM & Enterprise Operations', group: 'support-service', adoption: 'Medium-High', demand: 'Critically High', ltv: 'Ultra-High', roles: ['ServiceNow Developers', 'ITSM Consultants', 'Architects'], href: '/platforms/servicenow' },
+  { slug: 'zendesk', name: 'Zendesk', category: 'Customer Support & Helpdesk', group: 'support-service', adoption: 'High', demand: 'Moderate-High', ltv: 'High', roles: ['Zendesk Admins', 'Support Workflow Devs'], href: '/platforms/zendesk' },
 
-  { slug: 'webflow', name: 'Webflow', category: 'Low-Code Web Development', group: 'dev-infrastructure', adoption: 'High', demand: 'Very High', ltv: 'Moderate-High', roles: ['Webflow Developers', 'Custom JS Frontend Engineers'] },
-  { slug: 'contentful', name: 'Contentful', category: 'Headless CMS', group: 'dev-infrastructure', adoption: 'High', demand: 'Very High', ltv: 'High', roles: ['Headless CMS Frontend Engineers', 'GraphQL/API Specialists'] },
-  { slug: 'strapi', name: 'Strapi', category: 'Open Source Headless CMS', group: 'dev-infrastructure', adoption: 'High', demand: 'Growing Fast', ltv: 'Moderate-High', roles: ['Node.js/Strapi Developers', 'Jamstack Engineers'] },
-  { slug: 'twilio', name: 'Twilio', category: 'Customer Engagement APIs', group: 'dev-infrastructure', adoption: 'High', demand: 'Critically High', ltv: 'Very High', roles: ['Twilio API Developers', 'Communications Engineers'] },
-  { slug: 'algolia', name: 'Algolia', category: 'AI Search & Discovery Platform', group: 'dev-infrastructure', adoption: 'High', demand: 'Very High', ltv: 'High', roles: ['Search Relevance Engineers', 'Frontend/API Developers'] },
-  { slug: 'auth0-okta', name: 'Auth0 (Okta)', category: 'Identity & Access Management', group: 'dev-infrastructure', adoption: 'High', demand: 'Very High', ltv: 'Ultra-High', roles: ['IAM Security Engineers', 'Auth0 Integration Developers'] },
-  { slug: 'stripe', name: 'Stripe', category: 'Payment Infrastructure', group: 'dev-infrastructure', adoption: 'Massive', demand: 'Very High', ltv: 'Ultra-High', roles: ['Payment Gateway Integration Engineers', 'Billing Developers'] },
+  { slug: 'webflow', name: 'Webflow', category: 'Low-Code Web Development', group: 'dev-infrastructure', adoption: 'High', demand: 'Very High', ltv: 'Moderate-High', roles: ['Webflow Developers', 'Custom JS Frontend Engineers'], href: '/platforms/webflow' },
+  { slug: 'contentful', name: 'Contentful', category: 'Headless CMS', group: 'dev-infrastructure', adoption: 'High', demand: 'Very High', ltv: 'High', roles: ['Headless CMS Frontend Engineers', 'GraphQL/API Specialists'], href: '/platforms/contentful' },
+  { slug: 'strapi', name: 'Strapi', category: 'Open Source Headless CMS', group: 'dev-infrastructure', adoption: 'High', demand: 'Growing Fast', ltv: 'Moderate-High', roles: ['Node.js/Strapi Developers', 'Jamstack Engineers'], href: '/platforms/strapi' },
+  { slug: 'twilio', name: 'Twilio', category: 'Customer Engagement APIs', group: 'dev-infrastructure', adoption: 'High', demand: 'Critically High', ltv: 'Very High', roles: ['Twilio API Developers', 'Communications Engineers'], href: '/platforms/twilio' },
+  { slug: 'algolia', name: 'Algolia', category: 'AI Search & Discovery Platform', group: 'dev-infrastructure', adoption: 'High', demand: 'Very High', ltv: 'High', roles: ['Search Relevance Engineers', 'Frontend/API Developers'], href: '/platforms/algolia' },
+  { slug: 'auth0-okta', name: 'Auth0 (Okta)', category: 'Identity & Access Management', group: 'dev-infrastructure', adoption: 'High', demand: 'Very High', ltv: 'Ultra-High', roles: ['IAM Security Engineers', 'Auth0 Integration Developers'], href: '/platforms/auth0-okta' },
+  { slug: 'stripe', name: 'Stripe', category: 'Payment Infrastructure', group: 'dev-infrastructure', adoption: 'Massive', demand: 'Very High', ltv: 'Ultra-High', roles: ['Payment Gateway Integration Engineers', 'Billing Developers'], href: '/platforms/stripe' },
 
-  { slug: 'zoho-one', name: 'Zoho One', category: 'All-in-One Business Suite', group: 'all-in-one', adoption: 'Massive', demand: 'Very High', ltv: 'Moderate-High', roles: ['Zoho Developers (Deluge script)', 'Zoho CRM Admins'] },
+  { slug: 'zoho-one', name: 'Zoho One', category: 'All-in-One Business Suite', group: 'all-in-one', adoption: 'Massive', demand: 'Very High', ltv: 'Moderate-High', roles: ['Zoho Developers (Deluge script)', 'Zoho CRM Admins'], href: '/platforms/zoho-one' },
 ]
 
 export function getPlatformsByGroup(groupId: string): Platform[] {

@@ -10,6 +10,7 @@ import { motion } from 'motion/react'
 import { Button } from '@/src/components/ui/button'
 import { openCalendly } from '@/src/lib/calendly'
 import { PLATFORM_GROUPS, getPlatformsByGroup, type Platform } from '@/src/data/platforms'
+import { PlatformLogoTile } from '@/src/components/platforms/PlatformLogo'
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Building2, DollarSign, ShoppingCart, MessageSquare, ClipboardList, GitBranch, Headphones, Code2, Package,
@@ -35,12 +36,18 @@ function PlatformCard({ platform, color }: { platform: Platform; color: string }
       style={{ borderTopWidth: '3px', borderTopColor: color }}
     >
       <div className="flex items-start gap-3 mb-4">
-        <div
-          className="h-10 w-10 rounded-xl flex items-center justify-center shrink-0 font-display font-bold text-xs"
-          style={{ background: `${color}15`, color, border: `1px solid ${color}30` }}
-        >
-          {monogram(platform.name)}
-        </div>
+        <PlatformLogoTile
+          slug={platform.slug}
+          alt={`${platform.name} logo`}
+          fallback={
+            <div
+              className="h-10 w-10 rounded-xl flex items-center justify-center shrink-0 font-display font-bold text-xs"
+              style={{ background: `${color}15`, color, border: `1px solid ${color}30` }}
+            >
+              {monogram(platform.name)}
+            </div>
+          }
+        />
         <div className="min-w-0">
           <h3 className="font-display font-bold text-sm leading-snug flex items-center gap-1.5">
             {platform.name}
