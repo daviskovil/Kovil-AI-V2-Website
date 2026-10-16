@@ -82,7 +82,7 @@ const webPageSchema = {
   description: 'Kovil AI is your single partner for Asana — AI-driven workload automation, plus vetted solutions architects, API specialists, and work management consultants.',
   url: 'https://kovil.ai/platforms/asana',
   datePublished: '2026-10-02',
-  dateModified: '2026-10-02',
+  dateModified: '2026-10-16',
   inLanguage: 'en-US',
   isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
   speakable: {
@@ -110,24 +110,122 @@ const howToSchema = {
 }
 
 const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    { '@type': 'Question', name: 'What is Asana?', acceptedAnswer: { '@type': 'Answer', text: 'Asana is a work management platform built around the Work Graph, a connected data model linking company goals to the projects and tasks that drive them, used by over 150,000 paying organizations.' } },
-    { '@type': 'Question', name: 'Does Asana have native AI, or do I need a custom build?', acceptedAnswer: { '@type': 'Answer', text: "Asana ships built-in AI features for smart status updates, goal tracking, and summarization. Kovil AI configures those natively and builds custom API automation where they aren't enough." } },
-    { '@type': 'Question', name: 'Does Kovil AI build custom automation on Asana, or only staff talent?', acceptedAnswer: { '@type': 'Answer', text: "Both, and they're often the same engagement. Clients commonly hire a work management consultant to standardize project templates, then layer AI-driven automation on top." } },
-    { '@type': 'Question', name: 'How much does it cost to hire an Asana specialist through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: "Kovil AI's remote Asana talent bills $18-$30 per hour depending on role and experience, versus $40-$95+ per hour for prevailing US onsite rates for the same roles, typically 60-67% lower." } },
-    { '@type': 'Question', name: 'What is the difference between a Solutions Architect, API Specialist, and Work Management Consultant?', acceptedAnswer: { '@type': 'Answer', text: 'A Solutions Architect designs the project, portfolio, and Work Graph structure. An API Integration Specialist builds custom integrations. A Work Management Consultant owns template standardization and automation rules.' } },
-    { '@type': 'Question', name: 'How quickly can I hire an Asana specialist through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: 'Most clients are matched within 24-48 hours of submitting a brief, with work starting within a week, backed by a 2-week risk-free trial.' } },
-    { '@type': 'Question', name: 'Are your Asana specialists certified?', acceptedAnswer: { '@type': 'Answer', text: 'We verify relevant platform experience where it exists, but weight a live automation build challenge and production portfolio review just as heavily.' } },
-    { '@type': 'Question', name: 'Can Kovil AI integrate Asana with other systems like Slack or Salesforce?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Our Asana talent regularly builds integrations using the REST API and custom middleware.' } },
-    { '@type': 'Question', name: 'Who owns the projects and automations built during an engagement?', acceptedAnswer: { '@type': 'Answer', text: 'You do, 100%. All custom project templates, automations, and documentation are fully owned by you under clear IP-assignment terms, with no shared IP and no lock-in.' } },
-    { '@type': 'Question', name: 'Can I combine an AI automation build with Asana staff augmentation in one engagement?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated architect or specialist talent working in the same account.' } },
-    { '@type': 'Question', name: 'What does Kovil AI typically build on top of Asana?', acceptedAnswer: { '@type': 'Answer', text: 'AI-generated status digests, at-risk project scoring, automated intake triage, and custom API integrations with sales and support tools.' } },
-    { '@type': 'Question', name: 'How is Kovil AI different from an Asana Solutions Partner agency or freelancer?', acceptedAnswer: { '@type': 'Answer', text: 'A partner agency typically scopes a fixed project and hands it to a rotating bench. A freelancer works solo with no oversight. Kovil AI embeds a single accountable specialist under an Engagement Manager who audits every milestone.' } },
-    { '@type': 'Question', name: 'Can we extend a trial engagement or convert it to a long-term hire?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' } },
-    { '@type': 'Question', name: 'Do you support Asana rescues or fixing a messy account?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A meaningful share of our Asana engagements start as a rescue of inconsistent project templates, duplicate automations, or a rollout that lost adoption, which we audit and rebuild in milestone-gated phases.' } },
-  ],
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Asana?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Asana is a work management platform built around a Work Graph, where tasks can belong to several projects and connect to goals. Teams use it for project tracking, request intake, workload planning, and reporting through Portfolios, with a REST API and webhooks for integration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Asana have native AI, or do I need a custom build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Asana includes built-in AI features and AI Studio for building AI-driven workflows inside the product. A custom build makes sense when you need logic across systems, such as drafting status updates from task data or routing requests using context from your CRM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How should we structure Asana so Portfolios and reporting work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Consistent project templates, a small set of governed custom fields, and clear ownership are what make Portfolios reliable. We design that structure first, because reports and AI are only as good as the setup beneath them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the limits of Asana Rules, and when do we need the API?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rules and Workflow Builder handle most routing and approval needs inside Asana. The API and webhooks are for things Rules cannot do, such as syncing with other tools, running logic against external data, or calling an LLM with context from elsewhere."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you prevent sync loops between Asana and other tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two-way syncs can echo changes back and forth indefinitely. We tag the origin of each change, filter webhook events, and deduplicate updates, and we test with failure cases before anything goes live."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to hire an Asana specialist through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kovil AI's remote Asana talent bills $18-$30 per hour depending on role and experience, versus $40-$95+ per hour for prevailing US onsite rates for the same roles — typically 60-67% lower."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a Solutions Architect, API Specialist, and Work Management Consultant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Solutions Architect designs the project, field, and Portfolio structure. An API Integration Specialist writes code against the Asana API and webhooks. A Work Management Consultant standardizes templates and rules and helps teams adopt them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you build intake that routes requests automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We build forms with the fields that matter, then route requests by rule or by an agent that reads the request, with low-confidence cases sent to a person. The goal is requests that arrive complete and in the right place."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Kovil AI connect Asana to Salesforce, Jira, or Slack?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We build syncs using native integrations where they are enough and the Asana API where they are not, with event filtering so changes do not loop or overwrite each other."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are your Asana specialists certified?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We verify relevant Asana experience and credentials where they exist, but weight a live workspace-design exercise and a review of shipped work at least as heavily, since credentials alone do not test judgment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can I hire an Asana specialist through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most clients are matched with a vetted architect, specialist, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who owns the projects and automations built during an engagement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You do, 100%. All custom project templates, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you support Asana rescues or fixing a messy workspace?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Typical rescues involve inconsistent project setups, duplicated custom fields, rules nobody can explain, or Portfolios that disagree with team views. We audit first, then standardize in stages so teams are not disrupted."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we extend a trial engagement or convert it to a long-term hire?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way."
+      }
+    }
+  ]
 }
 
 const breadcrumbSchema = {

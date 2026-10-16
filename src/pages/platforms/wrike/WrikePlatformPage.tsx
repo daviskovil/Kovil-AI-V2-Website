@@ -7,6 +7,7 @@ import {
   ArrowRight, Bot, Users, Code2, ShieldCheck, Zap, Database, Workflow,
   GitBranch, CheckCircle2, ChevronDown, Briefcase, Settings, X, Minus,
   Search, FolderKanban, BarChart3, FileCheck,
+  AlertTriangle, Boxes,
 } from 'lucide-react'
 import { Button } from '@/src/components/ui/button'
 import { PlatformLogoBadge } from '@/src/components/platforms/PlatformLogo'
@@ -33,46 +34,46 @@ const marketStats = [
 ]
 
 const modules = [
-  { icon: FolderKanban, title: 'Projects & Folders', desc: 'Hierarchical folder and project structure — the module every Wrike account is built around first.' },
-  { icon: Workflow, title: 'Automation Engine', desc: 'No-code automation rules for task routing, status changes, and cross-project triggers.' },
-  { icon: FileCheck, title: 'Approvals & Proofing', desc: 'Built-in review and approval workflows for creative, legal, and regulated content.' },
-  { icon: BarChart3, title: 'Dashboards & Reports', desc: 'Cross-project reporting and custom dashboards for leadership visibility.' },
-  { icon: Briefcase, title: 'Dynamic Request Forms', desc: 'Structured intake forms that route into the correct project and workflow automatically.' },
-  { icon: GitBranch, title: 'Integrations & API', desc: "Wrike's app directory and REST API connecting to Salesforce, Slack, and your broader stack." },
+  { icon: Workflow, title: "Spaces, Folders, Projects & Tasks", desc: "Wrike organizes work in a hierarchy. How folders and projects are nested drives permissions, reporting, and how clean the account stays." },
+  { icon: Settings, title: "Custom Item Types & Fields", desc: "Custom item types and fields let different kinds of work, such as campaigns or requests, carry their own data and workflows." },
+  { icon: Users, title: "Request Forms & Blueprints", desc: "Request forms capture work from other teams and blueprints spin up repeatable projects, which together replace ad-hoc email requests." },
+  { icon: Briefcase, title: "Approvals & Proofing", desc: "Review and approval flows for creative and marketing work, with proofing on files, which is a core strength for agencies and in-house studios." },
+  { icon: Boxes, title: "Resource & Workload Management", desc: "Effort and capacity planning across teams, which only works when effort estimates and assignments are consistently entered." },
+  { icon: Code2, title: "Wrike API & Wrike Integrate", desc: "A REST API and webhooks, plus Wrike Integrate for building automation across apps, for work beyond native rules." },
 ]
 
 const aiCapabilities = [
-  { icon: Bot, title: 'Native Automation Configuration', desc: "Configure and extend Wrike's built-in automation — risk prediction, smart task creation, and workflow triggers — grounded in your real project data." },
-  { icon: Zap, title: 'Custom API Automation', desc: "AI features that don't fit a template — invoking LLMs from custom integrations, wired into your actual projects, requests, and automation rules." },
-  { icon: Database, title: 'Risk & Capacity Automation', desc: 'AI-assisted monitoring that catches at-risk projects and resource overallocation before a status meeting finds them.' },
-  { icon: GitBranch, title: 'Cross-Platform Agent Integrations', desc: 'AI agents that reach beyond Wrike — into Salesforce, Slack, and internal tools — through the Wrike API or custom middleware.' },
-  { icon: ShieldCheck, title: 'Data Quality Audits', desc: 'AI agents are only as good as the data behind them — we audit custom field structure and folder hierarchy hygiene before anything goes live.' },
-  { icon: Search, title: 'AI Readiness & Scoping', desc: 'Not sure where to start? We audit your account and integration setup, then scope the single highest-impact automation first.' },
+  { icon: Bot, title: "Wrike Work Intelligence Configuration", desc: "Set up Wrike's built-in AI features where they help, with limits on what they may change in live projects and approvals." },
+  { icon: Zap, title: "Brief and Request Intake Assistants", desc: "Turn a loose request into a structured brief and project from a blueprint, with a person confirming before work is assigned." },
+  { icon: Search, title: "Risk and Status Summaries", desc: "Read task and approval activity to flag at-risk projects and draft the status summary, leaving managers to edit instead of compile." },
+  { icon: GitBranch, title: "Cross-Tool Sync Through Wrike Integrate or API", desc: "Connect Wrike with Salesforce, Slack, and creative tools so project status and approvals stay consistent between systems." },
+  { icon: ShieldCheck, title: "Hierarchy and Permission Audit", desc: "Find tangled folder structures and over-broad permissions before an agent gets access to project data." },
+  { icon: Database, title: "Readiness & Scoping", desc: "We review hierarchy, item types, and automation, then scope the single highest-impact use case first." },
 ]
 
 const practiceExamples = [
-  { title: 'Approval routing that does not stall', desc: 'Dynamic request forms route submissions to the correct approver chain automatically, instead of an ops manager manually forwarding each request.' },
-  { title: 'Risk flags before a deadline slips', desc: 'Custom automation surfaces projects trending off-track based on real task completion velocity, instead of a status meeting catching it too late.' },
-  { title: 'Resource conflicts caught early', desc: 'Capacity automation flags overallocated team members before a project kickoff, instead of a resourcing fire drill mid-sprint.' },
+  { title: "Requests that become projects in one step", desc: "A form submission creates the right project from a blueprint with fields filled in, so the team starts work instead of triaging a request." },
+  { title: "Approvals that stop stalling", desc: "Review stages are mapped and reminders automated, so creative work does not sit waiting on an unnoticed approval." },
+  { title: "A folder structure people can navigate", desc: "A tangled hierarchy is rationalized, so permissions make sense and reports read cleanly across teams." },
 ]
 
 const roles = [
   {
     icon: Settings,
     title: 'Wrike Implementation Consultants',
-    desc: 'Design the folder structure, approval workflows, and automation rules for teams rolling out Wrike across departments.',
+    desc: "Design the folder hierarchy, item types, workflows, and approval stages, so the account fits how teams really work and stays navigable as it grows.",
     skills: ['Workflow & Approval Design', 'Folder Hierarchy Architecture'],
   },
   {
     icon: Code2,
     title: 'Automation Experts',
-    desc: 'Build custom integrations and automation using the Wrike API when native rules run out of road.',
+    desc: "Build automation with the Wrike API, webhooks, and Wrike Integrate, with clear ownership between them so triggers do not fire twice.",
     skills: ['Wrike API', 'Custom Automation Development'],
   },
   {
     icon: Briefcase,
     title: 'Work Management Consultants',
-    desc: 'Own day-to-day template standardization, dashboard configuration, and adoption across growing teams.',
+    desc: "Standardize blueprints, request forms, and dashboards across teams, and train people so the structure survives after rollout.",
     skills: ['Template Standardization', 'Dashboard Configuration'],
   },
 ]
@@ -87,10 +88,10 @@ const rateComparison = [
 ]
 
 const vettingCriteria = [
-  { title: 'Live Automation Build Challenge', desc: 'Build a working approval workflow and automation rule against a realistic spec under time pressure — request forms, triggers, and conditions, not a take-home nobody reviews.' },
-  { title: 'Native-vs-Custom Judgment', desc: 'We test the judgment call that separates senior from junior: when a native automation is enough, and when a custom API integration is worth the added complexity.' },
-  { title: 'Governance & Approval Design Check', desc: 'Beyond the build, we test whether the specialist understands approval chain governance — a workflow that routes incorrectly can block real work for days.' },
-  { title: 'Production Portfolio Review', desc: '2–3 real Wrike accounts or integrations they have shipped to production, reviewed for reliability and lessons from what broke.' },
+  { title: "Hierarchy Design Exercise", desc: "Given a multi-team scenario, design a folder structure, item types, and permissions that scale. We look for clarity and restraint over cleverness." },
+  { title: "Approval Flow Design", desc: "How would they map and automate a multi-reviewer approval so it does not stall? It tests process sense, not just configuration." },
+  { title: "Automation Ownership Judgment", desc: "When should logic live in Wrike rules, Wrike Integrate, or custom API code? We test for clear ownership and avoiding double firing." },
+  { title: "Production Portfolio Review", desc: "Two or three real Wrike implementations they delivered, reviewed for what held up and what they would change." },
 ]
 
 const comparisonRows = [
@@ -103,9 +104,9 @@ const comparisonRows = [
 ]
 
 const forWho = [
-  { title: 'Enterprise & Cross-Departmental Teams', desc: 'Marketing, legal, and ops all run on Wrike but with inconsistent approval chains and no shared automation standard. Get a consultant who can unify it.' },
-  { title: 'Regulated & Process-Heavy Teams', desc: 'Your work requires formal approval and proofing, and manual routing keeps causing bottlenecks. We build the automated approval structure that fixes it.' },
-  { title: 'Teams Migrating From Spreadsheets', desc: 'Your workflows still live in shared spreadsheets. We migrate your process into structured projects and automation in milestone-gated phases.' },
+  { title: "Marketing and Creative Teams", desc: "Campaign work with many reviewers needs structured requests and approvals. We design the flow and automate the chasing." },
+  { title: "Agencies and Professional Services", desc: "Client work needs clear structure, effort tracking, and reporting. We set up Wrike so utilization and delivery are visible." },
+  { title: "Enterprises Consolidating Tools", desc: "When several teams bring their own habits, we design shared item types and structure that still respect how each team works." },
 ]
 
 const timeline = [
@@ -116,26 +117,33 @@ const timeline = [
   { day: 'Ongoing', title: 'Scale or Wind Down', desc: 'Add talent as new teams or workflows come online, extend the engagement, or wind down — no lock-in.' },
 ]
 
+const pitfalls = [
+  { title: "A hierarchy that grew without a plan", desc: "Deep, inconsistent nesting makes permissions confusing and reports unreliable, and moving things later is disruptive." },
+  { title: "Custom fields multiplying", desc: "Duplicate and overlapping fields across item types make filters and dashboards untrustworthy." },
+  { title: "Approvals with no owner", desc: "Review stages without clear owners or reminders are where creative projects stall quietly." },
+  { title: "Effort data nobody fills in", desc: "Resource views look complete while estimates are blank, so capacity planning rests on assumptions rather than data." },
+  { title: "Automation split across two tools", desc: "Rules in Wrike and flows in Wrike Integrate can overlap, so changes fire twice or not at all unless ownership is clear." },
+]
+
 const faqs = [
-  { q: 'What is Wrike?', a: 'Wrike is an enterprise work management platform built for large, cross-departmental organizations, with native approval and proofing workflows, dynamic request forms, and dashboards for complex, process-heavy projects.' },
-  { q: 'Does Wrike have native AI, or do I need a custom build?', a: "Wrike ships built-in automation for risk prediction and smart task creation. Kovil AI configures those natively and builds custom API automation where they aren't enough." },
-  { q: 'Does Kovil AI build custom automation on Wrike, or only staff talent?', a: "Both, and they're often the same engagement. Clients commonly hire an implementation consultant to standardize approval workflows, then layer AI-driven automation on top." },
-  { q: 'How much does it cost to hire a Wrike specialist through Kovil AI?', a: "Kovil AI's remote Wrike talent bills $20-$30 per hour depending on role and experience, versus $45-$95+ per hour for prevailing US onsite rates for the same roles — typically 60-67% lower." },
-  { q: 'What is the difference between an Implementation Consultant, Automation Expert, and Work Management Consultant?', a: 'An Implementation Consultant designs folder structure and approval workflows. An Automation Expert builds custom integrations using the Wrike API. A Work Management Consultant owns template standardization and dashboard configuration.' },
-  { q: 'How quickly can I hire a Wrike specialist through Kovil AI?', a: 'Most clients are matched with a vetted consultant or expert within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement.' },
-  { q: 'Are your Wrike specialists certified?', a: "We verify relevant platform experience and credentials where they exist, but weight a live automation build challenge and production portfolio review just as heavily, since that tests engineering judgment a certification alone doesn't cover." },
-  { q: 'Can Kovil AI integrate Wrike with other systems like Salesforce or Slack?', a: 'Yes. Our Wrike talent regularly builds integrations using the REST API and custom middleware — connecting Wrike to Salesforce, Slack, and whatever else your business runs on.' },
-  { q: 'Who owns the workflows and automations built during an engagement?', a: 'You do, 100%. All custom workflows, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in.' },
-  { q: 'Can I combine an AI automation build with Wrike staff augmentation in one engagement?', a: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated consultant or expert talent working in the same account.' },
-  { q: 'What does Kovil AI typically build on top of Wrike?', a: 'Automated approval routing, at-risk project scoring, resource capacity alerts, and custom API integrations with sales and finance tools.' },
-  { q: 'How is Kovil AI different from a Wrike Partner agency or freelancer?', a: 'A partner agency typically scopes a fixed project and hands it to a rotating bench. A freelancer works solo with no oversight. Kovil AI embeds a single accountable specialist under an Engagement Manager who audits every milestone, with a 2-week risk-free trial and no long-term lock-in.' },
-  { q: 'Can we extend a trial engagement or convert it to a long-term hire?', a: 'Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' },
-  { q: 'Do you support Wrike rescues or fixing a messy account?', a: 'Yes. A meaningful share of our Wrike engagements start as a rescue — inconsistent approval chains, duplicate automations, or a rollout that lost adoption. We audit the account and automation layer, then stabilize and rebuild in milestone-gated phases.' },
+  { q: "What is Wrike?", a: "Wrike is a work management platform organized around spaces, folders, projects, and tasks, with custom item types, request forms, proofing and approvals, and resource management. It is widely used by marketing teams, agencies, and enterprises, and offers a REST API and Wrike Integrate for automation." },
+  { q: "Does Wrike have native AI, or do I need a custom build?", a: "Wrike includes built-in AI features under its Work Intelligence capabilities. A custom build makes sense when you need an assistant using data from other systems, such as drafting briefs from CRM context or summarizing approvals across tools." },
+  { q: "How should we structure Wrike folders and projects?", a: "Keep nesting shallow and consistent, tie structure to how permissions and reporting need to work, and use custom item types for genuinely different work. We design that first, since reports and AI depend on it." },
+  { q: "When should we use Wrike Integrate versus the Wrike API?", a: "Wrike Integrate suits automation across common apps without code. The API is better for logic it cannot express or for tighter control, such as calling an LLM with context from elsewhere. We choose per use case and assign clear ownership so triggers do not fire twice." },
+  { q: "Can you automate creative review and approvals?", a: "Yes. We map the review stages, set owners and reminders, and automate routing and status updates, so work does not sit unnoticed waiting on a single approver." },
+  { q: "How much does it cost to hire a Wrike specialist through Kovil AI?", a: "Kovil AI's remote Wrike talent bills $20-$30 per hour depending on role and experience, versus $45-$95+ per hour for prevailing US onsite rates for the same roles — typically 60-67% lower." },
+  { q: "What is the difference between an Implementation Consultant, Automation Expert, and Work Management Consultant?", a: "An Implementation Consultant designs the hierarchy, item types, and workflows. An Automation Expert builds with the API, webhooks, and Wrike Integrate. A Work Management Consultant standardizes blueprints and dashboards and helps teams adopt them." },
+  { q: "Can you fix our resource and workload reporting?", a: "Yes. Resource views only work when effort and assignments are entered consistently, so we set simple rules to keep that data accurate and then build reports that leaders can trust." },
+  { q: "Can Kovil AI connect Wrike to Salesforce, Slack, or Adobe tools?", a: "Yes. We use native integrations or Wrike Integrate where they are enough and the API where they are not, with deduplicated events so syncs do not conflict." },
+  { q: "Are your Wrike specialists certified?", a: "We verify relevant Wrike experience and credentials where they exist, but weight a live hierarchy-design exercise and a review of shipped work at least as heavily, since credentials alone do not test judgment." },
+  { q: "How quickly can I hire a Wrike specialist through Kovil AI?", a: "Most clients are matched with a vetted consultant or expert within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement." },
+  { q: "Who owns the workflows and automations built during an engagement?", a: "You do, 100%. All custom workflows, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in." },
+  { q: "Do you support Wrike rescues or fixing a messy account?", a: "Yes. Typical rescues involve tangled folder hierarchies, duplicated custom fields, stalled approvals, or automation that fires twice. We audit first, then restructure in stages so teams are not disrupted." },
+  { q: "Can we extend a trial engagement or convert it to a long-term hire?", a: "Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way." },
 ]
 
 const integrations = [
-  'Wrike API', 'Webhooks', 'Automation Engine', 'Dynamic Request Forms', 'Approvals & Proofing', 'Dashboards',
-  'Salesforce', 'Slack', 'Microsoft Teams', 'Google Workspace', 'Adobe Creative Cloud', 'SSO',
+  "Wrike API v4", "Webhooks", "Wrike Integrate", "Custom Item Types", "Request Forms", "Blueprints", "Proofing & Approvals", "Resource Management", "Salesforce", "Slack", "Adobe Creative Cloud", "Microsoft Teams", "Jira", "SSO & SCIM",
 ]
 
 // ── Small components ────────────────────────────────────────────────────────
@@ -437,6 +445,21 @@ export default function WrikePlatformPage() {
           <Link href="/case-studies" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline">
             See real client case studies <ArrowRight className="h-3.5 w-3.5" />
           </Link>
+        </div>
+      </section>
+
+      {/* Field notes: platform-specific failure patterns */}
+      <section className="max-w-7xl mx-auto px-6 pb-20">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Field Notes</p>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">Where Wrike Projects Go Wrong</h2>
+        <p className="text-muted-foreground max-w-2xl mb-10">These are the failure patterns we see most often in Wrike accounts. Knowing them early is the cheapest way to avoid an expensive cleanup.</p>
+        <div className="grid md:grid-cols-2 gap-6">
+          {pitfalls.map((p, i) => (
+            <motion.div key={p.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="rounded-2xl border border-border bg-background p-6">
+              <h3 className="font-semibold text-base mb-2 flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-accent shrink-0 mt-1" />{p.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 

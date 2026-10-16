@@ -82,7 +82,7 @@ const webPageSchema = {
   description: 'Kovil AI is your single partner for Xero — AI-driven reconciliation automation, plus vetted Xero administrators, developers, and ecosystem integration specialists.',
   url: 'https://kovil.ai/platforms/xero',
   datePublished: '2026-09-30',
-  dateModified: '2026-09-30',
+  dateModified: '2026-10-16',
   inLanguage: 'en-US',
   isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
   speakable: {
@@ -110,24 +110,122 @@ const howToSchema = {
 }
 
 const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    { '@type': 'Question', name: 'What is Xero?', acceptedAnswer: { '@type': 'Answer', text: 'Xero is a cloud accounting platform combining core bookkeeping with payroll, project tracking, expense management, and inventory — one of the leading cloud accounting platforms for small businesses in the UK, Australia, and New Zealand, extended through the Xero App Marketplace.' } },
-    { '@type': 'Question', name: 'Does Xero have native AI, or do I need a custom build?', acceptedAnswer: { '@type': 'Answer', text: "Xero ships built-in automation for bank reconciliation suggestions, invoice reminders, and duplicate detection. Kovil AI configures those natively and builds custom API automation where it isn't enough." } },
-    { '@type': 'Question', name: 'Does Kovil AI build custom automation on Xero, or only staff talent?', acceptedAnswer: { '@type': 'Answer', text: "Both, and they're often the same engagement. Clients commonly hire a Xero administrator to clean up chart-of-accounts hygiene, then layer AI-driven reconciliation automation on top." } },
-    { '@type': 'Question', name: 'How much does it cost to hire a Xero developer through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: "Kovil AI's remote Xero talent bills $18-$34 per hour depending on role and experience, versus $35-$110+ per hour for prevailing US onsite rates for the same roles, typically 56-68% lower." } },
-    { '@type': 'Question', name: 'What is the difference between a Xero Administrator, API Developer, and Ecosystem Integration Specialist?', acceptedAnswer: { '@type': 'Answer', text: 'A Xero Administrator configures the chart of accounts, tracking categories, and bank feed rules without code. A Xero API Developer builds custom integrations using the Xero API and OAuth. An Ecosystem Integration Specialist designs the multi-app integration strategy for complex, multi-channel setups.' } },
-    { '@type': 'Question', name: 'How quickly can I hire a Xero specialist through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: 'Most clients are matched within 24-48 hours of submitting a brief, with work starting within a week, backed by a 2-week risk-free trial.' } },
-    { '@type': 'Question', name: 'Are your Xero specialists Certified Advisors?', acceptedAnswer: { '@type': 'Answer', text: 'Where relevant, we verify the Xero Certified Advisor credential. For API and integration work specifically, we weight a live build challenge and production portfolio review just as heavily.' } },
-    { '@type': 'Question', name: 'Can Kovil AI integrate Xero with other systems like Shopify or Stripe?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Our Xero talent regularly builds integrations using the Xero API and custom middleware, including Shopify and Stripe.' } },
-    { '@type': 'Question', name: 'Who owns the integrations and automations built during an engagement?', acceptedAnswer: { '@type': 'Answer', text: 'You do, 100%. All custom integrations, automations, and documentation are fully owned by you under clear IP-assignment terms, with no shared IP and no lock-in.' } },
-    { '@type': 'Question', name: 'Can I combine an AI automation build with Xero staff augmentation in one engagement?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated administrator or developer talent working in the same account.' } },
-    { '@type': 'Question', name: 'What does Kovil AI typically build on top of Xero?', acceptedAnswer: { '@type': 'Answer', text: 'Invoice-to-cash matching, multi-currency consolidated reporting, e-commerce order sync from Shopify and Stripe, and reconciliation automation.' } },
-    { '@type': 'Question', name: 'How is Kovil AI different from a Xero App Marketplace app or a bookkeeper?', acceptedAnswer: { '@type': 'Answer', text: 'A Marketplace app solves one narrow problem. A bookkeeper manages your books but typically does not build custom API integrations. Kovil AI embeds a single accountable specialist under an Engagement Manager who audits every milestone.' } },
-    { '@type': 'Question', name: 'Can we extend a trial engagement or convert it to a long-term hire?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Most clients extend the engagement as new automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' } },
-    { '@type': 'Question', name: 'Do you support Xero rescues or fixing messy books?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A meaningful share of our Xero engagements start as a rescue of duplicate transactions, miscategorized expenses, or a forgotten integration, which we audit and rebuild in milestone-gated phases.' } },
-  ],
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Xero?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Xero is a cloud accounting platform used widely by small and mid-sized businesses and by accounting practices, particularly in the UK, Australia, and New Zealand. It covers bookkeeping, invoicing, bank reconciliation, payroll in supported countries, projects, and an app marketplace connected through its APIs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Xero have native AI, or do I need a custom build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Xero includes built-in automation and AI-driven suggestions for tasks like bank reconciliation, invoice reminders, and duplicate detection. A custom build makes sense when you need logic across systems, such as mining your own rules, coding bills from email, or running an agent across many organisations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are tracking categories, and why do they matter for automation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tracking categories let you tag transactions with dimensions such as department or project, and Xero allows two of them. Reports and any automation that reads them are only as reliable as how consistently they are applied, so we audit them before building on top."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you clean up and improve our Xero bank rules?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We review existing rules for overlap and order, mine your reconciled history for patterns worth turning into rules, and retire the ones causing wrong categories. The aim is more transactions reconciling in one click, with fewer silent errors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do Xero integrations work when we have several organisations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Xero connections are made per organisation, and each one has its own authorization. We build integrations that track each connection, refresh tokens correctly, and handle revoked access, so one failure does not silently stop the whole group."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to hire a Xero developer through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kovil AI's remote Xero talent bills $18-$34 per hour depending on role and experience, versus $35-$110+ per hour for prevailing US onsite rates for the same roles — typically 56-68% lower."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a Xero Administrator, API Developer, and Ecosystem Integration Specialist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An Administrator owns the chart of accounts, tracking categories, and bank rules. An API Developer writes code against the Xero APIs and webhooks. An Ecosystem Integration Specialist decides which apps to connect and how data should flow between them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a Xero Certified Advisor credential matter for this work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Certified Advisor credential shows knowledge of Xero for accounting work, and we verify it where it applies. For integration and AI work it is not enough on its own, so we also run a live build and review shipped projects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you build an agent that works across many client organisations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. For practices, we build a single view across all Xero organisations covering overdue items, unreconciled transactions, and unusual movements, with per-client permissions respected. It is a practice-level tool and sends summaries to a person to act on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you handle multi-currency in Xero automation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We treat exchange rates and revaluation as first-class concerns. Automation checks which rate was used, flags unusual gains and losses before close, and never posts foreign-currency entries without a rate source you have approved."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can I hire a Xero specialist through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most clients are matched with a vetted administrator, developer, or specialist within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who owns the integrations and automations built during an engagement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You do, 100%. All custom integrations, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you support Xero rescues or fixing messy books?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Typical rescues involve conflicting bank rules, bloated tracking categories, duplicated bills, or an integration that stopped syncing unnoticed. We audit first, agree a cleanup plan, and fix in stages so reporting stays usable throughout."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we extend a trial engagement or convert it to a long-term hire?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most clients extend the engagement as new automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way."
+      }
+    }
+  ]
 }
 
 const breadcrumbSchema = {

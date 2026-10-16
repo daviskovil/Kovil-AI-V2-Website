@@ -7,6 +7,7 @@ import {
   ArrowRight, Bot, Users, Code2, ShieldCheck, Zap, Database, Workflow,
   GitBranch, CheckCircle2, ChevronDown, Briefcase, Settings, X, Minus,
   LineChart, Search, Boxes, Receipt, Clock,
+  AlertTriangle,
 } from 'lucide-react'
 import { Button } from '@/src/components/ui/button'
 import { PlatformLogoBadge } from '@/src/components/platforms/PlatformLogo'
@@ -33,46 +34,46 @@ const marketStats = [
 ]
 
 const modules = [
-  { icon: Receipt, title: 'Core Accounting', desc: 'General ledger, invoicing, and bank reconciliation — the module every Xero account is built around first.' },
-  { icon: Users, title: 'Payroll', desc: 'Payroll processing and compliance, tightly integrated with the general ledger.' },
-  { icon: Briefcase, title: 'Xero Projects', desc: 'Time and cost tracking by project, feeding directly into invoicing and job profitability reporting.' },
-  { icon: Clock, title: 'Expenses', desc: 'Employee expense claims and approvals, reconciled automatically against bank transactions.' },
-  { icon: Boxes, title: 'Inventory', desc: 'Stock tracking for product-based small businesses, connected to invoicing and purchase orders.' },
-  { icon: GitBranch, title: 'App Marketplace', desc: "Xero's ecosystem of integrations — the primary way most businesses extend beyond core accounting." },
+  { icon: Receipt, title: "Chart of Accounts & Tracking Categories", desc: "Tracking categories add a second dimension to every transaction, such as department or project, and are the main lever for management reporting in Xero." },
+  { icon: Database, title: "Bank Reconciliation & Rules", desc: "Bank rules and Xero's matching suggestions drive daily reconciliation. Rule order and overlap decide how much stays manual." },
+  { icon: Briefcase, title: "Invoices, Bills & Repeating Transactions", desc: "Sales invoices, supplier bills, and repeating templates, with approval options for teams that need a second pair of eyes." },
+  { icon: Settings, title: "Multi-Currency", desc: "Foreign-currency invoices, bills, and bank accounts with exchange-rate handling, which matters most for exporters and international teams." },
+  { icon: Clock, title: "Projects & Expenses", desc: "Time and cost tracking against jobs, plus expense claims, feeding profitability by project." },
+  { icon: Code2, title: "Xero API & App Marketplace", desc: "Accounting, payroll, and files APIs with OAuth 2.0 and webhooks. Each connection is per organisation, which shapes how integrations are built." },
 ]
 
 const aiCapabilities = [
-  { icon: Bot, title: 'Xero Automation Configuration', desc: "Configure and extend Xero's built-in automation — bank reconciliation suggestions, invoice reminders, and duplicate detection — grounded in your real transaction data." },
-  { icon: Zap, title: 'Custom API Automation', desc: "AI features that don't fit a template — invoking LLMs from custom integrations, wired into your actual chart of accounts and workflows." },
-  { icon: Database, title: 'Reconciliation Automation', desc: 'AI-assisted bank feed matching and anomaly detection that flags discrepancies before they pile up, not after.' },
-  { icon: GitBranch, title: 'Cross-Platform Agent Integrations', desc: 'AI agents that reach beyond Xero — into Shopify, Stripe, and internal tools — through the Xero API or custom middleware.' },
-  { icon: ShieldCheck, title: 'Data Quality Audits', desc: 'AI agents are only as good as the data behind them — we audit chart-of-accounts hygiene and tracking category mapping before anything goes live.' },
-  { icon: Search, title: 'Xero AI Readiness & Scoping', desc: "Not sure where to start? We audit your books and integration setup, then scope the single highest-impact automation first." },
+  { icon: Bot, title: "Xero's Built-In AI, Tuned and Bounded", desc: "Make the most of native suggestions for reconciliation and reminders, with limits on what they may post and a review step for exceptions." },
+  { icon: Zap, title: "Bank Rule Mining From History", desc: "Analyze past reconciled transactions to propose bank rules, then retire conflicting or redundant ones so matching improves instead of getting noisier." },
+  { icon: Receipt, title: "Bill Coding From Email and Hubdoc", desc: "Extract supplier, tax, and totals from emailed bills and captured documents, code them from history, and queue drafts for approval." },
+  { icon: Search, title: "Multi-Currency Revaluation Checks", desc: "Flag unrealised gain and loss anomalies and stale exchange-rate usage before month-end close, with an explanation for each flag." },
+  { icon: GitBranch, title: "Practice-Level Rollups", desc: "For accountants running many Xero organisations: one agent summarizing status, overdue items, and anomalies across the whole client list." },
+  { icon: ShieldCheck, title: "Tracking-Category Hygiene Audit", desc: "Find unused, duplicated, or inconsistently applied tracking options so reports can be trusted before an agent reads them." },
 ]
 
 const practiceExamples = [
-  { title: 'Automated invoice-to-cash matching', desc: 'Incoming payments are matched to open invoices automatically, instead of a bookkeeper manually reconciling the bank feed each week.' },
-  { title: 'Multi-currency reporting that just works', desc: 'Custom automation handles currency translation and consolidated reporting across entities, cutting hours off month-end close.' },
-  { title: 'Project profitability, live', desc: 'Time and cost data from Xero Projects rolls up into real-time job profitability dashboards instead of a spreadsheet built after the fact.' },
+  { title: "Bank rules that stop fighting each other", desc: "Overlapping rules are consolidated and ordered correctly, so common transactions reconcile in one click instead of landing in review." },
+  { title: "One summary across many organisations", desc: "A practice sees overdue invoices, unreconciled items, and unusual movements across all clients in a single weekly digest." },
+  { title: "Foreign-currency close without surprises", desc: "Revaluation and exchange-rate checks run before close, so gains and losses are explained instead of discovered during review." },
 ]
 
 const roles = [
   {
     icon: Settings,
     title: 'Xero Administrators',
-    desc: 'Own day-to-day books health — chart of accounts, tracking categories, and bank feed rules — without writing code. Usually the first hire for any growing Xero account.',
+    desc: "Own the chart of accounts, tracking categories, bank rules, and approvals. Usually the first hire, and the person who keeps reconciliation quick and reports consistent.",
     skills: ['Xero Certified Advisor', 'Chart of Accounts Design'],
   },
   {
     icon: Code2,
     title: 'Xero API Developers',
-    desc: 'Build custom functionality when native tools run out of road — Xero API integrations, custom apps, and webhook automation.',
+    desc: "Build against the Xero accounting and payroll APIs with per-organisation connections, token refresh, and webhooks that stay reliable when connections change.",
     skills: ['Xero API', 'OAuth 2.0 & Webhooks'],
   },
   {
     icon: Briefcase,
     title: 'Ecosystem Integration Specialists',
-    desc: 'Design the integration strategy connecting Xero to e-commerce, payments, and operational tools. The most senior tier for multi-app setups.',
+    desc: "Choose and connect the apps around Xero, such as your store, payments, expenses, and payroll, and decide where each piece of data should live.",
     skills: ['App Marketplace Integration Strategy', 'Multi-Channel Reconciliation'],
   },
 ]
@@ -87,10 +88,10 @@ const rateComparison = [
 ]
 
 const vettingCriteria = [
-  { title: 'Live Xero API Build Challenge', desc: 'Build a working integration or automation against a realistic spec under time pressure — OAuth flow, webhook handling, and category mapping, not a take-home nobody reviews.' },
-  { title: 'Native-vs-Custom Judgment', desc: "We test the judgment call that separates senior from junior: when a native rule or app is enough, and when a custom API integration is worth the added complexity." },
-  { title: 'Bookkeeping Literacy Check', desc: 'Beyond the API, we test whether the specialist actually understands accounting fundamentals — chart of accounts structure, reconciliation, and what makes books trustworthy.' },
-  { title: 'Production Portfolio Review', desc: '2–3 real Xero integrations or automations they have shipped to production, reviewed for reliability and lessons from what broke.' },
+  { title: "Bank Rule Design Exercise", desc: "Given a messy set of reconciled transactions, propose a clean, non-overlapping rule set. It tests judgment about order and conflict, not just syntax." },
+  { title: "Native-vs-Custom Judgment", desc: "When is a Marketplace app or built-in feature enough, and when is custom API work worth maintaining? We test for restraint as well as skill." },
+  { title: "Multi-Organisation Integration Design", desc: "We ask how they would handle several Xero organisations, revoked connections, and token refresh, which is where many integrations fail." },
+  { title: "Production Portfolio Review", desc: "Two or three real Xero integrations or cleanups they shipped, reviewed for how failures were handled and what they would change." },
 ]
 
 const comparisonRows = [
@@ -103,9 +104,9 @@ const comparisonRows = [
 ]
 
 const forWho = [
-  { title: 'Growing Small Businesses', desc: "You outgrew manual bookkeeping but haven't outgrown Xero — you just need someone to configure it properly and automate the reconciliation nobody has time for." },
-  { title: 'Multi-Currency & International Teams', desc: "Xero's multi-currency support is a reason you chose it, but consolidated reporting across entities still takes days. We automate the connective tissue." },
-  { title: 'Teams Drowning in Manual Reconciliation', desc: 'Month-end close takes days because bank feeds, invoices, and expenses never quite line up. We build the automation that keeps up.' },
+  { title: "Accounting and Bookkeeping Practices", desc: "Running dozens of Xero organisations means repeating cleanups and checks. We standardize them and add practice-wide visibility." },
+  { title: "UK, Australian, and New Zealand Businesses", desc: "Local payroll, VAT or GST, and bank connections are Xero strengths. We build automation that respects those regional rules instead of fighting them." },
+  { title: "Businesses Adding Projects, Inventory, or Multi-Currency", desc: "As needs grow, Xero add-ons and integrations multiply. We design how they fit together and when it is time to look beyond Xero." },
 ]
 
 const timeline = [
@@ -116,27 +117,33 @@ const timeline = [
   { day: 'Ongoing', title: 'Scale or Wind Down', desc: 'Add talent as new automation needs come online, extend the engagement, or wind down — no lock-in.' },
 ]
 
+const pitfalls = [
+  { title: "Tracking categories overloaded", desc: "Only two tracking categories are available, so using them for everything leads to unwieldy option lists and reports nobody can read." },
+  { title: "Bank rules in conflict", desc: "Overlapping rules and the wrong ordering produce wrong categories quietly, and the errors surface at review time rather than at entry." },
+  { title: "Integrations that assume one organisation", desc: "Xero connections are per organisation. Code that ignores this breaks for multi-entity groups or when a connection is revoked." },
+  { title: "Multi-currency left to chance", desc: "Unreviewed exchange rates and revaluation produce gains and losses that nobody can explain at close." },
+  { title: "Duplicate bills from several capture routes", desc: "Email, Hubdoc, and manual entry can all create the same supplier bill, so payments get duplicated unless a matching check is in place." },
+]
+
 const faqs = [
-  { q: 'What is Xero?', a: 'Xero is a cloud accounting platform combining core bookkeeping (general ledger, invoicing, bank reconciliation) with payroll, project tracking, expense management, and inventory. It is one of the leading cloud accounting platforms for small businesses in the UK, Australia, and New Zealand, extended through the Xero App Marketplace, which connects it to e-commerce platforms, payment processors, and operational tools.' },
-  { q: 'Does Xero have native AI, or do I need a custom build?', a: "Xero ships built-in automation for bank reconciliation suggestions, invoice reminders, and duplicate detection. Kovil AI configures those natively and, where they aren't enough, builds custom API automation tuned to your specific reconciliation workflow." },
-  { q: 'Does Kovil AI build custom automation on Xero, or only staff talent?', a: "Both, and they're often the same engagement. Clients commonly hire a Xero administrator to clean up chart-of-accounts hygiene, then layer AI-driven reconciliation automation on top." },
-  { q: 'How much does it cost to hire a Xero developer through Kovil AI?', a: "Kovil AI's remote Xero talent bills $18-$34 per hour depending on role and experience, versus $35-$110+ per hour for prevailing US onsite rates for the same roles — typically 56-68% lower." },
-  { q: 'What is the difference between a Xero Administrator, API Developer, and Ecosystem Integration Specialist?', a: 'A Xero Administrator configures the chart of accounts, tracking categories, and bank feed rules without writing code. A Xero API Developer builds custom integrations using the Xero API and OAuth. An Ecosystem Integration Specialist designs the multi-app integration strategy connecting Xero to e-commerce and payments, and is typically engaged for more complex, multi-channel setups.' },
-  { q: 'How quickly can I hire a Xero specialist through Kovil AI?', a: 'Most clients are matched with a vetted administrator, developer, or specialist within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement.' },
-  { q: 'Are your Xero specialists Certified Advisors?', a: "Where relevant, we verify the Xero Certified Advisor credential, which is the recognized certification in the Xero ecosystem. For API and integration work specifically, we weight a live build challenge and production portfolio review just as heavily, since that tests engineering judgment a bookkeeping certification doesn't cover." },
-  { q: 'Can Kovil AI integrate Xero with other systems like Shopify or Stripe?', a: 'Yes. Our Xero talent regularly builds integrations using the Xero API and custom middleware — connecting Xero to Shopify, Stripe, and whatever else your business runs on.' },
-  { q: 'Who owns the integrations and automations built during an engagement?', a: 'You do, 100%. All custom integrations, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in.' },
-  { q: 'Can I combine an AI automation build with Xero staff augmentation in one engagement?', a: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated administrator or developer talent working in the same account.' },
-  { q: 'What does Kovil AI typically build on top of Xero?', a: 'Invoice-to-cash matching, multi-currency consolidated reporting, e-commerce order sync from Shopify and Stripe, and reconciliation automation that keeps books current without manual bank feed review.' },
-  { q: 'How is Kovil AI different from a Xero App Marketplace app or a bookkeeper?', a: 'A Marketplace app solves one narrow problem and stops. A bookkeeper manages your books but typically does not build custom API integrations. Kovil AI embeds a single accountable specialist under an Engagement Manager who audits every milestone, with a 2-week risk-free trial and no long-term lock-in.' },
-  { q: 'Can we extend a trial engagement or convert it to a long-term hire?', a: 'Yes. Most clients extend the engagement as new automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' },
-  { q: 'Do you support Xero rescues or fixing messy books?', a: 'Yes. A meaningful share of our Xero engagements start as a rescue — duplicate transactions, miscategorized expenses, or an integration nobody remembers building. We audit the chart of accounts and automation layer, then stabilize and rebuild in milestone-gated phases.' },
+  { q: "What is Xero?", a: "Xero is a cloud accounting platform used widely by small and mid-sized businesses and by accounting practices, particularly in the UK, Australia, and New Zealand. It covers bookkeeping, invoicing, bank reconciliation, payroll in supported countries, projects, and an app marketplace connected through its APIs." },
+  { q: "Does Xero have native AI, or do I need a custom build?", a: "Xero includes built-in automation and AI-driven suggestions for tasks like bank reconciliation, invoice reminders, and duplicate detection. A custom build makes sense when you need logic across systems, such as mining your own rules, coding bills from email, or running an agent across many organisations." },
+  { q: "What are tracking categories, and why do they matter for automation?", a: "Tracking categories let you tag transactions with dimensions such as department or project, and Xero allows two of them. Reports and any automation that reads them are only as reliable as how consistently they are applied, so we audit them before building on top." },
+  { q: "Can you clean up and improve our Xero bank rules?", a: "Yes. We review existing rules for overlap and order, mine your reconciled history for patterns worth turning into rules, and retire the ones causing wrong categories. The aim is more transactions reconciling in one click, with fewer silent errors." },
+  { q: "How do Xero integrations work when we have several organisations?", a: "Xero connections are made per organisation, and each one has its own authorization. We build integrations that track each connection, refresh tokens correctly, and handle revoked access, so one failure does not silently stop the whole group." },
+  { q: "How much does it cost to hire a Xero developer through Kovil AI?", a: "Kovil AI's remote Xero talent bills $18-$34 per hour depending on role and experience, versus $35-$110+ per hour for prevailing US onsite rates for the same roles — typically 56-68% lower." },
+  { q: "What is the difference between a Xero Administrator, API Developer, and Ecosystem Integration Specialist?", a: "An Administrator owns the chart of accounts, tracking categories, and bank rules. An API Developer writes code against the Xero APIs and webhooks. An Ecosystem Integration Specialist decides which apps to connect and how data should flow between them." },
+  { q: "Does a Xero Certified Advisor credential matter for this work?", a: "The Certified Advisor credential shows knowledge of Xero for accounting work, and we verify it where it applies. For integration and AI work it is not enough on its own, so we also run a live build and review shipped projects." },
+  { q: "Can you build an agent that works across many client organisations?", a: "Yes. For practices, we build a single view across all Xero organisations covering overdue items, unreconciled transactions, and unusual movements, with per-client permissions respected. It is a practice-level tool and sends summaries to a person to act on." },
+  { q: "How do you handle multi-currency in Xero automation?", a: "We treat exchange rates and revaluation as first-class concerns. Automation checks which rate was used, flags unusual gains and losses before close, and never posts foreign-currency entries without a rate source you have approved." },
+  { q: "How quickly can I hire a Xero specialist through Kovil AI?", a: "Most clients are matched with a vetted administrator, developer, or specialist within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement." },
+  { q: "Who owns the integrations and automations built during an engagement?", a: "You do, 100%. All custom integrations, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in." },
+  { q: "Do you support Xero rescues or fixing messy books?", a: "Yes. Typical rescues involve conflicting bank rules, bloated tracking categories, duplicated bills, or an integration that stopped syncing unnoticed. We audit first, agree a cleanup plan, and fix in stages so reporting stays usable throughout." },
+  { q: "Can we extend a trial engagement or convert it to a long-term hire?", a: "Yes. Most clients extend the engagement as new automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way." },
 ]
 
 const integrations = [
-  'Xero API', 'OAuth 2.0', 'Webhooks', 'Xero App Marketplace', 'Bank Feeds', 'Tracking Categories',
-  'Shopify', 'Stripe', 'PayPal', 'Zapier', 'Multi-Currency', 'Xero Projects API',
-  'Payroll API', 'Custom Reports', 'HubDoc', 'SSO',
+  "Xero Accounting API", "Xero Payroll API", "OAuth 2.0 & Webhooks", "Tracking Categories", "Bank Rules", "Hubdoc", "Xero Projects", "Xero Files API", "Shopify", "Stripe", "PayPal", "Dext & Expense Tools", "Zapier & Make", "Multi-Currency", "Custom Reports", "SSO",
 ]
 
 // ── Small components ────────────────────────────────────────────────────────
@@ -438,6 +445,21 @@ export default function XeroPlatformPage() {
           <Link href="/case-studies" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline">
             See real client case studies <ArrowRight className="h-3.5 w-3.5" />
           </Link>
+        </div>
+      </section>
+
+      {/* Field notes: platform-specific failure patterns */}
+      <section className="max-w-7xl mx-auto px-6 pb-20">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Field Notes</p>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">Where Xero Projects Go Wrong</h2>
+        <p className="text-muted-foreground max-w-2xl mb-10">These are the failure patterns we see most often in Xero organisations. Knowing them early is the cheapest way to avoid an expensive cleanup.</p>
+        <div className="grid md:grid-cols-2 gap-6">
+          {pitfalls.map((p, i) => (
+            <motion.div key={p.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="rounded-2xl border border-border bg-background p-6">
+              <h3 className="font-semibold text-base mb-2 flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-accent shrink-0 mt-1" />{p.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 

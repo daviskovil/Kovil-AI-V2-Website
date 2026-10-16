@@ -82,7 +82,7 @@ const webPageSchema = {
   description: 'Kovil AI is your single partner for Smartsheet — AI-driven resource automation, plus vetted solutions architects, developers, and work management consultants.',
   url: 'https://kovil.ai/platforms/smartsheet',
   datePublished: '2026-10-02',
-  dateModified: '2026-10-02',
+  dateModified: '2026-10-16',
   inLanguage: 'en-US',
   isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
   speakable: {
@@ -110,24 +110,122 @@ const howToSchema = {
 }
 
 const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    { '@type': 'Question', name: 'What is Smartsheet?', acceptedAnswer: { '@type': 'Answer', text: 'Smartsheet is a collaborative work management platform with a spreadsheet-native grid interface, used by around 90% of Fortune 100 companies, combining sheet editing with automation, resource management, and Control Center.' } },
-    { '@type': 'Question', name: 'Does Smartsheet have native AI, or do I need a custom build?', acceptedAnswer: { '@type': 'Answer', text: "Smartsheet ships built-in AI features for formula generation and smart summaries. Kovil AI configures those natively and builds custom API automation where they aren't enough." } },
-    { '@type': 'Question', name: 'Does Kovil AI build custom automation on Smartsheet, or only staff talent?', acceptedAnswer: { '@type': 'Answer', text: "Both, and they're often the same engagement. Clients commonly hire a solutions architect to standardize sheet structure and Control Center templates, then layer AI-driven automation on top." } },
-    { '@type': 'Question', name: 'How much does it cost to hire a Smartsheet specialist through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: "Kovil AI's remote Smartsheet talent bills $18-$30 per hour depending on role and experience, versus $40-$95+ per hour for prevailing US onsite rates for the same roles, typically 60-67% lower." } },
-    { '@type': 'Question', name: 'What is the difference between a Solutions Architect, Developer, and Work Management Consultant?', acceptedAnswer: { '@type': 'Answer', text: 'A Solutions Architect designs sheet structure and Control Center templates. An Automation/API Developer builds custom integrations using the Smartsheet API. A Work Management Consultant owns template standardization and dashboard configuration.' } },
-    { '@type': 'Question', name: 'How quickly can I hire a Smartsheet specialist through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: 'Most clients are matched within 24-48 hours of submitting a brief, with work starting within a week, backed by a 2-week risk-free trial.' } },
-    { '@type': 'Question', name: 'Are your Smartsheet specialists certified?', acceptedAnswer: { '@type': 'Answer', text: 'We verify relevant platform experience where it exists, but weight a live automation build challenge and production portfolio review just as heavily.' } },
-    { '@type': 'Question', name: 'Can Kovil AI integrate Smartsheet with other systems like Salesforce or Jira?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Our Smartsheet talent regularly builds integrations using the REST API and native connectors.' } },
-    { '@type': 'Question', name: 'Who owns the sheets and automations built during an engagement?', acceptedAnswer: { '@type': 'Answer', text: 'You do, 100%. All custom sheets, automations, and documentation are fully owned by you under clear IP-assignment terms, with no shared IP and no lock-in.' } },
-    { '@type': 'Question', name: 'Can I combine an AI automation build with Smartsheet staff augmentation in one engagement?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated architect or developer talent working in the same account.' } },
-    { '@type': 'Question', name: 'What does Kovil AI typically build on top of Smartsheet?', acceptedAnswer: { '@type': 'Answer', text: 'Standardized Control Center project templates, automated approval routing, resource capacity alerts, and custom API integrations with sales and project tools.' } },
-    { '@type': 'Question', name: 'How is Kovil AI different from a Smartsheet Partner agency or freelancer?', acceptedAnswer: { '@type': 'Answer', text: 'A partner agency typically scopes a fixed project and hands it to a rotating bench. A freelancer works solo with no oversight. Kovil AI embeds a single accountable specialist under an Engagement Manager who audits every milestone.' } },
-    { '@type': 'Question', name: 'Can we extend a trial engagement or convert it to a long-term hire?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' } },
-    { '@type': 'Question', name: 'Do you support Smartsheet rescues or fixing a messy account?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A meaningful share of our Smartsheet engagements start as a rescue of inconsistent sheet structures, broken formula chains, or a Control Center rollout that lost governance, which we audit and rebuild in milestone-gated phases.' } },
-  ],
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Smartsheet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Smartsheet is a work management platform with a spreadsheet-style grid, used for project tracking, resource planning, and process automation. It adds dashboards, reports, WorkApps, Control Center for governed project provisioning, and a REST API with Bridge and Data Shuttle for integration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Smartsheet have native AI, or do I need a custom build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Smartsheet includes built-in AI features such as formula assistance and text transformation. A custom build makes sense when you need an LLM working with data from other systems or logic the built-in features cannot express."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When do we need Control Center, and when is it overkill?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Control Center pays off when many projects must follow the same structure and roll up into consistent reporting. For a few projects, disciplined templates may be enough. We recommend the lighter option when it is enough."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do large Smartsheet sheets get slow, and how do we fix them?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Large sheets with many cross-sheet references and complex formulas slow down and can hit size limits. We restructure by splitting data sensibly, simplifying references, and archiving old rows, so performance and accuracy hold up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you keep Smartsheet and another system in sync safely?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We declare one side the source of truth for each field, use Data Shuttle, Live Data Connector, or the API accordingly, and add retries and logging. That avoids the conflicting edits that two-way syncs tend to create."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to hire a Smartsheet specialist through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kovil AI's remote Smartsheet talent bills $18-$30 per hour depending on role and experience, versus $40-$95+ per hour for prevailing US onsite rates for the same roles — typically 60-67% lower."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a Solutions Architect, Developer, and Work Management Consultant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Solutions Architect designs sheet structure, Control Center blueprints, and governance. An Automation/API Developer builds with the API, Bridge, and Data Shuttle. A Work Management Consultant standardizes templates and reports and helps teams adopt them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you move our resource planning into Smartsheet properly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Resource Management depends on consistent time and assignment data, so we set simple rules for entering it and build views that planners and leaders can trust."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Kovil AI connect Smartsheet to Salesforce, Jira, or Microsoft 365?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We use Data Shuttle, Live Data Connector, or the API according to the use case, with a clear source of truth so syncs do not conflict."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are your Smartsheet specialists certified?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We verify relevant Smartsheet experience and credentials where they exist, but weight a live sheet-design exercise and a review of shipped work at least as heavily, since credentials alone do not test judgment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can I hire a Smartsheet specialist through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most clients are matched with a vetted architect, developer, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who owns the sheets and automations built during an engagement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You do, 100%. All custom sheets, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you support Smartsheet rescues or fixing a messy account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Typical rescues involve oversized sheets, fragile cross-sheet formulas, drifting template copies, or unowned automation. We audit first, then restructure in stages so teams are not disrupted."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we extend a trial engagement or convert it to a long-term hire?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way."
+      }
+    }
+  ]
 }
 
 const breadcrumbSchema = {

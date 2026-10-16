@@ -82,7 +82,7 @@ const webPageSchema = {
   description: 'Kovil AI is your single partner for Acumatica — AI-driven automation, plus vetted Acumatica administrators, developers, and ERP consultants.',
   url: 'https://kovil.ai/platforms/acumatica',
   datePublished: '2026-09-30',
-  dateModified: '2026-09-30',
+  dateModified: '2026-10-16',
   inLanguage: 'en-US',
   isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
   speakable: {
@@ -110,24 +110,122 @@ const howToSchema = {
 }
 
 const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    { '@type': 'Question', name: 'What is Acumatica?', acceptedAnswer: { '@type': 'Answer', text: 'Acumatica is a cloud ERP platform built around a unified Financial Management core, extended by Distribution Management, Manufacturing Management, Project Accounting, CRM, and Field Service Management, distinguished by consumption-based licensing rather than per-user fees.' } },
-    { '@type': 'Question', name: 'Does Acumatica have native AI, or do I need a custom build?', acceptedAnswer: { '@type': 'Answer', text: "Acumatica ships built-in AI and automation for anomaly detection, predictive analytics, and smart data capture. Kovil AI configures those natively and builds custom .NET automation where they aren't enough." } },
-    { '@type': 'Question', name: 'Does Kovil AI build custom automation on Acumatica, or only staff talent?', acceptedAnswer: { '@type': 'Answer', text: "Both, and they're often the same engagement. Clients commonly hire an Acumatica administrator to clean up instance hygiene, then layer AI-driven automation on top." } },
-    { '@type': 'Question', name: 'How much does it cost to hire an Acumatica developer through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: "Kovil AI's remote Acumatica talent bills $18-$38 per hour depending on role and experience, versus $40-$140+ per hour for prevailing US onsite rates for the same roles, typically 60-70% lower." } },
-    { '@type': 'Question', name: 'What is the difference between an Acumatica Administrator, Developer, and ERP Consultant?', acceptedAnswer: { '@type': 'Answer', text: 'An Acumatica Administrator configures the instance using generic inquiries and workflows without code. A .NET/Acumatica Developer builds custom screens and business events using the xRP framework. An ERP Consultant designs the chart of accounts and implementation strategy.' } },
-    { '@type': 'Question', name: 'How quickly can I hire an Acumatica specialist through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: 'Most clients are matched within 24-48 hours of submitting a brief, with work starting within a week, backed by a 2-week risk-free trial.' } },
-    { '@type': 'Question', name: 'Is there such a thing as a certified Acumatica specialist?', acceptedAnswer: { '@type': 'Answer', text: 'Acumatica offers partner-level certification through its training programs. We verify these where relevant, but weight a live build challenge and production portfolio review just as heavily.' } },
-    { '@type': 'Question', name: 'Can Kovil AI integrate Acumatica with other systems like Salesforce or Shopify?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Our Acumatica talent regularly builds integrations using the Acumatica REST/SOAP API and custom middleware.' } },
-    { '@type': 'Question', name: 'Who owns the customizations, automations, and integrations built during an engagement?', acceptedAnswer: { '@type': 'Answer', text: 'You do, 100%. All custom screens, business events, integrations, and documentation are fully owned by you under clear IP-assignment terms, with no shared IP and no lock-in.' } },
-    { '@type': 'Question', name: 'Can I combine an AI automation build with Acumatica staff augmentation in one engagement?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated administrator or developer talent working in the same instance.' } },
-    { '@type': 'Question', name: 'What Acumatica modules does Kovil AI have experience with?', acceptedAnswer: { '@type': 'Answer', text: 'Financial Management, Distribution Management, Manufacturing Management, Project Accounting, CRM, and Field Service Management, plus integrations including Salesforce and Shopify.' } },
-    { '@type': 'Question', name: 'How is Kovil AI different from a traditional Acumatica VAR or systems integrator?', acceptedAnswer: { '@type': 'Answer', text: 'Traditional VARs typically scope a fixed project and hand it to a rotating bench of consultants. Kovil AI embeds a single accountable engineer or small pod directly with your team under one Engagement Manager.' } },
-    { '@type': 'Question', name: 'Can we extend a trial engagement or convert it to a long-term hire?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Most clients extend the engagement as new modules or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' } },
-    { '@type': 'Question', name: 'Do you support Acumatica rescues or fixing a failing implementation?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A significant share of our Acumatica engagements start as a rescue of an instance with years of technical debt or a customization that never worked, which we audit and rebuild in milestone-gated phases.' } },
-  ],
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Acumatica?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Acumatica is a cloud ERP covering financials, distribution, manufacturing, project accounting, and more, with a customization platform and an Open API. It is known for consumption-based licensing, which prices by computing resources rather than by user count."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Acumatica have native AI, or do I need a custom build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Acumatica includes built-in AI capabilities such as AI-assisted document recognition. A custom build makes sense when you need logic across systems, such as matching invoices to purchase orders, triggering agents from Business Events, or running LLM steps against your data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does consumption-based licensing mean for integrations and AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Acumatica licenses by computing resources rather than named users, so broad access is affordable but heavy integration and reporting load uses capacity. We plan integration volume and scheduling with that in mind instead of discovering it later."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Acumatica API should we use for an integration?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Contract-based REST endpoints are versioned and suited to most integrations. Generic inquiries suit read-heavy reporting, and screen-based access is a last resort because it can break when screens change. We choose per use case."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do customizations affect Acumatica upgrades?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Acumatica ships releases on a regular cadence, and customizations that rely on unsupported patterns can break them. We build and refactor customization projects to supported patterns and test in a separate tenant before publishing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to hire an Acumatica developer through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kovil AI's remote Acumatica talent bills $18-$38 per hour depending on role and experience, versus $40-$140+ per hour for prevailing US onsite rates for the same roles — typically 60-70% lower."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between an Acumatica Administrator, Developer, and ERP Consultant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An Administrator owns inquiries, reports, workflows, and security roles. A .NET/Acumatica Developer builds customization projects and integrations. An ERP Consultant configures financials, distribution, and multi-entity structure and guides process design."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are Business Events, and how can an AI agent use them?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Business Events fire when records meet conditions, such as stock below a threshold. We use them to trigger an agent that drafts a proposed action, such as a purchase order, which a person approves before anything posts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Kovil AI integrate Acumatica with Shopify, Salesforce, or warehouse tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We use the contract-based Open API with a declared source of truth for each field, so order, inventory, and customer data stay aligned without conflicting writes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there such a thing as a certified Acumatica specialist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Acumatica offers certifications and we verify them where they exist. For development and integration work we also weight a live design exercise and a review of shipped work, since credentials alone do not test judgment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can I hire an Acumatica specialist through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most clients are matched with a vetted administrator, developer, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who owns the customizations, automations, and integrations built during an engagement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You do, 100%. All custom screens, business events, integrations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you support Acumatica rescues or fixing a failing implementation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Typical rescues involve heavy customizations that block upgrades, fragile integrations, weak multi-entity design, or stalled go-lives. We audit first, then stabilize in stages so operations are not disrupted."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we extend a trial engagement or convert it to a long-term hire?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most clients extend the engagement as new modules or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way."
+      }
+    }
+  ]
 }
 
 const breadcrumbSchema = {

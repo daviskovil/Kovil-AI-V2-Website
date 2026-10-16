@@ -7,6 +7,7 @@ import {
   ArrowRight, Bot, Users, Code2, ShieldCheck, Zap, Database, Workflow,
   GitBranch, CheckCircle2, ChevronDown, Briefcase, Settings, X, Minus,
   Receipt, Search, Clock, Boxes, CreditCard,
+  AlertTriangle,
 } from 'lucide-react'
 import { Button } from '@/src/components/ui/button'
 import { PlatformLogoBadge } from '@/src/components/platforms/PlatformLogo'
@@ -33,46 +34,46 @@ const marketStats = [
 ]
 
 const modules = [
-  { icon: Receipt, title: 'Core Accounting', desc: 'General ledger, invoicing, and expense tracking — the module every QuickBooks Online account is built around first.' },
-  { icon: Users, title: 'Payroll', desc: 'Payroll processing and tax filing, tightly integrated with the general ledger.' },
-  { icon: CreditCard, title: 'Payments', desc: 'Invoice payments and merchant processing, reconciled automatically against open invoices.' },
-  { icon: Clock, title: 'Time Tracking', desc: 'Employee and contractor time tracking, feeding directly into payroll and job costing.' },
-  { icon: Boxes, title: 'Inventory', desc: 'Stock tracking for product-based small businesses, connected to invoicing and purchasing.' },
-  { icon: GitBranch, title: 'App Ecosystem', desc: "QuickBooks' App Store integrations — the primary way most businesses extend beyond core accounting." },
+  { icon: Receipt, title: "Chart of Accounts, Classes & Locations", desc: "The structure every report rests on. Account design, classes, and locations decide whether the P&L explains itself or needs a spreadsheet to interpret it." },
+  { icon: Database, title: "Bank Feeds & Rules", desc: "Imported bank transactions are matched, categorized, or excluded through rules. This is where most reconciliation time is won or lost." },
+  { icon: Briefcase, title: "Invoicing & Accounts Receivable", desc: "Recurring invoices, payment links, and reminders. Combined with QuickBooks Payments, paid invoices can close themselves." },
+  { icon: Users, title: "Payroll & Time", desc: "Payroll and time tracking post wages and job costs to the ledger, so how they are classified directly shapes your margins." },
+  { icon: Settings, title: "Reports & Advanced Tier Features", desc: "Custom reports, and on higher tiers custom fields, workflow automation, and Excel-based reporting for larger teams." },
+  { icon: Code2, title: "Intuit Developer Platform", desc: "OAuth 2.0 REST APIs and webhooks for QuickBooks Online. The route for any integration the App Store does not already cover." },
 ]
 
 const aiCapabilities = [
-  { icon: Bot, title: 'Intuit Assist Configuration', desc: "Configure and extend Intuit Assist — QuickBooks' native AI assistant — for transaction categorization, cash flow insights, and invoice reminders, grounded in your real books." },
-  { icon: Zap, title: 'Custom API Automation', desc: "AI features that don't fit a template — invoking LLMs from custom integrations, wired into your actual chart of accounts and workflows." },
-  { icon: Database, title: 'Reconciliation Automation', desc: 'AI-assisted bank feed matching and anomaly detection that flags discrepancies before they pile up, not after.' },
-  { icon: GitBranch, title: 'Cross-Platform Agent Integrations', desc: 'AI agents that reach beyond QuickBooks — into Shopify, Stripe, and internal tools — through the QuickBooks Online API or custom middleware.' },
-  { icon: ShieldCheck, title: 'Data Quality Audits', desc: 'AI agents are only as good as the data behind them — we audit chart-of-accounts hygiene and category mapping before anything goes live.' },
-  { icon: Search, title: 'QuickBooks AI Readiness & Scoping', desc: "Not sure where to start? We audit your books and integration setup, then scope the single highest-impact automation first." },
+  { icon: Bot, title: "Intuit Assist Setup & Guardrails", desc: "Configure Intuit Assist where it helps and set clear limits on what it may change, so suggestions never post straight to your books." },
+  { icon: Zap, title: "LLM Categorization Over the Bank Feed", desc: "Suggest categories for transactions your rules miss, with a confidence threshold. High-confidence items are queued, uncertain ones go to a human." },
+  { icon: Receipt, title: "Receipt & Bill Capture Pipelines", desc: "Extract vendor, date, tax, and totals from emailed receipts and bills, then create draft entries a bookkeeper approves in one click." },
+  { icon: Search, title: "Month-End Variance Explainer", desc: "An agent compares this month with last month from the P&L and writes a plain-English summary of what moved, flagged for review before it reaches anyone." },
+  { icon: GitBranch, title: "Order-to-Ledger Agents", desc: "Turn Shopify and Stripe payouts into the right gross sale, fee, refund, and deposit entries, so each bank deposit ties back to its orders." },
+  { icon: ShieldCheck, title: "Books Health Audit", desc: "Find duplicate customers and vendors, stale clearing accounts, and uncategorized transactions before any automation touches the data." },
 ]
 
 const practiceExamples = [
-  { title: 'Automated invoice-to-cash matching', desc: 'Incoming payments are matched to open invoices automatically, instead of a bookkeeper manually reconciling the bank feed each week.' },
-  { title: 'E-commerce orders that book themselves', desc: 'Shopify or Stripe transactions sync into QuickBooks with correct categorization, so month-end close does not start with a spreadsheet cleanup.' },
-  { title: 'Expense categorization that learns', desc: 'Custom rules built on top of Intuit Assist reduce miscategorized transactions that would otherwise need manual correction before tax time.' },
+  { title: "Stripe payouts that finally tie out", desc: "A single bank deposit is rebuilt into its underlying sales, processing fees, and refunds, so the reconciliation matches without a manual adjustment." },
+  { title: "A vendor list you can trust", desc: "Duplicate vendors from years of imports are merged and coded consistently, so spend reports and any later automation start from clean data." },
+  { title: "A month-end checklist that runs itself", desc: "Recurring checks for uncategorized items, unmatched deposits, and unusual swings are run automatically and handed to a bookkeeper as a short review list." },
 ]
 
 const roles = [
   {
     icon: Settings,
     title: 'QuickBooks Administrators',
-    desc: 'Own day-to-day books health — chart of accounts, bank feed rules, and reporting — without writing code. Usually the first hire for any growing QuickBooks account.',
+    desc: "Own the chart of accounts, bank rules, classes, and reports. Usually the first hire for a growing file, and the person who keeps month-end from turning into a cleanup project.",
     skills: ['QuickBooks ProAdvisor', 'Chart of Accounts Design'],
   },
   {
     icon: Code2,
     title: 'QBO API Developers',
-    desc: 'Build custom functionality when native tools run out of road — QuickBooks Online API integrations, custom apps, and webhook automation.',
+    desc: "Write code against the QuickBooks Online API and webhooks, with proper OAuth token handling, retries, and idempotency so integrations survive real-world failures.",
     skills: ['QuickBooks Online API', 'OAuth & Webhooks'],
   },
   {
     icon: Briefcase,
     title: 'App Ecosystem Consultants',
-    desc: 'Design the integration strategy connecting QuickBooks to e-commerce, payments, and operational tools. The most senior tier for multi-app setups.',
+    desc: "Decide which apps and integrations to use and how data should flow between QuickBooks, your store, your payment processor, and your payroll provider.",
     skills: ['App Store Integration Strategy', 'Multi-Channel Reconciliation'],
   },
 ]
@@ -87,10 +88,10 @@ const rateComparison = [
 ]
 
 const vettingCriteria = [
-  { title: 'Live QBO API Build Challenge', desc: 'Build a working integration or automation against a realistic spec under time pressure — OAuth flow, webhook handling, and category mapping, not a take-home nobody reviews.' },
-  { title: 'Native-vs-Custom Judgment', desc: "We test the judgment call that separates senior from junior: when a native app or rule is enough, and when a custom API integration is worth the added complexity." },
-  { title: 'Bookkeeping Literacy Check', desc: 'Beyond the API, we test whether the specialist actually understands accounting fundamentals — chart of accounts structure, reconciliation, and what makes books trustworthy.' },
-  { title: 'Production Portfolio Review', desc: '2–3 real QuickBooks integrations or automations they have shipped to production, reviewed for reliability and lessons from what broke.' },
+  { title: "Payout Reconciliation Challenge", desc: "Given a Stripe-style payout with fees and a refund, rebuild the correct QuickBooks entries so the deposit reconciles. It tests accounting sense as much as code." },
+  { title: "Native-vs-Custom Judgment", desc: "When is a bank rule or App Store app enough, and when does a custom integration earn its upkeep? We test for restraint as well as skill." },
+  { title: "Token and Failure Handling", desc: "We ask how they would handle expired refresh tokens, API throttling, and duplicate webhooks, because that is where integrations fail in production." },
+  { title: "Production Portfolio Review", desc: "Two or three real QuickBooks integrations or cleanups they shipped, reviewed for how they handled failures and what they would change." },
 ]
 
 const comparisonRows = [
@@ -103,9 +104,9 @@ const comparisonRows = [
 ]
 
 const forWho = [
-  { title: 'Growing Small Businesses', desc: "You outgrew manual bookkeeping but haven't outgrown QuickBooks — you just need someone to configure it properly and automate the reconciliation nobody has time for." },
-  { title: 'E-commerce & Multi-Channel Sellers', desc: 'Orders come in from Shopify, Stripe, and marketplaces, and your books are always a week behind. We build the sync that keeps up.' },
-  { title: 'Teams Drowning in Manual Reconciliation', desc: 'Month-end close takes days because bank feeds, invoices, and payroll never quite line up. We automate the connective tissue.' },
+  { title: "Shopify and Amazon Sellers", desc: "Payouts arrive net of fees, refunds, and chargebacks, which makes simple income entries wrong. We rebuild the sync so reports reflect real sales and costs." },
+  { title: "Bookkeepers and Fractional CFOs", desc: "Managing many QuickBooks files means repeating the same cleanups. We standardize rules and checks across clients so quality stays consistent." },
+  { title: "Businesses Deciding Whether to Outgrow QuickBooks", desc: "If multi-entity reporting or tighter controls are on the horizon, we assess whether to stay or move, and can staff a NetSuite or Acumatica project if you do." },
 ]
 
 const timeline = [
@@ -116,27 +117,33 @@ const timeline = [
   { day: 'Ongoing', title: 'Scale or Wind Down', desc: 'Add talent as new automation needs come online, extend the engagement, or wind down — no lock-in.' },
 ]
 
+const pitfalls = [
+  { title: "Undeposited Funds as a junk drawer", desc: "Payments pile up there when deposits are never grouped, so the bank reconciliation never ties out and month-end starts with a cleanup." },
+  { title: "Recording payouts as income", desc: "Syncing a net payout as revenue hides fees and refunds. Margins look better than they are until someone reconciles the processor report." },
+  { title: "Duplicate customers and vendors", desc: "Repeated imports and manual entry create near-identical records that split history and break any automation that matches on name." },
+  { title: "Trusting auto-categorization without review", desc: "A wrong category on a tax-sensitive account is cheap to fix in March and expensive in April. Automated entries need a review queue and an audit trail." },
+  { title: "Tokens that expire quietly", desc: "QuickBooks Online refresh tokens must be renewed. An integration that ignores this works for months and then stops, with nothing visibly broken." },
+]
+
 const faqs = [
-  { q: 'What is QuickBooks?', a: 'QuickBooks, made by Intuit, is the most widely used small business accounting platform in the United States, combining core bookkeeping (general ledger, invoicing, expense tracking) with payroll, payments, time tracking, and inventory. It is extended through the QuickBooks App Store, which connects it to e-commerce platforms, payment processors, and hundreds of operational tools.' },
-  { q: 'Does QuickBooks have native AI, or do I need a custom build?', a: "QuickBooks ships Intuit Assist, its built-in AI assistant, for transaction categorization, cash flow insights, and invoice reminders. Kovil AI configures Intuit Assist natively and, where it isn't enough, builds custom API automation tuned to your specific reconciliation workflow." },
-  { q: 'Does Kovil AI build custom automation on QuickBooks, or only staff talent?', a: "Both, and they're often the same engagement. Clients commonly hire a QuickBooks administrator to clean up chart-of-accounts hygiene, then layer AI-driven reconciliation automation on top." },
-  { q: 'How much does it cost to hire a QuickBooks developer through Kovil AI?', a: "Kovil AI's remote QuickBooks talent bills $18-$34 per hour depending on role and experience, versus $35-$110+ per hour for prevailing US onsite rates for the same roles — typically 56-68% lower." },
-  { q: 'What is the difference between a QuickBooks Administrator, API Developer, and App Ecosystem Consultant?', a: 'A QuickBooks Administrator configures the chart of accounts, bank feed rules, and reporting without writing code. A QBO API Developer builds custom integrations using the QuickBooks Online API and OAuth. An App Ecosystem Consultant designs the multi-app integration strategy connecting QuickBooks to e-commerce and payments, and is typically engaged for more complex, multi-channel setups.' },
-  { q: 'How quickly can I hire a QuickBooks specialist through Kovil AI?', a: 'Most clients are matched with a vetted administrator, developer, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement.' },
-  { q: 'Are your QuickBooks specialists certified ProAdvisors?', a: "Where relevant, we verify the QuickBooks ProAdvisor credential, which is the recognized certification in the QuickBooks ecosystem. For API and integration work specifically, we weight a live build challenge and production portfolio review just as heavily, since that tests engineering judgment a bookkeeping certification doesn't cover." },
-  { q: 'Can Kovil AI integrate QuickBooks with other systems like Shopify or Stripe?', a: 'Yes. Our QuickBooks talent regularly builds integrations using the QuickBooks Online API and custom middleware — connecting QuickBooks to Shopify, Stripe, and whatever else your business runs on.' },
-  { q: 'Who owns the integrations and automations built during an engagement?', a: 'You do, 100%. All custom integrations, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in.' },
-  { q: 'Can I combine an AI automation build with QuickBooks staff augmentation in one engagement?', a: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated administrator or developer talent working in the same account.' },
-  { q: 'What does Kovil AI typically build on top of QuickBooks?', a: 'Invoice-to-cash matching, e-commerce order sync from Shopify and Stripe, custom expense categorization rules, and reconciliation automation that keeps books current without manual bank feed review.' },
-  { q: 'How is Kovil AI different from a QuickBooks App Store app or a bookkeeper?', a: 'An App Store app solves one narrow problem and stops. A bookkeeper manages your books but typically does not build custom API integrations. Kovil AI embeds a single accountable specialist under an Engagement Manager who audits every milestone, with a 2-week risk-free trial and no long-term lock-in.' },
-  { q: 'Can we extend a trial engagement or convert it to a long-term hire?', a: 'Yes. Most clients extend the engagement as new automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' },
-  { q: 'Do you support QuickBooks rescues or fixing messy books?', a: 'Yes. A meaningful share of our QuickBooks engagements start as a rescue — duplicate transactions, miscategorized expenses, or an integration nobody remembers building. We audit the chart of accounts and automation layer, then stabilize and rebuild in milestone-gated phases.' },
+  { q: "What is QuickBooks Online, and how is it different from QuickBooks Desktop for automation?", a: "QuickBooks Online (QBO) is Intuit's cloud accounting product, with a REST API, OAuth 2.0, and webhooks, which is what modern integrations and AI automation are built on. QuickBooks Desktop is a separate installed product with a different integration model, so a Desktop file usually needs a migration or a bridge before AI automation is practical. We work primarily on QBO." },
+  { q: "Does QuickBooks have native AI, or do I need a custom build?", a: "QuickBooks includes Intuit Assist, Intuit's built-in assistant for tasks such as categorization suggestions and insights, and it works within the product's own limits. A custom build makes sense when you need logic that spans systems, such as matching Stripe payouts, applying your own approval rules, or running LLM steps against your chart of accounts." },
+  { q: "What can an LLM safely automate in QuickBooks, and what should stay with a human?", a: "Good fits are suggesting categories, drafting invoice reminders, summarizing variances, and flagging duplicates, all with a confidence threshold and human approval. We keep a person in the loop for anything that posts to tax-sensitive accounts, touches closed periods, or moves money, and every automated action is logged so it can be reviewed and reversed." },
+  { q: "Can you reconcile Stripe or Shopify payouts into QuickBooks correctly?", a: "Yes. Payouts arrive as a net deposit after fees, refunds, and adjustments, so recording them as plain income breaks reports. We rebuild the gross sale, fee, refund, and payout entries so each bank deposit matches the orders behind it." },
+  { q: "What is the Undeposited Funds problem, and can it be fixed?", a: "Undeposited Funds is a holding account for payments received but not yet deposited. When payments are never grouped into deposits, it fills with unmatched items and the bank reconciliation never ties out. We clear the backlog, set up deposit matching, and put a rule in place so it does not rebuild." },
+  { q: "How much does it cost to hire a QuickBooks developer through Kovil AI?", a: "Kovil AI's remote QuickBooks talent bills $18-$34 per hour depending on role and experience, versus $35-$110+ per hour for prevailing US onsite rates for the same roles — typically 56-68% lower." },
+  { q: "What is the difference between a QuickBooks Administrator, API Developer, and App Ecosystem Consultant?", a: "An Administrator owns the chart of accounts, bank rules, and reports inside the product. An API Developer writes code against the QuickBooks Online API and webhooks. An App Ecosystem Consultant decides which apps and integrations to use and how data should flow between them." },
+  { q: "Does a QuickBooks ProAdvisor certification matter for this work?", a: "ProAdvisor certification shows a baseline in QuickBooks bookkeeping, and we verify it where it applies. For integration and AI work it is not enough on its own, so we also run a live build and review of shipped integrations." },
+  { q: "How do API rate limits and token expiry affect QuickBooks integrations?", a: "The QuickBooks Online API limits how fast an app can call a given company, and OAuth refresh tokens must be renewed or they expire. An integration that ignores either one works in testing and then stops quietly in production. We build retries with backoff, token refresh, and alerts so failures are visible." },
+  { q: "Should we stay on QuickBooks or move to an ERP like NetSuite or Acumatica?", a: "QuickBooks fits many growing businesses. Consider an ERP when you need multi-entity consolidation, complex inventory or manufacturing, or approvals and controls QuickBooks cannot enforce. We can assess that honestly, and staff NetSuite or Acumatica work if a move makes sense." },
+  { q: "How quickly can I hire a QuickBooks specialist through Kovil AI?", a: "Most clients are matched with a vetted administrator, developer, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement." },
+  { q: "Who owns the integrations and automations built during an engagement?", a: "You do, 100%. All custom integrations, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in." },
+  { q: "Do you support QuickBooks rescues or fixing messy books?", a: "Yes. Typical rescues involve duplicate vendors and customers, a bloated chart of accounts, an Undeposited Funds backlog, or an old integration nobody maintains. We audit first, agree a cleanup plan, and fix in stages so reporting stays usable throughout." },
+  { q: "Can we extend a trial engagement or convert it to a long-term hire?", a: "Yes. Most clients extend the engagement as new automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way." },
 ]
 
 const integrations = [
-  'QuickBooks Online API', 'OAuth 2.0', 'Webhooks', 'Intuit Assist', 'App Store Apps', 'Bank Feeds',
-  'Shopify', 'Stripe', 'PayPal', 'Zapier', 'Custom Fields', 'Class & Location Tracking',
-  'Payroll API', 'Time Tracking Sync', 'Multi-Currency', 'SSO',
+  "QuickBooks Online API", "OAuth 2.0 & Refresh Tokens", "Webhooks", "Intuit Assist", "Bank Feeds & Rules", "Classes & Locations", "Undeposited Funds Cleanup", "Shopify", "Stripe", "PayPal", "Amazon Seller Central", "Gusto & Payroll Tools", "Zapier & Make", "Multi-Currency", "Custom Fields", "SSO",
 ]
 
 // ── Small components ────────────────────────────────────────────────────────
@@ -438,6 +445,21 @@ export default function QuickBooksPlatformPage() {
           <Link href="/case-studies" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline">
             See real client case studies <ArrowRight className="h-3.5 w-3.5" />
           </Link>
+        </div>
+      </section>
+
+      {/* Field notes: platform-specific failure patterns */}
+      <section className="max-w-7xl mx-auto px-6 pb-20">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Field Notes</p>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">Where QuickBooks Projects Go Wrong</h2>
+        <p className="text-muted-foreground max-w-2xl mb-10">These are the failure patterns we see most often in QuickBooks Online files. Knowing them up front is the cheapest way to avoid an expensive cleanup.</p>
+        <div className="grid md:grid-cols-2 gap-6">
+          {pitfalls.map((p, i) => (
+            <motion.div key={p.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="rounded-2xl border border-border bg-background p-6">
+              <h3 className="font-semibold text-base mb-2 flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-accent shrink-0 mt-1" />{p.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 

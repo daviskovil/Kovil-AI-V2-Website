@@ -7,6 +7,7 @@ import {
   ArrowRight, Bot, Users, Code2, ShieldCheck, Zap, Database, Workflow,
   GitBranch, CheckCircle2, ChevronDown, Briefcase, Settings, X, Minus,
   Search, Grid3x3, Calendar, BarChart3,
+  AlertTriangle, Layers,
 } from 'lucide-react'
 import { Button } from '@/src/components/ui/button'
 import { PlatformLogoBadge } from '@/src/components/platforms/PlatformLogo'
@@ -33,46 +34,46 @@ const marketStats = [
 ]
 
 const modules = [
-  { icon: Grid3x3, title: 'Sheets', desc: 'The spreadsheet-native grid interface — the module every Smartsheet account is built around first.' },
-  { icon: Workflow, title: 'Automation Workflows', desc: 'No-code automation rules for alerts, approvals, and status changes triggered by row updates.' },
-  { icon: Calendar, title: 'Resource Management', desc: 'Capacity planning and resource allocation across sheets and projects.' },
-  { icon: BarChart3, title: 'Dashboards & Reports', desc: 'Cross-sheet reporting and real-time dashboards for leadership visibility.' },
-  { icon: Briefcase, title: 'Control Center', desc: 'Enterprise provisioning for standardized, repeatable project rollouts at scale.' },
-  { icon: GitBranch, title: 'Integrations & API', desc: "Smartsheet's connector library and REST API linking to Salesforce, Jira, and your broader stack." },
+  { icon: Workflow, title: "Sheets, Formulas & Cross-Sheet References", desc: "Smartsheet is spreadsheet-native, so formulas and cross-sheet references carry real logic, and also real fragility as sheets grow." },
+  { icon: Settings, title: "Automation: Alerts, Approvals & Updates", desc: "Workflow rules for notifications, approval requests, and update requests that move work along without a project manager chasing." },
+  { icon: Briefcase, title: "Dashboards, Reports & WorkApps", desc: "Dashboards and reports aggregate sheet data, and WorkApps package it into simple apps for people who should not see raw sheets." },
+  { icon: Layers, title: "Control Center", desc: "Blueprint-based provisioning that creates standardized project sets with their sheets, reports, and dashboards, which is how governance scales." },
+  { icon: Users, title: "Resource Management", desc: "Capacity and allocation planning across projects, which depends on timely and consistent time and assignment data." },
+  { icon: Code2, title: "API 2.0, Bridge & Data Shuttle", desc: "A REST API, Bridge for workflow automation, and Data Shuttle and Live Data Connector for moving and refreshing data across systems." },
 ]
 
 const aiCapabilities = [
-  { icon: Bot, title: 'Native Automation Configuration', desc: "Configure and extend Smartsheet's built-in AI features — formula generation and smart summaries — grounded in your real sheet data." },
-  { icon: Zap, title: 'Custom API Automation', desc: "AI features that don't fit a template — invoking LLMs from custom integrations, wired into your actual sheets, workflows, and automation rules." },
-  { icon: Database, title: 'Resource & Risk Automation', desc: 'AI-assisted monitoring that catches resource overallocation and at-risk timelines before a status meeting finds them.' },
-  { icon: GitBranch, title: 'Cross-Platform Agent Integrations', desc: 'AI agents that reach beyond Smartsheet — into Salesforce, Jira, and internal tools — through the Smartsheet API or custom middleware.' },
-  { icon: ShieldCheck, title: 'Data Quality Audits', desc: 'AI agents are only as good as the data behind them — we audit sheet structure and formula consistency before anything goes live.' },
-  { icon: Search, title: 'AI Readiness & Scoping', desc: 'Not sure where to start? We audit your account and integration setup, then scope the single highest-impact automation first.' },
+  { icon: Bot, title: "Smartsheet AI Features", desc: "Use Smartsheet's built-in AI for tasks like formula help and text transformation where it saves time, with limits on what it may change." },
+  { icon: Zap, title: "LLM Steps Via the API or Bridge", desc: "Call an LLM for work the built-in features cannot do, such as summarizing a project sheet, and write the result back with an audit trail." },
+  { icon: Search, title: "Intake and Update Request Triage", desc: "Classify submissions, fill missing fields, and route them to the right sheet or owner, with uncertain cases flagged for review." },
+  { icon: GitBranch, title: "Cross-System Data Sync", desc: "Keep sheets aligned with Salesforce, Jira, or finance systems through Data Shuttle, Live Data Connector, or API, without conflicting writes." },
+  { icon: ShieldCheck, title: "Sheet Health and Governance Audit", desc: "Find oversized sheets, brittle formulas, and unmanaged copies of templates before automation depends on them." },
+  { icon: Database, title: "Readiness & Scoping", desc: "We review sheets, automation, and Control Center setup, then scope the single highest-impact use case first." },
 ]
 
 const practiceExamples = [
-  { title: 'Approval routing that does not stall', desc: 'Automated workflows route row-level approvals to the correct owner automatically, instead of an ops manager manually forwarding each request.' },
-  { title: 'Portfolio rollouts standardized at scale', desc: 'Control Center provisions new projects from a governed template automatically, instead of every team building its own sheet from scratch.' },
-  { title: 'Resource conflicts caught early', desc: 'Capacity automation flags overallocated team members before a project kickoff, instead of a resourcing fire drill mid-sprint.' },
+  { title: "Project sets that provision themselves", desc: "A new project is created from a Control Center blueprint with every sheet, report, and dashboard in place, instead of a manual copy-and-rename ritual." },
+  { title: "Formulas that survive growth", desc: "Fragile cross-sheet references are restructured, so sheets stay fast and accurate as they accumulate rows." },
+  { title: "Status roll-ups leaders trust", desc: "Reports and dashboards draw from standardized sheets, so executive status matches what project teams see." },
 ]
 
 const roles = [
   {
     icon: Settings,
     title: 'Smartsheet Solutions Architects',
-    desc: 'Design the sheet structure, Control Center templates, and automation rules for teams rolling out Smartsheet across departments.',
+    desc: "Design sheet structure, Control Center blueprints, and governance so project delivery is consistent and sheets stay fast as they grow.",
     skills: ['Control Center Architecture', 'Sheet & Workflow Design'],
   },
   {
     icon: Code2,
     title: 'Automation/API Developers',
-    desc: 'Build custom integrations and automation using the Smartsheet API and connectors when native rules run out of road.',
+    desc: "Build with API 2.0, Bridge, and Data Shuttle, with clear sources of truth and retry handling so syncs stay accurate.",
     skills: ['Smartsheet API', 'Custom Integration Development'],
   },
   {
     icon: Briefcase,
     title: 'Work Management Consultants',
-    desc: 'Own day-to-day template standardization, dashboard configuration, and adoption across growing teams.',
+    desc: "Standardize templates, reports, and dashboards, and train teams so the setup holds after the rollout ends.",
     skills: ['Template Standardization', 'Dashboard Configuration'],
   },
 ]
@@ -87,10 +88,10 @@ const rateComparison = [
 ]
 
 const vettingCriteria = [
-  { title: 'Live Automation Build Challenge', desc: 'Build a working sheet structure and automation rule against a realistic spec under time pressure — formulas, workflows, and Control Center templates, not a take-home nobody reviews.' },
-  { title: 'Native-vs-Custom Judgment', desc: 'We test the judgment call that separates senior from junior: when a native automation is enough, and when a custom API integration is worth the added complexity.' },
-  { title: 'Formula & Data Integrity Check', desc: "Beyond the build, we test formula logic and cross-sheet reference integrity — a broken reference chain quietly corrupts a dashboard long before anyone notices." },
-  { title: 'Production Portfolio Review', desc: '2–3 real Smartsheet accounts or integrations they have shipped to production, reviewed for reliability and lessons from what broke.' },
+  { title: "Sheet Design Exercise", desc: "Given a project process, design sheets, references, and reports that stay fast and clear as they grow. We look for restraint with cross-sheet formulas." },
+  { title: "Control Center Judgment", desc: "When does a blueprint-based approach pay off, and when is it overkill? We test for pragmatic governance design." },
+  { title: "Sync and Source-of-Truth Design", desc: "How would they keep Smartsheet and another system aligned without conflicting edits? That is where integrations tend to fail." },
+  { title: "Production Portfolio Review", desc: "Two or three real Smartsheet builds they delivered, reviewed for what held up and what they would change." },
 ]
 
 const comparisonRows = [
@@ -103,9 +104,9 @@ const comparisonRows = [
 ]
 
 const forWho = [
-  { title: 'Enterprise Operations Teams', desc: "Dozens of sheets run your operations but with inconsistent structure and no shared automation standard. Get an architect who can unify it with Control Center." },
-  { title: 'PMOs Standardizing at Scale', desc: 'Every new project starts from a different template, and rollout takes weeks. We build the governed Control Center structure that fixes it.' },
-  { title: 'Teams Outgrowing Spreadsheets', desc: 'Your workflows still live in disconnected Excel files emailed around. We migrate your process into structured, automated sheets in milestone-gated phases.' },
+  { title: "PMOs Standardizing Project Delivery", desc: "Control Center and consistent sheet design make every project look the same where it matters. We design the blueprints and governance." },
+  { title: "Teams Whose Sheets Became Unmanageable", desc: "Years of copied templates and cross-sheet formulas slow everything. We restructure so sheets stay fast and understandable." },
+  { title: "Operations Teams Connecting Smartsheet to Other Systems", desc: "When data must move between Smartsheet and CRM or finance tools, we build reliable syncs with clear sources of truth." },
 ]
 
 const timeline = [
@@ -116,26 +117,33 @@ const timeline = [
   { day: 'Ongoing', title: 'Scale or Wind Down', desc: 'Add talent as new teams or workflows come online, extend the engagement, or wind down — no lock-in.' },
 ]
 
+const pitfalls = [
+  { title: "Sheets that grew past their limits", desc: "Large sheets with heavy cross-sheet formulas slow down and hit size limits, so structure matters long before it becomes an emergency." },
+  { title: "Template copies drifting apart", desc: "Without Control Center or disciplined templates, every copy diverges, and reports built on them stop agreeing." },
+  { title: "Fragile cross-sheet formulas", desc: "A renamed column or moved sheet can break references silently, producing numbers that look plausible but are wrong." },
+  { title: "Two-way sync without a source of truth", desc: "Syncing a sheet with another system in both directions invites conflicting edits unless one side is declared authoritative." },
+  { title: "Automation nobody owns", desc: "Alert and approval workflows accumulate on shared sheets until nobody knows what fires when or why." },
+]
+
 const faqs = [
-  { q: 'What is Smartsheet?', a: 'Smartsheet is a collaborative work management platform with a spreadsheet-native grid interface, used by around 90% of Fortune 100 companies. It combines familiar sheet editing with automation workflows, resource management, and Control Center for standardized, repeatable project rollouts at scale.' },
-  { q: 'Does Smartsheet have native AI, or do I need a custom build?', a: "Smartsheet ships built-in AI features for formula generation and smart summaries. Kovil AI configures those natively and builds custom API automation where they aren't enough." },
-  { q: 'Does Kovil AI build custom automation on Smartsheet, or only staff talent?', a: "Both, and they're often the same engagement. Clients commonly hire a solutions architect to standardize sheet structure and Control Center templates, then layer AI-driven automation on top." },
-  { q: 'How much does it cost to hire a Smartsheet specialist through Kovil AI?', a: "Kovil AI's remote Smartsheet talent bills $18-$30 per hour depending on role and experience, versus $40-$95+ per hour for prevailing US onsite rates for the same roles — typically 60-67% lower." },
-  { q: 'What is the difference between a Solutions Architect, Developer, and Work Management Consultant?', a: 'A Solutions Architect designs sheet structure and Control Center templates. An Automation/API Developer builds custom integrations using the Smartsheet API. A Work Management Consultant owns template standardization and dashboard configuration.' },
-  { q: 'How quickly can I hire a Smartsheet specialist through Kovil AI?', a: 'Most clients are matched with a vetted architect, developer, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement.' },
-  { q: 'Are your Smartsheet specialists certified?', a: "We verify relevant platform experience and credentials where they exist, but weight a live automation build challenge and production portfolio review just as heavily, since that tests engineering judgment a certification alone doesn't cover." },
-  { q: 'Can Kovil AI integrate Smartsheet with other systems like Salesforce or Jira?', a: 'Yes. Our Smartsheet talent regularly builds integrations using the REST API and native connectors — connecting Smartsheet to Salesforce, Jira, and whatever else your business runs on.' },
-  { q: 'Who owns the sheets and automations built during an engagement?', a: 'You do, 100%. All custom sheets, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in.' },
-  { q: 'Can I combine an AI automation build with Smartsheet staff augmentation in one engagement?', a: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated architect or developer talent working in the same account.' },
-  { q: 'What does Kovil AI typically build on top of Smartsheet?', a: 'Standardized Control Center project templates, automated approval routing, resource capacity alerts, and custom API integrations with sales and project tools.' },
-  { q: 'How is Kovil AI different from a Smartsheet Partner agency or freelancer?', a: 'A partner agency typically scopes a fixed project and hands it to a rotating bench. A freelancer works solo with no oversight. Kovil AI embeds a single accountable specialist under an Engagement Manager who audits every milestone, with a 2-week risk-free trial and no long-term lock-in.' },
-  { q: 'Can we extend a trial engagement or convert it to a long-term hire?', a: 'Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' },
-  { q: 'Do you support Smartsheet rescues or fixing a messy account?', a: 'Yes. A meaningful share of our Smartsheet engagements start as a rescue — inconsistent sheet structures, broken formula chains, or a Control Center rollout that lost governance. We audit the account and automation layer, then stabilize and rebuild in milestone-gated phases.' },
+  { q: "What is Smartsheet?", a: "Smartsheet is a work management platform with a spreadsheet-style grid, used for project tracking, resource planning, and process automation. It adds dashboards, reports, WorkApps, Control Center for governed project provisioning, and a REST API with Bridge and Data Shuttle for integration." },
+  { q: "Does Smartsheet have native AI, or do I need a custom build?", a: "Smartsheet includes built-in AI features such as formula assistance and text transformation. A custom build makes sense when you need an LLM working with data from other systems or logic the built-in features cannot express." },
+  { q: "When do we need Control Center, and when is it overkill?", a: "Control Center pays off when many projects must follow the same structure and roll up into consistent reporting. For a few projects, disciplined templates may be enough. We recommend the lighter option when it is enough." },
+  { q: "Why do large Smartsheet sheets get slow, and how do we fix them?", a: "Large sheets with many cross-sheet references and complex formulas slow down and can hit size limits. We restructure by splitting data sensibly, simplifying references, and archiving old rows, so performance and accuracy hold up." },
+  { q: "How do you keep Smartsheet and another system in sync safely?", a: "We declare one side the source of truth for each field, use Data Shuttle, Live Data Connector, or the API accordingly, and add retries and logging. That avoids the conflicting edits that two-way syncs tend to create." },
+  { q: "How much does it cost to hire a Smartsheet specialist through Kovil AI?", a: "Kovil AI's remote Smartsheet talent bills $18-$30 per hour depending on role and experience, versus $40-$95+ per hour for prevailing US onsite rates for the same roles — typically 60-67% lower." },
+  { q: "What is the difference between a Solutions Architect, Developer, and Work Management Consultant?", a: "A Solutions Architect designs sheet structure, Control Center blueprints, and governance. An Automation/API Developer builds with the API, Bridge, and Data Shuttle. A Work Management Consultant standardizes templates and reports and helps teams adopt them." },
+  { q: "Can you move our resource planning into Smartsheet properly?", a: "Yes. Resource Management depends on consistent time and assignment data, so we set simple rules for entering it and build views that planners and leaders can trust." },
+  { q: "Can Kovil AI connect Smartsheet to Salesforce, Jira, or Microsoft 365?", a: "Yes. We use Data Shuttle, Live Data Connector, or the API according to the use case, with a clear source of truth so syncs do not conflict." },
+  { q: "Are your Smartsheet specialists certified?", a: "We verify relevant Smartsheet experience and credentials where they exist, but weight a live sheet-design exercise and a review of shipped work at least as heavily, since credentials alone do not test judgment." },
+  { q: "How quickly can I hire a Smartsheet specialist through Kovil AI?", a: "Most clients are matched with a vetted architect, developer, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement." },
+  { q: "Who owns the sheets and automations built during an engagement?", a: "You do, 100%. All custom sheets, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in." },
+  { q: "Do you support Smartsheet rescues or fixing a messy account?", a: "Yes. Typical rescues involve oversized sheets, fragile cross-sheet formulas, drifting template copies, or unowned automation. We audit first, then restructure in stages so teams are not disrupted." },
+  { q: "Can we extend a trial engagement or convert it to a long-term hire?", a: "Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way." },
 ]
 
 const integrations = [
-  'Smartsheet API', 'Webhooks', 'Automation Workflows', 'Control Center', 'Resource Management', 'Dashboards',
-  'Salesforce', 'Jira', 'Microsoft Teams', 'Google Workspace', 'DocuSign', 'SSO',
+  "Smartsheet API 2.0", "Bridge", "Data Shuttle", "Live Data Connector", "Control Center", "WorkApps", "Dashboards & Reports", "Resource Management", "Salesforce", "Jira", "Microsoft 365", "Google Workspace", "Slack", "SSO & SCIM",
 ]
 
 // ── Small components ────────────────────────────────────────────────────────
@@ -437,6 +445,21 @@ export default function SmartsheetPlatformPage() {
           <Link href="/case-studies" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline">
             See real client case studies <ArrowRight className="h-3.5 w-3.5" />
           </Link>
+        </div>
+      </section>
+
+      {/* Field notes: platform-specific failure patterns */}
+      <section className="max-w-7xl mx-auto px-6 pb-20">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Field Notes</p>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">Where Smartsheet Projects Go Wrong</h2>
+        <p className="text-muted-foreground max-w-2xl mb-10">These are the failure patterns we see most often in Smartsheet accounts. Knowing them early is the cheapest way to avoid an expensive cleanup.</p>
+        <div className="grid md:grid-cols-2 gap-6">
+          {pitfalls.map((p, i) => (
+            <motion.div key={p.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="rounded-2xl border border-border bg-background p-6">
+              <h3 className="font-semibold text-base mb-2 flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-accent shrink-0 mt-1" />{p.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 

@@ -7,6 +7,7 @@ import {
   ArrowRight, Bot, Users, Code2, ShieldCheck, Zap, Database, Workflow,
   GitBranch, CheckCircle2, ChevronDown, Briefcase, Settings, X, Minus,
   Search, ListTodo, Calendar, Network,
+  AlertTriangle, Clock,
 } from 'lucide-react'
 import { Button } from '@/src/components/ui/button'
 import { PlatformLogoBadge } from '@/src/components/platforms/PlatformLogo'
@@ -33,46 +34,46 @@ const marketStats = [
 ]
 
 const modules = [
-  { icon: ListTodo, title: 'Projects & Tasks', desc: 'List, board, timeline, and calendar views over the same task data — the module every Asana instance is built around first.' },
-  { icon: Network, title: 'Goals & Work Graph', desc: "Asana's connected data model linking company goals to the projects and tasks that drive them." },
-  { icon: Workflow, title: 'Rules & Automation', desc: 'No-code automation rules for task routing, status updates, and cross-project triggers.' },
-  { icon: Calendar, title: 'Portfolios & Workload', desc: 'Cross-project reporting and capacity planning for managers overseeing multiple teams.' },
-  { icon: Briefcase, title: 'Forms & Intake', desc: 'Structured request forms that convert directly into tracked tasks and projects.' },
-  { icon: GitBranch, title: 'Integrations & API', desc: "Asana's app directory and REST API connecting to Slack, Salesforce, and your broader stack." },
+  { icon: Workflow, title: "Projects, Tasks & the Work Graph", desc: "Asana models work as tasks that can live in several projects at once, which is what makes cross-team reporting possible and also what makes structure matter." },
+  { icon: Briefcase, title: "Portfolios & Goals", desc: "Portfolios roll project status up for leaders, and Goals connect that work to objectives. Both depend on consistent project setup underneath." },
+  { icon: Settings, title: "Rules & Workflow Builder", desc: "Triggers and actions, plus Workflow Builder for forms, branching, and approvals, replace the manual routing project managers do all day." },
+  { icon: Users, title: "Forms & Request Intake", desc: "Forms turn requests from other teams into properly structured tasks, with custom fields that decide how they route." },
+  { icon: Clock, title: "Workload & Timeline", desc: "Workload shows capacity by person and Timeline shows dependencies, but both only help when estimates and assignees are filled in." },
+  { icon: Code2, title: "Asana API & Webhooks", desc: "A REST API and webhooks for syncing tasks and events with other systems when the built-in integrations are not enough." },
 ]
 
 const aiCapabilities = [
-  { icon: Bot, title: 'Native Automation Configuration', desc: "Configure and extend Asana's built-in AI features — smart status updates, goal tracking, and summarization — grounded in your real project data." },
-  { icon: Zap, title: 'Custom API Automation', desc: "AI features that don't fit a template — invoking LLMs from custom integrations, wired into your actual tasks, projects, and automation rules." },
-  { icon: Database, title: 'Workload & Risk Automation', desc: 'AI-assisted monitoring that catches at-risk projects and overloaded team members before a status meeting finds them.' },
-  { icon: GitBranch, title: 'Cross-Platform Agent Integrations', desc: 'AI agents that reach beyond Asana — into Slack, Salesforce, and internal tools — through the Asana API or custom middleware.' },
-  { icon: ShieldCheck, title: 'Data Quality Audits', desc: 'AI agents are only as good as the data behind them — we audit custom field structure and project template hygiene before anything goes live.' },
-  { icon: Search, title: 'AI Readiness & Scoping', desc: 'Not sure where to start? We audit your account and integration setup, then scope the single highest-impact automation first.' },
+  { icon: Bot, title: "Asana AI Features and AI Studio", desc: "Configure Asana's built-in AI and AI Studio workflows where they fit, with clear limits on what they may change in live projects." },
+  { icon: Zap, title: "Status Digests From Real Task Activity", desc: "An agent reads task activity and writes the weekly project update, leaving the project manager to edit rather than start from scratch." },
+  { icon: Search, title: "Request Triage on Intake Forms", desc: "Classify incoming requests, fill missing custom fields, and route to the right project, with low-confidence cases going to a person." },
+  { icon: GitBranch, title: "Cross-Tool Sync", desc: "Keep Asana tasks aligned with Salesforce, Jira, or Slack so status in one place does not contradict another." },
+  { icon: ShieldCheck, title: "Custom Field and Template Audit", desc: "Find inconsistent fields and drifting templates so Portfolios and reports can be trusted before an agent reads them." },
+  { icon: Database, title: "Readiness & Scoping", desc: "We review your projects and automation, then scope the single highest-impact use case first." },
 ]
 
 const practiceExamples = [
-  { title: 'Status updates that write themselves', desc: 'AI-generated project summaries roll up task activity into a digest automatically, instead of a project manager writing one by hand.' },
-  { title: 'Risk flags before a deadline slips', desc: 'Custom automation surfaces projects trending off-track based on real task completion velocity, instead of a status meeting catching it too late.' },
-  { title: 'Intake that routes itself', desc: 'Form submissions get triaged and assigned to the right team automatically, instead of an ops manager sorting requests by hand.' },
+  { title: "A weekly update nobody has to write", desc: "Task movement, blockers, and overdue items are summarized into a draft status update, ready for a manager to review and send." },
+  { title: "Requests that arrive complete", desc: "Intake forms collect the right fields, and a routing rule or agent assigns each request, so work starts without a clarifying thread." },
+  { title: "Portfolios that finally reflect reality", desc: "Inconsistent project setup is standardized, so leadership dashboards stop showing different numbers than the teams see." },
 ]
 
 const roles = [
   {
     icon: Settings,
     title: 'Asana Solutions Architects',
-    desc: 'Design the project, portfolio, and Work Graph structure for teams rolling out Asana across departments.',
+    desc: "Design how projects, templates, custom fields, and Portfolios fit together across departments, so the workspace scales without becoming a maze.",
     skills: ['Work Graph Architecture', 'Portfolio Design'],
   },
   {
     icon: Code2,
     title: 'API Integration Specialists',
-    desc: 'Build custom integrations and automation using the Asana API when native rules run out of road.',
+    desc: "Use the Asana API and webhooks to sync with other systems, with deduplicated events so integrations do not loop or silently drift.",
     skills: ['Asana API', 'Custom Integration Development'],
   },
   {
     icon: Briefcase,
     title: 'Work Management Consultants',
-    desc: 'Own day-to-day project template standardization, automation rules, and adoption across growing teams.',
+    desc: "Standardize templates and rule design, and train teams so the structure actually gets used after the rollout ends.",
     skills: ['Template Standardization', 'Automation Rule Design'],
   },
 ]
@@ -87,10 +88,10 @@ const rateComparison = [
 ]
 
 const vettingCriteria = [
-  { title: 'Live Automation Build Challenge', desc: 'Build a working project structure and automation rule against a realistic spec under time pressure — custom fields, rules, and portfolios, not a take-home nobody reviews.' },
-  { title: 'Native-vs-Custom Judgment', desc: 'We test the judgment call that separates senior from junior: when a native rule is enough, and when a custom API integration is worth the added complexity.' },
-  { title: 'Adoption & Template Design Check', desc: 'Beyond the build, we test whether the specialist understands rollout and adoption — a technically perfect project template nobody uses is a wasted engagement.' },
-  { title: 'Production Portfolio Review', desc: '2–3 real Asana accounts or integrations they have shipped to production, reviewed for reliability and lessons from what broke.' },
+  { title: "Workspace Design Exercise", desc: "Given a multi-team scenario, design projects, fields, and Portfolios that roll up cleanly. We look for structure that scales, not just structure that works today." },
+  { title: "Rules Judgment", desc: "When is a rule the right tool, and when does it create hidden complexity? We test for restraint and documentation habits." },
+  { title: "Webhook and Sync Design", desc: "How would they prevent loops and duplicates in a two-way sync with another tool? That is where Asana integrations tend to fail." },
+  { title: "Production Portfolio Review", desc: "Two or three real Asana rollouts or integrations they delivered, reviewed for what held up and what they would change." },
 ]
 
 const comparisonRows = [
@@ -103,9 +104,9 @@ const comparisonRows = [
 ]
 
 const forWho = [
-  { title: 'Cross-Functional Teams', desc: "Marketing, product, and ops all run on Asana but with inconsistent templates and no shared automation standard. Get an architect who can unify it." },
-  { title: 'Leadership Teams Needing Visibility', desc: 'Project status lives in a dozen disconnected boards, and portfolio reporting takes a day to assemble manually. We build the Work Graph structure that fixes it.' },
-  { title: 'Teams Migrating From Spreadsheets', desc: 'Your workflows still live in shared spreadsheets. We migrate your process into structured projects and automation in milestone-gated phases.' },
+  { title: "Teams Scaling Beyond One Department", desc: "What worked for one team breaks across ten. We design project structure, templates, and Portfolios that scale without forcing everyone into one mold." },
+  { title: "Operations and PMO Leaders", desc: "If reporting means chasing updates, we automate the collection and keep a human in the loop for judgment calls." },
+  { title: "Teams Replacing Email-Based Requests", desc: "Requests arrive by email and chat and get lost. We build intake that structures and routes them into Asana." },
 ]
 
 const timeline = [
@@ -116,26 +117,33 @@ const timeline = [
   { day: 'Ongoing', title: 'Scale or Wind Down', desc: 'Add talent as new teams or workflows come online, extend the engagement, or wind down — no lock-in.' },
 ]
 
+const pitfalls = [
+  { title: "Projects built differently by every team", desc: "Without shared templates and field standards, Portfolios and cross-team reports show noise instead of status." },
+  { title: "Too many rules, no owner", desc: "Rules accumulate until nobody knows why a task moved. Undocumented automation becomes a maintenance burden and sometimes a source of surprise." },
+  { title: "Custom fields without governance", desc: "Duplicate and overlapping fields make filters and reports unreliable, and they are painful to clean up after the fact." },
+  { title: "Workload without estimates", desc: "Capacity views look reassuring while hours are unset or assignees are blank, so planning decisions rest on empty data." },
+  { title: "Integrations that loop", desc: "Two-way syncs between Asana and other tools can echo changes back and forth unless events are filtered and deduplicated." },
+]
+
 const faqs = [
-  { q: 'What is Asana?', a: 'Asana is a work management platform built around the Work Graph — a connected data model linking company goals to the projects and tasks that drive them. It is used by over 150,000 paying organizations to plan, track, and report on work across teams.' },
-  { q: 'Does Asana have native AI, or do I need a custom build?', a: "Asana ships built-in AI features for smart status updates, goal tracking, and summarization. Kovil AI configures those natively and builds custom API automation where they aren't enough." },
-  { q: 'Does Kovil AI build custom automation on Asana, or only staff talent?', a: "Both, and they're often the same engagement. Clients commonly hire a work management consultant to standardize project templates, then layer AI-driven automation on top." },
-  { q: 'How much does it cost to hire an Asana specialist through Kovil AI?', a: "Kovil AI's remote Asana talent bills $18-$30 per hour depending on role and experience, versus $40-$95+ per hour for prevailing US onsite rates for the same roles — typically 60-67% lower." },
-  { q: 'What is the difference between a Solutions Architect, API Specialist, and Work Management Consultant?', a: 'A Solutions Architect designs the project, portfolio, and Work Graph structure. An API Integration Specialist builds custom integrations using the Asana API. A Work Management Consultant owns template standardization and automation rules day to day.' },
-  { q: 'How quickly can I hire an Asana specialist through Kovil AI?', a: 'Most clients are matched with a vetted architect, specialist, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement.' },
-  { q: 'Are your Asana specialists certified?', a: "We verify relevant platform experience and credentials where they exist, but weight a live automation build challenge and production portfolio review just as heavily, since that tests engineering judgment a certification alone doesn't cover." },
-  { q: 'Can Kovil AI integrate Asana with other systems like Slack or Salesforce?', a: 'Yes. Our Asana talent regularly builds integrations using the REST API and custom middleware — connecting Asana to Slack, Salesforce, and whatever else your business runs on.' },
-  { q: 'Who owns the projects and automations built during an engagement?', a: 'You do, 100%. All custom project templates, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in.' },
-  { q: 'Can I combine an AI automation build with Asana staff augmentation in one engagement?', a: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated architect or specialist talent working in the same account.' },
-  { q: 'What does Kovil AI typically build on top of Asana?', a: 'AI-generated status digests, at-risk project scoring, automated intake triage, and custom API integrations with sales and support tools.' },
-  { q: 'How is Kovil AI different from an Asana Solutions Partner agency or freelancer?', a: 'A partner agency typically scopes a fixed project and hands it to a rotating bench. A freelancer works solo with no oversight. Kovil AI embeds a single accountable specialist under an Engagement Manager who audits every milestone, with a 2-week risk-free trial and no long-term lock-in.' },
-  { q: 'Can we extend a trial engagement or convert it to a long-term hire?', a: 'Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' },
-  { q: 'Do you support Asana rescues or fixing a messy account?', a: 'Yes. A meaningful share of our Asana engagements start as a rescue — inconsistent project templates, duplicate automations, or a rollout that lost adoption. We audit the account and automation layer, then stabilize and rebuild in milestone-gated phases.' },
+  { q: "What is Asana?", a: "Asana is a work management platform built around a Work Graph, where tasks can belong to several projects and connect to goals. Teams use it for project tracking, request intake, workload planning, and reporting through Portfolios, with a REST API and webhooks for integration." },
+  { q: "Does Asana have native AI, or do I need a custom build?", a: "Asana includes built-in AI features and AI Studio for building AI-driven workflows inside the product. A custom build makes sense when you need logic across systems, such as drafting status updates from task data or routing requests using context from your CRM." },
+  { q: "How should we structure Asana so Portfolios and reporting work?", a: "Consistent project templates, a small set of governed custom fields, and clear ownership are what make Portfolios reliable. We design that structure first, because reports and AI are only as good as the setup beneath them." },
+  { q: "What are the limits of Asana Rules, and when do we need the API?", a: "Rules and Workflow Builder handle most routing and approval needs inside Asana. The API and webhooks are for things Rules cannot do, such as syncing with other tools, running logic against external data, or calling an LLM with context from elsewhere." },
+  { q: "How do you prevent sync loops between Asana and other tools?", a: "Two-way syncs can echo changes back and forth indefinitely. We tag the origin of each change, filter webhook events, and deduplicate updates, and we test with failure cases before anything goes live." },
+  { q: "How much does it cost to hire an Asana specialist through Kovil AI?", a: "Kovil AI's remote Asana talent bills $18-$30 per hour depending on role and experience, versus $40-$95+ per hour for prevailing US onsite rates for the same roles — typically 60-67% lower." },
+  { q: "What is the difference between a Solutions Architect, API Specialist, and Work Management Consultant?", a: "A Solutions Architect designs the project, field, and Portfolio structure. An API Integration Specialist writes code against the Asana API and webhooks. A Work Management Consultant standardizes templates and rules and helps teams adopt them." },
+  { q: "Can you build intake that routes requests automatically?", a: "Yes. We build forms with the fields that matter, then route requests by rule or by an agent that reads the request, with low-confidence cases sent to a person. The goal is requests that arrive complete and in the right place." },
+  { q: "Can Kovil AI connect Asana to Salesforce, Jira, or Slack?", a: "Yes. We build syncs using native integrations where they are enough and the Asana API where they are not, with event filtering so changes do not loop or overwrite each other." },
+  { q: "Are your Asana specialists certified?", a: "We verify relevant Asana experience and credentials where they exist, but weight a live workspace-design exercise and a review of shipped work at least as heavily, since credentials alone do not test judgment." },
+  { q: "How quickly can I hire an Asana specialist through Kovil AI?", a: "Most clients are matched with a vetted architect, specialist, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement." },
+  { q: "Who owns the projects and automations built during an engagement?", a: "You do, 100%. All custom project templates, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in." },
+  { q: "Do you support Asana rescues or fixing a messy workspace?", a: "Yes. Typical rescues involve inconsistent project setups, duplicated custom fields, rules nobody can explain, or Portfolios that disagree with team views. We audit first, then standardize in stages so teams are not disrupted." },
+  { q: "Can we extend a trial engagement or convert it to a long-term hire?", a: "Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way." },
 ]
 
 const integrations = [
-  'Asana API', 'Webhooks', 'Rules & Automation', 'Portfolios', 'Work Graph', 'Forms API',
-  'Slack', 'Salesforce', 'Zapier', 'Microsoft Teams', 'Google Workspace', 'SSO',
+  "Asana API", "Webhooks", "Rules & Workflow Builder", "AI Studio", "Portfolios & Goals", "Forms", "Custom Fields", "Slack", "Salesforce", "Jira", "Google Workspace", "Microsoft Teams", "Zapier & Make", "SSO & SCIM", "Reporting Dashboards",
 ]
 
 // ── Small components ────────────────────────────────────────────────────────
@@ -437,6 +445,21 @@ export default function AsanaPlatformPage() {
           <Link href="/case-studies" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline">
             See real client case studies <ArrowRight className="h-3.5 w-3.5" />
           </Link>
+        </div>
+      </section>
+
+      {/* Field notes: platform-specific failure patterns */}
+      <section className="max-w-7xl mx-auto px-6 pb-20">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Field Notes</p>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">Where Asana Projects Go Wrong</h2>
+        <p className="text-muted-foreground max-w-2xl mb-10">These are the failure patterns we see most often in Asana workspaces. Knowing them early is the cheapest way to avoid an expensive cleanup.</p>
+        <div className="grid md:grid-cols-2 gap-6">
+          {pitfalls.map((p, i) => (
+            <motion.div key={p.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="rounded-2xl border border-border bg-background p-6">
+              <h3 className="font-semibold text-base mb-2 flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-accent shrink-0 mt-1" />{p.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 

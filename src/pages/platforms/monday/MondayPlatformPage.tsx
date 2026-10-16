@@ -7,6 +7,7 @@ import {
   ArrowRight, Bot, Users, Code2, ShieldCheck, Zap, Database, Workflow,
   GitBranch, CheckCircle2, ChevronDown, Briefcase, Settings, X, Minus,
   Search, LayoutGrid, Calendar, BarChart3,
+  AlertTriangle, Boxes,
 } from 'lucide-react'
 import { Button } from '@/src/components/ui/button'
 import { PlatformLogoBadge } from '@/src/components/platforms/PlatformLogo'
@@ -33,46 +34,46 @@ const marketStats = [
 ]
 
 const modules = [
-  { icon: LayoutGrid, title: 'Boards & Items', desc: 'Customizable boards and columns — the module every monday.com account is built around first.' },
-  { icon: Workflow, title: 'Automations', desc: 'No-code, trigger-based automation rules for status changes, notifications, and cross-board actions.' },
-  { icon: Briefcase, title: 'CRM', desc: "monday.com's native sales CRM for pipeline tracking, unified with project and work data." },
-  { icon: Calendar, title: 'Work Management Apps', desc: 'Purpose-built templates for marketing, dev, HR, and operations teams built on the same core platform.' },
-  { icon: BarChart3, title: 'Dashboards', desc: 'Cross-board reporting and widgets for real-time visibility into work and project status.' },
-  { icon: GitBranch, title: 'Integrations & Apps', desc: "monday.com's app marketplace and API connecting to Slack, Salesforce, and your broader stack." },
+  { icon: Workflow, title: "Boards, Items & Columns", desc: "Everything in monday.com is a board of items with typed columns. Column choices decide what can be automated, reported on, or connected later." },
+  { icon: Settings, title: "Automations & Integration Recipes", desc: "Trigger-and-action recipes inside boards, with monthly action limits by plan that matter once automation gets heavy." },
+  { icon: Briefcase, title: "Dashboards & Reporting", desc: "Cross-board dashboards and widgets that aggregate data, which depend on consistent column setup across boards." },
+  { icon: Users, title: "WorkForms & Intake", desc: "Forms that create items on a board, used to collect requests and structured submissions from inside or outside the company." },
+  { icon: Boxes, title: "monday dev, CRM & service", desc: "Product-specific editions built on the same platform for software teams, sales, and service, sharing its boards and automations." },
+  { icon: Code2, title: "GraphQL API & Apps Framework", desc: "A GraphQL API with complexity-based limits and an apps framework for custom views and integrations when recipes are not enough." },
 ]
 
 const aiCapabilities = [
-  { icon: Bot, title: 'Native Automation Configuration', desc: "Configure and extend monday.com's built-in AI features — content generation, summarization, and smart automation — grounded in your real board data." },
-  { icon: Zap, title: 'Custom API Automation', desc: "AI features that don't fit a template — invoking LLMs from custom integrations, wired into your actual boards, items, and automation rules." },
-  { icon: Database, title: 'Workflow Health Automation', desc: 'AI-assisted monitoring that catches stalled items and workflow bottlenecks before a status meeting finds them.' },
-  { icon: GitBranch, title: 'Cross-Platform Agent Integrations', desc: 'AI agents that reach beyond monday.com — into Slack, Salesforce, and internal tools — through the monday.com API or custom middleware.' },
-  { icon: ShieldCheck, title: 'Data Quality Audits', desc: 'AI agents are only as good as the data behind them — we audit column structure and automation rule hygiene before anything goes live.' },
-  { icon: Search, title: 'AI Readiness & Scoping', desc: 'Not sure where to start? We audit your account and integration setup, then scope the single highest-impact automation first.' },
+  { icon: Bot, title: "monday AI Blocks Configuration", desc: "Use monday's built-in AI for tasks like summarizing, categorizing, and extracting text in columns, with clear limits on what it may change." },
+  { icon: Zap, title: "Custom LLM Steps Through the API", desc: "Call an LLM from outside monday for work the built-in AI cannot do, then write results back to the right columns with an audit trail." },
+  { icon: Search, title: "Item Triage and Enrichment", desc: "Classify new items, fill missing fields, and assign owners as items arrive, with uncertain cases flagged for review." },
+  { icon: GitBranch, title: "Cross-Board and Cross-Tool Sync", desc: "Mirror and sync data across boards, Slack, Salesforce, and Jira without creating duplicate or conflicting records." },
+  { icon: ShieldCheck, title: "Board Structure and Automation Audit", desc: "Find redundant boards, inconsistent column types, and runaway recipes so automation is not built on a shaky base." },
+  { icon: Database, title: "Readiness & Scoping", desc: "We review boards, recipes, and usage, then scope the single highest-impact use case first." },
 ]
 
 const practiceExamples = [
-  { title: 'Cross-team handoffs that do not drop', desc: 'Automation rules move items between boards and notify the right owner automatically, instead of a manual Slack message.' },
-  { title: 'Status updates that write themselves', desc: 'AI-generated summaries roll up item activity into a digest automatically, instead of a project manager writing one by hand.' },
-  { title: 'Workload balancing that catches overload early', desc: 'Custom automation flags team members with too many open items and suggests reassignment before a deadline slips.' },
+  { title: "Intake that fills itself out", desc: "New requests are classified, enriched, and assigned on arrival, so teams start from a complete item instead of a blank one." },
+  { title: "Dashboards that stop disagreeing", desc: "Column types and board structures are standardized, so cross-board dashboards show one consistent picture." },
+  { title: "Automation that stays inside plan limits", desc: "Heavy recipes are consolidated or moved to API-driven logic, so teams are not surprised by monthly action caps." },
 ]
 
 const roles = [
   {
     icon: Settings,
     title: 'Solutions Engineers',
-    desc: 'Design board structures, automation rules, and workflow templates for teams rolling out monday.com across departments.',
+    desc: "Design boards, column types, and automation recipes that scale, and fix structures that make dashboards and reports unreliable.",
     skills: ['Board & Workflow Design', 'Automation Rule Configuration'],
   },
   {
     icon: Code2,
     title: 'Automation/API Developers',
-    desc: 'Build custom integrations and apps using the monday.com API and apps framework when native tools run out of road.',
+    desc: "Use the GraphQL API and apps framework for logic recipes cannot handle, with queries designed around complexity limits and safe retries.",
     skills: ['monday.com API', 'Custom App Development'],
   },
   {
     icon: Briefcase,
     title: 'Work OS Consultants',
-    desc: 'Own the cross-departmental rollout strategy, template standardization, and adoption for growing monday.com deployments.',
+    desc: "Plan multi-team rollouts, standardize templates, and set governance so the workspace stays coherent as more teams join.",
     skills: ['Multi-Team Rollout Strategy', 'Template Standardization'],
   },
 ]
@@ -87,10 +88,10 @@ const rateComparison = [
 ]
 
 const vettingCriteria = [
-  { title: 'Live Automation Build Challenge', desc: 'Build a working automation and board structure against a realistic spec under time pressure — triggers, conditions, and cross-board actions, not a take-home nobody reviews.' },
-  { title: 'Native-vs-Custom Judgment', desc: 'We test the judgment call that separates senior from junior: when a native automation is enough, and when a custom API integration is worth the added complexity.' },
-  { title: 'Adoption & Template Design Check', desc: 'Beyond the build, we test whether the specialist understands rollout and adoption — a technically perfect board nobody uses is a wasted engagement.' },
-  { title: 'Production Portfolio Review', desc: '2–3 real monday.com accounts or integrations they have shipped to production, reviewed for reliability and lessons from what broke.' },
+  { title: "Board Design Exercise", desc: "Given a team process, design boards, columns, and dashboards that automate cleanly. We look for typed columns and structure that rolls up." },
+  { title: "Recipes vs API Judgment", desc: "When are native recipes enough, and when should logic move to the API? We test for restraint and awareness of plan limits." },
+  { title: "GraphQL Query Design", desc: "How would they build a sync that respects complexity limits and retries safely? That is where monday integrations tend to fail at scale." },
+  { title: "Production Portfolio Review", desc: "Two or three real monday.com builds they delivered, reviewed for what held up and what they would change." },
 ]
 
 const comparisonRows = [
@@ -103,9 +104,9 @@ const comparisonRows = [
 ]
 
 const forWho = [
-  { title: 'Cross-Functional Teams', desc: "Marketing, ops, and dev all run on monday.com but with inconsistent boards and no shared automation standard. Get a solutions engineer who can unify it." },
-  { title: 'Teams Scaling Fast', desc: 'One person configured the initial rollout, and the backlog of new boards and automations keeps growing as teams join. Add a vetted specialist in days, scoped to exactly the workload you need covered.' },
-  { title: 'Teams Migrating From Spreadsheets', desc: 'Your workflows still live in shared spreadsheets. We migrate your process into structured boards and automation in milestone-gated phases.' },
+  { title: "Teams That Grew Board by Board", desc: "Dozens of boards built independently rarely roll up. We design shared structure so dashboards and automation work across teams." },
+  { title: "Departments Using monday CRM or service", desc: "When sales or support runs on monday, the quality of boards and automation directly affects the customer experience. We build and tune both." },
+  { title: "Teams Hitting Automation Limits", desc: "If recipes are exhausting monthly actions or becoming unmanageable, we redesign them and move heavy logic to the API." },
 ]
 
 const timeline = [
@@ -116,26 +117,33 @@ const timeline = [
   { day: 'Ongoing', title: 'Scale or Wind Down', desc: 'Add talent as new teams or workflows come online, extend the engagement, or wind down — no lock-in.' },
 ]
 
+const pitfalls = [
+  { title: "Boards with free-form columns", desc: "Text columns where a status or dropdown belongs make filtering, dashboards, and automation unreliable from day one." },
+  { title: "Recipe sprawl and action limits", desc: "Many overlapping recipes burn through monthly automation actions and are hard to debug when something triggers unexpectedly." },
+  { title: "Mirror and connect-board overuse", desc: "Layers of mirrored data slow boards and make it unclear where a value truly lives." },
+  { title: "Ignoring API complexity limits", desc: "The GraphQL API limits queries by complexity, so a heavy sync that works in testing can be throttled at scale unless queries are designed for it." },
+  { title: "No owner for the workspace", desc: "Without a clear admin, permissions, templates, and boards drift, and cleanup becomes a large project." },
+]
+
 const faqs = [
-  { q: 'What is monday.com?', a: 'monday.com is a Work OS — a flexible, no-code platform for building custom boards, automations, and workflow apps, used by growing teams to replace spreadsheets and disconnected tools across marketing, operations, dev, and sales.' },
-  { q: 'Does monday.com have native AI, or do I need a custom build?', a: "monday.com ships built-in AI features for content generation, summarization, and smart automation. Kovil AI configures those natively and builds custom API automation where they aren't enough." },
-  { q: 'Does Kovil AI build custom automation on monday.com, or only staff talent?', a: "Both, and they're often the same engagement. Clients commonly hire a solutions engineer to standardize board structure and automation rules, then layer AI-driven automation on top." },
-  { q: 'How much does it cost to hire a monday.com specialist through Kovil AI?', a: "Kovil AI's remote monday.com talent bills $20-$30 per hour depending on role and experience, versus $45-$95+ per hour for prevailing US onsite rates for the same roles — typically 60-66% lower." },
-  { q: 'What is the difference between a Solutions Engineer, Developer, and Work OS Consultant?', a: 'A Solutions Engineer designs board structures and automation rules. An Automation/API Developer builds custom integrations and apps using the monday.com API. A Work OS Consultant owns cross-departmental rollout strategy and adoption.' },
-  { q: 'How quickly can I hire a monday.com specialist through Kovil AI?', a: 'Most clients are matched with a vetted engineer, developer, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement.' },
-  { q: 'Are your monday.com specialists certified?', a: "We verify relevant platform experience and credentials where they exist, but weight a live automation build challenge and production portfolio review just as heavily, since that tests engineering judgment a certification alone doesn't cover." },
-  { q: 'Can Kovil AI integrate monday.com with other systems like Slack or Salesforce?', a: 'Yes. Our monday.com talent regularly builds integrations using the API and custom middleware — connecting monday.com to Slack, Salesforce, and whatever else your business runs on.' },
-  { q: 'Who owns the boards and automations built during an engagement?', a: 'You do, 100%. All custom boards, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in.' },
-  { q: 'Can I combine an AI automation build with monday.com staff augmentation in one engagement?', a: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated engineer or developer talent working in the same account.' },
-  { q: 'What does Kovil AI typically build on top of monday.com?', a: 'Cross-board handoff automation, AI-generated status digests, workload balancing alerts, and custom API integrations with sales and support tools.' },
-  { q: 'How is Kovil AI different from a monday.com Partner agency or freelancer?', a: 'A partner agency typically scopes a fixed project and hands it to a rotating bench. A freelancer works solo with no oversight. Kovil AI embeds a single accountable specialist under an Engagement Manager who audits every milestone, with a 2-week risk-free trial and no long-term lock-in.' },
-  { q: 'Can we extend a trial engagement or convert it to a long-term hire?', a: 'Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' },
-  { q: 'Do you support monday.com rescues or fixing a messy account?', a: 'Yes. A meaningful share of our monday.com engagements start as a rescue — inconsistent boards, duplicate automations, or a rollout that lost adoption. We audit the account and automation layer, then stabilize and rebuild in milestone-gated phases.' },
+  { q: "What is monday.com?", a: "monday.com is a work management platform built on boards of items with typed columns, used for projects, requests, sales, and software development. It adds automations, dashboards, forms, and a GraphQL API and apps framework for custom work." },
+  { q: "Does monday.com have native AI, or do I need a custom build?", a: "monday.com includes built-in AI for tasks such as summarizing, categorizing, and extracting information in columns. A custom build makes sense when you need an LLM working with data from other systems or logic the built-in blocks cannot express." },
+  { q: "How should we structure boards so dashboards and automation work?", a: "Use typed columns such as status, people, and dropdowns instead of free text, keep structure consistent across boards, and limit layers of mirrored data. We design that structure first, since dashboards and AI depend on it." },
+  { q: "What are monday.com automation limits, and how do we work around them?", a: "Automation actions are limited per month by plan, so heavy recipe use can run out. We consolidate overlapping recipes and, where it makes sense, move high-volume logic to API-driven workflows that are easier to monitor." },
+  { q: "How does the monday.com GraphQL API limit what we can build?", a: "The API limits requests by query complexity rather than just count, so large or deeply nested queries can be throttled. We design queries and sync schedules around those limits and add retries so integrations keep working at scale." },
+  { q: "How much does it cost to hire a monday.com specialist through Kovil AI?", a: "Kovil AI's remote monday.com talent bills $20-$30 per hour depending on role and experience, versus $45-$95+ per hour for prevailing US onsite rates for the same roles — typically 60-66% lower." },
+  { q: "What is the difference between a Solutions Engineer, Developer, and Work OS Consultant?", a: "A Solutions Engineer designs boards, columns, and recipes. An Automation/API Developer writes code against the GraphQL API and apps framework. A Work OS Consultant plans multi-team rollouts, templates, and governance." },
+  { q: "Can you build on monday CRM or monday service?", a: "Yes. These editions run on the same boards and automations, so we configure pipelines, intake, and automation, and connect them to email, calendar, and your other systems." },
+  { q: "Can Kovil AI connect monday.com to Salesforce, Jira, or Slack?", a: "Yes. We use native integrations where they are enough and the API where they are not, with deduplicated events so syncs do not create conflicting records." },
+  { q: "Are your monday.com specialists certified?", a: "We verify relevant monday.com experience and credentials where they exist, but weight a live board-design exercise and a review of shipped work at least as heavily, since credentials alone do not test judgment." },
+  { q: "How quickly can I hire a monday.com specialist through Kovil AI?", a: "Most clients are matched with a vetted engineer, developer, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement." },
+  { q: "Who owns the boards and automations built during an engagement?", a: "You do, 100%. All custom boards, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in." },
+  { q: "Do you support monday.com rescues or fixing a messy account?", a: "Yes. Typical rescues involve free-text columns, runaway recipes, redundant boards, or dashboards that disagree. We audit first, then standardize in stages so teams are not disrupted." },
+  { q: "Can we extend a trial engagement or convert it to a long-term hire?", a: "Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way." },
 ]
 
 const integrations = [
-  'monday.com API', 'Webhooks', 'Automations', 'monday Apps Framework', 'CRM', 'Dashboards',
-  'Slack', 'Salesforce', 'Zapier', 'Microsoft Teams', 'Google Workspace', 'SSO',
+  "monday.com GraphQL API", "Apps Framework", "Automations & Recipes", "monday AI", "Dashboards", "WorkForms", "monday dev", "monday CRM", "Slack", "Salesforce", "Jira", "Google Workspace", "Zapier & Make", "SSO & SCIM",
 ]
 
 // ── Small components ────────────────────────────────────────────────────────
@@ -437,6 +445,21 @@ export default function MondayPlatformPage() {
           <Link href="/case-studies" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline">
             See real client case studies <ArrowRight className="h-3.5 w-3.5" />
           </Link>
+        </div>
+      </section>
+
+      {/* Field notes: platform-specific failure patterns */}
+      <section className="max-w-7xl mx-auto px-6 pb-20">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Field Notes</p>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">Where monday.com Projects Go Wrong</h2>
+        <p className="text-muted-foreground max-w-2xl mb-10">These are the failure patterns we see most often in monday.com accounts. Knowing them early is the cheapest way to avoid an expensive cleanup.</p>
+        <div className="grid md:grid-cols-2 gap-6">
+          {pitfalls.map((p, i) => (
+            <motion.div key={p.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="rounded-2xl border border-border bg-background p-6">
+              <h3 className="font-semibold text-base mb-2 flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-accent shrink-0 mt-1" />{p.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 

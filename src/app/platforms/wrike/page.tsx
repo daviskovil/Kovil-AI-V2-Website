@@ -82,7 +82,7 @@ const webPageSchema = {
   description: 'Kovil AI is your single partner for Wrike — AI-driven risk automation, plus vetted implementation consultants, automation experts, and work management consultants.',
   url: 'https://kovil.ai/platforms/wrike',
   datePublished: '2026-10-02',
-  dateModified: '2026-10-02',
+  dateModified: '2026-10-16',
   inLanguage: 'en-US',
   isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
   speakable: {
@@ -110,24 +110,122 @@ const howToSchema = {
 }
 
 const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    { '@type': 'Question', name: 'What is Wrike?', acceptedAnswer: { '@type': 'Answer', text: 'Wrike is an enterprise work management platform built for large, cross-departmental organizations, with native approval and proofing workflows and dynamic request forms, used by over 20,000 companies.' } },
-    { '@type': 'Question', name: 'Does Wrike have native AI, or do I need a custom build?', acceptedAnswer: { '@type': 'Answer', text: "Wrike ships built-in automation for risk prediction and smart task creation. Kovil AI configures those natively and builds custom API automation where they aren't enough." } },
-    { '@type': 'Question', name: 'Does Kovil AI build custom automation on Wrike, or only staff talent?', acceptedAnswer: { '@type': 'Answer', text: "Both, and they're often the same engagement. Clients commonly hire an implementation consultant to standardize approval workflows, then layer AI-driven automation on top." } },
-    { '@type': 'Question', name: 'How much does it cost to hire a Wrike specialist through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: "Kovil AI's remote Wrike talent bills $20-$30 per hour depending on role and experience, versus $45-$95+ per hour for prevailing US onsite rates for the same roles, typically 60-67% lower." } },
-    { '@type': 'Question', name: 'What is the difference between an Implementation Consultant, Automation Expert, and Work Management Consultant?', acceptedAnswer: { '@type': 'Answer', text: 'An Implementation Consultant designs folder structure and approval workflows. An Automation Expert builds custom integrations using the Wrike API. A Work Management Consultant owns template standardization and dashboard configuration.' } },
-    { '@type': 'Question', name: 'How quickly can I hire a Wrike specialist through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: 'Most clients are matched within 24-48 hours of submitting a brief, with work starting within a week, backed by a 2-week risk-free trial.' } },
-    { '@type': 'Question', name: 'Are your Wrike specialists certified?', acceptedAnswer: { '@type': 'Answer', text: 'We verify relevant platform experience where it exists, but weight a live automation build challenge and production portfolio review just as heavily.' } },
-    { '@type': 'Question', name: 'Can Kovil AI integrate Wrike with other systems like Salesforce or Slack?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Our Wrike talent regularly builds integrations using the REST API and custom middleware.' } },
-    { '@type': 'Question', name: 'Who owns the workflows and automations built during an engagement?', acceptedAnswer: { '@type': 'Answer', text: 'You do, 100%. All custom workflows, automations, and documentation are fully owned by you under clear IP-assignment terms, with no shared IP and no lock-in.' } },
-    { '@type': 'Question', name: 'Can I combine an AI automation build with Wrike staff augmentation in one engagement?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated consultant or expert talent working in the same account.' } },
-    { '@type': 'Question', name: 'What does Kovil AI typically build on top of Wrike?', acceptedAnswer: { '@type': 'Answer', text: 'Automated approval routing, at-risk project scoring, resource capacity alerts, and custom API integrations with sales and finance tools.' } },
-    { '@type': 'Question', name: 'How is Kovil AI different from a Wrike Partner agency or freelancer?', acceptedAnswer: { '@type': 'Answer', text: 'A partner agency typically scopes a fixed project and hands it to a rotating bench. A freelancer works solo with no oversight. Kovil AI embeds a single accountable specialist under an Engagement Manager who audits every milestone.' } },
-    { '@type': 'Question', name: 'Can we extend a trial engagement or convert it to a long-term hire?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' } },
-    { '@type': 'Question', name: 'Do you support Wrike rescues or fixing a messy account?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A meaningful share of our Wrike engagements start as a rescue of inconsistent approval chains, duplicate automations, or a rollout that lost adoption, which we audit and rebuild in milestone-gated phases.' } },
-  ],
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Wrike?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wrike is a work management platform organized around spaces, folders, projects, and tasks, with custom item types, request forms, proofing and approvals, and resource management. It is widely used by marketing teams, agencies, and enterprises, and offers a REST API and Wrike Integrate for automation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Wrike have native AI, or do I need a custom build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wrike includes built-in AI features under its Work Intelligence capabilities. A custom build makes sense when you need an assistant using data from other systems, such as drafting briefs from CRM context or summarizing approvals across tools."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How should we structure Wrike folders and projects?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keep nesting shallow and consistent, tie structure to how permissions and reporting need to work, and use custom item types for genuinely different work. We design that first, since reports and AI depend on it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should we use Wrike Integrate versus the Wrike API?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wrike Integrate suits automation across common apps without code. The API is better for logic it cannot express or for tighter control, such as calling an LLM with context from elsewhere. We choose per use case and assign clear ownership so triggers do not fire twice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you automate creative review and approvals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We map the review stages, set owners and reminders, and automate routing and status updates, so work does not sit unnoticed waiting on a single approver."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to hire a Wrike specialist through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kovil AI's remote Wrike talent bills $20-$30 per hour depending on role and experience, versus $45-$95+ per hour for prevailing US onsite rates for the same roles — typically 60-67% lower."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between an Implementation Consultant, Automation Expert, and Work Management Consultant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An Implementation Consultant designs the hierarchy, item types, and workflows. An Automation Expert builds with the API, webhooks, and Wrike Integrate. A Work Management Consultant standardizes blueprints and dashboards and helps teams adopt them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you fix our resource and workload reporting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Resource views only work when effort and assignments are entered consistently, so we set simple rules to keep that data accurate and then build reports that leaders can trust."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Kovil AI connect Wrike to Salesforce, Slack, or Adobe tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We use native integrations or Wrike Integrate where they are enough and the API where they are not, with deduplicated events so syncs do not conflict."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are your Wrike specialists certified?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We verify relevant Wrike experience and credentials where they exist, but weight a live hierarchy-design exercise and a review of shipped work at least as heavily, since credentials alone do not test judgment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can I hire a Wrike specialist through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most clients are matched with a vetted consultant or expert within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who owns the workflows and automations built during an engagement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You do, 100%. All custom workflows, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you support Wrike rescues or fixing a messy account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Typical rescues involve tangled folder hierarchies, duplicated custom fields, stalled approvals, or automation that fires twice. We audit first, then restructure in stages so teams are not disrupted."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we extend a trial engagement or convert it to a long-term hire?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most clients extend the engagement as new teams or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way."
+      }
+    }
+  ]
 }
 
 const breadcrumbSchema = {

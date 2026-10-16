@@ -82,7 +82,7 @@ const webPageSchema = {
   description: 'Kovil AI is your single partner for QuickBooks — AI-driven reconciliation automation, plus vetted QuickBooks administrators, developers, and app ecosystem consultants.',
   url: 'https://kovil.ai/platforms/quickbooks',
   datePublished: '2026-09-30',
-  dateModified: '2026-09-30',
+  dateModified: '2026-10-16',
   inLanguage: 'en-US',
   isPartOf: { '@type': 'WebSite', name: 'Kovil AI', url: 'https://kovil.ai' },
   speakable: {
@@ -110,24 +110,122 @@ const howToSchema = {
 }
 
 const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    { '@type': 'Question', name: 'What is QuickBooks?', acceptedAnswer: { '@type': 'Answer', text: 'QuickBooks, made by Intuit, is the most widely used small business accounting platform in the United States, combining core bookkeeping with payroll, payments, time tracking, and inventory, extended through the QuickBooks App Store.' } },
-    { '@type': 'Question', name: 'Does QuickBooks have native AI, or do I need a custom build?', acceptedAnswer: { '@type': 'Answer', text: "QuickBooks ships Intuit Assist for transaction categorization, cash flow insights, and invoice reminders. Kovil AI configures Intuit Assist natively and builds custom API automation where it isn't enough." } },
-    { '@type': 'Question', name: 'Does Kovil AI build custom automation on QuickBooks, or only staff talent?', acceptedAnswer: { '@type': 'Answer', text: "Both, and they're often the same engagement. Clients commonly hire a QuickBooks administrator to clean up chart-of-accounts hygiene, then layer AI-driven reconciliation automation on top." } },
-    { '@type': 'Question', name: 'How much does it cost to hire a QuickBooks developer through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: "Kovil AI's remote QuickBooks talent bills $18-$34 per hour depending on role and experience, versus $35-$110+ per hour for prevailing US onsite rates for the same roles, typically 56-68% lower." } },
-    { '@type': 'Question', name: 'What is the difference between a QuickBooks Administrator, API Developer, and App Ecosystem Consultant?', acceptedAnswer: { '@type': 'Answer', text: 'A QuickBooks Administrator configures the chart of accounts and bank feed rules without code. A QBO API Developer builds custom integrations using the QuickBooks Online API. An App Ecosystem Consultant designs the multi-app integration strategy for complex, multi-channel setups.' } },
-    { '@type': 'Question', name: 'How quickly can I hire a QuickBooks specialist through Kovil AI?', acceptedAnswer: { '@type': 'Answer', text: 'Most clients are matched within 24-48 hours of submitting a brief, with work starting within a week, backed by a 2-week risk-free trial.' } },
-    { '@type': 'Question', name: 'Are your QuickBooks specialists certified ProAdvisors?', acceptedAnswer: { '@type': 'Answer', text: 'Where relevant, we verify the QuickBooks ProAdvisor credential. For API and integration work specifically, we weight a live build challenge and production portfolio review just as heavily.' } },
-    { '@type': 'Question', name: 'Can Kovil AI integrate QuickBooks with other systems like Shopify or Stripe?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Our QuickBooks talent regularly builds integrations using the QuickBooks Online API and custom middleware, including Shopify and Stripe.' } },
-    { '@type': 'Question', name: 'Who owns the integrations and automations built during an engagement?', acceptedAnswer: { '@type': 'Answer', text: 'You do, 100%. All custom integrations, automations, and documentation are fully owned by you under clear IP-assignment terms, with no shared IP and no lock-in.' } },
-    { '@type': 'Question', name: 'Can I combine an AI automation build with QuickBooks staff augmentation in one engagement?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated administrator or developer talent working in the same account.' } },
-    { '@type': 'Question', name: 'What does Kovil AI typically build on top of QuickBooks?', acceptedAnswer: { '@type': 'Answer', text: 'Invoice-to-cash matching, e-commerce order sync from Shopify and Stripe, custom expense categorization rules, and reconciliation automation.' } },
-    { '@type': 'Question', name: 'How is Kovil AI different from a QuickBooks App Store app or a bookkeeper?', acceptedAnswer: { '@type': 'Answer', text: 'An App Store app solves one narrow problem. A bookkeeper manages your books but typically does not build custom API integrations. Kovil AI embeds a single accountable specialist under an Engagement Manager who audits every milestone.' } },
-    { '@type': 'Question', name: 'Can we extend a trial engagement or convert it to a long-term hire?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Most clients extend the engagement as new automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' } },
-    { '@type': 'Question', name: 'Do you support QuickBooks rescues or fixing messy books?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A meaningful share of our QuickBooks engagements start as a rescue of duplicate transactions, miscategorized expenses, or a forgotten integration, which we audit and rebuild in milestone-gated phases.' } },
-  ],
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is QuickBooks Online, and how is it different from QuickBooks Desktop for automation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QuickBooks Online (QBO) is Intuit's cloud accounting product, with a REST API, OAuth 2.0, and webhooks, which is what modern integrations and AI automation are built on. QuickBooks Desktop is a separate installed product with a different integration model, so a Desktop file usually needs a migration or a bridge before AI automation is practical. We work primarily on QBO."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does QuickBooks have native AI, or do I need a custom build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QuickBooks includes Intuit Assist, Intuit's built-in assistant for tasks such as categorization suggestions and insights, and it works within the product's own limits. A custom build makes sense when you need logic that spans systems, such as matching Stripe payouts, applying your own approval rules, or running LLM steps against your chart of accounts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What can an LLM safely automate in QuickBooks, and what should stay with a human?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Good fits are suggesting categories, drafting invoice reminders, summarizing variances, and flagging duplicates, all with a confidence threshold and human approval. We keep a person in the loop for anything that posts to tax-sensitive accounts, touches closed periods, or moves money, and every automated action is logged so it can be reviewed and reversed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you reconcile Stripe or Shopify payouts into QuickBooks correctly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Payouts arrive as a net deposit after fees, refunds, and adjustments, so recording them as plain income breaks reports. We rebuild the gross sale, fee, refund, and payout entries so each bank deposit matches the orders behind it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Undeposited Funds problem, and can it be fixed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Undeposited Funds is a holding account for payments received but not yet deposited. When payments are never grouped into deposits, it fills with unmatched items and the bank reconciliation never ties out. We clear the backlog, set up deposit matching, and put a rule in place so it does not rebuild."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to hire a QuickBooks developer through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kovil AI's remote QuickBooks talent bills $18-$34 per hour depending on role and experience, versus $35-$110+ per hour for prevailing US onsite rates for the same roles — typically 56-68% lower."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a QuickBooks Administrator, API Developer, and App Ecosystem Consultant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An Administrator owns the chart of accounts, bank rules, and reports inside the product. An API Developer writes code against the QuickBooks Online API and webhooks. An App Ecosystem Consultant decides which apps and integrations to use and how data should flow between them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a QuickBooks ProAdvisor certification matter for this work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ProAdvisor certification shows a baseline in QuickBooks bookkeeping, and we verify it where it applies. For integration and AI work it is not enough on its own, so we also run a live build and review of shipped integrations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do API rate limits and token expiry affect QuickBooks integrations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The QuickBooks Online API limits how fast an app can call a given company, and OAuth refresh tokens must be renewed or they expire. An integration that ignores either one works in testing and then stops quietly in production. We build retries with backoff, token refresh, and alerts so failures are visible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should we stay on QuickBooks or move to an ERP like NetSuite or Acumatica?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QuickBooks fits many growing businesses. Consider an ERP when you need multi-entity consolidation, complex inventory or manufacturing, or approvals and controls QuickBooks cannot enforce. We can assess that honestly, and staff NetSuite or Acumatica work if a move makes sense."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can I hire a QuickBooks specialist through Kovil AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most clients are matched with a vetted administrator, developer, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who owns the integrations and automations built during an engagement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You do, 100%. All custom integrations, automations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you support QuickBooks rescues or fixing messy books?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Typical rescues involve duplicate vendors and customers, a bloated chart of accounts, an Undeposited Funds backlog, or an old integration nobody maintains. We audit first, agree a cleanup plan, and fix in stages so reporting stays usable throughout."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we extend a trial engagement or convert it to a long-term hire?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most clients extend the engagement as new automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way."
+      }
+    }
+  ]
 }
 
 const breadcrumbSchema = {

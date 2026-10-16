@@ -7,6 +7,7 @@ import {
   ArrowRight, Bot, Users, Code2, ShieldCheck, Zap, Database, Workflow,
   GitBranch, CheckCircle2, ChevronDown, Briefcase, Settings, X, Minus,
   Cloud, Search, Truck, Factory, Wrench,
+  AlertTriangle, Layers,
 } from 'lucide-react'
 import { Button } from '@/src/components/ui/button'
 import { PlatformLogoBadge } from '@/src/components/platforms/PlatformLogo'
@@ -33,46 +34,46 @@ const marketStats = [
 ]
 
 const modules = [
-  { icon: Database, title: 'Financial Management', desc: 'General ledger, accounts payable/receivable, and financial reporting — the module every Acumatica tenant is built around first.' },
-  { icon: Truck, title: 'Distribution Management', desc: 'Inventory, order management, and warehouse operations for product-based businesses.' },
-  { icon: Factory, title: 'Manufacturing Management', desc: 'Bill of materials, production planning, and shop floor tracking, connected to Financials on the same data model.' },
-  { icon: Briefcase, title: 'Project Accounting', desc: 'Job costing and project budgets for services and construction businesses billing by project.' },
-  { icon: Workflow, title: 'CRM', desc: 'Sales pipeline and customer data, unified with Financials and Distribution on the same record.' },
-  { icon: Wrench, title: 'Field Service Management', desc: 'Scheduling, dispatch, and work order management for businesses with technicians in the field.' },
+  { icon: Database, title: "Financials & Multi-Entity", desc: "General ledger, AP/AR, and consolidation across companies and branches. Multi-entity design is the decision hardest to change later." },
+  { icon: Truck, title: "Distribution & Warehouse", desc: "Inventory, purchasing, order management, and warehouse operations for product-based businesses." },
+  { icon: Factory, title: "Manufacturing", desc: "Bills of material, production orders, and shop-floor tracking connected to Financials on the same data model." },
+  { icon: Briefcase, title: "Project Accounting & Construction", desc: "Job costing, project budgets, and billing, used heavily in construction and services firms." },
+  { icon: Settings, title: "Customization Projects & Platform", desc: "A customization framework for screens, fields, and business logic. Powerful, but it must be built to survive each new release." },
+  { icon: Code2, title: "Open API, Generic Inquiries & Business Events", desc: "REST and contract-based endpoints, inquiry-driven data access, and events that fire when records change." },
 ]
 
 const aiCapabilities = [
-  { icon: Bot, title: 'Acumatica AI Feature Configuration', desc: "Configure and extend Acumatica's built-in AI and automation features — anomaly detection, predictive analytics, and smart data capture — grounded in your real financial data." },
-  { icon: Zap, title: 'Custom .NET Automation', desc: "AI features that don't fit a template — invoking LLMs from Acumatica's .NET framework, wired into your actual generic inquiries and business events." },
-  { icon: Database, title: 'Financial Close Automation', desc: 'AI-assisted reconciliation and anomaly detection that flags issues before month-end close, not after.' },
-  { icon: GitBranch, title: 'Cross-Platform Agent Integrations', desc: 'AI agents that reach beyond Acumatica — into Salesforce, Shopify, and internal tools — through the Acumatica REST/SOAP API or custom middleware.' },
-  { icon: ShieldCheck, title: 'Data Quality & Role Audits', desc: 'AI agents are only as good as the data behind them — we audit chart-of-accounts hygiene and role-based access before anything goes live.' },
-  { icon: Search, title: 'Acumatica AI Readiness & Scoping', desc: "Not sure where to start? We audit your instance's data quality and customization, then scope the single highest-impact automation first." },
+  { icon: Bot, title: "Acumatica's Built-In AI, Configured and Bounded", desc: "Use native capabilities such as AI-assisted document recognition where they fit, with clear limits on what posts automatically." },
+  { icon: Zap, title: "AP Invoice Intake Pipelines", desc: "Extract vendor, lines, and totals from emailed invoices, match to purchase orders, and queue drafts for approval." },
+  { icon: Search, title: "Business Event-Driven Agents", desc: "Trigger an agent when a record changes, such as a stock level crossing a threshold, and have it propose an action for a person to approve." },
+  { icon: GitBranch, title: "Cross-System Order and Inventory Sync", desc: "Keep Acumatica aligned with Shopify, Salesforce, and warehouse tools using the Open API, with clear sources of truth." },
+  { icon: ShieldCheck, title: "Customization and Upgrade-Safety Audit", desc: "Find customizations that will block the next release and fix them before an agent depends on them." },
+  { icon: Layers, title: "Readiness & Scoping", desc: "We review modules, customizations, and integrations, then scope the single highest-impact use case first." },
 ]
 
 const practiceExamples = [
-  { title: 'Automated three-way match', desc: 'Purchase orders, receipts, and vendor bills are matched and flagged for exceptions automatically, instead of an AP clerk reconciling them by hand.' },
-  { title: 'Field service that schedules itself', desc: 'Technician dispatch adjusts based on real-time location and job priority, instead of a dispatcher manually juggling a whiteboard.' },
-  { title: 'Multi-entity consolidation that just works', desc: 'Custom automation handles intercompany eliminations and currency translation automatically across subsidiaries at month-end.' },
+  { title: "Supplier invoices that match themselves", desc: "Invoices are read, matched against purchase orders and receipts, and queued with exceptions flagged, so AP reviews differences instead of keying lines." },
+  { title: "Replenishment suggestions that explain themselves", desc: "When stock crosses a threshold, a proposed purchase order is drafted with the reasoning, and a buyer approves or edits it." },
+  { title: "An upgrade that does not break the business", desc: "Customizations are refactored onto supported patterns, so a new release goes in without an emergency retest of everything." },
 ]
 
 const roles = [
   {
     icon: Settings,
     title: 'Acumatica Administrators',
-    desc: 'Own day-to-day instance health — generic inquiries, workflows, and role-based security — without writing code. Usually the first hire for any growing Acumatica deployment.',
+    desc: "Own generic inquiries, reports, workflows, and security roles, keeping day-to-day operations running smoothly without custom code.",
     skills: ['Generic Inquiries & Reports', 'Workflow Configuration'],
   },
   {
     icon: Code2,
     title: '.NET/Acumatica Developers',
-    desc: 'Build custom functionality when configuration runs out of road — custom screens, business events, and API integrations using the Acumatica xRP framework.',
+    desc: "Build customization projects in C# on supported patterns, and integrations through the Open API, so work survives each new release.",
     skills: ['C#/.NET Framework', 'Acumatica xRP Customization'],
   },
   {
     icon: Briefcase,
     title: 'ERP Consultants',
-    desc: 'Design the chart of accounts, module rollout sequence, and integration strategy for growing or multi-subsidiary organizations. The most senior tier.',
+    desc: "Configure financials, distribution, and multi-entity structure, and guide process design so the system fits the business, not the other way round.",
     skills: ['Multi-Entity Implementation', 'Financial & Distribution Configuration'],
   },
 ]
@@ -87,10 +88,10 @@ const rateComparison = [
 ]
 
 const vettingCriteria = [
-  { title: 'Live .NET/xRP Build Challenge', desc: 'Build a working custom screen or business event against a realistic spec under time pressure — generic inquiry logic, DAC extensions, and workflow rules, not a take-home nobody reviews.' },
-  { title: 'Native-vs-Custom Judgment', desc: "We test the judgment call that separates senior from junior: when a generic inquiry or workflow is enough, and when a custom screen is worth the added complexity." },
-  { title: 'Cross-Module Literacy Check', desc: 'We verify hands-on experience across the specific Acumatica modules you run — Financials, Distribution, Manufacturing — not just one in isolation.' },
-  { title: 'Production Portfolio Review', desc: '2–3 real Acumatica instances or customizations they have shipped to production, reviewed for data model decisions and lessons from what broke.' },
+  { title: "Customization Design Exercise", desc: "Given a business requirement, choose between configuration, a customization, and an integration, and justify it. We look for upgrade-safe thinking." },
+  { title: "API Surface Judgment", desc: "When is a contract-based endpoint the right choice versus a screen-based or generic-inquiry approach? We test for reliability over convenience." },
+  { title: "Test Tenant and Release Discipline", desc: "How do they stage, test, and publish customizations and integrations? That is where Acumatica projects tend to fail." },
+  { title: "Production Portfolio Review", desc: "Two or three real Acumatica implementations or integrations they delivered, reviewed for what held up through upgrades." },
 ]
 
 const comparisonRows = [
@@ -103,9 +104,9 @@ const comparisonRows = [
 ]
 
 const forWho = [
-  { title: 'Finance & Ops Leaders', desc: "Your close process depends on Acumatica but reconciliation and reporting still involve manual spreadsheet work. Get a consultant who can fix it without a lengthy SI engagement." },
-  { title: 'IT Teams Stretched Thin', desc: 'One admin is covering Financials, Distribution, and Manufacturing, and the customization backlog keeps growing. Add a vetted specialist in days, scoped to exactly the workload you need covered.' },
-  { title: 'Teams Mid-Implementation', desc: 'Your Acumatica rollout stalled, or a customization never made it to production. We audit what\'s there and take over in milestone-gated phases — not a risky rewrite from zero.' },
+  { title: "Distributors and Wholesalers", desc: "Inventory accuracy, order flow, and supplier invoices are the daily grind. We automate the repetitive parts and keep buyers in control." },
+  { title: "Manufacturers", desc: "Production planning and costing rely on clean data. We help get the master data and integrations right before adding AI." },
+  { title: "Project-Based and Construction Firms", desc: "Job costing and billing depend on disciplined project setup. We configure and extend Acumatica to match how projects are really run." },
 ]
 
 const timeline = [
@@ -116,27 +117,33 @@ const timeline = [
   { day: 'Ongoing', title: 'Scale or Wind Down', desc: 'Add talent as new modules or workflows come online, extend the engagement, or wind down — no lock-in.' },
 ]
 
+const pitfalls = [
+  { title: "Customizations that block upgrades", desc: "Heavy or unsupported customizations turn every semi-annual release into a regression project, so teams fall behind on versions." },
+  { title: "Using the wrong API surface", desc: "Screen-based integrations break when screens change, while contract-based endpoints are versioned. Picking the wrong one creates fragile integrations." },
+  { title: "Ignoring licensing resource limits", desc: "Acumatica licenses by computing resources rather than user count, so integration volume and reporting load should be planned, not discovered." },
+  { title: "Multi-entity set up as an afterthought", desc: "Branch and company structure shapes reporting and security. Changing it after go-live is expensive." },
+  { title: "No test tenant discipline", desc: "Publishing customizations or integrations straight to production without a test tenant invites outages and rollbacks." },
+]
+
 const faqs = [
-  { q: 'What is Acumatica?', a: 'Acumatica is a cloud ERP platform built around a unified Financial Management core, extended by Distribution Management, Manufacturing Management, Project Accounting, CRM, and Field Service Management, all sharing one data model. It is distinguished by consumption-based licensing rather than per-user fees, making it popular with growing mid-market companies.' },
-  { q: 'Does Acumatica have native AI, or do I need a custom build?', a: "Acumatica ships built-in AI and automation features for anomaly detection, predictive analytics, and smart data capture. Kovil AI configures those natively and, where they aren't enough, builds custom .NET automation tuned to your specific processes." },
-  { q: 'Does Kovil AI build custom automation on Acumatica, or only staff talent?', a: "Both, and they're often the same engagement. Clients commonly hire an Acumatica administrator to clean up instance hygiene, then layer AI-driven automation on top." },
-  { q: 'How much does it cost to hire an Acumatica developer through Kovil AI?', a: "Kovil AI's remote Acumatica talent bills $18-$38 per hour depending on role and experience, versus $40-$140+ per hour for prevailing US onsite rates for the same roles — typically 60-70% lower." },
-  { q: 'What is the difference between an Acumatica Administrator, Developer, and ERP Consultant?', a: 'An Acumatica Administrator configures the instance using generic inquiries, workflows, and role-based security without writing code. A .NET/Acumatica Developer builds custom screens and business events using the xRP framework. An ERP Consultant designs the chart of accounts and multi-entity implementation strategy, and is typically the most senior of the three.' },
-  { q: 'How quickly can I hire an Acumatica specialist through Kovil AI?', a: 'Most clients are matched with a vetted administrator, developer, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement.' },
-  { q: 'Is there such a thing as a certified Acumatica specialist?', a: "Acumatica offers partner-level certification through its training programs. We verify these where relevant, but weight a live build challenge and production portfolio review just as heavily, since real judgment on customization decisions isn't fully tested by a certificate alone." },
-  { q: 'Can Kovil AI integrate Acumatica with other systems like Salesforce or Shopify?', a: 'Yes. Our Acumatica talent regularly builds integrations using the Acumatica REST/SOAP API and custom middleware — connecting Acumatica to whatever else your business runs on.' },
-  { q: 'Who owns the customizations, automations, and integrations built during an engagement?', a: 'You do, 100%. All custom screens, business events, integrations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in.' },
-  { q: 'Can I combine an AI automation build with Acumatica staff augmentation in one engagement?', a: 'Yes. A single Engagement Manager can coordinate an automation build alongside dedicated administrator or developer talent working in the same instance.' },
-  { q: 'What Acumatica modules does Kovil AI have experience with?', a: 'Financial Management, Distribution Management, Manufacturing Management, Project Accounting, CRM, and Field Service Management, plus integrations including Salesforce and Shopify.' },
-  { q: 'How is Kovil AI different from a traditional Acumatica VAR or systems integrator?', a: 'Traditional VARs typically scope a fixed project and hand it to a rotating bench of consultants. Kovil AI embeds a single accountable engineer or small pod directly with your team, under one Engagement Manager who audits every milestone.' },
-  { q: 'Can we extend a trial engagement or convert it to a long-term hire?', a: 'Yes. Most clients extend the engagement as new modules or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way.' },
-  { q: 'Do you support Acumatica rescues or fixing a failing implementation?', a: 'Yes. A significant share of our Acumatica engagements start as a rescue — an instance with years of technical debt or a customization that never worked. We audit the data model and code, then stabilize and rebuild in milestone-gated phases.' },
+  { q: "What is Acumatica?", a: "Acumatica is a cloud ERP covering financials, distribution, manufacturing, project accounting, and more, with a customization platform and an Open API. It is known for consumption-based licensing, which prices by computing resources rather than by user count." },
+  { q: "Does Acumatica have native AI, or do I need a custom build?", a: "Acumatica includes built-in AI capabilities such as AI-assisted document recognition. A custom build makes sense when you need logic across systems, such as matching invoices to purchase orders, triggering agents from Business Events, or running LLM steps against your data." },
+  { q: "What does consumption-based licensing mean for integrations and AI?", a: "Acumatica licenses by computing resources rather than named users, so broad access is affordable but heavy integration and reporting load uses capacity. We plan integration volume and scheduling with that in mind instead of discovering it later." },
+  { q: "Which Acumatica API should we use for an integration?", a: "Contract-based REST endpoints are versioned and suited to most integrations. Generic inquiries suit read-heavy reporting, and screen-based access is a last resort because it can break when screens change. We choose per use case." },
+  { q: "How do customizations affect Acumatica upgrades?", a: "Acumatica ships releases on a regular cadence, and customizations that rely on unsupported patterns can break them. We build and refactor customization projects to supported patterns and test in a separate tenant before publishing." },
+  { q: "How much does it cost to hire an Acumatica developer through Kovil AI?", a: "Kovil AI's remote Acumatica talent bills $18-$38 per hour depending on role and experience, versus $40-$140+ per hour for prevailing US onsite rates for the same roles — typically 60-70% lower." },
+  { q: "What is the difference between an Acumatica Administrator, Developer, and ERP Consultant?", a: "An Administrator owns inquiries, reports, workflows, and security roles. A .NET/Acumatica Developer builds customization projects and integrations. An ERP Consultant configures financials, distribution, and multi-entity structure and guides process design." },
+  { q: "What are Business Events, and how can an AI agent use them?", a: "Business Events fire when records meet conditions, such as stock below a threshold. We use them to trigger an agent that drafts a proposed action, such as a purchase order, which a person approves before anything posts." },
+  { q: "Can Kovil AI integrate Acumatica with Shopify, Salesforce, or warehouse tools?", a: "Yes. We use the contract-based Open API with a declared source of truth for each field, so order, inventory, and customer data stay aligned without conflicting writes." },
+  { q: "Is there such a thing as a certified Acumatica specialist?", a: "Acumatica offers certifications and we verify them where they exist. For development and integration work we also weight a live design exercise and a review of shipped work, since credentials alone do not test judgment." },
+  { q: "How quickly can I hire an Acumatica specialist through Kovil AI?", a: "Most clients are matched with a vetted administrator, developer, or consultant within 24–48 hours of submitting a brief, with work starting within a week. A 2-week risk-free trial lets you validate fit and output before committing to a longer engagement." },
+  { q: "Who owns the customizations, automations, and integrations built during an engagement?", a: "You do, 100%. All custom screens, business events, integrations, and documentation produced during your engagement are fully owned by you under clear IP-assignment terms — no shared IP, no lock-in." },
+  { q: "Do you support Acumatica rescues or fixing a failing implementation?", a: "Yes. Typical rescues involve heavy customizations that block upgrades, fragile integrations, weak multi-entity design, or stalled go-lives. We audit first, then stabilize in stages so operations are not disrupted." },
+  { q: "Can we extend a trial engagement or convert it to a long-term hire?", a: "Yes. Most clients extend the engagement as new modules or automation needs come online, scale to a small embedded pod, or wind down once the work is stable, with no minimum lock-in either way." },
 ]
 
 const integrations = [
-  'Acumatica xRP Framework', 'C#/.NET', 'REST API', 'SOAP API', 'Generic Inquiries', 'Business Events',
-  'Import Scenarios', 'Field Service', 'Salesforce Sync', 'Shopify', 'Webhooks', 'Avalara Tax',
-  'SSO/SAML', 'Custom Reports', 'DAC Extensions', 'Acumatica Marketplace',
+  "Acumatica Open API", "Contract-Based REST Endpoints", "Generic Inquiries", "Business Events", "Customization Projects", "Document Recognition", "Shopify", "Salesforce", "Avalara & Tax Tools", "Power BI", "Microsoft 365", "SSO & SAML", "Multi-Entity", "Project Accounting",
 ]
 
 // ── Small components ────────────────────────────────────────────────────────
@@ -438,6 +445,21 @@ export default function AcumaticaPlatformPage() {
           <Link href="/case-studies" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline">
             See real client case studies <ArrowRight className="h-3.5 w-3.5" />
           </Link>
+        </div>
+      </section>
+
+      {/* Field notes: platform-specific failure patterns */}
+      <section className="max-w-7xl mx-auto px-6 pb-20">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Field Notes</p>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">Where Acumatica Projects Go Wrong</h2>
+        <p className="text-muted-foreground max-w-2xl mb-10">These are the failure patterns we see most often in Acumatica environments. Knowing them early is the cheapest way to avoid an expensive cleanup.</p>
+        <div className="grid md:grid-cols-2 gap-6">
+          {pitfalls.map((p, i) => (
+            <motion.div key={p.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="rounded-2xl border border-border bg-background p-6">
+              <h3 className="font-semibold text-base mb-2 flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-accent shrink-0 mt-1" />{p.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
