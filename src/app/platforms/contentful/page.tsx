@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import ContentfulPlatformPage from '@/src/pages/platforms/contentful/ContentfulPlatformPage'
 
 export const metadata: Metadata = {
-  title: "Contentful Platform Partner — AI Agents & Specialist Talent",
-  description: "Kovil AI is your single partner for Contentful — AI-assisted content operations builds, plus vetted headless CMS frontend engineers, GraphQL/API specialists, and content architects matched in 48 hours. 2-week risk-free trial.",
+  title: 'Contentful AI Agents & Developers for Hire',
+  description: 'Hire vetted Contentful specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/contentful' },
   keywords: ["contentful ai agents","hire contentful developer","contentful staff augmentation","contentful ai actions","headless cms developer","contentful graphql specialist","contentful content modeling","what is contentful"],
   openGraph: {
     type: 'website',
-    title: "Contentful Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "AI-assisted content operations builds, plus vetted headless CMS frontend engineers, GraphQL/API specialists, and content architects matched in 48 hours. 2-week risk-free trial.",
+    title: 'Contentful AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Contentful specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/contentful',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Contentful Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "AI-assisted content operations builds, plus vetted headless CMS frontend engineers, GraphQL/API specialists, and content architects matched in 48 hours.",
+    title: 'Contentful AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Contentful specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

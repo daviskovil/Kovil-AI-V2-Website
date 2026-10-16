@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import MicrosoftDynamics365PlatformPage from '@/src/pages/platforms/microsoft-dynamics-365/MicrosoftDynamics365PlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Microsoft Dynamics 365 Partner — AI Agents & Specialist Talent',
-  description: 'Kovil AI is your single partner for Microsoft Dynamics 365 — Copilot AI agents, plus vetted functional consultants, developers, and solution architects matched in 48 hours. 2-week risk-free trial.',
+  title: 'Microsoft Dynamics 365 AI Agents & Developers',
+  description: 'Hire vetted Microsoft Dynamics 365 specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/microsoft-dynamics-365' },
   keywords: [
     'dynamics 365 ai agent',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Microsoft Dynamics 365 Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Copilot AI agents, plus vetted D365 functional consultants, developers, and solution architects matched in 48 hours. 2-week risk-free trial.',
+    title: 'Microsoft Dynamics 365 AI Agents & Developers | Kovil AI',
+    description: 'Hire vetted Microsoft Dynamics 365 specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/microsoft-dynamics-365',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Microsoft Dynamics 365 Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Copilot AI agents, plus vetted D365 functional consultants, developers, and solution architects matched in 48 hours.',
+    title: 'Microsoft Dynamics 365 AI Agents & Developers | Kovil AI',
+    description: 'Hire vetted Microsoft Dynamics 365 specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

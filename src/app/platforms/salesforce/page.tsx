@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import SalesforcePlatformPage from '@/src/pages/platforms/salesforce/SalesforcePlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Salesforce Platform Partner — AI Agents & Specialist Talent',
-  description: 'Kovil AI is your single partner for the Salesforce ecosystem — Agentforce AI agents, plus vetted Salesforce administrators, developers, and architects matched in 48 hours. 2-week risk-free trial.',
+  title: 'Salesforce AI Agents & Developers for Hire',
+  description: 'Hire vetted Salesforce specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/salesforce' },
   keywords: [
     'salesforce ai agent',
@@ -22,15 +22,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Salesforce Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Agentforce AI agents, plus vetted Salesforce administrators, developers, and architects matched in 48 hours. 2-week risk-free trial.',
+    title: 'Salesforce AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Salesforce specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/salesforce',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Salesforce Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Agentforce AI agents, plus vetted Salesforce administrators, developers, and architects matched in 48 hours.',
+    title: 'Salesforce AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Salesforce specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

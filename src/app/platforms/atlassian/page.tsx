@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AtlassianPlatformPage from '@/src/pages/platforms/atlassian/AtlassianPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Atlassian Platform Partner — AI Agents & Specialist Talent',
-  description: 'Kovil AI is your single partner for Atlassian — Rovo AI agents, plus vetted Jira/Confluence administrators, integration developers, and solutions architects matched in 48 hours. 2-week risk-free trial.',
+  title: 'Atlassian (Jira/Confluence) AI Agents & Talent',
+  description: 'Hire vetted Atlassian (Jira/Confluence) specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/atlassian' },
   keywords: [
     'atlassian ai agents',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Atlassian Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Rovo AI agents, plus vetted Jira/Confluence administrators, integration developers, and solutions architects matched in 48 hours. 2-week risk-free trial.',
+    title: 'Atlassian (Jira/Confluence) AI Agents & Talent | Kovil AI',
+    description: 'Hire vetted Atlassian (Jira/Confluence) specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/atlassian',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Atlassian Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Rovo AI agents, plus vetted Jira/Confluence administrators, integration developers, and solutions architects matched in 48 hours.',
+    title: 'Atlassian (Jira/Confluence) AI Agents & Talent | Kovil AI',
+    description: 'Hire vetted Atlassian (Jira/Confluence) specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

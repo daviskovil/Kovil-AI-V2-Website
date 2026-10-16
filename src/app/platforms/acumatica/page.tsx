@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AcumaticaPlatformPage from '@/src/pages/platforms/acumatica/AcumaticaPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Acumatica Platform Partner — AI Automation & Specialist Talent',
-  description: 'Kovil AI is your single partner for Acumatica — AI-driven automation, plus vetted Acumatica administrators, .NET developers, and ERP consultants matched in 48 hours. 2-week risk-free trial.',
+  title: 'Acumatica AI Agents & Developers for Hire',
+  description: 'Hire vetted Acumatica specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/acumatica' },
   keywords: [
     'acumatica ai automation',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Acumatica Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven automation, plus vetted Acumatica administrators, developers, and ERP consultants matched in 48 hours. 2-week risk-free trial.',
+    title: 'Acumatica AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Acumatica specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/acumatica',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Acumatica Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven automation, plus vetted Acumatica administrators, developers, and ERP consultants matched in 48 hours.',
+    title: 'Acumatica AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Acumatica specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

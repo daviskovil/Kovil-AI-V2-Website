@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import WebflowPlatformPage from '@/src/pages/platforms/webflow/WebflowPlatformPage'
 
 export const metadata: Metadata = {
-  title: "Webflow Platform Partner — AI Agents & Specialist Talent",
-  description: "Kovil AI is your single partner for Webflow — AI-powered website feature builds, plus vetted Webflow developers, custom JavaScript engineers, and CMS & SEO specialists matched in 48 hours. 2-week risk-free trial.",
+  title: 'Webflow AI Agents & Developers for Hire',
+  description: 'Hire vetted Webflow specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/webflow' },
   keywords: ["webflow ai agents","hire webflow developer","webflow staff augmentation","webflow developer","webflow custom code","webflow cms specialist","webflow ai integration","what is webflow"],
   openGraph: {
     type: 'website',
-    title: "Webflow Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "AI-powered website feature builds, plus vetted Webflow developers, custom JavaScript engineers, and CMS & SEO specialists matched in 48 hours. 2-week risk-free trial.",
+    title: 'Webflow AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Webflow specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/webflow',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Webflow Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "AI-powered website feature builds, plus vetted Webflow developers, custom JavaScript engineers, and CMS & SEO specialists matched in 48 hours.",
+    title: 'Webflow AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Webflow specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

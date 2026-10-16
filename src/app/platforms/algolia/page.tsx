@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import AlgoliaPlatformPage from '@/src/pages/platforms/algolia/AlgoliaPlatformPage'
 
 export const metadata: Metadata = {
-  title: "Algolia Platform Partner — AI Agents & Specialist Talent",
-  description: "Kovil AI is your single partner for Algolia — AI search and discovery builds, plus vetted search relevance engineers, frontend developers, AI search specialists, and architects matched in 48 hours. 2-week risk-free trial.",
+  title: 'Algolia AI Agents & Developers for Hire',
+  description: 'Hire vetted Algolia specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/algolia' },
   keywords: ["algolia ai agents","hire algolia developer","algolia staff augmentation","algolia neuralsearch","algolia relevance engineer","algolia search developer","ai search implementation","what is algolia"],
   openGraph: {
     type: 'website',
-    title: "Algolia Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "AI search and discovery builds, plus vetted search relevance engineers, frontend developers, AI search specialists, and architects matched in 48 hours. 2-week risk-free trial.",
+    title: 'Algolia AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Algolia specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/algolia',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Algolia Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "AI search and discovery builds, plus vetted search relevance engineers, frontend developers, AI search specialists, and architects matched in 48 hours.",
+    title: 'Algolia AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Algolia specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

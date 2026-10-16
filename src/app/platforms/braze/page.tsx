@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import BrazePlatformPage from '@/src/pages/platforms/braze/BrazePlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Braze Platform Partner — AI Automation & Specialist Talent',
-  description: 'Kovil AI is your single partner for Braze — AI-driven journey automation, plus vetted solutions architects, Canvas developers, and data engineers matched in 48 hours. 2-week risk-free trial.',
+  title: 'Braze AI Agents & Developers for Hire',
+  description: 'Hire vetted Braze specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/braze' },
   keywords: [
     'braze ai automation',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Braze Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven journey automation, plus vetted solutions architects, Canvas developers, and data engineers matched in 48 hours. 2-week risk-free trial.',
+    title: 'Braze AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Braze specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/braze',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Braze Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven journey automation, plus vetted solutions architects, Canvas developers, and data engineers matched in 48 hours.',
+    title: 'Braze AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Braze specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

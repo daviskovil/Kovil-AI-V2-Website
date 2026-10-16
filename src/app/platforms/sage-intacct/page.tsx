@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import SageIntacctPlatformPage from '@/src/pages/platforms/sage-intacct/SageIntacctPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Sage Intacct Platform Partner — AI Agents & Specialist Talent',
-  description: 'Kovil AI is your single partner for Sage Intacct — Sage Copilot AI agents, plus vetted administrators, developers, and multi-entity consolidation consultants matched in 48 hours. 2-week risk-free trial.',
+  title: 'Sage Intacct AI Agents & Developers for Hire',
+  description: 'Hire vetted Sage Intacct specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/sage-intacct' },
   keywords: [
     'sage intacct ai agent',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Sage Intacct Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Sage Copilot AI agents, plus vetted administrators, developers, and multi-entity consolidation consultants matched in 48 hours. 2-week risk-free trial.',
+    title: 'Sage Intacct AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Sage Intacct specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/sage-intacct',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sage Intacct Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Sage Copilot AI agents, plus vetted administrators, developers, and multi-entity consolidation consultants matched in 48 hours.',
+    title: 'Sage Intacct AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Sage Intacct specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import StripePlatformPage from '@/src/pages/platforms/stripe/StripePlatformPage'
 
 export const metadata: Metadata = {
-  title: "Stripe Platform Partner — AI Agents & Specialist Talent",
-  description: "Kovil AI is your single partner for Stripe — agent-ready payment and billing builds, plus vetted payment integration engineers, billing developers, and payments architects matched in 48 hours. 2-week risk-free trial.",
+  title: 'Stripe AI Agents & Developers for Hire',
+  description: 'Hire vetted Stripe specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/stripe' },
   keywords: ["stripe ai agents","hire stripe developer","stripe staff augmentation","stripe billing developer","stripe connect consultant","stripe integration engineer","stripe agent toolkit","what is stripe"],
   openGraph: {
     type: 'website',
-    title: "Stripe Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "Agent-ready payment and billing builds, plus vetted payment integration engineers, billing developers, and payments architects matched in 48 hours. 2-week risk-free trial.",
+    title: 'Stripe AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Stripe specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/stripe',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Stripe Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "Agent-ready payment and billing builds, plus vetted payment integration engineers, billing developers, and payments architects matched in 48 hours.",
+    title: 'Stripe AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Stripe specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

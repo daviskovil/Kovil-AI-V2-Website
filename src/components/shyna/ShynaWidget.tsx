@@ -121,7 +121,7 @@ function ShynaAvatar({ size = 36 }: { size?: number }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/shyna-avatar.png"
+      src="/shyna-avatar.webp"
       alt=""
       aria-hidden="true"
       width={size}

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import MondayPlatformPage from '@/src/pages/platforms/monday/MondayPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'monday.com Platform Partner — AI Automation & Specialist Talent',
-  description: 'Kovil AI is your single partner for monday.com — AI-driven workflow automation, plus vetted solutions engineers, developers, and Work OS consultants matched in 48 hours. 2-week risk-free trial.',
+  title: 'Monday.com AI Agents & Developers for Hire',
+  description: 'Hire vetted Monday.com specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/monday' },
   keywords: [
     'monday.com ai automation',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'monday.com Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven workflow automation, plus vetted solutions engineers, developers, and Work OS consultants matched in 48 hours. 2-week risk-free trial.',
+    title: 'Monday.com AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Monday.com specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/monday',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'monday.com Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven workflow automation, plus vetted solutions engineers, developers, and Work OS consultants matched in 48 hours.',
+    title: 'Monday.com AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Monday.com specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

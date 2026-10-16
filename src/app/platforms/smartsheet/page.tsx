@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import SmartsheetPlatformPage from '@/src/pages/platforms/smartsheet/SmartsheetPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Smartsheet Platform Partner — AI Automation & Specialist Talent',
-  description: 'Kovil AI is your single partner for Smartsheet — AI-driven resource automation, plus vetted solutions architects, developers, and work management consultants matched in 48 hours. 2-week risk-free trial.',
+  title: 'Smartsheet AI Agents & Developers for Hire',
+  description: 'Hire vetted Smartsheet specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/smartsheet' },
   keywords: [
     'smartsheet ai automation',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Smartsheet Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven resource automation, plus vetted solutions architects, developers, and work management consultants matched in 48 hours. 2-week risk-free trial.',
+    title: 'Smartsheet AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Smartsheet specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/smartsheet',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Smartsheet Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven resource automation, plus vetted solutions architects, developers, and work management consultants matched in 48 hours.',
+    title: 'Smartsheet AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Smartsheet specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

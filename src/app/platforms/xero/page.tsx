@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import XeroPlatformPage from '@/src/pages/platforms/xero/XeroPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Xero Platform Partner — AI Automation & Specialist Talent',
-  description: 'Kovil AI is your single partner for Xero — AI-driven reconciliation automation, plus vetted Xero administrators, API developers, and ecosystem integration specialists matched in 48 hours. 2-week risk-free trial.',
+  title: 'Xero AI Agents & Developers for Hire',
+  description: 'Hire vetted Xero specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/xero' },
   keywords: [
     'xero ai automation',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Xero Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven reconciliation automation, plus vetted Xero administrators, developers, and ecosystem integration specialists matched in 48 hours. 2-week risk-free trial.',
+    title: 'Xero AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Xero specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/xero',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Xero Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven reconciliation automation, plus vetted Xero administrators, developers, and ecosystem integration specialists matched in 48 hours.',
+    title: 'Xero AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Xero specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

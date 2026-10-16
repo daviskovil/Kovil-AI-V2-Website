@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import ZohoOnePlatformPage from '@/src/pages/platforms/zoho-one/ZohoOnePlatformPage'
 
 export const metadata: Metadata = {
-  title: "Zoho One Platform Partner — AI Agents & Specialist Talent",
-  description: "Kovil AI is your single partner for Zoho One — Zia and custom AI agent builds, plus vetted Zoho developers, CRM admins, solutions architects, and Zia AI specialists matched in 48 hours. 2-week risk-free trial.",
+  title: 'Zoho One AI Agents & Developers for Hire',
+  description: 'Hire vetted Zoho One specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/zoho-one' },
   keywords: ["zoho one ai agents","hire zoho one developer","zoho one staff augmentation","zoho one consultant","zoho deluge developer","zoho crm admin for hire","zoho zia implementation","what is zoho one"],
   openGraph: {
     type: 'website',
-    title: "Zoho One Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "Zia and custom AI agent builds, plus vetted Zoho developers, CRM admins, solutions architects, and Zia AI specialists matched in 48 hours. 2-week risk-free trial.",
+    title: 'Zoho One AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Zoho One specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/zoho-one',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Zoho One Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "Zia and custom AI agent builds, plus vetted Zoho developers, CRM admins, solutions architects, and Zia AI specialists matched in 48 hours.",
+    title: 'Zoho One AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Zoho One specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

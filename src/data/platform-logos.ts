@@ -37,6 +37,11 @@ export const PLATFORM_LOGOS: Record<string, PlatformLogo> = {
     "aspect": 1.0,
     "bg": null
   },
+  "bigcommerce": {
+    "src": "/platform-logos/bigcommerce.webp",
+    "aspect": 1.003,
+    "bg": null
+  },
   "boomi": {
     "src": "/platform-logos/boomi.webp",
     "aspect": 1.0,
@@ -155,6 +160,11 @@ export const PLATFORM_LOGOS: Record<string, PlatformLogo> = {
   "webflow": {
     "src": "/platform-logos/webflow.webp",
     "aspect": 1.607,
+    "bg": null
+  },
+  "workday": {
+    "src": "/platform-logos/workday.webp",
+    "aspect": 1.0,
     "bg": null
   },
   "wrike": {

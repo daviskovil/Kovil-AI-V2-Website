@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import OdooPlatformPage from '@/src/pages/platforms/odoo/OdooPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Odoo Platform Partner — AI Automation & Specialist Talent',
-  description: 'Kovil AI is your single partner for Odoo — AI-driven automation, plus vetted Odoo administrators, Python developers, and implementation consultants matched in 48 hours. 2-week risk-free trial.',
+  title: 'Odoo AI Agents & Developers for Hire',
+  description: 'Hire vetted Odoo specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/odoo' },
   keywords: [
     'odoo ai automation',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Odoo Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven automation, plus vetted Odoo administrators, developers, and implementation consultants matched in 48 hours. 2-week risk-free trial.',
+    title: 'Odoo AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Odoo specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/odoo',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Odoo Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven automation, plus vetted Odoo administrators, developers, and implementation consultants matched in 48 hours.',
+    title: 'Odoo AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Odoo specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

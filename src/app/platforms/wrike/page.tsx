@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import WrikePlatformPage from '@/src/pages/platforms/wrike/WrikePlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Wrike Platform Partner — AI Automation & Specialist Talent',
-  description: 'Kovil AI is your single partner for Wrike — AI-driven risk automation, plus vetted implementation consultants, automation experts, and work management consultants matched in 48 hours. 2-week risk-free trial.',
+  title: 'Wrike AI Agents & Developers for Hire',
+  description: 'Hire vetted Wrike specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/wrike' },
   keywords: [
     'wrike ai automation',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Wrike Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven risk automation, plus vetted implementation consultants, automation experts, and work management consultants matched in 48 hours. 2-week risk-free trial.',
+    title: 'Wrike AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Wrike specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/wrike',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Wrike Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven risk automation, plus vetted implementation consultants, automation experts, and work management consultants matched in 48 hours.',
+    title: 'Wrike AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Wrike specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

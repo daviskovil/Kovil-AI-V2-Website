@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AdobeExperienceManagerPlatformPage from '@/src/pages/platforms/adobe-experience-manager/AdobeExperienceManagerPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Adobe Experience Manager Platform Partner — AI Agents & Specialist Talent',
-  description: 'Kovil AI is your single partner for AEM — Adobe Sensei AI agents, plus vetted AEM developers, architects, and DAM specialists matched in 48 hours. 2-week risk-free trial.',
+  title: 'Adobe Experience Manager AI Agents & Developers',
+  description: 'Hire vetted Adobe Experience Manager specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/adobe-experience-manager' },
   keywords: [
     'adobe experience manager ai agents',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Adobe Experience Manager Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Adobe Sensei AI agents, plus vetted AEM developers, architects, and DAM specialists matched in 48 hours. 2-week risk-free trial.',
+    title: 'Adobe Experience Manager AI Agents & Developers | Kovil AI',
+    description: 'Hire vetted Adobe Experience Manager specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/adobe-experience-manager',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Adobe Experience Manager Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Adobe Sensei AI agents, plus vetted AEM developers, architects, and DAM specialists matched in 48 hours.',
+    title: 'Adobe Experience Manager AI Agents & Developers | Kovil AI',
+    description: 'Hire vetted Adobe Experience Manager specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

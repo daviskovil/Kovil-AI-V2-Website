@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import KlaviyoPlatformPage from '@/src/pages/platforms/klaviyo/KlaviyoPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Klaviyo Platform Partner — AI Agents & Specialist Talent',
-  description: 'Kovil AI is your single partner for Klaviyo — Klaviyo AI predictive agents, plus vetted developers, e-commerce data engineers, and lifecycle strategists matched in 48 hours. 2-week risk-free trial.',
+  title: 'Klaviyo AI Agents & Developers for Hire',
+  description: 'Hire vetted Klaviyo specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/klaviyo' },
   keywords: [
     'klaviyo ai agents',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Klaviyo Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Klaviyo AI predictive agents, plus vetted developers, e-commerce data engineers, and lifecycle strategists matched in 48 hours. 2-week risk-free trial.',
+    title: 'Klaviyo AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Klaviyo specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/klaviyo',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Klaviyo Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Klaviyo AI predictive agents, plus vetted developers, e-commerce data engineers, and lifecycle strategists matched in 48 hours.',
+    title: 'Klaviyo AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Klaviyo specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

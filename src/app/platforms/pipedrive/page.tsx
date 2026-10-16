@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import PipedrivePlatformPage from '@/src/pages/platforms/pipedrive/PipedrivePlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Pipedrive Platform Partner — AI Automation & Specialist Talent',
-  description: 'Kovil AI is your single partner for the Pipedrive stack — custom AI automation, plus vetted Pipedrive administrators, automation developers, and RevOps consultants matched in 48 hours. 2-week risk-free trial.',
+  title: 'Pipedrive AI Agents & Developers for Hire',
+  description: 'Hire vetted Pipedrive specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/pipedrive' },
   keywords: [
     'pipedrive ai automation',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Pipedrive Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'Custom AI automation, plus vetted Pipedrive administrators, developers, and RevOps consultants matched in 48 hours. 2-week risk-free trial.',
+    title: 'Pipedrive AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Pipedrive specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/pipedrive',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pipedrive Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'Custom AI automation, plus vetted Pipedrive administrators, developers, and RevOps consultants matched in 48 hours.',
+    title: 'Pipedrive AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Pipedrive specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

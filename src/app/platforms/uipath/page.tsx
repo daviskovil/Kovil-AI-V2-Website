@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import UiPathPlatformPage from '@/src/pages/platforms/uipath/UiPathPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'UiPath Platform Partner — Agentic AI & Specialist Talent',
-  description: 'Kovil AI is your single partner for UiPath — agentic automation builds, plus vetted RPA developers, business analysts, solution architects, and agentic AI specialists matched in 48 hours. 2-week risk-free trial.',
+  title: 'UiPath AI Agents & Developers for Hire',
+  description: 'Hire vetted UiPath specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/uipath' },
   keywords: [
     'uipath ai agents',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'UiPath Platform Partner — Agentic AI & Specialist Talent | Kovil AI',
-    description: 'Agentic automation builds, plus vetted RPA developers, business analysts, and solution architects matched in 48 hours. 2-week risk-free trial.',
+    title: 'UiPath AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted UiPath specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/uipath',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'UiPath Platform Partner — Agentic AI & Specialist Talent | Kovil AI',
-    description: 'Agentic automation builds, plus vetted RPA developers, business analysts, and solution architects matched in 48 hours.',
+    title: 'UiPath AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted UiPath specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

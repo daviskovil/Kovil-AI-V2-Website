@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import StrapiPlatformPage from '@/src/pages/platforms/strapi/StrapiPlatformPage'
 
 export const metadata: Metadata = {
-  title: "Strapi Platform Partner — AI Agents & Specialist Talent",
-  description: "Kovil AI is your single partner for Strapi — AI-assisted content workflow builds, plus vetted Node.js/Strapi developers, Jamstack engineers, and self-hosting specialists matched in 48 hours. 2-week risk-free trial.",
+  title: 'Strapi AI Agents & Developers for Hire',
+  description: 'Hire vetted Strapi specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/strapi' },
   keywords: ["strapi ai agents","hire strapi developer","strapi staff augmentation","strapi developer","strapi v5 upgrade","headless cms node.js","strapi self hosting","what is strapi"],
   openGraph: {
     type: 'website',
-    title: "Strapi Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "AI-assisted content workflow builds, plus vetted Node.js/Strapi developers, Jamstack engineers, and self-hosting specialists matched in 48 hours. 2-week risk-free trial.",
+    title: 'Strapi AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Strapi specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/strapi',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Strapi Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "AI-assisted content workflow builds, plus vetted Node.js/Strapi developers, Jamstack engineers, and self-hosting specialists matched in 48 hours.",
+    title: 'Strapi AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Strapi specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

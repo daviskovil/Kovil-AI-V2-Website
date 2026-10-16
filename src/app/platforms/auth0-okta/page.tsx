@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import Auth0OktaPlatformPage from '@/src/pages/platforms/auth0-okta/Auth0OktaPlatformPage'
 
 export const metadata: Metadata = {
-  title: "Auth0 Platform Partner — AI Agents & Specialist Talent",
-  description: "Kovil AI is your single partner for Auth0 — secure AI-agent identity builds, plus vetted IAM security engineers, Auth0 developers, AI-identity specialists, and architects matched in 48 hours. 2-week risk-free trial.",
+  title: 'Auth0 AI Agents & Developers for Hire',
+  description: 'Hire vetted Auth0 specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/auth0-okta' },
   keywords: ["auth0 ai agents","hire auth0 developer","auth0 staff augmentation","auth0 for ai agents","okta auth0 consultant","iam engineer for hire","auth0 integration developer","what is auth0"],
   openGraph: {
     type: 'website',
-    title: "Auth0 Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "Secure AI-agent identity builds, plus vetted IAM security engineers, Auth0 developers, AI-identity specialists, and architects matched in 48 hours. 2-week risk-free trial.",
+    title: 'Auth0 AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Auth0 specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/auth0-okta',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Auth0 Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "Secure AI-agent identity builds, plus vetted IAM security engineers, Auth0 developers, AI-identity specialists, and architects matched in 48 hours.",
+    title: 'Auth0 AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Auth0 specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

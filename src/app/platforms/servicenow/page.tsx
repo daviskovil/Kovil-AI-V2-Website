@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import ServiceNowPlatformPage from '@/src/pages/platforms/servicenow/ServiceNowPlatformPage'
 
 export const metadata: Metadata = {
-  title: "ServiceNow Platform Partner — AI Agents & Specialist Talent",
-  description: "Kovil AI is your single partner for ServiceNow — Now Assist and AI agent builds, plus vetted ServiceNow developers, ITSM consultants, and architects matched in 48 hours. 2-week risk-free trial.",
+  title: 'ServiceNow AI Agents & Developers for Hire',
+  description: 'Hire vetted ServiceNow specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/servicenow' },
   keywords: ["servicenow ai agents","hire servicenow developer","servicenow itsm consultant","servicenow staff augmentation","now assist implementation","servicenow architect","servicenow virtual agent","what is servicenow"],
   openGraph: {
     type: 'website',
-    title: "ServiceNow Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "Now Assist and AI agent builds, plus vetted ServiceNow developers, ITSM consultants, and architects matched in 48 hours. 2-week risk-free trial.",
+    title: 'ServiceNow AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted ServiceNow specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/servicenow',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "ServiceNow Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "Now Assist and AI agent builds, plus vetted ServiceNow developers, ITSM consultants, and architects matched in 48 hours.",
+    title: 'ServiceNow AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted ServiceNow specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

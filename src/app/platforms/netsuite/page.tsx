@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import NetSuitePlatformPage from '@/src/pages/platforms/netsuite/NetSuitePlatformPage'
 
 export const metadata: Metadata = {
-  title: 'NetSuite Platform Partner — AI Automation & Specialist Talent',
-  description: 'Kovil AI is your single partner for NetSuite — AI-driven financial automation, plus vetted NetSuite administrators, SuiteScript developers, and ERP consultants matched in 48 hours. 2-week risk-free trial.',
+  title: 'NetSuite (Oracle) AI Agents & Developers for Hire',
+  description: 'Hire vetted NetSuite (Oracle) specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/netsuite' },
   keywords: [
     'netsuite ai automation',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'NetSuite Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven financial automation, plus vetted NetSuite administrators, developers, and ERP consultants matched in 48 hours. 2-week risk-free trial.',
+    title: 'NetSuite (Oracle) AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted NetSuite (Oracle) specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/netsuite',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NetSuite Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven financial automation, plus vetted NetSuite administrators, developers, and ERP consultants matched in 48 hours.',
+    title: 'NetSuite (Oracle) AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted NetSuite (Oracle) specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

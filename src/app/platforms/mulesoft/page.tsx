@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import MuleSoftPlatformPage from '@/src/pages/platforms/mulesoft/MuleSoftPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'MuleSoft Platform Partner — AI Integrations & Specialist Talent',
-  description: 'Kovil AI is your single partner for MuleSoft — agent-ready API and AI integration builds, plus vetted integration engineers, API developers, and architects matched in 48 hours. 2-week risk-free trial.',
+  title: 'MuleSoft AI Agents & Developers for Hire',
+  description: 'Hire vetted MuleSoft specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/mulesoft' },
   keywords: [
     'mulesoft ai integration',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'MuleSoft Platform Partner — AI Integrations & Specialist Talent | Kovil AI',
-    description: 'Agent-ready API and AI integration builds, plus vetted integration engineers, API developers, and architects matched in 48 hours. 2-week risk-free trial.',
+    title: 'MuleSoft AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted MuleSoft specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/mulesoft',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MuleSoft Platform Partner — AI Integrations & Specialist Talent | Kovil AI',
-    description: 'Agent-ready API and AI integration builds, plus vetted integration engineers, API developers, and architects matched in 48 hours.',
+    title: 'MuleSoft AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted MuleSoft specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

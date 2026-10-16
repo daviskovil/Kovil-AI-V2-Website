@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import HubSpotPlatformPage from '@/src/pages/platforms/hubspot/HubSpotPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'HubSpot Platform Partner — AI Agents & Specialist Talent',
-  description: 'Kovil AI is your single partner for the HubSpot ecosystem — Breeze AI agents, plus vetted HubSpot administrators, developers, and RevOps architects matched in 48 hours. 2-week risk-free trial.',
+  title: 'HubSpot AI Agents & Developers for Hire',
+  description: 'Hire vetted HubSpot specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/hubspot' },
   keywords: [
     'hubspot ai agent',
@@ -19,15 +19,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'HubSpot Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Breeze AI agents, plus vetted HubSpot administrators, developers, and RevOps architects matched in 48 hours. 2-week risk-free trial.',
+    title: 'HubSpot AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted HubSpot specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/hubspot',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'HubSpot Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Breeze AI agents, plus vetted HubSpot administrators, developers, and RevOps architects matched in 48 hours.',
+    title: 'HubSpot AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted HubSpot specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

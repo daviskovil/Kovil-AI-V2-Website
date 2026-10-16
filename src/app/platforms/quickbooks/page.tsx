@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import QuickBooksPlatformPage from '@/src/pages/platforms/quickbooks/QuickBooksPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'QuickBooks Platform Partner — AI Automation & Specialist Talent',
-  description: 'Kovil AI is your single partner for QuickBooks — AI-driven reconciliation automation, plus vetted QuickBooks administrators, API developers, and app ecosystem consultants matched in 48 hours. 2-week risk-free trial.',
+  title: 'QuickBooks AI Agents & Developers for Hire',
+  description: 'Hire vetted QuickBooks specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/quickbooks' },
   keywords: [
     'quickbooks ai automation',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'QuickBooks Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven reconciliation automation, plus vetted QuickBooks administrators, developers, and app ecosystem consultants matched in 48 hours. 2-week risk-free trial.',
+    title: 'QuickBooks AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted QuickBooks specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/quickbooks',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'QuickBooks Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven reconciliation automation, plus vetted QuickBooks administrators, developers, and app ecosystem consultants matched in 48 hours.',
+    title: 'QuickBooks AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted QuickBooks specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

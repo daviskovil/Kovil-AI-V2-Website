@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ShopifyPlusPlatformPage from '@/src/pages/platforms/shopify-plus/ShopifyPlusPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Shopify Plus Platform Partner — AI Agents & Specialist Talent',
-  description: 'Kovil AI is your single partner for Shopify Plus — Shopify Magic and Sidekick AI agents, plus vetted Liquid/Hydrogen developers, app engineers, and solutions architects matched in 48 hours. 2-week risk-free trial.',
+  title: 'Shopify Plus AI Agents & Developers for Hire',
+  description: 'Hire vetted Shopify Plus specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/shopify-plus' },
   keywords: [
     'shopify plus ai agents',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Shopify Plus Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Shopify Magic and Sidekick AI agents, plus vetted Liquid/Hydrogen developers, app engineers, and solutions architects matched in 48 hours. 2-week risk-free trial.',
+    title: 'Shopify Plus AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Shopify Plus specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/shopify-plus',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shopify Plus Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Shopify Magic and Sidekick AI agents, plus vetted Liquid/Hydrogen developers, app engineers, and solutions architects matched in 48 hours.',
+    title: 'Shopify Plus AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Shopify Plus specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

@@ -1,7 +1,12 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { PLATFORM_LOGOS } from '@/src/data/platform-logos'
+import { platforms } from '@/src/data/platforms'
 
 const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n))
+
+/** Human-readable alt text from the platform's display name (not the URL slug). */
+const logoAlt = (slug: string, alt?: string) =>
+  alt ?? `${(slug === 'auth0-okta' ? 'Auth0' : platforms.find((p) => p.slug === slug)?.name) ?? slug} logo`
 
 interface TileProps {
   slug: string
@@ -29,7 +34,9 @@ export function PlatformLogoBadge({ slug, fallback, alt }: TileProps) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={logo.src}
-        alt={alt ?? `${slug} logo`}
+        alt={logoAlt(slug, alt)}
+        width={Math.round(64 * logo.aspect)}
+        height={64}
         className={filled ? 'h-full w-full object-cover' : 'h-full w-full object-contain p-3'}
         draggable={false}
       />
@@ -55,7 +62,9 @@ export function PlatformLogoTile({ slug, fallback, alt }: TileProps) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={logo.src}
-        alt={alt ?? `${slug} logo`}
+        alt={logoAlt(slug, alt)}
+        width={Math.round(40 * logo.aspect)}
+        height={40}
         className={filled ? 'h-full w-full object-cover' : 'h-full w-full object-contain p-[7px]'}
         draggable={false}
       />

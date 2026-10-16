@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import FreshworksPlatformPage from '@/src/pages/platforms/freshworks/FreshworksPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Freshworks Platform Partner — AI Agents & Specialist Talent',
-  description: 'Kovil AI is your single partner for the Freshworks suite — Freddy AI agents, plus vetted Freshdesk, Freshservice, and Freshsales specialists matched in 48 hours. 2-week risk-free trial.',
+  title: 'Freshworks AI Agents & Developers for Hire',
+  description: 'Hire vetted Freshworks specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/freshworks' },
   keywords: [
     'freshworks ai agent',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Freshworks Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Freddy AI agents, plus vetted Freshdesk, Freshservice, and Freshsales specialists matched in 48 hours. 2-week risk-free trial.',
+    title: 'Freshworks AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Freshworks specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/freshworks',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Freshworks Platform Partner — AI Agents & Specialist Talent | Kovil AI',
-    description: 'Freddy AI agents, plus vetted Freshdesk, Freshservice, and Freshsales specialists matched in 48 hours.',
+    title: 'Freshworks AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Freshworks specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

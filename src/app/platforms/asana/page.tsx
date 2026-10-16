@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AsanaPlatformPage from '@/src/pages/platforms/asana/AsanaPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Asana Platform Partner — AI Automation & Specialist Talent',
-  description: 'Kovil AI is your single partner for Asana — AI-driven workload automation, plus vetted solutions architects, API specialists, and work management consultants matched in 48 hours. 2-week risk-free trial.',
+  title: 'Asana AI Agents & Developers for Hire',
+  description: 'Hire vetted Asana specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/asana' },
   keywords: [
     'asana ai automation',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Asana Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven workload automation, plus vetted solutions architects, API specialists, and work management consultants matched in 48 hours. 2-week risk-free trial.',
+    title: 'Asana AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Asana specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/asana',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Asana Platform Partner — AI Automation & Specialist Talent | Kovil AI',
-    description: 'AI-driven workload automation, plus vetted solutions architects, API specialists, and work management consultants matched in 48 hours.',
+    title: 'Asana AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Asana specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

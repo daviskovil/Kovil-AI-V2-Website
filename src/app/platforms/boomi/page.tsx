@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import BoomiPlatformPage from '@/src/pages/platforms/boomi/BoomiPlatformPage'
 
 export const metadata: Metadata = {
-  title: 'Boomi Platform Partner — AI Integrations & Specialist Talent',
-  description: 'Kovil AI is your single partner for Boomi — agent-ready AI integration builds, plus vetted Boomi developers, API specialists, and cloud architects matched in 48 hours. 2-week risk-free trial.',
+  title: 'Boomi AI Agents & Developers for Hire',
+  description: 'Hire vetted Boomi specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/boomi' },
   keywords: [
     'boomi ai integration',
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Boomi Platform Partner — AI Integrations & Specialist Talent | Kovil AI',
-    description: 'Agent-ready AI integration builds, plus vetted Boomi developers, API specialists, and cloud architects matched in 48 hours. 2-week risk-free trial.',
+    title: 'Boomi AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Boomi specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/boomi',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Boomi Platform Partner — AI Integrations & Specialist Talent | Kovil AI',
-    description: 'Agent-ready AI integration builds, plus vetted Boomi developers, API specialists, and cloud architects matched in 48 hours.',
+    title: 'Boomi AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Boomi specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 

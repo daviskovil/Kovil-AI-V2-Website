@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import TwilioPlatformPage from '@/src/pages/platforms/twilio/TwilioPlatformPage'
 
 export const metadata: Metadata = {
-  title: "Twilio Platform Partner — AI Agents & Specialist Talent",
-  description: "Kovil AI is your single partner for Twilio — AI voice and messaging agent builds, plus vetted Twilio API developers, communications engineers, AI specialists, and architects matched in 48 hours. 2-week risk-free trial.",
+  title: 'Twilio AI Agents & Developers for Hire',
+  description: 'Hire vetted Twilio specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   alternates: { canonical: 'https://kovil.ai/platforms/twilio' },
   keywords: ["twilio ai agents","hire twilio developer","twilio staff augmentation","twilio voice ai agent","twilio conversationrelay","twilio sms developer","twilio api integration","what is twilio"],
   openGraph: {
     type: 'website',
-    title: "Twilio Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "AI voice and messaging agent builds, plus vetted Twilio API developers, communications engineers, AI specialists, and architects matched in 48 hours. 2-week risk-free trial.",
+    title: 'Twilio AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Twilio specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
     url: 'https://kovil.ai/platforms/twilio',
     siteName: 'Kovil AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Twilio Platform Partner — AI Agents & Specialist Talent | Kovil AI",
-    description: "AI voice and messaging agent builds, plus vetted Twilio API developers, communications engineers, AI specialists, and architects matched in 48 hours.",
+    title: 'Twilio AI Agents & Developers for Hire | Kovil AI',
+    description: 'Hire vetted Twilio specialists and AI agent builders from Kovil AI. Matched in 48 hours, 2-week risk-free trial, no lock-in.',
   },
 }
 
