@@ -67,6 +67,56 @@ const data: SectionHubData = {
     { href: '/vertex-ai/playbook/vertex-ai-vs-gemini-api', icon: 'ArrowLeftRight', color: G_RED, tag: 'Comparison', title: 'Vertex AI vs Gemini API: Which to Choose', description: 'Clear decision guide on when to use Vertex AI vs the Gemini API directly — covering enterprise compliance, managed infrastructure, MLOps, and cost trade-offs.' },
     { href: '/vertex-ai/playbook/retail-personalisation-vertex-ai-build', icon: 'FileText', color: G_GREEN, tag: 'Case Study', title: 'Retail Personalisation on Vertex AI', description: 'How we built a real-time retail personalisation engine using Vertex AI Recommendations AI, BigQuery ML, and Gemini — delivering 18% uplift in basket size.' },
   ],
+  overview: {
+    "heading": "What is in the Vertex AI playbook",
+    "paragraphs": [
+      "The playbook collects practical guides for enterprise teams building on Google Cloud Vertex AI and Gemini: an architecture walkthrough, a decision guide and a worked case study.",
+      "Start with the guide on architecting your first Vertex AI agent if you are new to the platform. If you are choosing between Vertex AI and calling the Gemini API directly, the comparison guide covers compliance, managed infrastructure, MLOps and cost trade-offs. The retail personalisation case study shows how Recommendations AI, BigQuery ML and Gemini were combined in a real build."
+    ]
+  },
+  comparison: {
+    "heading": "Guides and when to read them",
+    "columns": [
+      "Guide",
+      "Type",
+      "Read it when"
+    ],
+    "rows": [
+      [
+        "Architect Your First Vertex AI Agent",
+        "Guide",
+        "You are designing a first production agent and need to choose models, grounding, memory and tools"
+      ],
+      [
+        "Vertex AI vs Gemini API",
+        "Comparison",
+        "You are deciding between managed Vertex AI and the Gemini API directly"
+      ],
+      [
+        "Retail Personalisation on Vertex AI",
+        "Case study",
+        "You want to see how a real-time personalisation engine was built"
+      ]
+    ]
+  },
+  faqs: [
+    {
+      "question": "Who is the playbook for?",
+      "answer": "Enterprise architects, engineering leads and technical buyers evaluating or building on Vertex AI and Gemini."
+    },
+    {
+      "question": "Where should I start?",
+      "answer": "Read \"Architect Your First Vertex AI Agent\" first. It frames the choices the other guides go into more deeply."
+    },
+    {
+      "question": "When should we use Vertex AI rather than the Gemini API?",
+      "answer": "The comparison guide covers it in detail. Vertex AI tends to fit when you need enterprise compliance, managed infrastructure and MLOps. The Gemini API is lighter for simpler use cases."
+    },
+    {
+      "question": "Can you write a guide for our use case?",
+      "answer": "We can walk you through the right architecture on a 30-minute call."
+    }
+  ],
   ctaHeadline: 'Want a guide written for your specific use case?',
   ctaBody: 'Book a 30-minute call and we will walk you through the right architecture for your Vertex AI build.',
 }

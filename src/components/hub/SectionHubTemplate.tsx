@@ -70,6 +70,12 @@ export interface SectionHubData {
   description: string
   stats?: { value: string; label: string }[]
   cards: HubCard[]
+  /** Optional explanatory copy shown under the cards. */
+  overview?: { heading: string; paragraphs: string[] }
+  /** Optional side-by-side table of the agents or services on this hub. */
+  comparison?: { heading: string; intro?: string; columns: string[]; rows: string[][] }
+  /** Optional FAQ. Rendered on the page and emitted as FAQPage JSON-LD. */
+  faqs?: { question: string; answer: string }[]
   ctaHeadline: string
   ctaBody: string
 }
@@ -195,6 +201,81 @@ export default function SectionHubTemplate({ data }: { data: SectionHubData }) {
           </div>
         </div>
       </section>
+
+      {/* ── Overview (optional) ── */}
+      {data.overview && (
+        <section className="border-t border-border py-16">
+          <div className="max-w-3xl mx-auto px-6">
+            <h2 className="font-display text-3xl font-bold tracking-tight mb-6">{data.overview.heading}</h2>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              {data.overview.paragraphs.map((para) => <p key={para}>{para}</p>)}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Comparison table (optional) ── */}
+      {data.comparison && (
+        <section className="border-t border-border py-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="font-display text-3xl font-bold tracking-tight mb-3">{data.comparison.heading}</h2>
+            {data.comparison.intro && <p className="text-muted-foreground mb-8 max-w-3xl">{data.comparison.intro}</p>}
+            <div className="overflow-x-auto rounded-2xl border border-border">
+              <table className="w-full text-sm text-left">
+                <thead className="bg-muted/40">
+                  <tr>
+                    {data.comparison.columns.map((col) => (
+                      <th key={col} scope="col" className="px-4 py-3 font-semibold whitespace-nowrap">{col}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.comparison.rows.map((row) => (
+                    <tr key={row[0]} className="border-t border-border align-top">
+                      {row.map((cell, ci) => (
+                        ci === 0
+                          ? <th key={ci} scope="row" className="px-4 py-3 font-semibold min-w-[11rem]">{cell}</th>
+                          : <td key={ci} className="px-4 py-3 text-muted-foreground min-w-[11rem]">{cell}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── FAQ (optional) ── */}
+      {data.faqs && data.faqs.length > 0 && (
+        <section className="border-t border-border py-16">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                mainEntity: data.faqs.map((f) => ({
+                  '@type': 'Question',
+                  name: f.question,
+                  acceptedAnswer: { '@type': 'Answer', text: f.answer },
+                })),
+              }),
+            }}
+          />
+          <div className="max-w-3xl mx-auto px-6">
+            <h2 className="font-display text-3xl font-bold tracking-tight mb-8">Frequently asked questions</h2>
+            <div className="space-y-6">
+              {data.faqs.map((f) => (
+                <div key={f.question}>
+                  <h3 className="font-display font-semibold text-lg mb-2">{f.question}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{f.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── CTA ── */}
       <section className="border-t border-border py-20 bg-muted/30">

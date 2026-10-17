@@ -71,6 +71,72 @@ const data: SectionHubData = {
     { href: '/azure-ai-foundry/playbook/security-compliance-guide', icon: 'Lock', color: '#EF4444', tag: 'Guide', title: 'Security & Compliance Guide', description: 'Enterprise security architecture for Azure AI Foundry — covering RBAC, private endpoints, content filtering, audit logging, and regulated industry compliance.' },
     { href: '/azure-ai-foundry/playbook/roi-guide', icon: 'TrendingUp', color: '#10B981', tag: 'Guide', title: 'Azure AI ROI Guide', description: 'How to build a credible ROI case for Azure AI Foundry — frameworks, metrics, and real-world benchmarks for calculating time-to-value and cost savings.' },
   ],
+  overview: {
+    "heading": "What is in the Azure AI Foundry playbook",
+    "paragraphs": [
+      "The playbook is where we publish the guides we wish our clients had before starting: architecture patterns, decision guides, cost breakdowns and a worked case study. It is written for enterprise teams building on Azure AI Foundry and Azure OpenAI.",
+      "If you are new to the platform, start with the guide on architecting your first agent. If you are deciding between services, read the Azure OpenAI versus OpenAI API comparison. If you need to justify the spend, the pricing and ROI guides cover costs and how to build a credible business case.",
+      "Cloud pricing and product names change often. Treat the cost figures as planning estimates and check Microsoft's current pricing before you commit a budget."
+    ]
+  },
+  comparison: {
+    "heading": "Guides and when to read them",
+    "columns": [
+      "Guide",
+      "Type",
+      "Read it when"
+    ],
+    "rows": [
+      [
+        "Architect Your First Azure AI Agent",
+        "Guide",
+        "You are designing a first production agent and need to choose models, grounding, memory and tools"
+      ],
+      [
+        "Azure OpenAI vs OpenAI API",
+        "Comparison",
+        "Compliance, data residency, private networking or SLAs decide which service you use"
+      ],
+      [
+        "Claims Processing on Azure AI",
+        "Case study",
+        "You want to see how Document Intelligence and GPT-4o were used to automate insurance claims"
+      ],
+      [
+        "Azure AI Foundry Pricing Guide 2026",
+        "Guide",
+        "You are estimating costs for Azure OpenAI, Azure AI Search, Azure AI Agent Service or Copilot Studio"
+      ],
+      [
+        "Security & Compliance Guide",
+        "Guide",
+        "You need to plan RBAC, private endpoints, content filtering and audit logging"
+      ],
+      [
+        "Azure AI ROI Guide",
+        "Guide",
+        "You need to build a business case with metrics and time-to-value"
+      ]
+    ]
+  },
+  faqs: [
+    {
+      "question": "Who is the playbook for?",
+      "answer": "Enterprise architects, engineering leads and technical buyers evaluating or building on Azure AI Foundry and Azure OpenAI."
+    },
+    {
+      "question": "Where should I start?",
+      "answer": "Read \"Architect Your First Azure AI Agent\" first. It frames the choices the other guides go into in more detail."
+    },
+    {
+      "question": "Are the cost estimates current?",
+      "answer": "They are planning estimates written for 2026. Cloud pricing changes, so confirm against Microsoft's current pricing before you budget."
+    },
+    {
+      "question": "Can you write a guide for our use case?",
+      "answer": "We can walk you through the right architecture on a 30-minute call."
+    }
+  ],
   ctaHeadline: 'Want a guide written for your specific use case?',
   ctaBody: 'Book a 30-minute call and we will walk you through the right architecture for your Azure AI Foundry build.',
 }

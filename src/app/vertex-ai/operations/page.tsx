@@ -67,6 +67,69 @@ const data: SectionHubData = {
     { href: '/vertex-ai/operations/predictive-analytics-agent', icon: 'TrendingUp', color: G_RED, title: 'Predictive Analytics Agent', description: 'Operational forecasting agents grounded in BigQuery data — churn prediction, demand sensing, and equipment failure forecasting using Vertex AI AutoML.' },
     { href: '/vertex-ai/operations/quality-control-vision-agent', icon: 'Eye', color: G_GREEN, title: 'Quality Control Vision Agent', description: 'Computer vision quality inspection using Vertex AI Vision AI and Gemini multimodal — automated defect detection and visual inspection for manufacturing and logistics.' },
   ],
+  overview: {
+    "heading": "How operations agents on Vertex AI work",
+    "paragraphs": [
+      "Operations teams need to see problems before they spread. These three agents combine BigQuery data with Vertex AI and Gemini to forecast, detect and inspect.",
+      "The Supply Chain Intelligence Agent correlates logistics signals, weather, supplier patterns and other events to predict disruptions and recommend re-routing. The Predictive Analytics Agent grounds operational forecasts in BigQuery data, covering demand sensing, churn prediction and equipment failure forecasting with Vertex AI AutoML. The Quality Control Vision Agent uses Vertex AI Vision AI and Gemini multimodal models to detect defects in manufacturing and logistics.",
+      "Delivery ranges from 4 to 6 weeks for the predictive and vision agents to 6 to 8 weeks for supply chain, which includes data source integration and model training."
+    ]
+  },
+  comparison: {
+    "heading": "Which operations agent fits which problem",
+    "columns": [
+      "Agent",
+      "Problem it addresses",
+      "Works from",
+      "Main Google Cloud services",
+      "Typical delivery"
+    ],
+    "rows": [
+      [
+        "Supply Chain Intelligence",
+        "Disruptions are noticed after they hit operations",
+        "Logistics signals, weather, supplier patterns, real-time data",
+        "Vertex AI Agent Builder, BigQuery ML, Dataflow, Pub/Sub, Gemini",
+        "6 to 8 weeks"
+      ],
+      [
+        "Predictive Analytics",
+        "Forecasting is slow, manual and based on stale data",
+        "BigQuery operational data",
+        "BigQuery, Vertex AI AutoML",
+        "4 to 6 weeks"
+      ],
+      [
+        "Quality Control Vision",
+        "Defects reach customers",
+        "Images and video from production and logistics lines",
+        "Vertex AI Vision AI, Gemini multimodal",
+        "4 to 6 weeks"
+      ]
+    ]
+  },
+  faqs: [
+    {
+      "question": "Which agent should we start with?",
+      "answer": "Start where a missed signal costs the most and the data already exists. Manufacturers tend to begin with quality control vision, distributors with supply chain intelligence, and data-led teams with predictive analytics."
+    },
+    {
+      "question": "Why does supply chain take longer?",
+      "answer": "The standard plan includes data source integration and BigQuery ML model training, then agent logic and routing recommendations, then testing and go-live."
+    },
+    {
+      "question": "What can the predictive agent forecast?",
+      "answer": "Demand, churn and equipment failures, based on your BigQuery data."
+    },
+    {
+      "question": "Do we need cameras or sensors for the vision agent?",
+      "answer": "The vision agent needs images or video of what you want to inspect. We confirm your capture setup during scoping."
+    },
+    {
+      "question": "How is the work priced?",
+      "answer": "Each agent is delivered as a fixed-price build, scoped on a 30-minute call."
+    }
+  ],
   ctaHeadline: 'Ready to bring AI intelligence to your operations?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the right operational use case and give you a fixed-price delivery plan on Vertex AI.',
 }

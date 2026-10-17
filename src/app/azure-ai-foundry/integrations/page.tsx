@@ -71,6 +71,76 @@ const data: SectionHubData = {
     { href: '/azure-ai-foundry/integrations/sap', icon: 'Settings', color: '#F59E0B', title: 'Azure AI Foundry + SAP', description: 'Connect Azure AI Foundry to SAP S/4HANA and Business Suite — enabling AI-powered ERP automation, procurement intelligence, and process agents.' },
     { href: '/azure-ai-foundry/integrations/servicenow', icon: 'ClipboardList', color: '#EF4444', title: 'Azure AI Foundry + ServiceNow', description: 'Automate ITSM workflows, deflect service desk tickets, and accelerate incident resolution with Azure AI agents integrated into the ServiceNow platform.' },
   ],
+  overview: {
+    "heading": "Connecting Azure AI Foundry agents to your systems of record",
+    "paragraphs": [
+      "An agent is only as useful as the systems it can read and act on. These six integrations connect Azure AI Foundry agents to the platforms most enterprises already run, so the agent works from real operational data instead of a generic model.",
+      "Dynamics 365 gives agents access to customer records, opportunities, cases and finance data. Microsoft 365 and Teams put agents in the tools people already use. SharePoint, through Azure AI Search, makes document libraries queryable in natural language. Power Platform extends agents into Power Apps and Power Automate. SAP connects agents to S/4HANA and Business Suite, and ServiceNow brings them into IT service management workflows.",
+      "On Azure, access is normally handled with Entra ID and Managed Identity, so production systems do not hold stored credentials. Azure API Management and Logic Apps are the usual connection layer."
+    ]
+  },
+  comparison: {
+    "heading": "Integrations at a glance",
+    "columns": [
+      "System",
+      "What the agent can access",
+      "Typical use"
+    ],
+    "rows": [
+      [
+        "Dynamics 365",
+        "CRM and ERP records: customers, opportunities, cases, finance data",
+        "Agents that answer from, or update, live business records"
+      ],
+      [
+        "Microsoft 365 and Teams",
+        "Teams, Outlook and the Microsoft 365 suite as places to deploy agents",
+        "Surfacing agents where employees already work"
+      ],
+      [
+        "SharePoint",
+        "Document libraries indexed through Azure AI Search",
+        "Natural-language question answering over internal documents"
+      ],
+      [
+        "Power Platform",
+        "Power Apps and Power Automate flows",
+        "Adding AI to low-code processes built by citizen developers"
+      ],
+      [
+        "SAP",
+        "SAP S/4HANA and Business Suite",
+        "ERP automation, procurement intelligence, process agents"
+      ],
+      [
+        "ServiceNow",
+        "ITSM workflows and incident data",
+        "Deflecting service desk tickets and speeding incident resolution"
+      ]
+    ]
+  },
+  faqs: [
+    {
+      "question": "Do we need to move our data into Azure?",
+      "answer": "No. Agents connect to the systems you already run. For search use cases, content is indexed into Azure AI Search with access controls carried over."
+    },
+    {
+      "question": "Can the agent change records, or only read them?",
+      "answer": "Where the system's API allows it, agents can create or update records such as work orders or tickets. We agree at scoping which actions need human approval."
+    },
+    {
+      "question": "How are credentials handled?",
+      "answer": "On Azure the usual approach is Entra ID with Managed Identity, so production systems avoid stored credentials."
+    },
+    {
+      "question": "What if our system is not listed?",
+      "answer": "We integrate Azure AI Foundry with any API-accessible enterprise system. Book a call and we will scope it."
+    },
+    {
+      "question": "How is the work priced?",
+      "answer": "Integrations are scoped and delivered as fixed-price work, confirmed on a 30-minute call."
+    }
+  ],
   ctaHeadline: 'Need a system that isn\'t listed here?',
   ctaBody: 'We integrate Azure AI Foundry with any API-accessible enterprise system. Book a call and we will scope the integration.',
 }

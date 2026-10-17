@@ -79,6 +79,89 @@ const data: SectionHubData = {
     { href: '/azure-ai-foundry/services/azure-ai-rescue-optimisation', icon: 'Wrench', color: '#EF4444', title: 'Azure AI Rescue & Optimisation', description: 'Inheriting a stalled or underperforming Azure AI project? We audit, optimise, and deliver — covering latency, cost, hallucination rates, and observability.' },
     { href: '/azure-ai-foundry/services/azure-ai-agent-service', icon: 'Settings', color: '#10B981', title: 'Azure AI Agent Service', description: 'Production deployment on Azure AI Agent Service — persistent memory, tool calling, code interpreter, and multi-agent orchestration at enterprise scale.' },
   ],
+  overview: {
+    "heading": "How an Azure AI Foundry engagement works",
+    "paragraphs": [
+      "Our seven services fall into three groups. Plan: a strategy and readiness assessment that sets your data approach, model choice and roadmap before you build. Build: agent design and build, Azure OpenAI integration, Copilot Studio agents, Azure AI Search and RAG, and Azure AI Agent Service deployment. Fix: a rescue and optimisation service for projects that have stalled or underperform.",
+      "Work is delivered as fixed-price sprints, starting with a 2-week pilot and moving to production in two to four weeks. Pilots keep the cost and scope of the first decision small, so you see a working agent on your own data before committing to a larger build.",
+      "Which service you need depends mostly on where you are. If you have not chosen an approach, begin with strategy and readiness. If you know the use case, go straight to design and build. If something already exists but is slow, costly or unreliable, the rescue service audits latency, cost, hallucination rates and observability."
+    ]
+  },
+  comparison: {
+    "heading": "Choosing the right service",
+    "columns": [
+      "Service",
+      "Choose it when",
+      "What it covers",
+      "Main Azure services"
+    ],
+    "rows": [
+      [
+        "Strategy & Readiness",
+        "You have not settled architecture, data strategy or roadmap",
+        "Readiness assessment, architecture planning, model selection, deployment roadmap",
+        "Azure AI Foundry"
+      ],
+      [
+        "AI Agent Design & Build",
+        "You know the use case and need an agent in production",
+        "Requirements through to a monitored production agent",
+        "Azure AI Foundry, Azure AI Agent Service"
+      ],
+      [
+        "Azure OpenAI Integration",
+        "You want GPT-4o models inside your enterprise systems",
+        "Integration with responsible AI controls, content filtering and private deployment",
+        "Azure OpenAI Service (GPT-4o, GPT-4o mini)"
+      ],
+      [
+        "Copilot Studio Agents",
+        "You want low-code agents in Teams, Outlook, SharePoint or Power Platform",
+        "Agents built and deployed without a custom development team",
+        "Microsoft Copilot Studio"
+      ],
+      [
+        "Azure AI Search & RAG",
+        "You need answers grounded in your own documents",
+        "Retrieval-augmented generation over enterprise data",
+        "Azure AI Search, Azure OpenAI"
+      ],
+      [
+        "Rescue & Optimisation",
+        "An Azure AI project has stalled or underperforms",
+        "Audit and fixes for latency, cost, hallucination rates and observability",
+        "Existing Azure AI estate"
+      ],
+      [
+        "Azure AI Agent Service",
+        "You need production agents with memory and tool use at scale",
+        "Persistent memory, tool calling, code interpreter, multi-agent orchestration",
+        "Azure AI Agent Service"
+      ]
+    ]
+  },
+  faqs: [
+    {
+      "question": "Where should we start?",
+      "answer": "If you have not decided on architecture or use case, start with Strategy & Readiness. If the use case is clear, start with AI Agent Design & Build."
+    },
+    {
+      "question": "Should we use Copilot Studio or a custom build?",
+      "answer": "Copilot Studio suits low-code agents deployed into Microsoft 365 surfaces. Custom builds using Semantic Kernel suit complex orchestration or deep system integration. Our Copilot Studio and Semantic Kernel comparison guides cover the trade-offs."
+    },
+    {
+      "question": "What does the rescue service look at?",
+      "answer": "Latency, cost, hallucination rates and observability on an existing Azure AI project, followed by fixes that get it delivering."
+    },
+    {
+      "question": "What does a pilot involve?",
+      "answer": "A 2-week fixed-price sprint that puts a working agent in front of your team on your own data, so you can judge it before committing to a production build."
+    },
+    {
+      "question": "How is the work priced?",
+      "answer": "Every service is delivered as a fixed-price sprint, confirmed on a free 30-minute architecture call."
+    }
+  ],
   ctaHeadline: 'Ready to build on Azure AI Foundry?',
   ctaBody: 'Book a free 30-minute architecture call. We will give you a concrete technical approach and a fixed-price delivery plan.',
 }

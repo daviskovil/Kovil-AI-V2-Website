@@ -79,6 +79,83 @@ const data: SectionHubData = {
     { href: '/vertex-ai/services/bigquery-ml-data-agents', icon: 'Database', color: G_GREEN, title: 'BigQuery ML & Data Agents', description: 'AI agents grounded in your BigQuery data — natural language to SQL, automated analytics, and data intelligence agents powered by Gemini and BigQuery ML.' },
     { href: '/vertex-ai/services/vertex-ai-rescue-optimisation', icon: 'Wrench', color: '#EF4444', title: 'Vertex AI Rescue & Optimisation', description: 'Inheriting a stalled or underperforming Vertex AI project? We audit, optimise, and deliver — covering latency, cost, hallucination rates, and observability.' },
   ],
+  overview: {
+    "heading": "How a Vertex AI engagement works",
+    "paragraphs": [
+      "Our six services fall into three groups. Plan: a strategy and readiness assessment covering data strategy, model selection and the deployment roadmap. Build: Gemini integration, Vertex AI Agent Builder, Vertex AI Search and RAG, and BigQuery ML data agents. Fix: a rescue and optimisation service for projects that have stalled or underperform.",
+      "Work is delivered as fixed-price sprints, starting with a 2-week pilot and moving to production in two to four weeks. You see a working agent on your own data before committing to a larger build.",
+      "If you have not chosen an approach, begin with strategy and readiness. If you know the use case, go to the build services. If a project already exists but is slow, costly or unreliable, the rescue service audits latency, cost, hallucination rates and observability."
+    ]
+  },
+  comparison: {
+    "heading": "Choosing the right service",
+    "columns": [
+      "Service",
+      "Choose it when",
+      "What it covers",
+      "Main Google Cloud services"
+    ],
+    "rows": [
+      [
+        "Strategy & Readiness",
+        "You have not settled architecture, data strategy or roadmap",
+        "Readiness assessment, architecture planning, model selection, deployment roadmap",
+        "Vertex AI"
+      ],
+      [
+        "Gemini Integration",
+        "You want Gemini models inside enterprise applications",
+        "Integration with grounding, function calling and production safety controls",
+        "Vertex AI, Gemini"
+      ],
+      [
+        "Vertex AI Agent Builder",
+        "You need multi-agent applications for complex workflows",
+        "Orchestration with memory, tools and grounding",
+        "Vertex AI Agent Builder, Gemini"
+      ],
+      [
+        "Vertex AI Search & RAG",
+        "You need answers grounded in your own data",
+        "Enterprise search and retrieval-augmented generation in natural language",
+        "Vertex AI Search, Vector Search, Gemini"
+      ],
+      [
+        "BigQuery ML & Data Agents",
+        "Your data sits in BigQuery and users cannot query it easily",
+        "Natural-language to SQL, automated analytics, data intelligence agents",
+        "BigQuery ML, Gemini"
+      ],
+      [
+        "Rescue & Optimisation",
+        "A Vertex AI project has stalled or underperforms",
+        "Audit and fixes for latency, cost, hallucination rates and observability",
+        "Existing Vertex AI estate"
+      ]
+    ]
+  },
+  faqs: [
+    {
+      "question": "Where should we start?",
+      "answer": "If you have not decided on architecture or use case, start with Strategy & Readiness. If the use case is clear, start with Vertex AI Agent Builder or the relevant build service."
+    },
+    {
+      "question": "What does the rescue service look at?",
+      "answer": "Latency, cost, hallucination rates and observability on an existing Vertex AI project, followed by fixes that get it delivering."
+    },
+    {
+      "question": "What does a pilot involve?",
+      "answer": "A 2-week fixed-price sprint that puts a working agent in front of your team on your own data, so you can judge it before committing to production."
+    },
+    {
+      "question": "Do you work across cloud platforms?",
+      "answer": "Yes. We also build on Azure AI Foundry and Salesforce Agentforce, and our comparison guides cover when each platform is the better choice."
+    },
+    {
+      "question": "How is the work priced?",
+      "answer": "Every service is delivered as a fixed-price sprint, confirmed on a free 30-minute architecture call."
+    }
+  ],
   ctaHeadline: 'Ready to build on Vertex AI?',
   ctaBody: 'Book a free 30-minute architecture call. We will give you a concrete technical approach and a fixed-price delivery plan.',
 }

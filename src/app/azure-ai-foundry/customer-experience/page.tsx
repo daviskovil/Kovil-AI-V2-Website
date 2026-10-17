@@ -65,6 +65,69 @@ const data: SectionHubData = {
     { href: '/azure-ai-foundry/customer-experience/personalised-recommendation-agent', icon: 'Sparkles', color: '#F59E0B', title: 'Personalised Recommendation Agent', description: 'Real-time product and content recommendations using Azure OpenAI embeddings and vector search — personalised to individual user behaviour and preferences.' },
     { href: '/azure-ai-foundry/customer-experience/omnichannel-engagement-agent', icon: 'Globe', color: '#34D399', title: 'Omnichannel Engagement Agent', description: 'Consistent AI engagement across Teams, web, email, and SMS channels using Microsoft Copilot Studio — meeting customers wherever they choose to interact.' },
   ],
+  overview: {
+    "heading": "How customer experience agents on Azure AI Foundry work",
+    "paragraphs": [
+      "The three agents here cover three jobs: answering customer questions from your own content, choosing what to show each customer, and keeping the conversation consistent across channels. All three use Azure OpenAI, with Azure AI Search or Cosmos DB as the memory layer and Semantic Kernel or Copilot Studio to orchestrate.",
+      "The customer service agent answers from your support documentation, product guides and policies, indexed in Azure AI Search, and hands off to a person using escalation rules such as sentiment thresholds, query complexity limits and VIP flags. The recommendation agent embeds your catalogue and live behaviour and serves results through Azure API Management. The omnichannel agent keeps shared conversation state across web chat, Teams and email.",
+      "Because the agents share the same data and orchestration layers, teams often start with one and add the others later. A Teams bot built in Copilot Studio can go live in under a day."
+    ]
+  },
+  comparison: {
+    "heading": "Which customer experience agent fits which job",
+    "columns": [
+      "Agent",
+      "Job it does",
+      "Data it uses",
+      "Where customers meet it",
+      "Main Azure services"
+    ],
+    "rows": [
+      [
+        "AI Customer Service",
+        "Answers customer questions and escalates what it cannot resolve",
+        "Support documentation, product guides, policies, order APIs, CRM",
+        "The support channels you choose",
+        "Azure OpenAI GPT-4o, Azure AI Search, Copilot Studio, Azure Communication Services, Application Insights"
+      ],
+      [
+        "Personalised Recommendation",
+        "Chooses products or content for each user",
+        "Web and mobile behaviour signals, CRM history, product catalogue",
+        "Web, iOS and Android through an API",
+        "Azure OpenAI Embeddings, Azure AI Search vector index, Cosmos DB, Event Hubs, API Management"
+      ],
+      [
+        "Omnichannel Engagement",
+        "Keeps one consistent conversation across channels",
+        "Shared conversation state, Dynamics 365",
+        "Web chat, Teams, email and SMS",
+        "Copilot Studio, Azure Communication Services, Dynamics 365, Service Bus, Azure OpenAI"
+      ]
+    ]
+  },
+  faqs: [
+    {
+      "question": "Which agent should we start with?",
+      "answer": "Start with the problem that costs you most today. Choose the service agent if support backlog is the issue, the recommendation agent if you have a catalogue and enough behavioural data, and the omnichannel agent if customers contact you in several places and get inconsistent answers."
+    },
+    {
+      "question": "How does the service agent avoid inventing answers?",
+      "answer": "It answers from the knowledge base we index for it, and escalation rules hand sensitive, complex or unhappy conversations to a person."
+    },
+    {
+      "question": "Can it work with our CRM and order systems?",
+      "answer": "Yes. The service agent connects to your CRM and order APIs, and the omnichannel agent is built around Dynamics 365."
+    },
+    {
+      "question": "How is conversation data handled?",
+      "answer": "On the omnichannel agent, conversation history is persisted with 90-day retention and GDPR-compliant deletion."
+    },
+    {
+      "question": "How is the work priced?",
+      "answer": "Each agent is delivered as a fixed-price build, scoped on a 30-minute call."
+    }
+  ],
   ctaHeadline: 'Ready to improve your customer experience with AI?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the highest-impact use case and give you a fixed-price delivery plan.',
 }

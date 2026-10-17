@@ -65,6 +65,31 @@ const data: SectionHubData = {
     { href: '/azure-ai-foundry/operations/supply-chain-intelligence-agent', icon: 'Package', color: AZURE, title: 'Supply Chain Intelligence Agent', description: 'End-to-end supply chain visibility, demand forecasting, and risk detection using Azure OpenAI and Azure Data Factory — reducing disruption and overstocking.' },
     { href: '/azure-ai-foundry/operations/compliance-monitoring-agent', icon: 'Shield', color: '#34D399', title: 'Compliance Monitoring Agent', description: 'Automated regulatory compliance monitoring using Azure Monitor, OpenAI analysis, and alert workflows — catching compliance gaps before they become violations.' },
   ],
+  overview: {
+    heading: 'How operations agents on Azure AI Foundry work',
+    paragraphs: [
+      'Operations teams already have the data: sensor telemetry, ERP and warehouse records, policy documents and audit logs. What they usually lack is something that reads those signals continuously and turns them into a decision or an action. The three agents in this section do that on Azure, using Azure OpenAI to interpret each signal and Semantic Kernel to coordinate the steps from alert to action.',
+      'Each agent follows the same pattern. It ingests data through Azure services such as IoT Hub, Data Factory or Event Grid, scores or interprets what it finds, then hands a recommendation to a person or a system: a work order in your CMMS, an alert in Teams, or an incident report for review. Human review stays in the loop for critical assets and regulated decisions, and every AI decision and override is logged to Azure Monitor.',
+      'You can start with one agent and add others later, because they share the same Azure foundation: the data pipelines, identity setup and monitoring built for the first agent carry over.',
+    ],
+  },
+  comparison: {
+    heading: 'Which operations agent fits which problem',
+    intro: 'All three are delivered as fixed-price pilots. The table shows what each one reads, what it does with it and which Azure services it uses.',
+    columns: ['Agent', 'Problem it addresses', 'Reads from', 'Acts by', 'Main Azure services', 'Typical delivery'],
+    rows: [
+      ['Predictive Maintenance', 'Unplanned equipment downtime', 'IoT sensor streams, maintenance history', 'Creating prioritised work orders in SAP PM, IBM Maximo, Infor EAM or ServiceNow', 'IoT Hub, Stream Analytics, Digital Twins, Azure OpenAI, Logic Apps', '3 to 4 weeks, 2 to 3 with existing Azure IoT'],
+      ['Supply Chain Intelligence', 'Supplier and logistics risks spotted too late', 'ERP and WMS data, supplier records, logistics and weather feeds, demand forecasts', 'Ranking risks and recommending actions to procurement and ops via Teams or email', 'Data Factory, Synapse Analytics, Azure OpenAI, Service Bus, Power BI Embedded', '2 to 3 weeks'],
+      ['Compliance Monitoring', 'Policy deviations found weeks after they happen', 'Transactions, access logs, regulatory update feeds', 'Flagging deviations, drafting incident reports and keeping an audit trail', 'Event Grid, Azure Monitor, Key Vault, Microsoft Sentinel, Azure OpenAI', '2 to 3 weeks'],
+    ],
+  },
+  faqs: [
+    { question: 'Which operations agent should we start with?', answer: 'Start where a missed signal costs the most and the data already exists in Azure or can be streamed to it. Equipment-heavy sites usually begin with predictive maintenance, distribution businesses with supply chain intelligence, and regulated businesses with compliance monitoring. A 30-minute scoping call confirms the choice before any build starts.' },
+    { question: 'Do we need our data in Azure before we begin?', answer: 'Not fully. Pipeline setup is part of each build, including IoT Hub device provisioning, Data Factory pipelines and Event Grid connections. Environments that already run Azure IoT infrastructure usually finish sooner.' },
+    { question: 'Does the agent act on its own?', answer: 'The agents recommend and draft. Critical assets and regulated decisions go through human review, and every AI decision, flag and override is written to Azure Monitor so you have an audit trail.' },
+    { question: 'Can these connect to the systems we already use?', answer: 'Yes. Work orders can be created in SAP PM, IBM Maximo, Infor EAM or ServiceNow. ERP and warehouse systems connect through Azure API Management, and alerts reach people through Microsoft Teams and email.' },
+    { question: 'How is the work priced?', answer: 'Each agent is delivered as a fixed-price pilot. The price depends on the number of data sources and integrations, and we confirm it on the scoping call.' },
+  ],
   ctaHeadline: 'Ready to bring AI intelligence to your operations?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the right operational use case and give you a fixed-price delivery plan.',
 }

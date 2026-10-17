@@ -67,6 +67,69 @@ const data: SectionHubData = {
     { href: '/vertex-ai/data-analytics/document-ai-pipeline', icon: 'FileText', color: G_RED, title: 'Document AI Pipeline', description: 'Automated document extraction and classification pipeline using Google Cloud Document AI and Gemini — processing invoices, contracts, forms, and unstructured documents.' },
     { href: '/vertex-ai/data-analytics/enterprise-search-agent', icon: 'Search', color: G_GREEN, title: 'Enterprise Search Agent', description: 'Unified enterprise search over your internal knowledge using Vertex AI Search — bringing Google-quality search to your internal documents, wikis, and data sources.' },
   ],
+  overview: {
+    "heading": "How data and analytics agents on Vertex AI work",
+    "paragraphs": [
+      "Most organisations hold more useful information than their teams can reach. These three agents make it accessible: business users can query a warehouse in plain English, documents become structured data, and internal knowledge becomes searchable.",
+      "The BigQuery Intelligent Agent turns natural-language questions into SQL over your BigQuery warehouse using Gemini, so analysts spend less time on ad-hoc requests. The Document AI Pipeline uses Google Cloud Document AI and Gemini to extract and classify invoices, contracts, forms and unstructured documents. The Enterprise Search Agent uses Vertex AI Search to give employees one place to find policies, procedures and product information across internal systems.",
+      "All three typically take 3 weeks to reach production."
+    ]
+  },
+  comparison: {
+    "heading": "Which data agent fits which problem",
+    "columns": [
+      "Agent",
+      "Problem it addresses",
+      "Works over",
+      "Main Google Cloud services",
+      "Typical delivery"
+    ],
+    "rows": [
+      [
+        "BigQuery Intelligent Agent",
+        "Analysts field a steady stream of ad-hoc query requests",
+        "Your BigQuery data warehouse",
+        "Gemini, BigQuery",
+        "3 weeks"
+      ],
+      [
+        "Document AI Pipeline",
+        "Document review queues delay approvals and invoicing",
+        "Invoices, contracts, forms and unstructured documents",
+        "Document AI, Gemini, Cloud Storage",
+        "3 weeks"
+      ],
+      [
+        "Enterprise Search Agent",
+        "Employees spend hours searching fragmented internal sources",
+        "Internal documents, wikis and data sources",
+        "Vertex AI Search, Document AI, Cloud Storage, Gemini",
+        "3 weeks"
+      ]
+    ]
+  },
+  faqs: [
+    {
+      "question": "Do business users need to know SQL?",
+      "answer": "No. The BigQuery agent takes questions in plain English and writes the query."
+    },
+    {
+      "question": "Can the document pipeline handle our document types?",
+      "answer": "It is built for invoices, contracts, forms and unstructured documents. We confirm your specific types and fields during scoping."
+    },
+    {
+      "question": "What does enterprise search connect to?",
+      "answer": "Internal documents, wikis and data sources, indexed through Vertex AI Search. We agree the sources on the scoping call."
+    },
+    {
+      "question": "Do we need our data in BigQuery first?",
+      "answer": "The BigQuery agent works over BigQuery, so the data needs to be there. The search and document agents work from your files and repositories."
+    },
+    {
+      "question": "How is the work priced?",
+      "answer": "Each agent is delivered as a fixed-price build, scoped on a 30-minute call."
+    }
+  ],
   ctaHeadline: 'Ready to make your data intelligent?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the right data agent use case and give you a fixed-price delivery plan.',
 }

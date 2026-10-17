@@ -65,6 +65,73 @@ const data: SectionHubData = {
     { href: '/azure-ai-foundry/developer-tools/api-integration-agent', icon: 'Plug', color: '#8B5CF6', title: 'API Integration Agent', description: 'Automate API discovery, documentation, and integration testing using Azure API Management and OpenAPI specifications — reducing integration overhead.' },
     { href: '/azure-ai-foundry/developer-tools/mlops-automation-agent', icon: 'GitBranch', color: '#34D399', title: 'MLOps Automation Agent', description: 'Automate model deployment, monitoring, and retraining pipelines with Azure Prompt Flow and MLflow — continuous delivery for your AI systems.' },
   ],
+  overview: {
+    "heading": "How developer tool agents on Azure AI Foundry work",
+    "paragraphs": [
+      "These three agents target everyday engineering friction: finding answers about your own systems, keeping APIs documented and tested, and moving AI models to production safely.",
+      "The Internal Developer Copilot indexes your repositories, architecture documents, runbooks and API specifications into Azure AI Search with Entra ID access control, so engineers only see what they are authorised to see. It is delivered as a GitHub Copilot extension in VS Code and as a bot in Microsoft Teams. The API Integration Agent connects to your Azure API Management gateway and generates OpenAPI specifications, test suites and documentation from live traffic and code analysis. The MLOps Automation Agent runs Prompt Flow evaluations on each model candidate and only promotes models that meet your thresholds.",
+      "Each is a fixed-price build, and all three can be delivered inside three weeks."
+    ]
+  },
+  comparison: {
+    "heading": "Which developer tool agent fits which problem",
+    "columns": [
+      "Agent",
+      "Problem it addresses",
+      "What it works from",
+      "What you get",
+      "Main Azure services",
+      "Typical delivery"
+    ],
+    "rows": [
+      [
+        "Internal Developer Copilot",
+        "Engineers lose time looking for internal knowledge",
+        "Repositories, architecture docs, runbooks, API specifications",
+        "Answers in VS Code and Teams, plus analytics on usage and knowledge gaps",
+        "Azure OpenAI GPT-4o, Azure AI Search, GitHub Copilot Extension API, Semantic Kernel, Azure DevOps",
+        "3 weeks"
+      ],
+      [
+        "API Integration Agent",
+        "API documentation and tests lag behind the APIs",
+        "Your Azure API Management gateway, live traffic, code",
+        "OpenAPI specs, test suites, documentation and plain-language error root causes",
+        "Azure OpenAI, API Management, Semantic Kernel, Azure DevOps, Prompt Flow",
+        "2 weeks"
+      ],
+      [
+        "MLOps Automation Agent",
+        "Models are deployed and monitored by hand",
+        "Model candidates, ground-truth datasets, production telemetry",
+        "Gated deployments, drift and safety monitoring, automatic rollback on severe degradation",
+        "Azure Machine Learning, Azure AI Foundry, Prompt Flow, Azure Monitor, Azure DevOps",
+        "3 weeks"
+      ]
+    ]
+  },
+  faqs: [
+    {
+      "question": "Could the copilot show engineers code they should not see?",
+      "answer": "No. Indexing uses Entra ID access control, so each engineer only retrieves content they are authorised to access."
+    },
+    {
+      "question": "Which editors does the copilot support?",
+      "answer": "It is delivered as a GitHub Copilot extension for VS Code and as a Microsoft Teams bot. If your team works elsewhere, we confirm options on the scoping call."
+    },
+    {
+      "question": "What does the API agent need from us?",
+      "answer": "Access to your Azure API Management gateway. The build is deployed against that gateway."
+    },
+    {
+      "question": "How does the MLOps agent decide to promote a model?",
+      "answer": "Evaluation results are compared against pass and fail thresholds you configure. Only models that meet every criterion are promoted to production."
+    },
+    {
+      "question": "How is the work priced?",
+      "answer": "Each agent is delivered as a fixed-price build, scoped on a 30-minute call."
+    }
+  ],
   ctaHeadline: 'Ready to accelerate your engineering team with AI?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the right developer tool use case and give you a fixed-price delivery plan.',
 }

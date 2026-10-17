@@ -65,6 +65,69 @@ const data: SectionHubData = {
     { href: '/azure-ai-foundry/enterprise/enterprise-knowledge-agent', icon: 'BookOpen', color: '#8B5CF6', title: 'Enterprise Knowledge Agent', description: 'Unified enterprise search and Q&A agent over SharePoint, Confluence, and internal knowledge bases — powered by Azure AI Search RAG and GPT-4o.' },
     { href: '/azure-ai-foundry/enterprise/erp-process-agent', icon: 'Settings', color: '#34D399', title: 'ERP Process Automation Agent', description: 'Automate ERP approval workflows, data entry, and process monitoring with Azure AI connected to Dynamics 365 — reducing manual process overhead.' },
   ],
+  overview: {
+    "heading": "How enterprise automation agents on Azure AI Foundry work",
+    "paragraphs": [
+      "Three patterns account for much of the manual work in large organisations: reading documents, finding answers in internal knowledge, and clicking through ERP screens. The agents in this section automate each one.",
+      "The Document Intelligence Agent receives documents by email, upload portal or Azure Blob Storage, classifies them, extracts structured fields with Azure AI Document Intelligence and GPT-4o, scores its confidence, and pushes validated data into your ERP, CRM or document system through Azure Logic Apps. The Enterprise Knowledge Agent connects Azure AI Search to SharePoint, Confluence and other repositories and answers with cited responses grounded in what it retrieves. The ERP Process Agent maps your workflows and builds secure connections to Dynamics 365 or SAP through Azure API Management.",
+      "Each agent keeps a checkpoint before it acts alone: confidence scores on extraction, citations on answers, and a shadow-mode period where ERP agents run alongside your existing process."
+    ]
+  },
+  comparison: {
+    "heading": "Which enterprise agent fits which process",
+    "columns": [
+      "Agent",
+      "Job it does",
+      "Where it gets input",
+      "How it acts",
+      "Main Azure services"
+    ],
+    "rows": [
+      [
+        "Document Intelligence",
+        "Extracts and classifies invoices, contracts, forms and unstructured documents",
+        "Email, upload portal, Azure Blob Storage",
+        "Validates against business rules and pushes data into your ERP, CRM or document system, with an audit trail in Azure Monitor",
+        "Azure AI Document Intelligence, Azure OpenAI GPT-4o, Blob Storage, Logic Apps, Prompt Flow"
+      ],
+      [
+        "Enterprise Knowledge",
+        "Answers questions over internal knowledge",
+        "SharePoint, Confluence and internal knowledge bases through Microsoft Graph and connectors",
+        "Returns cited answers using hybrid vector and keyword retrieval, in Teams or Copilot Studio",
+        "Azure AI Search, Azure OpenAI GPT-4o, SharePoint connector, Copilot Studio"
+      ],
+      [
+        "ERP Process Automation",
+        "Handles approvals, data entry and process monitoring",
+        "Dynamics 365 or SAP through API connections",
+        "Runs multi-step workflows built from Semantic Kernel plugins, with monitoring dashboards",
+        "Semantic Kernel, API Management, Dynamics 365 connector, Logic Apps, Azure OpenAI"
+      ]
+    ]
+  },
+  faqs: [
+    {
+      "question": "Where should we start?",
+      "answer": "Start with your highest-volume manual process that has clear rules and existing digital inputs. Document handling and internal questions are common first choices, and a scoping call confirms the right one."
+    },
+    {
+      "question": "What is shadow mode?",
+      "answer": "The ERP agent runs in parallel with your existing process first, so results can be compared and validated before full cutover."
+    },
+    {
+      "question": "Does the knowledge agent show where answers come from?",
+      "answer": "Yes. Answers are cited, and a strict grounding instruction prevents it from responding with anything the retrieved content does not support."
+    },
+    {
+      "question": "Which ERP systems does it connect to?",
+      "answer": "The ERP agent is built for Dynamics 365 and SAP environments, connected through Azure API Management."
+    },
+    {
+      "question": "How is the work priced?",
+      "answer": "Each agent is delivered as a fixed-price build, scoped on a 30-minute call."
+    }
+  ],
   ctaHeadline: 'Ready to automate your highest-volume enterprise process?',
   ctaBody: 'Book a 30-minute scoping call. We will identify the right use case and give you a fixed-price delivery plan.',
 }
