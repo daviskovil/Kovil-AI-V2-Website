@@ -139,7 +139,7 @@ export const SITEMAP_LASTMOD: Record<string, string> = {
   "/azure-ai-foundry/services/azure-ai-search-rag": "2026-10-17",
   "/azure-ai-foundry/services/azure-openai-integration": "2026-07-05",
   "/azure-ai-foundry/services/copilot-studio-agents": "2026-07-05",
-  "/blog": "2026-06-17",
+  "/blog": "2026-10-17",
   "/book-a-call": "2026-07-07",
   "/case-studies": "2026-10-17",
   "/contact": "2026-06-17",
