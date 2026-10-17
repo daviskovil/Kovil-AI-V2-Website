@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import HealthcareAzurePage from '@/src/pages/azure-ai-foundry/industries/HealthcareAzurePage'
 
 export const metadata: Metadata = {
-  title: 'AI Agents for Healthcare & Life Sciences — HIPAA-Ready Azure AI',
-  description: 'HIPAA-aligned AI agents for healthcare built on Azure. Automate prior authorisation, clinical documentation, EHR data extraction, patient intake, and discharge planning. Azure Health Data Services.',
+  title: 'HIPAA-Ready AI Agents for Healthcare on Azure',
+  description: 'HIPAA-aligned Azure agents: prior authorisation, clinical documentation, EHR data extraction, patient intake, and discharge planning.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/industries/healthcare-life-sciences' },
   keywords: ['AI agents healthcare Azure', 'HIPAA AI Azure', 'prior authorisation automation AI', 'clinical documentation AI Azure', 'EHR data extraction Azure', 'Azure Health Data Services AI', 'patient intake automation Azure', 'healthcare AI compliance', 'Azure OpenAI healthcare', 'FHIR AI integration', 'Azure AI Document Intelligence healthcare', 'discharge planning AI', 'clinical trial matching AI', 'Kovil AI healthcare', 'Azure AI Foundry healthcare'],
   openGraph: { type: 'website', title: 'AI Agents for Healthcare — HIPAA-Ready Azure AI | Kovil AI', description: 'Automate prior auth, clinical documentation, and EHR extraction on Azure Health Data Services. 100% HIPAA-aligned.', url: 'https://kovil.ai/azure-ai-foundry/industries/healthcare-life-sciences', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'AI Agents for Healthcare — Kovil AI' }] },

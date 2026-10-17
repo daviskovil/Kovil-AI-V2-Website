@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AIAgentDesignBuildPage from '@/src/pages/azure-ai-foundry/services/AIAgentDesignBuildPage'
 
 export const metadata: Metadata = {
-  title: 'AI Agent Design & Build — Azure AI Foundry',
-  description: 'Production-grade AI agent design and build on Azure AI Foundry. Semantic Kernel orchestration, multi-agent workflows, evaluation frameworks, and Prompt Flow deployment in four weeks.',
+  title: 'AI Agent Design & Build on Azure AI Foundry',
+  description: 'Production AI agents on Azure AI Foundry: Semantic Kernel orchestration, multi-agent workflows, evaluation frameworks, and Prompt Flow, in four weeks.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/services/ai-agent-design-build' },
   keywords: [
     'Azure AI Foundry agent development',

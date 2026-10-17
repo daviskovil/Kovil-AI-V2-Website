@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import SalesCloudHubPage from '@/src/pages/agentforce/sales-cloud/SalesCloudHubPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Sales Teams — SDR Agents, Pipeline Monitoring & Quote Automation',
+  title: 'Agentforce for Sales: SDR & Quote Agents',
   description:
-    'Production Agentforce Sales Cloud deployments — SDR agents that qualify leads in 9 minutes, pipeline health monitors, and quote automation. Fixed-price 2–3 week sprints. Salesforce Agentforce implementation partner.',
+    'Production Agentforce Sales Cloud deployments: SDR agents that qualify leads in 9 minutes, pipeline health monitors, and quote automation.',
   alternates: { canonical: 'https://kovil.ai/agentforce/sales-cloud' },
   keywords: [
     'agentforce for sales',

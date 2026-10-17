@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ComplianceMonitoringAgentPage from '@/src/pages/azure-ai-foundry/operations/ComplianceMonitoringAgentPage'
 
 export const metadata: Metadata = {
-  title: 'AI Compliance Monitoring Agent — Azure Monitor & OpenAI',
-  description: 'Continuous AI compliance monitoring agent on Azure. Monitors policies, flags deviations in under 5 minutes, drafts incident reports, and maintains tamper-evident audit trails for regulated industries.',
+  title: 'AI Compliance Monitoring Agent on Azure',
+  description: 'Continuous compliance monitoring: flags policy deviations in under 5 minutes, drafts incident reports, and keeps tamper-evident audit trails.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/operations/compliance-monitoring-agent' },
   keywords: ['AI compliance monitoring Azure', 'Azure OpenAI compliance', 'regulatory compliance AI', 'Azure Monitor compliance', 'automated compliance reporting', 'SOC 2 AI monitoring', 'HIPAA compliance AI Azure', 'GDPR monitoring AI', 'Azure compliance agent', 'audit automation AI', 'Azure Sentinel compliance', 'policy monitoring AI', 'compliance automation Azure', 'Azure AI Foundry compliance', 'Kovil AI Azure', 'regulatory AI agent'],
   openGraph: { type: 'website', title: 'AI Compliance Monitoring Agent — Azure | Kovil AI', description: 'Continuous AI compliance monitoring. 100% policy coverage. Under 5-minute deviation detection. 80% audit prep time saved.', url: 'https://kovil.ai/azure-ai-foundry/operations/compliance-monitoring-agent', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Compliance Monitoring Agent — Kovil AI' }] },

@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { ArrowRight, MessageSquare, Star, Search, BarChart2, RefreshCw, ShoppingCart } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'AI for Ecommerce | Retail AI Development & Ecommerce Automation',
-  description: 'AI development for ecommerce and retail. AI support chatbots, product recommendation engines, AI-powered search, inventory forecasting, review analysis, and abandoned cart recovery. 70% support ticket deflection in production.',
+  title: 'AI for Ecommerce: Retail AI & Automation',
+  description: 'Ecommerce AI: support chatbots, product recommendations, AI search, inventory forecasting, and cart recovery. 70% ticket deflection in production.',
   keywords: ['AI for ecommerce', 'ecommerce AI development', 'retail AI', 'AI product recommendations', 'ecommerce chatbot', 'AI customer support', 'inventory forecasting AI'],
   openGraph: {
     title: 'AI for Ecommerce | Kovil AI',

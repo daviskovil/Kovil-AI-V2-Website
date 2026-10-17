@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ArchitectYourFirstAzureAgentPage from '@/src/pages/azure-ai-foundry/playbook/ArchitectYourFirstAzureAgentPage'
 
 export const metadata: Metadata = {
-  title: 'How to Architect Your First Azure AI Agent — 14-Question Checklist',
-  description: 'Step-by-step architecture guide for your first Azure AI agent. 14-question readiness checklist, orchestration framework comparison (Semantic Kernel vs Prompt Flow vs AutoGen), and Azure component decisions.',
+  title: 'Architect Your First Azure AI Agent',
+  description: 'Step-by-step guide with a 14-question readiness checklist, Semantic Kernel vs Prompt Flow vs AutoGen comparison, and Azure component decisions.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/playbook/architect-your-first-azure-ai-agent' },
   keywords: ['Azure AI agent architecture', 'how to build Azure AI agent', 'Semantic Kernel vs Prompt Flow', 'Azure AI agent checklist', 'Azure OpenAI agent design', 'AI agent orchestration Azure', 'Azure AI Foundry architecture guide', 'first Azure AI agent guide', 'Azure agent design decisions', 'AI agent readiness checklist', 'Semantic Kernel architecture', 'Azure AI agent tutorial', 'LLM agent architecture Azure', 'multi-agent Azure design', 'Kovil AI Azure playbook', 'Azure AI architecture decisions'],
   openGraph: { type: 'article', title: 'Architect Your First Azure AI Agent — Kovil AI Playbook', description: '14-question readiness checklist. Semantic Kernel vs Prompt Flow vs AutoGen. Complete architecture guide for Azure AI agents.', url: 'https://kovil.ai/azure-ai-foundry/playbook/architect-your-first-azure-ai-agent', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Architect Your First Azure AI Agent — Kovil AI' }] },

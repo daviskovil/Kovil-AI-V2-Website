@@ -4,8 +4,9 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Dedicated Development Team | Full-Stack Engineering Pod for Your Product',
-  description: 'A dedicated development team from Kovil AI: tech lead, full-stack engineers, DevOps, and QA assigned exclusively to your product. Operational in 2-3 weeks.',
+  title: 'Dedicated Development Team for Your Product',
+  description: 'A dedicated team from Kovil AI: tech lead, full-stack engineers, DevOps, and QA assigned exclusively to your product. Live in 2 to 3 weeks.',
+  alternates: { canonical: 'https://kovil.ai/dedicated-development-team' },
   keywords: ['dedicated development team', 'dedicated software development team', 'hire development team', 'dedicated dev team', 'software development team for hire', 'dedicated engineering team', 'remote development team'],
   openGraph: {
     title: 'Dedicated Development Team | Full-Stack Engineering Pod for Your Product',

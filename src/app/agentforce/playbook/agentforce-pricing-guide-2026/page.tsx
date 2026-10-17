@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import AgentforcePricingGuidePage from '@/src/pages/agentforce/playbook/AgentforcePricingGuidePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Pricing 2026: $2 Per Conversation + Real Total Cost',
+  title: 'Agentforce Pricing 2026: Real Total Cost',
   description:
-    'Salesforce Agentforce official pricing 2026: $2 per conversation — but that is not the real cost. Full breakdown of Data Cloud licences, Einstein add-ons, MuleSoft, implementation cost, and total cost of ownership.',
+    'Agentforce costs $2 per conversation, but that is not the real cost. Full breakdown of Data Cloud, Einstein, MuleSoft, and implementation costs.',
   alternates: { canonical: 'https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026' },
   keywords: [
     'agentforce pricing',

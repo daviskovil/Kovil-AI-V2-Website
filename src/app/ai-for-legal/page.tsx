@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, FileText, Search, Shield, MessageSquare, BarChart2, Scale } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'AI for Legal | Contract Review Automation & Legal AI Development',
-  description: 'Legal AI development for law firms and in-house teams. Contract review automation, case law RAG, e-discovery, compliance monitoring, and legal intake chatbots. 78% faster contract review delivered in production.',
+  title: 'AI for Legal: Contract Review & Legal AI',
+  description: 'Legal AI for law firms and in-house teams: contract review, case law RAG, e-discovery, and compliance. 78% faster contract review in production.',
   keywords: ['AI for legal', 'legal AI development', 'contract review AI', 'law firm AI', 'e-discovery AI', 'legal document automation', 'LLM for legal'],
   openGraph: {
     title: 'AI for Legal | Kovil AI',

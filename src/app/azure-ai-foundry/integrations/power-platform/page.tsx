@@ -3,7 +3,7 @@ import AzurePowerPlatformPage from '@/src/pages/azure-ai-foundry/integrations/Az
 
 export const metadata: Metadata = {
   title: 'Azure AI Foundry + Power Platform Integration',
-  description: 'AI-powered automation across every business process with Power Automate, Copilot Studio, and Azure OpenAI. 900+ connectors, document processing, approval workflows, and embedded AI in Power Apps.',
+  description: 'AI automation with Power Automate, Copilot Studio, and Azure OpenAI: 900+ connectors, document processing, approvals, and AI in Power Apps.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/integrations/power-platform' },
   keywords: ['Azure AI Power Platform', 'Power Automate AI', 'Copilot Studio Power Platform', 'Azure OpenAI Power Automate', 'Power Apps AI', 'Dataverse AI integration', 'Power Platform AI automation', 'AI document processing Power Automate', 'Power BI AI narration', 'Azure AI Document Intelligence Power Automate', 'no-code AI automation Azure', 'Power Platform Copilot', 'Kovil AI Power Platform', 'business process AI Azure', 'enterprise automation low-code'],
   openGraph: { type: 'website', title: 'Azure AI Foundry + Power Platform: AI Automation at Scale | Kovil AI', description: '900+ connectors with LLM intelligence. Power Automate + Azure OpenAI + Copilot Studio. 5x faster workflow creation.', url: 'https://kovil.ai/azure-ai-foundry/integrations/power-platform', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Azure AI Foundry + Power Platform — Kovil AI' }] },

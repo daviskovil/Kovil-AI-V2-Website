@@ -3,7 +3,7 @@ import AgentforceRescueOptimisationPage from '@/src/pages/agentforce/services/Ag
 
 export const metadata: Metadata = {
   title: 'Agentforce Rescue & Optimisation',
-  description: 'Agentforce rescue service for failing deployments. We fix hallucinating agents, broken Trust Layer guardrails, and integration failures — measurable performance restored in 2 weeks.',
+  description: 'Fix failing Agentforce deployments: hallucinating agents, broken Trust Layer guardrails, and integration failures. Performance restored in 2 weeks.',
   alternates: { canonical: 'https://kovil.ai/agentforce/services/agentforce-rescue-optimisation' },
   keywords: [
     'Agentforce rescue service',

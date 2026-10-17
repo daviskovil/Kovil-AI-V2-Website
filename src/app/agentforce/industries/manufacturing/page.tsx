@@ -3,7 +3,7 @@ import ManufacturingAgentforcePage from '@/src/pages/agentforce/industries/Manuf
 
 export const metadata: Metadata = {
   title: 'Agentforce for Manufacturing',
-  description: 'Production Agentforce for manufacturing — field service scheduling agents, warranty claim intake automation, dealer support, and preventive maintenance alerts. Manufacturing Cloud · Field Service · Fixed-price sprints.',
+  description: 'Agentforce for manufacturers: field service scheduling, warranty claim intake, dealer support, and preventive maintenance alerts. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/manufacturing' },
   keywords: [
     'agentforce manufacturing',

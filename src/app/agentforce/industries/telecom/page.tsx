@@ -3,7 +3,7 @@ import TelecomAgentforcePage from '@/src/pages/agentforce/industries/TelecomAgen
 
 export const metadata: Metadata = {
   title: 'Agentforce for Telecommunications',
-  description: 'Production Agentforce for telcos — network outage support agents, billing dispute resolution, plan management automation, and churn prevention agents. Communications Cloud · TCPA compliant · Fixed-price sprints.',
+  description: 'Agentforce for telcos: outage support agents, billing dispute resolution, plan management, and churn prevention. TCPA compliant, fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/telecom' },
   keywords: [
     'agentforce telecom',

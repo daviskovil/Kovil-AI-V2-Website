@@ -3,8 +3,8 @@ import HealthcarePage from '@/src/pages/idp/HealthcarePage'
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Healthcare Document Processing & Clinical Data Extraction',
-  description: 'Production IDP pipelines for healthcare and life sciences — medical records indexing, ICD-10/CPT coding automation, prior authorization prep, lab report extraction, and clinical trial document processing. HIPAA · SOC 2 · Fixed-price sprints, 2–4 weeks.',
+  title: 'Healthcare Document Processing & Clinical IDP',
+  description: 'IDP for healthcare: medical records indexing, ICD-10/CPT coding, prior authorization prep, lab reports, and clinical trial documents. HIPAA, SOC 2.',
   alternates: { canonical: 'https://kovil.ai/intelligent-document-processing/healthcare-life-sciences' },
   keywords: [
     'healthcare document processing',

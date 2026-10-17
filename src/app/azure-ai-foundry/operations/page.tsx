@@ -6,7 +6,7 @@ const AZURE = '#0078D4'
 
 export const metadata: Metadata = {
   title: 'Azure AI Foundry Operations Intelligence Agents',
-  description: 'Operations intelligence agents on Azure AI Foundry — predictive maintenance, supply chain intelligence, and compliance monitoring. Production deployments on fixed-price sprints.',
+  description: 'Operations agents on Azure AI Foundry: predictive maintenance, supply chain intelligence, and compliance monitoring. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/operations' },
   keywords: ['azure ai predictive maintenance', 'azure ai supply chain intelligence', 'azure ai compliance monitoring', 'azure iot predictive maintenance', 'azure openai operations', 'azure ai foundry operations', 'azure ai operations agent', 'azure data factory supply chain', 'azure ai monitor compliance'],
   openGraph: {

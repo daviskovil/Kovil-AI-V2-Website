@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import PredictiveMaintenanceAgentPage from '@/src/pages/azure-ai-foundry/operations/PredictiveMaintenanceAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Predictive Maintenance Agent — Azure IoT Hub & OpenAI',
-  description: 'AI agent that monitors IoT sensor streams via Azure IoT Hub, detects equipment anomalies with GPT-4o, and triggers work orders before failures occur. 73% downtime reduction.',
+  title: 'Predictive Maintenance Agent: Azure IoT Hub',
+  description: 'Monitors IoT sensor streams via Azure IoT Hub, detects anomalies with GPT-4o, and triggers work orders before failures. 73% less downtime.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/operations/predictive-maintenance-agent' },
   keywords: ['predictive maintenance AI Azure', 'Azure IoT Hub AI agent', 'Azure OpenAI anomaly detection', 'equipment failure prediction AI', 'Azure Stream Analytics AI', 'IoT predictive maintenance', 'Azure Digital Twins maintenance', 'AI work order automation', 'industrial AI Azure', 'Azure AI Foundry maintenance', 'asset monitoring AI', 'CMMS AI integration', 'Azure AI IoT', 'manufacturing AI Azure', 'Kovil AI Azure', 'predictive maintenance automation'],
   openGraph: { type: 'website', title: 'Predictive Maintenance Agent — Azure IoT & AI | Kovil AI', description: 'Detect equipment failures before they happen. Azure IoT Hub + GPT-4o anomaly detection. 73% downtime reduction.', url: 'https://kovil.ai/azure-ai-foundry/operations/predictive-maintenance-agent', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Predictive Maintenance Agent — Kovil AI' }] },

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import VoiceflowDevelopersPage from '@/src/pages/hire/VoiceflowDevelopersPage'
 
 export const metadata: Metadata = {
-  title: 'Hire Voiceflow Developers — Conversational AI Agents, Matched in 48 Hours',
-  description: 'Hire vetted Voiceflow developers embedded in your team in 48 hours. Conversational AI agent design, support chatbots, voice agents, custom API integrations, dynamic fallbacks. 2-week risk-free trial.',
+  title: 'Hire Voiceflow Developers in 48 Hours',
+  description: 'Hire vetted Voiceflow developers in 48 hours. Conversational agents, support chatbots, voice agents, and custom API integrations.',
   alternates: { canonical: 'https://kovil.ai/hire/voiceflow-developers' },
   keywords: [
     'hire voiceflow developers',

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AIOperationsPage from '@/src/pages/AIOperationsPage'
 
 export const metadata: Metadata = {
-  title: 'AI Operations — Monitored, Optimised & Governed AI in Production',
-  description: 'Kovil AI operates your production AI systems so they never drift, spiral in cost, or fail compliance audits. Model monitoring, drift detection, token cost optimisation, and audit logging — from $2,000/month. 2-week risk-free trial.',
+  title: 'AI Operations: Monitored & Governed AI',
+  description: 'We run your production AI so it never drifts, spirals in cost, or fails audits: monitoring, drift detection, and cost optimisation. From $2,000/month.',
   alternates: { canonical: 'https://kovil.ai/ai-operations' },
   keywords: [
     'AI operations',

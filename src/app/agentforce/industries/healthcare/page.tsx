@@ -3,7 +3,7 @@ import HealthcareAgentforcePage from '@/src/pages/agentforce/industries/Healthca
 
 export const metadata: Metadata = {
   title: 'Agentforce for Healthcare & Life Sciences',
-  description: 'Production Agentforce for healthcare — patient scheduling automation, prior authorization agents, care coordination, and billing inquiry resolution. Health Cloud · HIPAA · Einstein Trust Layer · Fixed-price sprints.',
+  description: 'Agentforce for healthcare: patient scheduling, prior authorization, care coordination, and billing inquiries. Health Cloud, HIPAA, fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/healthcare' },
   keywords: [
     'agentforce healthcare',

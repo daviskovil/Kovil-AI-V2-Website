@@ -7,8 +7,8 @@ const BASE = 'https://kovil.ai'
 const CANONICAL = `${BASE}/agentforce/pricing`
 
 export const metadata: Metadata = {
-  title: 'Agentforce Pricing 2026: $2 Per Conversation, Volume Tiers & Total Cost of Ownership',
-  description: 'Agentforce costs approximately $2 per conversation in 2026. This guide covers what counts as a conversation, volume discount tiers, additional licence costs (Data Cloud, Einstein, MuleSoft), and total cost of ownership.',
+  title: 'Agentforce Pricing 2026: $2 Per Conversation',
+  description: 'What counts as a conversation, volume tiers, extra licence costs (Data Cloud, Einstein, MuleSoft), and total cost of ownership for Agentforce.',
   alternates: { canonical: CANONICAL },
   keywords: ['agentforce pricing','agentforce cost 2026','agentforce price per conversation','how much does agentforce cost','agentforce pricing model','agentforce per conversation cost','agentforce total cost of ownership','agentforce volume discounts','salesforce agentforce pricing','agentforce implementation cost'],
   openGraph: { type: 'article', title: 'Agentforce Pricing 2026: $2 Per Conversation Explained | Kovil AI', description: 'What Agentforce costs in 2026, what counts as a conversation, volume tiers, and total implementation cost of ownership.', url: CANONICAL, siteName: 'Kovil AI', images: [{ url: `${BASE}/og-agentforce.png`, width: 1200, height: 630 }] },

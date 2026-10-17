@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AiProductRecommendationsPage from '@/src/pages/shopify/solutions/AiProductRecommendationsPage'
 
 export const metadata: Metadata = {
-  title: 'Semantic Product Recommendation RAG Systems for Shopify',
-  description: 'Vector-database semantic product recommendations that map buyer intent to high-SKU catalogs with sub-second, stock-aware accuracy. Risk-free trial.',
+  title: 'Semantic Product Recommendations for Shopify',
+  description: 'Vector-database recommendations that map buyer intent to large catalogs with sub-second, stock-aware accuracy. Risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/shopify/solutions/ai-product-recommendations' },
   keywords: [
     'shopify ai product recommendations',

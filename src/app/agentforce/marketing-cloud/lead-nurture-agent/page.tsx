@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import LeadNurtureAgentPage from '@/src/pages/agentforce/marketing-cloud/LeadNurtureAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Lead Nurture Agent — AI-Personalised Nurture Sequences',
-  description: 'Deploy an Agentforce Lead Nurture Agent that adapts every lead\'s journey in real time using engagement signals, intent data, and CRM history — with an intent-gated sales handoff.',
+  title: 'Agentforce Lead Nurture Agent',
+  description: 'Adapts every lead\'s journey in real time using engagement signals, intent data, and CRM history, with an intent-gated sales handoff.',
   alternates: { canonical: 'https://kovil.ai/agentforce/marketing-cloud/lead-nurture-agent' },
   keywords: [
     'Agentforce lead nurture agent',

@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, XCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Upwork Alternative | Kovil AI vs Upwork | Managed AI Engineering',
-  description: 'Looking for an Upwork alternative for AI engineering? Kovil AI offers deeply vetted AI engineers, an Engagement Manager on every engagement, milestone-gated delivery, and a 2-week risk-free trial.',
+  title: 'Upwork Alternative: Kovil AI vs Upwork',
+  description: 'An Upwork alternative for AI engineering: deeply vetted engineers, an Engagement Manager on every engagement, milestone delivery, and a 2-week trial.',
   keywords: ['Upwork alternative', 'Upwork vs Kovil AI', 'alternative to Upwork for AI', 'Upwork competitor', 'managed AI engineering alternative to Upwork'],
   openGraph: { title: 'Upwork Alternative | Kovil AI', description: 'Vetted AI engineering with managed delivery. No bidding, no quality variance, no self-managing contractors.', url: 'https://kovil.ai/upwork-alternative', siteName: 'Kovil AI', type: 'website', images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Upwork Alternative | Kovil AI' }] },
   twitter: { card: 'summary_large_image', title: 'Upwork Alternative | Kovil AI', description: 'Why product teams choose Kovil AI over Upwork for AI engineering.' },

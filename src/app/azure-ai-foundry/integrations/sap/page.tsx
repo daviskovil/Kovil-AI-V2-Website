@@ -3,7 +3,7 @@ import AzureSAPPage from '@/src/pages/azure-ai-foundry/integrations/AzureSAPPage
 
 export const metadata: Metadata = {
   title: 'Azure AI Foundry + SAP Integration',
-  description: 'AI agents that read, write, and act on SAP S/4HANA and ECC data via Azure API Management OData connectors. Purchase order automation, invoice processing, and financial close AI — no ABAP required.',
+  description: 'AI agents that read, write, and act on SAP S/4HANA and ECC data via Azure API Management. Purchase orders, invoices, and close. No ABAP required.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/integrations/sap' },
   keywords: ['Azure AI SAP integration', 'SAP AI agent', 'Azure OpenAI SAP', 'SAP S/4HANA AI automation', 'Azure API Management SAP OData', 'SAP purchase order automation AI', 'SAP invoice processing AI', 'Azure Logic Apps SAP', 'Semantic Kernel SAP', 'SAP ECC AI agent', 'Azure Data Factory SAP', 'SAP Ariba AI', 'SAP BAPI Azure', 'Kovil AI SAP', 'SAP process automation Azure'],
   openGraph: { type: 'website', title: 'Azure AI Foundry + SAP: AI Agents for SAP S/4HANA & ECC | Kovil AI', description: 'AI agents querying and writing to SAP via OData/BAPI connectors. 67% PO processing reduction. No ABAP customisation.', url: 'https://kovil.ai/azure-ai-foundry/integrations/sap', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Azure AI Foundry + SAP — Kovil AI' }] },

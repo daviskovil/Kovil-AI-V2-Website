@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AgentforceStrategyReadinessPage from '@/src/pages/agentforce/services/AgentforceStrategyReadinessPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Strategy & Readiness',
-  description: 'Agentforce readiness assessment and AI strategy consulting. Audit your Salesforce org, map highest-ROI opportunities, and receive a prioritised implementation roadmap in 10 days.',
+  title: 'Agentforce Strategy & Readiness Assessment',
+  description: 'Audit your Salesforce org, map the highest-ROI Agentforce opportunities, and get a prioritised implementation roadmap in 10 days.',
   alternates: { canonical: 'https://kovil.ai/agentforce/services/agentforce-strategy-readiness' },
   keywords: [
     'Agentforce readiness assessment',

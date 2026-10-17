@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'RAG Pipeline Development | Retrieval-Augmented Generation Experts',
-  description: 'Kovil AI builds production RAG pipelines that ground LLM responses in your proprietary data. Reduce hallucinations. RAGAS evaluation included. Fixed-price delivery.',
+  title: 'RAG Pipeline Development Experts',
+  description: 'Production RAG pipelines that ground LLM responses in your proprietary data. Fewer hallucinations, RAGAS evaluation included. Fixed-price delivery.',
   keywords: ['RAG pipeline development', 'retrieval augmented generation', 'RAG system', 'vector database integration', 'LLM grounding'],
   openGraph: {
     title: 'RAG Pipeline Development | Kovil AI',

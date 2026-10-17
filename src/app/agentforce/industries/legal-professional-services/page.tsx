@@ -3,7 +3,7 @@ import LegalProfessionalServicesAgentforcePage from '@/src/pages/agentforce/indu
 
 export const metadata: Metadata = {
   title: 'Agentforce for Legal & Professional Services',
-  description: 'Production Agentforce for law firms, consultancies, and professional services — contract review automation, client intake agents, matter management, billing inquiry resolution. Einstein Trust Layer · Fixed-price sprints.',
+  description: 'Agentforce for law firms and consultancies: contract review, client intake, matter management, and billing inquiries. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/legal-professional-services' },
   keywords: [
     'agentforce legal services',

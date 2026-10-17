@@ -3,7 +3,7 @@ import AutomotiveAgentforcePage from '@/src/pages/agentforce/industries/Automoti
 
 export const metadata: Metadata = {
   title: 'Agentforce for Automotive',
-  description: 'Production Agentforce for automotive OEMs, dealer groups, and fleet operators — dealer lead qualification, vehicle financing agents, service booking automation, recall management, and customer retention. Fixed-price sprints.',
+  description: 'Agentforce for OEMs, dealer groups, and fleets: dealer lead qualification, vehicle financing, service booking, recall management, and retention.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/automotive' },
   keywords: [
     'agentforce automotive',

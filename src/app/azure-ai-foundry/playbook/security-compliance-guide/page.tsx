@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AzureSecurityCompliancePage from '@/src/pages/azure-ai-foundry/playbook/AzureSecurityCompliancePage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry Security & Compliance: Complete Enterprise Configuration Guide',
-  description: 'How to configure Azure AI Foundry for enterprise security: Managed Identity, private endpoints, Content Safety, HIPAA, SOC 2, ISO 27001. 12-point production security checklist.',
+  title: 'Azure AI Foundry Security & Compliance Guide',
+  description: 'Configure Azure AI Foundry for enterprise security: Managed Identity, private endpoints, Content Safety, HIPAA, SOC 2, ISO 27001. 12-point checklist.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/playbook/security-compliance-guide' },
   keywords: ['Azure AI Foundry security', 'Azure OpenAI HIPAA', 'Azure AI Managed Identity', 'Azure AI private endpoints', 'Azure AI compliance', 'Azure OpenAI security configuration', 'Azure AI Content Safety', 'Azure AI RBAC', 'Azure OpenAI private endpoint', 'Azure AI SOC 2', 'Azure AI ISO 27001', 'Azure AI FedRAMP', 'Azure AI PCI DSS', 'Azure AI security checklist', 'Kovil AI Azure playbook', 'Azure AI enterprise security'],
   openGraph: { type: 'article', title: 'Azure AI Foundry Security & Compliance Guide | Kovil AI', description: 'Complete enterprise security configuration: Managed Identity, private endpoints, Content Safety thresholds, HIPAA/SOC2/ISO27001, 12-point checklist.', url: 'https://kovil.ai/azure-ai-foundry/playbook/security-compliance-guide', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Azure AI Foundry Security & Compliance Guide — Kovil AI' }] },

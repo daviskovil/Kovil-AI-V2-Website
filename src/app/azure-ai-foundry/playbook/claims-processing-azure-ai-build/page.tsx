@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ClaimsProcessingAzureBuildPage from '@/src/pages/azure-ai-foundry/playbook/ClaimsProcessingAzureBuildPage'
 
 export const metadata: Metadata = {
-  title: 'Claims Processing AI Agent on Azure — Insurance Case Study',
-  description: 'How Kovil AI built an insurance claims processing agent on Azure AI Foundry. Week-by-week build breakdown, architecture decisions, results (74% faster processing), and lessons learned.',
+  title: 'Insurance Claims Agent on Azure: Case Study',
+  description: 'How we built an insurance claims agent on Azure AI Foundry: week-by-week build, architecture decisions, 74% faster processing, and lessons learned.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/playbook/claims-processing-azure-ai-build' },
   keywords: ['insurance claims AI Azure', 'claims processing automation AI', 'Azure AI insurance', 'insurance AI agent case study', 'claims automation Azure OpenAI', 'Azure AI Foundry insurance', 'claims processing agent build', 'insurance document AI Azure', 'AI claims adjudication Azure', 'Azure Document Intelligence insurance', 'insurance AI case study', 'claims processing 74% faster', 'insurance automation Azure', 'AI claims review Azure', 'Kovil AI Azure playbook', 'claims AI build guide'],
   openGraph: { type: 'article', title: 'Claims Processing AI on Azure — Build Case Study | Kovil AI', description: 'Week-by-week: how we built an insurance claims AI agent on Azure. 74% faster processing. Full architecture and lessons learned.', url: 'https://kovil.ai/azure-ai-foundry/playbook/claims-processing-azure-ai-build', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Claims Processing Azure AI Build — Kovil AI' }] },

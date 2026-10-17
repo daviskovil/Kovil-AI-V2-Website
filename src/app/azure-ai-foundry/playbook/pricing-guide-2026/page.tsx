@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AzurePricingGuidePage from '@/src/pages/azure-ai-foundry/playbook/AzurePricingGuidePage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry Pricing Guide 2026: What Enterprise AI Actually Costs',
-  description: 'Complete Azure AI Foundry pricing breakdown for 2026. Token costs, AI Search tiers, Copilot Studio licensing, hidden costs, and ROI framework. Real numbers from production deployments.',
+  title: 'Azure AI Foundry Pricing Guide 2026',
+  description: 'What enterprise AI on Azure really costs: token costs, AI Search tiers, Copilot Studio licensing, hidden costs, and ROI. Real production numbers.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/playbook/pricing-guide-2026' },
   keywords: ['Azure AI Foundry pricing', 'Azure OpenAI cost 2026', 'Azure AI agent cost', 'Azure AI Search pricing', 'Copilot Studio pricing', 'Azure AI token cost', 'enterprise AI cost estimate', 'Azure AI Foundry budget', 'GPT-4o cost Azure', 'Azure AI ROI calculation', 'Azure AI pricing breakdown', 'Azure AI deployment cost', 'Azure AI Foundry pricing guide', 'AI agent monthly cost', 'Kovil AI Azure playbook', 'Azure AI infrastructure cost'],
   openGraph: { type: 'article', title: 'Azure AI Foundry Pricing Guide 2026 | Kovil AI', description: 'Real numbers: token costs, AI Search tiers, hidden costs, and ROI framework for Azure AI Foundry deployments in 2026.', url: 'https://kovil.ai/azure-ai-foundry/playbook/pricing-guide-2026', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Azure AI Foundry Pricing Guide 2026 — Kovil AI' }] },

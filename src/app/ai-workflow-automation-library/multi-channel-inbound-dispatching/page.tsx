@@ -3,7 +3,7 @@ import MultiChannelInboundPage from '@/src/pages/ai-workflow-automation-library/
 
 export const metadata: Metadata = {
   title: 'Multi-Channel Inbound Dispatching — AI Workflow',
-  description: 'See how Kovil AI builds a unified AI dispatcher: Instagram DMs, WhatsApp, and email piped into GPT-4o → intent classified → FAQs auto-answered → leads qualified → meetings booked into Calendly automatically.',
+  description: 'One AI dispatcher for Instagram DMs, WhatsApp, and email: GPT-4o classifies intent, answers FAQs, qualifies leads, and books Calendly meetings.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/multi-channel-inbound-dispatching' },
   robots: { index: true, follow: true },
   keywords: [

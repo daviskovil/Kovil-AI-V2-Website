@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AutoGenDevelopersPage from '@/src/pages/hire/AutoGenDevelopersPage'
 
 export const metadata: Metadata = {
-  title: 'Hire AutoGen Developers — Conversational Multi-Agent AI, Matched in 48 Hours',
-  description: 'Hire vetted AutoGen developers embedded in your team in 48 hours. Conversational multi-agent systems, code-executing agents, GroupChat orchestration, production deployment. 2-week risk-free trial.',
+  title: 'Hire AutoGen Developers in 48 Hours',
+  description: 'Hire vetted AutoGen developers in 48 hours. Conversational multi-agent systems, code-executing agents, GroupChat orchestration, and deployment.',
   alternates: { canonical: 'https://kovil.ai/hire/autogen-developers' },
   keywords: [
     'hire autogen developers',

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import InternalDeveloperCopilotPage from '@/src/pages/azure-ai-foundry/developer-tools/InternalDeveloperCopilotPage'
 
 export const metadata: Metadata = {
-  title: 'Internal Developer Copilot — Azure OpenAI & GitHub Copilot',
-  description: 'AI developer copilot trained on your internal codebase, APIs, and runbooks. Built on Azure OpenAI and GitHub Copilot extensibility. 40% faster onboarding. 30% fewer support tickets.',
+  title: 'Internal Developer Copilot on Azure OpenAI',
+  description: 'Developer copilot trained on your codebase, APIs, and runbooks, built on Azure OpenAI and GitHub Copilot. 40% faster onboarding.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/developer-tools/internal-developer-copilot' },
   keywords: ['internal developer copilot Azure', 'GitHub Copilot Azure OpenAI', 'Azure AI developer tools', 'codebase AI assistant', 'internal knowledge AI Azure', 'developer productivity AI', 'Azure AI Foundry developer tools', 'GitHub Copilot extension Azure', 'custom copilot codebase', 'Azure DevOps AI assistant', 'developer onboarding AI', 'internal API documentation AI', 'Azure OpenAI code assistant', 'codebase RAG Azure', 'Kovil AI Azure', 'developer copilot enterprise'],
   openGraph: { type: 'website', title: 'Internal Developer Copilot — Azure AI | Kovil AI', description: 'AI copilot trained on your codebase. Azure OpenAI + GitHub Copilot. 40% faster onboarding. 30% fewer tickets.', url: 'https://kovil.ai/azure-ai-foundry/developer-tools/internal-developer-copilot', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Internal Developer Copilot — Kovil AI' }] },

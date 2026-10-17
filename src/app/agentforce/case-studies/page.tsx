@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { agentforceCaseStudies } from '@/src/data/agentforce-case-studies'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Case Studies: Real Deployments, Real Results',
+  title: 'Agentforce Case Studies: Real Results',
   description:
-    'Explore Agentforce case studies across telecom, insurance, real estate, hospitality, education, staffing, and enterprise IT. See how Kovil AI has deployed Salesforce Agentforce to drive measurable outcomes.',
+    'Agentforce deployments across telecom, insurance, real estate, hospitality, education, staffing, and enterprise IT, with measurable outcomes.',
   alternates: { canonical: 'https://kovil.ai/agentforce/case-studies' },
   keywords: [
     'Agentforce case studies',

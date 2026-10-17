@@ -3,7 +3,7 @@ import FinancialServicesAgentforcePage from '@/src/pages/agentforce/industries/F
 
 export const metadata: Metadata = {
   title: 'Agentforce for Financial Services & Banking',
-  description: 'Production Agentforce implementations for banks, lenders, and wealth managers — KYC onboarding automation, loan servicing case resolution, compliance monitoring agents, and investment advisory support. Financial Services Cloud · Einstein Trust Layer · Fixed-price sprints.',
+  description: 'Agentforce for banks, lenders, and wealth managers: KYC onboarding, loan servicing, compliance monitoring, and advisory support. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/financial-services' },
   keywords: [
     'agentforce financial services',

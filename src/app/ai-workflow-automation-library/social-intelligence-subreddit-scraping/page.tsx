@@ -3,7 +3,7 @@ import SocialIntelligencePage from '@/src/pages/ai-workflow-automation-library/S
 
 export const metadata: Metadata = {
   title: 'Social Intelligence & Subreddit Scraping',
-  description: 'See how Kovil AI builds a social intelligence system: monitor Reddit + LinkedIn + forums every 30 minutes → Claude 3.5 scores relevance on 3 axes → high-signal posts + pre-drafted replies → human approval dashboard → publish. 10x signal-to-noise ratio.',
+  description: 'Monitors Reddit, LinkedIn, and forums every 30 minutes, Claude scores relevance, drafts replies, and routes to human approval. 10x signal-to-noise.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/social-intelligence-subreddit-scraping' },
   robots: { index: true, follow: true },
   openGraph: {

@@ -4,8 +4,9 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Managed AI Engineering | Your AI Function, Fully Handled by Kovil AI',
-  description: 'Managed AI engineering from Kovil AI: we own your AI function end-to-end. Strategy, team, delivery, and reporting — so you get AI outcomes without managing AI engineers.',
+  title: 'Managed AI Engineering: Your AI Function, Handled',
+  description: 'Kovil AI owns your AI function end to end: strategy, team, delivery, and reporting, so you get outcomes without managing AI engineers.',
+  alternates: { canonical: 'https://kovil.ai/managed-ai-engineering' },
   keywords: ['managed AI engineering', 'managed AI team', 'AI as a service', 'AI engineering outsourcing', 'managed AI development', 'outsourced AI team', 'AI function as a service'],
   openGraph: {
     title: 'Managed AI Engineering | Your AI Function, Fully Handled by Kovil AI',

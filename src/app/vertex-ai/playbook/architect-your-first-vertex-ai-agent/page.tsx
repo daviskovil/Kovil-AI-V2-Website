@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ArchitectFirstVertexAgentPage from '@/src/pages/vertex-ai/playbook/ArchitectFirstVertexAgentPage'
 
 export const metadata: Metadata = {
-  title: 'How to Architect Your First Vertex AI Agent — 12-Question Checklist',
-  description: 'The 12 decisions you must make before writing a single line of Vertex AI code — model selection, orchestration strategy, RAG vs fine-tuning, security posture, and evaluation framework.',
+  title: 'Architect Your First Vertex AI Agent',
+  description: 'The 12 decisions to make before writing Vertex AI code: model selection, orchestration, RAG vs fine-tuning, security, and evaluation.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/playbook/architect-your-first-vertex-ai-agent' },
   keywords: ['Vertex AI agent architecture', 'how to build Vertex AI agent', 'Gemini model selection', 'Agent Builder vs Reasoning Engine', 'Vertex AI agent checklist', 'Gemini Flash vs Pro', 'GCP AI agent design', 'RAG vs fine-tuning Vertex AI', 'Vertex AI security checklist', 'first Vertex AI agent guide', 'Kovil AI Vertex AI playbook', 'GCP AI agent architecture', 'Vertex AI orchestration', 'LLM agent architecture GCP'],
   openGraph: { type: 'article', title: 'Architect Your First Vertex AI Agent — Kovil AI Playbook', description: '12-question pre-build checklist. Gemini model selection, Agent Builder vs Reasoning Engine, RAG vs fine-tuning. Complete architecture guide for Vertex AI agents.', url: 'https://kovil.ai/vertex-ai/playbook/architect-your-first-vertex-ai-agent', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-vertex-ai.png', width: 1200, height: 630, alt: 'Architect Your First Vertex AI Agent — Kovil AI' }] },

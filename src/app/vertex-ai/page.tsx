@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import VertexAIPage from '@/src/pages/VertexAIPage'
 
 export const metadata: Metadata = {
-  title: 'Google Cloud Vertex AI Implementation Partner — Build AI Agents on GCP',
-  description: 'Kovil AI builds production AI agents on Google Cloud Vertex AI — Gemini integration, Agent Builder, Vertex AI Search RAG, BigQuery ML. Fixed-price sprints. 2-week risk-free pilot. New York & Austin.',
+  title: 'Google Cloud Vertex AI Implementation Partner',
+  description: 'Production AI agents on Vertex AI: Gemini integration, Agent Builder, Vertex AI Search RAG, and BigQuery ML. 2-week risk-free pilot.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai' },
   keywords: [
     'Vertex AI',

@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import HowAgentforceWorksPage from '@/src/pages/agentforce/playbook/HowAgentforceWorksPage'
 
 export const metadata: Metadata = {
-  title: 'How Agentforce Works: Atlas Reasoning, Topics, Actions & Trust Layer',
+  title: 'How Agentforce Works: Atlas, Topics & Actions',
   description:
-    'Complete technical guide to how Salesforce Agentforce works — the Atlas Reasoning Engine four-phase loop, Topics and Actions, Einstein Trust Layer, Data Cloud grounding, and how agents take action in external systems.',
+    'A technical guide to how Agentforce works: the Atlas four-phase loop, Topics and Actions, the Einstein Trust Layer, and Data Cloud grounding.',
   alternates: { canonical: 'https://kovil.ai/agentforce/playbook/how-does-agentforce-work' },
   keywords: [
     'how does agentforce work',

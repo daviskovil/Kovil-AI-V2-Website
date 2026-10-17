@@ -3,8 +3,8 @@ import PlatformsHubPage from '@/src/pages/platforms/PlatformsHubPage'
 import { platforms, PLATFORM_GROUPS } from '@/src/data/platforms'
 
 export const metadata: Metadata = {
-  title: 'Enterprise Platform AI Integrations — Salesforce, HubSpot, ServiceNow & More',
-  description: 'Kovil AI builds custom AI agents into the enterprise platforms you already run — Salesforce, HubSpot, ServiceNow, NetSuite, Shopify Plus, and 30+ more. Fixed-price, 2-week pilot.',
+  title: 'Enterprise Platform AI Experts & Integrations',
+  description: 'Platform experts and AI agents for Salesforce, HubSpot, NetSuite, ServiceNow, Shopify Plus, and 30+ more. Vetted specialists matched in 48 hours.',
   alternates: { canonical: 'https://kovil.ai/platforms' },
   keywords: [
     'ai agent platform integration',

@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, XCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Toptal Alternative | Kovil AI vs Toptal | Managed AI Engineering',
-  description: 'Looking for a Toptal alternative for AI engineering? Kovil AI offers an Engagement Manager, milestone-gated delivery, 48-hour matching, and a 2-week trial with no $500 deposit required.',
+  title: 'Toptal Alternative: Kovil AI vs Toptal',
+  description: 'A Toptal alternative for AI engineering: an Engagement Manager, milestone-gated delivery, 48-hour matching, and a 2-week trial with no $500 deposit.',
   keywords: ['Toptal alternative', 'Toptal vs Kovil AI', 'alternative to Toptal', 'Toptal competitor', 'managed AI engineering alternative to Toptal'],
   openGraph: { title: 'Toptal Alternative | Kovil AI', description: 'Managed AI engineering without the marketplace risk. No $500 deposit. Engagement Manager included on every engagement.', url: 'https://kovil.ai/toptal-alternative', siteName: 'Kovil AI', type: 'website', images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Toptal Alternative | Kovil AI' }] },
   twitter: { card: 'summary_large_image', title: 'Toptal Alternative | Kovil AI', description: 'Why product teams choose Kovil AI over Toptal for AI engineering.' },

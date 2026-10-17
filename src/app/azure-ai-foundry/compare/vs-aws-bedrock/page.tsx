@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AzureVsAWSBedrockPage from '@/src/pages/azure-ai-foundry/compare/AzureVsAWSBedrockPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry vs AWS Bedrock vs Google Vertex AI — Enterprise Platform Comparison 2026',
-  description: 'Detailed 3-way comparison of Azure AI Foundry vs AWS Bedrock vs Google Vertex AI for enterprise AI. Feature matrix across identity, productivity integration, compliance, model catalog, RAG tooling, and vendor lock-in — with a plain-English verdict for each ecosystem.',
+  title: 'Azure AI Foundry vs AWS Bedrock vs Vertex AI',
+  description: '2026 three-way comparison for enterprise AI: identity, productivity integration, compliance, model catalog, RAG tooling, lock-in, and a plain verdict.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/compare/vs-aws-bedrock' },
   keywords: [
     'Azure AI Foundry vs AWS Bedrock vs Google Vertex AI',

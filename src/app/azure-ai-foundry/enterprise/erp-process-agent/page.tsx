@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ERPProcessAgentPage from '@/src/pages/azure-ai-foundry/enterprise/ERPProcessAgentPage'
 
 export const metadata: Metadata = {
-  title: 'ERP Process Automation Agent — Azure AI Foundry & Dynamics 365',
-  description: 'AI agent that automates purchase orders, vendor onboarding, and approval workflows using Semantic Kernel orchestrated against Dynamics 365 and SAP APIs.',
+  title: 'ERP Process Automation Agent on Azure',
+  description: 'Automates purchase orders, vendor onboarding, and approval workflows with Semantic Kernel against Dynamics 365 and SAP APIs.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/enterprise/erp-process-agent' },
   keywords: ['ERP automation AI', 'Dynamics 365 AI agent', 'Azure AI Foundry ERP', 'purchase order automation', 'vendor onboarding AI', 'Semantic Kernel Dynamics 365', 'SAP AI integration', 'Azure workflow automation', 'ERP process agent', 'AI approval automation', 'Dynamics 365 Semantic Kernel', 'enterprise automation Azure', 'Azure Logic Apps automation', 'ERP AI agent', 'Kovil AI Azure', 'business process automation AI'],
   openGraph: { type: 'website', title: 'ERP Process Automation Agent — Azure AI & Dynamics 365 | Kovil AI', description: 'Automate ERP workflows with Semantic Kernel and Dynamics 365. 60% manual steps eliminated. 4-hour approval cycles.', url: 'https://kovil.ai/azure-ai-foundry/enterprise/erp-process-agent', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'ERP Process Agent — Kovil AI' }] },

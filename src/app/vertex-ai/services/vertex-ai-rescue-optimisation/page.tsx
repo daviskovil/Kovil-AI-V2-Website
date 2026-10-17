@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import VertexAIRescuePage from '@/src/pages/vertex-ai/services/VertexAIRescuePage'
 
 export const metadata: Metadata = {
-  title: 'Vertex AI Rescue & Optimisation | Kovil AI Google Cloud Vertex AI',
-  description: 'Fix broken or underperforming Vertex AI deployments. We diagnose cost overruns, hallucinations, latency spikes, retrieval failures, and model drift — restoring measurable performance in a two-week sprint.',
+  title: 'Vertex AI Rescue & Optimisation',
+  description: 'Fix underperforming Vertex AI: cost overruns, hallucinations, latency spikes, retrieval failures, and model drift. Restored in a two-week sprint.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/services/vertex-ai-rescue-optimisation' },
   keywords: [
     'Vertex AI rescue',

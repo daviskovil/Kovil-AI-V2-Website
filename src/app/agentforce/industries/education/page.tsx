@@ -3,7 +3,7 @@ import EducationAgentforcePage from '@/src/pages/agentforce/industries/Education
 
 export const metadata: Metadata = {
   title: 'Agentforce for Education & Higher Education',
-  description: 'Production Agentforce for universities, colleges, and education providers — admissions inquiry agents, enrolment support, financial aid automation, student support, alumni engagement, and course advising. Fixed-price sprints.',
+  description: 'Agentforce for universities and colleges: admissions inquiries, enrolment support, financial aid, student support, and alumni engagement.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/education' },
   keywords: [
     'agentforce education',

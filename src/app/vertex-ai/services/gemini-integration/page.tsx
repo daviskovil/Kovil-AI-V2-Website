@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import GeminiIntegrationPage from '@/src/pages/vertex-ai/services/GeminiIntegrationPage'
 
 export const metadata: Metadata = {
-  title: 'Gemini Integration & Fine-Tuning | Kovil AI Google Cloud Vertex AI',
-  description: 'Production Gemini 2.0 API integrations on Vertex AI. Grounding with Google Search and enterprise data, function calling, fine-tuning on proprietary data, and token cost optimisation.',
+  title: 'Gemini Integration & Fine-Tuning on Vertex AI',
+  description: 'Production Gemini API integrations: grounding with Google Search and enterprise data, function calling, fine-tuning, and token cost optimisation.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/services/gemini-integration' },
   keywords: [
     'Gemini integration consulting',

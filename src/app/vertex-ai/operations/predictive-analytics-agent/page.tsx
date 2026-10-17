@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import PredictiveAnalyticsAgentPage from '@/src/pages/vertex-ai/operations/PredictiveAnalyticsAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Predictive Analytics Agent — Vertex AI Forecasting & Prediction',
-  description: 'Custom prediction pipelines on Vertex AI — demand forecasting, churn prediction, or equipment failure detection — with Gemini explaining predictions in plain language on Google Cloud.',
+  title: 'Predictive Analytics Agent on Vertex AI',
+  description: 'Custom forecasting on Vertex AI: demand, churn, or equipment failure, with Gemini explaining each prediction in plain language.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/operations/predictive-analytics-agent' },
   keywords: ['predictive analytics GCP', 'Vertex AI prediction', 'demand forecasting GCP', 'churn prediction Vertex AI', 'predictive maintenance GCP', 'BigQuery ML forecasting', 'Vertex AI AutoML', 'Gemini predictive analytics', 'Google Cloud ML prediction', 'Vertex AI time series', 'predictive analytics AI agent', 'GCP forecasting agent'],
   openGraph: {

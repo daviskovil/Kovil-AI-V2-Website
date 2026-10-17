@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import SalesCloudAgentDeploymentPage from '@/src/pages/agentforce/services/SalesCloudAgentDeploymentPage'
 
 export const metadata: Metadata = {
-  title: 'Sales Cloud Agent Deployment',
-  description: 'Agentforce Sales Cloud deployment service. Deploy AI SDR agents that qualify inbound leads, handle objections, draft personalised outreach, and book discovery calls autonomously.',
+  title: 'Agentforce Sales Cloud Agent Deployment',
+  description: 'Deploy Agentforce AI SDR agents that qualify inbound leads, handle objections, draft outreach, and book discovery calls autonomously.',
   alternates: { canonical: 'https://kovil.ai/agentforce/services/sales-cloud-agent-deployment' },
   keywords: [
     'Agentforce Sales Cloud deployment',

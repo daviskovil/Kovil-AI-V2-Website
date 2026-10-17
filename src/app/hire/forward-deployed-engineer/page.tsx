@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ForwardDeployedEngineerPage from '@/src/pages/hire/ForwardDeployedEngineerPage'
 
 export const metadata: Metadata = {
-  title: 'Hire a Forward Deployed Engineer (FDE) — Embedded in 48 Hours',
-  description: 'Hire a vetted Forward Deployed Engineer through Kovil AI. Senior engineers embedded directly with your team, building, integrating, and shipping AI against your real workflows and systems. Matched in 48 hours, 2-week risk-free trial, 100% IP yours.',
+  title: 'Hire a Forward Deployed Engineer (FDE)',
+  description: 'Hire a senior FDE embedded with your team, building and shipping AI against your real workflows. Matched in 48 hours, 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/hire/forward-deployed-engineer' },
   keywords: [
     'hire forward deployed engineer',

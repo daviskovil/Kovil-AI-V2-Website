@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import AgentforcePage from '@/src/pages/AgentforcePage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Implementation Partner — Build & Deploy AI Agents',
+  title: 'Agentforce Implementation Partner & AI Agents',
   description:
-    'Kovil AI is a specialist Agentforce implementation partner in New York. We design, build, and deploy Salesforce Agentforce AI agents for Sales Cloud, Service Cloud, and Marketing Cloud — in fixed-price 2-week sprints. Book a free discovery call.',
+    'Specialist Agentforce implementation partner in New York. We design, build, and deploy AI agents for Sales, Service, and Marketing Cloud. Book a call.',
   alternates: { canonical: 'https://kovil.ai/agentforce' },
   keywords: [
     'Agentforce',

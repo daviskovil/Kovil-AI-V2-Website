@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ITHelpdeskAgentPage from '@/src/pages/agentforce/internal-operations/ITHelpdeskAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce IT Helpdesk Agent — Autonomous L1 IT Support & Ticket Resolution',
-  description: 'Agentforce IT helpdesk agent that resolves 70% of L1 tickets autonomously — credential resets, access provisioning, account unlocks — 24/7, with complex issues routed to engineers.',
+  title: 'Agentforce IT Helpdesk Agent',
+  description: 'Resolves 70% of L1 tickets autonomously, including credential resets, access provisioning, and unlocks, with complex issues routed to engineers.',
   alternates: { canonical: 'https://kovil.ai/agentforce/internal-operations/it-helpdesk-agent' },
   keywords: [
     'Agentforce IT helpdesk agent',

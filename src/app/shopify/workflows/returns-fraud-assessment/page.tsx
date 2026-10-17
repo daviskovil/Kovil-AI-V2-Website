@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ReturnsFraudAssessmentPage from '@/src/pages/shopify/workflows/ReturnsFraudAssessmentPage'
 
 export const metadata: Metadata = {
-  title: 'Autonomous Returns Fraud Assessment & Auditing Agent',
-  description: 'Returns auditor agents that check customer history and cross-reference photos with vision models to flag risk before refunds. 48-hour avg processing.',
+  title: 'Returns Fraud Assessment & Auditing Agent',
+  description: 'Returns auditor agents check customer history and cross-reference photos with vision models to flag risk before refunds. 48-hour average.',
   alternates: { canonical: 'https://kovil.ai/shopify/workflows/returns-fraud-assessment' },
   keywords: [
     'returns fraud detection shopify',

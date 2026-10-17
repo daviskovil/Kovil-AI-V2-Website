@@ -3,7 +3,7 @@ import AzureAgentReadinessPage from '@/src/pages/AzureAgentReadinessPage'
 
 export const metadata: Metadata = {
   title: 'Azure AI Agent Deployment Readiness Assessment',
-  description: 'Free 4-minute assessment for enterprise AI decision-makers. Find out if your organisation is ready to deploy AI agents on Azure AI Foundry — scored across infrastructure, data, use case, team, and investment. Get a full 90-day deployment plan.',
+  description: 'Free 4-minute assessment: is your organisation ready to deploy AI agents on Azure AI Foundry? Get a scored result and a 90-day plan.',
   keywords: [
     'Azure AI Foundry readiness assessment',
     'Azure AI agent deployment',

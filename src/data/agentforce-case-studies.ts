@@ -134,9 +134,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'Most service automation implementations break even within 4-6 months through reduced average handle time and improved first-contact resolution. The largest financial return is usually the capacity expansion: the same team can handle 3-4x the volume without additional headcount.',
       },
     ],
-    metaTitle: 'Agentforce Telecom Case Study: 87% Fewer Manual Cases, 24/7 AI Support',
+    metaTitle: 'Agentforce Telecom Case Study: 87% Fewer Cases',
     metaDescription:
-      'See how Kovil AI deployed Agentforce Service Agent for a mid-size telecom provider, automating 87% of manual case creation, achieving 24/7 coverage, and cutting handle time from 14 to 4 minutes.',
+      'Agentforce Service Agent for a telecom provider: 87% of manual case creation automated, 24/7 coverage, and handle time cut from 14 to 4 minutes.',
     keywords: [
       'Agentforce telecom case study',
       'Salesforce Service Cloud telecom',
@@ -242,9 +242,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'Touch 1 is an immediate plan summary email (within 2 minutes of inquiry). Touch 2 is a WhatsApp or SMS reminder at 48 hours. Touch 3 is a personalized email with advisor contact details at day 5. Touch 4 is an advisor outbound call prompt at day 8. Touch 5 is a final enrollment deadline reminder at day 12. Each touch adapts based on the member\'s engagement with previous messages.',
       },
     ],
-    metaTitle: 'Agentforce Medicare Insurance Case Study: Data Cloud Member 360 and 28% Enrollment Lift',
+    metaTitle: 'Agentforce Medicare Case Study: +28% Enrollment',
     metaDescription:
-      'How Kovil AI used Salesforce Data Cloud and Agentforce to unify 120K+ Medicare member profiles, route advisors by state license, and improve enrollment conversion by 28%.',
+      'Data Cloud and Agentforce unified 120K+ Medicare member profiles, routed advisors by state license, and lifted enrollment conversion by 28%.',
     keywords: [
       'Agentforce insurance case study',
       'Salesforce Data Cloud Medicare',
@@ -349,9 +349,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'Agentforce delivers an automated acknowledgment on the same channel within 5 minutes: a personalized message on WhatsApp, a formatted email, or a chat response confirming receipt. The system records the inquiry, categorizes it, and queues it for counselor assignment when business hours resume, with a pre-populated context card so the counselor needs zero additional research.',
       },
     ],
-    metaTitle: 'Agentforce Education Case Study: 97% Instant Response, 45% Enrollment Lift',
+    metaTitle: 'Agentforce Education Case Study: +45% Enrollment',
     metaDescription:
-      'Kovil AI deployed Agentforce Digital Engagement for a higher education institution, unifying WhatsApp, Facebook, website, and email into one intelligent queue with 45% enrollment conversion improvement.',
+      'Agentforce Digital Engagement unified WhatsApp, Facebook, web, and email into one queue: 97% instant response and 45% better enrollment conversion.',
     keywords: [
       'Agentforce education case study',
       'Salesforce higher education enrollment',
@@ -457,9 +457,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'The data unification phase took 10 weeks for this engagement: 2 weeks for source system audit and mapping, 4 weeks for pipeline build and testing, and 4 weeks for identity resolution tuning and quality validation. The Agentforce routing and Marketing Cloud campaign layers were built in parallel during weeks 6-14, putting total delivery at 14 weeks end-to-end.',
       },
     ],
-    metaTitle: 'Agentforce Hospitality Case Study: 96% Faster RFP Response, 85% Less Duplicates',
+    metaTitle: 'Agentforce Hospitality: 96% Faster RFP Response',
     metaDescription:
-      'Kovil AI deployed Salesforce Data Cloud and Agentforce for a multi-property hotel group, unifying 22 property systems, cutting duplicate leads by 85%, and reducing RFP response time from 8 hours to 45 minutes.',
+      'Data Cloud and Agentforce for a hotel group: 22 property systems unified, duplicate leads down 85%, RFP response from 8 hours to 45 minutes.',
     keywords: [
       'Agentforce hospitality case study',
       'Salesforce hotel management',
@@ -564,9 +564,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'The initial model is trained on historical data and produces accurate segmentation from day one. The feedback loop, where sales outcomes feed back into Data Cloud, starts improving model weights from the first month. By month 3-4, the model has enough real-outcome data to materially improve accuracy beyond the baseline. Most clients see a 10-15 percentage point improvement in scoring precision within 6 months.',
       },
     ],
-    metaTitle: 'Agentforce Real Estate Data Cloud Case Study: BANT Scoring and 34% Conversion Lift',
+    metaTitle: 'Agentforce Real Estate CDP: +34% Conversion',
     metaDescription:
-      'Kovil AI deployed Salesforce Data Cloud and BANT lead scoring for a leading real estate company, reducing lead data loss from 40% to 2% and improving inquiry-to-meeting conversion by 34%.',
+      'Data Cloud and BANT scoring cut lead data loss from 40% to 2% and lifted inquiry-to-meeting conversion by 34% for a real estate company.',
     keywords: [
       'Agentforce real estate case study',
       'Salesforce Data Cloud real estate',
@@ -671,9 +671,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'Touch 1: WhatsApp acknowledgment within 5 minutes of first contact. Touch 2: Personalized email with property brochure within 2 hours. Touch 3: WhatsApp follow-up at 48 hours with site visit invite. Touch 4: Sales rep call prompt in Salesforce task at day 5. Touch 5: Final WhatsApp message at day 10 with availability update. The sequence pauses automatically if the buyer books a site visit or responds to any touch.',
       },
     ],
-    metaTitle: 'Agentforce WhatsApp Real Estate Case Study: 30% Conversion Lift, 2-Min Document Generation',
+    metaTitle: 'Agentforce WhatsApp Real Estate Case Study',
     metaDescription:
-      'Kovil AI integrated Agentforce and WhatsApp Business API for a premium property developer, delivering 30% lead conversion lift, 2-minute document generation, and 100% buyer channel visibility.',
+      'Agentforce and WhatsApp Business API for a property developer: 30% lead conversion lift, 2-minute document generation, 100% buyer channel visibility.',
     keywords: [
       'Agentforce WhatsApp real estate case study',
       'Salesforce WhatsApp Business API property',
@@ -779,9 +779,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'Yes, with appropriate training data. For niche roles where fewer than 20 historical placements exist, the model relies more heavily on deterministic skill-matching criteria and less on probabilistic pattern-matching. As more placements accumulate in Data Cloud, the model continuously retrains and improves accuracy for those role types.',
       },
     ],
-    metaTitle: 'Agentforce Recruiting Case Study: 42-Day to 11-Day Time-to-Fill with AI CV Screening',
+    metaTitle: 'Agentforce Recruiting Case Study: 42 to 11 Days',
     metaDescription:
-      'Kovil AI deployed Agentforce and Prompt Builder for a staffing firm processing 8,000 CVs monthly, cutting time-to-fill from 42 to 11 days and reducing candidate drop-off from 28% to 4%.',
+      'Agentforce and Prompt Builder screened 8,000 CVs a month, cutting time-to-fill from 42 to 11 days and candidate drop-off from 28% to 4%.',
     keywords: [
       'Agentforce staffing recruiting case study',
       'Salesforce recruiting automation',
@@ -887,9 +887,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'Both, depending on configuration. In this deployment, Atlas reads from all five systems for context assembly and writes to Salesforce Service Cloud for the ticket record and routing decisions. It also writes status updates back to Zendesk and creates Jira sub-tasks when the triage engine determines that a ticket requires engineering involvement. Read-only and write permissions are configured per system during the MCP integration setup.',
       },
     ],
-    metaTitle: 'Agentforce Atlas Reasoning Engine Case Study: Zero Triage, 94% SLA Compliance',
+    metaTitle: 'Agentforce Atlas Case Study: 94% SLA Compliance',
     metaDescription:
-      'Kovil AI deployed Agentforce Atlas Reasoning Engine to connect Slack, Jira, Zendesk, Teams, and SharePoint, eliminating 40-minute manual triage and improving SLA compliance from 62% to 94%.',
+      'Atlas Reasoning Engine connected Slack, Jira, Zendesk, Teams, and SharePoint, ending 40-minute manual triage and lifting SLA compliance from 62% to 94%.',
     keywords: [
       'Agentforce Atlas Reasoning Engine case study',
       'Salesforce enterprise service automation',
@@ -997,9 +997,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'The coaching engine applies a set of configurable patterns to each call: long periods of rep silence, repeated customer objections, calls with declining sentiment scores, or competitor mentions handled without a value-based response. When these patterns are detected, the call appears in the manager\'s coaching queue with the specific timestamp and transcript excerpt highlighted. The manager reviews the 2-minute segment, not the full 30-minute call.',
       },
     ],
-    metaTitle: 'Agentforce AI Call Summary Insights: 9 Post-Call AI Capabilities for Sales Teams',
+    metaTitle: 'Agentforce AI Call Summary Insights for Sales',
     metaDescription:
-      'Learn how Agentforce AI Call Summary Insights automates post-call CRM updates, extracts action items, monitors competitor mentions, and delivers coaching signals, for every call, automatically.',
+      'Automates post-call CRM updates, extracts action items, monitors competitor mentions, and delivers coaching signals for every call.',
     keywords: [
       'Agentforce AI call summary',
       'Salesforce call intelligence',
@@ -1106,9 +1106,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'The initial model is configured with business rules and initial strategy definitions from day one. The learning loop begins as soon as interaction and outcome data accumulates. Most clients see the model\'s recommendation quality materially improve within 60-90 days as the AI identifies which actions are actually converting for each customer segment in their specific context.',
       },
     ],
-    metaTitle: 'Salesforce Next Best Action: 8 NBA Capabilities for Sales and Service Teams',
+    metaTitle: 'Salesforce Next Best Action: 8 Capabilities',
     metaDescription:
-      'Discover how Salesforce Next Best Action uses Einstein AI to surface real-time recommendations in Sales Cloud, Service Cloud, and Marketing Cloud, with built-in A/B testing and compliance filtering.',
+      'How Next Best Action uses Einstein AI for real-time recommendations in Sales, Service, and Marketing Cloud, with A/B testing and compliance filtering.',
     keywords: [
       'Salesforce Next Best Action',
       'Agentforce NBA capabilities',
@@ -1214,9 +1214,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'The core capabilities, Data Cloud ingestion, BANT scoring, and Salesforce mobile dashboards, are configuration-based. The look-alike model and predicted close date regression require Einstein AI setup, which is also configuration-driven within Salesforce. For clients who want to incorporate non-standard signals (WhatsApp response time, custom survey scores), a lightweight integration is needed but the underlying model remains configuration-based.',
       },
     ],
-    metaTitle: 'Agentforce Buyer Intelligent Insight: 7 AI Capabilities to Identify Ready-to-Buy Leads',
+    metaTitle: 'Agentforce Buyer Insight: 7 AI Capabilities',
     metaDescription:
-      'Discover how Agentforce Buyer Intelligent Insight uses Einstein AI to score buyer intent, automate BANT qualification, and surface your 10 highest-priority leads every morning.',
+      'Scores buyer intent with Einstein AI, automates BANT qualification, and surfaces your 10 highest-priority leads every morning.',
     keywords: [
       'Agentforce buyer intelligence',
       'Salesforce buyer intent scoring',
@@ -1323,9 +1323,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'Yes, through Marketing Cloud integration. Outbound WhatsApp messages require opt-in consent from the recipient and must use Meta-approved message templates (for the first outbound message in a conversation window). Once a customer responds, the conversation window opens and the AI agent or human rep can reply with free-form messages. Campaigns are built in Marketing Cloud Journey Builder and triggered based on segment conditions.',
       },
     ],
-    metaTitle: 'Agentforce WhatsApp AI Agent: 8 Enterprise WhatsApp Capabilities',
+    metaTitle: 'Agentforce WhatsApp AI Agent: 8 Capabilities',
     metaDescription:
-      'Learn how Agentforce WhatsApp AI Agent delivers 24/7 autonomous engagement, CRM-logged conversations, document delivery, and intelligent escalation through WhatsApp Business API.',
+      '24/7 autonomous engagement, CRM-logged conversations, document delivery, and intelligent escalation through WhatsApp Business API.',
     keywords: [
       'Agentforce WhatsApp agent',
       'Salesforce WhatsApp Business API',
@@ -1431,9 +1431,9 @@ export const agentforceCaseStudies: AgentforceCaseStudy[] = [
         a: 'The route is calculated while the device is online and cached for offline use. If a rep loses connectivity mid-route, the optimized route remains available in the app. Proximity lead surfacing requires an active connection for real-time queries. The maps themselves are partially cached for offline rendering, but the intent-score overlays require connectivity to update.',
       },
     ],
-    metaTitle: 'Agentforce GeoProspect AI: Field Sales Intelligence with Geographic Lead Scoring',
+    metaTitle: 'Agentforce GeoProspect AI for Field Sales',
     metaDescription:
-      'Learn how Agentforce GeoProspect AI gives field sales teams geographic lead scoring, proximity-based lead surfacing, route optimization, and competitive presence mapping in Salesforce mobile.',
+      'Geographic lead scoring, proximity-based lead surfacing, route optimization, and competitive presence mapping for field teams in Salesforce mobile.',
     keywords: [
       'Agentforce GeoProspect AI field sales',
       'Salesforce geographic lead scoring',

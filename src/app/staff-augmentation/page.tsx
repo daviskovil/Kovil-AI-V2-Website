@@ -4,8 +4,9 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Staff Augmentation Services | Extend Your Team with Vetted Engineers',
-  description: 'Staff augmentation: add vetted engineers to your team without the overhead of full-time hiring. Kovil AI matches you in 48 hours. Scale up or down as your project demands.',
+  title: 'Staff Augmentation: Vetted Engineers',
+  description: 'Add vetted engineers to your team without full-time hiring overhead. Matched in 48 hours, and you scale up or down as your project demands.',
+  alternates: { canonical: 'https://kovil.ai/staff-augmentation' },
   keywords: ['staff augmentation', 'staff augmentation services', 'IT staff augmentation', 'tech staff augmentation', 'software engineer augmentation', 'staff augmentation vs outsourcing', 'nearshore staff augmentation'],
   openGraph: {
     title: 'Staff Augmentation Services | Extend Your Team with Vetted Engineers',

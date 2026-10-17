@@ -3,7 +3,7 @@ import AMBriefReportingPage from '@/src/pages/ai-workflow-automation-library/AMB
 
 export const metadata: Metadata = {
   title: 'Automated AM Briefs & Client Reporting',
-  description: 'See how Kovil AI automates weekly client reporting and daily AM briefs: GA4 + ad platform data → GPT-4o drafts narratives → Google Slides report built automatically → Gmail to client, Slack brief to each Account Manager.',
+  description: 'GA4 and ad data feed GPT-4o narratives, a Slides report builds automatically, and Gmail delivers to clients while each account manager gets a Slack brief.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/automated-am-briefs-client-reporting' },
   robots: { index: true, follow: true },
   keywords: [

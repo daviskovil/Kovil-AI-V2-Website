@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import FinancialServicesServiceCloudPage from '@/src/pages/agentforce/playbook/FinancialServicesServiceCloudPage'
 
 export const metadata: Metadata = {
-  title: 'From 48-Hour Case Resolution to 4 Hours: An Agentforce Service Cloud Build',
-  description: 'Real Agentforce financial services deployment walkthrough — FCA-regulated lending platform, MuleSoft LMS integration, Einstein Trust Layer configuration, and 68% autonomous resolution at 90 days.',
+  title: 'Agentforce Service Cloud Build: 48 Hours to 4',
+  description: 'How an FCA-regulated lender cut case resolution from 48 hours to 4 with Agentforce, MuleSoft, and the Trust Layer: 68% autonomous resolution at 90 days.',
   alternates: { canonical: 'https://kovil.ai/agentforce/playbook/financial-services-service-cloud-build' },
   keywords: [
     'Agentforce financial services',

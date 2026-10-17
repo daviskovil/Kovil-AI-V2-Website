@@ -4,8 +4,9 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Hire Databricks Engineers | Delta Lake, Unity Catalog & Medallion Architecture',
-  description: 'Hire vetted Databricks data engineers and Lakehouse architects from Kovil AI. Embedded in your team in under 10 days. PySpark, Delta Lake, Unity Catalog, DLT, and Photon engine specialists.',
+  title: 'Hire Databricks Engineers',
+  description: 'Hire vetted Databricks data engineers and Lakehouse architects in under 10 days: PySpark, Delta Lake, Unity Catalog, DLT, and Photon.',
+  alternates: { canonical: 'https://kovil.ai/hire-databricks-engineer' },
   keywords: ['hire Databricks engineer', 'Databricks data engineer', 'Delta Lake engineer', 'Unity Catalog architect', 'Medallion architecture', 'Lakehouse engineer', 'PySpark engineer', 'Databricks staff augmentation', 'Databricks consultant'],
   openGraph: {
     title: 'Hire Databricks Engineers | Kovil AI — Embedded Lakehouse Specialists',

@@ -3,8 +3,8 @@ import AgentforceIndustriesHubPage from '@/src/pages/agentforce/industries/Agent
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Agentforce by Industry: Financial Services, Healthcare, Insurance & More',
-  description: 'Production Agentforce deployments across six industries — financial services, healthcare, insurance, retail, manufacturing, and telecom. Industry-specific use cases, compliance guardrails, and Salesforce cloud integration patterns.',
+  title: 'Agentforce by Industry',
+  description: 'Production Agentforce across financial services, healthcare, insurance, retail, manufacturing, and telecom, with industry compliance guardrails.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries' },
   keywords: [
     'agentforce by industry',

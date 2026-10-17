@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, XCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Andela Alternative | Kovil AI vs Andela | Managed AI Engineering',
-  description: 'Looking for an Andela alternative? Kovil AI offers managed AI engineering with an Engagement Manager, 48-hour matching, 2-week risk-free trial, and milestone-gated delivery — purpose-built for AI projects.',
+  title: 'Andela Alternative: Kovil AI vs Andela',
+  description: 'An Andela alternative: managed AI engineering with an Engagement Manager, 48-hour matching, a 2-week trial, and milestone-gated delivery.',
   keywords: ['Andela alternative', 'Andela vs Kovil AI', 'alternative to Andela', 'Andela competitor', 'managed AI engineering alternative to Andela'],
   openGraph: { title: 'Andela Alternative | Kovil AI', description: 'Managed AI engineering without the talent marketplace model. Engagement Manager included. 48-hour matching. No deposit.', url: 'https://kovil.ai/andela-alternative', siteName: 'Kovil AI', type: 'website', images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Andela Alternative | Kovil AI' }] },
   twitter: { card: 'summary_large_image', title: 'Andela Alternative | Kovil AI', description: 'Why product teams choose Kovil AI over Andela for AI engineering.' },

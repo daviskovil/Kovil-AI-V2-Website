@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import EnterpriseKnowledgeAgentPage from '@/src/pages/azure-ai-foundry/enterprise/EnterpriseKnowledgeAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Enterprise Knowledge Agent — Azure AI Search RAG over SharePoint & Confluence',
-  description: 'RAG knowledge agent built on Azure AI Search and GPT-4o. Indexes SharePoint, Confluence, and internal docs — gives employees instant cited answers with Entra ID access control.',
+  title: 'Enterprise Knowledge Agent: Azure AI Search RAG',
+  description: 'RAG knowledge agent on Azure AI Search and GPT-4o. Indexes SharePoint and Confluence and gives cited answers with Entra ID access control.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/enterprise/enterprise-knowledge-agent' },
   keywords: ['Azure AI Search RAG', 'enterprise knowledge agent', 'SharePoint AI search', 'Confluence RAG agent', 'Azure OpenAI knowledge base', 'enterprise knowledge management AI', 'RAG over SharePoint', 'Azure AI Foundry knowledge agent', 'corporate knowledge base AI', 'Semantic Kernel RAG', 'Azure AI Search agent', 'enterprise search AI', 'employee knowledge assistant', 'Azure knowledge management', 'Kovil AI Azure', 'internal knowledge AI'],
   openGraph: { type: 'website', title: 'Enterprise Knowledge Agent — Azure AI Search RAG | Kovil AI', description: 'RAG agent over SharePoint, Confluence, and internal docs. 83% answer accuracy. 12-minute research time. Entra ID access control.', url: 'https://kovil.ai/azure-ai-foundry/enterprise/enterprise-knowledge-agent', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Enterprise Knowledge Agent — Kovil AI' }] },

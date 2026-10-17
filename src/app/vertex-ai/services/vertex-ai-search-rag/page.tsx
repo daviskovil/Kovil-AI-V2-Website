@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import VertexAISearchRAGPage from '@/src/pages/vertex-ai/services/VertexAISearchRAGPage'
 
 export const metadata: Metadata = {
-  title: 'Vertex AI Search & RAG Pipeline | Kovil AI Google Cloud Vertex AI',
-  description: 'Enterprise RAG pipelines on Google Cloud using Vertex AI Search, BigQuery, and Cloud Storage. Ground Gemini agents in live enterprise knowledge with IAM-governed retrieval and production accuracy guarantees.',
+  title: 'Vertex AI Search & RAG Pipeline',
+  description: 'Enterprise RAG on Vertex AI Search, BigQuery, and Cloud Storage. Ground Gemini agents in live company knowledge with IAM-governed retrieval.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/services/vertex-ai-search-rag' },
   keywords: [
     'Vertex AI Search RAG',

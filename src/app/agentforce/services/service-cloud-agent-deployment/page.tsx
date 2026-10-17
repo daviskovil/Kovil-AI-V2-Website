@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ServiceCloudAgentDeploymentPage from '@/src/pages/agentforce/services/ServiceCloudAgentDeploymentPage'
 
 export const metadata: Metadata = {
-  title: 'Service Cloud Agent Deployment',
-  description: 'Agentforce Service Cloud deployment service. Deploy AI agents that autonomously resolve L1 and L2 support cases — refunds, troubleshooting, order status — with CSAT safeguards built in.',
+  title: 'Agentforce Service Cloud Agent Deployment',
+  description: 'Deploy Agentforce agents that resolve L1 and L2 support cases, such as refunds, troubleshooting, and order status, with CSAT safeguards built in.',
   alternates: { canonical: 'https://kovil.ai/agentforce/services/service-cloud-agent-deployment' },
   keywords: [
     'Agentforce Service Cloud deployment',

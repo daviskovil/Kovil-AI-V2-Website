@@ -12,6 +12,8 @@ export interface TechBadge {
 }
 
 export interface CaseStudy {
+  metaTitle?: string
+  metaDescription?: string
   slug: string;
   title: string;
   headline: string;
@@ -34,6 +36,8 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "law-firm-contract-review-ai",
+    metaTitle: "AI Contract Review Cuts Review Time by 78%",
+    metaDescription: "A 60-attorney firm automated 94% of standard clause analysis with an AI agent trained on its own precedents, reclaiming $380K in partner hours.",
     title: "Law Firm Contract Review — 78% Faster, Zero Missed Clauses",
     headline: "AI Contract Review Agent Cuts Review Time by 78% and Reclaims $380K in Annual Partner Hours",
     excerpt:
@@ -120,6 +124,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "secondary-mortgage-document-platform",
+    metaTitle: "AI Loan Package Verification Case Study",
+    metaDescription: "A two-phase AI platform classifies loan documents and verifies packages against takeout partner requirements, replacing manual PDF sorting.",
     title: "the mortgage document platform — AI Document Platform for the Mortgage Secondary Market",
     headline: "AI-Powered Loan Package Verification Replaces Manual PDF Sorting and Spreadsheet Checklists",
     excerpt:
@@ -203,6 +209,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "lending-platform-ai-automation",
+    metaTitle: "AI Automation for a Digital Lending Platform",
+    metaDescription: "An embedded AI-first team redesigned underwriting and integrations end to end, for faster deal turnaround and a scalable automation foundation.",
     title: "AI Workflow Automation for a Lending Technology Platform",
     headline: "End-to-End AI Automation Transforms Deal Processing for a Digital Lending Platform",
     excerpt:
@@ -281,6 +289,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "fintech-payment-dashboard",
+    metaTitle: "PCI-Compliant Payment Dashboard, 40% Under Budget",
+    metaDescription: "A Series A FinTech needed a production-ready payment dashboard in 3 weeks. Delivered in 18 days, PCI-compliant, fully tested, 40% under budget.",
     title: "FinTech Payment Dashboard — Shipped in 18 Days",
     headline: "A PCI-Compliant Payment Dashboard Launched 40% Under Budget",
     excerpt:
@@ -351,6 +361,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "saas-workflow-automation",
+    metaTitle: "80% of Manual Approval Workflows Eliminated",
+    metaDescription: "An n8n automation layer now handles 80% of a SaaS company's approval workflows, saving 15+ hours a week and $120K annually.",
     title: "SaaS Approval Workflows Automated — $120K/Year Saved",
     headline: "80% of Manual Approval Workflows Eliminated in 6 Weeks",
     excerpt:
@@ -414,6 +426,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "ecommerce-maintenance",
+    metaTitle: "Legacy Codebase Stabilised: 23 Bugs to Near Zero",
+    metaDescription: "A maintenance retainer cut bug tickets by 60% and restored 99.9% uptime for a 500K-user e-commerce platform.",
     title: "E-Commerce Platform — 99.9% Uptime Restored",
     headline: "Legacy Codebase Stabilized: From 23 Monthly Bugs to Near Zero",
     excerpt:
@@ -477,6 +491,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "healthcare-ai-integration",
+    metaTitle: "AI Cuts Patient Intake From 18 to 2 Minutes",
+    metaDescription: "An AI integration across 3 disconnected systems cut manual entry by 95% and patient intake from 18 minutes to 2 for a HealthTech company.",
     title: "HealthTech Patient Intake — 95% Manual Entry Eliminated",
     headline: "AI Cuts Patient Intake From 18 Minutes to 2 Minutes",
     excerpt:
@@ -541,6 +557,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "logistics-mvp-sprint",
+    metaTitle: "Route Optimization MVP in 21 Days, $2M Seed",
+    metaDescription: "A pre-seed logistics startup got a working route optimization MVP in 21 days and closed a $2M seed round 60 days later.",
     title: "Logistics MVP — $2M Seed Round Closed on the Back of It",
     headline: "Route Optimization MVP Built in 21 Days, Seed Round Closed in 60",
     excerpt:
@@ -605,6 +623,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "legal-tech-maintenance",
+    metaTitle: "3 Production Apps Stabilised in 5 Days",
+    metaDescription: "After a LegalTech company's whole dev team left, full codebase onboarding took 5 days and zero downtime has followed since.",
     title: "LegalTech — Zero Downtime After Dev Team Departure",
     headline: "Three Production Apps Stabilized in 5 Days After Entire Dev Team Left",
     excerpt:
@@ -668,6 +688,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "retail-chatbot",
+    metaTitle: "Retail AI Chatbot: 70% of Queries, CSAT +22%",
+    metaDescription: "A GPT-powered chatbot handles 70% of queries for a 200-store retail chain facing 500+ daily tickets, and customer satisfaction improved.",
     title: "Retail AI Chatbot — 70% of Support Tickets Deflected",
     headline: "AI Customer Service Handles 70% of Queries, CSAT Up 22%",
     excerpt:
@@ -732,6 +754,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "proptech-sprint",
+    metaTitle: "PropTech Valuation Dashboard, 98% Accuracy",
+    metaDescription: "A property valuation dashboard with multiple real estate data API integrations built in 3 weeks, with 98% data accuracy and a first enterprise client.",
     title: "PropTech Valuation Dashboard — Delivered in 3 Weeks",
     headline: "Property Valuation Dashboard with 3rd-Party API Integrations, 98% Accuracy",
     excerpt:
@@ -794,6 +818,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "edtech-platform",
+    metaTitle: "EdTech Platform Fixed: Load Times Down 55%",
+    metaDescription: "A maintenance retainer cut page load times by 55% and crash rates to near zero for a growing B2C EdTech platform.",
     title: "EdTech Platform — Page Load Cut 55%, Crashes Eliminated",
     headline: "Growing User Base No Longer Breaking the Platform",
     excerpt:
@@ -858,6 +884,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "ai-powered-lead-generation",
+    metaTitle: "Five AI Agents, One Automated B2B Pipeline",
+    metaDescription: "A five-agent pipeline automates outbound from prospect research to booked meeting, tripling pipeline volume with the same headcount.",
     title: "AI-Powered Lead Generation — B2B Outbound Pipeline Automated",
     headline: "Five AI Agents. One Automated B2B Pipeline. Triple the Pipeline Output.",
     excerpt:
@@ -930,6 +958,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "ai-sales-follow-up-portal",
+    metaTitle: "Mobile AI Portal for Field Sales",
+    metaDescription: "A mobile-first AI portal for industrial field sales: per-client follow-ups, voice-to-LinkedIn content, and an AI objection response database.",
     title: "AI Sales & Follow-Up Portal — Built for Field Sales Reps",
     headline: "A Centralised AI Hub for Field Sales: Follow-Ups, LinkedIn Content, and Objection Handling — All from Your Phone",
     excerpt:
@@ -995,6 +1025,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "geo-monitoring-platform",
+    metaTitle: "GEO Monitoring Platform for AI Answers",
+    metaDescription: "Tracks whether brands appear in ChatGPT, Gemini, and Perplexity answers: 50 AI calls per run, domain mention detection, and citation trends.",
     title: "GEO Monitoring Platform — Brand Visibility in AI-Generated Answers",
     headline: "GEO Monitoring Platform: Track Whether Your Brand Appears in AI Answers Across ChatGPT, Gemini, and Beyond",
     excerpt:
@@ -1061,6 +1093,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "ai-pet-companion",
+    metaTitle: "AI Pet Companion Dog With Persistent Memory",
+    metaDescription: "An AI companion dog with persistent memory and a learnable persona that gets to know a user over time, built to ease loneliness at scale.",
     title: "AI Pet Companion — Built to Combat Loneliness Through Daily Personalised Interaction",
     headline: "An AI Pet Companion Dog That Learns Who You Are: Solving Loneliness at Scale Through Persistent Memory and Daily Connection",
     excerpt:
@@ -1139,6 +1173,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "automobile-parts-cataloging-ai",
+    metaTitle: "AI Catalogued 1.4 Million Automobile Parts",
+    metaDescription: "A pipeline deduplicated 2.1 million raw parts to 1.4 million and wrote LLM descriptions for each, cutting returns 27% and lifting conversion 38%.",
     title: "Automobile Parts Cataloguing — 1.4M Parts Enriched with AI-Generated Descriptions",
     headline: "How AI Catalogued 1.4 Million Automobile Parts and Gave Each One a Human-Readable Identity",
     excerpt:
@@ -1213,6 +1249,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "ai-avatar-influencer-platform",
+    metaTitle: "AI Avatar Platform for Influencers & Experts",
+    metaDescription: "An AI avatar trained on an expert's full digital footprint lets one advisor go from 8 consultations a week to 130+ avatar sessions a month.",
     title: "AI Avatar Platform — Influencer Interactions Scaled 24/7 Without Availability Constraints",
     headline: "An AI Avatar Loaded With Every Word You've Ever Said: Scaling Expert Access Without Scaling Your Time",
     excerpt:

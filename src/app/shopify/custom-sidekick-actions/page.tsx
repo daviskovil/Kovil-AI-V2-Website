@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ShopifySidekickActionsPage from '@/src/pages/shopify/ShopifySidekickActionsPage'
 
 export const metadata: Metadata = {
-  title: 'Custom Shopify Sidekick Actions & Assistant Overrides',
-  description: 'Extend Shopify Sidekick with custom action hooks, vector RAG layers, and secure legacy ERP sync — turning it into a conversational dashboard for your stack.',
+  title: 'Custom Shopify Sidekick Actions',
+  description: 'Extend Shopify Sidekick with custom action hooks, vector RAG layers, and secure legacy ERP sync, turning it into a conversational dashboard.',
   alternates: { canonical: 'https://kovil.ai/shopify/custom-sidekick-actions' },
   keywords: [
     'shopify sidekick custom actions',

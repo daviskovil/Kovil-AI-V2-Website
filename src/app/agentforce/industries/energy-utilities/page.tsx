@@ -3,7 +3,7 @@ import EnergyUtilitiesAgentforcePage from '@/src/pages/agentforce/industries/Ene
 
 export const metadata: Metadata = {
   title: 'Agentforce for Energy & Utilities',
-  description: 'Production Agentforce for energy companies and utilities — outage management agents, billing inquiry resolution, smart meter query automation, new connection handling, and field service dispatch. Fixed-price sprints.',
+  description: 'Agentforce for energy and utilities: outage management, billing inquiries, smart meter queries, new connections, and dispatch. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/energy-utilities' },
   keywords: [
     'agentforce energy utilities',

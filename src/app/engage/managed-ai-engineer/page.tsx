@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ManagedAIEngineerPage from '@/src/pages/engage/ManagedAIEngineerPage'
 
 export const metadata: Metadata = {
-  title: 'Hire a Managed AI Engineer for Your Startup | 48-Hour Matching',
-  description: 'Hire a managed AI engineer embedded into your team in 48 hours. Vetted Tier-1 builders, sprint delivery, Engagement Manager oversight, 2-week risk-free trial. No lock-in. Built for startups and growing engineering teams.',
+  title: 'Hire a Managed AI Engineer in 48 Hours',
+  description: 'A managed AI engineer embedded in your team in 48 hours. Vetted Tier-1 builders, sprint delivery, Engagement Manager oversight, 2-week trial.',
   alternates: { canonical: 'https://kovil.ai/engage/managed-ai-engineer' },
   keywords: ['hire AI engineer', 'managed AI engineer', 'hire AI engineer startup', 'AI engineer team augmentation', 'embedded AI engineer'],
   openGraph: {

@@ -4,8 +4,9 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Fixed-Price AI Projects | Predictable Budget, Defined Scope, Clear Delivery',
-  description: 'Fixed-price AI development: defined scope, fixed budget, guaranteed delivery date. Kovil AI runs discovery sprints to de-risk scope before committing. No surprises.',
+  title: 'Fixed-Price AI Projects: Predictable Budget',
+  description: 'Fixed-price AI development with defined scope, fixed budget, and a guaranteed delivery date. Discovery sprints de-risk scope first. No surprises.',
+  alternates: { canonical: 'https://kovil.ai/fixed-price-ai-project' },
   keywords: ['fixed price AI project', 'fixed cost AI development', 'fixed price AI development', 'AI project fixed budget', 'AI development fixed scope', 'AI project pricing'],
   openGraph: {
     title: 'Fixed-Price AI Projects | Predictable Budget, Defined Scope, Clear Delivery',

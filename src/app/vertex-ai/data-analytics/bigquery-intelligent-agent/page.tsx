@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import BigQueryIntelligentAgentPage from '@/src/pages/vertex-ai/data-analytics/BigQueryIntelligentAgentPage'
 
 export const metadata: Metadata = {
-  title: 'BigQuery Intelligent Agent — Natural Language Analytics on GCP',
-  description: 'AI agent that lets business users query BigQuery in plain English using Gemini in BigQuery and Vertex AI Agent Builder. No SQL required. Real-time dashboards explained in natural language.',
+  title: 'BigQuery Intelligent Agent: Analytics in English',
+  description: 'Let business users query BigQuery in plain English with Gemini and Vertex AI Agent Builder. No SQL, with dashboards explained in natural language.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/data-analytics/bigquery-intelligent-agent' },
   keywords: ['BigQuery intelligent agent', 'Gemini in BigQuery', 'natural language analytics', 'BigQuery natural language queries', 'Vertex AI data agent', 'BigQuery AI agent', 'NL2SQL BigQuery', 'Google Cloud data analytics AI', 'BigQuery ML agent', 'AI data analyst GCP', 'BigQuery Gemini integration', 'Vertex AI analytics agent'],
   openGraph: {

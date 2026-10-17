@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import QualityControlVisionAgentPage from '@/src/pages/vertex-ai/operations/QualityControlVisionAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Quality Control Vision Agent — Gemini Vision & Vertex AI on GCP',
-  description: 'Computer vision quality inspection using Gemini Vision and Vertex AI — detects defects, classifies issues, and triggers downstream workflows in real time on the production line.',
+  title: 'Quality Control Vision Agent: Gemini on GCP',
+  description: 'Computer vision inspection with Gemini Vision and Vertex AI: detects defects, classifies issues, and triggers workflows on the production line.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/operations/quality-control-vision-agent' },
   keywords: ['quality control AI GCP', 'Gemini Vision quality inspection', 'Vertex AI computer vision', 'AI defect detection GCP', 'computer vision manufacturing AI', 'Vertex AI Vision inspection', 'Google Cloud quality control AI', 'Gemini Vision manufacturing', 'AI visual inspection GCP', 'quality control agent Vertex AI', 'GCP defect detection', 'Vertex AI manufacturing inspection'],
   openGraph: {

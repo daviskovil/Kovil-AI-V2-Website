@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import PersonalisedRecommendationAgentPage from '@/src/pages/azure-ai-foundry/customer-experience/PersonalisedRecommendationAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Personalised Recommendation Agent — Azure OpenAI Embeddings & Vector Search',
-  description: 'Real-time personalisation agent built on Azure OpenAI embeddings and Azure AI Search vector search. Increases conversion by 28% and average order value by 19%.',
+  title: 'Personalised Recommendation Agent on Azure',
+  description: 'Real-time personalisation on Azure OpenAI embeddings and AI Search vector search. Lifts conversion by 28% and average order value by 19%.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/customer-experience/personalised-recommendation-agent' },
   keywords: ['Azure AI recommendation engine', 'personalisation AI Azure', 'Azure OpenAI embeddings recommendations', 'Azure AI Search vector recommendations', 'real-time personalisation Azure', 'e-commerce AI recommendations', 'Azure AI Foundry recommendations', 'semantic product recommendations', 'AI recommendation system Azure', 'vector search recommendations', 'Azure Cosmos DB recommendations', 'personalisation engine Azure', 'product recommendation AI', 'Azure Event Hubs personalisation', 'Kovil AI Azure', 'recommendation agent Azure'],
   openGraph: { type: 'website', title: 'Personalised Recommendation Agent — Azure AI | Kovil AI', description: 'Real-time AI recommendations using Azure OpenAI embeddings and vector search. +28% conversion, +19% AOV.', url: 'https://kovil.ai/azure-ai-foundry/customer-experience/personalised-recommendation-agent', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Personalised Recommendation Agent — Kovil AI' }] },

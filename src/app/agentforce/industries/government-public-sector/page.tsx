@@ -3,7 +3,7 @@ import GovernmentPublicSectorAgentforcePage from '@/src/pages/agentforce/industr
 
 export const metadata: Metadata = {
   title: 'Agentforce for Government & Public Sector',
-  description: 'Production Agentforce for government agencies and public sector organisations — citizen service agents, permit processing automation, benefits eligibility, case management, records requests, and compliance monitoring. Fixed-price sprints.',
+  description: 'Agentforce for public sector: citizen service agents, permit processing, benefits eligibility, case management, and compliance monitoring.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/government-public-sector' },
   keywords: [
     'agentforce government',

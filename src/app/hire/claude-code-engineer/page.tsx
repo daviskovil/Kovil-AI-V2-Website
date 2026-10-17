@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ClaudeCodeEngineerPage from '@/src/pages/hire/ClaudeCodeEngineerPage'
 
 export const metadata: Metadata = {
-  title: 'Hire Claude Code Engineers — Agentic Coding, Vetted in 48 Hours',
-  description: "Hire vetted Claude Code engineers through Kovil AI. Experts in Anthropic's Claude Code agentic toolchain — ship features, run migrations, build MCP tooling, and enable your team. Matched in 48 hours, 2-week risk-free trial, 100% IP yours.",
+  title: 'Hire Claude Code Engineers in 48 Hours',
+  description: 'Hire experts in Anthropic\'s Claude Code: ship features, run migrations, build MCP tooling, and enable your team. 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/hire/claude-code-engineer' },
   keywords: [
     'claude code engineer',

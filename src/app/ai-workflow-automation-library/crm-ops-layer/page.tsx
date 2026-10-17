@@ -3,7 +3,7 @@ import CRMOpsLayerPage from '@/src/pages/ai-workflow-automation-library/CRMOpsLa
 
 export const metadata: Metadata = {
   title: 'CRM Ops Layer — AI Data Hygiene',
-  description: 'See how Kovil AI builds an intelligent CRM ops layer: inbound records → GPT-4o parser → 18 validation checks → Clearbit enrichment → clean push to Salesforce or HubSpot. Zero duplicate, zero dirty data.',
+  description: 'Inbound records pass a GPT-4o parser, 18 validation checks, and Clearbit enrichment before a clean push to Salesforce or HubSpot. No duplicates.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/crm-ops-layer' },
   robots: { index: true, follow: true },
   keywords: [

@@ -36,8 +36,8 @@ const breadcrumb = {
 }
 
 export const metadata: Metadata = {
-  title: 'About Kovil AI — Managed AI Engineering Company, New York',
-  description: 'Kovil AI is a managed AI engineering company based in Garden City, New York. We embed vetted AI engineers into your team and own the delivery.',
+  title: 'About Kovil AI: Managed AI Engineering, New York',
+  description: 'Kovil AI is a managed AI engineering company in Garden City, New York. We embed vetted AI engineers into your team and own the delivery.',
   alternates: { canonical: 'https://kovil.ai/about' },
   openGraph: {
     type: 'website',

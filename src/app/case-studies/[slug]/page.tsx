@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const cs = getCaseStudy(slug)
   if (!cs) return {}
   return {
-    title: cs.headline,
-    description: cs.excerpt,
+    title: cs.metaTitle ?? cs.headline,
+    description: cs.metaDescription ?? cs.excerpt,
     alternates: { canonical: `https://kovil.ai/case-studies/${cs.slug}` },
     openGraph: {
       type: 'article',

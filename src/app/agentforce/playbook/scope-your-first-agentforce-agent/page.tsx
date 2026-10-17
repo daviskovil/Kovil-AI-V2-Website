@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ScopeYourFirstAgentPage from '@/src/pages/agentforce/playbook/ScopeYourFirstAgentPage'
 
 export const metadata: Metadata = {
-  title: 'How to Scope Your First Agentforce Agent: A Practitioner\'s Checklist | Kovil AI',
-  description: 'Answer these 12 scoping questions before touching Agent Builder. The structured Agentforce implementation checklist used by practitioners to avoid the most common first-agent failures.',
+  title: 'How to Scope Your First Agentforce Agent',
+  description: '12 scoping questions to answer before you touch Agent Builder. The checklist practitioners use to avoid the most common first-agent failures.',
   alternates: { canonical: 'https://kovil.ai/agentforce/playbook/scope-your-first-agentforce-agent' },
   keywords: [
     'how to scope Agentforce agent',

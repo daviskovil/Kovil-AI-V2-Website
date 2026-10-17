@@ -3,7 +3,7 @@ import HybridContentPage from '@/src/pages/ai-workflow-automation-library/Hybrid
 
 export const metadata: Metadata = {
   title: 'SERP-First Hybrid Content Generation',
-  description: 'See how Kovil AI builds a hybrid content pipeline: target keyword → Perplexity maps top 10 SERP → information gap analysis → brand-voice GPT-4o draft → 15-minute human review → CMS publish. 90% drafting time saved.',
+  description: 'Keyword to Perplexity SERP map, gap analysis, brand-voice GPT-4o draft, 15-minute human review, and CMS publish. 90% of drafting time saved.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/deep-serp-first-hybrid-content-generation' },
   robots: { index: true, follow: true },
   openGraph: {

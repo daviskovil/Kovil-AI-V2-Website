@@ -4,8 +4,9 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Outcome-Based AI Development | Pay for Results, Not Hours',
-  description: 'Outcome-based AI development: Kovil AI takes shared risk on your AI project. You define the metric that matters, we build the system that moves it. Pay on delivery.',
+  title: 'Outcome-Based AI Development: Pay for Results',
+  description: 'Shared-risk AI development. You define the metric that matters, we build the system that moves it, and you pay on delivery.',
+  alternates: { canonical: 'https://kovil.ai/outcome-based-ai-development' },
   keywords: ['outcome-based AI development', 'results-based AI project', 'AI development pay on results', 'performance-based AI', 'AI ROI guarantee', 'outcome-driven AI'],
   openGraph: {
     title: 'Outcome-Based AI Development | Pay for Results, Not Hours',

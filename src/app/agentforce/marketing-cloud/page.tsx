@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import MarketingCloudHubPage from '@/src/pages/agentforce/marketing-cloud/MarketingCloudHubPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce for Marketing Teams — Marketing Cloud AI Agents',
-  description: 'Production Agentforce Marketing Cloud deployments — campaign execution agents, personalised lead nurture sequences, and end-to-end event automation. Fixed-price 2–3 week sprints.',
+  title: 'Agentforce for Marketing Teams',
+  description: 'Production Agentforce Marketing Cloud deployments: campaign execution agents, personalised lead nurture, and end-to-end event automation.',
   alternates: { canonical: 'https://kovil.ai/agentforce/marketing-cloud' },
   keywords: [
     'agentforce marketing cloud',

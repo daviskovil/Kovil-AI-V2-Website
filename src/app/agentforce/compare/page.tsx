@@ -7,9 +7,9 @@ const EINSTEIN_COLOR = '#F59E0B'
 const MS_PURPLE = '#7C3AED'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Comparisons — vs Einstein Copilot & Microsoft Copilot',
+  title: 'Agentforce vs Einstein & Microsoft Copilot',
   description:
-    'Compare Salesforce Agentforce against Einstein Copilot and Microsoft Copilot 365. Side-by-side feature tables, pricing breakdowns, architecture differences, and migration guides — updated for 2026.',
+    'Agentforce compared with Einstein Copilot and Microsoft 365 Copilot: feature tables, pricing, architecture differences, and migration guides for 2026.',
   alternates: { canonical: 'https://kovil.ai/agentforce/compare' },
   keywords: [
     'agentforce vs einstein copilot',

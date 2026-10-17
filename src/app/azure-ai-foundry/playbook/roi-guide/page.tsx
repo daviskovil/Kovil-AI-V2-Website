@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AzureROIGuidePage from '@/src/pages/azure-ai-foundry/playbook/AzureROIGuidePage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry ROI Guide: How to Build a Business Case That Holds Up',
-  description: 'How to build a defensible Azure AI ROI model. The 4 ROI levers, calculation methodology with worked example, realistic timelines, failure modes, and executive buy-in template.',
+  title: 'Azure AI Foundry ROI Guide: Business Case',
+  description: 'Build a defensible Azure AI ROI model: the 4 ROI levers, a worked calculation, realistic timelines, failure modes, and an executive buy-in template.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/playbook/roi-guide' },
   keywords: ['Azure AI ROI', 'AI business case', 'Azure AI Foundry ROI', 'AI ROI calculation', 'enterprise AI ROI', 'Azure AI payback period', 'AI automation ROI', 'Azure AI business case template', 'AI ROI methodology', 'Azure OpenAI ROI', 'AI agent ROI', 'AI investment return', 'Azure AI value', 'AI cost benefit analysis', 'Kovil AI Azure playbook', 'enterprise AI business case'],
   openGraph: { type: 'article', title: 'Azure AI Foundry ROI Guide | Kovil AI', description: 'Build a defensible AI business case: 4 ROI levers, worked example with a 20-person ops team, realistic timelines, and executive buy-in template.', url: 'https://kovil.ai/azure-ai-foundry/playbook/roi-guide', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Azure AI Foundry ROI Guide — Kovil AI' }] },

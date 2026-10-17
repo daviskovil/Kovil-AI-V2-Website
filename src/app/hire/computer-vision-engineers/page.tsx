@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ComputerVisionEngineersPage from '@/src/pages/engage/ComputerVisionEngineersPage'
 
 export const metadata: Metadata = {
-  title: 'Hire a Computer Vision Developer — Matched in 48 Hours',
-  description: 'Hire a vetted computer vision engineer embedded in your team in 48 hours. Object detection, video analytics, medical imaging, OCR, edge AI. Engagement Manager oversight, 2-week risk-free trial. No lock-in.',
+  title: 'Hire Computer Vision Engineers in 48 Hours',
+  description: 'Hire a vetted computer vision engineer in 48 hours. Object detection, video analytics, medical imaging, OCR, and edge AI. 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/hire/computer-vision-engineers' },
   keywords: [
     'hire computer vision developer',

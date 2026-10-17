@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AzureAISearchRAGPage from '@/src/pages/azure-ai-foundry/services/AzureAISearchRAGPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Search & RAG Pipeline — Azure AI Foundry',
-  description: 'Build a production-grade RAG pipeline on Azure AI Search with vector + hybrid search, semantic ranking, Entra ID access control, and hallucination guardrails. Delivered in 14 days.',
+  title: 'Azure AI Search & RAG Pipeline',
+  description: 'Production RAG on Azure AI Search with vector and hybrid search, semantic ranking, Entra ID access control, and hallucination guardrails. Done in 14 days.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/services/azure-ai-search-rag' },
   keywords: [
     'Azure AI Search RAG pipeline',

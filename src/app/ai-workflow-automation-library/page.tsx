@@ -3,9 +3,9 @@ import { Suspense } from 'react'
 import WorkflowLibraryPage from '@/src/pages/ai-workflow-automation-library/WorkflowLibraryPage'
 
 export const metadata: Metadata = {
-  title: 'AI Workflow Automation Library — Real Builds by Kovil AI',
+  title: 'AI Workflow Automation Library',
   description:
-    'Browse real AI workflow automations that Kovil AI engineers can build across industries including marketing, fintech, healthtech, SaaS, e-commerce, legal, proptech, and logistics.',
+    'Real AI workflow automations our engineers build for marketing, fintech, healthtech, SaaS, e-commerce, legal, proptech, and logistics teams.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library' },
   keywords: [
     'AI workflow automation',

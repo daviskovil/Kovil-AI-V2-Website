@@ -3,7 +3,7 @@ import AutomatedUnderwritingPage from '@/src/pages/ai-workflow-automation-librar
 
 export const metadata: Metadata = {
   title: 'Automated Underwriting Workflow — FinTech AI',
-  description: 'Automate credit underwriting with AI-driven risk scoring, bureau data integration, and decision engine logic. Reduce manual review time by 70% and approve qualified borrowers in minutes.',
+  description: 'Automate credit underwriting with AI risk scoring, bureau data integration, and decision logic. Cut manual review time by 70%.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/automated-underwriting-workflow' },
   openGraph: {
     type: 'website',

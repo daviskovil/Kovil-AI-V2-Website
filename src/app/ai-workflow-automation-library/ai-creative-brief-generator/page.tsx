@@ -3,7 +3,7 @@ import CreativeBriefPage from '@/src/pages/ai-workflow-automation-library/Creati
 
 export const metadata: Metadata = {
   title: 'AI Creative Brief Generator — GPT-4o Workflow',
-  description: 'See how Kovil AI automates creative brief generation: Typeform intake → Notion brand context → GPT-4o writes the brief → Slack approval gate → Gmail delivery. Under 45 seconds, zero copy-paste.',
+  description: 'Typeform intake, Notion brand context, a GPT-4o-written brief, Slack approval, and Gmail delivery in under 45 seconds, with no copy-paste.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/ai-creative-brief-generator' },
   robots: { index: true, follow: true },
   keywords: [

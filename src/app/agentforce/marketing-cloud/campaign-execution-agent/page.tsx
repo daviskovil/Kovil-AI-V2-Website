@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import CampaignExecutionAgentPage from '@/src/pages/agentforce/marketing-cloud/CampaignExecutionAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce Campaign Execution Agent — Autonomous Campaign Optimisation',
-  description: 'Deploy an Agentforce Campaign Execution Agent that monitors Marketing Cloud campaigns 24/7, adjusts segment targeting, pauses underperforming journeys, and reallocates budget autonomously.',
+  title: 'Agentforce Campaign Execution Agent',
+  description: 'Monitors Marketing Cloud campaigns 24/7, adjusts segment targeting, pauses underperforming journeys, and reallocates budget autonomously.',
   alternates: { canonical: 'https://kovil.ai/agentforce/marketing-cloud/campaign-execution-agent' },
   keywords: [
     'Agentforce campaign execution agent',

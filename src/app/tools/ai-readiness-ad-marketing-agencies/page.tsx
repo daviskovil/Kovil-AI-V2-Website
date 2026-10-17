@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AIReadinessPage from '@/src/pages/AIReadinessPage'
 
 export const metadata: Metadata = {
-  title: 'AI Readiness Assessment for Ad & Marketing Agencies',
-  description: 'Is your ad agency ready for AI? Take our free 3-minute AI readiness assessment built for ad and marketing agencies. Get your readiness score and a personalised automation action plan.',
+  title: 'AI Readiness Assessment for Marketing Agencies',
+  description: 'Is your ad agency ready for AI? A free 3-minute assessment with your readiness score and a personalised automation action plan.',
   keywords: ['AI readiness assessment', 'AI readiness for marketing agencies', 'ad agency AI adoption', 'marketing agency AI tools', 'AI automation readiness', 'AI for ad agencies', 'Kovil AI'],
   alternates: { canonical: 'https://kovil.ai/tools/ai-readiness-ad-marketing-agencies' },
   openGraph: {

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import HROnboardingAgentPage from '@/src/pages/agentforce/internal-operations/HROnboardingAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce HR Onboarding Agent — Automated New Hire Onboarding',
-  description: 'Agentforce HR onboarding agent that auto-generates personalised checklists, triggers system provisioning, answers policy questions 24/7, and sends manager nudges — zero chase emails.',
+  title: 'Agentforce HR Onboarding Agent',
+  description: 'Auto-generates personalised onboarding checklists, triggers system provisioning, answers policy questions 24/7, and nudges managers. No chase emails.',
   alternates: { canonical: 'https://kovil.ai/agentforce/internal-operations/hr-onboarding-agent' },
   keywords: [
     'Agentforce HR onboarding agent',

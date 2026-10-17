@@ -3,7 +3,7 @@ import InvoiceReconciliationPage from '@/src/pages/ai-workflow-automation-librar
 
 export const metadata: Metadata = {
   title: 'Invoice Reconciliation AI — FinTech Workflow',
-  description: 'Automate AP invoice reconciliation with GPT-4o Vision OCR, 3-way PO matching, discrepancy routing, and ERP auto-posting. 90% of invoices matched automatically — no manual review required.',
+  description: 'Automate AP reconciliation with GPT-4o Vision OCR, 3-way PO matching, discrepancy routing, and ERP posting. 90% of invoices matched automatically.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/invoice-reconciliation-ai' },
   openGraph: {
     type: 'website',

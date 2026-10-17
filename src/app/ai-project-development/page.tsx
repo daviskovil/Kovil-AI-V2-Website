@@ -4,8 +4,9 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'AI Project Development Company | End-to-End AI Build Services',
-  description: 'Kovil AI runs complete AI project development: discovery, architecture, build, evaluation, and production handover. Choose fixed-price, time-and-materials, or outcome-based.',
+  title: 'AI Project Development Company',
+  description: 'End-to-end AI project development: discovery, architecture, build, evaluation, and handover. Fixed-price, time-and-materials, or outcome-based.',
+  alternates: { canonical: 'https://kovil.ai/ai-project-development' },
   keywords: ['AI project development', 'AI development company', 'AI project management', 'build AI project', 'AI software development', 'enterprise AI project', 'AI development services'],
   openGraph: {
     title: 'AI Project Development Company | End-to-End AI Build Services',

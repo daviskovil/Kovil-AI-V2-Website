@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import LlamaIndexEngineersPage from '@/src/pages/hire/LlamaIndexEngineersPage'
 
 export const metadata: Metadata = {
-  title: 'Hire LlamaIndex Engineers — Advanced RAG & Ingestion, Matched in 48 Hours',
-  description: 'Hire vetted LlamaIndex engineers embedded in your team in 48 hours. Advanced RAG, parent-child chunk relations, vector search, custom data connectors, LlamaHub, retrieval evaluations. 2-week risk-free trial.',
+  title: 'Hire LlamaIndex Engineers in 48 Hours',
+  description: 'Hire vetted LlamaIndex engineers in 48 hours. Advanced RAG, parent-child chunking, vector search, custom data connectors, and retrieval evals.',
   alternates: { canonical: 'https://kovil.ai/hire/llamaindex-engineers' },
   keywords: [
     'hire llamaindex engineers',

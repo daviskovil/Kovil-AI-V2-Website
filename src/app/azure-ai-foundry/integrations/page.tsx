@@ -5,8 +5,8 @@ import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 const AZURE = '#0078D4'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry Integrations — Dynamics 365, Microsoft 365, SAP & More',
-  description: 'Connect Azure AI Foundry to your enterprise systems — Dynamics 365, Microsoft 365 & Teams, SharePoint, Power Platform, SAP, and ServiceNow. Fixed-price integration sprints.',
+  title: 'Azure AI Foundry Integrations',
+  description: 'Connect Azure AI Foundry to Dynamics 365, Microsoft 365 and Teams, SharePoint, Power Platform, SAP, and ServiceNow. Fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/integrations' },
   keywords: ['azure ai foundry dynamics 365', 'azure ai microsoft 365 teams', 'azure ai sharepoint', 'azure ai power platform', 'azure ai sap integration', 'azure ai servicenow integration', 'azure ai foundry enterprise integrations', 'azure openai dynamics integration', 'copilot studio teams integration'],
   openGraph: {

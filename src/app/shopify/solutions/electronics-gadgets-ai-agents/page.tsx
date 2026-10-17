@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ElectronicsGadgetsAiPage from '@/src/pages/shopify/solutions/ElectronicsGadgetsAiPage'
 
 export const metadata: Metadata = {
-  title: 'Consumer Electronics & Gadgets AI Agents for Shopify',
-  description: 'Deploy custom conversational electronics agents for dynamic spec comparisons, compatibility checks, and technical support. Live in 2 weeks, risk-free trial.',
+  title: 'Electronics & Gadgets AI Agents for Shopify',
+  description: 'Conversational electronics agents for spec comparisons, compatibility checks, and technical support. Live in 2 weeks, risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/shopify/solutions/electronics-gadgets-ai-agents' },
   keywords: [
     'electronics ai agent shopify',

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import VertexAIStrategyReadinessPage from '@/src/pages/vertex-ai/services/VertexAIStrategyReadinessPage'
 
 export const metadata: Metadata = {
-  title: 'Vertex AI Strategy & Readiness | Kovil AI Google Cloud Vertex AI',
-  description: 'Vertex AI readiness assessment and GCP AI strategy consulting. Audit your Google Cloud environment, map highest-ROI Gemini opportunities, and receive a production-ready architecture blueprint in 10 days.',
+  title: 'Vertex AI Strategy & Readiness Assessment',
+  description: 'Vertex AI readiness assessment. Audit your Google Cloud environment, map highest-ROI Gemini opportunities, and get an architecture blueprint in 10 days.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/services/vertex-ai-strategy-readiness' },
   keywords: [
     'Vertex AI strategy consulting',

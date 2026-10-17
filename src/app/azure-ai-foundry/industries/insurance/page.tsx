@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import InsuranceAzurePage from '@/src/pages/azure-ai-foundry/industries/InsuranceAzurePage'
 
 export const metadata: Metadata = {
-  title: 'AI Agents for Insurance — Claims to Compliance on Azure',
-  description: 'AI agents for insurance built on Azure. Automate claims triage, underwriting, fraud detection, policy servicing, and regulatory filing. 71% claims auto-triaged. 64% fraud detection improvement.',
+  title: 'AI Agents for Insurance on Azure',
+  description: 'Azure AI agents for insurers: claims triage, underwriting, fraud detection, policy servicing, and filings. 71% of claims auto-triaged.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/industries/insurance' },
   keywords: ['AI agents insurance Azure', 'claims automation AI Azure', 'underwriting automation AI', 'insurance fraud detection Azure', 'policy servicing chatbot Azure', 'regulatory filing automation insurance', 'Azure OpenAI insurance', 'Azure AI Document Intelligence insurance', 'Azure Machine Learning insurance', 'claims triage AI', 'renewal propensity scoring AI', 'insurance AI compliance', 'FNOL automation AI', 'Kovil AI insurance', 'Azure AI Foundry insurance'],
   openGraph: { type: 'website', title: 'AI Agents for Insurance — Claims to Compliance | Kovil AI', description: 'Claims triage, fraud detection, underwriting automation, and policy servicing on Azure. 71% claims auto-triaged. $1.4M ops savings.', url: 'https://kovil.ai/azure-ai-foundry/industries/insurance', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'AI Agents for Insurance — Kovil AI' }] },

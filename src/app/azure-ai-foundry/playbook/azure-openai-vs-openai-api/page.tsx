@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AzureOpenAIVsOpenAIPage from '@/src/pages/azure-ai-foundry/playbook/AzureOpenAIVsOpenAIPage'
 
 export const metadata: Metadata = {
-  title: 'Azure OpenAI vs OpenAI API — Enterprise Comparison Guide',
-  description: 'Detailed comparison of Azure OpenAI Service vs OpenAI API for enterprise deployments. Authentication, content filtering, private networking, compliance, and total cost analysis.',
+  title: 'Azure OpenAI vs OpenAI API: Enterprise Guide',
+  description: 'Azure OpenAI Service vs the OpenAI API for enterprise: authentication, content filtering, private networking, compliance, and total cost.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/playbook/azure-openai-vs-openai-api' },
   keywords: ['Azure OpenAI vs OpenAI API', 'Azure OpenAI enterprise', 'OpenAI API comparison Azure', 'Azure OpenAI compliance', 'Azure OpenAI private networking', 'Azure OpenAI vs OpenAI difference', 'enterprise OpenAI Azure', 'Azure OpenAI HIPAA SOC2', 'Azure OpenAI data residency', 'OpenAI API security comparison', 'Azure OpenAI authentication', 'Azure OpenAI content filtering', 'Azure OpenAI pricing vs OpenAI', 'enterprise LLM Azure', 'Kovil AI Azure playbook', 'Azure OpenAI Foundry guide'],
   openGraph: { type: 'article', title: 'Azure OpenAI vs OpenAI API — Enterprise Guide | Kovil AI', description: 'Full enterprise comparison: auth, compliance, private networking, content filtering, cost. Which is right for your workload?', url: 'https://kovil.ai/azure-ai-foundry/playbook/azure-openai-vs-openai-api', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Azure OpenAI vs OpenAI API — Kovil AI' }] },

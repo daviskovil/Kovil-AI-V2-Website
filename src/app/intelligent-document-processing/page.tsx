@@ -3,9 +3,9 @@ import IntelligentDocumentProcessingPage from '@/src/pages/IntelligentDocumentPr
 
 // ── Metadata ─────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Intelligent Document Processing (IDP) & AI Document Agents',
+  title: 'Intelligent Document Processing (IDP) Agents',
   // P1-A: trimmed from 236 → ~158 chars — within Google display limit
-  description: 'Production IDP pipelines powered by Vision LLMs & AI Document Agents. Document classification, LLM extraction, HITL validation. BFSI · Insurance · Healthcare · Legal. Fixed-price sprints.',
+  description: 'Production IDP with Vision LLMs: document classification, LLM extraction, and human-in-the-loop validation for BFSI, insurance, healthcare, and legal.',
   alternates: { canonical: 'https://kovil.ai/intelligent-document-processing' },
   keywords: [
     'intelligent document processing',

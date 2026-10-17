@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AICustomerServiceAgentPage from '@/src/pages/azure-ai-foundry/customer-experience/AICustomerServiceAgentPage'
 
 export const metadata: Metadata = {
-  title: 'AI Customer Service Agent — Resolve 70% of Queries on Azure',
-  description: 'Azure AI Foundry customer service agent that autonomously resolves 70%+ of support queries using GPT-4o, Azure AI Search, and Copilot Studio — deployed in Teams and web chat.',
+  title: 'AI Customer Service Agent: Resolve 70% on Azure',
+  description: 'Azure AI Foundry agent that resolves 70%+ of support queries with GPT-4o, Azure AI Search, and Copilot Studio, in Teams and web chat.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/customer-experience/ai-customer-service-agent' },
   keywords: ['Azure AI customer service', 'AI support agent Azure', 'Azure OpenAI customer service', 'Copilot Studio customer support', 'Azure AI Foundry support agent', 'autonomous customer service AI', 'GPT-4o support agent', 'Azure AI Search customer service', 'customer service automation Azure', 'AI contact centre Azure', 'Microsoft AI customer service', 'Teams customer service bot', 'Azure customer support automation', 'AI self-service portal', 'Kovil AI Azure', 'customer service AI agent'],
   openGraph: { type: 'website', title: 'AI Customer Service Agent — 70% Autonomous Resolution | Kovil AI', description: 'Resolve 70%+ of support queries autonomously. Azure OpenAI + Azure AI Search + Copilot Studio. Under 2-minute response time.', url: 'https://kovil.ai/azure-ai-foundry/customer-experience/ai-customer-service-agent', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'AI Customer Service Agent — Kovil AI' }] },

@@ -3,7 +3,7 @@ import LoanDocumentClassifierPage from '@/src/pages/ai-workflow-automation-libra
 
 export const metadata: Metadata = {
   title: 'AI Loan Document Classifier — FinTech Workflow',
-  description: 'Automate loan document intake with GPT-4o Vision. Classify document types, extract key fields, check completeness, and notify underwriters in under 60 seconds. Build in 2–3 weeks.',
+  description: 'Automate loan document intake with GPT-4o Vision: classify types, extract fields, check completeness, and notify underwriters in under 60 seconds.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/ai-loan-document-classifier' },
   openGraph: {
     type: 'website',

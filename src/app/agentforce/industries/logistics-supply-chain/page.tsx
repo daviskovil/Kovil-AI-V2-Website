@@ -3,7 +3,7 @@ import LogisticsSupplyChainAgentforcePage from '@/src/pages/agentforce/industrie
 
 export const metadata: Metadata = {
   title: 'Agentforce for Logistics & Supply Chain',
-  description: 'Production Agentforce for logistics companies and supply chain operators — shipment tracking agents, freight quoting automation, returns and claims resolution, carrier communication, and inventory alerting. Fixed-price sprints.',
+  description: 'Agentforce for logistics and supply chain: shipment tracking, freight quoting, returns and claims, carrier communication, and inventory alerts.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/logistics-supply-chain' },
   keywords: [
     'agentforce logistics',

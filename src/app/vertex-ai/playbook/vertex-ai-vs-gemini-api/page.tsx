@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import VertexAIVsGeminiAPIPage from '@/src/pages/vertex-ai/playbook/VertexAIVsGeminiAPIPage'
 
 export const metadata: Metadata = {
-  title: 'Vertex AI vs Gemini API: Enterprise Agent Differences on GCP',
-  description: 'A technical breakdown of the differences — data residency, security controls, model management, grounding capabilities, SLA, and pricing — with a decision framework for enterprise teams.',
+  title: 'Vertex AI vs Gemini API for Enterprise',
+  description: 'Data residency, security controls, model management, grounding, SLA, and pricing compared, with a decision framework for enterprise teams.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/playbook/vertex-ai-vs-gemini-api' },
   keywords: ['Vertex AI vs Gemini API', 'Gemini API enterprise', 'Vertex AI enterprise features', 'GCP AI data residency', 'Vertex AI VPC Service Controls', 'Vertex AI vs Gemini differences', 'Gemini API migration Vertex AI', 'Vertex AI CMEK', 'Vertex AI SLA', 'Gemini fine-tuning Vertex AI', 'GCP AI security', 'Vertex AI pricing vs Gemini API', 'Kovil AI Vertex AI', 'enterprise LLM Google Cloud'],
   openGraph: { type: 'article', title: 'Vertex AI vs Gemini API: What Changes for Enterprise Agents on GCP?', description: 'Data residency, VPC Service Controls, model management, fine-tuning, SLA differences. Decision framework with migration path from Gemini API to Vertex AI.', url: 'https://kovil.ai/vertex-ai/playbook/vertex-ai-vs-gemini-api', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-vertex-ai.png', width: 1200, height: 630, alt: 'Vertex AI vs Gemini API — Kovil AI' }] },

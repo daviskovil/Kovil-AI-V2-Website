@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import BigQueryMLAgentsPage from '@/src/pages/vertex-ai/services/BigQueryMLAgentsPage'
 
 export const metadata: Metadata = {
-  title: 'BigQuery ML & Data Intelligence Agents | Kovil AI Google Cloud Vertex AI',
-  description: 'AI agents and ML models built on BigQuery ML. Predictive analytics, anomaly detection, Gemini in BigQuery natural language SQL, and data intelligence automation — all within your GCP data warehouse.',
+  title: 'BigQuery ML & Data Intelligence Agents',
+  description: 'Predictive analytics, anomaly detection, and Gemini natural-language SQL in BigQuery. Data intelligence automation inside your GCP warehouse.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/services/bigquery-ml-data-agents' },
   keywords: [
     'BigQuery ML consulting',

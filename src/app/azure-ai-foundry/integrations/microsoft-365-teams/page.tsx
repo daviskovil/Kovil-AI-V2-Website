@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import AzureM365TeamsPage from '@/src/pages/azure-ai-foundry/integrations/AzureM365TeamsPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry + Microsoft 365 & Teams Integration',
-  description: 'Deploy AI agents inside Teams, Outlook, and Office apps via Microsoft Graph API and Copilot Studio. Meeting summarisation, email triage, IT helpdesk — where employees already work.',
+  title: 'Azure AI + Microsoft 365 & Teams Integration',
+  description: 'Deploy AI agents in Teams, Outlook, and Office via Microsoft Graph and Copilot Studio: meeting summaries, email triage, and IT helpdesk.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/integrations/microsoft-365-teams' },
   keywords: ['Azure AI Microsoft 365', 'Teams AI agent', 'Copilot Studio Teams', 'Microsoft Graph API AI', 'M365 AI integration', 'Azure OpenAI Teams bot', 'Teams meeting summarisation AI', 'Outlook email triage AI', 'IT helpdesk Teams bot', 'SharePoint RAG Teams', 'Azure AI Foundry M365', 'Microsoft 365 Copilot extension', 'Teams adaptive cards AI', 'Kovil AI Microsoft 365', 'workplace AI agent'],
   openGraph: { type: 'website', title: 'Azure AI Foundry + Microsoft 365 & Teams: AI Agents in Your Workspace | Kovil AI', description: 'AI agents inside Teams, Outlook, and Office. Microsoft Graph API + Copilot Studio. 2.4 hrs saved per employee per week.', url: 'https://kovil.ai/azure-ai-foundry/integrations/microsoft-365-teams', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Azure AI Foundry + Microsoft 365 & Teams — Kovil AI' }] },

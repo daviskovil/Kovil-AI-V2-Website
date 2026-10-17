@@ -8,8 +8,8 @@ const BASE = 'https://kovil.ai'
 const CANONICAL = `${BASE}/agentforce/compare/agentforce-vs-microsoft-copilot`
 
 export const metadata: Metadata = {
-  title: 'Agentforce vs Microsoft Copilot: 2026 Comparison — Which AI Agent Platform Wins?',
-  description: 'Agentforce vs Microsoft Copilot compared across ecosystem, CRM integration, autonomy, pricing and security. Agentforce works best for Salesforce-native orgs; Microsoft Copilot for Microsoft 365/Dynamics shops.',
+  title: 'Agentforce vs Microsoft Copilot: 2026 Comparison',
+  description: 'Compared on ecosystem, CRM integration, autonomy, pricing, and security. Agentforce suits Salesforce-native orgs; Copilot suits Microsoft 365 and Dynamics.',
   alternates: { canonical: CANONICAL },
   keywords: ['agentforce vs microsoft copilot','salesforce agentforce vs microsoft copilot','agentforce vs copilot comparison','microsoft copilot vs salesforce agentforce','agentforce or microsoft copilot which is better','salesforce ai vs microsoft ai','agentforce vs m365 copilot','agentforce vs dynamics 365 copilot','best ai agent for salesforce','agentforce microsoft comparison 2026'],
   openGraph: { type: 'article', title: 'Agentforce vs Microsoft Copilot: 2026 Comparison | Kovil AI', description: 'Comprehensive comparison of Agentforce and Microsoft Copilot — ecosystem, autonomy, pricing, security and a practical decision framework.', url: CANONICAL, siteName: 'Kovil AI', images: [{ url: `${BASE}/og-agentforce.png`, width: 1200, height: 630 }] },
@@ -85,13 +85,14 @@ export default function Page() {
               Comparison Guide · June 2026
             </span>
 
-            {/* Split title */}
+            {/* Split title: one real H1 for crawlers/screen readers, two styled words for the eye */}
+            <h1 className="sr-only">Agentforce vs Microsoft Copilot: 2026 Comparison</h1>
             <div className="grid md:grid-cols-[1fr_auto_1fr] gap-6 items-start mb-10">
               <div>
                 <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-3 font-semibold">Salesforce</p>
-                <h1 className="font-display text-5xl md:text-6xl font-black tracking-tight leading-[1.02]" style={{ background: `linear-gradient(135deg, ${SF_BLUE} 0%, #60CFFF 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                <span className="block font-display text-5xl md:text-6xl font-black tracking-tight leading-[1.02]" style={{ background: `linear-gradient(135deg, ${SF_BLUE} 0%, #60CFFF 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                   Agentforce
-                </h1>
+                </span>
                 <p className="text-sm text-muted-foreground mt-3 leading-relaxed max-w-xs">Autonomous AI agents natively inside Salesforce CRM</p>
               </div>
               <div className="flex items-center justify-center pt-8">
@@ -99,9 +100,9 @@ export default function Page() {
               </div>
               <div>
                 <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-3 font-semibold">Microsoft</p>
-                <h1 className="font-display text-5xl md:text-6xl font-black tracking-tight leading-[1.02]" style={{ background: `linear-gradient(135deg, ${MS_PURPLE} 0%, #A78BFA 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                <span className="block font-display text-5xl md:text-6xl font-black tracking-tight leading-[1.02]" style={{ background: `linear-gradient(135deg, ${MS_PURPLE} 0%, #A78BFA 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                   Copilot
-                </h1>
+                </span>
                 <p className="text-sm text-muted-foreground mt-3 leading-relaxed max-w-xs">AI embedded in Microsoft 365 and Dynamics 365</p>
               </div>
             </div>

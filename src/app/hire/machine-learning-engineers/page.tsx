@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import MachineLearningEngineersPage from '@/src/pages/engage/MachineLearningEngineersPage'
 
 export const metadata: Metadata = {
-  title: 'Hire a Machine Learning Engineer — Matched in 48 Hours',
-  description: 'Hire a vetted machine learning engineer embedded in your team in 48 hours. Predictive ML, recommendation systems, NLP, LLM fine-tuning, MLOps. Engagement Manager oversight, 2-week risk-free trial.',
+  title: 'Hire Machine Learning Engineers in 48 Hours',
+  description: 'Hire a vetted ML engineer in 48 hours. Predictive ML, recommendation systems, NLP, LLM fine-tuning, and MLOps. 2-week risk-free trial.',
   alternates: { canonical: 'https://kovil.ai/hire/machine-learning-engineers' },
   keywords: [
     'hire machine learning engineer',

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import SEOFoundationPage from '@/src/pages/ai-workflow-automation-library/SEOFoundationPage'
 
 export const metadata: Metadata = {
-  title: 'SEO Foundation & Backlink Syndication — AI Workflow',
-  description: 'See how Kovil AI builds an automated SEO foundation: client intake → Airtable → n8n syndicates to 50+ directories via BrightLocal → GSC pulls weekly rank data → personalized client reports auto-delivered. 30 clients managed by 2 staff.',
+  title: 'SEO Foundation & Backlink Syndication',
+  description: 'Client intake to Airtable, n8n syndicates to 50+ directories via BrightLocal, GSC rank data pulls weekly, reports auto-deliver. 30 clients, 2 staff.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/automated-seo-foundation-backlink-syndication' },
   robots: { index: true, follow: true },
   openGraph: {

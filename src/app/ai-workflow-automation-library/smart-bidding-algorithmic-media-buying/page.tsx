@@ -3,7 +3,7 @@ import SmartBiddingPage from '@/src/pages/ai-workflow-automation-library/SmartBi
 
 export const metadata: Metadata = {
   title: 'Smart Bidding & Algorithmic Media Buying',
-  description: 'See how Kovil AI builds a smart bidding system: deep-funnel conversion events → Meta + Google algorithm training → n8n pulls CPA data every 4 hours → GPT-4o anomaly alerts → Looker Studio dashboard. Average ROAS improvement +40%.',
+  description: 'Deep-funnel events train Meta and Google algorithms, n8n pulls CPA data every 4 hours, GPT-4o raises anomaly alerts. Average ROAS up 40%.',
   alternates: { canonical: 'https://kovil.ai/ai-workflow-automation-library/smart-bidding-algorithmic-media-buying' },
   robots: { index: true, follow: true },
   openGraph: {

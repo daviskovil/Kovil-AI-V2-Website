@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import SubscriptionRetentionPage from '@/src/pages/shopify/solutions/SubscriptionRetentionPage'
 
 export const metadata: Metadata = {
-  title: 'Subscription D2C Retention & Churn Prevention AI Agents',
-  description: 'Custom retention agents that negotiate renewals, recover failed payments, handle box swaps by text, and flag at-risk cohorts. Live in 2 weeks.',
+  title: 'Subscription D2C Retention AI Agents',
+  description: 'Retention agents that negotiate renewals, recover failed payments, handle box swaps by text, and flag at-risk cohorts. Live in 2 weeks.',
   alternates: { canonical: 'https://kovil.ai/shopify/solutions/subscription-d2c-retention-agents' },
   keywords: [
     'subscription retention agent',

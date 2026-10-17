@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import SupplyChainIntelligenceAgentPage from '@/src/pages/azure-ai-foundry/operations/SupplyChainIntelligenceAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Supply Chain Intelligence Agent — Azure OpenAI & Data Factory',
-  description: 'Real-time supply chain risk analysis agent built on Azure OpenAI and Azure Data Factory. Surfaces risks 48 hours earlier. 62% fewer unplanned stockouts.',
+  title: 'Supply Chain Intelligence Agent on Azure',
+  description: 'Real-time supply chain risk agent on Azure OpenAI and Data Factory. Surfaces risks 48 hours earlier, with 62% fewer unplanned stockouts.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/operations/supply-chain-intelligence-agent' },
   keywords: ['supply chain AI Azure', 'Azure OpenAI supply chain', 'supply chain risk analysis AI', 'Azure Data Factory supply chain', 'supply chain intelligence agent', 'procurement AI Azure', 'supplier risk AI', 'Azure Synapse supply chain', 'logistics AI Azure', 'supply chain disruption AI', 'demand forecasting AI Azure', 'Azure AI Foundry operations', 'supply chain automation', 'procurement intelligence AI', 'Kovil AI Azure', 'operations AI agent'],
   openGraph: { type: 'website', title: 'Supply Chain Intelligence Agent — Azure AI | Kovil AI', description: 'AI supply chain risk analysis on Azure. 48-hour risk lead time. 62% fewer stockouts. Azure OpenAI + Data Factory.', url: 'https://kovil.ai/azure-ai-foundry/operations/supply-chain-intelligence-agent', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Supply Chain Intelligence Agent — Kovil AI' }] },

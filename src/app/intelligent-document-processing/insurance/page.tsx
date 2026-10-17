@@ -3,8 +3,8 @@ import InsurancePage from '@/src/pages/idp/InsurancePage'
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Insurance Document Automation & Claims Processing IDP',
-  description: 'Insurance document automation built for production — claims processing, FNOL data extraction, medical bill parsing, prior authorisation, and underwriting document processing. HIPAA · SOC 2 · Fixed-price sprints, 2–4 weeks.',
+  title: 'Insurance Document Automation & Claims IDP',
+  description: 'Insurance document automation: claims processing, FNOL extraction, medical bill parsing, prior authorisation, and underwriting. HIPAA, SOC 2.',
   alternates: { canonical: 'https://kovil.ai/intelligent-document-processing/insurance' },
   keywords: [
     'insurance document automation',

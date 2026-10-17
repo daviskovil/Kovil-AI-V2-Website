@@ -4,8 +4,9 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Generative AI Development Company | Build Production GenAI Applications',
-  description: 'Generative AI development for enterprises. Chatbots, RAG, image generation, document automation, fine-tuning. Kovil AI ships production GenAI systems that deliver measurable ROI.',
+  title: 'Generative AI Development Company',
+  description: 'Enterprise generative AI: chatbots, RAG, image generation, document automation, and fine-tuning. Production GenAI systems with measurable ROI.',
+  alternates: { canonical: 'https://kovil.ai/generative-ai-development' },
   keywords: ['generative AI development', 'generative AI company', 'GenAI development services', 'generative AI application development', 'enterprise generative AI', 'AI product development', 'LLM application development', 'generative AI consulting'],
   openGraph: {
     title: 'Generative AI Development Company | Build Production GenAI Applications',

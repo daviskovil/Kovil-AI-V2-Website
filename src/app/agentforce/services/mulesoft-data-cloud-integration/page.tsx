@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import MulesoftDataCloudIntegrationPage from '@/src/pages/agentforce/services/MulesoftDataCloudIntegrationPage'
 
 export const metadata: Metadata = {
-  title: 'MuleSoft & Data Cloud Integration',
-  description: 'MuleSoft Agentforce integration and Salesforce Data Cloud implementation. Connect agents to ERP, EHR, payments, and logistics with real-time data grounding across every enterprise system.',
+  title: 'MuleSoft & Data Cloud Integration for Agentforce',
+  description: 'Connect Agentforce to ERP, EHR, payments, and logistics with MuleSoft and Salesforce Data Cloud, grounding agents in real-time enterprise data.',
   alternates: { canonical: 'https://kovil.ai/agentforce/services/mulesoft-data-cloud-integration' },
   keywords: [
     'MuleSoft Agentforce integration',

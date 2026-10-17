@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, XCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Turing Alternative | Kovil AI vs Turing | Managed AI Engineering',
-  description: 'Looking for a Turing alternative? Kovil AI offers managed AI engineering with a human Engagement Manager, milestone-gated delivery, 48-hour matching, and a 2-week risk-free trial — no algorithm-matched contractors.',
+  title: 'Turing Alternative: Kovil AI vs Turing',
+  description: 'A Turing alternative with a human Engagement Manager, milestone-gated delivery, 48-hour matching, and a 2-week trial. No algorithm-matched contractors.',
   keywords: ['Turing alternative', 'Turing vs Kovil AI', 'alternative to Turing', 'Turing.com competitor', 'managed AI engineering alternative to Turing'],
   openGraph: { title: 'Turing Alternative | Kovil AI', description: 'Managed AI engineering without the algorithm-matched marketplace model. Engagement Manager included on every engagement.', url: 'https://kovil.ai/turing-alternative', siteName: 'Kovil AI', type: 'website', images: [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Turing Alternative | Kovil AI' }] },
   twitter: { card: 'summary_large_image', title: 'Turing Alternative | Kovil AI', description: 'Why product teams choose Kovil AI over Turing for AI engineering.' },

@@ -72,12 +72,20 @@ export default function CaseStudyPage() {
     ]
   }
 
+  // cs.published is a month label like "May 2026"; fall back to undefined if it cannot be parsed.
+  const parsed = new Date(`1 ${cs.published} UTC`)
+  const publishedIso = isNaN(parsed.getTime()) ? undefined : parsed.toISOString().slice(0, 10)
+
   const caseStudySchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": cs.headline,
     "description": cs.excerpt,
     "url": `https://kovil.ai/case-studies/${cs.slug}`,
+    "mainEntityOfPage": `https://kovil.ai/case-studies/${cs.slug}`,
+    "datePublished": publishedIso,
+    "dateModified": publishedIso,
+    "image": "https://kovil.ai/og-case-studies.jpg",
     "author": {
       "@type": "Organization",
       "name": "Kovil AI",
@@ -98,6 +106,8 @@ export default function CaseStudyPage() {
 
   return (
     <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
     <div className="min-h-screen bg-background text-foreground">
       {/* Back link */}
       <div className="max-w-4xl mx-auto px-6 pt-10 pb-4">

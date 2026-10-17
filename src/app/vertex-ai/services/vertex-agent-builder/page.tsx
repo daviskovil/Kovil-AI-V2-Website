@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import VertexAgentBuilderPage from '@/src/pages/vertex-ai/services/VertexAgentBuilderPage'
 
 export const metadata: Metadata = {
-  title: 'Vertex AI Agent Builder & Reasoning Engine | Kovil AI Google Cloud Vertex AI',
-  description: 'Production AI agents built on Vertex AI Agent Builder and Reasoning Engine. Tool calling, multi-agent workflows, Vertex AI Search grounding, and GCP-native security — deployed in four weeks.',
+  title: 'Vertex AI Agent Builder & Reasoning Engine',
+  description: 'Production agents on Vertex AI Agent Builder: tool calling, multi-agent workflows, Vertex AI Search grounding, and GCP-native security. Live in four weeks.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/services/vertex-agent-builder' },
   keywords: [
     'Vertex AI Agent Builder',

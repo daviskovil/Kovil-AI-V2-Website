@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import SpecSheetEnricherPage from '@/src/pages/shopify/workflows/SpecSheetEnricherPage'
 
 export const metadata: Metadata = {
-  title: 'Automated Supplier PDF Spec Sheet Catalog Enricher',
-  description: 'Ingest raw supplier PDF spec sheets and convert them into SEO-optimized, review-ready Shopify listings. Processes 5,000+ sheets/hour. Live in 2 weeks.',
+  title: 'Supplier PDF Spec Sheet Catalog Enricher',
+  description: 'Turn raw supplier PDF spec sheets into SEO-optimized, review-ready Shopify listings. Processes 5,000+ sheets an hour. Live in 2 weeks.',
   alternates: { canonical: 'https://kovil.ai/shopify/workflows/spec-sheet-catalog-enricher' },
   keywords: [
     'pdf spec sheet parser shopify',

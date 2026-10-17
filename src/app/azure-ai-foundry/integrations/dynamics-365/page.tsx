@@ -3,7 +3,7 @@ import AzureDynamics365Page from '@/src/pages/azure-ai-foundry/integrations/Azur
 
 export const metadata: Metadata = {
   title: 'Azure AI Foundry + Dynamics 365 Integration',
-  description: 'Build AI agents that act on your Dynamics 365 CRM and ERP data. Lead scoring, service triage, ERP automation, and more — powered by Azure OpenAI and Dataverse connectors.',
+  description: 'AI agents that act on Dynamics 365 CRM and ERP data: lead scoring, service triage, and ERP automation with Azure OpenAI and Dataverse.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/integrations/dynamics-365' },
   keywords: ['Azure AI Foundry Dynamics 365', 'Dynamics 365 AI agent', 'Azure OpenAI CRM integration', 'Dataverse AI agent', 'Dynamics 365 automation', 'Azure AI Dynamics 365 ERP', 'Semantic Kernel Dynamics 365', 'Copilot Studio Dynamics 365', 'D365 lead scoring AI', 'D365 service agent', 'Azure API Management Dynamics 365', 'CRM AI automation', 'Dynamics 365 copilot', 'Azure AI Foundry CRM', 'Kovil AI Dynamics 365'],
   openGraph: { type: 'website', title: 'Azure AI Foundry + Dynamics 365: AI Agents for CRM & ERP | Kovil AI', description: 'AI agents that read CRM context, trigger workflows, and update Dynamics 365 records autonomously. 68% faster lead qualification.', url: 'https://kovil.ai/azure-ai-foundry/integrations/dynamics-365', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Azure AI Foundry + Dynamics 365 — Kovil AI' }] },

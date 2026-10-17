@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import SemanticKernelVsLangChainPage from '@/src/pages/azure-ai-foundry/compare/SemanticKernelVsLangChainPage'
 
 export const metadata: Metadata = {
-  title: 'Semantic Kernel vs LangChain — Enterprise AI Framework Comparison',
-  description: 'Semantic Kernel vs LangChain: which AI orchestration framework is right for enterprise? Azure-native vs Python-native, Managed Identity, enterprise support, and real-world architecture guidance.',
+  title: 'Semantic Kernel vs LangChain for Enterprise',
+  description: 'Which AI orchestration framework suits enterprise? Azure-native vs Python-native, Managed Identity, support, and real architecture guidance.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/compare/semantic-kernel-vs-langchain' },
   keywords: ['Semantic Kernel vs LangChain', 'Semantic Kernel enterprise', 'LangChain enterprise comparison', 'AI orchestration framework enterprise', 'Semantic Kernel Azure', 'LangChain Azure OpenAI', 'Managed Identity LangChain', 'Semantic Kernel .NET', 'LangGraph vs Semantic Kernel', 'AI agent orchestration SDK', 'Azure AI Foundry framework', 'Kovil AI Semantic Kernel'],
   openGraph: { type: 'article', title: 'Semantic Kernel vs LangChain | Kovil AI', description: 'Enterprise AI orchestration framework comparison: Azure-native Semantic Kernel vs Python-native LangChain. Identity, compliance, ecosystem breadth, and architecture guidance.', url: 'https://kovil.ai/azure-ai-foundry/compare/semantic-kernel-vs-langchain', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Semantic Kernel vs LangChain — Kovil AI' }] },

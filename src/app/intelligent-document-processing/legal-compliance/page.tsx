@@ -3,8 +3,8 @@ import LegalCompliancePage from '@/src/pages/idp/LegalCompliancePage'
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Legal Document Processing & Contract AI Automation',
-  description: 'Production IDP pipelines for legal and compliance — contract lifecycle management automation, eDiscovery document review, regulatory filing extraction, due diligence processing, and IP document management. Attorney-Client Privilege safe · SOC 2 · Fixed-price sprints, 2–4 weeks.',
+  title: 'Legal Document Processing & Contract AI',
+  description: 'IDP for legal and compliance: contract lifecycle automation, eDiscovery review, regulatory filings, due diligence, and IP documents. SOC 2.',
   alternates: { canonical: 'https://kovil.ai/intelligent-document-processing/legal-compliance' },
   keywords: [
     'legal document processing',

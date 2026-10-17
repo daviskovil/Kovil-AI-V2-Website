@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import DocumentIntelligenceAgentPage from '@/src/pages/azure-ai-foundry/enterprise/DocumentIntelligenceAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Document Intelligence Agent — Automated Document Processing',
-  description: 'AI agent built on Azure AI Document Intelligence and GPT-4o that processes contracts, invoices, and compliance docs automatically — extracting, classifying, and routing structured data.',
+  title: 'Azure AI Document Intelligence Agent',
+  description: 'Agent on Azure AI Document Intelligence and GPT-4o that processes contracts, invoices, and compliance documents: extract, classify, and route.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/enterprise/document-intelligence-agent' },
   keywords: ['Azure AI Document Intelligence', 'document processing automation', 'Azure OpenAI document extraction', 'contract extraction AI', 'invoice processing Azure', 'AI document classification', 'Azure form recognizer agent', 'enterprise document AI', 'document automation Azure', 'GPT-4o document processing', 'Azure AI Foundry document agent', 'intelligent document processing', 'IDP Azure', 'automated contract review', 'Azure AI document automation', 'Kovil AI Azure'],
   openGraph: { type: 'website', title: 'Azure AI Document Intelligence Agent | Kovil AI', description: 'Automate contract, invoice, and compliance document processing with Azure AI Document Intelligence and GPT-4o.', url: 'https://kovil.ai/azure-ai-foundry/enterprise/document-intelligence-agent', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Azure AI Document Intelligence Agent — Kovil AI' }] },

@@ -3,7 +3,7 @@ import RetailEcommerceAgentforcePage from '@/src/pages/agentforce/industries/Ret
 
 export const metadata: Metadata = {
   title: 'Agentforce for Retail & Ecommerce',
-  description: 'Production Agentforce for retail — order management agents, returns and refund automation, personalised shopping assistants, and loyalty program agents. Commerce Cloud · Service Cloud · Fixed-price sprints.',
+  description: 'Agentforce for retail: order management, returns and refunds, personalised shopping assistants, and loyalty agents. Commerce Cloud, fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/retail-ecommerce' },
   keywords: [
     'agentforce retail',

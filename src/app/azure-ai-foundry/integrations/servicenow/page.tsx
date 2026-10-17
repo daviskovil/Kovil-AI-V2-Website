@@ -3,7 +3,7 @@ import AzureServiceNowPage from '@/src/pages/azure-ai-foundry/integrations/Azure
 
 export const metadata: Metadata = {
   title: 'Azure AI Foundry + ServiceNow Integration',
-  description: 'AI agents that triage, resolve, and close ServiceNow incidents before humans touch them. Azure OpenAI + ServiceNow REST API — 74% tickets auto-resolved, 4.2 min avg resolution time.',
+  description: 'AI agents that triage, resolve, and close ServiceNow incidents before humans touch them: 74% auto-resolved, 4.2-minute average resolution.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/integrations/servicenow' },
   keywords: ['Azure AI ServiceNow integration', 'ServiceNow AI agent', 'Azure OpenAI ServiceNow', 'ServiceNow incident triage AI', 'ServiceNow automation AI', 'Azure AI Search ServiceNow KB', 'Semantic Kernel ServiceNow', 'ITSM AI automation', 'ServiceNow REST API Azure', 'Azure API Management ServiceNow', 'IT helpdesk AI agent', 'ServiceNow SLA prediction AI', 'change management AI ServiceNow', 'Kovil AI ServiceNow', 'AI ticket resolution'],
   openGraph: { type: 'website', title: 'Azure AI Foundry + ServiceNow: Auto-Resolve Tickets with AI | Kovil AI', description: '74% of ServiceNow tickets auto-resolved. AI triage, KB-based resolution, SLA breach prediction. No instance modifications.', url: 'https://kovil.ai/azure-ai-foundry/integrations/servicenow', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Azure AI Foundry + ServiceNow — Kovil AI' }] },

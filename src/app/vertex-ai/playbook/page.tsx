@@ -7,8 +7,8 @@ const G_RED = '#EA4335'
 const G_GREEN = '#34A853'
 
 export const metadata: Metadata = {
-  title: 'Vertex AI Playbook — Guides, Comparisons & Case Studies',
-  description: 'Vertex AI technical playbook — architect your first agent, Vertex AI vs Gemini API comparison, and retail personalisation case study. Practical enterprise AI guides.',
+  title: 'Vertex AI Playbook: Guides & Case Studies',
+  description: 'Vertex AI playbook: architect your first agent, Vertex AI vs Gemini API, and a retail personalisation case study. Practical enterprise AI guides.',
   alternates: { canonical: 'https://kovil.ai/vertex-ai/playbook' },
   keywords: ['vertex ai playbook', 'architect vertex ai agent', 'vertex ai vs gemini api', 'vertex ai retail personalisation case study', 'vertex ai guide 2026', 'gemini api vs vertex ai difference', 'vertex ai tutorial enterprise', 'vertex ai agent tutorial', 'google cloud ai guide'],
   openGraph: {

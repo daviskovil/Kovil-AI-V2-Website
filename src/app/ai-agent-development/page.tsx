@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'AI Agent Development | Autonomous AI Agents Built for Production',
-  description: 'Kovil AI builds production-grade AI agents — single-purpose task agents, multi-agent systems, and human-in-the-loop workflows. 150+ deployments. Fixed-price delivery.',
+  title: 'AI Agent Development for Production',
+  description: 'Production-grade AI agents: single-purpose task agents, multi-agent systems, and human-in-the-loop workflows. 150+ deployments.',
   keywords: ['AI agent development', 'build AI agent', 'autonomous AI agents', 'LangGraph development', 'multi-agent systems', 'AI agent company'],
   openGraph: {
     title: 'AI Agent Development | Autonomous AI Agents Built for Production | Kovil AI',

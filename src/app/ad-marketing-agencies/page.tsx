@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import NYAgencyPage from '@/src/pages/ad-marketing-agencies/NYAgencyPage'
 
 export const metadata: Metadata = {
-  title: 'AI Engineers for NY Ad & Marketing Agencies — Matched in 48 Hours',
-  description: 'Kovil AI embeds vetted AI engineers into New York marketing agencies in 48 hours. AI orchestration, workflow automation, campaign intelligence, and AI integration — 2-week risk-free trial, no lock-in.',
+  title: 'AI Engineers for NY Ad & Marketing Agencies',
+  description: 'Vetted AI engineers embedded in New York marketing agencies in 48 hours: AI orchestration, workflow automation, and campaign intelligence.',
   alternates: { canonical: 'https://kovil.ai/ad-marketing-agencies' },
   robots: { index: true, follow: true },
   keywords: [

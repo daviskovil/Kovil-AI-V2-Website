@@ -4,8 +4,9 @@ import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Hire LangChain Developers | Expert LangChain & LlamaIndex Engineers',
-  description: 'Build production LLM applications with expert LangChain developers. Chains, agents, RAG pipelines, memory, tools. Kovil AI engineers ship in weeks, not months.',
+  title: 'Hire LangChain & LlamaIndex Developers',
+  description: 'Build production LLM apps with expert LangChain developers: chains, agents, RAG pipelines, memory, and tools. Shipped in weeks, not months.',
+  alternates: { canonical: 'https://kovil.ai/langchain-developer' },
   keywords: ['LangChain developer', 'LangChain engineer', 'hire LangChain developer', 'LangChain consultant', 'LangChain agent development', 'LangChain RAG pipeline', 'LlamaIndex developer', 'LLM application development'],
   openGraph: {
     title: 'Hire LangChain Developers | Expert LangChain & LlamaIndex Engineers',

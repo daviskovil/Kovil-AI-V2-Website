@@ -5,8 +5,8 @@ import type { SectionHubData } from '@/src/components/hub/SectionHubTemplate'
 const AZURE = '#0078D4'
 
 export const metadata: Metadata = {
-  title: 'Azure AI Foundry Playbook — Guides, Pricing & Case Studies',
-  description: 'Azure AI Foundry technical playbook — architect your first agent, Azure OpenAI vs OpenAI API, claims processing case study, pricing guide 2026, security compliance, and ROI guide.',
+  title: 'Azure AI Foundry Playbook: Guides & Pricing',
+  description: 'Azure AI Foundry playbook: architect your first agent, Azure OpenAI vs OpenAI API, pricing guide 2026, security compliance, and ROI.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/playbook' },
   keywords: ['azure ai foundry playbook', 'azure openai guide', 'architect azure ai agent', 'azure ai pricing 2026', 'azure openai vs openai api', 'azure ai security compliance guide', 'azure ai roi guide', 'claims processing azure ai', 'azure ai foundry tutorial', 'azure ai foundry articles'],
   openGraph: {

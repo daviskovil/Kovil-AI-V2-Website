@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import OmnichannelEngagementAgentPage from '@/src/pages/azure-ai-foundry/customer-experience/OmnichannelEngagementAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Omnichannel Engagement Agent — Teams, Web & Email on Azure',
-  description: 'Unified AI engagement agent across Teams, web chat, and email built on Azure AI Foundry. Consistent brand voice, live Dynamics 365 context, zero conversation loss on channel handoff.',
+  title: 'Omnichannel Engagement Agent on Azure',
+  description: 'One AI agent across Teams, web chat, and email: consistent brand voice, live Dynamics 365 context, and no lost conversations on channel handoff.',
   alternates: { canonical: 'https://kovil.ai/azure-ai-foundry/customer-experience/omnichannel-engagement-agent' },
   keywords: ['omnichannel AI agent Azure', 'Azure AI Teams chatbot', 'Copilot Studio omnichannel', 'Dynamics 365 AI agent', 'Azure Communication Services AI', 'unified customer engagement AI', 'Azure AI Foundry omnichannel', 'multi-channel AI Azure', 'Teams web email AI agent', 'Azure Service Bus messaging AI', 'customer engagement automation', 'omnichannel bot Azure', 'brand voice AI Azure', 'Microsoft Teams AI agent', 'Kovil AI Azure', 'omnichannel customer service'],
   openGraph: { type: 'website', title: 'Omnichannel Engagement Agent — Azure AI | Kovil AI', description: 'One AI agent across Teams, web, and email. Live Dynamics 365 context. 92% brand consistency. Zero context loss.', url: 'https://kovil.ai/azure-ai-foundry/customer-experience/omnichannel-engagement-agent', siteName: 'Kovil AI', images: [{ url: 'https://kovil.ai/og-azure-ai-foundry.png', width: 1200, height: 630, alt: 'Omnichannel Engagement Agent — Kovil AI' }] },

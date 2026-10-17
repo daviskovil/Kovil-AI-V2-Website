@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import SDRAgentPage from '@/src/pages/agentforce/sales-cloud/SDRAgentPage'
 
 export const metadata: Metadata = {
-  title: 'Agentforce SDR Agent — Autonomous Lead Qualification & Outreach',
-  description: 'Deploy an Agentforce SDR agent that qualifies inbound leads, sends AI-personalised outreach, handles objections, and books meetings autonomously 24/7 inside Salesforce Sales Cloud.',
+  title: 'Agentforce SDR Agent: Autonomous Outreach',
+  description: 'Deploy an Agentforce SDR agent that qualifies inbound leads, personalises outreach, handles objections, and books meetings 24/7 in Sales Cloud.',
   alternates: { canonical: 'https://kovil.ai/agentforce/sales-cloud/sdr-agent' },
   keywords: [
     'Agentforce SDR agent',

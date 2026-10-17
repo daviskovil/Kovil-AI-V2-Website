@@ -3,7 +3,7 @@ import HomeDecorFurnitureAiPage from '@/src/pages/shopify/solutions/HomeDecorFur
 
 export const metadata: Metadata = {
   title: 'Home & Furniture AI Agents for Shopify',
-  description: 'Deploy custom conversational Home & Furniture agents for spacing consultations, coordinate recommendations, and delivery scheduling. Live in 2 weeks, risk-free trial.',
+  description: 'Conversational Home & Furniture agents for spacing consultations, coordinated recommendations, and delivery scheduling. Live in 2 weeks.',
   alternates: { canonical: 'https://kovil.ai/shopify/solutions/home-decor-furniture-ai-agents' },
   keywords: [
     'home furniture ai agent shopify',

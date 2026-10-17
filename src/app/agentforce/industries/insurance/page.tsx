@@ -3,7 +3,7 @@ import InsuranceAgentforcePage from '@/src/pages/agentforce/industries/Insurance
 
 export const metadata: Metadata = {
   title: 'Agentforce for Insurance',
-  description: 'Production Agentforce for insurance — FNOL claims intake automation, policy renewal agents, underwriting triage, and broker support. Financial Services Cloud · NAIC compliant · Fixed-price sprints.',
+  description: 'Agentforce for insurers: FNOL claims intake, policy renewal agents, underwriting triage, and broker support. NAIC compliant, fixed-price sprints.',
   alternates: { canonical: 'https://kovil.ai/agentforce/industries/insurance' },
   keywords: [
     'agentforce insurance',

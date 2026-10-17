@@ -7,8 +7,8 @@ const BASE = 'https://kovil.ai'
 const CANONICAL = `${BASE}/agentforce/faq`
 
 export const metadata: Metadata = {
-  title: 'Agentforce FAQ 2026: 25 Answers from Implementation Engineers',
-  description: 'Definitive Agentforce FAQ — what it is, how it works, pricing, how it compares to Microsoft Copilot, security, implementation timelines, and how to work with Kovil AI. Updated June 2026.',
+  title: 'Agentforce FAQ 2026: 25 Expert Answers',
+  description: 'What Agentforce is, how it works, pricing, how it compares to Microsoft Copilot, security, and timelines. Answers from implementation engineers.',
   alternates: { canonical: CANONICAL },
   keywords: ['agentforce faq','agentforce frequently asked questions','what is agentforce','how does agentforce work','agentforce pricing 2026','agentforce vs microsoft copilot','agentforce einstein trust layer','agentforce implementation partner','agentforce atlas reasoning engine','salesforce agentforce questions and answers'],
   openGraph: { type: 'article', title: 'Agentforce FAQ 2026: 25 Questions Answered | Kovil AI', description: 'Definitive Agentforce FAQ covering what it is, how it works, pricing, security, comparisons and implementation — from certified implementation engineers.', url: CANONICAL, siteName: 'Kovil AI', images: [{ url: `${BASE}/og-agentforce.png`, width: 1200, height: 630 }] },

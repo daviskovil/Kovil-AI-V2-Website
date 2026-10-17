@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import MakeAutomationExpertsPage from '@/src/pages/hire/MakeAutomationExpertsPage'
 
 export const metadata: Metadata = {
-  title: 'Hire Make.com Automation Experts — AI Workflow Automation, Matched in 48 Hours',
-  description: 'Hire vetted Make.com automation experts embedded in your team in 48 hours. Complex scenario design, SaaS integrations, custom app development, webhook routing, error handling. 2-week risk-free trial.',
+  title: 'Hire Make.com Automation Experts in 48 Hours',
+  description: 'Hire vetted Make.com experts in 48 hours. Complex scenario design, SaaS integrations, custom apps, webhook routing, and error handling.',
   alternates: { canonical: 'https://kovil.ai/hire/make-automation-experts' },
   keywords: [
     'hire make.com automation experts',
