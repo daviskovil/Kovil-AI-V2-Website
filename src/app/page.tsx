@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import HomePage from '@/src/pages/HomePage'
 
 export const metadata: Metadata = {
-  title: 'Kovil AI — We Build AI Agents for Enterprises',
-  description: 'We build and deploy AI agents for enterprises — fixed price, fixed timeline, zero delivery risk. Managed AI engineers, outcome-based projects, and AI agent rescue. Ship your first agent in weeks.',
+  title: 'Kovil AI — Remote Enterprise Platform Experts',
+  description: 'Remote enterprise platform experts for Salesforce, HubSpot, NetSuite, and 30+ more. Vetted, actively managed, with AI built inside your platforms.',
   alternates: { canonical: 'https://kovil.ai/' },
   keywords: [
     'AI agent development company',
@@ -30,13 +30,13 @@ export const metadata: Metadata = {
   openGraph: {
     url: 'https://kovil.ai/',
     type: 'website',
-    title: 'Kovil AI — Platform AI Experts for Enterprise AI Agents',
-    description: 'Integrate autonomous AI agents into your existing platforms and workflows — Salesforce, HubSpot, Shopify, and 30+ enterprise tools. Fixed price, zero delivery risk.',
+    title: 'Kovil AI — Remote Enterprise Platform Experts',
+    description: 'Remote enterprise platform experts who run your platforms and build AI inside them. Salesforce, HubSpot, NetSuite, and 30+ more.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kovil AI — Platform AI Experts for Enterprise AI Agents',
-    description: 'Integrate autonomous AI agents into your existing platforms and workflows — Salesforce, HubSpot, Shopify, and 30+ enterprise tools.',
+    title: 'Kovil AI — Remote Enterprise Platform Experts',
+    description: 'Remote enterprise platform experts who run your platforms and build AI inside them. Salesforce, HubSpot, NetSuite, and 30+ more.',
   },
 }
 

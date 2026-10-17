@@ -24,12 +24,12 @@ export default async function Image() {
           <div style={{ display: 'flex', background: '#FF4F00', borderRadius: 20, padding: '8px 20px', marginBottom: 28, alignSelf: 'flex-start' }}>
             <span style={{ color: 'white', fontSize: 14, fontWeight: 700, letterSpacing: 1 }}>KOVIL AI</span>
           </div>
-          <div style={{ color: '#FF8A4C', fontSize: 16, fontWeight: 600, letterSpacing: 4, marginBottom: 14, display: 'flex' }}>PLATFORM AI EXPERTS</div>
+          <div style={{ color: '#FF8A4C', fontSize: 16, fontWeight: 600, letterSpacing: 4, marginBottom: 14, display: 'flex' }}>SALESFORCE · HUBSPOT · NETSUITE</div>
           <div style={{ display: 'flex', flexDirection: 'column', marginBottom: 16 }}>
-            <span style={{ color: 'white', fontSize: 48, fontWeight: 700, lineHeight: 1.12, display: 'flex' }}>Integrate AI Agents Into</span>
-            <span style={{ color: '#FF4F00', fontSize: 48, fontWeight: 700, lineHeight: 1.12, display: 'flex' }}>Your Existing Platforms</span>
+            <span style={{ color: 'white', fontSize: 48, fontWeight: 700, lineHeight: 1.12, display: 'flex' }}>Remote Enterprise</span>
+            <span style={{ color: '#FF4F00', fontSize: 48, fontWeight: 700, lineHeight: 1.12, display: 'flex' }}>Platform Experts</span>
           </div>
-          <div style={{ color: '#9A9A9F', fontSize: 19, marginBottom: 36, display: 'flex' }}>Salesforce · HubSpot · Shopify · 30+ Enterprise Tools</div>
+          <div style={{ color: '#9A9A9F', fontSize: 19, marginBottom: 36, display: 'flex' }}>We Run Your Platforms and Build AI Inside Them</div>
           <div style={{ display: 'flex', gap: 20 }}>
             <div style={{ display: 'flex', flexDirection: 'column', background: '#1A1A1E', borderRadius: 12, padding: '16px 28px', border: '1px solid #2A2A2E' }}>
               <span style={{ color: '#FF4F00', fontSize: 42, fontWeight: 700, display: 'flex' }}>48 hrs</span>

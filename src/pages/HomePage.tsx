@@ -59,11 +59,11 @@ const HOME_SCHEMA = [
 const WEBPAGE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Kovil AI — We Build AI Agents for Enterprises",
-  "description": "We build and deploy AI agents for enterprises — fixed price, fixed timeline, zero delivery risk. Managed AI engineers, outcome-based projects, and AI agent rescue.",
+  "name": "Kovil AI — Remote Enterprise Platform Experts",
+  "description": "Remote enterprise platform experts for Salesforce, HubSpot, NetSuite, and 30+ more. Vetted, actively managed, with AI built inside your platforms.",
   "url": "https://kovil.ai/",
   "datePublished": "2026-01-15",
-  "dateModified": "2026-07-23",
+  "dateModified": "2026-10-17",
   "inLanguage": "en-US",
   "isPartOf": { "@type": "WebSite", "name": "Kovil AI", "url": "https://kovil.ai" },
   "speakable": {
