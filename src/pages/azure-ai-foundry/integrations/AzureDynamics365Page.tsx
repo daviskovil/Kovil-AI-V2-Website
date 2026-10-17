@@ -6,6 +6,7 @@ import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
 import Link from "next/link"
 import AzurePracticeNavigation from '../../../components/azure/AzurePracticeNavigation'
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 const AZURE = "#0078D4"
 
@@ -232,6 +233,8 @@ export default function AzureDynamics365Page() {
           </div>
         </div>
       </section>
+
+      <RelatedPlatformLink slug="microsoft-dynamics-365" name="Microsoft Dynamics 365" blurb="Dynamics 365 AI agents plus vetted consultants and developers, matched in 48 hours." />
 
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-6 py-20 pb-24">

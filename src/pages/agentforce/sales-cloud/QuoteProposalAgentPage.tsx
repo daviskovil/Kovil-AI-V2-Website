@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 import { ArrowRight, ArrowLeft, Clock, CheckCircle, ChevronRight, FileText } from 'lucide-react'
 import { openCalendly } from '../../../lib/calendly'
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 const SF_BLUE = '#00A1E0'
 
@@ -570,6 +571,8 @@ export default function QuoteProposalAgentPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPlatformLink slug="salesforce" name="Salesforce" blurb="Agentforce builds plus vetted admins, developers, and architects, matched in 48 hours." />
 
       {/* ── BOTTOM CTA ────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">

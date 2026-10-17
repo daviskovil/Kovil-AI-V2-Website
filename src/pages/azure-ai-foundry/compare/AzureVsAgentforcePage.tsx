@@ -6,6 +6,7 @@ import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
 import Link from "next/link"
 import AzurePracticeNavigation from '../../../components/azure/AzurePracticeNavigation'
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 const AZURE = "#0078D4"
 
@@ -161,6 +162,8 @@ export default function AzureVsAgentforcePage() {
           </p>
         </div>
       </section>
+
+      <RelatedPlatformLink slug="salesforce" name="Salesforce" blurb="Agentforce builds plus vetted admins, developers, and architects, matched in 48 hours." />
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-6 py-20 pb-24">

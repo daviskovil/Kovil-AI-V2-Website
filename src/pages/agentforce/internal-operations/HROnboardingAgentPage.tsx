@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 import { ArrowRight, ArrowLeft, Clock, CheckCircle, ChevronRight, Zap } from 'lucide-react'
 import { openCalendly } from '../../../lib/calendly'
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 const SF_BLUE = '#00A1E0'
 
@@ -502,6 +503,8 @@ export default function HROnboardingAgentPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPlatformLink slug="workday" name="Workday" blurb="Illuminate AI agents plus vetted Workday consultants and integration developers." />
 
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">

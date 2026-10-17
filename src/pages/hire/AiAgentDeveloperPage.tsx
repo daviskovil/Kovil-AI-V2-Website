@@ -429,11 +429,12 @@ export default function AiAgentDeveloperPage() {
       {/* Internal links */}
       <section className="max-w-7xl mx-auto px-6 py-16">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-6">Explore More</p>
-        <div className="grid sm:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             { href: "/hire/claude-code-engineer", label: "Hire Claude Code Engineers", desc: "Engineers fluent in Anthropic's agentic toolchain" },
             { href: "/hire/langgraph-engineers", label: "Hire LangGraph Engineers", desc: "Stateful multi-agent orchestration specialists" },
             { href: "/hire/llm-engineer", label: "Hire LLM Engineers", desc: "RAG, fine-tuning, and LLM app development" },
+            { href: "/platforms", label: "Platform AI Experts", desc: "Salesforce, HubSpot, NetSuite, and 35 more platforms" },
           ].map((link) => (
             <Link key={link.href} href={link.href} className="rounded-xl border border-border p-5 hover:border-accent/40 hover:bg-muted/20 transition-all group">
               <p className="font-semibold text-sm mb-1 group-hover:text-accent transition-colors">{link.label}</p>

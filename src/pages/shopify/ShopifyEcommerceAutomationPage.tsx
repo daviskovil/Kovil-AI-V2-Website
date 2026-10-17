@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 import { Button } from "../../components/ui/button"
 import { OnboardingModal } from "../../components/OnboardingModal"
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 // ── Shopify-Specific CTA Trigger ─────────────────────────────────────────────
 function ShopifyCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
@@ -329,6 +330,8 @@ export default function ShopifyEcommerceAutomationPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPlatformLink slug="shopify-plus" name="Shopify Plus" blurb="Commerce AI agents plus vetted Shopify developers, matched in 48 hours." />
 
       {/* Bottom CTA */}
       <section className="py-20 px-6 border-t border-border bg-background">

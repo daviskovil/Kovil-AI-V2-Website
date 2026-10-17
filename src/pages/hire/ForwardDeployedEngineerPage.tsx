@@ -423,11 +423,12 @@ export default function ForwardDeployedEngineerPage() {
       {/* Internal links */}
       <section className="max-w-7xl mx-auto px-6 py-16">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-6">Explore More</p>
-        <div className="grid sm:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             { href: "/hire/ai-agent-developer", label: "Hire AI Agent Developers", desc: "Autonomous agents, tool use, multi-agent systems" },
             { href: "/hire/data-engineer", label: "Hire Data Engineers", desc: "Pipelines, warehousing, and data infrastructure" },
             { href: "/engage/app-rescue", label: "AI App Rescue", desc: "Audit and fix a stalled or failing AI build" },
+            { href: "/platforms", label: "Platform AI Experts", desc: "Salesforce, HubSpot, NetSuite, and 35 more platforms" },
           ].map((link) => (
             <Link key={link.href} href={link.href} className="rounded-xl border border-border p-5 hover:border-accent/40 hover:bg-muted/20 transition-all group">
               <p className="font-semibold text-sm mb-1 group-hover:text-accent transition-colors">{link.label}</p>

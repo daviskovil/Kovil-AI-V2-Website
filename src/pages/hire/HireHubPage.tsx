@@ -543,6 +543,7 @@ export default function HireHubPage() {
               { href: "/engage/app-rescue",            label: "AI App Rescue" },
               { href: "/how-it-works",                 label: "How It Works" },
               { href: "/case-studies",                 label: "Case Studies" },
+              { href: "/platforms",                    label: "Platform AI Experts" },
             ].map(link => (
               <Link
                 key={link.href}

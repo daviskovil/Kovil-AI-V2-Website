@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import { Button } from "../../components/ui/button"
 import { OnboardingModal } from "../../components/OnboardingModal"
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -726,6 +727,8 @@ export default function NYAgencyPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPlatformLink slug="hubspot" name="HubSpot" blurb="CRM AI agents plus vetted HubSpot developers and consultants, matched in 48 hours." />
 
       {/* ── 11. FINAL CTA ──────────────────────────────────────────────────── */}
       <section className="py-24 px-6">

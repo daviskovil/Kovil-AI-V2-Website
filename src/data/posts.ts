@@ -5206,7 +5206,7 @@ export const posts: Post[] = [
       },
     ],
     body: `
-<p>If you are evaluating open-source CRMs in 2026, the shortlist almost always comes down to two platforms: <strong>VTiger</strong> and <strong>SuiteCRM</strong>. Both are mature, actively maintained, and deployed by thousands of businesses worldwide. Both can replace Salesforce or HubSpot for a fraction of the cost.</p>
+<p>If you are evaluating open-source CRMs in 2026, the shortlist almost always comes down to two platforms: <strong>VTiger</strong> and <strong>SuiteCRM</strong>. Both are mature, actively maintained, and deployed by thousands of businesses worldwide. Both can replace <a href="/platforms/salesforce">Salesforce</a> or <a href="/platforms/hubspot">HubSpot</a> for a fraction of the cost.</p>
 
 <p>But they are built on different philosophies, serve different types of organisations, and have very different AI stories — which matters a lot in 2026, when AI agents are moving from experimental to expected in CRM workflows.</p>
 

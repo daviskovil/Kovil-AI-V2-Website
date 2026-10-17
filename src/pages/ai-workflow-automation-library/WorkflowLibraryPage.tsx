@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { X, ArrowRight, Clock, ChevronRight, Zap, ExternalLink } from 'lucide-react'
 import { openCalendly } from '../../lib/calendly'
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -1468,6 +1469,8 @@ export default function WorkflowLibraryPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <RelatedPlatformLink slug="hubspot" name="HubSpot" blurb="CRM AI agents plus vetted HubSpot developers and consultants, matched in 48 hours." />
 
       {/* ── BOTTOM CTA ───────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-8 pb-24">

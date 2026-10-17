@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, ArrowLeft, Clock, CheckCircle, ChevronRight, Inbox, MessageCircle, Mail } from 'lucide-react'
 import { openCalendly } from '../../lib/calendly'
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 // ── Brand-coloured node icons ─────────────────────────────────────────────────
 
@@ -595,6 +596,8 @@ export default function MultiChannelInboundPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPlatformLink slug="hubspot" name="HubSpot" blurb="CRM AI agents plus vetted HubSpot developers and consultants, matched in 48 hours." />
 
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">

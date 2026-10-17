@@ -9,6 +9,7 @@ import {
 import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
 import Link from "next/link"
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 const SF_BLUE = "#00A1E0"
 
@@ -559,6 +560,8 @@ export default function HealthcareAgentforcePage() {
           ))}
         </div>
       </section>
+
+      <RelatedPlatformLink slug="mulesoft" name="MuleSoft" blurb="Agent-ready API builds plus vetted MuleSoft engineers and architects." />
 
       {/* ── CTA ──────────────────────────────────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-6 pb-24">

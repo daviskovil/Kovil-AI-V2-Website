@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowLeft, ArrowRight, Clock, Calendar, Users, Lightbulb, Eye, GitBranch, Zap, RefreshCw, Shield, Database, Globe, HelpCircle, CheckCircle, Cpu, Lock } from "lucide-react"
 import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 const SF_BLUE = "#00A1E0"
 
@@ -533,6 +534,8 @@ export default function HowAgentforceWorksPage() {
           </div>
         </div>
       </div>
+
+      <RelatedPlatformLink slug="salesforce" name="Salesforce" blurb="Agentforce builds plus vetted admins, developers, and architects, matched in 48 hours." />
 
       {/* Final CTA */}
       <div className="bg-foreground text-background">

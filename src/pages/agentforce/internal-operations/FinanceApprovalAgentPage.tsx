@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 import { ArrowRight, ArrowLeft, Clock, CheckCircle, ChevronRight, Zap } from 'lucide-react'
 import { openCalendly } from '../../../lib/calendly'
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 const SF_BLUE = '#00A1E0'
 
@@ -509,6 +510,8 @@ export default function FinanceApprovalAgentPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPlatformLink slug="netsuite" name="NetSuite" blurb="ERP AI agents plus vetted NetSuite developers and consultants, matched in 48 hours." />
 
       {/* ── BOTTOM CTA ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 py-20">
