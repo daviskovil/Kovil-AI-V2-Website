@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import { OnboardingModal } from "../../components/OnboardingModal"
 import { Button } from "../../components/ui/button"
+import { hireDirectory, hireGroups } from "../../data/hire-directory"
 
 // ── CTA Button wrapped in OnboardingModal trigger ────────────────────────────
 function HireCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
@@ -552,6 +553,27 @@ export default function HireHubPage() {
               >
                 {link.label}
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Every role page, as plain links ──────────────────────────────────── */}
+      <section id="all-roles" aria-labelledby="all-roles-heading" className="py-14 px-6 border-t border-border bg-muted/20">
+        <div className="max-w-6xl mx-auto">
+          <h2 id="all-roles-heading" className="font-display font-bold text-2xl mb-8">All roles we place</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
+            {hireGroups.map((group) => (
+              <div key={group}>
+                <h3 className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">{group}</h3>
+                <ul className="space-y-2">
+                  {hireDirectory.filter((r) => r.group === group).map((r) => (
+                    <li key={r.href}>
+                      <Link href={r.href} className="text-sm text-muted-foreground hover:text-accent transition-colors">{r.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </div>

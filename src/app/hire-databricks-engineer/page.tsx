@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react'
+import RelatedHireRoles from '@/src/components/hire/RelatedHireRoles'
 
 export const metadata: Metadata = {
   title: 'Hire Databricks Engineers',
@@ -564,6 +565,7 @@ export default function HireDatabricksEngineerPage() {
           </Link>
         </div>
       </section>
+      <RelatedHireRoles currentHref="/hire-databricks-engineer" />
     </>
   )
 }
