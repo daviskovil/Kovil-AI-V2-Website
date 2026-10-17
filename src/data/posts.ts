@@ -11,6 +11,9 @@ export interface Post {
   heroImage?: string;
   faqs?: { q: string; a: string }[];
   localBusiness?: boolean; // inject LocalBusiness schema for geo-targeted posts
+  metaTitle?: string; // <title> override (the layout appends " | Kovil AI"); keep <= 49 chars
+  metaDescription?: string; // meta description override; keep <= 155 chars
+  updated?: string; // last substantive content update, same format as `date`
 }
 
 export const posts: Post[] = [
@@ -1518,6 +1521,9 @@ export const posts: Post[] = [
     author: "Kovil AI Team",
     featured: false,
     heroImage: "/blog-n8n-vs-zapier-vs-power-automate-v2.webp",
+    metaTitle: "n8n vs Power Automate vs Zapier vs Make (2026)",
+    metaDescription: "n8n vs Power Automate in plain English, plus Zapier and Make: pricing, custom logic, hosting, and which to pick for your team. Updated for 2026.",
+    updated: "Oct 17, 2026",
     faqs: [
       {
         q: "What is the main difference between n8n, Zapier, and Power Automate?",
@@ -1559,6 +1565,54 @@ export const posts: Post[] = [
 </ul>
 <p style="color:#6b7280;font-size:0.875rem;margin-top:0.75rem;margin-bottom:0;">If none of those descriptions fit neatly, read on. The reality has more nuance.</p>
 </div>
+
+<h2>n8n vs Power Automate: The Short Answer</h2>
+
+<p>If your question is specifically <strong>n8n vs Power Automate</strong>: choose <strong>Power Automate</strong> when your company already runs on Microsoft 365 and Dynamics 365 and you want automation that inherits your Microsoft identity, permissions, and governance. Choose <strong>n8n</strong> when you need complex or AI-heavy workflows, custom code, self-hosting, or you want to avoid per-user licensing.</p>
+
+<table style="width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.875rem;">
+<thead>
+<tr style="background:#f9fafb;border-bottom:2px solid #e5e7eb;">
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">n8n vs Power Automate</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">n8n</th>
+<th style="text-align:left;padding:0.75rem 1rem;font-weight:600;color:#111827;">Power Automate</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Best fit</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Technical teams; complex and AI-driven workflows</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Organizations standardized on Microsoft 365 and Dynamics 365</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Pricing model</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Cloud plans priced by workflow executions; self-hosting available</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Per-user and per-flow licensing; premium connectors need a premium license</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Custom logic</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Code nodes (JavaScript and Python), HTTP calls, branching, sub-workflows</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Expressions and connectors; custom connectors for anything else</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Hosting and data control</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Self-host or cloud</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Microsoft cloud, plus desktop flows for RPA on local machines</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Governance</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">You design roles, secrets, and environments</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Inherits Microsoft Entra ID, environments, and data loss prevention policies</td>
+</tr>
+<tr style="border-bottom:1px solid #f3f4f6;background:#fafafa;">
+<td style="padding:0.75rem 1rem;color:#374151;font-weight:500;">Learning curve</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Steeper; much easier with a developer on the team</td>
+<td style="padding:0.75rem 1rem;color:#6b7280;">Gentler inside Microsoft tools; complexity rises with advanced scenarios</td>
+</tr>
+</tbody>
+</table>
+
+<p>Want the full reasoning? Jump to <a href="#n8n-vs-power-automate-the-difference-explained">the complete n8n vs Power Automate breakdown</a> below. If you run Microsoft Dynamics 365, see our page on <a href="/platforms/microsoft-dynamics-365">Dynamics 365 AI agents and specialist developers</a>. And if you would rather have an expert make the call for your stack, <a href="/book-a-call">book a free 30-minute call</a>.</p>
 
 <div style="background:#111827;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.5rem 2rem;margin:2rem 0;display:flex;flex-direction:column;gap:0.75rem;position:relative;">
   <div style="position:absolute;inset:0;opacity:0.04;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:32px 32px;pointer-events:none;"></div>

@@ -118,6 +118,22 @@ export default function Footer() {
 
         </div>
 
+        {/* Popular platforms: direct crawl paths to the platform pages from every page */}
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Platforms We Build On</h4>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted/60">
+            {[
+              ['salesforce', 'Salesforce'], ['hubspot', 'HubSpot'], ['netsuite', 'NetSuite'], ['microsoft-dynamics-365', 'Dynamics 365'],
+              ['workday', 'Workday'], ['shopify-plus', 'Shopify Plus'], ['servicenow', 'ServiceNow'], ['zendesk', 'Zendesk'],
+              ['stripe', 'Stripe'], ['twilio', 'Twilio'], ['quickbooks', 'QuickBooks'], ['xero', 'Xero'],
+              ['mulesoft', 'MuleSoft'], ['uipath', 'UiPath'], ['atlassian', 'Atlassian'], ['zoho-one', 'Zoho One'],
+            ].map(([slug, label]) => (
+              <li key={slug}><Link href={`/platforms/${slug}`} className="hover:text-accent transition-colors">{label}</Link></li>
+            ))}
+            <li><Link href="/platforms" className="text-accent/80 hover:text-accent transition-colors">All 38 platforms →</Link></li>
+          </ul>
+        </div>
+
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-white/10 text-sm text-muted/40 flex flex-col md:flex-row justify-between items-center gap-4">
           <p>© {new Date().getFullYear()} Kovil AI LLC. All rights reserved.</p>

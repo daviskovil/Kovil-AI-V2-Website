@@ -6,6 +6,7 @@ import Link from "next/link"
 import { ArrowRight, ChevronDown, CheckCircle2, Shield, Database, Brain, Cpu, Zap, Users, Wrench, BarChart3, BookOpen, Download, Clock, FileText, AlertCircle, TrendingUp, Settings, Globe, Scale, HelpCircle, DollarSign } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { openCalendly } from "../lib/calendly"
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 // ── Salesforce / Agentforce brand colour (used inline only — no new CSS var) ──
 const SF_BLUE = "#00A1E0"
@@ -1222,6 +1223,8 @@ export default function AgentforcePage() {
           </div>
         </div>
       </section>
+
+      <RelatedPlatformLink slug="salesforce" name="Salesforce" blurb="Agentforce builds plus vetted admins, developers, and architects, matched in 48 hours." />
 
       {/* ── SECTION 10 — FINAL CTA ── */}
       <section className="py-24 max-w-4xl mx-auto px-6 pb-24">

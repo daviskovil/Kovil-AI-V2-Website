@@ -6,6 +6,7 @@ import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
 import Link from "next/link"
 import AzurePracticeNavigation from '../../../components/azure/AzurePracticeNavigation'
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 const AZURE = "#0078D4"
 
@@ -232,6 +233,8 @@ export default function AzureServiceNowPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPlatformLink slug="servicenow" name="ServiceNow" blurb="Now Assist builds plus vetted ServiceNow developers, consultants, and architects." />
 
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-6 py-20 pb-24">

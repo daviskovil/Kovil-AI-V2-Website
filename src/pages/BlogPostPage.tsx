@@ -476,21 +476,31 @@ function toSlug(text: string): string {
 
 interface Heading { level: number; text: string; id: string }
 
+// Repeated headings (e.g. "Strengths" under each tool) must get unique anchor ids; the first
+// occurrence keeps the plain slug so existing #fragment links keep working.
+function uniqueId(slug: string, seen: Map<string, number>): string {
+  const n = (seen.get(slug) ?? 0) + 1
+  seen.set(slug, n)
+  return n === 1 ? slug : `${slug}-${n}`
+}
+
 function parseHeadings(html: string): Heading[] {
   const regex = /<h([23])[^>]*>([\s\S]*?)<\/h[23]>/gi
   const results: Heading[] = []
+  const seen = new Map<string, number>()
   let match
   while ((match = regex.exec(html)) !== null) {
     const text = match[2].replace(/<[^>]+>/g, "").trim()
-    if (text) results.push({ level: parseInt(match[1]), text, id: toSlug(text) })
+    if (text) results.push({ level: parseInt(match[1]), text, id: uniqueId(toSlug(text), seen) })
   }
   return results
 }
 
 function injectHeadingIds(html: string): string {
+  const seen = new Map<string, number>()
   return html.replace(/<h([23])([^>]*)>([\s\S]*?)<\/h[23]>/gi, (_, level, attrs, content) => {
     const text = content.replace(/<[^>]+>/g, "").trim()
-    const id = toSlug(text)
+    const id = text ? uniqueId(toSlug(text), seen) : toSlug(text)
     // Don't double-inject if already has an id
     if (attrs.includes("id=")) return `<h${level}${attrs}>${content}</h${level}>`
     return `<h${level}${attrs} id="${id}">${content}</h${level}>`
@@ -570,7 +580,7 @@ export default function BlogPostPage() {
     description: post.excerpt,
     url: `https://kovil.ai/blog/${post.slug}`,
     datePublished: isoDate,
-    dateModified: isoDate,
+    dateModified: post.updated ? toIso(post.updated) : isoDate,
     author: {
       "@type": "Organization",
       name: "Kovil AI",
@@ -657,7 +667,7 @@ export default function BlogPostPage() {
                 <p className="text-xl text-muted-foreground leading-relaxed mb-8">{post.excerpt}</p>
                 <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground pb-8 border-b border-border">
                   <span className="flex items-center gap-1.5"><User className="h-4 w-4" />{post.author}</span>
-                  <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4" />{post.date}</span>
+                  <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4" />{post.date}{post.updated ? ` · Updated ${post.updated}` : ''}</span>
                   <span className="flex items-center gap-1.5"><Clock className="h-4 w-4" />{post.readTime}</span>
                 </div>
               </header>

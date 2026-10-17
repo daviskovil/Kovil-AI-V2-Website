@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import { OnboardingModal } from "../../components/OnboardingModal"
 import { Button } from "../../components/ui/button"
+import RelatedPlatformLink from '@/src/components/platforms/RelatedPlatformLink'
 
 // ── Shopify-Specific CTA Trigger ─────────────────────────────────────────────
 function ShopifyCTA({ label, size = "lg", className = "" }: { label: string; size?: "lg" | "sm"; className?: string }) {
@@ -1386,6 +1387,8 @@ export default function ShopifyHubPage() {
 
         </div>
       </section>
+
+      <RelatedPlatformLink slug="shopify-plus" name="Shopify Plus" blurb="Commerce AI agents plus vetted Shopify developers, matched in 48 hours." />
 
       {/* ── High-Converting CTA Banner ───────────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-6 pb-24 pt-4">

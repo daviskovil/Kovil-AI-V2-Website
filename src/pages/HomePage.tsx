@@ -226,16 +226,16 @@ function TestimonialsSection() {
   )
 }
 
-const PLATFORM_RING: { name: string; label: string; src: string }[] = [
-  { name: "Salesforce", label: "Salesforce", src: "/logo-salesforce.webp" },
-  { name: "HubSpot", label: "HubSpot", src: "/logo-hubspot.png" },
-  { name: "Microsoft Dynamics 365", label: "Dynamics 365", src: "/logo-dynamics-365.png" },
-  { name: "NetSuite", label: "NetSuite", src: "/logo-netsuite.webp" },
-  { name: "QuickBooks", label: "QuickBooks", src: "/logo-quickbooks.png" },
-  { name: "Xero", label: "Xero", src: "/logo-xero.png" },
-  { name: "Shopify", label: "Shopify", src: "/logo-shopify.webp" },
-  { name: "Klaviyo", label: "Klaviyo", src: "/logo-klaviyo.png" },
-  { name: "Atlassian", label: "Atlassian", src: "/logo-atlassian.webp" },
+const PLATFORM_RING: { name: string; label: string; src: string; href: string }[] = [
+  { name: "Salesforce", label: "Salesforce", src: "/logo-salesforce.webp", href: "/platforms/salesforce" },
+  { name: "HubSpot", label: "HubSpot", src: "/logo-hubspot.png", href: "/platforms/hubspot" },
+  { name: "Microsoft Dynamics 365", label: "Dynamics 365", src: "/logo-dynamics-365.png", href: "/platforms/microsoft-dynamics-365" },
+  { name: "NetSuite", label: "NetSuite", src: "/logo-netsuite.webp", href: "/platforms/netsuite" },
+  { name: "QuickBooks", label: "QuickBooks", src: "/logo-quickbooks.png", href: "/platforms/quickbooks" },
+  { name: "Xero", label: "Xero", src: "/logo-xero.png", href: "/platforms/xero" },
+  { name: "Shopify", label: "Shopify", src: "/logo-shopify.webp", href: "/platforms/shopify-plus" },
+  { name: "Klaviyo", label: "Klaviyo", src: "/logo-klaviyo.png", href: "/platforms/klaviyo" },
+  { name: "Atlassian", label: "Atlassian", src: "/logo-atlassian.webp", href: "/platforms/atlassian" },
 ]
 
 function PlatformLogoRing() {
@@ -324,17 +324,19 @@ function PlatformLogoRing() {
           className="absolute flex flex-col items-center"
           style={{ left: pos.x - LABEL_W / 2, top: pos.y - BADGE / 2, width: LABEL_W }}
         >
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="rounded-2xl bg-white flex items-center justify-center border border-black/5 shrink-0"
-            style={{ height: BADGE, width: BADGE, boxShadow: "0 10px 30px -8px rgba(10,10,13,0.18)" }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={pos.src} alt={pos.name} className="h-9 w-9 object-contain" />
-          </motion.div>
-          <span className="mt-2 text-[11px] font-semibold text-foreground/70 text-center leading-tight">
-            {pos.label}
-          </span>
+          <Link href={pos.href} aria-label={`${pos.name} AI agents and specialist talent`} className="group flex flex-col items-center">
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              className="rounded-2xl bg-white flex items-center justify-center border border-black/5 shrink-0"
+              style={{ height: BADGE, width: BADGE, boxShadow: "0 10px 30px -8px rgba(10,10,13,0.18)" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={pos.src} alt={pos.name} className="h-9 w-9 object-contain" />
+            </motion.div>
+            <span className="mt-2 text-[11px] font-semibold text-foreground/70 text-center leading-tight group-hover:text-accent transition-colors">
+              {pos.label}
+            </span>
+          </Link>
         </motion.div>
       ))}
     </div>

@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ? [{ url: `https://kovil.ai${post.heroImage}`, width: 1200, height: 630, alt: post.title }]
     : [{ url: 'https://kovil.ai/og-image.png', width: 1200, height: 630, alt: 'Kovil AI' }]
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: post.metaTitle ?? post.title,
+    description: post.metaDescription ?? post.excerpt,
     alternates: { canonical: `https://kovil.ai/blog/${post.slug}` },
     openGraph: {
       type: 'article',
@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url: `https://kovil.ai/blog/${post.slug}`,
       siteName: 'Kovil AI',
       publishedTime: new Date(post.date).toISOString(),
+      ...(post.updated && { modifiedTime: new Date(post.updated).toISOString() }),
       authors: [post.author],
       images: ogImage,
     },
@@ -65,6 +66,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       logo: { '@type': 'ImageObject', url: 'https://kovil.ai/kovil-logo.png' },
     },
     datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.updated ?? post.date).toISOString(),
     url: `https://kovil.ai/blog/${post.slug}`,
     ...(post.heroImage && { image: `https://kovil.ai${post.heroImage}` }),
   }
