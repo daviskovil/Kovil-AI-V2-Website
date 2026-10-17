@@ -5,6 +5,8 @@ import Link from "next/link"
 import { ArrowRight, Clock, BookOpen, DollarSign, TrendingUp, Brain, Wrench } from "lucide-react"
 import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
+import HubExtraSections from '@/src/components/hub/HubExtraSections'
+import { playbookHub } from '@/src/data/agentforce-hub-content'
 
 const SF_BLUE = "#00A1E0"
 
@@ -206,6 +208,8 @@ export default function AgentforcePlaybookHubPage() {
           </div>
         </div>
       </section>
+
+      <HubExtraSections {...playbookHub} tone="theme" />
 
       {/* ── CTA ── */}
       <section className="border-t border-border py-20 bg-muted/30">

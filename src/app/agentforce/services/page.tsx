@@ -136,53 +136,6 @@ const serviceSchema = {
   },
 }
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What Agentforce implementation services does Kovil AI offer?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Kovil AI offers six Agentforce services: Strategy & Readiness (org audit, use case prioritisation, implementation roadmap), Agent Design & Configuration (Topic and Action architecture, Instructions authoring, full Agent Builder build), Sales Cloud Agent Deployment (SDR agents, pipeline monitors, quote agents), Service Cloud Agent Deployment (autonomous case resolution, escalation, knowledge base), MuleSoft & Data Cloud Integration (external system connectivity and Data Cloud unification), and Rescue & Optimisation (audit and fix of underperforming Agentforce deployments).',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How long does an Agentforce implementation take?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'A Strategy & Readiness engagement delivers a production-ready roadmap in 5–7 days. A single-agent deployment — SDR agent, pipeline monitor, or case resolution agent — takes 2–3 weeks from kick-off to go-live. Multi-agent programmes covering multiple use cases run 6–12 weeks depending on integration complexity. All engagements are fixed-price with a defined deliverable and timeline agreed upfront.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Are Agentforce implementation services fixed price or hourly?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'All Kovil AI Agentforce services are fixed price. Every engagement is scoped, priced upfront, and delivered against a defined set of deliverables. There is no hourly billing or time-and-materials model. The fixed-price structure applies to all services — from the initial Strategy & Readiness engagement through full multi-agent deployments and rescue programmes.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What does the Agentforce Strategy & Readiness service cover?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The Strategy & Readiness service includes: a comprehensive audit of your Salesforce org (licence utilisation, data model review, Data Cloud readiness, integration landscape, agent prerequisites), identification and prioritisation of high-ROI Agentforce use cases ranked by feasibility and business impact, definition of your Agentforce architecture and the data integrations required, and delivery of a sequenced implementation roadmap with sprint plan and business case to present internally.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Do I need MuleSoft for Agentforce?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'MuleSoft is required when Agentforce agents need to read from or write to systems outside Salesforce — loan management systems, EHR platforms, core banking, ERP systems, or other external APIs. If all the data your agents need lives inside Salesforce (Contacts, Cases, Accounts, Opportunities), Apex callouts or named credentials may be sufficient. We assess integration requirements during the Strategy & Readiness phase and recommend the appropriate approach based on your use case scope.',
-      },
-    },
-  ],
-}
-
 const collectionPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
@@ -230,7 +183,6 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />

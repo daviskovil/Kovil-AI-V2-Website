@@ -5,6 +5,8 @@ import Link from "next/link"
 import { ArrowRight, CheckCircle2, Users, Brain, BookOpen, Shield } from "lucide-react"
 import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
+import HubExtraSections from '@/src/components/hub/HubExtraSections'
+import { serviceCloudHub } from '@/src/data/agentforce-hub-content'
 
 const SF_BLUE = "#00A1E0"
 
@@ -197,6 +199,8 @@ export default function ServiceCloudHubPage() {
           </div>
         </div>
       </section>
+
+      <HubExtraSections {...serviceCloudHub} tone="theme" />
 
       {/* ── COMPLIANCE STRIP ── */}
       <section className="border-t border-border py-10 bg-muted/30">

@@ -5,6 +5,8 @@ import Link from "next/link"
 import { ArrowRight, ChevronRight, Compass, Settings2, Wrench, Database, Cloud, LifeBuoy } from "lucide-react"
 import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
+import HubExtraSections from '@/src/components/hub/HubExtraSections'
+import { servicesHub } from '@/src/data/agentforce-hub-content'
 
 const SF_BLUE = "#00A1E0"
 
@@ -162,6 +164,8 @@ export default function AgentforceServicesHubPage() {
           </div>
         </div>
       </section>
+
+      <HubExtraSections {...servicesHub} tone="dark" />
 
       {/* ── How we engage ──────────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-white/5">

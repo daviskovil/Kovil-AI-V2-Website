@@ -98,61 +98,6 @@ const serviceSchema = {
   },
 }
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What does Agentforce do for customer service teams?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Agentforce deploys autonomous AI agents inside Salesforce Service Cloud that handle Tier 1 and Tier 2 support cases — refunds, order status, rescheduling, troubleshooting — without human involvement. The agent operates 24/7, logs every action to the case record, and routes to human agents only when complexity, sentiment, or SLA risk demands it. Production deployments typically achieve 55–75% autonomous resolution within 8 weeks.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the typical Agentforce Service Cloud case deflection rate?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Production Agentforce Service Cloud deployments typically achieve 55–75% autonomous resolution rates within 8 weeks of go-live, depending on the breadth of the resolution action library and the quality of the knowledge base. The rate improves continuously as the knowledge base is updated and edge cases are added to the agent\'s action library.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How does Agentforce handle frustrated or upset customers?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Einstein Case Classification includes sentiment detection. Cases flagged high-frustration trigger a modified path: the agent acknowledges the frustration before attempting resolution, uses a more empathetic tone, and has a lower escalation threshold. Very high frustration scores trigger immediate human escalation. This protects CSAT across the entire deflected case volume.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does Agentforce Service Cloud replace human agents?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No — it handles the high-volume, repetitive L1/L2 cases that consume most of your team\'s time. Human agents handle genuinely complex cases, VIP accounts, and strategic situations — fully briefed by the AI on what was attempted before escalation. Most clients see human agent satisfaction increase because they spend their time on meaningful work rather than answering the same queries repeatedly.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How long does Agentforce Service Cloud implementation take?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'A focused pilot targeting one use case — autonomous case resolution — typically takes 2–3 weeks from scoping to production. A full multi-agent Service Cloud deployment covering autonomous resolution, intelligent escalation, and knowledge base automation typically runs 6–8 weeks. Kovil AI operates fixed-price only.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the ROI of Agentforce for customer service?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'ROI is driven by resolution cost reduction — autonomous resolution eliminates agent handling time for the case types covered — and response time improvement. At 65% deflection on a team handling 5,000 cases/month at $12 average handling cost, gross saving is $46,800/month before licence cost. Typical net ROI positive in 12–18 months.',
-      },
-    },
-  ],
-}
-
 const collectionSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
@@ -202,7 +147,6 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />

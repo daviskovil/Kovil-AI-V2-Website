@@ -98,53 +98,6 @@ const serviceSchema = {
   },
 }
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What internal operations tasks can Agentforce automate?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Agentforce automates the most repetitive, high-volume internal workflows: employee onboarding checklist generation, system access provisioning, policy Q&A for new hires, purchase order and expense approval routing, IT helpdesk requests (password resets, software access, device setup), and manager nudges for incomplete compliance items. These are configurable per department and business unit within your Salesforce org.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does Agentforce for internal operations work outside Salesforce?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Agentforce can connect to external systems via MuleSoft and API callout Actions. For internal operations, this typically means HRIS integration (Workday, BambooHR), ITSM integration (ServiceNow, Jira Service Management), and ERP integration (SAP, Oracle, NetSuite) for finance approval workflows. The agent operates inside Salesforce but can read from and write to external systems as part of each workflow.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How does the Einstein Trust Layer protect internal data?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Einstein Trust Layer masks sensitive internal data — employee IDs, salary information, financial approval amounts, and access credentials — before any values are included in LLM prompts. No internal data is retained by external model providers. Every agent action is logged with full traceability for HR, finance, and IT compliance audit purposes.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How long does Agentforce internal operations implementation take?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'A focused pilot targeting one use case — HR onboarding, finance approvals, or IT helpdesk — typically takes 2–3 weeks from scoping to production. A full multi-workflow deployment covering all three functions typically runs 6–8 weeks. Kovil AI operates fixed-price only.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the ROI of Agentforce for internal operations?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'ROI in internal operations Agentforce deployments comes from three sources: HR time savings (onboarding coordination typically consumes 8–12 hours of HR time per new hire — most of that is automatable), finance cycle time reduction (approval routing automation reduces average approval cycle from 3–5 days to same-day for standard requests), and IT ticket deflection (Tier 1 requests typically represent 40–60% of helpdesk volume).',
-      },
-    },
-  ],
-}
-
 const collectionSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
@@ -194,7 +147,6 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />

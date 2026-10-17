@@ -98,53 +98,6 @@ const serviceSchema = {
   },
 }
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What does Agentforce do for marketing teams?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Agentforce deploys autonomous AI agents inside Salesforce Marketing Cloud that handle campaign execution, lead nurture personalisation, and event operations — without manual marketing team intervention. The campaign execution agent monitors journeys 24/7, suppresses fatigue signals, and adjusts send times. The lead nurture agent builds personalised sequences grounded in real-time CRM engagement data. All agents log every action to Marketing Cloud for full audit visibility.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can Agentforce protect email deliverability in Marketing Cloud?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. The campaign execution agent monitors three leading indicators of deliverability degradation: journey fatigue signals (contacts approaching tolerance threshold), unsubscribe intent patterns (pre-unsubscribe engagement behaviour), and sudden bounce/spam complaint spikes. It suppresses affected contacts and pauses at-risk journeys before deliverability damage occurs.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How does Agentforce personalise lead nurture sequences?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The lead nurture agent uses Salesforce Prompt Builder to generate email content grounded in live CRM data — the lead\'s company, engagement history, product interest signals, and ICP fit score. This produces dynamically authored messages rather than template substitution. Sequences adapt based on engagement: high-engagement leads receive accelerated sequences; disengaged leads shift to re-engagement tracks.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How long does Agentforce Marketing Cloud implementation take?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'A focused pilot targeting one use case — campaign execution optimisation or lead nurture personalisation — typically takes 2–3 weeks from scoping to production. A full multi-agent Marketing Cloud deployment covering all three use cases typically runs 6–8 weeks. Kovil AI operates fixed-price only.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the ROI of Agentforce for marketing?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Marketing ROI from Agentforce is primarily revenue-driven: higher qualified pipeline from better-personalised nurture (typical 15–25% pipeline uplift), improved deliverability protecting sender reputation, and reduced marketing ops headcount for campaign management. Event automation ROI is time-saving — typically 12–20 hours per event cycle freed from manual coordination.',
-      },
-    },
-  ],
-}
-
 const collectionSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
@@ -194,7 +147,6 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />

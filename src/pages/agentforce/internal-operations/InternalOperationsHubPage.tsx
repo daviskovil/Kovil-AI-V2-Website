@@ -5,6 +5,8 @@ import Link from "next/link"
 import { ArrowRight, CheckCircle2, UserPlus, DollarSign, Monitor, Shield, Brain } from "lucide-react"
 import { Button } from "../../../components/ui/button"
 import { openCalendly } from "../../../lib/calendly"
+import HubExtraSections from '@/src/components/hub/HubExtraSections'
+import { internalOperationsHub } from '@/src/data/agentforce-hub-content'
 
 const SF_BLUE = "#00A1E0"
 
@@ -191,6 +193,8 @@ export default function InternalOperationsHubPage() {
           </div>
         </div>
       </section>
+
+      <HubExtraSections {...internalOperationsHub} tone="theme" />
 
       {/* ── TRUST + CTA ── */}
       <section className="border-t border-border py-10 bg-muted/30">

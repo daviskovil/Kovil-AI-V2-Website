@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2, Scale, Zap, DollarSign, Shield } from 'lucide-react'
+import HubExtraSections from '@/src/components/hub/HubExtraSections'
+import { compareHub } from '@/src/data/agentforce-hub-content'
 
 const SF_BLUE = '#00A1E0'
 const EINSTEIN_COLOR = '#F59E0B'
@@ -310,6 +312,8 @@ export default function AgentforceCompareHubPage() {
           </div>
         </div>
       </section>
+
+      <HubExtraSections {...compareHub} tone="dark" />
 
       {/* ── CTA ─────────────────────────────────────────────────────── */}
       <section className="py-20 border-t border-white/5 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #050D1A 0%, #091526 60%, #0C1E38 100%)' }}>
