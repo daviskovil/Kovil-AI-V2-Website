@@ -351,6 +351,30 @@ export default function BlogPage() {
             </aside>
           </div>
         </div>
+
+        {/* ── Every article, as plain links. The grid above paginates in the browser,
+            so this list is what lets search engines reach all posts from this page. ── */}
+        <section id="all-articles" aria-labelledby="all-articles-heading" className="border-t border-border bg-muted/20">
+          <div className="max-w-7xl mx-auto px-6 py-14">
+            <h2 id="all-articles-heading" className="font-display font-bold text-2xl mb-8">All articles by topic</h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
+              {categories.map(([cat]) => (
+                <div key={cat}>
+                  <h3 className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">{cat}</h3>
+                  <ul className="space-y-2">
+                    {sorted.filter((p) => p.category === cat).map((p) => (
+                      <li key={p.slug}>
+                        <Link href={`/blog/${p.slug}`} className="text-sm text-muted-foreground hover:text-accent transition-colors leading-snug">
+                          {p.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </>
   )

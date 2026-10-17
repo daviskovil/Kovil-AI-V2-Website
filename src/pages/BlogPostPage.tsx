@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useParams } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, Clock, Calendar, User, ChevronDown } from "lucide-react"
-import { getPost } from "../data/posts"
+import { getPost, posts } from "../data/posts"
 import { OnboardingModal } from "../components/OnboardingModal"
 
 // ─── CTA Config ──────────────────────────────────────────────────────────────
@@ -393,6 +393,45 @@ function RelatedLinks({ slug }: { slug: string }) {
   )
 }
 
+// Three other articles to read next. Same-category posts come first, in a fixed
+// rotation so every post receives links from its neighbours.
+function relatedPosts(slug: string, count = 3) {
+  const all = [...posts].sort((a, b) => a.slug.localeCompare(b.slug))
+  const self = all.find((p) => p.slug === slug)
+  if (!self) return []
+  const picks: typeof all = []
+  const add = (p: (typeof all)[number]) => { if (p.slug !== slug && !picks.includes(p) && picks.length < count) picks.push(p) }
+  const same = all.filter((p) => p.category === self.category)
+  const si = same.indexOf(self)
+  for (let k = 1; k < same.length; k++) add(same[(si + k) % same.length])
+  const ai = all.indexOf(self)
+  for (let k = 1; k < all.length; k++) add(all[(ai + k) % all.length])
+  return picks
+}
+
+function RelatedArticles({ slug }: { slug: string }) {
+  const related = relatedPosts(slug)
+  if (related.length === 0) return null
+  return (
+    <div className="mt-16 pt-10 border-t border-border">
+      <h2 className="font-display font-bold text-2xl mb-6">Keep reading</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {related.map((r) => (
+          <Link
+            key={r.slug}
+            href={`/blog/${r.slug}`}
+            className="group flex flex-col gap-2 rounded-xl border border-border bg-muted/30 px-4 py-4 hover:border-accent/40 hover:bg-accent/[0.04] transition-colors"
+          >
+            <span className="text-[11px] font-bold text-accent uppercase tracking-widest">{r.category}</span>
+            <span className="text-sm font-semibold leading-snug text-foreground group-hover:text-accent transition-colors">{r.title}</span>
+            <span className="text-xs text-muted-foreground">{r.readTime}</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // Split HTML after the Nth closing </p> tag
 function splitAfterParagraph(html: string, afterN = 2): [string, string] {
   let count = 0
@@ -724,6 +763,9 @@ export default function BlogPostPage() {
                   </div>
                 </div>
               )}
+
+              {/* Related articles: gives every post contextual inbound links */}
+              <RelatedArticles slug={post.slug} />
 
               {/* ── Inline CTA Banner ── */}
               <BlogCta cta={cta} />
