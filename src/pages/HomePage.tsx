@@ -479,7 +479,7 @@ export default function HomePage() {
               transition={{ duration: 0.5 }}
               className="text-4xl sm:text-5xl lg:text-4xl xl:text-5xl font-display font-bold tracking-tight text-balance leading-[1.1]"
             >
-              <span className="text-accent">Integrate Autonomous AI Agents</span><br/>Into Your Existing Platforms and Workflows
+              <span className="text-accent">Remote Enterprise Platform Experts</span><br/>Who Run Your Platforms and Build AI Inside Them
             </motion.h1>
 
             <motion.p
@@ -488,7 +488,7 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mt-6 text-xl text-muted-foreground max-w-lg leading-relaxed"
             >
-              Managed AI implementation with zero delivery risk — specialists across Salesforce, HubSpot, Shopify, and 30+ enterprise platforms.
+              Specialists across platforms like Salesforce, HubSpot, NetSuite, and 30+ more.
             </motion.p>
 
             <motion.ul
@@ -498,9 +498,9 @@ export default function HomePage() {
               className="mt-8 space-y-3"
             >
               {[
-                "Vetted Tier-1 AI Engineers",
-                "Milestone Gated Sprints",
-                "Active Managed Delivery"
+                "Vetted Platform Experts",
+                "Actively Managed Delivery",
+                "Flexible Engagement Models"
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-lg font-medium">
                   <CheckCircle2 className="h-6 w-6 text-accent shrink-0" />
@@ -516,26 +516,23 @@ export default function HomePage() {
               className="mt-10 flex flex-col items-start gap-3"
             >
               <div className="flex flex-wrap items-center gap-3">
-                <OnboardingModal>
-                  <Button
-                    variant="accent"
-                    size="lg"
-                    className="text-lg h-14 px-8 rounded-full shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all"
-                  >
-                    Build Your AI Agent <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </OnboardingModal>
-                <Link href="/platforms">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="text-lg h-14 px-8 rounded-full bg-background"
-                  >
-                    Hire Platform AI Experts
-                  </Button>
-                </Link>
+                <Button
+                  variant="accent"
+                  size="lg"
+                  onClick={openCalendly}
+                  className="text-lg h-14 px-8 rounded-full shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all"
+                >
+                  Hire a Platform Expert <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={openCalendly}
+                  className="text-lg h-14 px-8 rounded-full bg-background"
+                >
+                  Hire Platform AI Expert
+                </Button>
               </div>
-              <span className="text-sm text-muted-foreground font-medium px-4">Fixed price, outcome based AI Builds</span>
             </motion.div>
           </div>
 
